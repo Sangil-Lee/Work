@@ -1,0 +1,18 @@
+menuconfig MY_TEST
+    bool "H-AndroSV210 MY_TEST"
+	depends on MACH_SV210
+    ---help---
+
+if MY_TEST
+
+config MY_LED
+	tristate "extern LED support"
+	depends on MACH_SV210
+	help
+
+config MY_KEY
+	tristate "extern KEY support"
+	depends on MACH_SV210
+	help
+
+endif

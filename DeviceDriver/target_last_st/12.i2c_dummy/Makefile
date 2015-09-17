@@ -1,0 +1,25 @@
+obj-m	:= i2c_drv.o
+APP	= i2c_app
+
+
+#KDIR	:= /lib/modules/$(shell uname -r)/build
+#KDIR	:= /work/android_kernel_2.6.32_sv210
+KDIR	:= /work_dd/linux_kernel_2.6.32_sv210
+#CC = arm-linux-gcc
+CC = arm-none-linux-gnueabi-gcc
+
+PWD	:= $(shell pwd)
+
+#all : module app
+all : module
+
+module:
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+
+app:
+#	$(CC) -static -o $(APP) $(APP).c
+	$(CC) -o $(APP) $(APP).c
+
+clean:
+	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) clean
+	-rm -rf $(APP)
