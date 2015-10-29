@@ -1,0 +1,177 @@
+IPAC
+
+https://svn.aps.anl.gov/trac/epics/ipac
+
+https://svn.aps.anl.gov/trac/epics/ipac/attachment/wiki/V2.12/ipac-2.12.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ cd ipac-2.12/
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/ipac-2.12$ ls
+configure/  COPYING  drvIpac/  drvTip810/  Makefile  README  tyGSOctal/
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/ipac-2.12$ emacs configure/RELEASE 
+
+
+
+
+
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/ipac-2.12$ make clean uninstall install
+
+
+
+
+SNCSEQ : Recommended 2.1.16
+
+http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.1.16.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ wget -c http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-2.1.16.tar.gz
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ tar xvzf seq-2.1.16.tar.gz 
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/seq-2.1.16$ emacs configure/RELEASE
+
+EPICS_BASE=${EPICS_PATH}/base
+
+
+
+
+
+http://www.aps.anl.gov/epics/modules/soft/asyn/
+
+ASYNC 
+
+Requirements : IPAC, SEQ
+
+http://www.aps.anl.gov/epics/download/modules/asyn4-24.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$  wget -c http://www.aps.anl.gov/epics/download/modules/asyn4-24.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ tar xvf asyn4-24.tar.gz 
+
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ cd asyn4-24/
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/asyn4-24$ emacs configure/RELEASE
+
+#RELEASE Location of external products
+
+##SUPPORT=/corvette/home/epics/devel
+SUPPORT=${EPICS_PATH}/epicsLibs/motorApps/
+-include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
+
+#  IPAC is only necessary if support for Greensprings IP488 is required
+#  IPAC release V2-7 or later is required.
+IPAC=$(SUPPORT)/ipac-2.12
+
+# SEQ is required for testIPServer
+SNCSEQ=$(SUPPORT)/seq-2.1.16
+
+#  EPICS_BASE 3.14.6 or later is required
+EPICS_BASE=${EPICS_PATH}/base
+-include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/asyn4-24$ make clean uninstall install
+
+
+BUSY
+
+http://www.aps.anl.gov/bcda/synApps/busy/busy.html
+
+http://www.aps.anl.gov/bcda/synApps/tar/busy_R1-6-1.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ wget -c http://www.aps.anl.gov/bcda/synApps/tar/busy_R1-6-1.tar.gz
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ tar xvzf busy_R1-6-1.tar.gz 
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ cd busy-1-6-1/
+
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/busy-1-6-1$ emacs configure/RELEASE 
+
+
+
+#RELEASE Location of external products
+# Run "gnumake clean uninstall install" in the application
+# top directory each time this file is changed.
+
+TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
+
+SUPPORT=${EPICS_PATH}/epicsLibs/motorApps/
+-include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
+
+# ASYN is needed to compile asyn device support
+ASYN=$(SUPPORT)/asyn4-24
+
+# EPICS_BASE usually appears last so other apps can override stuff:
+EPICS_BASE=${EPICS_PATH}/base
+-include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
+
+#Capfast users may need the following definitions
+#CAPFAST_TEMPLATES=
+#SCH2EDIF_PATH=
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/busy-1-6-1$ make clean uninstall install
+
+
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps$ cd motorR6-9/
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/motorR6-9$ emacs configure/RELEASE 
+
+
+ RELEASE - Location of external products
+#
+# Note: This file will be scanned to automatically generate
+#       include path definitions etc.
+#       The order of the following declarations will be retained
+#       within those definitions.
+#
+# Note that "#!" marks lines that can be uncommented.
+#
+# Add your declarations here
+
+SUPPORT=${EPICS_PATH}/epicsLibs/motorApps/
+-include $(TOP)/../configure/SUPPORT.$(EPICS_HOST_ARCH)
+
+# If any motor controller communication mechanism besides the VME backplane is
+# required, then ASYN must be defined.
+# Recommended ASYN release: R4-23
+ASYN=$(SUPPORT)/asyn4-24
+
+# Need the sequencer and the bust record for the MM4005 and XPS trajectory scanning
+# Recommended SNCSEQ release: R2.1.16
+SNCSEQ=$(SUPPORT)/seq-2.1.16
+# Recommended BUSY release: R1-6
+BUSY=$(SUPPORT)/busy-1-6-1
+
+# Recommended EPICS release: R3.14.12.4
+EPICS_BASE=${EPICS_PATH}/base
+-include $(TOP)/../configure/EPICS_BASE.$(EPICS_HOST_ARCH)
+
+# The following must be defined for the MXmotor device driver.
+#!MX=$(SUPPORT)/mx/mx
+
+# The following support modules are required for the Hytec driver and for the examples in
+# <motor>/motorExApp.  To build examples, the top Makefile,
+# <motor>/Makefile must also be edited.
+
+# Recommended IPAC release: R2-12
+IPAC=$(SUPPORT)/ipac-2.12
+
+# The following is only needed for the motor examples in iocBoot.
+#!MOTOR=$(TOP)
+
+jhlee@kaffee:~/epics/R3.14.12.4/epicsLibs/motorApps/motorR6-9$ make clean uninstall install 
+
+
+
+****
+
+Need to read "how to compile a specific motor example"...
+
+
+
