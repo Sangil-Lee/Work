@@ -1,0 +1,71 @@
+diff -rupN StripTool2_5_16_0/Strip.c StripTool2_5_16_0_jhlee/Strip.c
+--- StripTool2_5_16_0/Strip.c	2015-04-01 17:00:55.942083479 +0900
++++ StripTool2_5_16_0_jhlee/Strip.c	2015-04-01 16:57:09.380085523 +0900
+@@ -1841,7 +1841,7 @@ int     Strip_writeconfig       (Strip
+   if ((ret_val = StripConfig_write (si->config, f, m)))
+   {
+     StripConfig_setattr (si->config, STRIPCONFIG_FILENAME, fname, 0);
+-    StripConfig_setattr (si->config, STRIPCONFIG_TITLE, basename (fname), 0);
++    StripConfig_setattr (si->config, STRIPCONFIG_TITLE, basename_s (fname), 0);
+     StripConfigMask_set (&m, SCFGMASK_FILENAME);
+     StripConfigMask_set (&m, SCFGMASK_TITLE);
+     StripConfig_update (si->config, m);
+@@ -1863,7 +1863,7 @@ int     Strip_readconfig        (Strip
+   if ((ret_val = StripConfig_load (si->config, f, m)))
+   {
+     StripConfig_setattr (si->config, STRIPCONFIG_FILENAME, fname, 0);
+-    StripConfig_setattr (si->config, STRIPCONFIG_TITLE, basename (fname), 0);
++    StripConfig_setattr (si->config, STRIPCONFIG_TITLE, basename_s (fname), 0);
+     StripConfigMask_set (&m, SCFGMASK_FILENAME);
+     StripConfigMask_set (&m, SCFGMASK_TITLE);
+     StripConfig_update (si->config, m);
+diff -rupN StripTool2_5_16_0/StripDialog.c StripTool2_5_16_0_jhlee/StripDialog.c
+--- StripTool2_5_16_0/StripDialog.c	2015-04-01 17:00:55.942083479 +0900
++++ StripTool2_5_16_0_jhlee/StripDialog.c	2015-04-01 16:57:43.394757076 +0900
+@@ -3396,7 +3396,7 @@ static void     save_config     (StripDi
+     if (StripConfig_write (sd->config, f, mask))
+     {
+       StripConfig_setattr (sd->config, STRIPCONFIG_FILENAME, fname, 0);
+-      StripConfig_setattr (sd->config, STRIPCONFIG_TITLE, basename (fname), 0);
++      StripConfig_setattr (sd->config, STRIPCONFIG_TITLE, basename_s (fname), 0);
+       StripConfigMask_clear (&mask);
+       StripConfigMask_set (&mask, SCFGMASK_FILENAME);
+       StripConfigMask_set (&mask, SCFGMASK_TITLE);
+@@ -3428,7 +3428,7 @@ static void     load_config     (StripDi
+     if (StripConfig_load (sd->config, f, mask))
+     {
+       StripConfig_setattr (sd->config, STRIPCONFIG_FILENAME, fname, 0);
+-      StripConfig_setattr (sd->config, STRIPCONFIG_TITLE, basename (fname), 0);
++      StripConfig_setattr (sd->config, STRIPCONFIG_TITLE, basename_s (fname), 0);
+       StripConfigMask_set (&mask, SCFGMASK_FILENAME);
+       StripConfigMask_set (&mask, SCFGMASK_TITLE);
+       StripConfig_update (sd->config, mask);
+diff -rupN StripTool2_5_16_0/StripMisc.c StripTool2_5_16_0_jhlee/StripMisc.c
+--- StripTool2_5_16_0/StripMisc.c	2015-04-01 17:00:55.942083479 +0900
++++ StripTool2_5_16_0_jhlee/StripMisc.c	2015-04-01 16:58:09.312181901 +0900
+@@ -579,7 +579,7 @@ static void Question_cb(Widget w, XtPoin
+ }
+ 
+ 
+-char    *basename       (char *path)
++char    *basename_s       (char *path)
+ {
+   char  *p = 0;
+ 
+diff -rupN StripTool2_5_16_0/StripMisc.h StripTool2_5_16_0_jhlee/StripMisc.h
+--- StripTool2_5_16_0/StripMisc.h	2015-04-01 17:00:55.942083479 +0900
++++ StripTool2_5_16_0_jhlee/StripMisc.h	2015-04-01 16:58:36.079847822 +0900
+@@ -235,11 +235,11 @@ char    *dbl2str        (double,
+ 
+ char    *int2str        (int x, char buf[], int n);
+ 
+-/* basename
++/* basename_s
+  *
+  *      Returns the filename portion of a fully qualified path.
+  */
+-char    *basename       (char *);
++char    *basename_s       (char *);
+ void History_MessageBox_popup(char *title,char *btn_txt,char *str);
+ 
+ /* General purpose output routine

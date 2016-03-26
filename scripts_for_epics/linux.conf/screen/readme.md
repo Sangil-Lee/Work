@@ -1,0 +1,1 @@
+move .screenrc into $HOME
