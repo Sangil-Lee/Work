@@ -10,7 +10,7 @@ subplot(1,1,1)
 subplot(2,1,1);stem(nrxy,rxy)
 axis([-4,8,-50,250]);xlabel('lag variable l')
 ylabel('rxy');title('Crosscorrelation: noise sequence 1')
-gtext('Maximum')
+%gtext('Maximum')
 
 %
 % noise sequence 2
@@ -21,6 +21,6 @@ w = randn(1,length(y)); nw = ny;        % generate w(n)
 [x,nx] = sigfold(x,nx);                 % obtain x(-n)
 [rxy,nrxy] = conv_m(y,ny,x,nx);         % cross-corrlation
 subplot(2,1,2);stem(nrxy,rxy)
-gtext('Maximum')
+%gtext('Maximum')
 axis([-4,8,-50,250]);xlabel('lag variable l')
 ylabel('rxy');title('Crosscorrelation: noise sequence 2')
