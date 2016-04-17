@@ -1,0 +1,61 @@
+# 3.14 ether_ip_test vxWorks startup file
+
+# Following will be needed for many board support packages
+#cd "<location of IOC startup files>"
+
+< cdCommands
+
+#< ../nfsCommands
+
+cd topbin
+ld < example.munch
+
+# Initialize EtherIP driver, define PLCs
+# -------------------------------------
+drvEtherIP_init()
+
+# Tell vxWorks how to get to "myplc",
+# that is the ENET module of a ControlLogix PLC.
+# vxWorks doesn't generally use DNS, so if you
+# want to use names, you have to define them:
+hostAdd("myplc", "192.168.0.50")
+# You might need this, too, if the IP is on
+# a different subnet: routeAdd <target>, <gateway>
+# routeAdd("192.168.0.50, "128.165.160.241")
+# Test if we can get to the PLC:
+ping "myplc", 2
+
+# drvEtherIP_define_PLC <name>, <ip_addr>, <slot>
+# The driver/device uses the <name> to indentify the PLC.
+# 
+# <ip_addr> can be an IP address in dot-notation
+# or a name that the IOC knows about (defined via hostAdd,
+# see step 4).
+# The IP address gets us to the ENET interface.
+# To get to the PLC itself, we need the slot that
+# it resides in. The first, left-most slot in the
+# ControlLogix crate is slot 0.
+drvEtherIP_define_PLC("plc1", "myplc", 0)
+
+# 10 - Truckload of detailed messages down to the raw send/receive buffers
+#  7 - Good value for operation
+#  0 - Nothing except very severe problems
+EIP_verbosity=7
+
+cd top
+dbLoadDatabase("dbd/example.dbd")
+example_registerRecordDeviceDriver(pdbbase)
+#dbLoadRecords("db/ramp.db",    "IOC=snsioc4")
+#dbLoadRecords("db/eip_stat.db","PLC=plc1,IOC=snsioc4,TAG=REAL")
+#dbLoadRecords("db/ai.db",      "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/ana.db",     "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/bi.db",      "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/bin.db",     "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/mbbi.db",    "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/ao.db",      "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/bo.db",      "PLC=plc1,IOC=snsioc4")
+#dbLoadRecords("db/mbbo.db",    "PLC=plc1,IOC=snsioc4")
+dbLoadRecords("db/test.db",    "PLC=plc1,IOC=plc1")
+
+cd startup
+iocInit()

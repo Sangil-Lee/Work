@@ -1,0 +1,65 @@
+record(ao, "$(PS):VOL")
+{
+  field(FLNK, "$(PS):CMD")
+}
+
+record(ao, "$(PS):CUR")
+{
+  field(FLNK, "$(PS):CMD")
+}
+
+record(bo, "$(PS):ON")
+{
+  field(FLNK, "$(PS):CMD")
+}
+
+record(gmps, "$(PS):CMD")
+{
+  field(DTYP, "$(PS)")
+  field(OUT, "@glassManPS.proto set_value $(P)")
+  field(INPA, "$(PS):VOL")
+  field(INPB, "$(PS):CUR")
+  field(INPC, "$(PS):ON")
+}
+
+record(ai, "$(PS):Vmon")
+{
+  field(DTYP, "stream")
+  field(INP, "@glassManPS.proto get_voltage $(P)")
+  field(LINR, "LINEAR")
+  field(EGUF, "1000")
+  field(EGUL, "0")
+  field(EGU, "V")
+  field(ESLO, "0.977517106549364")
+  field(EOFF, "0")
+  field(SCAN, "1 second")
+}
+
+record(ai, "$(PS):Imon")
+{
+  field(DTYP, "stream")
+  field(INP, "@glassManPS.proto get_current $(P)")
+  field(SCAN, "1 second")
+  field(LINR, "LINEAR")
+  field(EGUF, "1000")
+  field(EGUL, "0")
+  field(EGU, "mA")
+  field(ESLO, "0.977517106549364")
+  field(EOFF, "0")
+  field(SCAN, "1 second")
+}
+
+record(mbbiDirect, "$(PS):ST")
+{
+  field(DTYP, "stream")
+  field(INP, "@glassManPS.proto get_st $(P)")
+  field(SCAN, "1 second")
+  field(NOBT, "8")
+}
+
+record(stringout, "$(PS):RESET")
+{
+  field(DTYP, "stream")
+  field(OUT, "@glassManPS.proto set_reset $(P)")
+}
+

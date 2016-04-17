@@ -1,0 +1,30 @@
+#!../../bin/linux-x86_64/moxa6650
+
+## You may have to change snmp2 to something else
+## everywhere it appears in this file
+
+< envPaths
+
+cd ${TOP}
+
+#epicsEnvSet("MIBDIRS", "${EPICS_PATH}/siteLibs/snmpLib/mibs")
+
+## Register all support components
+dbLoadDatabase "dbd/moxa6650.dbd"
+moxa6650_registerRecordDeviceDriver pdbbase
+
+#drvSNMPConnInit("10.1.5.142", "qwertyuiop12345", "qwertyuiop12345");
+#drvSNMPConnInit("SNMP_VERSION_2c", "10.1.5.142", "public", NULL, NULL);
+
+## Load record instances
+#dbLoadRecords("db/xxx.db","user=mijoy0909Host")
+dbLoadRecords("db/moxa6650.db", "SYS=CTRL, SUBSYS=NET, DEV=MX001, HOST=10.1.4.209, COM=public, V2C=SNMP_VERSION_2c")
+#dbLoadRecords("db/brocade6910.db", "L=MUNJI, D=SWC2, HOST=192.168.1.22, COM=public, V2C=SNMP_VERSION_2c")
+#dbLoadRecords("db/brocade6910.db", "L=MUNJI, D=SWC3, HOST=192.168.1.23, COM=public, V2C=SNMP_VERSION_2c")
+#dbLoadRecords("db/brocade6910.db", "L=MUNJI, D=SWC4, HOST=192.168.1.24, COM=public, V2C=SNMP_VERSION_2c")
+
+cd ${TOP}/iocBoot/${IOC}
+iocInit
+
+## Start any sequence programs
+#seq sncxxx,"user=mijoy0909Host"

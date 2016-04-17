@@ -1,0 +1,11 @@
+record(timestamp, $(SYS)_CLOCK) {
+  field(TST, "HH:MM:SS")
+  field(SCAN, ".5 second")
+  field(DESC, "timestamp")
+}
+
+record(timestamp, $(SYS)_SYS_TIME) {
+  field(TST, "YY/MM/DD HH:MM:SS")
+  field(SCAN, "1 second")
+  field(DESC, "timestamp")
+}
