@@ -1,0 +1,13 @@
+- The top-level display is tds3000_c.adl which takes a single macro argument:
+    medm -x -macro "scope=scopeTest:" tds3000_c.adl 
+
+- EPICS_CA_MAX_ARRAY_BYTES environment variable must be set to 80000 or higher.
+
+- These MEDM displays are best used with MEDM version 3.0.3 or higher since
+  they use a PV to set the number of points on the Cartesian plots.
+
+- The trace10K script is for SDDS. An option is on the lower right hand
+  corner of the main tds3000 MEDM display to use this function. SDDS is
+  required for this function to work. SDDS can be download for the
+  Advanced Photon Source, www.aps.anl.gov.
+

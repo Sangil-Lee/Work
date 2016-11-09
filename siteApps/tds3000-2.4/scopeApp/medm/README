@@ -1,0 +1,21 @@
+- The top-level display is tds3000_c.adl which takes a single macro argument:
+    medm -x -macro "scope=scopeTest:" tds3000_c.adl 
+
+- EPICS_CA_MAX_ARRAY_BYTES environment variable must be set to 80000 or higher.
+
+- These MEDM displays are best used with MEDM version 3.0.3 or higher since
+  they use a PV to set the number of points on the Cartesian plots.
+
+The TDS3000 displays use a SNL program that does the following:
+  - Display system label in bottom left corner of main display.
+  - On the main display show date/time of the last single seq trigger
+    event.
+  - Provide controls for the Auto Print/Re-arm program.
+  - Provide medm button to display an SDDS plot of the last trigger
+    event.
+  - Displayed on the scope display the system the scope is connected to
+  and that the front panel controls are locked. This can be control with
+  the Remote/Local control button on the main medm display.
+
+The SNL program, "scopeAutoArmPrint", and the database "scopeMessage.vdb"
+will need to be modified for your appilication.
