@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>tds3000: Tektronix Scope Device Support - Release Notes</title>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+</head>
+<body alink="#ff0000" bgcolor="#ffffff" link="#0000ee" text="#000000"
+ vlink="#551a8b">
+<center>
+<h1>tds3000: Tektronix Scope Support - Release Notes</h1>
+<h1>December 2006</h1>
+</center>
+<hr>
+<center>
+<h2>Release 2-4</h2>
+</center>
+<ul>
+    <li>Merged support for TDS5000 series devices.  Add devTDS3000.dbd or
+        devTDS5000.dbd (or both) to your application as appropriate.
+    </li>
+    <li>Provide example database file (TDSxxxx.vdb) which works with either
+      TDS3000 or TDS5000 devices (set FAMILY macro to 3000 or 5000).</li>
+    <li>Modified example startup and MEDM scripts to allow
+      values to be set from environment variables.</li>
+    <li>Use standard ASYN techniques to control diagnostic printing.</li>
+</ul>
+<hr>
+<center>
+<h2>Release 2-3</h2>
+</center>
+<ul>
+  <li>Corrected documentation and revision tags.<br>
+  </li>
+</ul>
+<hr style="width: 100%; height: 2px;">
+<center>
+<h2>Release 2-2</h2>
+</center>
+<ul>
+  <li>Defined DATA:START and DATA:STOP to be 0 and 10000 respectfully.
+Calibration software may change these values with out restoring the
+defaults.<br>
+  </li>
+  <li>Corrected some pv issues</li>
+  <li>Build with R3.14.7</li>
+</ul>
+<hr>
+<center>
+<h2>Release 2-1<br>
+</h2>
+</center>
+<ul>
+  <li>Build with R3.14.6<br>
+  </li>
+  <li>Use same device support for GPIB and serial (local/remote)
+interfaces. The serial version (devTDS3000s.c) is not needed now.<br>
+  </li>
+</ul>
+<hr>
+<center>
+<h2>Release 1-1</h2>
+</center>
+<h3><small><span style="font-weight: normal;">First release of the asyn
+device support for the tds3000 scopes</span></small><br>
+</h3>
+<ul>
+  <li>converted the tds3054 from the 3.13 gpib support to tds3000 asyn
+device support.<br>
+  </li>
+  <li>Supports GPIB, Serial and Ethernet.<br>
+  </li>
+</ul>
+<br>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>DemonstrationConnection</title>
+  </head>
+  <body>
+    <h1>Fast Protection Demonstration System Connections</h1>
+    <h2>1. General<br>
+    </h2>
+    <ul>
+      <li>(Optional) USB serial and programming cables can be connected
+        to each of the ZC706 modules for viewing console messages and
+        for Vivado programming or ChipScope diagnosis.&nbsp; The
+        demonstration system can operate with any or none of these
+        connections present.<br>
+      </li>
+    </ul>
+    <h2>2. Event Generator</h2>
+    <ul>
+      <li>Connect the GPS-PMOD module to ZC706 PMOD1 (J58) pins 1
+        through 11.&nbsp; Pin one of the cable is marked as is pin one
+        of the ZC706 header.&nbsp; Give the GPS-PMOD module as clear a
+        view of the sky as possible and make sure it does not short to
+        the tray – a piece of paper as an insulator is a good idea.<br>
+      </li>
+      <li>Connect a fiber between the event generator on-board SFP
+        module and the on-board SFP module of the mitigation node.</li>
+      <li>Power up the event generator as soon as possible since the
+        GPS-PMOD can take 15 minutes or more to obtain a lock on the
+        satellite signals.&nbsp; While attempting to achieve lock the
+        LED on the GPS-PMOD module and the ZC706 LED_CENTER (DS9) will
+        blink on and off at 0.5 Hz.&nbsp; When the GPS-PMOD has achieved
+        lock the ZC706 LED_0 (DS35) will flash once per second.</li>
+    </ul>
+    <h2>3. Mitigation Node</h2>
+    <ul>
+      <li>Mount FMC-4SFP+ module with two SFP modules loaded on FMC-HPC
+        (J37) connector.&nbsp; Ensure that all switches on the FMC-4SFP+
+        module are in the '0' position.</li>
+      <li>Mount XM105 module on ZC706 FMC-LPC (J5) connector.</li>
+      <li>Connect fiber from event generator module to on-board SFP
+        module.</li>
+      <li>Connect fiber from rightmost FMC-4SFP+ SFP module to
+        acquisition link 0, node 0.</li>
+      <li>Connect fiber from seecond rightmost FMC-4SFP+ SFP module to
+        acquisition link 1, node 0.</li>
+      <li>Connect Ethernet cable to IOC or to a network switch to which
+        the IOC is connected.<br>
+      </li>
+    </ul>
+    <h2>4. Acquisition Link 0, Node 0<br>
+    </h2>
+    <ul>
+      <li>Mount XM105 module on ZC706 FMC-HPC (J37) connector.&nbsp;
+        Don't bolt down – the XM105 will get moved around to demonstrate
+        inputs from various acquisition nodes.<br>
+      </li>
+      <li>Connect fiber from mitigation node to on-board SFP module.</li>
+    </ul>
+    <h2>5. Acquisition Link 1, Node 0<br>
+    </h2>
+    <ul>
+      <li>Mount remaining FMC-4SFP+ module on FMC-LPC (J5) connector. <br>
+      </li>
+      <li>Connect fiber from mitigation node to on-board SFP module.</li>
+      <li>Connect fiber from FMC-4SFP+ module SFP to acquisition node
+        link 1, node 1.<br>
+      </li>
+    </ul>
+    <h2>6. Acquisition Link 1, Node 1<br>
+    </h2>
+    <ul>
+      <li>Connect fiber from acquisition node link 1, node 0 to on-board
+        SFP module.</li>
+    </ul>
+    <p><br>
+    </p>
+    <p> </p>
+  </body>
+</html>

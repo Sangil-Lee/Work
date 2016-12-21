@@ -1,0 +1,832 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=ISO-8859-2">
+    <title>Fast Protection Firmware</title>
+  </head>
+  <body>
+    <h1>Acquisition Node Inputs</h1>
+    The interlock inputs are read from the 40-pin header J1, the 16-pin
+    header J20, and the 12-pin header J16 of an XM105 card mounted on
+    the HPC FMC connector of an acquisition node.&nbsp; Signals are
+    LVCMOS (2.5 V) levels.&nbsp; An input at 0 V corresponds to a logic
+    0.&nbsp; Ground pins are available at J16-3 and J16-4.&nbsp; Note
+    that if J6 jumpers are in place there will be power supply voltages
+    present at J16-1 and J16-2 so be careful connecting test equipment
+    grounds to J16-3 or J16-4.<br>
+    <br>
+    <blockquote>
+      <table border="1" cellpadding="2" cellspacing="2" width="700">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><b>Input</b><br>
+            </td>
+            <td align="center" valign="middle"><b>FMC Signal</b><br>
+            </td>
+            <td align="center" valign="middle"><b>XM105 Pin</b><br>
+            </td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle"><b>Input</b><br>
+            </td>
+            <td align="center" valign="middle"><b>FMC Signal</b><br>
+            </td>
+            <td align="center" valign="middle"><b>XM105 Pin</b><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">00<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA00_CC_P<br>
+            </td>
+            <td align="center" valign="middle">J1-1<br>
+            </td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">32<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA08_P</td>
+            <td align="center" valign="middle">J1-33</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">01<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA10_P<br>
+            </td>
+            <td align="center" valign="middle">J1-2<br>
+            </td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">33<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA18_CC_P</td>
+            <td align="center" valign="middle">J1-34</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">02<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA00_CC_N</td>
+            <td align="center" valign="middle">J1-3</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">34<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA08_N</td>
+            <td align="center" valign="middle">J1-35</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">03<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA10_N</td>
+            <td align="center" valign="middle">J1-4</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">35<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA18_CC_N</td>
+            <td align="center" valign="middle">J1-36</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">04<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA01_CC_P</td>
+            <td align="center" valign="middle">J1-5</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">36<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA09_P</td>
+            <td align="center" valign="middle">J1-37</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">05<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA11_P</td>
+            <td align="center" valign="middle">J1-6</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">37<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA19_P</td>
+            <td align="center" valign="middle">J1-38</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">06<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA01_CC_N</td>
+            <td align="center" valign="middle">J1-7</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">38<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA09_N</td>
+            <td align="center" valign="middle">J1-39</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">07<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA11_N</td>
+            <td align="center" valign="middle">J1-8</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">39<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA19_N</td>
+            <td align="center" valign="middle">J1-40</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">08<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA02_P</td>
+            <td align="center" valign="middle">J1-9</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">40<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA20_P</td>
+            <td align="center" valign="middle">J20-1<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">09<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA12_P</td>
+            <td align="center" valign="middle">J1-10</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">41<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA24_P</td>
+            <td align="center" valign="middle">J20-2</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">10<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA02_N</td>
+            <td align="center" valign="middle">J1-11</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">42<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA20_N</td>
+            <td align="center" valign="middle">J20-3</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">11<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA12_N</td>
+            <td align="center" valign="middle">J1-12</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">43<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA24_N</td>
+            <td align="center" valign="middle">J20-4</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">12<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA03_P</td>
+            <td align="center" valign="middle">J1-13</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">44<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA21_P</td>
+            <td align="center" valign="middle">J20-5</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">13<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA13_P</td>
+            <td align="center" valign="middle">J1-14</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">45<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA25_P</td>
+            <td align="center" valign="middle">J20-6</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">14<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA03_N</td>
+            <td align="center" valign="middle">J1-15</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">46<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA21_N</td>
+            <td align="center" valign="middle">J20-7</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">15<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA13_N</td>
+            <td align="center" valign="middle">J1-16</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">47<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA25_N</td>
+            <td align="center" valign="middle">J20-8</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">16<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA04_P</td>
+            <td align="center" valign="middle">J1-17</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">48<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA22_P</td>
+            <td align="center" valign="middle">J20-9</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">17<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA14_P</td>
+            <td align="center" valign="middle">J1-18</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">49<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA26_P</td>
+            <td align="center" valign="middle">J20-10</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">18<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA04_N</td>
+            <td align="center" valign="middle">J1-19</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">50<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA22_N</td>
+            <td align="center" valign="middle">J20-11</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">19<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA14_N</td>
+            <td align="center" valign="middle">J1-20</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">51<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA26_N</td>
+            <td align="center" valign="middle">J20-12</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">20<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA05_P</td>
+            <td align="center" valign="middle">J1-21</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">52<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA23_P</td>
+            <td align="center" valign="middle">J20-13</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">21<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA15_P</td>
+            <td align="center" valign="middle">J1-22</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">53<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA27_P</td>
+            <td align="center" valign="middle">J20-14</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">22<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA05_N</td>
+            <td align="center" valign="middle">J1-23</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">54<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA23_N</td>
+            <td align="center" valign="middle">J20-15</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">23<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA15_N</td>
+            <td align="center" valign="middle">J1-24</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">55<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA27_N</td>
+            <td align="center" valign="middle">J20-16</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">24<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA06_P</td>
+            <td align="center" valign="middle">J1-25</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">56<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA28_P</td>
+            <td align="center" valign="middle">J16-5</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">25<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA16_P</td>
+            <td align="center" valign="middle">J1-26</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">57<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA30_P</td>
+            <td align="center" valign="middle">J16-6</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">26<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA06_N</td>
+            <td align="center" valign="middle">J1-27</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">58<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA28_N</td>
+            <td align="center" valign="middle">J16-7</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">27<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA16_N</td>
+            <td align="center" valign="middle">J1-28</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">59<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA30_N</td>
+            <td align="center" valign="middle">J16-8<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">28<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA07_P</td>
+            <td align="center" valign="middle">J1-29</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">60<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA29_P</td>
+            <td align="center" valign="middle">J16-9<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">29<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA17_CC_P</td>
+            <td align="center" valign="middle">J1-30</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">61<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA31_P</td>
+            <td align="center" valign="middle">J16-10<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">30<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA07_N</td>
+            <td align="center" valign="middle">J1-31</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">62<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA29_N</td>
+            <td align="center" valign="middle">J16-11<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">31<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA17_CC_N</td>
+            <td align="center" valign="middle">J1-32</td>
+            <td align="center" valign="middle"><br>
+            </td>
+            <td align="center" valign="middle">63<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA31_N</td>
+            <td align="center" valign="middle">J16-12<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+    <br>
+    <h1>Acquisition Node Diagnostic Outputs</h1>
+    <p>As a diagnostic aid the PMOD1 connector data pins are driven with
+      the state of the first eight interlock inputs as shown in the
+      following table.&nbsp; Note that the J58 data pins are 3.3V
+      LVCMOS.&nbsp; Do not connect these directly to any FPGA 2.5V
+      LVCMOS pin!<br>
+    </p>
+    <blockquote>
+      <table border="1" cellpadding="2" cellspacing="2" width="300">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><b>Input</b><br>
+            </td>
+            <td align="center" valign="middle"><b>PMOD1 Signal</b><br>
+            </td>
+            <td align="center" valign="middle"><b>J58 Pin</b><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">0<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_0<br>
+            </td>
+            <td align="center" valign="middle">1<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">1<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_1</td>
+            <td align="center" valign="middle">3<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">2<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_2</td>
+            <td align="center" valign="middle">5<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">3<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_3</td>
+            <td align="center" valign="middle">7<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">4<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_4</td>
+            <td align="center" valign="middle">2<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">5<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_5</td>
+            <td align="center" valign="middle">4<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">6<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_6</td>
+            <td align="center" valign="middle">6<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">7<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_7</td>
+            <td align="center" valign="middle">8<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+    <p><br>
+    </p>
+    <h1>Mitigation Node Outputs<br>
+    </h1>
+    The mitigation outputs are present on the 16-pin header J20 of an
+    XM105 card mounted on the LPC FMC connector of the mitigation
+    node.&nbsp; Signals are LVCMOS (2.5 V) levels.&nbsp; Ground pins are
+    available at J16-3 and J16-4.&nbsp; Note that if J6 jumpers are in
+    place there will be power supply voltages present at J16-1 and J16-2
+    so be careful connecting test equipment grounds to J16-3 or J16-4.<br>
+    <blockquote>
+      <table border="1" cellpadding="2" cellspacing="2" width="300">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><b>Mitigation<br>
+                Output</b><br>
+            </td>
+            <td align="center" valign="middle"><b>FMC SIGNAL</b><br>
+            </td>
+            <td align="center" valign="middle"><b>J20 Pin</b><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">00</td>
+            <td align="center" valign="middle">FMC_LA20_P<br>
+            </td>
+            <td align="center" valign="middle">1<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">01<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA24_P<br>
+            </td>
+            <td align="center" valign="middle">2<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">02<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA20_N<br>
+            </td>
+            <td align="center" valign="middle">3<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">03<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA24_N<br>
+            </td>
+            <td align="center" valign="middle">4<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">04<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA21_P<br>
+            </td>
+            <td align="center" valign="middle">5<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">05<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA25_P<br>
+            </td>
+            <td align="center" valign="middle">6<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">06<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA21_N<br>
+            </td>
+            <td align="center" valign="middle">7<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">07<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA25_N<br>
+            </td>
+            <td align="center" valign="middle">8<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">08<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA22_P<br>
+            </td>
+            <td align="center" valign="middle">9<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">09<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA26_P<br>
+            </td>
+            <td align="center" valign="middle">10<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">10<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA22_N<br>
+            </td>
+            <td align="center" valign="middle">11<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">11<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA26_N<br>
+            </td>
+            <td align="center" valign="middle">12<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">12<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA23_P<br>
+            </td>
+            <td align="center" valign="middle">13<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">13<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA27_P<br>
+            </td>
+            <td align="center" valign="middle">14<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">14<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA23_N<br>
+            </td>
+            <td align="center" valign="middle">15<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">15<br>
+            </td>
+            <td align="center" valign="middle">FMC_LA27_N<br>
+            </td>
+            <td align="center" valign="middle">16<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+    <br>
+    <h1>Mitigation Node Diagnostic Outputs</h1>
+    <p>As a diagnostic aid the PMOD1 connector data pins are driven with
+      the state of the first eight mitigation outputs as shown in the
+      following table.&nbsp; Note that the J58 data pins are 3.3V
+      LVCMOS.&nbsp; Do not connect these directly to any FPGA 2.5V
+      LVCMOS pin!<br>
+    </p>
+    <blockquote>
+      <table border="1" cellpadding="2" cellspacing="2" width="300">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><b>Mitigation<br>
+                Output</b><br>
+            </td>
+            <td align="center" valign="middle"><b>PMOD1 Signal</b><br>
+            </td>
+            <td align="center" valign="middle"><b>J58 Pin</b><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">0<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_0<br>
+            </td>
+            <td align="center" valign="middle">1<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">1<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_1</td>
+            <td align="center" valign="middle">3<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">2<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_2</td>
+            <td align="center" valign="middle">5<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">3<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_3</td>
+            <td align="center" valign="middle">7<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">4<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_4</td>
+            <td align="center" valign="middle">2<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">5<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_5</td>
+            <td align="center" valign="middle">4<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">6<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_6</td>
+            <td align="center" valign="middle">6<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">7<br>
+            </td>
+            <td align="center" valign="middle">PMOD1_7</td>
+            <td align="center" valign="middle">8<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+    <p><br>
+    </p>
+    <h1>Mitigation Node Diagnostic Indicators<br>
+    </h1>
+    <p>The ZC706 User LEDs are driven with the state of the first four
+      mitigation outputs as shown in the following table.&nbsp; A LED is
+      on when the corresponding mitigation output is enabled (Logic 1).<br>
+    </p>
+    <blockquote>
+      <table border="1" cellpadding="2" cellspacing="2" width="300">
+        <tbody>
+          <tr>
+            <td align="center" valign="middle"><b>Mitigation<br>
+                Output</b><br>
+            </td>
+            <td align="center" valign="middle"><b>LED Name</b><br>
+            </td>
+            <td align="center" valign="middle"><b>LED #</b><br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">0<br>
+            </td>
+            <td align="center" valign="middle">LED_LEFT<br>
+            </td>
+            <td align="center" valign="middle">DS8<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">1<br>
+            </td>
+            <td align="center" valign="middle">LED_CENTER<br>
+            </td>
+            <td align="center" valign="middle">DS9<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">2<br>
+            </td>
+            <td align="center" valign="middle">LED_RIGHT<br>
+            </td>
+            <td align="center" valign="middle">DS10<br>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle">3<br>
+            </td>
+            <td align="center" valign="middle">LED_0<br>
+            </td>
+            <td align="center" valign="middle">DS35<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+    <p><br>
+    </p>
+    <h1>SFP Assignments<br>
+    </h1>
+    <p>The mitigation node FMC-4SFP+ card must be mounted on the HPC
+      connector of the ZC706.&nbsp; The rightmost SFP slot when looking
+      into the SFP cages corresponds to link 0.&nbsp; The next SFP to
+      the left corresponds to link 1, and so on.&nbsp; The SFP on the
+      ZC706 is used to connect to the MRF compatible event system.&nbsp;
+      The demonstration system is configured to operate with an event
+      system operating at 2.5 Gb/s.&nbsp; The mitigation node firmware
+      is capable of receiving data from all eight high-speed serial
+      ports on the HPC connector even though only the FMC-4SFP+ card
+      provides only the first four.&nbsp; Replacing the FMC-4SP+ card
+      with an eight channel card such as the Faster Technology FMS18
+      would allow expansion to the full complement of acquisition nodes.<br>
+    </p>
+    <p>The acquisition node SFP FMC card, if present, must be mounted on
+      the LPC connector of the ZC706.&nbsp; The SFP used to connect to
+      the next-outermost acquisition node in the chain must be installed
+      in the SFP cage second from the left when looking into the SFP
+      cages.&nbsp; The SFP on the ZC706 is used to connect to the
+      mitigation node or next-innermost acquisition node in the chain.<br>
+    </p>
+    <p>The four switches on the mitigation node FMC-4SFP+ card must all
+      be set to '0'.&nbsp; This configures the FMC-4SFP+ card to provide
+      a 125 MHz reference clock to the high-speed transceivers on the
+      ZC706.<br>
+    </p>
+    <p> </p>
+  </body>
+</html>
