@@ -1,0 +1,82 @@
+version 4.0
+pause 180000 --- sleep time (msecs) between reads, 180 seconds.
+ncells 30 --- number of cells
+npvs 20 --- number of PVs
+nrpvs 20 --- number of PVs per read
+nlayers 0 --- number of PV layers (if nlayer is 1, loop for cell from 1 to 30)
+priority 20 --- Priority
+timeouts 2.0 2.0 2.0  --- timeout values (connect, read, write)
+setmem 33554434
+save_prefix RFD
+# h5_rank could be 2, or 3 
+h5_rank 2 /* 2: PV and PV_readings; 3: cell, PVs_per_cell and PV_readings */
+#
+ngroups 5
+group Meta 2
+Num_PVs 0 0
+Nelems_perPV 0 0
+#
+group Trigger 2
+PV_names 0 0
+Time_stamps 0 0
+#
+group PV_Names 1
+EP 0 9
+#
+group PV_TimeStamp 1
+EP 0 9
+#
+group WFdata 1
+EP 0 9
+#
+#
+negroups 0
+#
+egroup BufferTS 2
+BuffTrigTS_PV 1 string
+SR-RF{CFC:D-RAM-Chan:0}Cmd:Time
+BuffTrigTS_Val 0 0
+#
+async no /* sync */
+#
+# trigger PV --- version > 2.00
+trigger OR 1
+# trigger name, trigger type (V/C), value type (F/I), value(detected), thresh(used in comparison).
+# V --- Value; C --- Comparison
+# F --- Float; I --- Integer
+# The thresh paramter is ignored if the trigger type is V(Value)
+SR-RF{CFC:D}Trig:CircA-Cmd V I 1 0
+#
+# trigger PV --- version <= 2.00
+# trigger SR:C23-BI{BPM:10}PM:Status-I 0 /* 0: Detected, 1: Normal */
+#
+#reset PV
+need_reset no
+reset_func null
+reset_pv SR:C23-BI{BPM:10}PM:LemoReset-SP 1 /* send 1 to this PV */
+need_init no
+init_func null
+#init_pv SR:C23-BI{BPM:10}PM:LemoReset-SP 1 /* send 1 to this PV */
+END
+#
+SR-RF{CFC:D-RAM-Chan:0}E:I
+SR-RF{CFC:D-RAM-Chan:0}Phs:I
+SR-RF{CFC:D-RAM-Chan:1}E:I
+SR-RF{CFC:D-RAM-Chan:1}Phs:I
+SR-RF{CFC:D-RAM-Chan:2}E:I
+SR-RF{CFC:D-RAM-Chan:2}Phs:I
+SR-RF{CFC:D-RAM-Chan:3}E:I
+SR-RF{CFC:D-RAM-Chan:3}Phs:I
+SR-RF{CFC:D-RAM-Chan:4}E:I
+SR-RF{CFC:D-RAM-Chan:4}Phs:I
+SR-RF{CFC:C-RAM-Chan:0}E:I
+SR-RF{CFC:C-RAM-Chan:0}Phs:I
+SR-RF{CFC:C-RAM-Chan:1}E:I
+SR-RF{CFC:C-RAM-Chan:1}Phs:I
+SR-RF{CFC:C-RAM-Chan:2}E:I
+SR-RF{CFC:C-RAM-Chan:2}Phs:I
+SR-RF{CFC:C-RAM-Chan:3}E:I
+SR-RF{CFC:C-RAM-Chan:3}Phs:I
+SR-RF{CFC:C-RAM-Chan:4}E:I
+SR-RF{CFC:C-RAM-Chan:4}Phs:I
+
