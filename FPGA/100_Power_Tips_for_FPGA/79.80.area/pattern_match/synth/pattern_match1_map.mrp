@@ -1,0 +1,475 @@
+Release 12.1 Map M.53d (nt)
+Xilinx Mapping Report File for Design 'pattern_match1'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6slx45-fgg676-3 -w -ol high -t 1 -xt 0
+-register_duplication off -global_opt off -detail -ir off -pr off -lc off -power
+off -o pattern_match1_map.ncd pattern_match1.ngd pattern_match1.pcf 
+Target Device  : xc6slx45
+Target Package : fgg676
+Target Speed   : -3
+Mapper Version : spartan6 -- $Revision: 1.52 $
+Mapped Date    : Fri Apr 15 12:37:26 2011
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Slice Logic Utilization:
+  Number of Slice Registers:                     0 out of  54,576    0%
+  Number of Slice LUTs:                         16 out of  27,288    1%
+    Number used as logic:                        0 out of  27,288    0%
+    Number used as Memory:                      16 out of   6,408    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:            16
+        Number using O6 output only:             0
+        Number using O5 output only:             0
+        Number using O5 and O6:                 16
+
+Slice Logic Distribution:
+  Number of occupied Slices:                     5 out of   6,822    1%
+  Number of LUT Flip Flop pairs used:           16
+    Number with an unused Flip Flop:            16 out of      16  100%
+    Number with an unused LUT:                   0 out of      16    0%
+    Number of fully used LUT-FF pairs:           0 out of      16    0%
+    Number of unique control sets:               1
+    Number of slice register sites lost
+      to control set restrictions:               0 out of  54,576    0%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                       115 out of     358   32%
+
+Specific Feature Utilization:
+  Number of RAMB16BWERs:                         0 out of     116    0%
+  Number of RAMB8BWERs:                          0 out of     232    0%
+  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
+  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
+  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
+    Number used as BUFGs:                        1
+    Number used as BUFGMUX:                      0
+  Number of DCM/DCM_CLKGENs:                     0 out of       8    0%
+  Number of ILOGIC2/ISERDES2s:                   0 out of     376    0%
+  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     376    0%
+  Number of OLOGIC2/OSERDES2s:                   0 out of     376    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHs:                               0 out of     256    0%
+  Number of BUFPLLs:                             0 out of       8    0%
+  Number of BUFPLL_MCBs:                         0 out of       4    0%
+  Number of DSP48A1s:                            0 out of      58    0%
+  Number of ICAPs:                               0 out of       1    0%
+  Number of MCBs:                                0 out of       2    0%
+  Number of PCILOGICSEs:                         0 out of       2    0%
+  Number of PLL_ADVs:                            0 out of       4    0%
+  Number of PMVs:                                0 out of       1    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+
+Average Fanout of Non-Clock Nets:                0.99
+
+Peak Memory Usage:  254 MB
+Total REAL time to MAP completion:  38 secs 
+Total CPU time to MAP completion:   26 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+
+Section 3 - Informational
+-------------------------
+INFO:Security:54 - 'xc6slx45' is a WebPack part.
+INFO:LIT:243 - Logical network pattern_mask<79> has no load.
+INFO:LIT:243 - Logical network pattern_mask<78> has no load.
+INFO:LIT:243 - Logical network pattern_mask<77> has no load.
+INFO:LIT:243 - Logical network pattern_mask<76> has no load.
+INFO:LIT:243 - Logical network pattern_mask<75> has no load.
+INFO:LIT:243 - Logical network pattern_mask<74> has no load.
+INFO:LIT:243 - Logical network pattern_mask<73> has no load.
+INFO:LIT:243 - Logical network pattern_mask<72> has no load.
+INFO:LIT:243 - Logical network pattern_mask<71> has no load.
+INFO:LIT:243 - Logical network pattern_mask<70> has no load.
+INFO:LIT:243 - Logical network pattern_mask<69> has no load.
+INFO:LIT:243 - Logical network pattern_mask<68> has no load.
+INFO:LIT:243 - Logical network pattern_mask<67> has no load.
+INFO:LIT:243 - Logical network pattern_mask<66> has no load.
+INFO:LIT:243 - Logical network pattern_mask<65> has no load.
+INFO:LIT:243 - Logical network pattern_mask<64> has no load.
+INFO:LIT:243 - Logical network pattern_mask<63> has no load.
+INFO:LIT:243 - Logical network pattern_mask<62> has no load.
+INFO:LIT:243 - Logical network pattern_mask<61> has no load.
+INFO:LIT:243 - Logical network pattern_mask<60> has no load.
+INFO:LIT:243 - Logical network pattern_mask<59> has no load.
+INFO:LIT:243 - Logical network pattern_mask<58> has no load.
+INFO:LIT:243 - Logical network pattern_mask<57> has no load.
+INFO:LIT:243 - Logical network pattern_mask<56> has no load.
+INFO:LIT:243 - Logical network pattern_mask<55> has no load.
+INFO:LIT:243 - Logical network pattern_mask<54> has no load.
+INFO:LIT:243 - Logical network pattern_mask<53> has no load.
+INFO:LIT:243 - Logical network pattern_mask<52> has no load.
+INFO:LIT:243 - Logical network pattern_mask<51> has no load.
+INFO:LIT:243 - Logical network pattern_mask<50> has no load.
+INFO:LIT:243 - Logical network pattern_mask<49> has no load.
+INFO:LIT:243 - Logical network pattern_mask<48> has no load.
+INFO:LIT:243 - Logical network pattern_mask<47> has no load.
+INFO:LIT:243 - Logical network pattern_mask<46> has no load.
+INFO:LIT:243 - Logical network pattern_mask<45> has no load.
+INFO:LIT:243 - Logical network pattern_mask<44> has no load.
+INFO:LIT:243 - Logical network pattern_mask<43> has no load.
+INFO:LIT:243 - Logical network pattern_mask<42> has no load.
+INFO:LIT:243 - Logical network pattern_mask<41> has no load.
+INFO:LIT:243 - Logical network pattern_mask<40> has no load.
+INFO:LIT:243 - Logical network pattern_mask<39> has no load.
+INFO:LIT:243 - Logical network pattern_mask<38> has no load.
+INFO:LIT:243 - Logical network pattern_mask<37> has no load.
+INFO:LIT:243 - Logical network pattern_mask<36> has no load.
+INFO:LIT:243 - Logical network pattern_mask<35> has no load.
+INFO:LIT:243 - Logical network pattern_mask<34> has no load.
+INFO:LIT:243 - Logical network pattern_mask<33> has no load.
+INFO:LIT:243 - Logical network pattern_mask<32> has no load.
+INFO:LIT:243 - Logical network pattern_mask<31> has no load.
+INFO:LIT:243 - Logical network pattern_mask<30> has no load.
+INFO:LIT:243 - Logical network pattern_mask<29> has no load.
+INFO:LIT:243 - Logical network pattern_mask<28> has no load.
+INFO:LIT:243 - Logical network pattern_mask<27> has no load.
+INFO:LIT:243 - Logical network pattern_mask<26> has no load.
+INFO:LIT:243 - Logical network pattern_mask<25> has no load.
+INFO:LIT:243 - Logical network pattern_mask<24> has no load.
+INFO:LIT:243 - Logical network pattern_mask<23> has no load.
+INFO:LIT:243 - Logical network pattern_mask<22> has no load.
+INFO:LIT:243 - Logical network pattern_mask<21> has no load.
+INFO:LIT:243 - Logical network pattern_mask<20> has no load.
+INFO:LIT:243 - Logical network pattern_mask<19> has no load.
+INFO:LIT:243 - Logical network pattern_mask<18> has no load.
+INFO:LIT:243 - Logical network pattern_mask<17> has no load.
+INFO:LIT:243 - Logical network pattern_mask<16> has no load.
+INFO:LIT:243 - Logical network pattern_mask<15> has no load.
+INFO:LIT:243 - Logical network pattern_mask<14> has no load.
+INFO:LIT:243 - Logical network pattern_mask<13> has no load.
+INFO:LIT:243 - Logical network pattern_mask<12> has no load.
+INFO:LIT:243 - Logical network pattern_mask<11> has no load.
+INFO:LIT:243 - Logical network pattern_mask<10> has no load.
+INFO:LIT:243 - Logical network pattern_mask<9> has no load.
+INFO:LIT:243 - Logical network pattern_mask<8> has no load.
+INFO:LIT:243 - Logical network pattern_mask<7> has no load.
+INFO:LIT:243 - Logical network pattern_mask<6> has no load.
+INFO:LIT:243 - Logical network pattern_mask<5> has no load.
+INFO:LIT:243 - Logical network pattern_mask<4> has no load.
+INFO:LIT:243 - Logical network pattern_mask<3> has no load.
+INFO:LIT:243 - Logical network pattern_mask<2> has no load.
+INFO:LIT:243 - Logical network pattern_mask<1> has no load.
+INFO:LIT:243 - Logical network pattern_mask<0> has no load.
+INFO:LIT:243 - Logical network pattern_match<79> has no load.
+INFO:LIT:243 - Logical network pattern_match<78> has no load.
+INFO:LIT:243 - Logical network pattern_match<77> has no load.
+INFO:LIT:243 - Logical network pattern_match<76> has no load.
+INFO:LIT:243 - Logical network pattern_match<75> has no load.
+INFO:LIT:243 - Logical network pattern_match<74> has no load.
+INFO:LIT:243 - Logical network pattern_match<73> has no load.
+INFO:LIT:243 - Logical network pattern_match<72> has no load.
+INFO:LIT:243 - Logical network pattern_match<71> has no load.
+INFO:LIT:243 - Logical network pattern_match<70> has no load.
+INFO:LIT:243 - Logical network pattern_match<69> has no load.
+INFO:LIT:243 - Logical network pattern_match<68> has no load.
+INFO:LIT:243 - Logical network pattern_match<67> has no load.
+INFO:LIT:243 - Logical network pattern_match<66> has no load.
+INFO:LIT:243 - Logical network pattern_match<65> has no load.
+INFO:LIT:243 - Logical network pattern_match<64> has no load.
+INFO:LIT:243 - Logical network pattern_match<63> has no load.
+INFO:LIT:243 - Logical network pattern_match<62> has no load.
+INFO:LIT:243 - Logical network pattern_match<61> has no load.
+INFO:LIT:243 - Logical network pattern_match<60> has no load.
+INFO:LIT:243 - Logical network pattern_match<59> has no load.
+INFO:LIT:243 - Logical network pattern_match<58> has no load.
+INFO:LIT:243 - Logical network pattern_match<57> has no load.
+INFO:LIT:243 - Logical network pattern_match<56> has no load.
+INFO:LIT:243 - Logical network pattern_match<55> has no load.
+INFO:LIT:243 - Logical network pattern_match<54> has no load.
+INFO:LIT:243 - Logical network pattern_match<53> has no load.
+INFO:LIT:243 - Logical network pattern_match<52> has no load.
+INFO:LIT:243 - Logical network pattern_match<51> has no load.
+INFO:LIT:243 - Logical network pattern_match<50> has no load.
+INFO:LIT:243 - Logical network pattern_match<49> has no load.
+INFO:LIT:243 - Logical network pattern_match<48> has no load.
+INFO:LIT:243 - Logical network pattern_match<47> has no load.
+INFO:LIT:243 - Logical network pattern_match<46> has no load.
+INFO:LIT:243 - Logical network pattern_match<45> has no load.
+INFO:LIT:243 - Logical network pattern_match<44> has no load.
+INFO:LIT:243 - Logical network pattern_match<43> has no load.
+INFO:LIT:243 - Logical network pattern_match<42> has no load.
+INFO:LIT:243 - Logical network pattern_match<41> has no load.
+INFO:LIT:243 - Logical network pattern_match<40> has no load.
+INFO:LIT:243 - Logical network pattern_match<39> has no load.
+INFO:LIT:243 - Logical network pattern_match<38> has no load.
+INFO:LIT:243 - Logical network pattern_match<37> has no load.
+INFO:LIT:243 - Logical network pattern_match<36> has no load.
+INFO:LIT:243 - Logical network pattern_match<35> has no load.
+INFO:LIT:243 - Logical network pattern_match<34> has no load.
+INFO:LIT:243 - Logical network pattern_match<33> has no load.
+INFO:LIT:243 - Logical network pattern_match<32> has no load.
+INFO:LIT:243 - Logical network pattern_match<31> has no load.
+INFO:LIT:243 - Logical network pattern_match<30> has no load.
+INFO:LIT:243 - Logical network pattern_match<29> has no load.
+INFO:LIT:243 - Logical network pattern_match<28> has no load.
+INFO:LIT:243 - Logical network pattern_match<27> has no load.
+INFO:LIT:243 - Logical network pattern_match<26> has no load.
+INFO:LIT:243 - Logical network pattern_match<25> has no load.
+INFO:LIT:243 - Logical network pattern_match<24> has no load.
+INFO:LIT:243 - Logical network pattern_match<23> has no load.
+INFO:LIT:243 - Logical network pattern_match<22> has no load.
+INFO:LIT:243 - Logical network pattern_match<21> has no load.
+INFO:LIT:243 - Logical network pattern_match<20> has no load.
+INFO:LIT:243 - Logical network pattern_match<19> has no load.
+INFO:LIT:243 - Logical network pattern_match<18> has no load.
+INFO:LIT:243 - Logical network pattern_match<17> has no load.
+INFO:LIT:243 - Logical network pattern_match<16> has no load.
+INFO:LIT:243 - Logical network pattern_match<15> has no load.
+INFO:LIT:243 - Logical network pattern_match<14> has no load.
+INFO:LIT:243 - Logical network pattern_match<13> has no load.
+INFO:LIT:243 - Logical network pattern_match<12> has no load.
+INFO:LIT:243 - Logical network pattern_match<11> has no load.
+INFO:LIT:243 - Logical network pattern_match<10> has no load.
+INFO:LIT:243 - Logical network pattern_match<9> has no load.
+INFO:LIT:243 - Logical network pattern_match<8> has no load.
+INFO:LIT:243 - Logical network pattern_match<7> has no load.
+INFO:LIT:243 - Logical network pattern_match<6> has no load.
+INFO:LIT:243 - Logical network pattern_match<5> has no load.
+INFO:LIT:243 - Logical network pattern_match<4> has no load.
+INFO:LIT:243 - Logical network pattern_match<3> has no load.
+INFO:LIT:243 - Logical network pattern_match<2> has no load.
+INFO:LIT:243 - Logical network pattern_match<1> has no load.
+INFO:LIT:243 - Logical network pattern_match<0> has no load.
+INFO:LIT:243 - Logical network gen_cfglut[15].cfglut/CDO has no load.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+
+Section 5 - Removed Logic
+-------------------------
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cfg_in                             | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk                                | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_en                             | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| match_cfglut<0>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<1>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<2>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<3>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<4>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<5>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<6>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<7>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<8>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<9>                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<10>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<11>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<12>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<13>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<14>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<15>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<16>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<17>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<18>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<19>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<20>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<21>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<22>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<23>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<24>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<25>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<26>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<27>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<28>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<29>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<30>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| match_cfglut<31>                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| pattern_in<0>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<1>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<2>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<3>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<4>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<5>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<6>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<7>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<8>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<9>                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<10>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<11>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<12>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<13>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<14>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<15>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<16>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<17>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<18>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<19>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<20>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<21>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<22>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<23>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<24>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<25>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<26>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<27>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<28>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<29>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<30>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<31>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<32>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<33>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<34>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<35>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<36>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<37>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<38>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<39>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<40>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<41>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<42>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<43>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<44>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<45>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<46>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<47>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<48>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<49>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<50>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<51>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<52>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<53>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<54>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<55>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<56>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<57>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<58>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<59>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<60>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<61>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<62>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<63>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<64>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<65>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<66>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<67>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<68>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<69>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<70>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<71>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<72>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<73>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<74>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<75>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<76>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<77>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<78>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| pattern_in<79>                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+
+Section 12 - Control Set Information
+------------------------------------
++----------------------------------------------------------------------------------------------+
+| Clock Signal | Reset Signal | Set Signal | Enable Signal | Slice Load Count | Bel Load Count |
++----------------------------------------------------------------------------------------------+
+| clk_BUFGP    |              |            | clk_en_IBUF   | 5                | 32             |
++----------------------------------------------------------------------------------------------+
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Module             | Partition | Slices*       | Slice Reg     | LUTs          | LUTRAM        | BRAM/FIFO | DSP48A1 | BUFG  | BUFIO | BUFR  | DCM   | PLL_ADV   | Full Hierarchical Name         |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pattern_match1/    |           | 5/5           | 0/0           | 16/16         | 16/16         | 0/0       | 0/0     | 1/1   | 0/0   | 0/0   | 0/0   | 0/0       | pattern_match1                 |
+| +pattern_match1    |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | pattern_match1/pattern_match1  |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Slices can be packed with basic elements from multiple hierarchies.
+  Therefore, a slice will be counted in every hierarchical module
+  that each of its packed basic elements belong to.
+** For each column, there are two numbers reported <A>/<B>.
+   <A> is the number of elements that belong to that specific hierarchical module.
+   <B> is the total number of elements from that hierarchical module and any lower level
+   hierarchical modules below.
+*** The LUTRAM column counts all LUTs used as memory including RAM, ROM, and shift registers.

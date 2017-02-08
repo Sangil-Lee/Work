@@ -1,0 +1,5 @@
+NET "clk" TNM_NET = "clk_lfsr";
+TIMESPEC TS_clk_lfsr = PERIOD "clk_lfsr" 3.4 ns HIGH 50 %;
+
+INST "lfsr_counter" AREA_GROUP = "pblock_lfsr_counter";
+AREA_GROUP "pblock_lfsr_counter" RANGE=SLICE_X28Y45:SLICE_X29Y54, SLICE_X26Y45:SLICE_X27Y55;

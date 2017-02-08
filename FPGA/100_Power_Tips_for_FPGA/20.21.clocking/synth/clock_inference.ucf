@@ -1,0 +1,20 @@
+
+#Created by Constraints Editor (xc6slx9-csg225-3) - 2011/03/20
+NET "clk" TNM_NET = "clk";
+TIMESPEC TS_clk = PERIOD "clk" 5 ns HIGH 50 %;
+#Created by Constraints Editor (xc6vlx75t-ff484-3) - 2011/03/20
+# NET "data_in" OFFSET = IN 9 ns VALID 9 ns BEFORE "clk" RISING;
+#Created by Constraints Editor (xc6vlx75t-ff484-3) - 2011/03/20
+NET "data_in" OFFSET = IN 2.5 ns VALID 5 ns BEFORE "clk" RISING;
+
+NET "clk" LOC = D12;
+NET "reset" LOC = T6;
+NET "data_out" LOC = V12;
+NET "data_in" LOC = W12;
+
+
+# PlanAhead Generated physical constraints 
+
+INST "data_out" AREA_GROUP = "pblock_data_out";
+# AREA_GROUP "pblock_data_out" RANGE=SLICE_X40Y109:SLICE_X47Y117;
+AREA_GROUP "pblock_data_out" RANGE=SLICE_X98Y111:SLICE_X105Y119;
