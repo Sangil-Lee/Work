@@ -1,0 +1,16 @@
+# % macro, PREFIX, prefix name
+# % macro, CH_ID,  channel identification
+# % macro, INDEX,  index mapping to asyn reason create by ecAsynInit. Same index as the physical numbering.
+# % macro, PORT,   asyn port for device
+# % macro, SCAN,   scan rate
+
+record(bi, "$(PREFIX):$(CH_ID)")
+{
+  field(DESC, "Digital Input")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm0.p$(PDO_IDX).e0")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+

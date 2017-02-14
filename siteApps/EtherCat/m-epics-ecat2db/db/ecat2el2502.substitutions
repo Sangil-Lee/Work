@@ -1,0 +1,13 @@
+file ecat2slave.template
+{
+	pattern {DEVICENAME}
+		{EL2502}
+}
+
+file ecat2el250x.template
+{
+	pattern {CH_ID, PDO_IDX}
+		{$(MOD_ID)-DO1, 0}
+		{$(MOD_ID)-DO2, 1}
+}
+

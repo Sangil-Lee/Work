@@ -1,0 +1,15 @@
+file ecat2slave.template
+{
+	pattern {DEVICENAME}
+		{EL3214}
+}
+
+file ecat2el321x.template
+{
+	pattern {CH_ID, PDO_IDX, ESLO, EGU, PREC}
+		{$(MOD_ID)-RTD1, 0, 0.01, °C, 2}
+		{$(MOD_ID)-RTD2, 1, 0.01, °C, 2}
+		{$(MOD_ID)-RTD2, 2, 0.01, °C, 2}
+		{$(MOD_ID)-RTD2, 3, 0.01, °C, 2}
+}
+

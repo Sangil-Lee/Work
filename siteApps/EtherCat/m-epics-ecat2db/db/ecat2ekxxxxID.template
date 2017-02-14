@@ -1,0 +1,7 @@
+record(longin, "$(PREFIX):$(MOD_ID)-ID")
+{
+	field(DESC, "ID switch")
+	field(DTYP, "ecat2")
+	field(SCAN, "I/O Intr")
+	field(INP, "s$(SLAVE_IDX).sm0.p0.e0")
+}

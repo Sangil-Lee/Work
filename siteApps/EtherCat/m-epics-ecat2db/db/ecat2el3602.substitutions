@@ -1,0 +1,13 @@
+file ecat2slave.template
+{
+	pattern {DEVICENAME}
+		{EL3602}
+}
+
+file ecat2el360xel320x.template
+{
+	pattern {CH_ID, PDO_IDX, ESLO, EGU, PREC}
+		{$(MOD_ID)-AI1, 0, 0.000000004656612873077392578, V, 7}
+		{$(MOD_ID)-AI2, 1, 0.000000004656612873077392578, V, 7}
+}
+
