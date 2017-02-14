@@ -1,0 +1,8 @@
+include "base.dbd"
+#include definitions for any other support applications needed
+include "asynRecord.dbd"
+include "drvAsynSerialPort.dbd"
+include "drvAsynIPPort.dbd"
+include "devTDS3000.dbd"
+include "devTDS5000.dbd"
+registrar(scopeAutoArmPrintRegistrar)

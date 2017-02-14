@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <title>EPICS pvDataCPP</title>
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/base.css" />
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/epicsv4.css" />
+  <style type="text/css">
+  /*<![CDATA[*/
+     .about { margin-left: 3em; margin-right: 3em; font-size: .83em}
+     table { margin-left: auto; margin-right: auto }
+     .diagram { text-align: center; margin: 2.5em 0 }
+     span.opt { color: grey }
+     span.nterm { font-style:italic }
+     span.term { font-family:courier }
+     span.user { font-family:courier }
+     span.user:before { content:"<" }
+     span.user:after { content:">" }
+     .nonnorm { font-style:italic }
+     p.ed { color: #AA0000 }
+     span.ed { color: #AA0000 }
+     p.ed.priv { display: inline; }
+     span.ed.priv { display: inline; }
+  /*]]>*/</style>
+  <!-- Script that generates the Table of Contents -->
+  <script type="text/javascript"
+  src="http://epics-pvdata.sourceforge.net/script/tocgen.js">
+  </script>
+</head>
+<body>
+
+<div class="head">
+<h1>EPICS pvDataCPP</h1>
+<!-- Maturity: Working Draft or Request for Comments, or Recommendation, and date.  -->
+
+<h2 class="nocount">EPICS v4 Working Group, Working Draft, 23-July-2014</h2>
+
+  <dl>
+    <dt>Latest version:</dt>
+    <dd><a
+      href="ntCPP.html">ntCPP.html</a>
+    </dd>
+    <dt>This version:</dt>
+    <dd><a
+      href="ntCPP_20140723.html">ntCPP_20140723.html</a>
+    </dd>
+    <dt>Previous version:</dt>
+     <dd>None</dd>
+    <dt>Editors:</dt>
+    <dd>Marty Kraimer, BNL</dd>
+    <dd>Michael Davidsaver, BNL</dd>
+    <dd>Matej Sekoranja, CosyLab</dd>
+  </dl>
+
+  <p class="copyright">This product is made available subject to acceptance of the <a
+href="http://epics-pvdata.sourceforge.net/LICENSE.html">EPICS open source
+license.</a></p>
+<hr />
+</div>
+<h2 class="nocount">Abstract</h2>
+
+<p>EPICS Version 4 provides efficient
+storage, access, and communication, of memory resident structured data.
+pvData is the storage compoment.
+pvDataCPP is the C++ implementation of pvData.
+It is one part of the set of related products in the EPICS
+V4 control system programming environment:<br />
+<a href="http://epics-pvdata.sourceforge.net/relatedDocumentsV4.html">relatedDocumentsV4.html</a>
+</p>
+
+
+<h2 class="nocount">Status of this Document</h2>
+
+<p>For now this is a working copy so it is not the same as "This version" shown above.</p>
+
+<p>This is the 23-July-2014 version of the C++ implementation of pvData.
+</p>
+
+<p>RELEASE_NOTES.md provides changes since the last release.
+TODO.md describes things to do before the next release.
+</p>
+
+
+
+<div id="toc">
+<h2 class="nocount" style="page-break-before: always">Table of Contents</h2>
+</div>
+<div id="contents" class="contents">
+
+<body>
+<h1 style="text-align: center">EPICS normative type C++ implementation
+</h1>
+
+<h2 class="nocount" id="L50">Draft, 4-Nov-2012</h2>
+<dl>
+<dt>This version:</dt>
+  <dd><a href="http://epics-pvdata.hg.sourceforge.net/hgweb/epics-pvdata/normativeTypesCPP/raw-file/tip/documentation/ntCPP.html">ntCPP.html</a></dd>
+<dt>Editors:</dt>
+  <dd>Matej Sekoranja, CosyLab<br>
+    Marty Kraimer, BNL
+  </dd>
+</dl>
+<hr />
+</div>
+
+<h2>Introduction</h2>
+
+<p>This section describes the C++ implemmentation of normative types. Two (2) helper classes are implemented,
+ntNameValue and NTTable respectively. </p>
+
+<h3>Normative Type Fields.</h3>
+
+<p>These are helper classes for creating standard fields for normative types.
+There is a single instance of this class, which is obtained via NTField::get().
+</p>
+<pre>class NTField: NoDefaultMethods {
+public:
+    static NTFieldPtr get();
+    ~NTField() {}
+
+    PVStructurePtr createEnumerated(StringArray const &amp; choices);
+    PVStructurePtr createTimeStamp();
+    PVStructurePtr createAlarm();
+    PVStructurePtr createDisplay();
+    PVStructurePtr createAlarmLimit();
+    PVStructurePtr createControl();
+
+    PVStructureArrayPtr createEnumeratedArray();
+    PVStructureArrayPtr createTimeStampArray();
+    PVStructureArrayPtr createAlarmArray();
+};</pre>
+
+<p>where</p>
+<dl>
+  <dt>createEnumerated</dt>
+    <dd>Create an introspection interface for an enumerated structure.</dd>
+  <dt>createTimeStamp</dt>
+    <dd>Create an interspection interface for a timeStamp structure.</dd>
+  <dt>createAlarm</dt>
+    <dd>Create an interspection interface for an alarm structure.</dd>
+  <dt>createDisplay</dt>
+    <dd>Create an introsepecion interface for a display structure.</dd>
+  <dt>createAlarmLimit</dt>
+    <dd>Create an introspection interface for an alarm limit structure.</dd>
+  <dt>createControl</dt>
+    <dd>Create an introspection interface for a control structure.</dd>
+  <dt>createEnumeratedArray</dt>
+    <dd>Create an introspection interface for an structureArray of enumerated
+      structures.</dd>
+  <dt>createTimeStampArray</dt>
+    <dd>Create an introspection interface for an structureArray of timeStamp
+      structures.</dd>
+  <dt>createAlarmArray</dt>
+    <dd>Create an introspection interface for an structureArray of alarm
+      structures.</dd>
+</dl>
+
+<h3>NTNameValue</h3>
+
+<p>These are helper classes for NTNameValue</p>
+<pre>class NTNameValue : private NoDefaultMethods
+{
+public:
+    static bool isNTNameValue(PVStructurePtr const & pvStructure);
+    static NTNameValuePtr create(
+        bool hasFunction,bool hasTimeStamp, bool hasAlarm);
+    static NTNameValuePtr create(
+        PVStructurePtr const & pvStructure);
+    ~NTNameValue();
+    PVStringPtr getFunction();
+    void attachTimeStamp(PVTimeStamp &amp;pvTimeStamp);
+    void attachAlarm(PVAlarm &amp;pvAlarm);
+    PVStructurePtr getPVStructure();
+    PVStructurePtr getTimeStamp();
+    PVStructurePtr getAlarm();
+    PVStringArrayPtr getNames();
+    PVStringArrayPtr getValues();
+};</pre>
+
+<p>where</p>
+<dl>
+  <dt>isNTNameValue</dt>
+    <dd>Is the structure a NTNameValue structure?</dd>
+  <dt>create</dt>
+    <dd>Create an NTNameValue that has the associated fields.</dd>
+  <dt>~NTNameValue</dt>
+    <dd>The destructor.</dd>
+  <dt>getFunction</dt>
+    <dd>Get the function field. This can be null.</dd>
+  <dt>attachTimeStamp</dt>
+    <dd>The timeStamp field of the NTNameValue is atttached to the
+    pvTimeStamp.</dd>
+  <dt>attachAlarm</dt>
+    <dd>The alarm field of the NTNameValue is atttached to the alarm.</dd>
+  <dt>getPVStructure</dt>
+    <dd>Get the pvStructure that this NTNameValue contains.</dd>
+  <dt>getTimeStamp</dt>
+    <dd>Get the timeStamp field.</dd>
+  <dt>getAlarm</dt>
+    <dd>Get the alarm field.</dd>
+  <dt>getNames</dt>
+    <dd>Get the names field.</dd>
+  <dt>getValues</dt>
+    <dd>Get the values field.</dd>
+</dl>
+
+<h3>NTTable</h3>
+
+<p>These are helper classes for NTTable</p>
+<pre>class NTTable: private NoDefaultMethods
+{
+public:
+    static bool isNTTable(PVStructurePtr const & pvStructure);
+    static PVStructure::shared_pointer create(
+        bool hasFunction,bool hasTimeStamp, bool hasAlarm,
+        int numberValues,
+        FieldConstPtrArray valueFields);
+        static NTTablePtr create(
+            bool hasFunction,bool hasTimeStamp, bool hasAlarm,
+            StringArray const & valueNames,
+            FieldConstPtrArray const &valueFields);
+        static NTTablePtr clone(PVStructurePtr const &);
+    ~NTTable();
+    PVStringPtr getFunction();
+    void attachTimeStamp(PVTimeStamp &amp;pvTimeStamp);
+    void attachAlarm(PVAlarm &amp;pvAlarm);
+    PVStructurePtr getPVStructure();
+    PVStructurePtr getTimeStamp();
+    PVStructurePtr getAlarm();
+    PVStringArrayPtr getLabel();
+    size_t getNumberValues();
+    FieldConstPtr getField(int index);
+    PVFieldPtr getPVField(int index);
+};</pre>
+
+<p>where</p>
+<dl>
+  <dt>isNTTable</dt>
+    <dd>y</dd>
+  <dt>create</dt>
+    <dd>Create an NTTable that has the associated fields.</dd>
+  <dt>~NTTable</dt>
+    <dd>The destructor.</dd>
+  <dt>getFunction</dt>
+    <dd>Get the function field. This can be null.</dd>
+  <dt>attachTimeStamp</dt>
+    <dd>The timeStamp field of the NTTable is atttached to the pvTimeStamp.</dd>
+  <dt>attachAlarm</dt>
+    <dd>The alarm field of the NTTable is atttached to the alarm.</dd>
+  <dt>getPVStructure</dt>
+    <dd>Get the pvStructure that this NTTable contains.</dd>
+  <dt>getTimeStamp</dt>
+    <dd>Get the timeStamp field.</dd>
+  <dt>getAlarm</dt>
+    <dd>Get the alarm field.</dd>
+  <dt>getLabel</dt>
+    <dd>Get the label field.</dd>
+  <dt>getNumberValues</dt>
+    <dd>Get the number of value fields.</dd>
+  <dt>getField</dt>
+    <dd>Get the introspection interface for the specified field.</dd>
+  <dt>getPVField</dt>
+    <dd>Get the data field for the specified field.</dd>
+</dl>
+
+<h2>MTMultiChannel</h2>
+<pre>
+structure NTMultiChannel
+  union_t[] value       
+  string[]  channelName    
+  time_t    timeStamp        :opt // time when data collected
+  alarm_t   alarm            :opt // alarm associated with data collection
+  int[]     severity         :opt // alarm severity for each value
+  int[]     status           :opt // alarm status for each value
+  string[]  message          :opt // alarm message for each value
+  long[]    secondsPastEpoch :opt // seconds for each value.
+  int[]     nanoseconds      :opt // nanoseconds for each value
+  string    descriptor       :opt // descriptor data
+</pre>
+
+
+
+</div>
+</body>
+</html>

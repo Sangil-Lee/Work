@@ -1,0 +1,22 @@
+NET "btn0"  LOC = "A18"  ;  # south button sw6
+NET "btn1"  LOC = "H17"  ;  # west button  sw8
+
+NET "led1"     LOC = "AD21"  ; # ds17 led w
+NET "led0"     LOC = "AH28"  ; # ds18 led s
+
+INST "led1" AREA_GROUP = "led1";
+AREA_GROUP "led1" RANGE = SLICE_X65Y168:SLICE_X65Y168;
+
+
+NET "sys_clk_in_p" DIFF_TERM = "TRUE";
+NET "sys_clk_in_p" IOSTANDARD = LVDS_25;
+NET "sys_clk_in_n" DIFF_TERM = "TRUE";
+NET "sys_clk_in_n" IOSTANDARD = LVDS_25;
+NET "sys_clk_in_p" LOC = J9;
+NET "sys_clk_in_n" LOC = H9;
+
+NET "sys_clk_in_p" TNM_NET = "sys_clk_in_p";
+TIMESPEC TS_sys_clk_in_p = PERIOD "sys_clk_in_p" 5000 ps;
+
+NET "sys_clk_in_n" TNM_NET = "sys_clk_in_n";
+TIMESPEC TS_sys_clk_in_n = PERIOD "sys_clk_in_n" 5000 ps;

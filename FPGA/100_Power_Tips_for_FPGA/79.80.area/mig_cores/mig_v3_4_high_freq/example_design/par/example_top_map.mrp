@@ -1,0 +1,2121 @@
+Release 12.1 Map M.53d (nt)
+Xilinx Mapping Report File for Design 'example_top'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6vlx75t-ff484-2 -detail -w -ol high -xe n -register_duplication off -global_opt
+off -ir off -pr off -lc off -power off -o example_top_map.ncd example_top.ngd example_top.pcf 
+Target Device  : xc6vlx75t
+Target Package : ff484
+Target Speed   : -2
+Mapper Version : virtex6 -- $Revision: 1.52 $
+Mapped Date    : Mon Mar 28 11:42:31 2011
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:   36
+Slice Logic Utilization:
+  Number of Slice Registers:                 2,343 out of  93,120    2%
+    Number used as Flip Flops:               2,342
+    Number used as Latches:                      1
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                      2,579 out of  46,560    5%
+    Number used as logic:                    2,031 out of  46,560    4%
+      Number using O6 output only:           1,349
+      Number using O5 output only:             182
+      Number using O5 and O6:                  500
+      Number used as ROM:                        0
+    Number used as Memory:                     201 out of  16,720    1%
+      Number used as Dual Port RAM:            130
+        Number using O6 output only:             6
+        Number using O5 output only:             9
+        Number using O5 and O6:                115
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:            71
+        Number using O6 output only:            71
+        Number using O5 output only:             0
+        Number using O5 and O6:                  0
+    Number used exclusively as route-thrus:    347
+      Number with same-slice register load:    318
+      Number with same-slice carry load:        14
+      Number with other load:                   15
+
+Slice Logic Distribution:
+  Number of occupied Slices:                   978 out of  11,640    8%
+  Number of LUT Flip Flop pairs used:        2,722
+    Number with an unused Flip Flop:           961 out of   2,722   35%
+    Number with an unused LUT:                 143 out of   2,722    5%
+    Number of fully used LUT-FF pairs:       1,618 out of   2,722   59%
+    Number of unique control sets:             201
+    Number of slice register sites lost
+      to control set restrictions:             901 out of  93,120    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        44 out of     240   18%
+    Number of LOCed IOBs:                       44 out of      44  100%
+    IOB Flip Flops:                              1
+    IOB Master Pads:                             2
+    IOB Slave Pads:                              2
+
+Specific Feature Utilization:
+  Number of RAMB36E1/FIFO36E1s:                  0 out of     156    0%
+  Number of RAMB18E1/FIFO18E1s:                  0 out of     312    0%
+  Number of BUFG/BUFGCTRLs:                      3 out of      32    9%
+    Number used as BUFGs:                        3
+    Number used as BUFGCTRLs:                    0
+  Number of ILOGICE1/ISERDESE1s:                 9 out of     360    2%
+    Number used as ILOGICE1s:                    0
+    Number used as ISERDESE1s:                   9
+  Number of OLOGICE1/OSERDESE1s:                38 out of     360   10%
+    Number used as OLOGICE1s:                    1
+    Number used as OSERDESE1s:                  37
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHCEs:                             0 out of      72    0%
+  Number of BUFOs:                               0 out of      18    0%
+  Number of BUFIODQSs:                           1 out of      36    2%
+  Number of BUFRs:                               1 out of      18    5%
+    Number of LOCed BUFRs:                       1 out of       1  100%
+  Number of CAPTUREs:                            0 out of       1    0%
+  Number of DSP48E1s:                            0 out of     288    0%
+  Number of EFUSE_USRs:                          0 out of       1    0%
+  Number of GTXE1s:                              0 out of       8    0%
+  Number of IBUFDS_GTXE1s:                       0 out of       6    0%
+  Number of ICAPs:                               0 out of       2    0%
+  Number of IDELAYCTRLs:                         2 out of       9   22%
+  Number of IODELAYE1s:                         12 out of     360    3%
+    Number of LOCed IODELAYE1s:                  2 out of      12   16%
+  Number of MMCM_ADVs:                           1 out of       6   16%
+    Number of LOCed MMCM_ADVs:                   1 out of       1  100%
+  Number of PCIE_2_0s:                           0 out of       1    0%
+  Number of STARTUPs:                            1 out of       1  100%
+  Number of SYSMONs:                             0 out of       1    0%
+  Number of TEMAC_SINGLEs:                       0 out of       4    0%
+
+Average Fanout of Non-Clock Nets:                3.32
+
+Peak Memory Usage:  371 MB
+Total REAL time to MAP completion:  2 mins 4 secs 
+Total CPU time to MAP completion:   1 mins 45 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_iobuf_dqs/OB> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMB_D1_DPO> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMC_D1_DPO> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[0].RAM32M0_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem6_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem4_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem1_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem5_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem3_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem2_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[1].RAM32M0_RAMA_D1_DPO> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[1].RAM32M0_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[0].RAM32M0_RAMA_D1_DPO> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[0].RAM32M0_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[5].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[2].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[3].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[4].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[0].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[1].RAM32M0_RAMD_D1_O> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[3].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].RAM32M0_RAMA_D1_DPO> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].RAM32M0_RAMB_D1_DPO> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[0].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[2].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[1].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[4].RAM32M0_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.status_ram.RAM32M0_RAMB_D1_DPO> is incomplete. The signal does
+   not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.status_ram.RAM32M0_RAMD_D1_O> is incomplete. The signal does not
+   drive any load pins in the design.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/gen_loop_col0.u_odelay_rsync>:<IODELAYE1_IODELAY
+   E1>.  With IDELAY_TYPE programming FIXED or DEFAULT active input pins INC, RST, CE and C are not used and will be
+   ignored.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0].u_phy_dm_iob/u_odelay_dm>:<IODELAYE1_IO
+   DELAYE1>.  With IDELAY_TYPE programming FIXED or DEFAULT active input pins INC, RST, CE and C are not used and will
+   be ignored.
+WARNING:PhysDesignRules:2189 - Invalid configuration (incorrect pin connections and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0].u_phy_dm_iob/u_odelay_dm>:<IODELAYE1_IO
+   DELAYE1>.  With IDELAY_TYPE not VAR_LOADABLE any signals on input pins CNTVALUEIN0-4 are not used and will be
+   ignored.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/gen_ck_cpt[0].u_odelay_cpt>:<IODELAYE1_IODELAYE1
+   >.  With IDELAY_TYPE programming FIXED or DEFAULT active input pins INC, RST, CE and C are not used and will be
+   ignored.
+WARNING:PhysDesignRules:2045 - The MMCM_ADV block <u_infrastructure/u_mmcm_adv> has CLKOUT pins that do not drive the
+   same kind of BUFFER load. Routing from the different buffer types will not be phase aligned. 
+
+Section 3 - Informational
+-------------------------
+INFO:Security:54 - 'xc6vlx75t' is a WebPack part.
+INFO:LIT:243 - Logical network m_traffic_gen/mcb_wr_full_r1 has no load.
+INFO:LIT:243 - Logical network N550 has no load.
+INFO:LIT:243 - Logical network N551 has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_i
+   obuf_dqs/OB has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[35].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[35].u_RAM64X1D/DPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[34].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[33].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[33].u_RAM64X1D/DPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[32].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[31].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[30].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[29].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[28].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[27].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[26].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[25].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[24].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[23].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[22].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[21].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[20].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[19].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[18].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[17].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[16].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[15].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[14].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[13].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[12].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[11].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[10].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[9].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[8].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[7].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[6].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[5].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[4].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[3].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[2].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[1].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync
+   _c0/gen_ram[0].u_RAM64X1D/SPO has no load.
+INFO:LIT:243 - Logical network
+   m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem72/SPO
+   has no load.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 0.950 Volts. (default - Range: 0.950 to
+   1.050 Volts)
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please consult the Xilinx
+   Command Line Tools User Guide for information on generating a TSI report.
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+ 145 block(s) removed
+   3 block(s) optimized away
+  79 signal(s) removed
+ 195 Block(s) redundant
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "m_traffic_gen/mcb_wr_full_r1" is loadless and has been removed.
+ Loadless block "m_traffic_gen/mcb_wr_full_r1" (SFF) removed.
+Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c
+0/gen_ram[33].u_RAM64X1D" (RAM64X1D) removed.
+ The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/qout<2>" is loadless and has been removed.
+  Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/qout_2" (FF) removed.
+   The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/clkdly_cnt[1]_slip_out_r3[3]_wide_mux_7_OUT<2>" is loadless and
+has been removed.
+    Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/mux1111" (ROM) removed.
+     The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r<2>" is loadless and has been removed.
+      Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r_2" (FF) removed.
+       The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out<2>" is loadless and has been removed.
+        Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/Mmux_slip_out31" (ROM) removed.
+     The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r3<2>" is loadless and has been removed.
+      Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r3_2" (FF) removed.
+       The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r2<2>" is loadless and has been removed.
+        Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r2_2" (FF) removed.
+Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c
+0/gen_ram[35].u_RAM64X1D" (RAM64X1D) removed.
+ The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/qout<0>" is loadless and has been removed.
+  Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/qout_0" (FF) removed.
+   The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/clkdly_cnt[1]_slip_out_r3[3]_wide_mux_7_OUT<0>" is loadless and
+has been removed.
+    Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/mux41" (ROM) removed.
+     The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r<0>" is loadless and has been removed.
+      Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r_0" (FF) removed.
+       The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out<0>" is loadless and has been removed.
+        Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/Mmux_slip_out11" (ROM) removed.
+         The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/iserd
+es_q<0>" is loadless and has been removed.
+     The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r3<0>" is loadless and has been removed.
+      Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r3_0" (FF) removed.
+       The signal
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r2<0>" is loadless and has been removed.
+        Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_
+bitslip_early/slip_out_r2_0" (FF) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT31" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>1" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>10" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT9" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT9" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>11" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT10" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT10" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>12" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT11" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT11" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>13" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT12" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT12" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>14" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT13" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT13" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>15" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT14" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT14" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>16" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT15" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT15" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>17" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT16" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT16" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>18" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT17" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT17" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>19" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT18" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT18" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>2" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT1" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT1" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>20" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT19" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT19" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>21" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT20" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT20" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>22" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT21" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT21" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>23" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT22" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT22" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>24" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT23" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT23" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>25" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT24" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT24" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>26" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT25" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT25" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>27" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT26" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT26" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>28" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT27" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT27" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>29" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT28" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT28" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>3" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT2" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT2" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>30" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT29" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT29" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>31" (ROM)
+removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT30" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT30" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>4" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT3" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT3" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>5" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT4" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT4" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>6" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT5" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT5" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>7" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT6" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT6" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>8" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT7" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT7" (ROM) removed.
+Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>9" (ROM) removed.
+ The signal
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT8" is loadless and has
+been removed.
+  Loadless block
+"m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/PRBS_PATTER
+N.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT8" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT31" (ROM) removed.
+ The signal "m_traffic_gen/u_c_gen/m_addr_o<6>" is loadless and has been removed.
+  Loadless block "m_traffic_gen/u_c_gen/m_addr_o_6" (FF) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>1" (ROM)
+removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>10" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT9" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT9" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>11" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT10" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT10" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>12" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT11" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT11" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>13" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT12" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT12" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>14" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT13" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT13" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>15" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT14" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT14" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>16" (ROM)
+removed.
+ The signal "m_traffic_gen/u_c_gen/m_addr_o<4>" is loadless and has been removed.
+  Loadless block "m_traffic_gen/u_c_gen/m_addr_o_4" (FF) removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT15" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT15" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>17" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT16" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT16" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>18" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT17" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT17" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>19" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT18" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT18" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>2" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT1" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT1" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>20" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT19" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT19" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>21" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT20" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT20" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>22" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT21" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT21" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>23" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT22" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT22" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>24" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT23" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT23" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>25" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT24" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT24" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>26" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT25" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT25" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>27" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT26" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT26" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>28" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT27" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT27" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>29" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT28" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT28" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>3" (ROM)
+removed.
+ The signal "m_traffic_gen/u_c_gen/m_addr_o<3>" is loadless and has been removed.
+  Loadless block "m_traffic_gen/u_c_gen/m_addr_o_3" (FF) removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT2" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT2" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>30" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT29" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT29" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>31" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT30" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT30" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>4" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT3" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT3" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>5" (ROM)
+removed.
+ The signal "m_traffic_gen/u_c_gen/m_addr_o<5>" is loadless and has been removed.
+  Loadless block "m_traffic_gen/u_c_gen/m_addr_o_5" (FF) removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT4" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT4" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>6" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT5" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT5" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>7" (ROM)
+removed.
+ The signal "m_traffic_gen/u_c_gen/m_addr_o<7>" is loadless and has been removed.
+  Loadless block "m_traffic_gen/u_c_gen/m_addr_o_7" (FF) removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT6" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT6" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>8" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT7" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT7" (ROM) removed.
+Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT_lut<0>9" (ROM)
+removed.
+ The signal
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT8" is loadless and
+has been removed.
+  Loadless block
+"m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/PRBS_PAT
+TERN.data_prbs_gen/Madd_prbs_seed_i[31]_GND_110_o_add_2_OUT8" (ROM) removed.
+Loadless block
+"u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_control_io/u_out_parity" (OSERDESE1)
+removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		XST_GND
+VCC 		XST_VCC
+GND 		u_memc_ui_top/u_ui_top/ui_rd_data0/XST_GND
+
+Redundant Block(s):
+TYPE 		BLOCK
+LUT1
+		u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/Mcount_zq_cntrl.zq_timer
+.zq_timer_r_cy<0>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<6>_r
+t
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<5>_r
+t
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<4>_r
+t
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<3>_r
+t
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<2>_r
+t
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_cy<1>_r
+t
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<7>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<6>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<5>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<4>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<3>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<2>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_cy<1>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<8>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<7>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<6>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<5>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<4>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<3>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<2>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_cy<1>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<6>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<5>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<4>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<3>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<2>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_cy<1>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<10
+>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<9>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<8>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<7>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<6>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<5>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<4>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<3>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<2>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_cy<1>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<10
+>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<9>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<8>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<7>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<6>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<5>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<4>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<3>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<2>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_cy<1>
+_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<14>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<13>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<12>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<11>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<10>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<9>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<8>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<7>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<6>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<5>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<4>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<3>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_cy<2>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<14>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<13>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<12>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<11>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<10>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<9>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<8>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<7>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<6>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<5>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<4>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<3>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_cy<2>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<22>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<21>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<20>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<19>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<18>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<17>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<16>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<15>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<14>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<13>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<12>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<11>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<10>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<9>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<8>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<7>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<6>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<5>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<4>_rt
+LUT1 		init_mem0/Maccum_current_address_cy<3>_rt
+LUT1 		m_traffic_gen/u_c_gen/Mcount_force_rd_counts_cy<2>_rt
+LUT1 		m_traffic_gen/u_c_gen/Mcount_force_rd_counts_cy<1>_rt
+LUT1 		m_traffic_gen/u_c_gen/Mcompar__n0492_cy<1>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<30>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<29>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<28>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<27>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<26>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<25>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<24>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<23>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<22>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<21>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<20>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<19>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<18>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<17>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<16>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<15>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<14>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<13>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<12>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<11>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<10>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<9>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<8>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<7>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<6>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<5>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_cy<4>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<30>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<29>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<28>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<27>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<26>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<25>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<24>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<23>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<22>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<21>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<20>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<19>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<18>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<17>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<16>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<15>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<14>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<13>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<12>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<11>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<10>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<9>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<8>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<7>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<6>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<5>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<4>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_cy<3>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<30>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<29>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<28>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<27>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<26>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<25>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<24>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<23>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<22>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<21>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<20>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<19>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<18>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<17>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<16>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<15>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<14>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<13>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<12>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<11>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<10>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<9>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<8>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<7>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<6>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<5>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<4>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_cy<3>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_dllk_zqinit_r_xor<7>_
+rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_r_xor<8>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_pwron_ce_r_xor<9>_rt
+LUT1 		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/Mcount_cnt_txpr_r_xor<7>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_xor<1
+1>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt1_r_xor<1
+1>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_low_xor<15>_rt
+LUT1
+		u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd
+_inst.u_phy_pd/Maccum_high_xor<15>_rt
+LUT1 		init_mem0/Maccum_current_address_xor<23>_rt
+LUT1 		m_traffic_gen/u_c_gen/Mcount_force_rd_counts_xor<3>_rt
+LUT1 		m_traffic_gen/u_c_gen/Madd_addr_counts[31]_GND_98_o_add_83_OUT_xor<31>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen/Madd_acoun
+ts[35]_GND_109_o_add_51_OUT_xor<31>_rt
+LUT1
+		m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/Maccum_rd_data_counts_ask
+ed_xor<6>_rt
+LUT1
+		m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/Madd_ac
+ounts[35]_GND_113_o_add_51_OUT_xor<31>_rt
+INV
+		u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[0].u_iob_dq/iserdes_cl
+kb1_INV_0
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_ref_n                          | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| clk_ref_p                          | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| ddr3_addr<0>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<1>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<2>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<3>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<4>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<5>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<6>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<7>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<8>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<9>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<10>                      | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<11>                      | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<12>                      | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_addr<13>                      | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_ba<0>                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_ba<1>                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_ba<2>                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_cas_n                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_ck_n<0>                       | IOBS             | OUTPUT    | DIFF_SSTL15          |       |          |      |              |          |          |
+| ddr3_ck_p<0>                       | IOBM             | OUTPUT    | DIFF_SSTL15          |       |          |      | OSERDES      |          |          |
+| ddr3_cke<0>                        | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_cs_n<0>                       | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_dm<0>                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          | FIXED    |
+| ddr3_dq<0>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<1>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<2>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<3>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<4>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<5>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<6>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dq<7>                         | IOB              | BIDIR     | SSTL15_T_DCI         |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_dqs_n<0>                      | IOBS             | BIDIR     | DIFF_SSTL15_T_DCI    |       |          |      | OSERDES      |          |          |
+| ddr3_dqs_p<0>                      | IOBM             | BIDIR     | DIFF_SSTL15_T_DCI    |       |          |      | ISERDESE1OSE |          |          |
+| ddr3_odt<0>                        | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_ras_n                         | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| ddr3_reset_n                       | IOB              | OUTPUT    | SSTL15               |       |          |      | ODDR         |          |          |
+| ddr3_we_n                          | IOB              | OUTPUT    | SSTL15               |       |          |      | OSERDES      |          |          |
+| error                              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| phy_init_done                      | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| sys_clk_n                          | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| sys_clk_p                          | IOB              | INPUT     | LVDS_25              | TRUE  |          |      |              |          |          |
+| sys_rst                            | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+  No area groups were found in this design.
+
+----------------------
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+MMCM_ADV "u_infrastructure/u_mmcm_adv":
+BANDWIDTH:OPTIMIZED
+CASC_LOCK_EN:FALSE
+CLKBURST_ENABLE:FALSE
+CLKBURST_REPEAT:FALSE
+CLKFBIN_EDGE:FALSE
+CLKFBIN_NOCOUNT:TRUE
+CLKFBOUT_EDGE:FALSE
+CLKFBOUT_EN:TRUE
+CLKFBOUT_FRAC_EN:FALSE
+CLKFBOUT_FRAC_WF:FALSE
+CLKFBOUT_NOCOUNT:TRUE
+CLKFBOUT_USE_FINE_PS:FALSE
+CLKOUT0_EDGE:FALSE
+CLKOUT0_EN:FALSE
+CLKOUT0_FRAC_EN:FALSE
+CLKOUT0_FRAC_WF:FALSE
+CLKOUT0_NOCOUNT:TRUE
+CLKOUT0_USE_FINE_PS:FALSE
+CLKOUT1_EDGE:FALSE
+CLKOUT1_EN:FALSE
+CLKOUT1_NOCOUNT:TRUE
+CLKOUT1_USE_FINE_PS:FALSE
+CLKOUT2_EDGE:FALSE
+CLKOUT2_EN:FALSE
+CLKOUT2_NOCOUNT:TRUE
+CLKOUT2_USE_FINE_PS:TRUE
+CLKOUT3_EDGE:FALSE
+CLKOUT3_EN:FALSE
+CLKOUT3_NOCOUNT:TRUE
+CLKOUT3_USE_FINE_PS:FALSE
+CLKOUT4_CASCADE:FALSE
+CLKOUT4_EDGE:FALSE
+CLKOUT4_EN:FALSE
+CLKOUT4_NOCOUNT:TRUE
+CLKOUT4_USE_FINE_PS:FALSE
+CLKOUT5_EDGE:FALSE
+CLKOUT5_EN:FALSE
+CLKOUT5_FRAC_WF:FALSE
+CLKOUT5_NOCOUNT:TRUE
+CLKOUT5_USE_FINE_PS:FALSE
+CLKOUT6_EDGE:FALSE
+CLKOUT6_EN:FALSE
+CLKOUT6_FRAC_WF:FALSE
+CLKOUT6_NOCOUNT:TRUE
+CLKOUT6_USE_FINE_PS:FALSE
+CLOCK_HOLD:FALSE
+COMPENSATION:INTERNAL
+DIRECT_PATH_CNTRL:FALSE
+DIVCLK_EDGE:FALSE
+DIVCLK_NOCOUNT:TRUE
+EN_VCO_DIV1:FALSE
+EN_VCO_DIV6:FALSE
+GTS_WAIT:FALSE
+HVLF_CNT_TEST_EN:FALSE
+HVLF_STEP:FALSE
+IN_DLY_EN:TRUE
+MMCM_EN:TRUE
+PERF0_USE_CLK:FALSE
+PERF1_USE_CLK:FALSE
+PERF2_USE_CLK:FALSE
+PERF3_USE_CLK:FALSE
+SEL_SLIPD:FALSE
+STARTUP_WAIT:FALSE
+VLF_HIGH_DIS_B:TRUE
+VLF_HIGH_PWDN_B:TRUE
+CLKFBOUT_MULT_F = 8.0
+CLKFBOUT_PHASE = 0.0
+CLKIN1_PERIOD = 1.875
+CLKIN2_PERIOD = 10
+CLKOUT0_DIVIDE_F = 2.0
+CLKOUT0_DUTY_CYCLE = 0.5
+CLKOUT0_PHASE = 0.0
+CLKOUT1_DIVIDE = 4
+CLKOUT1_DUTY_CYCLE = 0.5
+CLKOUT1_PHASE = 0.0
+CLKOUT2_DIVIDE = 2
+CLKOUT2_DUTY_CYCLE = 0.5
+CLKOUT2_PHASE = 0.0
+CLKOUT3_DIVIDE = 1
+CLKOUT3_DUTY_CYCLE = 0.5
+CLKOUT3_PHASE = 0.0
+CLKOUT4_DIVIDE = 1
+CLKOUT4_DUTY_CYCLE = 0.5
+CLKOUT4_PHASE = 0.0
+CLKOUT5_DIVIDE = 1
+CLKOUT5_DUTY_CYCLE = 0.5
+CLKOUT5_PHASE = 0.0
+CLKOUT6_DIVIDE = 1
+CLKOUT6_DUTY_CYCLE = 0.5
+CLKOUT6_PHASE = 0.0
+DIVCLK_DIVIDE = 4
+REF_JITTER1 = 0.005
+REF_JITTER2 = 0.005
+
+
+
+Section 12 - Control Set Information
+------------------------------------
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Clock Signal                                    | Reset Signal                                                                                                            | Set Signal | Enable Signal                                                                                                                | Slice Load Count | Bel Load Count |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| MMCM_PHASE_CALIBRATION_ML_LUT2_41_ML_NEW_CLK    | u_infrastructure/u_mmcm_adv_ML_NEW_OUT_0                                                                                |            |                                                                                                                              | 1                | 2              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk                                             |                                                                                                                         |            |                                                                                                                              | 342              | 829            |
+| clk                                             |                                                                                                                         |            | GLOBAL_LOGIC1                                                                                                                | 24               | 56             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/RD_PATH.read_data_path/rd_datagen/_n0070_inv                                                                   | 8                | 32             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/wr_en                                                                   | 7                | 50             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen/_n0258_inv                                            | 4                | 30             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/mcb_control/push_cmd                                                                                           | 4                | 26             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/u_c_gen/_n0394_inv                                                                                             | 5                | 27             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/u_c_gen/_n0498_inv                                                                                             | 4                | 29             |
+| clk                                             |                                                                                                                         |            | m_traffic_gen/u_c_gen/gen_prbs_instr.instr_prbs_gen_a/_n0021_inv                                                             | 5                | 20             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0/idle_r_lcl                                          | 1                | 4              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0/idle_r_lcl                                          | 1                | 4              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0/idle_r_lcl                                          | 1                | 4              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/idle_r_lcl                                          | 1                | 4              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/idle_ns<0>                                                                          | 7                | 29             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/idle_ns<1>                                                                          | 7                | 29             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/idle_ns<2>                                                                          | 7                | 29             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/idle_ns<3>                                                                          | 7                | 29             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2191_inv                                                                    | 3                | 6              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2227_inv                                                                    | 3                | 5              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2268_inv                                                                    | 2                | 5              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2308_inv                                                                    | 2                | 5              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2318_inv                                                                    | 1                | 5              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2333_inv                                                                    | 1                | 5              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/sr_valid_r                                                                    | 24               | 128            |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/sr_valid_r_store_sr_r_AND_765_o                                               | 8                | 64             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_cmd0/app_rdy_r                                                                                     | 18               | 27             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf_we                                                                 | 6                | 46             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.status_ram.rd_buf_we_r1                                                   | 1                | 6              |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_wr_data0/app_wdf_rdy_r_copy2                                                                       | 4                | 31             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_wr_data0/app_wdf_rdy_r_copy4                                                                       | 6                | 48             |
+| clk                                             |                                                                                                                         |            | u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.pointer_we                                                                    | 2                | 14             |
+| clk                                             | GLOBAL_LOGIC1                                                                                                           |            |                                                                                                                              | 1                | 2              |
+| clk                                             | m_traffic_gen/RD_PATH.read_data_path/data_valid_i_0                                                                     |            |                                                                                                                              | 4                | 4              |
+| clk                                             | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/cmd_validB_i_inv                                                      |            |                                                                                                                              | 2                | 3              |
+| clk                                             | m_traffic_gen/rst_ra<0>                                                                                                 |            | m_traffic_gen/mcb_control/xfer_cmd                                                                                           | 3                | 17             |
+| clk                                             | m_traffic_gen/rst_ra<0>_5                                                                                               |            |                                                                                                                              | 2                | 2              |
+| clk                                             | m_traffic_gen/rst_ra<0>_5                                                                                               |            | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/_n0096_inv                                                                 | 1                | 2              |
+| clk                                             | m_traffic_gen/rst_ra<0>_5                                                                                               |            | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/_n0099_inv                                                                 | 1                | 1              |
+| clk                                             | m_traffic_gen/rst_ra<0>_5                                                                                               |            | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/_n0105_inv                                                                 | 1                | 1              |
+| clk                                             | m_traffic_gen/rst_ra<0>_5                                                                                               |            | m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/_n0108_inv                                                                 | 1                | 1              |
+| clk                                             | m_traffic_gen/rst_ra<0>_6                                                                                               |            |                                                                                                                              | 2                | 2              |
+| clk                                             | m_traffic_gen/rst_ra<0>_6                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/_n0097_inv                                                              | 1                | 2              |
+| clk                                             | m_traffic_gen/rst_ra<0>_6                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/rd_strobe                                                       | 1                | 4              |
+| clk                                             | m_traffic_gen/rst_ra<0>_6                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/wr_en                                                                   | 1                | 5              |
+| clk                                             | m_traffic_gen/rst_ra<0>_6                                                                                               |            | m_traffic_gen/u_c_gen/instr_vld                                                                                              | 2                | 6              |
+| clk                                             | m_traffic_gen/rst_ra<0>_7                                                                                               |            |                                                                                                                              | 2                | 2              |
+| clk                                             | m_traffic_gen/rst_ra<0>_7                                                                                               |            | app_rd_data_valid                                                                                                            | 2                | 7              |
+| clk                                             | m_traffic_gen/rst_ra<0>_7                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/rd_datagen/_n0070_inv                                                                   | 2                | 3              |
+| clk                                             | m_traffic_gen/rst_ra<0>_7                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/cmd_en_i_GND_106_o_AND_952_o                                            | 2                | 7              |
+| clk                                             | m_traffic_gen/rst_ra<0>_7                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/rd_strobe                                                       | 1                | 1              |
+| clk                                             | m_traffic_gen/rst_ra<0>_8                                                                                               |            |                                                                                                                              | 4                | 5              |
+| clk                                             | m_traffic_gen/rst_ra<0>_8                                                                                               |            | m_traffic_gen/RD_PATH.read_data_path/rd_datagen/_n0070_inv                                                                   | 2                | 4              |
+| clk                                             | m_traffic_gen/rst_ra<0>_8                                                                                               |            | m_traffic_gen/mcb_control/xfer_cmd                                                                                           | 3                | 10             |
+| clk                                             | u_infrastructure/rst_tmp                                                                                                |            |                                                                                                                              | 14               | 65             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_4                                                                                     |            |                                                                                                                              | 1                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_4                                                                                     |            | u_memc_ui_top/u_ui_top/ui_wr_data0/write_data_control.wr_data_addr_le                                                        | 3                | 6              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_5                                                                                     |            | u_memc_ui_top/u_ui_top/ui_wr_data0/new_rd_data                                                                               | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_5                                                                                     |            | u_memc_ui_top/u_ui_top/ui_wr_data0/write_data_control.wr_data_addr_le                                                        | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_5                                                                                     |            | u_memc_ui_top/u_ui_top/wr_accepted                                                                                           | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_6                                                                                     |            |                                                                                                                              | 7                | 7              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_6                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0/_n0232_inv                                          | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_7                                                                                     |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_7                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0/_n0235_inv                                          | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_7                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0/_n0227_inv                                          | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_7                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/_n0242_inv                                          | 2                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_8                                                                                     |            |                                                                                                                              | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_8                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/_n0242_inv                                          | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_8                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_common0/_n0237_inv                                                             | 3                | 6              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_8                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/dfi_rddata_en_ns<0>                                                                            | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_9                                                                                     |            |                                                                                                                              | 4                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_9                                                                                     |            | u_memc_ui_top/u_mem_intfc/mc0/dfi_rddata_en_ns<0>                                                                            | 1                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_10                                                                                    |            |                                                                                                                              | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_10                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write/wr_level_dqs_asrt_r_dqs_asrt_cnt[1]_AND_642_o                                 | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_11                                                                                    |            |                                                                                                                              | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_11                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write/wr_level_dqs_asrt_r_dqs_asrt_cnt[1]_AND_642_o                                 | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_12                                                                                    |            |                                                                                                                              | 7                | 12             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_13                                                                                    |            |                                                                                                                              | 4                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_14                                                                                    |            |                                                                                                                              | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_14                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/pwron_ce_r                                                                     | 2                | 8              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_15                                                                                    |            |                                                                                                                              | 4                | 9              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_15                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/pwron_ce_r                                                                     | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_16                                                                                    |            |                                                                                                                              | 5                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_17                                                                                    |            |                                                                                                                              | 2                | 7              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_17                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/_n0743_inv                                                                     | 1                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_18                                                                                    |            |                                                                                                                              | 5                | 7              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_18                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0512_inv                                                      | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_18                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/_n0743_inv                                                                     | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_19                                                                                    |            |                                                                                                                              | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_19                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0509_inv                                                      | 2                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_19                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/rank_cnt[0]_rank_cnt[1]_AND_650_o                               | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_19                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/rdlvl_error_rdlvl_error_r_AND_728_o                             | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_20                                                                                    |            |                                                                                                                              | 1                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_20                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/wl_state_r[3]_wl_state_r[3]_OR_759_o                            | 2                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_21                                                                                    |            |                                                                                                                              | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_21                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/N105                                                            | 1                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_21                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0596_inv                                                      | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_22                                                                                    |            |                                                                                                                              | 7                | 11             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_22                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0512_inv                                                      | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_23                                                                                    |            |                                                                                                                              | 3                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_23                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2585_inv                                                                    | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_24                                                                                    |            |                                                                                                                              | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_24                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2415_inv                                                                    | 3                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_24                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2568_inv                                                                    | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_24                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2585_inv                                                                    | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_25                                                                                    |            |                                                                                                                              | 5                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_26                                                                                    |            |                                                                                                                              | 2                | 5              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_26                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2581_inv                                                                    | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_26                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/pipe_wait                                                                     | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_27                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd_inst.u_phy_pd/_n0304_inv                      | 2                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_27                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2568_inv                                                                    | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_27                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2581_inv                                                                    | 1                | 4              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_28                                                                                    |            |                                                                                                                              | 2                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_28                                                                                    |            | init_mem0/mcb_wr_en_i_current_state[4]_AND_845_o                                                                             | 2                | 6              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_28                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd_inst.u_phy_pd/_n0304_inv                      | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_29                                                                                    |            | init_mem0/mcb_wr_en_i_current_state[4]_AND_845_o                                                                             | 3                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_30                                                                                    |            | init_mem0/mcb_wr_en_i_current_state[4]_AND_845_o                                                                             | 2                | 6              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_41                                                                                    |            |                                                                                                                              | 1                | 1              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_42                                                                                    |            |                                                                                                                              | 10               | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_43                                                                                    |            |                                                                                                                              | 7                | 8              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_43                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0653_inv                                                      | 1                | 2              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_44                                                                                    |            |                                                                                                                              | 5                | 7              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_44                                                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0653_inv                                                      | 1                | 3              |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_45                                                                                    |            |                                                                                                                              | 8                | 10             |
+| clk                                             | u_infrastructure/rstdiv0_sync_r_7_46                                                                                    |            |                                                                                                                              | 5                | 7              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/dbg_phy_pd<6>                                                                                 |            |                                                                                                                              | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/dbg_phy_pd<6>                                                                                 |            | u_memc_ui_top/u_mem_intfc/dbg_phy_pd<5>                                                                                      | 8                | 32             |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0/_n0215                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0/_n0221_inv                                          | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0/clear_req                                      |            |                                                                                                                              | 3                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/_n0285                                         |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/act_req_inv                                    |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/rts_act_denied_act_starve_limit_cntr_r[1]_AND_79_o  | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/col_wait_r_inv                                 |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/rts_col_denied_GND_24_o_AND_91_o                    | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0/io_config_valid_r_inv                          |            |                                                                                                                              | 5                | 5              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0/_n0216                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0/_n0227_inv                                          | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0/clear_req                                      |            |                                                                                                                              | 2                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0/_n0285                                         |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0/act_req_inv                                    |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0/rts_act_denied_act_starve_limit_cntr_r[1]_AND_196_o | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0/col_wait_r_inv                                 |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0/rts_col_denied_GND_27_o_AND_208_o                   | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0/_n0220                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0/_n0231_inv                                          | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0/clear_req                                      |            |                                                                                                                              | 2                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0/_n0285                                         |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0/act_req_inv                                    |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0/rts_act_denied_act_starve_limit_cntr_r[1]_AND_310_o | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0/col_wait_r_inv                                 |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0/rts_col_denied_GND_30_o_AND_322_o                   | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/_n0225                                         |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/_n0236_inv                                          | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0/clear_req                                      |            |                                                                                                                              | 3                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0/_n0285                                         |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0/act_req_inv                                    |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0/rts_act_denied_act_starve_limit_cntr_r[1]_AND_424_o | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0/col_wait_r_inv                                 |            | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0/rts_col_denied_GND_33_o_AND_436_o                   | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_common0/dfi_init_complete_inv                                             |            |                                                                                                                              | 3                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_common0/dfi_init_complete_inv                                             |            | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_cntrl[0].rank_cntrl0/_n0142_inv                                                | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/dfi_init_complete_maint_prescaler.maint_prescaler_tick_ns_OR_41_o |            | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/maint_prescaler.maint_prescaler_r[5]_reduce_or_2_o                     | 1                | 6              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/dfi_init_complete_refresh_tick_lcl_OR_47_o                        |            | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/refresh_timer.refresh_timer_r[5]_maint_prescaler_tick_r_lcl_AND_23_o   | 2                | 6              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/dfi_init_complete_zq_cntrl.zq_tick_OR_48_o                        |            | u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/zq_cntrl.zq_timer.zq_timer_r[19]_maint_prescaler_tick_r_lcl_AND_25_o   | 5                | 20             |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/rst_wl_state_r[3]_OR_756_o                                 |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0478_inv                                                      | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/rst_wl_state_r[3]_OR_756_o                                 |            | u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl/_n0483_inv                                                      | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0].u_phy_dm_iob/dm_ce_inv                           |            |                                                                                                                              | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/_n0699                                                                    |            |                                                                                                                              | 2                | 7              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/address_w<10>                                                             |            |                                                                                                                              | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/cnt_cmd_done_r_0                                                          |            |                                                                                                                              | 3                | 5              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/cnt_pwron_cke_done_r_inv                                                  |            |                                                                                                                              | 3                | 9              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r[5]_init_state_r[5]_OR_464_o                                  |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r_FSM_FFd32                                                         | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r[5]_init_state_r[5]_OR_496_o                                  |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/_n0758_inv                                                                     | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r_FSM_FFd30                                                    |            |                                                                                                                              | 3                | 9              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r_FSM_FFd34                                                    |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r[5]_mem_init_done_r_AND_591_o                                      | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/rdlvl_wr_rd_inv                                                           |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/rst_wrlvl_done_OR_414_o                                                   |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/rst_wrlvl_done_r_OR_468_o                                                 |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init/init_state_r[5]_init_state_r[5]_OR_475_o                                       | 1                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_cnt_eye_size_r_val                                                |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n2643_inv                                                                    | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_val                                            |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/detect_edge_cnt1_en_r                                                         | 3                | 12             |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_detect_edge_cnt0_r_val                                            |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/found_edge_valid_r                                                            | 3                | 12             |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/Mcount_idel_tap_cnt_cpt_r_val                                            |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/cal1_dlyce_cpt_r                                                              | 1                | 5              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/_n1881                                                                   |            |                                                                                                                              | 3                | 5              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/cal1_dlyce_cpt_r_inv                                                     |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/cal1_state_r[4]_cal1_state_r[4]_OR_785_o                                 |            |                                                                                                                              | 3                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/rdlvl_done<1>_inv                                                        |            |                                                                                                                              | 1                | 5              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl/store_sr_req_r_0                                                         |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes                                               |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes                                               |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/_n0142_inv                                                     | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes                                               |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/_n0152_inv                                                     | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes_1                                             |            |                                                                                                                              | 2                | 2              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes_1                                             |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/_n0170_inv                                                     | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes_2                                             |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes_2                                             |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/_n0152_inv                                                     | 1                | 1              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_oserdes_2                                             |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/_n0162_inv                                                     | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/rst_rsync<0>                                              |            |                                                                                                                              | 2                | 6              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/SyncResetRd                            |            |                                                                                                                              | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/SyncResetRd                            |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/RdCEshftr<2>                                | 1                | 3              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write/rst_delayed<0>                                                           |            |                                                                                                                              | 7                | 19             |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write/rst_delayed<0>                                                           |            | u_memc_ui_top/u_mem_intfc/dbg_phy_pd<10>                                                                                     | 2                | 6              |
+| clk                                             | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write/rst_delayed[7]_wrlvl_active_r1_OR_532_o                                  |            |                                                                                                                              | 4                | 9              |
+| clk                                             | u_memc_ui_top/u_ui_top/ui_rd_data0/ram_init_done_r_lcl_inv                                                              |            |                                                                                                                              | 2                | 4              |
+| clk                                             | u_memc_ui_top/u_ui_top/ui_rd_data0/rst_1                                                                                |            | u_memc_ui_top/u_ui_top/rd_accepted                                                                                           | 1                | 4              |
+| clk                                             | u_memc_ui_top/u_ui_top/ui_wr_data0/rst_occupied_counter.occ_cnt_ns[4]_OR_813_o                                          |            |                                                                                                                              | 2                | 5              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| u_iodelay_ctrl/clk_ref_bufg                     | u_infrastructure/sys_rst_act_hi                                                                                         |            |                                                                                                                              | 2                | 15             |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| u_memc_ui_top/u_mem_intfc/phy_top0/clk_rsync<0> |                                                                                                                         |            |                                                                                                                              | 29               | 156            |
+| u_memc_ui_top/u_mem_intfc/phy_top0/clk_rsync<0> |                                                                                                                         |            | GLOBAL_LOGIC1                                                                                                                | 10               | 69             |
+| u_memc_ui_top/u_mem_intfc/phy_top0/clk_rsync<0> | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/SyncResetRd                            |            |                                                                                                                              | 1                | 1              |
+| u_memc_ui_top/u_mem_intfc/phy_top0/clk_rsync<0> | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/SyncResetWt                            |            |                                                                                                                              | 1                | 1              |
+| u_memc_ui_top/u_mem_intfc/phy_top0/clk_rsync<0> | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/SyncResetWt                            |            | u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0/WtAdrsCntr_ce                               | 1                | 3              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ~MMCM_PHASE_CALIBRATION_ML_LUT2_41_ML_NEW_CLK   | u_infrastructure/u_mmcm_adv_ML_NEW_OUT_0                                                                                |            |                                                                                                                              | 1                | 1              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ~u_infrastructure/u_mmcm_adv_ML_NEW_I1          |                                                                                                                         |            |                                                                                                                              | 1                | 1              |
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Module                                  | Partition | Slices*       | Slice Reg     | LUTs          | LUTRAM        | BRAM/FIFO | DSP48E1 | BUFG  | BUFIO | BUFR  | MMCM_ADV  | Full Hierarchical Name                                                                                    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| example_top/                            |           | 233/1495      | 0/2343        | 532/2579      | 0/201         | 0/0       | 0/0     | 0/3   | 0/0   | 0/1   | 0/1       | example_top                                                                                               |
+| +example_top                            |           | 23/23         | 4/4           | 71/71         | 64/64         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/example_top                                                                                   |
+| +init_mem0                              |           | 19/19         | 32/32         | 11/11         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/init_mem0                                                                                     |
+| +m_traffic_gen                          |           | 1/132         | 1/318         | 0/275         | 0/3           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen                                                                                 |
+| ++RD_PATH.read_data_path                |           | 11/50         | 5/87          | 28/124        | 0/3           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/RD_PATH.read_data_path                                                          |
+| +++rd_datagen                           |           | 6/16          | 9/42          | 14/48         | 0/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/RD_PATH.read_data_path/rd_datagen                                               |
+| ++++V6_DGEN.v6_data_gen                 |           | 10/10         | 33/33         | 34/34         | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/RD_PATH.read_data_path/rd_datagen/V6_DGEN.v6_data_gen                           |
+| +++read_postedfifo                      |           | 15/23         | 28/40         | 31/48         | 0/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/RD_PATH.read_data_path/read_postedfifo                                          |
+| ++++rd_fifo                             |           | 8/8           | 12/12         | 17/17         | 2/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo                                  |
+| ++WR_PATH.write_data_path               |           | 0/19          | 0/41          | 0/41          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/WR_PATH.write_data_path                                                         |
+| +++wr_data_gen                          |           | 10/19         | 11/41         | 9/41          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/WR_PATH.write_data_path/wr_data_gen                                             |
+| ++++V6_WDGEN.v6_data_gen                |           | 9/9           | 30/30         | 32/32         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/WR_PATH.write_data_path/wr_data_gen/V6_WDGEN.v6_data_gen                        |
+| ++mcb_control                           |           | 21/21         | 59/59         | 21/21         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/mcb_control                                                                     |
+| ++tg_status                             |           | 2/2           | 2/2           | 1/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/tg_status                                                                       |
+| ++u_c_gen                               |           | 33/39         | 108/128       | 69/88         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/u_c_gen                                                                         |
+| +++gen_prbs_instr.instr_prbs_gen_a      |           | 6/6           | 20/20         | 19/19         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/m_traffic_gen/u_c_gen/gen_prbs_instr.instr_prbs_gen_a                                         |
+| +u_infrastructure                       |           | 17/17         | 74/74         | 1/1           | 0/0           | 0/0       | 0/0     | 2/2   | 0/0   | 0/0   | 1/1       | example_top/u_infrastructure                                                                              |
+| +u_iodelay_ctrl                         |           | 3/3           | 15/15         | 1/1           | 0/0           | 0/0       | 0/0     | 1/1   | 0/0   | 0/0   | 0/0       | example_top/u_iodelay_ctrl                                                                                |
+| +u_memc_ui_top                          |           | 0/1068        | 0/1900        | 0/1688        | 0/134         | 0/0       | 0/0     | 0/0   | 0/0   | 0/1   | 0/0       | example_top/u_memc_ui_top                                                                                 |
+| ++u_mem_intfc                           |           | 1/994         | 1/1758        | 0/1537        | 0/79          | 0/0       | 0/0     | 0/0   | 0/0   | 0/1   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc                                                                     |
+| +++mc0                                  |           | 40/467        | 47/521        | 0/674         | 0/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0                                                                 |
+| ++++bank_mach0                          |           | 0/372         | 0/389         | 0/582         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0                                                      |
+| +++++arb_mux0                           |           | 0/67          | 0/32          | 0/117         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0                                             |
+| ++++++arb_row_col0                      |           | 14/24         | 6/30          | 14/49         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0/arb_row_col0                                |
+| +++++++col_arb0                         |           | 3/3           | 8/8           | 12/12         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0/arb_row_col0/col_arb0                       |
+| +++++++config_arb0                      |           | 3/3           | 8/8           | 12/12         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0/arb_row_col0/config_arb0                    |
+| +++++++row_arb0                         |           | 4/4           | 8/8           | 11/11         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0/arb_row_col0/row_arb0                       |
+| ++++++arb_select0                       |           | 43/43         | 2/2           | 68/68         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/arb_mux0/arb_select0                                 |
+| +++++bank_cntrl[0].bank0                |           | 0/71          | 0/85          | 0/102         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0                                  |
+| ++++++bank_compare0                     |           | 14/14         | 39/39         | 10/10         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_compare0                    |
+| ++++++bank_queue0                       |           | 24/24         | 17/17         | 36/36         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_queue0                      |
+| ++++++bank_state0                       |           | 33/33         | 29/29         | 56/56         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[0].bank0/bank_state0                      |
+| +++++bank_cntrl[1].bank0                |           | 0/74          | 0/84          | 0/113         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0                                  |
+| ++++++bank_compare0                     |           | 14/14         | 38/38         | 9/9           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_compare0                    |
+| ++++++bank_queue0                       |           | 29/29         | 17/17         | 49/49         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_queue0                      |
+| ++++++bank_state0                       |           | 31/31         | 29/29         | 55/55         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[1].bank0/bank_state0                      |
+| +++++bank_cntrl[2].bank0                |           | 0/70          | 0/84          | 0/113         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0                                  |
+| ++++++bank_compare0                     |           | 15/15         | 38/38         | 10/10         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_compare0                    |
+| ++++++bank_queue0                       |           | 26/26         | 17/17         | 49/49         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_queue0                      |
+| ++++++bank_state0                       |           | 29/29         | 29/29         | 54/54         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[2].bank0/bank_state0                      |
+| +++++bank_cntrl[3].bank0                |           | 0/73          | 0/85          | 0/111         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0                                  |
+| ++++++bank_compare0                     |           | 16/16         | 39/39         | 10/10         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_compare0                    |
+| ++++++bank_queue0                       |           | 27/27         | 17/17         | 48/48         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_queue0                      |
+| ++++++bank_state0                       |           | 30/30         | 29/29         | 53/53         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_cntrl[3].bank0/bank_state0                      |
+| +++++bank_common0                       |           | 17/17         | 19/19         | 26/26         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/bank_mach0/bank_common0                                         |
+| ++++col_mach0                           |           | 14/14         | 25/25         | 20/20         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/col_mach0                                                       |
+| ++++rank_mach0                          |           | 0/41          | 0/60          | 0/72          | 0/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/rank_mach0                                                      |
+| +++++rank_cntrl[0].rank_cntrl0          |           | 16/16         | 17/17         | 24/24         | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_cntrl[0].rank_cntrl0                            |
+| +++++rank_common0                       |           | 22/25         | 41/43         | 48/48         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0                                         |
+| ++++++maintenance_request.maint_arb0    |           | 3/3           | 2/2           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/mc0/rank_mach0/rank_common0/maintenance_request.maint_arb0          |
+| +++phy_top0                             |           | 2/526         | 3/1236        | 1/863         | 0/78          | 0/0       | 0/0     | 0/0   | 0/0   | 0/1   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0                                                            |
+| ++++gen_enable_pd.u_phy_pd_top          |           | 2/24          | 2/69          | 0/32          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top                                 |
+| +++++gen_pd[0].gen_pd_inst.u_phy_pd     |           | 22/22         | 67/67         | 32/32         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/gen_enable_pd.u_phy_pd_top/gen_pd[0].gen_pd_inst.u_phy_pd  |
+| ++++mb_wrlvl_inst.u_phy_wrlvl           |           | 36/36         | 67/67         | 61/61         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/mb_wrlvl_inst.u_phy_wrlvl                                  |
+| ++++u_phy_clock_io                      |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_clock_io                                             |
+| +++++gen_ck[0].u_phy_ck_iob             |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_clock_io/gen_ck[0].u_phy_ck_iob                      |
+| ++++u_phy_control_io                    |           | 26/26         | 11/11         | 24/24         | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_control_io                                           |
+| ++++u_phy_data_io                       |           | 3/91          | 3/292         | 0/141         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io                                              |
+| +++++gen_dm_inst.gen_dm[0].u_phy_dm_iob |           | 5/5           | 16/16         | 9/9           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0].u_phy_dm_iob           |
+| +++++gen_dq[0].u_iob_dq                 |           | 7/10          | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[0].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[0].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[1].u_iob_dq                 |           | 6/9           | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[1].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[1].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[2].u_iob_dq                 |           | 6/9           | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[2].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[2].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[3].u_iob_dq                 |           | 6/9           | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[3].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[3].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[4].u_iob_dq                 |           | 8/11          | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[4].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[4].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[5].u_iob_dq                 |           | 7/10          | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[5].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[5].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[6].u_iob_dq                 |           | 8/11          | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[6].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[6].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dq[7].u_iob_dq                 |           | 9/12          | 16/33         | 8/16          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[7].u_iob_dq                           |
+| ++++++u_rd_bitslip                      |           | 3/3           | 17/17         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dq[7].u_iob_dq/u_rd_bitslip              |
+| +++++gen_dqs[0].u_phy_dqs_iob           |           | 0/2           | 0/9           | 0/4           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob                     |
+| ++++++u_rd_bitslip_early                |           | 2/2           | 9/9           | 4/4           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_rd_bitslip_early  |
+| ++++u_phy_dly_ctrl                      |           | 7/7           | 15/15         | 13/13         | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_dly_ctrl                                             |
+| ++++u_phy_init                          |           | 78/78         | 152/152       | 115/115       | 5/5           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_init                                                 |
+| ++++u_phy_rdlvl                         |           | 181/181       | 485/485       | 368/368       | 33/33         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_rdlvl                                                |
+| ++++u_phy_read                          |           | 0/46          | 0/96          | 0/64          | 0/37          | 0/0       | 0/0     | 0/0   | 0/0   | 0/1   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read                                                 |
+| +++++u_phy_rdclk_gen                    |           | 21/21         | 42/42         | 22/22         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 1/1   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen                                 |
+| +++++u_phy_rdctrl_sync                  |           | 5/5           | 8/8           | 2/2           | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdctrl_sync                               |
+| +++++u_phy_rddata_sync                  |           | 5/20          | 34/46         | 0/40          | 0/36          | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync                               |
+| ++++++u_rddata_sync_c0                  |           | 15/15         | 12/12         | 40/40         | 36/36         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rddata_sync/u_rddata_sync_c0              |
+| ++++u_phy_write                         |           | 35/35         | 46/46         | 44/44         | 1/1           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_write                                                |
+| ++u_ui_top                              |           | 0/74          | 0/142         | 0/151         | 0/55          | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_ui_top                                                                        |
+| +++ui_cmd0                              |           | 27/27         | 5/5           | 39/39         | 27/27         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_ui_top/ui_cmd0                                                                |
+| +++ui_rd_data0                          |           | 25/25         | 66/66         | 80/80         | 28/28         | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_ui_top/ui_rd_data0                                                            |
+| +++ui_wr_data0                          |           | 22/22         | 71/71         | 32/32         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0       | example_top/u_memc_ui_top/u_ui_top/ui_wr_data0                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Slices can be packed with basic elements from multiple hierarchies.
+  Therefore, a slice will be counted in every hierarchical module
+  that each of its packed basic elements belong to.
+** For each column, there are two numbers reported <A>/<B>.
+   <A> is the number of elements that belong to that specific hierarchical module.
+   <B> is the total number of elements from that hierarchical module and any lower level
+   hierarchical modules below.
+*** The LUTRAM column counts all LUTs used as memory including RAM, ROM, and shift registers.

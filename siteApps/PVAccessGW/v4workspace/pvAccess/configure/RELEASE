@@ -1,0 +1,26 @@
+# pvAccessCPP RELEASE - Location of external support modules
+#
+# IF YOU CHANGE this file or any file it includes you must
+# subsequently do a "gnumake rebuild" in the application's
+# top level directory.
+#
+# The build process does not check dependencies against files
+# that are outside this application, thus you should also do a
+# "gnumake rebuild" in the top level directory after EPICS_BASE
+# or any other external module pointed to below is rebuilt.
+#
+# Host- or target-specific settings can be given in files named
+#  RELEASE.$(EPICS_HOST_ARCH).Common
+#  RELEASE.Common.$(T_A)
+#  RELEASE.$(EPICS_HOST_ARCH).$(T_A)
+
+# EPICS V4 Developers: Do not edit the locations in this file!
+#
+# Create a file RELEASE.local pointing to your PVDATA, PVCOMMON
+# and EPICS_BASE build directories, e.g.
+#   PVCOMMON = /home/install/epicsV4/pvCommonCPP
+#   PVDATA = /home/install/epicsV4/pvDataCPP
+#   EPICS_BASE = /home/install/epics/base
+
+-include $(TOP)/../RELEASE.local
+-include $(TOP)/configure/RELEASE.local

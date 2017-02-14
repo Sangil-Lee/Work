@@ -1,0 +1,67 @@
+# normativeTypes C++ implementation
+# Jenkins @ Cloudbees build script
+#
+# Jenkins invokes scripts with the "-ex" option. So the build is considered a failure
+# if any of the commands exits with a non-zero exit code.
+#
+# Author: Ralph Lange <ralph.lange@gmx.de>
+# Copyright (C) 2013 Helmholtz-Zentrum Berlin für Materialien und Energie GmbH
+# Copyright (C) 2014-2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+###########################################
+# Determine EPICS Base version
+
+DEFAULT_BASE=3.14.12.5
+
+BASE=${1:-${DEFAULT_BASE}}
+USE_MB=${2:-"MB_NO"}
+
+# Dependent module branches (empty = master)
+PVCOMMON_BRANCH=""
+PVDATA_BRANCH=""
+
+###########################################
+# Fetch and unpack dependencies
+
+export STUFF=/tmp/stuff
+
+rm -fr ${STUFF}
+mkdir -p ${STUFF}
+cd ${STUFF}
+
+wget -nv https://openepics.ci.cloudbees.com/job/Base-${BASE}_Build/lastSuccessfulBuild/artifact/base-${BASE}.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/pvDataCPP_${PVDATA_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/pvData.CB-dist.tar.gz
+tar -xzf base-${BASE}.CB-dist.tar.gz
+tar -xzf pvData.CB-dist.tar.gz
+
+if [ "${USE_MB}" = "MB_YES" ]; then
+    wget -nv https://openepics.ci.cloudbees.com/job/pvCommonCPP_${PVCOMMON_BRANCH}Build/BASE=${BASE},USE_MB=MB_YES/lastSuccessfulBuild/artifact/pvCommon.CB-dist.tar.gz
+    tar -xzf pvCommon.CB-dist.tar.gz
+fi
+
+###########################################
+# Build
+
+cd ${WORKSPACE}
+
+export EPICS_BASE=${STUFF}
+export EPICS_HOST_ARCH=$(${EPICS_BASE}/startup/EpicsHostArch)
+export LD_LIBRARY_PATH=${EPICS_BASE}/lib/${EPICS_HOST_ARCH}
+export PATH=${STUFF}/bin:${PATH}
+
+cat > configure/RELEASE.local << EOF
+EPICS_BASE=${EPICS_BASE}
+EOF
+
+make distclean all
+
+###########################################
+# Test
+
+make runtests
+
+###########################################
+# Create distribution
+
+tar --exclude=test* -czf normativeTypes.CB-dist.tar.gz lib include
