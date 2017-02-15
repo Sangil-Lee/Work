@@ -20,7 +20,12 @@ For the impatient: The procedure mainly consists of calling
 
 $ ./boostrap # to create the configure script, if downloaded from the repo
 
+# kernel 2.6
 $ ./configure
+
+# kernel 3.16 for Jessie linux
+$ ./configure --enable-8139too=no
+
 $ make all modules
 
 ... and as root:
