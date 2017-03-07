@@ -1,0 +1,151 @@
+# This is included in lakeshore336.template
+# This template is for outputs 1 and 2, which can provide heater power.
+
+################################################################
+# Read records
+################################################################
+
+## 
+## Read the heater output value.
+##
+record(ai, "$(P):HTR$(OUT)") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE_POLL")
+  field(INP, "@ls336.proto getHTR($(OUT)) $(PORT) $(ADDR)")
+  field(SCAN, "$(SCAN) second")
+  field(PREC, "1")
+  field(EGU, "%")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+## 
+## Define the strings and values for this record.
+##
+record(mbbi, "$(P):RANGE$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Range1/Low")
+  field(TWST, "Range2/Medium")
+  field(THST, "Range3/High")
+  field(FRST, "Range4")	
+  field(FVST, "Range5")
+}
+
+##
+## Define the strings and values for this record.
+##
+record(mbbi, "$(P):OMM$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Closed Loop PID")
+  field(TWST, "Zone")
+  field(THST, "Open Loop")
+}
+
+## 
+## Define the strings and values for this record.
+##
+record(mbbo, "$(P):RANGE_S$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Range1/Low")
+  field(TWST, "Range2/Medium")
+  field(THST, "Range3/High")
+  field(FRST, "Range4")	
+  field(FVST, "Range5")
+}
+
+##
+## Define the strings and values for this record.
+##
+record(mbbo, "$(P):OMM_S$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Closed Loop PID")
+  field(TWST, "Zone")
+  field(THST, "Open Loop")
+}
+
+##
+## Read the heater status
+##
+record(longin, "$(P):HTRST$(OUT)") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE_POLL")
+  field(SCAN, "$(SCAN) second")  
+  field(INP, "@ls336.proto getHTRST($(INPUT)) $(PORT) $(ADDR)")
+  field(FLNK, "$(P):HTRST$(OUT)_CALC")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+##
+## Cache the heater status because this is cleared on a read on the controller.
+##
+record(calcout, "$(P):HTRST$(OUT)_CALC") {
+  field(INPA, "$(P):HTRST$(OUT).VAL")
+  field(CALC, "A!=0?A:0")
+  field(DOPT, "Use CALC")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P):HTRST$(OUT)_CACHE.RVAL PP")
+}
+record(mbbi, "$(P):HTRST$(OUT)_CACHE") {
+  field(DESC, "Cached HTRST")
+  field(DTYP, "Raw Soft Channel")
+  field(ZRST, "No Error")
+  field(ZRVL, "0")
+  field(ONST, "Open Load")
+  field(ONVL, "1")
+  field(TWST, "Short/Compliance")
+  field(TWVL, "2")
+  field(VAL, "0")
+  field(PINI, "YES")
+  field(ONSV, "MAJOR")
+  field(TWSV, "MAJOR")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+##
+## Provide record to reset the cached value
+##
+record(bo, "$(P):HTRST$(OUT)_RESET") {
+  field(DESC, "Reset Cached HTRST")
+  field(VAL, "0")
+  field(OUT, "$(P):HTRST$(OUT)_CACHE.RVAL PP")
+}
+
+###############################################
+# Add in ZONE support
+###############################################
+
+substitute "ZONE=1"
+include "lakeshore336zone.template"
+
+substitute "ZONE=2"
+include "lakeshore336zone.template"
+
+substitute "ZONE=2"
+include "lakeshore336zone.template"
+
+substitute "ZONE=3"
+include "lakeshore336zone.template"
+
+substitute "ZONE=4"
+include "lakeshore336zone.template"
+
+substitute "ZONE=5"
+include "lakeshore336zone.template"
+
+substitute "ZONE=6"
+include "lakeshore336zone.template"
+
+substitute "ZONE=7"
+include "lakeshore336zone.template"
+
+substitute "ZONE=8"
+include "lakeshore336zone.template"
+
+substitute "ZONE=9"
+include "lakeshore336zone.template"
+
+substitute "ZONE=10"
+include "lakeshore336zone.template"
+
+
+
+

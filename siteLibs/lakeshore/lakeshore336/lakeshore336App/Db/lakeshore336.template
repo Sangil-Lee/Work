@@ -1,0 +1,390 @@
+################################################################
+#
+# Lakeshore 336/350 Temperature Controller template file.
+#
+# Macros:
+#   P - Prefix for PV name
+#   PORT - Bus/Port Address (eg. ASYN Port).
+#   ADDR - Address on the bus (optional)
+#   TEMPSCAN - SCAN rate for the temperature/voltage readings
+#   SCAN - SCAN rate for non-temperature/voltage parameters.
+#   ADEL (optional) - Archive deadband for temperatures
+#   MDEL (optional) - Monitor deadband for temperatures
+#
+# Notes: The loop/output dependant PVs are in a seperate template file, included in this one.
+#        Generally, set records forward process the associated read records in order
+#        to update the read record faster than their SCAN rate otherwise would do (but they
+#        are not processed in the same processing chain).
+#
+# Matt Pearson, June 2013
+#
+# June 2014 - modified to support Lakeshore 350. The 350 is almost
+#             identical to the 336 so I just had to modify menu
+#             options. I also added in support for the 3062 option card.
+#
+# June 2014 - factor out input sensor records into lakeshore_input.template
+#             and add support for reading input sensor descriptions. This
+#             is also used in lakeshore_option_3062.template.
+#
+################################################################
+
+record(bo, "$(P):DISABLE") {
+  field(DESC, "Disable set records")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Set Enabled")
+  field(ONAM, "Set Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MAJOR")
+}
+
+record(bo, "$(P):DISABLE_POLL") {
+  field(DESC, "Disable polling")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Poll Enabled")
+  field(ONAM, "Poll Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MAJOR")
+}
+
+################################################################
+# Read records
+################################################################
+
+## 
+## Read the ID string from the device.
+##
+record(stringin, "$(P):ID") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE")
+  field(INP, "@ls336.proto getID $(PORT) $(ADDR)")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+}
+
+## 
+## Read the model number from the device.
+##
+record(stringin, "$(P):MODEL") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE")
+  field(INP, "@ls336.proto getMODEL $(PORT) $(ADDR)")
+  field(SCAN, "I/O Intr")
+}
+
+## 
+## Read the serial number from the device.
+##
+record(stringin, "$(P):SERIAL") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE")
+  field(INP, "@ls336.proto getSERIAL $(PORT) $(ADDR)")
+  field(SCAN, "I/O Intr")
+}
+
+## 
+## Read the firmware from the device.
+##
+record(stringin, "$(P):FIRMWARE") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE")
+  field(INP, "@ls336.proto getFIRMWARE $(PORT) $(ADDR)")
+  field(SCAN, "I/O Intr")
+}
+
+
+## 
+## Read the tuning status from the device.
+##
+#record(stringin, "$(P):TUNEST") {
+#  field(DTYP, "stream")
+#  field(SDIS, "$(P):DISABLE_POLL")
+#  field(INP, "@ls336.proto getTUNEST $(PORT) $(ADDR)")
+#  field(SCAN, "$(SCAN) second")
+#}
+
+## 
+## Read the tuning status success parameter
+##
+#record(bi, "$(P):TUNESTSUCCESS") {
+#  field(DTYP, "stream")
+#  field(SDIS, "$(P):DISABLE_POLL")
+#  field(INP, "@ls336.proto getTUNESTSUCCESS $(PORT) $(ADDR)")
+#  field(SCAN, "$(SCAN) second")
+#  field(ZNAM, "No Error")
+#  field(ONAM, "Error (see manual)")
+#}
+
+################################################################
+# Input sensor records
+################################################################
+
+record(bo, "$(P):DISABLE_0") {
+  field(DESC, "Disable A polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_1") {
+  field(DESC, "Disable B polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_2") {
+  field(DESC, "Disable C polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_3") {
+  field(DESC, "Disable D polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+substitute "DISABLE=$(P):DISABLE_0"
+substitute "INPUT=A"
+substitute "INDEX=0"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_1"
+substitute "INPUT=B"
+substitute "INDEX=1"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_2"
+substitute "INPUT=C"
+substitute "INDEX=2"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_3"
+substitute "INPUT=D"
+substitute "INDEX=3"
+include "lakeshore_input.template"
+
+################################################################
+
+################################################################
+# Include 3062 option 
+################################################################
+
+include "lakeshore_option_3062.template"
+
+################################################################
+# Now include the loop dependant records, for outputs 1, 2, 3 and 4.
+# The common records are in lakeshore336output.template.
+################################################################
+
+substitute "INPUTA=$(P):KRDG0"
+substitute "INPUTB=$(P):KRDG1"
+substitute "INPUTC=$(P):KRDG2"
+substitute "INPUTD=$(P):KRDG3"
+substitute "INPUTD2=$(P):KRDGD2"
+substitute "INPUTD3=$(P):KRDGD3"
+substitute "INPUTD4=$(P):KRDGD4"
+substitute "INPUTD5=$(P):KRDGD5"
+#substitute "TOLERANCE=1"
+
+substitute "OUT=1"
+include "lakeshore336output.template"
+include "lakeshore336loop.template"
+
+substitute "OUT=2"
+include "lakeshore336output.template"
+include "lakeshore336loop.template"
+
+substitute "OUT=3"
+include "lakeshore336output.template"
+include "lakeshore336analog.template"
+
+substitute "OUT=4"
+include "lakeshore336output.template"
+include "lakeshore336analog.template"
+
+substitute "OUT=3"
+include "lakeshore336zone_analog.template"
+
+substitute "OUT=4"
+include "lakeshore336zone_analog.template"
+
+################################################################
+# Common setpoint record to set all the outputs
+
+##
+## Set all the outputs at the same time
+##
+record(dfanout, "$(P):SETP_S") {
+  field(DESC, "Set all the outputs")
+  field(OMSL, "supervisory")
+  field(OUTA, "$(P):SETP_S1 PP")
+  field(OUTB, "$(P):SETP_S2 PP")
+  field(OUTC, "$(P):SETP_S3 PP")
+  field(OUTD, "$(P):SETP_S4 PP")
+  info(archive, "Monitor, 00:00:01, VAL")
+}
+
+##
+## Set all the tolerances at the same time
+##
+record(dfanout, "$(P):TOLERANCE") {
+  field(DESC, "Set all the tolerances")
+  field(OMSL, "supervisory")
+  field(OUTA, "$(P):CALC_IN_WINDOW1.A PP")
+  field(OUTB, "$(P):CALC_IN_WINDOW2.A PP")
+  field(OUTC, "$(P):CALC_IN_WINDOW3.A PP")
+  field(OUTD, "$(P):CALC_IN_WINDOW4.A PP")
+  field(EGU, "K")
+  field(PREC, "1")
+  info(autosaveFields, "VAL")
+  info(archive, "Monitor, 00:00:01, VAL")
+}
+
+##
+## For user feedback, calculate when all temperature 
+## inputs are in tolerance windows
+##
+record(calcout, "$(P):CALC_IN_WINDOWS") {
+  field(PINI, "YES")
+  field(INPA, "$(P):IN_WINDOW1 CP MS")
+  field(INPB, "$(P):IN_WINDOW2 CP MS")
+  field(INPC, "$(P):IN_WINDOW3 CP MS")
+  field(INPD, "$(P):IN_WINDOW4 CP MS")
+  field(CALC, "A&&B&&C&&D?1:0")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):IN_WINDOWS PP")
+}
+record(bo, "$(P):IN_WINDOWS") {
+  field(DESC, "Temperatures In Windows")
+  field(VAL, "0")
+  field(PINI, "YES")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Not In Windows")
+  field(ONAM, "In Windows")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+################################################################
+# Records dealing with alarm handling
+
+##
+## Disable top level alarm handling
+##
+record(bo, "$(P):DISABLE_ALARM") {
+  field(DESC, "Disable Alarms")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Alarm Enabled")
+  field(ONAM, "Alarm Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  field(FLNK, "$(P):ALARM_SUMMARY_CALC")
+  info(autosaveFields, "VAL")
+}
+
+#record(bo, "$(P):DISABLE_ALARM_CALC") {
+#  field(DESC, "Disable Alarms Calc")
+#  field(VAL, "1")
+#  field(OUT, "$(P):ALARM_SUMMARY_CALC.DISA PP")
+#  field(FLNK, "$(P):ALARM_SUMMARY_CALC2")
+#}
+
+##
+## If we disable the alarm handling, clear the alarm status
+##
+record(calcout, "$(P):DISABLE_ALARM_SETZERO") {
+  field(INPA, "$(P):DISABLE_ALARM CP")
+  field(CALC, "A==1?0:1")
+  field(DOPT, "Use CALC")
+  field(OOPT, "When Zero")
+  field(OUT, "$(P):ALARM_SUMMARY.VAL PP")
+}
+
+record(calc, "$(P):ALARM_SUMMARY_CALC") {
+  field(INPA, "$(P):ALARM0_SUMMARY CP MS")
+  field(INPB, "$(P):ALARM1_SUMMARY CP MS")
+  field(INPC, "$(P):ALARM2_SUMMARY CP MS")
+  field(INPD, "$(P):ALARM3_SUMMARY CP MS")
+  field(INPE, "$(P):ALARMD2_SUMMARY CP MS")
+  field(INPF, "$(P):ALARMD3_SUMMARY CP MS")
+  field(INPG, "$(P):ALARMD4_SUMMARY CP MS")
+  field(INPH, "$(P):ALARMD5_SUMMARY CP MS")
+  field(INPI, "$(P):HTRST1_CACHE CP MS")
+  field(INPJ, "$(P):HTRST2_CACHE CP MS")
+  field(CALC, "A")
+  field(FLNK, "$(P):ALARM_SUMMARY_CALC2")
+  field(SDIS, "$(P):DISABLE_ALARM")  
+}
+record(calcout, "$(P):ALARM_SUMMARY_CALC2") {
+  field(INPA, "$(P):ALARM_SUMMARY_CALC.STAT")
+  field(CALC, "A!=0?1:0")
+  field(DOPT, "Use CALC")
+  field(OOPT, "Every Time")
+  field(OUT, "$(P):ALARM_SUMMARY PP")
+}
+
+##
+## Top level alarm summary record. 
+## This summarizes the input alarm summary record
+## along with the two main output heater status records
+## which are on loop 1 and 2.
+##
+record(bi, "$(P):ALARM_SUMMARY") {
+  field(ZNAM, "No Alarm")
+  field(ONAM, "Alarm")
+  field(OSV, "MAJOR")
+  field(PINI, "YES")
+  field(VAL, "0")
+  info(archive, "Monitor, 00:00:01, VAL")     
+}
+
+###############################################################
+# Add records for dealing with mapping a sensor PV name to a 
+# user friendly sample temp PV name
+
+include "lakeshore_name_mapping.template"
+
+###############################################################
+
+##
+## Generic Asyn record for reading parameters.
+##
+record(asyn,"$(P):ASYN")
+{
+    field(DTYP,"asynRecordDevice")
+    field(PORT,"$(PORT)")
+    field(ADDR,"$(ADDR)")
+    field(OMAX,"1024")
+    field(IMAX,"1024")
+    field(OEOS,"\r\n")
+    field(IEOS,"\r\n")
+}

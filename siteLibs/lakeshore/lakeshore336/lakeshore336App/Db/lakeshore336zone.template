@@ -1,0 +1,421 @@
+#######################################
+#
+# Template to support reading and setting 
+# controller ZONE parameters. It reads the ZONE
+# parameters into an array, then uses subArrays to
+# extract each parameter.
+#
+# This template is used by the output template
+# and it needs the following macros:
+#
+# ZONE: zone number
+# OUT: output number
+#
+#######################################
+
+##
+## Read the ZONE setting into an array (8 values)
+##
+record(waveform, "$(P):Z$(ZONE):ALL$(OUT)") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE_POLL")
+  field(INP, "@ls336.proto getZONE($(OUT),$(ZONE)) $(PORT) $(ADDR)")
+  field(SCAN, "Passive")
+  field(NELM, "8")
+  field(FTVL, "DOUBLE")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):UB$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE upper boundary setting.
+##
+record(subArray, "$(P):Z$(ZONE):UB$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "0")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):UB$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):UB$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):UB$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):P$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE P setting.
+##
+record(subArray, "$(P):Z$(ZONE):P$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "1")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):P$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):P$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):P$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):I$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE I setting.
+##
+record(subArray, "$(P):Z$(ZONE):I$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "2")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):I$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):I$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):I$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):D$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE D setting.
+##
+record(subArray, "$(P):Z$(ZONE):D$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "3")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):D$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):D$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):D$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):MOUT$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE MOUT setting.
+##
+record(subArray, "$(P):Z$(ZONE):MOUT$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "4")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):MOUT$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):MOUT$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):MOUT$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):RANGE$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE RANGE setting.
+##
+record(subArray,  "$(P):Z$(ZONE):RANGE$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "5")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):RANGE$(OUT).PROC")
+}
+record(mbbi, "$(P):Z$(ZONE):RANGE$(OUT)") {
+  field(INP, "$(P):Z$(ZONE):RANGE$(OUT):ARRAY.VAL")
+  field(SCAN, "Passive")
+  field(ZRST, "Off")
+  field(ZRVL, "0")
+  field(ONST, "Range1/Low")
+  field(ONVL, "1")
+  field(TWST, "Range2/Medium")
+  field(TWVL, "2")
+  field(THST, "Range3/High")
+  field(THVL, "3")
+  field(FRST, "Range4")
+  field(FRVL, "4")
+  field(FVST, "Range5")
+  field(FVVL, "5")	
+  field(FLNK, "$(P):Z$(ZONE):INPUT$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE INPUT setting.
+##
+record(subArray,  "$(P):Z$(ZONE):INPUT$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "6")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):INPUT$(OUT).PROC")
+}
+record(mbbi, "$(P):Z$(ZONE):INPUT$(OUT)") {
+  field(INP, "$(P):Z$(ZONE):INPUT$(OUT):ARRAY.VAL")
+  field(SCAN, "Passive")
+  field(ZRST, "None")
+  field(ZRVL, "0")
+  field(ONST, "Input A")
+  field(ONVL, "1")
+  field(TWST, "Input B")
+  field(TWVL, "2")
+  field(THST, "Input C")
+  field(THVL, "3")
+  field(FRST, "Input D")
+  field(FRVL, "4")
+  field(FVST, "Input D2")
+  field(FVVL, "5")
+  field(SXST, "Input D3")
+  field(SXVL, "6")
+  field(SVST, "Input D4")
+  field(SVVL, "7")
+  field(EIST, "Input D5")
+  field(EIVL, "8")
+  field(FLNK, "$(P):Z$(ZONE):RATE$(OUT):ARRAY.PROC")
+}
+
+## 
+## Read the ZONE RATE setting.
+##
+record(subArray, "$(P):Z$(ZONE):RATE$(OUT):ARRAY") {
+  field(SCAN, "Passive")
+  field(FTVL, "DOUBLE")
+  field(INP, "$(P):Z$(ZONE):ALL$(OUT).VAL MS")
+  field(MALM, "8")
+  field(NELM, "1")
+  field(INDX, "7")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):RATE$(OUT).PROC")
+}
+record(ai, "$(P):Z$(ZONE):RATE$(OUT)") {
+  field(SCAN, "Passive")
+  field(INP, "$(P):Z$(ZONE):RATE$(OUT):ARRAY.VAL MS")
+  field(PREC, "1")
+  field(FLNK, "$(P):Z$(ZONE):INITCALC$(OUT).PROC") 
+}
+
+##############################################################
+##
+## Populate the write records below with the current values. 
+## Only do this once at startup.
+##
+###############################################################
+
+record(calcout, "$(P):Z$(ZONE):INITCALC$(OUT)") {
+  field(INPA, "0")
+  field(CALC, "A")
+  field(VAL, "0")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Zero")
+  field(OCAL, "1")
+  field(OUT, "$(P):Z$(ZONE):INITUB$(OUT).PROC") 
+}
+
+record(dfanout, "$(P):Z$(ZONE):INITUB$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):UB$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):UB_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITP$(OUT).PROC")
+}
+record(dfanout, "$(P):Z$(ZONE):INITP$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):P$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):P_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITI$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITI$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):I$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):I_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITD$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITD$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):D$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):D_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITMOUT$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITMOUT$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):MOUT$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):MOUT_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITRANGE$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITRANGE$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):RANGE$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):RANGE_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITINPUT$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITINPUT$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):INPUT$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):INPUT_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITRATE$(OUT).PROC") 
+}
+record(dfanout, "$(P):Z$(ZONE):INITRATE$(OUT)") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):Z$(ZONE):RATE$(OUT).VAL")
+  field(OUTA, "$(P):Z$(ZONE):RATE_S$(OUT).VAL PP")
+  field(FLNK, "$(P):Z$(ZONE):INITCOUNT$(OUT).PROC") 
+}
+
+record(dfanout, "$(P):Z$(ZONE):INITCOUNT$(OUT)") {
+  field(DOL, "1")
+  field(OUTA, "$(P):Z$(ZONE):INITCALC$(OUT).A")
+}
+
+
+
+#############################################
+# Write records. There is a calcout record to
+# do the actual write. 
+#############################################
+
+## 
+## Set the ZONE upper boundary setting.
+##
+record(ao, "$(P):Z$(ZONE):UB_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE P setting.
+##
+record(ao, "$(P):Z$(ZONE):P_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE I setting.
+##
+record(ao, "$(P):Z$(ZONE):I_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE D setting.
+##
+record(ao, "$(P):Z$(ZONE):D_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE MOUT setting.
+##
+record(ao, "$(P):Z$(ZONE):MOUT_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE RANGE setting.
+##
+record(mbbo, "$(P):Z$(ZONE):RANGE_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(ZRST, "Off")
+  field(ZRVL, "0")
+  field(ONST, "Range1/Low")
+  field(ONVL, "1")
+  field(TWST, "Range2/Medium")
+  field(TWVL, "2")
+  field(THST, "Range3/High")
+  field(THVL, "3")
+  field(FRST, "Range4")
+  field(FRVL, "4")
+  field(FVST, "Range5")
+  field(FVVL, "5")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE INPUT setting.
+##
+record(mbbo, "$(P):Z$(ZONE):INPUT_S$(OUT)") {
+  field(ZRST, "None")
+  field(ZRVL, "0")
+  field(ONST, "Input A")
+  field(ONVL, "1")
+  field(TWST, "Input B")
+  field(TWVL, "2")
+  field(THST, "Input C")
+  field(THVL, "3")
+  field(FRST, "Input D")
+  field(FRVL, "4")
+  field(FVST, "Input D2")
+  field(FVVL, "5")
+  field(SXST, "Input D3")
+  field(SXVL, "6")
+  field(SVST, "Input D4")
+  field(SVVL, "7")
+  field(EIST, "Input D5")
+  field(EIVL, "8")
+  field(SDIS, "$(P):DISABLE")
+}
+
+## 
+## Set the ZONE RATE setting.
+##
+record(ao, "$(P):Z$(ZONE):RATE_S$(OUT)") {
+  field(SCAN, "Passive")
+  field(PREC, "1")
+  field(SDIS, "$(P):DISABLE")
+}
+
+##
+## Record to write the ZONE parameters.
+##
+record(calcout, "$(P):Z$(ZONE):SET$(OUT)") {
+  field(INPA, "$(P):Z$(ZONE):UB_S$(OUT)")
+  field(INPB, "$(P):Z$(ZONE):P_S$(OUT)")
+  field(INPC, "$(P):Z$(ZONE):I_S$(OUT)")
+  field(INPD, "$(P):Z$(ZONE):D_S$(OUT)")
+  field(INPE, "$(P):Z$(ZONE):MOUT_S$(OUT)")
+  field(INPF, "$(P):Z$(ZONE):RANGE_S$(OUT)")
+  field(INPG, "$(P):Z$(ZONE):INPUT_S$(OUT)")
+  field(INPH, "$(P):Z$(ZONE):RATE_S$(OUT)")
+  field(CALC, "0")
+  field(DTYP, "stream")
+  field(OUT, "@ls336.proto setZONE($(OUT),$(ZONE)) $(PORT) $(ADDR)")
+  field(SDIS, "$(P):DISABLE")
+  field(FLNK, "$(P):Z$(ZONE):ALL$(OUT).PROC") 
+} 
+
+
+
+
+
+
+
+
+

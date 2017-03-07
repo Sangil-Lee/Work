@@ -1,0 +1,182 @@
+
+# This file should be instantiated seperatly from lakeshore336.template
+# The OPIs assume it has been loaded.
+#
+# This template is to define logic to link together two
+# output channels in a master/slave relationship. There is a 
+# top level SETP_S record that sets any two outputs, using an
+# offset defined in a temperature dependant table. The table logic
+# is provided by the param_window.template (included below).
+
+# This master/slave setpoint does support put_callback like the
+# normal setpoints do (which wait for the temperature to be in window).
+
+# Macros:
+# P - Prefix for PV name (must match lakeshore33.template) 
+# MASTER - The output channel number for the master (eg. 1)
+# SLAVE - The output channel number for the slave (eg. 2)
+
+## 
+## String record to display master channel name
+##
+record(stringin, "$(P):MS:MASTER") {
+  field(VAL, "$(MASTER)")
+  field(PINI, "YES")
+}
+
+## 
+## String record to display slave channel name
+##
+record(stringin, "$(P):MS:SLAVE") {
+  field(VAL, "$(SLAVE)")
+  field(PINI, "YES")
+}
+
+
+##
+## This is the record for the offset parameter.
+##
+record(ai, "$(P):MS:OFFSET") {
+  field(PREC, "1")
+  info(autosaveFields, "VAL")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+# Define a table for the offset PV
+substitute "W=MS:1"
+substitute "SET_LINK=$(P):MS:OFFSET.VAL"
+substitute "UNITS=K"
+include "param_window_ls.template"
+substitute "W=MS:2"
+include "param_window_ls.template"
+substitute "W=MS:3"
+include "param_window_ls.template"
+substitute "W=MS:4"
+include "param_window_ls.template"
+substitute "W=MS:5"
+include "param_window_ls.template"
+substitute "W=MS:6"
+include "param_window_ls.template"
+substitute "W=MS:7"
+include "param_window_ls.template"
+substitute "W=MS:8"
+include "param_window_ls.template"
+
+##
+## The top level setpoint record. This writes the setpoint
+## to the offset value records right away, to calculate the right offset,
+## then triggers a write of the master and slave
+## setpoint.
+##
+record(ao, "$(P):MS:SETP_S") {
+  field(SDIS, "$(P):DISABLE")
+  field(DESC, "Master/Slave Setpoint")
+  field(PREC, "3")
+  field(FLNK, "$(P):WRITE_TO_OFFSETS")
+  field(EGU, "K")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+record(dfanout, "$(P):WRITE_TO_OFFSETS") {
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P):MS:SETP_S.VAL")
+  field(OUTA, "$(P):MS:1:Value.VAL PP")
+  field(OUTB, "$(P):MS:2:Value.VAL PP")
+  field(OUTC, "$(P):MS:3:Value.VAL PP")
+  field(OUTD, "$(P):MS:4:Value.VAL PP")
+  field(OUTE, "$(P):MS:5:Value.VAL PP")
+  field(OUTF, "$(P):MS:6:Value.VAL PP")
+  field(OUTG, "$(P):MS:7:Value.VAL PP")
+  field(OUTH, "$(P):MS:8:Value.VAL PP")
+  field(FLNK, "$(P):MS:SETP_S_M")
+}
+
+##
+## Set the master offset.
+##
+record(calcout, "$(P):MS:SETP_S_M") {
+  field(DESC, "Set master")
+  field(INPA, "$(P):MS:SETP_S.VAL MS")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(CALC, "A")
+  field(OUT, "$(P):SETP_S$(MASTER) CA") #Use CA link to not block
+  field(FLNK, "$(P):MS:SETP_S_S")
+}
+
+##
+## Calculate the slave offset, then set it.
+##
+record(calcout, "$(P):MS:SETP_S_S") {
+  field(DESC, "Apply slave offset")
+  field(INPA, "$(P):MS:OFFSET.VAL MS")
+  field(INPB, "$(P):MS:SETP_S.VAL MS")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(CALC, "B+A")
+  field(OUT, "$(P):SETP_S$(SLAVE) CA") #Use CA link to not block
+  field(FLNK, "$(P):MS:UNSET_WINDOWS")
+}
+
+
+# Records used to determin when both master and slave
+# are back within window. When the setpoint above is 
+# triggered we unset both IN_WINDOW records for the 
+# master and slave, then wait for both to be back in window.
+
+##
+## After setting the master and slave setpoints set the corresponding
+## IN_WINDOWs to 0. Then also unset the MS:IN_WINDOW, and trigger the busy record.
+##
+record(dfanout, "$(P):MS:UNSET_WINDOWS") {
+  field(VAL, "0")
+  field(OUTA, "$(P):IN_WINDOW$(MASTER) PP")
+  field(OUTB, "$(P):IN_WINDOW$(SLAVE) PP")
+  field(OUTC, "$(P):MS:IN_WINDOW PP")
+  field(FLNK, "$(P):MS:SET_BUSY")
+} 
+
+##
+## Set busy
+##
+record(dfanout, "$(P):MS:SET_BUSY") {
+   field(VAL, "1")
+   field(OUTA, "$(P):MS:BUSY PP")
+}
+record(busy, "$(P):MS:BUSY")
+{
+}
+
+record(calcout, "$(P):MS:WINDOW_CALC") {
+  field(INPA, "$(P):IN_WINDOW$(MASTER).VAL CP MS")
+  field(INPB, "$(P):IN_WINDOW$(SLAVE).VAL CP MS")
+  field(OOPT, "On Change")
+  field(DOPT, "Use CALC")
+  field(CALC, "(A=1)&&(B=1)?1:0")
+  field(OUT, "$(P):MS:IN_WINDOW.VAL PP")
+}
+
+record(bo, "$(P):MS:IN_WINDOW") {
+  field(DESC, "Temperature In Window")
+  field(VAL, "0")
+  field(PINI, "YES")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Not In Window")
+  field(ONAM, "In Window")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+##
+## Once we get IN_WINDOW 0->1, unset the busy record.
+##
+record(calcout, "$(P):MS:UNSET_BUSY") {
+  field(INPA, "$(P):MS:IN_WINDOW.VAL CP MS")
+  field(OOPT, "When Zero")
+  field(DOPT, "Use CALC")
+  field(CALC, "(A==1)?0:1")
+  field(OUT, "$(P):MS:BUSY PP")
+}
+
+
+
+

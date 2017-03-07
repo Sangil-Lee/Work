@@ -1,0 +1,93 @@
+# This is included in lakeshore336.template
+# This is for the analog outputs (3 and 4)
+
+## 
+## Read the analog output value.
+##
+record(ai, "$(P):AOUT$(OUT)") {
+  field(DTYP, "stream")
+  field(SDIS, "$(P):DISABLE_POLL")
+  field(INP, "@ls336.proto getAOUT($(OUT)) $(PORT) $(ADDR)")
+  field(SCAN, "$(SCAN) second")
+  field(PREC, "1")
+  field(EGU, "%")
+  info(archive, "Monitor, 00:00:01, VAL")   
+}
+
+## 
+## Define the string/values for this record.
+##
+record(mbbi, "$(P):RANGE$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "On")
+}
+
+##
+## Define the strings and values for this record.
+##
+record(mbbi, "$(P):OMM$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Closed Loop PID")
+  field(TWST, "Zone")
+  field(THST, "Open Loop")
+  field(FRST, "Monitor Out")
+  field(FVST, "Warmup Supply")
+}
+
+## 
+## Define the strings and values for this record.
+##
+record(mbbo, "$(P):RANGE_S$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "On")
+}
+
+##
+## Define the strings and values for this record.
+##
+record(mbbo, "$(P):OMM_S$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "Closed Loop PID")
+  field(TWST, "Zone")
+  field(THST, "Open Loop")
+  field(FRST, "Monitor Out")
+  field(FVST, "Warmup Supply")
+}
+
+###############################################
+# Add in ZONE support
+###############################################
+
+substitute "ZONE=1"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=2"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=2"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=3"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=4"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=5"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=6"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=7"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=8"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=9"
+include "lakeshore336zone_analog.template"
+
+substitute "ZONE=10"
+include "lakeshore336zone_analog.template"
+

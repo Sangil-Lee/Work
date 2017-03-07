@@ -1,0 +1,27 @@
+
+# This just includes the zone file and overrides the RANGE options
+# for the analog control channels.
+
+include "lakeshore336zone.template"
+
+record(mbbi, "$(P):Z$(ZONE):RANGE$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "On")
+  field(TWST, "")
+  field(THST, "")
+  field(FRST, "")
+  field(FVST, "")
+}
+
+record(mbbo, "$(P):Z$(ZONE):RANGE_S$(OUT)") {
+  field(ZRST, "Off")
+  field(ONST, "On")
+  field(TWST, "")
+  field(THST, "")
+  field(FRST, "")
+  field(FVST, "")
+}
+
+
+
+

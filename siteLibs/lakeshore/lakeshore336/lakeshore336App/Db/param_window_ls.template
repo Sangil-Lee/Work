@@ -1,0 +1,150 @@
+#################################################################
+#
+# Template to write a parameter when a process
+# variable enters the specified window. Instantiate this
+# template multiple times to build up a table that can set a 
+# range of parameters as an input PV varies. 
+#
+# This is by the lakeshore software to build a table
+# that allows a range of values to be set for the offset
+# between two channels, when those channels are tied together,
+# that depends on the temperature.
+#
+# Matt Pearson, July 14
+#
+# Macros:
+# P - base PV name
+# W - window number 
+# LOW - lower limit of the window (default 0)
+# HIGH - upper limit of the window (default 0)
+# SET - the parameter value to use (default 0)
+# SET_LINK - the PV link to write SET to
+# UNITS - the units of the input process variable
+# PREC - display precision (default 2)
+#
+#################################################################
+
+# ///
+# /// Disable this template
+# ///
+record(bo, "$(P):$(W):Disable") {
+  field(DESC, "Disable this window")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MAJOR")
+  field(FLNK, "$(P):$(W):CalcWriteEnable")
+  info(autosaveFields, "VAL")
+}
+
+# ///
+# /// Record to hold the current PV value. 
+# /// This should be written to by the high level
+# /// logic that controls the master/slave setpoint.
+# ///
+record(ai, "$(P):$(W):Value") {
+  field(DESC, "Current PV Value")
+  field(EGU, "$(UNITS)")
+  field(PREC, "$(PREC=2)")
+  field(FLNK, "$(P):$(W):CalcInWindow")
+}
+
+# ///
+# /// Calculate if $(PV) is in the window.
+# ///
+record(calcout, "$(P):$(W):CalcInWindow") {
+  field(DESC, "Calc PV in window")
+  field(PINI, "YES")
+  field(INPA, "$(LOW=0)")
+  field(INPB, "$(HIGH=0)")
+  field(INPC, "$(P):$(W):Value MS")
+  field(CALC, "((C>=A)&&(C<B))")
+  field(OOPT, "Every Time")
+  field(OUT, "$(P):$(W):InWindow.VAL PP MS")
+  field(DOPT, "Use CALC")
+  field(PREC, "$(PREC=2)")
+  info(autosaveFields, "A B")
+}
+
+# ///
+# /// Flag to indicate if the $(PV) is in the window
+# ///
+record(bi, "$(P):$(W):InWindow") {
+  field(DESC, "PV in window")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(ZNAM, "Not In Window")
+  field(ONAM, "In Window")
+  field(FLNK, "$(P):$(W):CalcWrite.PROC")
+}
+
+# ///
+# /// If the in-window flag does a 0->1 transition, trigger the write
+# ///
+record(calcout, "$(P):$(W):CalcWrite") {
+  field(DESC, "Calc Write")
+  field(INPA, "$(P):$(W):InWindow.VAL MS")
+  field(CALC, "A")
+  field(OOPT, "Transition To Non-zero")
+  field(OUT, "$(P):$(W):Write.PROC PP")
+  field(DOPT, "Use CALC")
+  field(SDIS, "$(P):$(W):Disable")
+}
+
+# ///
+# /// If we enable this template, and the in-window flag is 1, trigger the write.
+# /// This record is processed when we enable or disable the template.
+# ///
+record(calcout, "$(P):$(W):CalcWriteEnable") {
+  field(DESC, "Calc Write Enable")
+  field(INPA, "$(P):$(W):InWindow.VAL MS")
+  field(INPB, "$(P):$(W):Disable.VAL MS")
+  field(CALC, "A&&!B")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P):$(W):Write.PROC")
+  field(DOPT, "Use CALC")
+}
+
+# ///
+# /// calcout record to trigger a write. 
+# ///
+record(calcout, "$(P):$(W):Write") {
+  field(DESC, "Write Value")
+  field(CALC, "A")
+  field(OUT, "$(SET_LINK) PP")
+  field(SDIS, "$(P):$(W):Disable")
+  field(PREC, "2")
+  info(autosaveFields, "A")
+}
+
+# ///
+# /// If the value to write is modified, and we are already
+# /// in the window, then trigger write.
+# ///
+record(calcout, "$(P):$(W):OnChangeWrite") {
+  field(INPA, "$(P):$(W):Write.DO1 CP MS")
+  field(INPB, "$(P):$(W):InWindow.VAL MS")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(CALC, "B==1")
+  field(OUT, "$(P):$(W):Write.PROC PP")
+  field(SDIS, "$(P):$(W):Disable")
+}
+
+# ///
+# /// Read back the parameter (for feedback for user)
+# ///
+record(ai, "$(P):$(W):Param") {
+  field(DESC, "Param Readback")
+  field(INP, "$(SET_LINK) CP MS")
+  field(PREC, "$(PREC=2)")
+}
+
+
+
+
+
+

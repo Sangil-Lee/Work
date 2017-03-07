@@ -1,0 +1,167 @@
+
+# This template provides a generic PV name that can be mapped
+# by the user to any of the sensor inputs
+
+# ///
+# /// Sample temperatue readback
+# ///
+record(ai, "$(P):SAMPLE_TEMP") {
+  field(INP, "$(P):KRDG0 CP MS")
+  field(PREC, "3")
+  field(EGU, "K")
+  field(HHSV,"MAJOR")
+  field(HSV, "MINOR")
+  field(LSV, "MINOR")
+  field(LLSV,"MAJOR")
+  field(HYST,"1.0")
+  field(HIHI,"1000")
+  field(HIGH,"1000")
+  field(LOW,"-1")
+  field(LOLO,"-1")
+  info(autosaveFields, "INP PREC HIHI HIGH LOW LOLO")
+  info(archive, "Monitor, 00:00:01, VAL")
+}
+
+# ///
+# /// Some records to provide a menu to change the input link
+# ///
+record(mbbo, "$(P):SELECT_SAMPLE_TEMP") {
+  field(ZRVL, "0")
+  field(ONVL, "1")
+  field(TWVL, "2")
+  field(THVL, "3")
+  field(FRVL, "4")
+  field(FVVL, "5")
+  field(SXVL, "6")
+  field(SVVL, "7")
+  field(ZRST, "Sensor A")
+  field(ONST, "Sensor B")
+  field(TWST, "Sensor C")
+  field(THST, "Sensor D")
+  field(FRST, "Sensor D2")
+  field(FVST, "Sensor D3")
+  field(SXST, "Sensor D4")
+  field(SVST, "Sensor D5")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC1")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC1") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=0?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_A.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC2")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC2") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=1?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_B.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC3")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC3") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=2?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_C.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC4")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC4") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=3?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_D.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC5")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC5") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=4?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_D2.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC6")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC6") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=5?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_D3.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC7")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC7") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=6?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_D4.PROC PP")
+  field(FLNK, "$(P):SELECT_SAMPLE_CALC8")
+}
+
+record(calcout, "$(P):SELECT_SAMPLE_CALC8") {
+  field(INPA, "$(P):SELECT_SAMPLE_TEMP.VAL")
+  field(CALC, "A=7?1:0")
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(P):SET_SENSOR_D5.PROC PP")
+}
+
+record(stringout, "$(P):SET_SENSOR_A") {
+  field(VAL, "$(P):KRDG0 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_B") {
+  field(VAL, "$(P):KRDG1 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_C") {
+  field(VAL, "$(P):KRDG2 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_D") {
+  field(VAL, "$(P):KRDG3 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_D2") {
+  field(VAL, "$(P):KRDGD2 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_D3") {
+  field(VAL, "$(P):KRDGD3 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_D4") {
+  field(VAL, "$(P):KRDGD4 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+record(stringout, "$(P):SET_SENSOR_D5") {
+  field(VAL, "$(P):KRDGD5 CP MS")
+  field(OUT, "$(P):SAMPLE_TEMP.INP CA")
+  field(FLNK, "$(P):SAMPLE_TEMP")
+}
+
+

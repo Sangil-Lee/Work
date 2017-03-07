@@ -1,0 +1,18 @@
+
+file lakeshore336.template
+{
+pattern {P, PORT, ADDR, TEMPSCAN, SCAN}
+	{BL9:SE:LS, L0, 0, 1, 5}
+}
+
+file save_restoreStatus.db
+{
+pattern {P}
+        {BL9:CS:LS:}
+}
+
+file ioc_sns.db
+{
+pattern {IOCNAME}
+        {BL9:CS:LS}
+}

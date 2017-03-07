@@ -1,0 +1,306 @@
+##################################################
+#
+# Protocol File
+#
+# Protocol file for Lakeshore 336
+# Diamond Light Source, June 2010
+#
+# Oak Ridge National Lab, UT-Battelle, 2013-2015.
+# Add more commands.
+# 
+##################################################
+
+
+##################################################
+# General Settings
+##################################################
+
+Terminator = "\r\n";
+ReplyTimeout = 1000;
+
+
+###################################################
+# Get functions
+###################################################
+
+# /// Read the device ID
+getID {
+   out "*IDN?";
+   in "LSCI,%s";
+}
+
+# /// Read the model number
+getMODEL {
+   in "LSCI,%8c,%*15c,%*s";
+}
+
+# /// Read the serial number
+getSERIAL {
+   in "LSCI,%*8c,%15c,%*s";
+}
+
+# /// Read the device firmware number
+getFIRMWARE {
+   in "LSCI,%*8c,%*15c,%s";
+}
+
+# /// Read the heater status for output 1 or 2
+getHTR {
+   out "HTR? \$1";
+   in "%f";
+}
+
+# /// Read the analog output for output 3 or 4
+getAOUT {
+   out "AOUT? \$1";
+   in "%f";
+}
+
+# /// Read the setpoint for outputs 1-4
+getSETP {
+   out "SETP? \$1";
+   in "%f";
+}
+
+# /// Read the temperature in kelvin for inputs 1-4
+getKRDG {
+   out "KRDG? \$1";
+   in "%f";
+}
+
+# /// Read the voltage input for inputs 1-4
+getSRDG {
+   out "SRDG? \$1";
+   in "%f";
+}
+
+# /// Read the range parameter (power range) for outputs 1-4
+getRANGE {
+   out "RANGE? \$1";
+   in "%d";
+}
+
+# /// Read the ramp value and status for outputs 1-4
+# /// The first parameter is the output number.
+# /// The second parameter is the ramp status record.
+getRAMP {
+   out "RAMP? \$1";
+   in "%(\$2)d,%f";
+}
+
+# /// Read the ramp status for outputs 1-4
+getRAMPSTATUS {
+   out "RAMP? \$1";
+   in "%d,%*f";
+}
+
+# /// Read the manual output value for outputs 1-4
+getMOUT {
+   out "MOUT? \$1";
+   in "%f";
+}
+
+# /// Read the PID params into 3 records using one write/read.
+# /// The first argument is the output number. The second and third are
+# /// the I and D records.
+getPID {
+   out "PID? \$1";
+   in "%f,%(\$2)f,%(\$3)f";
+}
+
+# /// Combine getOUTMODEMODE, getOUTMODEINPUT and getOUTMODEPE into one function.
+# /// The first argument is the output number.
+# /// The second argument is the output mode intput record.
+# /// The third argument is the output mode powerup enable record.
+getOM {
+  out "OUTMODE? \$1";
+  in "%d,%(\$2)d,%(\$3)d";
+}
+
+# /// Read the output mode mode status for outputs 1-4
+# /// 0=Off
+# /// 1=Closed Loop PID
+# /// 2=Zone
+# /// 3=Open Loop
+# /// 4=Monitor Out
+# /// 5=Warm Up Supply
+getOUTMODEMODE {
+   out "OUTMODE? \$1";
+   in "%d,%*d,%*d";
+}
+
+# /// Read the output mode input for outputs 1-4
+# /// 0=None
+# /// 1=A
+# /// 2=B
+# /// 3=C
+# /// 4=D
+getOUTMODEINPUT {
+   out "OUTMODE? \$1";
+   in "%*d,%d,%*d";
+}
+
+# /// Read the output mode power up enable for outputs 1-4
+# /// 0=Off
+# /// 1=On
+getOUTMODEPE {
+   out "OUTMODE? \$1";
+   in "%*d,%*d,%d";
+}
+
+
+# /// Read the tuning status
+getTUNEST {
+   out "TUNEST?";
+   in "%s";
+}
+
+# /// Read the tuning status success param
+getTUNESTSUCCESS {
+   out "TUNEST?";
+   in "%*d,%*d,%d,%*d";
+}
+
+# /// Read the ZONE parameters (this is read into a waveform)
+getZONE {
+   out "ZONE? \$1,\$2";
+   separator=",";
+   in "%f";
+}
+
+# /// Read the input sensor name
+getINNAME {
+   out "INNAME? \$1";
+   in "%#s";
+}
+
+
+
+# /// Read the alarm status
+# /// The first param is the input number, the second is the alarm low record.
+getALARMST {
+   out "ALARMST? \$1";
+   in "%d,%(\$2)d"
+}
+
+# /// Read the alarm params. I put the ends of the PV names here
+# /// to make the initial record INP link short.
+getALARM {
+   out "ALARM? \$1";
+   in "%(\$2_ONOFF)d,%(\$2_HIGHVAL)f,%(\$2_LOWVAL)f,%(\$2_DB)f,%(\$2_LE)d,%(\$2_AU)d,%(\$2_VIS)d"
+}
+
+# /// Read the input reading status
+getRDGST {
+   out "RDGST? \$1";
+   in "%d"
+}
+
+# /// Read the heater status for outputs 1 or 2
+getHTRST {
+   out "HTRST? \$1";
+   in "%d"
+}
+
+# /// Read the input curve number
+getINCRV {
+   out "INCRV? \$1";
+   in "%d"
+}
+
+# /// Read the input type params. I put the ends of the PV names here
+# /// to make the initial record INP link short.
+getINTYPE {
+   out "INTYPE? \$1";
+   in "%(\$2_S)d,%(\$2_AR)d,%(\$2_R)d,%(\$2_C)d,%(\$2_U)d"
+}
+
+
+#######################################################
+# Set functions
+#######################################################
+
+# /// Set the setpoint for outputs 1-4
+setSETP {
+   out "SETP \$1,%f";
+   @init { getSETP; }
+}
+
+# /// Set the range parameter for outputs 1-4
+setRANGE {
+   out "RANGE \$1,%d";
+   @init { getRANGE; }
+}
+
+# /// Set the ramp parameter for loops 1-2
+#Need to pass in the PV name for the getRAMPSTATUS protocol.
+setRAMP {
+   out "RAMP \$2,%(\$1.VAL)d,%f";
+   @init { out "RAMP? \$2"; in "%*d,%f"; }
+}
+
+# /// Set the ramp status for loops 1-2
+#Need to pass in the PV name for the getRAMP protocol.
+setRAMPSTATUS {
+   out "RAMP \$2,%d,%(\$1.VAL)f";
+   @init { out "RAMP? \$2"; in "%d,%*f"; }
+}
+
+# /// Set the manual output value for outputs 1-4
+setMOUT {
+   out "MOUT \$1,%f";
+   @init { getMOUT; }
+}
+
+# /// Set the PID P parameter for outputs 1-4
+setP {
+   out "PID \$1,%f,%(\$2.VAL)f,%(\$3.VAL)f";
+   @init { out "PID? \$1"; in "%f,%*f,%*f"; }
+}
+
+# /// Set the PID I parameter for outputs 1-4
+setI {
+   out "PID \$2,%(\$1.VAL)f,%f,%(\$3.VAL)f";
+   @init { out "PID? \$2"; in "%*f,%f,%*f"; }
+}
+
+# /// Set the PID D parameter for outputs 1-4
+setD {
+   out "PID \$3,%(\$1.VAL)f,%(\$2.VAL)f,%f";
+   @init { out "PID? \$3"; in "%*f,%*f,%f"; }
+}
+
+# /// Set the output mode [loop],[mode],[input],[power up enable]
+setOM {
+  out "OUTMODE \$1,%d,%(\$2.VAL)d,%(\$3.VAL)d";
+  @init { out "OUTMODE? \$1"; in "%d,%*d,%*d";}
+}
+
+# /// Set the output mode input [loop],[mode],[input],[power up enable]
+setOMI {
+  out "OUTMODE \$1,%(\$2.VAL)d,%d,%(\$3.VAL)d";
+  @init { out "OUTMODE? \$1"; in "%*d,%d,%*d";}
+}
+
+# /// Set the output mode power up enable [loop],[mode],[input],[power up enable]
+setOMP {
+  out "OUTMODE \$1,%(\$2.VAL)d,%(\$3.VAL)d,%d";
+  @init { out "OUTMODE? \$1"; in "%*d,%*d,%d";}
+}
+
+
+# /// Start the auto tune process.
+setATUNE {
+   out "ATUNE \$1,%(\$2.VAL)d";
+}
+
+# /// Set the ZONE parameters
+setZONE {
+  out "ZONE \$1,\$2,%(A)f,%(B)f,%(C)f,%(D)f,%(E)f,%(F)d,%(G)d,%(H)f";
+}
+
+# /// Set the input sensor name
+setINNAME {
+  out "INNAME \$1,\"%s\"";
+  @init { getINNAME; }
+}

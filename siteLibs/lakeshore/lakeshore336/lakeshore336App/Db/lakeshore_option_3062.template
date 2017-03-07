@@ -1,0 +1,82 @@
+
+# This file provides records to read inputs D1 to D5
+# that are provided by the 3062 option. This option card
+# can be used with both the 336 and 350. By default these
+# records are disabled (there is a record to control this).
+
+# This file can be included in the lakeshore336.template
+# so does not need to be instantiated separately. It will
+# make use of the macros used in lakeshore336.template.
+
+# Seperate polling records to control which inputs we are
+# reading. If an input is not being polled, it won't 
+# affect the top level lakeshore alarm.
+
+record(bo, "$(P):DISABLE_D2") {
+  field(DESC, "Disable D2 polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_D3") {
+  field(DESC, "Disable D3 polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_D4") {
+  field(DESC, "Disable D4 polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+record(bo, "$(P):DISABLE_D5") {
+  field(DESC, "Disable D5 polling")
+  field(PINI, "YES")
+  field(VAL, "1")
+  field(OMSL, "supervisory")
+  field(ZNAM, "Enabled")
+  field(ONAM, "Disabled")
+  field(ZSV, "NO_ALARM")
+  field(OSV, "MINOR")
+  info(autosaveFields, "VAL")
+}
+
+substitute "DISABLE=$(P):DISABLE_D2"
+substitute "INPUT=D2"
+substitute "INDEX=D2"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_D3"
+substitute "INPUT=D3"
+substitute "INDEX=D3"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_D4"
+substitute "INPUT=D4"
+substitute "INDEX=D4"
+include "lakeshore_input.template"
+
+substitute "DISABLE=$(P):DISABLE_D5"
+substitute "INPUT=D5"
+substitute "INDEX=D5"
+include "lakeshore_input.template"
+
