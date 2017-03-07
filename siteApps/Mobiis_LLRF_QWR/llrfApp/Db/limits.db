@@ -1,0 +1,295 @@
+record(ao, "$(D)POWER:MAX:DEVIATION")
+{
+	field(DESC, "Max deviation")
+	field(SCAN, "Passive")
+	field(PREC, "3")
+	field(EGU, "dBm")
+	field(DRVH, "15")
+	field(DRVL, "-80")
+	field(HOPR, "15")
+	field(LOPR, "-80")
+}
+
+record(ai, "$(D)CH2:OLD:POWER")
+{
+	field(DESC, "Channel 2 old power")
+	field(INP, "$(D)CH2:POWER")
+	field(SCAN, "Passive")
+	field(PREC,"3")
+	field(EGU, "dBm")	
+	field(VAL, "-1000")
+	field(FLNK, "$(D)POWER:ON")
+}
+
+record(bi, "$(D)POWER:OFFSET:SW")
+{
+	field(DESC, "Power offset switch")
+	field(SCAN, "Passive")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+}
+
+record(calcout, "$(D)PAC:SWITCH")
+{
+	field(DESC, "Pac output switch")
+	field(CALC, "(C = 0) ? 0 : (((ABS(A-B) >= D) && (E = 0) && (F = 1) && (B # -1000)) ? 0 : C)")
+	field(OUT, "$(D)POWER:ON")
+	field(INPA, "$(D)CH2:POWER")
+	field(INPB, "$(D)CH2:OLD:POWER")
+	field(INPC, "$(D)POWER:ON")
+	field(INPD, "$(D)POWER:MAX:DEVIATION")
+	field(INPE, "$(D)DELAY:TIME")
+	field(INPF, "$(D)POWER:OFFSET:SW")
+	field(FLNK, "$(D)LIMIT:LINK")
+}
+
+record(bi, "$(D)OLD:POWER:ON")
+{
+	field(DESC, "Old power on status")
+	field(INP, "$(D)POWER:ON")
+	field(SCAN, "Passive")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+}
+
+record(calcout, "$(D)POWER:ON:RISING:EDGE")
+{
+	field(DESC, "Power on rising edge")
+	field(CALC, "(C = 1) ? 0 : (((A=0) && (B=1)) ? 1 : 0)")
+	field(INPA, "$(D)OLD:POWER:ON")
+	field(INPB, "$(D)POWER:ON")
+	field(INPC, "$(D)POWER:ON:RISING:EDGE.VAL")
+	field(FLNK, "$(D)OLD:POWER:ON")
+}
+
+record(fanout, "$(D)LIMIT:LINK")
+{
+	field(DESC, "Limit link")
+	field(LNK1, "$(D)CH2:OLD:POWER")
+	field(LNK2, "$(D)POWER:ON:RISING:EDGE")
+	field(LNK3, "$(D)DELAY:TIME")
+	field(LNK4, "$(D)STEPMOD:AMP:VALID")
+	field(LNK5, "$(D)STEPMOD:PHASE:VALID")
+}
+
+record(calc, "$(D)DELAY:TIME")
+{
+	field(DESC, "Deviation delay time")
+	field(SCAN, "Passive")
+	field(CALC, "(B=1) ? C : A")
+	field(INPA, "$(D)DELAY:TIME.VAL")
+	field(INPB, "$(D)POWER:ON:RISING:EDGE")
+	field(INPC, "3")
+}
+
+record(calcout, "$(D)CALC:DELAY")
+{
+	field(DESC, "Calculate delay counts")
+	field(SCAN, "1 second")
+	field(CALC, "((A > 0) ? (A-1) : 0)")
+	field(OUT, "$(D)DELAY:TIME.VAL")
+	field(INPA, "$(D)DELAY:TIME.VAL")	
+}
+
+record(calcout, "$(D)STEPMOD:AMP:VALID")
+{
+	field(DESC, "Calculate delay counts")
+	field(SCAN, "1 second")
+	field(CALC, "((A # 1) ? 0 : B)")
+	field(OUT, "$(D)STEPMOD:AMP")
+	field(INPA, "$(D)POWER:ON")	
+	field(INPB, "$(D)STEPMOD:AMP")
+	field(FLNK, "$(D)STEPMOD:AMP")
+}
+
+record(calcout, "$(D)STEPMOD:PHASE:VALID")
+{
+	field(DESC, "Calculate delay counts")
+	field(SCAN, "1 second")
+	field(CALC, "((A # 1) ? 0 : B)")
+	field(OUT, "$(D)STEPMOD:PHASE")
+	field(INPA, "$(D)POWER:ON")	
+	field(INPB, "$(D)STEPMOD:PHASE")
+	field(FLNK, "$(D)STEPMOD:PHASE")
+}
+
+################################################
+# Over Power Limit
+#
+record(ao, "$(D)CH0:OVER:VAL:CMP")
+{
+	field(DESC, "Over Power Compare")
+	field(SCAN, "Passive")
+	field(EGU, "voltage")
+	field(PREC, "3")
+	field(OUT, "$(D)CH0:OVER:VAL:ALRM.HIHI PP")
+}
+
+record(calcout, "$(D)CH0:OVER:VAL:CALC:TYPE")
+{
+	field(DESC, "Type Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : 10*LOG((B/1000)^2*20))")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH0:OVER:VAL:CMP")
+	field(OUT, "$(D)CH0:OVER:VAL PP")
+}
+
+record(calcout, "$(D)CH0:OVER:VAL:CALC:INP")
+{
+	field(DESC, "Over Power Value Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : SQR(10^(B/10)/20)*1000)")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH0:OVER:VAL")
+	field(OUT, "$(D)CH0:OVER:VAL:CMP PP")
+}
+
+record(ao, "$(D)CH1:OVER:VAL:CMP")
+{
+	field(DESC, "Over Power Compare")
+	field(SCAN, "Passive")
+	field(EGU, "voltage")
+	field(PREC, "3")
+	field(OUT, "$(D)CH1:OVER:VAL:ALRM.HIHI PP")
+}
+
+record(calcout, "$(D)CH1:OVER:VAL:CALC:TYPE")
+{
+	field(DESC, "Type Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : 10*LOG((B/1000)^2*20))")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH1:OVER:VAL:CMP")
+	field(OUT, "$(D)CH1:OVER:VAL PP")
+}
+
+record(calcout, "$(D)CH1:OVER:VAL:CALC:INP")
+{
+	field(DESC, "Over Power Value Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : SQR(10^(B/10)/20)*1000)")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH1:OVER:VAL")
+	field(OUT, "$(D)CH1:OVER:VAL:CMP PP")
+}
+
+record(ao, "$(D)CH2:OVER:VAL:CMP")
+{
+	field(DESC, "Over Power Compare")
+	field(SCAN, "Passive")
+	field(EGU, "voltage")
+	field(PREC, "3")
+	field(OUT, "$(D)CH2:OVER:VAL:ALRM.HIHI PP")
+}
+
+record(calcout, "$(D)CH2:OVER:VAL:CALC:TYPE")
+{
+	field(DESC, "Type Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : 10*LOG((B/1000)^2*20))")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH2:OVER:VAL:CMP")
+	field(OUT, "$(D)CH2:OVER:VAL PP")
+}
+
+record(calcout, "$(D)CH2:OVER:VAL:CALC:INP")
+{
+	field(DESC, "Over Power Value Convert")
+	field(SCAN, "Passive")
+	field(CALC, "((A = 0) ? B : SQR(10^(B/10)/20)*1000)")
+	field(INPA, "$(D)POWER:DISPLAY")
+	field(INPB, "$(D)CH2:OVER:VAL")
+	field(OUT, "$(D)CH2:OVER:VAL:CMP PP")
+}
+
+################################################
+# Alarm Àü¿ë PV
+#
+record(ai, "$(D)CH0:OVER:VAL:ALRM")
+{
+	field(DESC, "Alarm Pv")
+	field(SCAN, "Passive")
+	field(INP, "$(D)CH0:AMPLITUDE")
+	field(HHSV, "MAJOR")
+}
+
+record(ai, "$(D)CH1:OVER:VAL:ALRM")
+{
+	field(DESC, "Alarm Pv")
+	field(SCAN, "Passive")
+	field(INP, "$(D)CH1:AMPLITUDE")
+	field(HHSV, "MAJOR")
+}
+
+record(ai, "$(D)CH2:OVER:VAL:ALRM")
+{
+	field(DESC, "Alarm Pv")
+	field(SCAN, "Passive")
+	field(INP, "$(D)CH2:AMPLITUDE")
+	field(HHSV, "MAJOR")
+}
+
+##############################################
+# feedback on/off control & output dBm control
+#
+record(ai, "$(D)AMPLITUDE:FB:DUMMY")
+{
+	field(DTYP, "GTR")
+	field(SCAN, "I/O Intr")
+	field(INP, "#C0 S0@amplitudeFBDummy")
+	field(FLNK, "$(D)AMPLITUDE:FB:CTRL")
+}
+
+record(calcout, "$(D)AMPLITUDE:FB:CTRL")
+{
+	field(SCAN, "Passive")
+	field(INPA, "$(D)PAC:AMPLITUDE")
+	field(CALC, "(A <= -80) ? 0 : 1")
+	field(OUT, "$(D)AMPLITUDE:FB PP")
+	field(OOPT, "When Zero")
+}
+
+record(ai, "$(D)PHASE:FB:DUMMY")
+{
+	field(DTYP, "GTR")
+	field(SCAN, "I/O Intr")
+	field(INP, "#C0 S0@phaseFBDummy")
+	field(FLNK, "$(D)PHASE:FB:CTRL")
+}
+
+record(calcout, "$(D)PHASE:FB:CTRL")
+{
+	field(SCAN, "Passive")
+	field(INPA, "$(D)PAC:AMPLITUDE")
+	field(CALC, "(A <= -80) ? 0 : 1")
+	field(OUT, "$(D)PHASE:FB PP")
+	field(OOPT, "When Zero")
+}
+
+record(ai, "$(D)OUTPUT:DBM:STEP:DUMMY")
+{
+	field(DTYP, "GTR")
+	field(SCAN, ".5 second")
+	field(INP, "#C0 S0@outputDBMStepDummy")
+	field(FLNK, "$(D)OUTPUT:DBM:STEP")
+}
+
+record(calcout, "$(D)OUTPUT:DBM:STEP")
+{
+	field(SCAN, "Passive")
+	field(INPA, "$(D)PAC:AMPLITUDE")
+	field(INPB, "$(D)POWER:ON")
+	field(CALC, "(B = 0) ? ( (A >= -40) ? A-0.5 : -80 ) : A")
+	field(OUT, "$(D)PAC:AMPLITUDE PP")
+}
+
+###### Power limit switch
+record(bo, "$(D)POWER:SWITCH")
+{
+	field(SCAN, "Passive")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV, "NO_ALARM")
+	field(OSV, "NO_ALARM")
+}

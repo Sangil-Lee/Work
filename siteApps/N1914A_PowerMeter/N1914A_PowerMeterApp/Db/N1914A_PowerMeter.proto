@@ -1,0 +1,28 @@
+# 
+# LakeShore Model 224 Temperature Monitor Stream protocol file
+#
+# Thursday, July 30 13:58:21 KST 2015, jhlee
+#
+# - Author  : Jeong Han Lee    
+# - email   : jhlee@ibs.re.kr
+# - license : EPICS open license
+
+Terminator   = LF;
+ReplyTimeout = 2000;
+ReadTimeout  = 1000;
+
+getIDN 
+{    
+    out "*IDN?";
+    in  "%s";
+    @init {out "*IDN?"; in "%s";}
+    ExtraInput = Ignore;
+}
+
+read_avg_power 
+{    
+    out "FETch1?";
+    in  "%f";
+}
+
+
