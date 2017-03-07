@@ -12,12 +12,14 @@ dbLoadDatabase "dbd/rdbmysql.dbd"
 rdbmysql_registerRecordDeviceDriver pdbbase
 
 #drvMySQLConnInit("epics_db","root","qwer1234","127.0.0.1","3306");
-drvMySQLConnInit("rad_inst","root","qwer1234","127.0.0.1","3306");
+#drvMySQLConnInit("rad_inst","root","qwer1234","127.0.0.1","3306");
+drvMySQLConnInit("online_model","root","qwer1234","127.0.0.1","3306");
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluserHost")
 #dbLoadRecords("db/MYSQL_EPICS.vdb","SYS=MYSQL")
-dbLoadRecords("db/RMS_EPICS.vdb","SYS=MYSQL")
+#dbLoadRecords("db/RMS_EPICS.vdb","SYS=MYSQL")
+dbLoadRecords("db/Online_Model.vdb","SYS=OLM")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

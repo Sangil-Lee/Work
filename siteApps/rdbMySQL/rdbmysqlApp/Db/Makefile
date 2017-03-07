@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += MYSQL_EPICS.vdb
 DB += RMS_EPICS.vdb
+DB += Online_Model.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

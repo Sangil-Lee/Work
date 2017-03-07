@@ -71,6 +71,76 @@ recordtype(rdbmySQL) {
 		promptgroup(GUI_INPUTS)
 		interest(1)
 	}
+	field(INPM,DBF_INLINK) {
+		prompt("Input M")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPN,DBF_INLINK) {
+		prompt("Input N")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPO,DBF_INLINK) {
+		prompt("Input O")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPP,DBF_INLINK) {
+		prompt("Input P")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPQ,DBF_INLINK) {
+		prompt("Input Q")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPR,DBF_INLINK) {
+		prompt("Input R")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPS,DBF_INLINK) {
+		prompt("Input S")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPT,DBF_INLINK) {
+		prompt("Input T")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPU,DBF_INLINK) {
+		prompt("Input U")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPV,DBF_INLINK) {
+		prompt("Input V")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPW,DBF_INLINK) {
+		prompt("Input W")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPX,DBF_INLINK) {
+		prompt("Input X")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPY,DBF_INLINK) {
+		prompt("Input Y")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
+	field(INPZ,DBF_INLINK) {
+		prompt("Input Z")
+		promptgroup(GUI_INPUTS)
+		interest(1)
+	}
 	field(PREC,DBF_SHORT) {
 		prompt("Display Precision")
 		promptgroup(GUI_DISPLAY)
@@ -196,7 +266,7 @@ recordtype(rdbmySQL) {
 		prompt("Query String")
 		promptgroup(GUI_DISPLAY)
 		interest(1)
-		size(200)
+		size(2048)
 	}
 	field(OVAL,DBF_DOUBLE) {
 		prompt("Old Value")

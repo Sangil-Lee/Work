@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <stdlib.h>
-#include <pqxx/pqxx>
 #include "alarm.h"
 #include "cvtTable.h"
 #include "dbDefs.h"
