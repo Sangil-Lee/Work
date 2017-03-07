@@ -14,6 +14,8 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += ${RAON_SITELIBS}/db/dbSysMon.db
+DB += ${RAON_SITELIBS}/db/dbIfstat.vdb
+DB += ${RAON_SITELIBS}/db/dbSysTimeStamp.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

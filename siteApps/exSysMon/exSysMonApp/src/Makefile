@@ -6,7 +6,9 @@ USR_INCLUDES  += -I$(RAON_SITELIBS)/include
 USR_DBDFLAGS  += -I$(RAON_SITELIBS)/dbd
 USR_INCLUDES  += -I$(EPICS_EXTENSIONS)/include
 
-sysMon_DIR += $(RAON_SITELIBS)/lib/$(T_A)
+sysMon_DIR    += $(RAON_SITELIBS)/lib/$(T_A)
+ifStatMon_DIR += $(RAON_SITELIBS)/lib/$(T_A)
+timeStamp_DIR += $(RAON_SITELIBS)/lib/$(T_A)
 
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
@@ -21,6 +23,11 @@ DBD += exSysMon.dbd
 
 # exSysMon.dbd will be made up from these files:
 exSysMon_DBD += base.dbd
+exSysMon_DBD += menuInOut.dbd
+exSysMon_DBD += ifstatRecord.dbd
+exSysMon_DBD += ifstatDevSoft.dbd
+exSysMon_DBD += timestampRecord.dbd
+exSysMon_DBD += timestampDevSoft.dbd
 
 # Include dbd files from all support applications:
 #exSysMon_DBD += xxx.dbd
@@ -39,6 +46,8 @@ exSysMon_SRCS_vxWorks += -nil-
 # Add support from base/src/vxWorks if needed
 #exSysMon_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 exSysMon_LIBS += sysMon
+exSysMon_LIBS += ifStatMon
+exSysMon_LIBS += timeStamp
 
 # Finally link to the EPICS Base libraries
 exSysMon_LIBS += $(EPICS_BASE_IOC_LIBS)
