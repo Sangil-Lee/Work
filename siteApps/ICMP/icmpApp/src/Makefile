@@ -25,15 +25,12 @@ USR_INCLUDES  += -I$(RAON_SITELIBS)/include
 USR_INCLUDES  += -I$(OPINGINC)
 
 # Compile and add the code to the support library
-#icmpOping_SRCS += xxxRecord.c
-#icmpOping_SRCS += devXxxSoft.c
+icmpOping_SRCS += icmpRecord.c
 
 # Link locally-provided code into the support library,
 # rather than directly into the IOC application.
 # This is required for Windows DLL builds.
-#icmpOping_SRCS += dbSubExample.c
 icmpOping_SRCS += icmpOPingDev.cpp
-#icmpOping_SRCS += initTrace.c
 
 oping_DIR += $(OPINGLIB)
 
@@ -48,6 +45,8 @@ DBD += icmp.dbd
 
 # icmp.dbd will include these files:
 icmp_DBD += base.dbd
+icmp_DBD += icmpRecord.dbd
+icmp_DBD += icmpDevSoft.dbd
 
 # icmp_registerRecordDeviceDriver.cpp derives from icmp.dbd
 icmp_SRCS += icmp_registerRecordDeviceDriver.cpp
