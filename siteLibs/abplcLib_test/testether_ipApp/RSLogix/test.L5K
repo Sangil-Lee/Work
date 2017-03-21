@@ -1,0 +1,188 @@
+(*********************************************
+
+  Import-Export
+  Version   := RSLogix 5000 v12.02
+  Owner     := kasemir, ORNL
+  Exported  := Wed Oct 06 11:00:39 2004
+**********************************************)
+IE_VER := 2.3;
+
+CONTROLLER EtherIP_Test (ProcessorType := 1756-L1,
+                         Major := 12,
+                         TimeSlice := 10,
+                         CommPath := AB_DF1-1\1,
+                         RedundancyEnabled := 0,
+                         KeepTestEditsOnSwitchOver := 0,
+                         DataTablePadPercentage := 50,
+                         SecurityCode := 0,
+                         SFCExecutionControl := CurrentActive,
+                         SFCRestartPosition := MostRecent,
+                         SFCLastScan := DontScan)
+		DATATYPE Nested (FamilyType := NoFamily)
+			BOOL BOOLs[32];
+			REAL REALs[2];
+			TestStruct STRUCTS[5] (Radix := Float);
+		END_DATATYPE
+
+		DATATYPE TestStruct (FamilyType := NoFamily)
+			INT INT;
+			REAL REAL;
+			DINT DINT;
+			SINT ZZZZZZZZZZTestStruct3 (Hidden := 1);
+			BIT BOOL ZZZZZZZZZZTestStruct3 : 0;
+		END_DATATYPE
+
+	MODULE Local (Parent := Local,
+	              CatalogNumber := 1756-L1,
+	              Major := 12,
+	              Minor := 1,
+	              PortLabel := RxBACKPLANE,
+	              ChassisSize := 7,
+	              Slot := 0,
+	              Mode := 2#0000_0000_0000_0001,
+	              CompatibleModule := 0,
+	              KeyMask := 2#0000_0000_0001_1111)
+	END_MODULE
+
+	MODULE ENET (Parent := Local,
+	             CatalogNumber := 1756-ENET/B,
+	             Major := 2,
+	             Minor := 1,
+	             PortLabel := RxBACKPLANE,
+	             Slot := 1,
+	             NodeAddress := 172.31.72.94,
+	             Mode := 2#0000_0000_0000_0000,
+	             CompatibleModule := 0,
+	             KeyMask := 2#0000_0000_0000_0000)
+	END_MODULE
+
+	TAG
+		BOOL : BOOL (RADIX := Decimal) := 1;
+		BOOLs : BOOL[352] (RADIX := Decimal) := [2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#1,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0];
+		DINT : DINT (RADIX := Decimal) := 0;
+		DINTS : DINT[40] (RADIX := Decimal) := [1,2,15,4,5,6,7,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		INTs : INT[40] (RADIX := Decimal) := [0,0,-32768,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+		NESTED : Nested  := [[2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0,2#0
+				,2#0,2#0,2#0,2#0,2#0],[0.00000000e+000,0.00000000e+000],[[0,0.00000000e+000,0,0],[0,4.20000000e+001,0,0
+				],[0,0.00000000e+000,0,0],[0,0.00000000e+000,0,0],[0,0.00000000e+000,0,0]]];
+		REAL : REAL (RADIX := Float) := 3.14000010e+000;
+		REALs : REAL[40] (RADIX := Float) := [1.00000000e+000,2.00000000e+000,5.00000000e+001,4.00000000e+000,5.00000000e+000,6.00000000e+000
+				,7.00000000e+000,8.00000000e+000,9.00000000e+000,1.00000000e+001,0.00000000e+000,0.00000000e+000
+				,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000
+				,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000
+				,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000
+				,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000,0.00000000e+000
+				,0.00000000e+000,0.00000000e+000,0.00000000e+000,3.90000000e+001];
+		STRING : STRING  := [3,'Hi!$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00$00'
+				];
+	END_TAG
+
+		PROGRAM MainProgram (MAIN := MainRoutine,
+		                     MODE := 0,
+		                     DisableFlag := 0)
+				TAG
+					timer_1 : TIMER  := [216121,200,0];
+					timer_2 : TIMER  := [215921,200,0];
+				END_TAG
+
+				ROUTINE MainRoutine 
+						RC: "Two timers, running mutually exclusive";
+						N: XIO(timer_2.TT)TON(timer_1,?,?);
+						N: XIO(timer_1.TT)TON(timer_2,?,?);
+				END_ROUTINE
+
+		END_PROGRAM
+
+		TASK MainTask (Type := CONTINUOUS,
+		               Watchdog := 500.000,
+		               Priority := 10,
+		               Rate := 10.000,
+		               EnableTimeout := No,
+		               DisableUpdateOutputs := No,
+		               InhibitTask := No)
+				MainProgram;
+		END_TASK
+
+CONFIG ASCII(XONXOFFEnable := 0,
+	             DeleteMode := 0,
+	             EchoMode := 0,
+	             TerminationChars := -243,
+	             AppendChars := 2573,
+	             BufferSize := 82) END_CONFIG
+
+CONFIG ControllerDevice END_CONFIG
+
+CONFIG CST(SystemTimeMasterID := 0) END_CONFIG
+
+CONFIG DF1(DuplicateDetection := 1,
+	           ErrorDetection := BCC Error,
+	           EmbeddedResponseEnable := 0,
+	           DF1Mode := Pt to Pt,
+	           ACKTimeout := 50,
+	           NAKReceiveLimit := 3,
+	           ENQTransmitLimit := 3,
+	           TransmitRetries := 3,
+	           StationAddress := 0,
+	           ReplyMessageWait := 5,
+	           PollingMode := 1,
+	           MasterMessageTransmit := 0,
+	           NormalPollNodeFile := <NA>,
+	           NormalPollGroupSize := 0,
+	           PriorityPollNodeFile := <NA>,
+	           ActiveStationFile := <NA>,
+	           SlavePollTimeout := 3000,
+	           EOTSuppression := 0,
+	           MaxStationAddress := 31,
+	           TokenHoldFactor := 1) END_CONFIG
+
+CONFIG ExtendedDevice END_CONFIG
+
+CONFIG FaultLog END_CONFIG
+
+CONFIG FileManager END_CONFIG
+
+CONFIG ICP END_CONFIG
+
+CONFIG PCCC END_CONFIG
+
+CONFIG Redundancy END_CONFIG
+
+CONFIG SerialPort(BaudRate := 19200,
+	                  Parity := No Parity,
+	                  DataBits := 8 Bits of Data,
+	                  StopBits := 1 Stop Bit,
+	                  ComDriverId := DF1,
+	                  PendingComDriverId := DF1,
+	                  RTSOffDelay := 0,
+	                  RTSSendDelay := 0,
+	                  ControlLine := No Handshake,
+	                  PendingControlLine := No Handshake,
+	                  RemoteModeChangeFlag := 0,
+	                  PendingRemoteModeChangeFlag := 0,
+	                  ModeChangeAttentionChar := 27,
+	                  PendingModeChangeAttentionChar := 27,
+	                  SystemModeCharacter := 83,
+	                  PendingSystemModeCharacter := 83,
+	                  UserModeCharacter := 85,
+	                  PendingUserModeCharacter := 85) END_CONFIG
+
+CONFIG UserMemory END_CONFIG
+
+CONFIG WallClockTime(LocalTimeAdjustment := 0,
+	                     TimeZone := 0) END_CONFIG
+
+END_CONTROLLER
+

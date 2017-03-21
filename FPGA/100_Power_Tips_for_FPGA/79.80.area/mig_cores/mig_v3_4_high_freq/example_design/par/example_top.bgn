@@ -1,0 +1,289 @@
+Release 12.1 - Bitgen M.53d (nt)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+Loading device for application Rf_Device from file '6vlx75t.nph' in environment
+C:\Xilinx\12.1\ISE_DS\ISE.
+   "example_top" is an NCD, version 3.2, device xc6vlx75t, package ff484, speed
+-2
+Opened constraints file example_top.pcf.
+
+Mon Mar 28 11:46:14 2011
+
+C:\Xilinx\12.1\ISE_DS\ISE\bin\nt\unwrapped\bitgen.exe -intstyle ise -w -g DebugBitstream:No -g Binary:no -g CRC:Enable -g ConfigRate:2 -g CclkPin:PullUp -g M0Pin:PullUp -g M1Pin:PullUp -g M2Pin:PullUp -g ProgPin:PullUp -g DonePin:PullUp -g InitPin:Pullup -g CsPin:Pullup -g DinPin:Pullup -g BusyPin:Pullup -g RdWrPin:Pullup -g TckPin:PullUp -g TdiPin:PullUp -g TdoPin:PullUp -g TmsPin:PullUp -g UnusedPin:PullDown -g UserID:0xFFFFFFFF -g ConfigFallback:Enable -g SelectMAPAbort:Enable -g BPI_page_size:1 -g OverTempPowerDown:Disable -g DCIUpdateMode:AsRequired -g StartUpClk:CClk -g DONE_cycle:4 -g GTS_cycle:5 -g GWE_cycle:6 -g LCK_cycle:NoWait -g Match_cycle:Auto -g Security:None -g DonePipe:No -g DriveDone:No -g Encrypt:No example_top.ncd 
+
+INFO:Bitgen:40 - Replacing "Auto" with "2" for option "Match_cycle".  Most
+   commonly, bitgen has determined and will use a specific value instead of the
+   generic command-line value of "Auto".  Alternately, this message appears if
+   the same option is specified multiple times on the command-line.  In this
+   case, the option listed last will be used.
+Summary of Bitgen Options:
++----------------------+----------------------+
+| Option Name          | Current Setting      |
++----------------------+----------------------+
+| Compress             | (Not Specified)*     |
++----------------------+----------------------+
+| Readback             | (Not Specified)*     |
++----------------------+----------------------+
+| CRC                  | Enable**             |
++----------------------+----------------------+
+| DebugBitstream       | No**                 |
++----------------------+----------------------+
+| ConfigRate           | 2**                  |
++----------------------+----------------------+
+| StartupClk           | Cclk**               |
++----------------------+----------------------+
+| CclkPin              | Pullup**             |
++----------------------+----------------------+
+| DonePin              | Pullup**             |
++----------------------+----------------------+
+| HswapenPin           | Pullup*              |
++----------------------+----------------------+
+| M0Pin                | Pullup**             |
++----------------------+----------------------+
+| M1Pin                | Pullup**             |
++----------------------+----------------------+
+| M2Pin                | Pullup**             |
++----------------------+----------------------+
+| ProgPin              | Pullup**             |
++----------------------+----------------------+
+| InitPin              | Pullup**             |
++----------------------+----------------------+
+| CsPin                | Pullup**             |
++----------------------+----------------------+
+| DinPin               | Pullup**             |
++----------------------+----------------------+
+| BusyPin              | Pullup**             |
++----------------------+----------------------+
+| RdWrPin              | Pullup**             |
++----------------------+----------------------+
+| TckPin               | Pullup**             |
++----------------------+----------------------+
+| TdiPin               | Pullup**             |
++----------------------+----------------------+
+| TdoPin               | Pullup**             |
++----------------------+----------------------+
+| TmsPin               | Pullup**             |
++----------------------+----------------------+
+| UnusedPin            | Pulldown**           |
++----------------------+----------------------+
+| GWE_cycle            | 6**                  |
++----------------------+----------------------+
+| GTS_cycle            | 5**                  |
++----------------------+----------------------+
+| OverTempPowerDown    | Disable**            |
++----------------------+----------------------+
+| LCK_cycle            | NoWait**             |
++----------------------+----------------------+
+| Match_cycle          | 2                    |
++----------------------+----------------------+
+| DONE_cycle           | 4**                  |
++----------------------+----------------------+
+| Persist              | No*                  |
++----------------------+----------------------+
+| DriveDone            | No**                 |
++----------------------+----------------------+
+| DonePipe             | No**                 |
++----------------------+----------------------+
+| Security             | None**               |
++----------------------+----------------------+
+| UserID               | 0xFFFFFFFF**         |
++----------------------+----------------------+
+| ActivateGclk         | No*                  |
++----------------------+----------------------+
+| ActiveReconfig       | No*                  |
++----------------------+----------------------+
+| Encrypt              | No**                 |
++----------------------+----------------------+
+| EncryptKeySelect     | bbram*               |
++----------------------+----------------------+
+| Key0                 | pick*                |
++----------------------+----------------------+
+| StartCBC             | pick*                |
++----------------------+----------------------+
+| HKey                 | pick*                |
++----------------------+----------------------+
+| KeyFile              | (Not Specified)*     |
++----------------------+----------------------+
+| DCIUpdateMode        | AsRequired**         |
++----------------------+----------------------+
+| ConfigFallback       | Enable**             |
++----------------------+----------------------+
+| SelectMAPAbort       | Enable**             |
++----------------------+----------------------+
+| BPI_page_size        | 1**                  |
++----------------------+----------------------+
+| BPI_1st_read_cycle   | 1*                   |
++----------------------+----------------------+
+| next_config_addr     | None*                |
++----------------------+----------------------+
+| DoneSignalsPowerDown | Disable*             |
++----------------------+----------------------+
+| InitSignalsError     | Enable*              |
++----------------------+----------------------+
+| ICAP_Encryption      | Disable*             |
++----------------------+----------------------+
+| SysmonPartialReconfig | Disable*             |
++----------------------+----------------------+
+| SecAll               | No*                  |
++----------------------+----------------------+
+| SecError             | No*                  |
++----------------------+----------------------+
+| SecStatus            | No*                  |
++----------------------+----------------------+
+| JTAG_SysMon          | Enable*              |
++----------------------+----------------------+
+| Partial              | (Not Specified)*     |
++----------------------+----------------------+
+| TIMER_CFG            | None*                |
++----------------------+----------------------+
+| TIMER_USR            | None*                |
++----------------------+----------------------+
+| IEEE1532             | No*                  |
++----------------------+----------------------+
+| Binary               | No**                 |
++----------------------+----------------------+
+ *  Default setting.
+ ** The specified setting matches the default setting.
+
+There were 0 CONFIG constraint(s) processed from example_top.pcf.
+
+
+Running DRC.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dqs[0].u_phy_dqs_iob/u_
+   iobuf_dqs/OB> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMB_D
+   1_DPO> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMC_D
+   1_DPO> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[1].RAM32M0_RAMD_D
+   1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_mem_intfc/mc0/col_mach0/read_fifo.fifo_ram[0].RAM32M0_RAMD_D
+   1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem6_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem4_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem1_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem5_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem3_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <m_traffic_gen/RD_PATH.read_data_path/read_postedfifo/rd_fifo/Mram_mem2_RAMD_
+   D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[1].RAM32M0_RAMA_D1_DPO>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[1].RAM32M0_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[0].RAM32M0_RAMA_D1_DPO>
+   is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/pointer_ram.rams[0].RAM32M0_RAMD_D1_O> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[5].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[2].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[3].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[4].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[0].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_wr_data0/write_buffer.wr_buffer_ram[1].RAM32M0_RAM
+   D_D1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[3].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].R
+   AM32M0_RAMA_D1_DPO> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].R
+   AM32M0_RAMB_D1_DPO> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[5].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[0].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[2].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[1].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.rd_buf.rd_buffer_ram[4].R
+   AM32M0_RAMD_D1_O> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.status_ram.RAM32M0_RAMB_D
+   1_DPO> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_memc_ui_top/u_ui_top/ui_rd_data0/not_strict_mode.status_ram.RAM32M0_RAMD_D
+   1_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections
+   and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/gen_loop
+   _col0.u_odelay_rsync>:<IODELAYE1_IODELAYE1>.  With IDELAY_TYPE programming
+   FIXED or DEFAULT active input pins INC, RST, CE and C are not used and will
+   be ignored.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections
+   and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0]
+   .u_phy_dm_iob/u_odelay_dm>:<IODELAYE1_IODELAYE1>.  With IDELAY_TYPE
+   programming FIXED or DEFAULT active input pins INC, RST, CE and C are not
+   used and will be ignored.
+WARNING:PhysDesignRules:2189 - Invalid configuration (incorrect pin connections
+   and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_data_io/gen_dm_inst.gen_dm[0]
+   .u_phy_dm_iob/u_odelay_dm>:<IODELAYE1_IODELAYE1>.  With IDELAY_TYPE not
+   VAR_LOADABLE any signals on input pins CNTVALUEIN0-4 are not used and will be
+   ignored.
+WARNING:PhysDesignRules:2190 - Invalid configuration (incorrect pin connections
+   and/or modes) on
+   block:<u_memc_ui_top/u_mem_intfc/phy_top0/u_phy_read/u_phy_rdclk_gen/gen_ck_c
+   pt[0].u_odelay_cpt>:<IODELAYE1_IODELAYE1>.  With IDELAY_TYPE programming
+   FIXED or DEFAULT active input pins INC, RST, CE and C are not used and will
+   be ignored.
+WARNING:PhysDesignRules:2045 - The MMCM_ADV block <u_infrastructure/u_mmcm_adv>
+   has CLKOUT pins that do not drive the same kind of BUFFER load. Routing from
+   the different buffer types will not be phase aligned. 
+DRC detected 0 errors and 36 warnings.  Please see the previously displayed
+individual error or warning messages for more details.
+INFO:Security:54 - 'xc6vlx75t' is a WebPack part.
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+
+Creating bit map...
+Saving bit stream in "example_top.bit".
+Bitstream generation is complete.

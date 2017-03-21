@@ -1,0 +1,30 @@
+startup_message         off
+vbell                   off
+#termcapinfo rxvt-unicode ti@:te@
+termcapinfo rxvt-unicode 'hs:ts=\E]2;:fs=\007:ds=\E]2;SSSscreen\007'
+#termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+terminfo    rxvt-unicode ti@:te@:
+term        screen
+
+defscrollback 100000
+autodetach on
+hardstatus alwayslastline '%{= M} %H%{= G} %l %= %{= w}%-w%{+b r}%n*%t%{-b r}%{w}%+w %= %{c} %Y/%M/%d %{B}%c '
+
+# add CPU idle/sustem/user/interrupt stats
+#backtick 100 5 5 tail -1 /var/tmp/mprem.stats.top
+caption always '%{= wk} %200` %= %100` %='
+#caption always "%{= kc}[%H] %L=%=%-w%45L>(%n-%t)%+w %=%-19=%{= .r}[%Y/%M/%d %c]"
+
+# Fix stupid screen overwriting
+altscreen on
+#logfile $HOME/$HOST.screen.log
+#logtstamp on
+#logtstamp after 30
+
+chdir $HOME
+screen -fn -t "$HOST-$HOME" 
+#chdir /net/cdaqfs/home/cdaq/users/jhlee/logs/backup.logs/
+#screen -fn -t "Log"
+#chdir /v/volatile/hallc/qweak/QwAnalysis/
+#screen -fn -t "Volatile"
+select 0

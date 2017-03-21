@@ -1,0 +1,1224 @@
+Release 12.1 Map M.53d (nt)
+Xilinx Mapping Report File for Design 'counters'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6slx45-fgg676-3 -w -ol high -t 1 -xt 0
+-register_duplication off -global_opt off -detail -ir off -pr off -lc off -power
+off -o counters_map.ncd counters.ngd counters.pcf 
+Target Device  : xc6slx45
+Target Package : fgg676
+Target Speed   : -3
+Mapper Version : spartan6 -- $Revision: 1.52 $
+Mapped Date    : Wed Jan 26 05:33:56 2011
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    0
+Slice Logic Utilization:
+  Number of Slice Registers:                   295 out of  54,576    1%
+    Number used as Flip Flops:                 295
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                        310 out of  27,288    1%
+    Number used as logic:                      290 out of  27,288    1%
+      Number using O6 output only:              69
+      Number using O5 output only:             212
+      Number using O5 and O6:                    9
+      Number used as ROM:                        0
+    Number used as Memory:                       0 out of   6,408    0%
+    Number used exclusively as route-thrus:     20
+      Number with same-slice register load:     14
+      Number with same-slice carry load:         6
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                    94 out of   6,822    1%
+  Number of LUT Flip Flop pairs used:          319
+    Number with an unused Flip Flop:            47 out of     319   14%
+    Number with an unused LUT:                   9 out of     319    2%
+    Number of fully used LUT-FF pairs:         263 out of     319   82%
+    Number of unique control sets:              12
+    Number of slice register sites lost
+      to control set restrictions:              49 out of  54,576    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                       297 out of     358   82%
+
+Specific Feature Utilization:
+  Number of RAMB16BWERs:                         0 out of     116    0%
+  Number of RAMB8BWERs:                          0 out of     232    0%
+  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
+  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
+  Number of BUFG/BUFGMUXs:                       5 out of      16   31%
+    Number used as BUFGs:                        5
+    Number used as BUFGMUX:                      0
+  Number of DCM/DCM_CLKGENs:                     0 out of       8    0%
+  Number of ILOGIC2/ISERDES2s:                   0 out of     376    0%
+  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     376    0%
+  Number of OLOGIC2/OSERDES2s:                   0 out of     376    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHs:                               0 out of     256    0%
+  Number of BUFPLLs:                             0 out of       8    0%
+  Number of BUFPLL_MCBs:                         0 out of       4    0%
+  Number of DSP48A1s:                            1 out of      58    1%
+  Number of ICAPs:                               0 out of       1    0%
+  Number of MCBs:                                0 out of       2    0%
+  Number of PCILOGICSEs:                         0 out of       2    0%
+  Number of PLL_ADVs:                            0 out of       4    0%
+  Number of PMVs:                                0 out of       1    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+
+Average Fanout of Non-Clock Nets:                3.02
+
+Peak Memory Usage:  267 MB
+Total REAL time to MAP completion:  1 mins 51 secs 
+Total CPU time to MAP completion:   1 mins 38 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+
+Section 3 - Informational
+-------------------------
+INFO:Security:54 - 'xc6slx45' is a WebPack part.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+   6 block(s) removed
+  12 block(s) optimized away
+  32 signal(s) removed
+ 216 Block(s) redundant
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "counter_binary_dsp48/BU2/l<31>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<30>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<29>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<28>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<27>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<26>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<25>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<24>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<23>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<22>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<21>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<20>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<19>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<18>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<17>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<16>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<15>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<14>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<13>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<12>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<11>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<10>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<9>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<8>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<7>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<6>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<5>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<4>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<3>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<2>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<1>" is sourceless and has been removed.
+The signal "counter_binary_dsp48/BU2/l<0>" is sourceless and has been removed.
+Unused block "counter_binary_core_32/GND" (ZERO) removed.
+Unused block "counter_binary_core_32/VCC" (ONE) removed.
+Unused block "counter_binary_core_64/GND" (ZERO) removed.
+Unused block "counter_binary_core_64/VCC" (ONE) removed.
+Unused block "counter_binary_dsp48/GND" (ZERO) removed.
+Unused block "counter_binary_dsp48/VCC" (ONE) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		counter_binary_core_32/BU2/XST_GND
+VCC 		counter_binary_core_32/BU2/XST_VCC
+GND 		counter_binary_core_64/BU2/XST_GND
+VCC 		counter_binary_core_64/BU2/XST_VCC
+GND 		counter_binary_dsp48/BU2/XST_GND
+VCC 		counter_binary_dsp48/BU2/XST_VCC
+GND 		counter_binary/XST_GND
+VCC 		counter_binary/XST_VCC
+GND 		counter_binary_64/XST_GND
+VCC 		counter_binary_64/XST_VCC
+GND 		counter_prescale/XST_GND
+VCC 		counter_prescale/XST_VCC
+
+Redundant Block(s):
+TYPE 		BLOCK
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[1].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[2].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[3].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[4].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[5].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[6].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[7].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[8].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[9].ca
+rrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[10].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[11].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[12].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[13].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[14].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[15].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[16].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[17].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[18].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[19].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[20].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[21].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[22].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[23].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[24].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[25].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[26].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[27].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[28].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[29].c
+arrymux_rt
+LUT1
+		counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[30].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[1].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[2].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[3].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[4].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[5].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[6].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[7].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[8].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[9].ca
+rrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[10].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[11].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[12].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[13].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[14].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[15].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[16].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[17].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[18].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[19].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[20].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[21].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[22].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[23].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[24].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[25].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[26].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[27].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[28].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[29].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[30].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[31].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[32].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[33].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[34].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[35].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[36].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[37].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[38].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[39].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[40].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[41].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[42].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[43].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[44].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[45].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[46].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[47].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[48].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[49].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[50].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[51].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[52].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[53].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[54].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[55].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[56].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[57].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[58].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[59].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[60].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[61].c
+arrymux_rt
+LUT1
+		counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipe
+lining.the_addsub/i_lut4.i_lut4_addsub/i_simple_model.i_gt_1.carrychaingen[62].c
+arrymux_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<1>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<2>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<3>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<4>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<5>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<6>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<7>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<8>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<9>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<10>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<11>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<12>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<13>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<14>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<15>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<16>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<17>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<18>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<19>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<20>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<21>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<22>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<23>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<24>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<25>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<26>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<27>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<28>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<29>_rt
+LUT1 		counter_binary/Mcount_counter_binary_cy<30>_rt
+LUT1 		counter_binary/Mcount_counter_binary_xor<31>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<1>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<2>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<3>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<4>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<5>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<6>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<7>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<8>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<9>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<10>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<11>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<12>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<13>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<14>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<15>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<16>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<17>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<18>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<19>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<20>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<21>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<22>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<23>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<24>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<25>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<26>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<27>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<28>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<29>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<30>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<31>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<32>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<33>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<34>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<35>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<36>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<37>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<38>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<39>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<40>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<41>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<42>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<43>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<44>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<45>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<46>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<47>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<48>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<49>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<50>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<51>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<52>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<53>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<54>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<55>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<56>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<57>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<58>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<59>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<60>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<61>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_cy<62>_rt
+LUT1 		counter_binary_64/Mcount_counter_binary_xor<63>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<1>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<2>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<3>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<4>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<5>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<6>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<7>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<8>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<9>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<10>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<11>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<12>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<13>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_cy<14>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<1>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<2>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<3>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<4>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<5>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<6>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<7>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<8>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<9>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<10>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<11>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<12>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<13>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_cy<14>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_low_xor<15>_rt
+LUT1 		counter_prescale/Mcount_counter_prescale_xor<15>_rt
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_binary                         | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_binary_64                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_binary_core_32                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_binary_core_64                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_binary_dsp48                   | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_johnson                        | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_lfsr                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_prescale                       | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_64_en               | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_64_match            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<0>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<1>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<2>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<3>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<4>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<5>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<6>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<7>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<8>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<9>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<10>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<11>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<12>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<13>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<14>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<15>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<16>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<17>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<18>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<19>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<20>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<21>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<22>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<23>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<24>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<25>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<26>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<27>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<28>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<29>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<30>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<31>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<32>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<33>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<34>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<35>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<36>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<37>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<38>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<39>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<40>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<41>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<42>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<43>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<44>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<45>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<46>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<47>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<48>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<49>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<50>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<51>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<52>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<53>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<54>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<55>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<56>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<57>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<58>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<59>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<60>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<61>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<62>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_64_q<63>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_en          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_core_32_match       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<0>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<1>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<2>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<3>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<4>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<5>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<6>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<7>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<8>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<9>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<10>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<11>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<12>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<13>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<14>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<15>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<16>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<17>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<18>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<19>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<20>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<21>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<22>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<23>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<24>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<25>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<26>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<27>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<28>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<29>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<30>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_32_q<31>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_en          | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_core_64_match       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<0>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<1>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<2>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<3>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<4>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<5>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<6>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<7>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<8>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<9>        | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<10>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<11>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<12>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<13>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<14>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<15>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<16>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<17>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<18>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<19>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<20>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<21>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<22>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<23>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<24>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<25>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<26>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<27>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<28>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<29>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<30>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<31>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<32>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<33>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<34>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<35>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<36>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<37>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<38>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<39>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<40>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<41>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<42>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<43>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<44>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<45>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<46>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<47>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<48>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<49>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<50>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<51>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<52>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<53>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<54>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<55>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<56>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<57>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<58>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<59>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<60>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<61>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<62>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_core_64_q<63>       | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_en              | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_dsp_match           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<0>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<1>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<2>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<3>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<4>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<5>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<6>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<7>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<8>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<9>            | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<10>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<11>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<12>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<13>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<14>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<15>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<16>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<17>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<18>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<19>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<20>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<21>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<22>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<23>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<24>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<25>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<26>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<27>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<28>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<29>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<30>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_dsp_q<31>           | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_en                  | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_binary_match               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<0>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<1>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<2>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<3>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<4>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<5>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<6>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<7>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<8>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<9>                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<10>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<11>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<12>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<13>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<14>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<15>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<16>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<17>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<18>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<19>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<20>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<21>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<22>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<23>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<24>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<25>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<26>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<27>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<28>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<29>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<30>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_binary_q<31>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_en                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_johnson_match              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<0>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<1>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<2>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<3>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<4>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<5>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<6>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<7>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<8>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<9>               | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<10>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<11>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<12>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<13>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<14>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<15>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<16>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<17>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<18>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<19>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<20>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<21>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<22>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<23>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<24>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<25>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<26>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<27>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<28>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<29>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<30>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_johnson_q<31>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_lfsr_done_q                | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_lfsr_en                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_prescale_en                | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| counter_prescale_match             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<0>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<1>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<2>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<3>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<4>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<5>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<6>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<7>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<8>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<9>              | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<10>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<11>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<12>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<13>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<14>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| counter_prescale_q<15>             | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| reset                              | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+Area Group "pblock_counter_binary"
+  No COMPRESSION specified for Area Group "pblock_counter_binary"
+  RANGE: SLICE_X0Y32:SLICE_X3Y39
+  Slice Logic Utilization:
+    Number of Slice Registers:              33 out of    256   12%
+    Number of Slice LUTs:                   38 out of    128   29%
+      Number used as logic:                 38
+  Slice Logic Distribution:
+    Number of occupied Slices:              13 out of     32   40%
+    Number of LUT Flip Flop pairs used:     39
+      Number with an unused Flip Flop:       6 out of     39   15%
+      Number with an unused LUT:             0 out of     39    0%
+      Number of fully used LUT-FF pairs:    33 out of     39   84%
+
+Area Group "pblock_counter_binary_64"
+  No COMPRESSION specified for Area Group "pblock_counter_binary_64"
+  RANGE: SLICE_X0Y8:SLICE_X3Y23
+  Slice Logic Utilization:
+    Number of Slice Registers:              65 out of    512   12%
+    Number of Slice LUTs:                   74 out of    256   28%
+      Number used as logic:                 74
+  Slice Logic Distribution:
+    Number of occupied Slices:              19 out of     64   29%
+    Number of LUT Flip Flop pairs used:     75
+      Number with an unused Flip Flop:      10 out of     75   13%
+      Number with an unused LUT:             0 out of     75    0%
+      Number of fully used LUT-FF pairs:    65 out of     75   86%
+
+Area Group "pblock_counter_binary_core_32"
+  No COMPRESSION specified for Area Group "pblock_counter_binary_core_32"
+  RANGE: SLICE_X0Y40:SLICE_X3Y49
+  Slice Logic Utilization:
+    Number of Slice Registers:              33 out of    320   10%
+    Number of Slice LUTs:                   38 out of    160   23%
+      Number used as logic:                 38
+  Slice Logic Distribution:
+    Number of occupied Slices:              13 out of     40   32%
+    Number of LUT Flip Flop pairs used:     39
+      Number with an unused Flip Flop:       6 out of     39   15%
+      Number with an unused LUT:             0 out of     39    0%
+      Number of fully used LUT-FF pairs:    33 out of     39   84%
+
+Area Group "pblock_counter_binary_core_64"
+  No COMPRESSION specified for Area Group "pblock_counter_binary_core_64"
+  RANGE: SLICE_X50Y8:SLICE_X53Y23
+  Slice Logic Utilization:
+    Number of Slice Registers:              65 out of    512   12%
+    Number of Slice LUTs:                   74 out of    256   28%
+      Number used as logic:                 74
+  Slice Logic Distribution:
+    Number of occupied Slices:              19 out of     64   29%
+    Number of LUT Flip Flop pairs used:     75
+      Number with an unused Flip Flop:      10 out of     75   13%
+      Number with an unused LUT:             0 out of     75    0%
+      Number of fully used LUT-FF pairs:    65 out of     75   86%
+
+Area Group "pblock_counter_binary_dsp48"
+  No COMPRESSION specified for Area Group "pblock_counter_binary_dsp48"
+  RANGE: SLICE_X8Y46:SLICE_X9Y55
+  Slice Logic Utilization:
+    Number of Slice LUTs:                    6 out of     80    7%
+      Number used as logic:                  6
+  Slice Logic Distribution:
+    Number of occupied Slices:               2 out of     20   10%
+    Number of LUT Flip Flop pairs used:      6
+      Number with an unused Flip Flop:       6 out of      6  100%
+      Number with an unused LUT:             0 out of      6    0%
+      Number of fully used LUT-FF pairs:     0 out of      6    0%
+  Number of DSP48A1:                         1 out of      2   50%
+
+Area Group "pblock_counter_johnson"
+  No COMPRESSION specified for Area Group "pblock_counter_johnson"
+  RANGE: SLICE_X50Y56:SLICE_X53Y62
+  Slice Logic Utilization:
+    Number of Slice Registers:              33 out of    224   14%
+    Number of Slice LUTs:                    8 out of    112    7%
+      Number used as logic:                  8
+  Slice Logic Distribution:
+    Number of occupied Slices:               9 out of     28   32%
+    Number of LUT Flip Flop pairs used:     24
+      Number with an unused Flip Flop:       2 out of     24    8%
+      Number with an unused LUT:             6 out of     24   25%
+      Number of fully used LUT-FF pairs:    16 out of     24   66%
+
+Area Group "pblock_counter_prescale"
+  No COMPRESSION specified for Area Group "pblock_counter_prescale"
+  RANGE: SLICE_X50Y31:SLICE_X53Y39
+  Slice Logic Utilization:
+    Number of Slice Registers:              33 out of    288   11%
+    Number of Slice LUTs:                   33 out of    144   22%
+      Number used as logic:                 33
+  Slice Logic Distribution:
+    Number of occupied Slices:              10 out of     36   27%
+    Number of LUT Flip Flop pairs used:     35
+      Number with an unused Flip Flop:       2 out of     35    5%
+      Number with an unused LUT:             0 out of     35    0%
+      Number of fully used LUT-FF pairs:    33 out of     35   94%
+
+Area Group "pblock_lfsr_counter"
+  No COMPRESSION specified for Area Group "pblock_lfsr_counter"
+  RANGE: SLICE_X28Y45:SLICE_X29Y54,SLICE_X26Y45:SLICE_X27Y55
+  Slice Logic Utilization:
+    Number of Slice Registers:              33 out of    336    9%
+    Number of Slice LUTs:                   19 out of    168   11%
+      Number used as logic:                 19
+  Slice Logic Distribution:
+    Number of occupied Slices:               9 out of     42   21%
+    Number of LUT Flip Flop pairs used:     26
+      Number with an unused Flip Flop:       5 out of     26   19%
+      Number with an unused LUT:             3 out of     26   11%
+      Number of fully used LUT-FF pairs:    18 out of     26   69%
+
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+
+Section 12 - Control Set Information
+------------------------------------
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| Clock Signal                              | Reset Signal | Set Signal | Enable Signal                  | Slice Load Count | Bel Load Count |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_binary_64_BUFGP                       | reset_IBUF   |            |                                | 1                | 1              |
+| clk_binary_64_BUFGP                       | reset_IBUF   |            | counter_binary_64_en_IBUF      | 16               | 64             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_binary_BUFGP                          | reset_IBUF   |            |                                | 1                | 1              |
+| clk_binary_BUFGP                          | reset_IBUF   |            | counter_binary_en_IBUF         | 8                | 32             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_binary_core_32_IBUF                   | reset_IBUF   |            | counter_binary_core_32_en_IBUF | 9                | 33             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_binary_core_64_IBUF                   | reset_IBUF   |            | counter_binary_core_64_en_IBUF | 17               | 65             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_johnson_BUFGP                         | reset_IBUF   |            |                                | 1                | 1              |
+| clk_johnson_BUFGP                         | reset_IBUF   |            | counter_johnson_en_IBUF        | 8                | 32             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_lfsr_BUFGP                            | reset_IBUF   |            |                                | 1                | 1              |
+| clk_lfsr_BUFGP                            | reset_IBUF   |            | counter_lfsr_en_IBUF           | 7                | 32             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_prescale_BUFGP                        | reset_IBUF   |            | counter_prescale_en_IBUF       | 4                | 16             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+| counter_prescale/counter_prescale_low<15> | reset_IBUF   |            |                                | 5                | 17             |
++--------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Module                             | Partition | Slices*       | Slice Reg     | LUTs          | LUTRAM        | BRAM/FIFO | DSP48A1 | BUFG  | BUFIO | BUFR  | DCM   | PLL_ADV   | Full Hierarchical Name                                                                                                                              |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| counters/                          |           | 74/170        | 0/295         | 232/310       | 0/0           | 0/0       | 0/1     | 5/5   | 0/0   | 0/0   | 0/0   | 0/0       | counters                                                                                                                                            |
+| +counter_binary                    |           | 13/13         | 33/33         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary                                                                                                                             |
+| +counter_binary_64                 |           | 19/19         | 65/65         | 12/12         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_64                                                                                                                          |
+| +counter_binary_core_32            |           | 0/14          | 0/33          | 0/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32                                                                                                                     |
+| ++BU2                              |           | 0/14          | 0/33          | 0/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2                                                                                                                 |
+| +++U0                              |           | 0/14          | 0/33          | 0/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0                                                                                                              |
+| ++++i_baseblox.i_baseblox_counter  |           | 5/14          | 1/33          | 7/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter                                                                                |
+| +++++the_addsub                    |           | 0/9           | 0/32          | 0/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub                                                                     |
+| ++++++no_pipelining.the_addsub     |           | 0/9           | 0/32          | 0/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub                                            |
+| +++++++i_lut4.i_lut4_addsub        |           | 1/9           | 0/32          | 1/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub                       |
+| ++++++++i_q.i_simple.qreg          |           | 0/8           | 0/32          | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg     |
+| +++++++++fd                        |           | 8/8           | 32/32         | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_32/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg/fd  |
+| +counter_binary_core_64            |           | 0/20          | 0/65          | 0/12          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64                                                                                                                     |
+| ++BU2                              |           | 0/20          | 0/65          | 0/12          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2                                                                                                                 |
+| +++U0                              |           | 0/20          | 0/65          | 0/12          | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0                                                                                                              |
+| ++++i_baseblox.i_baseblox_counter  |           | 3/20          | 1/65          | 11/12         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter                                                                                |
+| +++++the_addsub                    |           | 0/17          | 0/64          | 0/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub                                                                     |
+| ++++++no_pipelining.the_addsub     |           | 0/17          | 0/64          | 0/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub                                            |
+| +++++++i_lut4.i_lut4_addsub        |           | 1/17          | 0/64          | 1/1           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub                       |
+| ++++++++i_q.i_simple.qreg          |           | 0/16          | 0/64          | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg     |
+| +++++++++fd                        |           | 16/16         | 64/64         | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_core_64/BU2/U0/i_baseblox.i_baseblox_counter/the_addsub/no_pipelining.the_addsub/i_lut4.i_lut4_addsub/i_q.i_simple.qreg/fd  |
+| +counter_binary_dsp48              |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48                                                                                                                       |
+| ++BU2                              |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2                                                                                                                   |
+| +++U0                              |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0                                                                                                                |
+| ++++i_baseip.i_xbip_counter        |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter                                                                                        |
+| +++++i_dsp48.i_dsp                 |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter/i_dsp48.i_dsp                                                                          |
+| ++++++i_sp3adsp.i_dsp48a_wrap      |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 1/1     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter/i_dsp48.i_dsp/i_sp3adsp.i_dsp48a_wrap                                                  |
+| +++++i_thresh_detect.i_norm.i_gate |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter/i_thresh_detect.i_norm.i_gate                                                          |
+| ++++++tier_gen[1].i_tier           |           | 0/2           | 0/0           | 0/6           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter/i_thresh_detect.i_norm.i_gate/tier_gen[1].i_tier                                       |
+| +++++++loop_tiles[0].i_tile        |           | 2/2           | 0/0           | 6/6           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_binary_dsp48/BU2/U0/i_baseip.i_xbip_counter/i_thresh_detect.i_norm.i_gate/tier_gen[1].i_tier/loop_tiles[0].i_tile                  |
+| +counter_johnson                   |           | 9/9           | 33/33         | 8/8           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_johnson                                                                                                                            |
+| +counter_prescale                  |           | 10/10         | 33/33         | 5/5           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counter_prescale                                                                                                                           |
+| +counters                          |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/counters                                                                                                                                   |
+| +lfsr_counter                      |           | 9/9           | 33/33         | 19/19         | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | counters/lfsr_counter                                                                                                                               |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Slices can be packed with basic elements from multiple hierarchies.
+  Therefore, a slice will be counted in every hierarchical module
+  that each of its packed basic elements belong to.
+** For each column, there are two numbers reported <A>/<B>.
+   <A> is the number of elements that belong to that specific hierarchical module.
+   <B> is the total number of elements from that hierarchical module and any lower level
+   hierarchical modules below.
+*** The LUTRAM column counts all LUTs used as memory including RAM, ROM, and shift registers.

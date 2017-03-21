@@ -1,0 +1,8 @@
+NET "btn0"  LOC = "A18"  ;  # south button sw6
+NET "btn1"  LOC = "H17"  ;  # west button  sw8
+
+NET "led1"     LOC = "AD21"  ; # ds17 led w
+NET "led0"     LOC = "AH28"  ; # ds18 led s
+
+INST "led1" AREA_GROUP = "led1";
+AREA_GROUP "led1" RANGE = SLICE_X65Y168:SLICE_X65Y168;

@@ -1,0 +1,60 @@
+##############################################################
+#
+# Xilinx Core Generator version 12.1
+# Date: Tue Feb 01 02:33:53 2011
+#
+##############################################################
+#
+#  This file contains the customisation parameters for a
+#  Xilinx CORE Generator IP GUI. It is strongly recommended
+#  that you do not manually alter this file as it may cause
+#  unexpected and unsupported behavior.
+#
+##############################################################
+#
+# BEGIN Project Options
+SET addpads = false
+SET asysymbol = false
+SET busformat = BusFormatAngleBracketNotRipped
+SET createndf = false
+SET designentry = Verilog
+SET device = xc6slx45
+SET devicefamily = spartan6
+SET flowvendor = Foundation_ISE
+SET formalverification = false
+SET foundationsym = false
+SET implementationfiletype = Ngc
+SET package = fgg676
+SET removerpms = false
+SET simulationfiles = Behavioral
+SET speedgrade = -3
+SET verilogsim = true
+SET vhdlsim = false
+# END Project Options
+# BEGIN Select
+SELECT RAM-based_Shift_Register family Xilinx,_Inc. 11.0
+# END Select
+# BEGIN Parameters
+CSET asyncinitradix=2
+CSET asyncinitval=0
+CSET ce=true
+CSET cepriority=Sync_Overrides_CE
+CSET component_name=shift_ram_coregen
+CSET defaultdata=0
+CSET defaultdataradix=2
+CSET depth=64
+CSET meminitfile=no_coe_file_loaded
+CSET optgoal=Resources
+CSET readmiffile=false
+CSET reglastbit=true
+CSET sclr=true
+CSET shiftregtype=Fixed_Length
+CSET sinit=false
+CSET sset=false
+CSET syncctrlpriority=Reset_Overrides_Set
+CSET syncinitradix=2
+CSET syncinitval=0
+CSET width=1
+# END Parameters
+GENERATE
+# CRC: 8a315ace
