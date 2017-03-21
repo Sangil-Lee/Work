@@ -1,0 +1,41 @@
+cd "epics/modules/mrfioc2"
+
+ld < bin/vxWorks-ppc604/mrf.munch
+
+dbLoadDatabase("dbd/mrf.dbd")
+mrf_registerRecordDeviceDriver(pdbbase)
+dbLoadRecords("db/iocAdminVxWorks.db", "IOC=mrfioc2")
+
+epicsEnvSet("ENGINEER","Soo Ryu")
+epicsEnvSet("LOCATION","kt bldg 2 2nd floor")
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES","1000000")
+
+mrmEvgSetupVME("EVG1",5,0x00000000,3,0xc0)
+dbLoadRecords("db/vme-evg230.db", "SYS=TST, D=EVG:1, cardNum=1, EVG=EVG1")
+
+mrmEvrSetupVME("EVRRF",3,0x08040000,3,0xc1)
+dbLoadRecords("db/evr-vmerf-230.db", "SYS=TST, D=EVRRF:1, EVR=EVRRF")
+dbLoadRecords("db/evralias.db", "PID=0,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=1,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=2,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=3,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=4,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=5,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=6,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=7,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=8,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+dbLoadRecords("db/evralias.db", "PID=9,SYS=TST, D=EVRRF:1,PN=$(SYS){$(D)-DlyGen:$(PID)},PNA=$(SYS){$(D)-Alias:$(PID)}")
+
+#save_restoreDebug(2)
+#dbLoadRecords("db/save_restoreStatus.db","P=mrf:")
+#save_restoreSet_status_prefix("mrf:")
+
+#set_savefile_path("/home/ctrluser/sysboot","/save")
+#set_pass0_restoreFile("mrf_settings.sav")
+#set_pass1_restoreFile("mrf_waveforms.sav")
+#
+#set_savefile_path("/home/ctrluser","/req")
+#set_pass0_restoreFile("mrf_values.sav")
+#set_pass1_restoreFile("mrf_values.sav")
+
+iocInit()
