@@ -1,0 +1,3273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display typeId="org.csstudio.opibuilder.Display" version="1.0.0">
+	<actions hook="false" hook_all="false" />
+	<auto_scale_widgets>
+		<auto_scale_widgets>false</auto_scale_widgets>
+		<min_width>-1</min_width>
+		<min_height>-1</min_height>
+	</auto_scale_widgets>
+	<auto_zoom_to_fit_all>false</auto_zoom_to_fit_all>
+	<background_color>
+		<color name="GlobalBG" red="240" green="240" blue="240" />
+	</background_color>
+	<boy_version>5.1.0.201605121837</boy_version>
+	<foreground_color>
+		<color red="192" green="192" blue="192" />
+	</foreground_color>
+	<grid_space>6</grid_space>
+	<height>600</height>
+	<macros>
+		<include_parent_macros>true</include_parent_macros>
+		<P>FP:</P>
+		<R>1:</R>
+		<Title>FPS Overview</Title>
+	</macros>
+	<name></name>
+	<rules />
+	<scripts />
+	<show_close_button>true</show_close_button>
+	<show_edit_range>true</show_edit_range>
+	<show_grid>true</show_grid>
+	<show_ruler>true</show_ruler>
+	<snap_to_geometry>true</snap_to_geometry>
+	<widget_type>Display</widget_type>
+	<width>800</width>
+	<wuid>638b5397:135775a0b46:-8000</wuid>
+	<x>-1</x>
+	<y>-1</y>
+	<widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+		<actions hook="false" hook_all="false" />
+		<background_color>
+			<color name="GlobalBG" red="240" green="240" blue="240" />
+		</background_color>
+		<border_color>
+			<color red="0" green="128" blue="255" />
+		</border_color>
+		<border_style>0</border_style>
+		<border_width>1</border_width>
+		<enabled>true</enabled>
+		<font>
+			<opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+		</font>
+		<foreground_color>
+			<color red="192" green="192" blue="192" />
+		</foreground_color>
+		<group_name></group_name>
+		<height>51</height>
+		<macros>
+			<include_parent_macros>true</include_parent_macros>
+		</macros>
+		<name>Linking Container_4</name>
+		<opi_file>_title_0800.opi</opi_file>
+		<resize_behaviour>1</resize_behaviour>
+		<rules />
+		<scale_options>
+			<width_scalable>true</width_scalable>
+			<height_scalable>true</height_scalable>
+			<keep_wh_ratio>false</keep_wh_ratio>
+		</scale_options>
+		<scripts />
+		<tooltip></tooltip>
+		<visible>true</visible>
+		<widget_type>Linking Container</widget_type>
+		<width>801</width>
+		<wuid>28800a74:1585076c00a:-5c1b</wuid>
+		<x>0</x>
+		<y>0</y>
+	</widget>
+	<widget typeId="org.csstudio.opibuilder.widgets.groupingContainer" version="1.0.0">
+		<actions hook="true" hook_all="false">
+			<action type="OPEN_DISPLAY">
+				<path>fps_fpga_mitigation_node_status.opi</path>
+				<macros>
+					<include_parent_macros>true</include_parent_macros>
+					<NAME>M:</NAME>
+					<NodeName>Mitigation Node</NodeName>
+					<Title>$(NodeName) Status</Title>
+				</macros>
+				<mode>1</mode>
+				<description></description>
+			</action>
+		</actions>
+		<background_color>
+			<color name="GlobalBG" red="240" green="240" blue="240" />
+		</background_color>
+		<border_color>
+			<color name="LabelBG" red="65" green="105" blue="225" />
+		</border_color>
+		<border_style>0</border_style>
+		<border_width>1</border_width>
+		<enabled>true</enabled>
+		<fc>false</fc>
+		<font>
+			<opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+		</font>
+		<foreground_color>
+			<color red="192" green="192" blue="192" />
+		</foreground_color>
+		<height>31</height>
+		<lock_children>true</lock_children>
+		<macros>
+			<include_parent_macros>true</include_parent_macros>
+		</macros>
+		<name>Grouping Container</name>
+		<rules />
+		<scale_options>
+			<width_scalable>true</width_scalable>
+			<height_scalable>true</height_scalable>
+			<keep_wh_ratio>false</keep_wh_ratio>
+		</scale_options>
+		<scripts />
+		<show_scrollbar>false</show_scrollbar>
+		<tooltip></tooltip>
+		<transparent>false</transparent>
+		<visible>true</visible>
+		<widget_type>Grouping Container</widget_type>
+		<width>757</width>
+		<wuid>-211ee1e4:1584a9643b2:-7d90</wuid>
+		<x>18</x>
+		<y>134</y>
+		<widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
+			<actions hook="false" hook_all="false" />
+			<alarm_pulsing>false</alarm_pulsing>
+			<alpha>255</alpha>
+			<anti_alias>true</anti_alias>
+			<backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+			<background_color>
+				<color red="30" green="144" blue="255" />
+			</background_color>
+			<bg_gradient_color>
+				<color red="255" green="255" blue="255" />
+			</bg_gradient_color>
+			<border_alarm_sensitive>false</border_alarm_sensitive>
+			<border_color>
+				<color red="0" green="128" blue="255" />
+			</border_color>
+			<border_style>0</border_style>
+			<border_width>1</border_width>
+			<enabled>true</enabled>
+			<fg_gradient_color>
+				<color red="255" green="255" blue="255" />
+			</fg_gradient_color>
+			<fill_level>0.0</fill_level>
+			<font>
+				<opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+			</font>
+			<forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+			<foreground_color>
+				<color red="255" green="0" blue="0" />
+			</foreground_color>
+			<gradient>false</gradient>
+			<height>31</height>
+			<horizontal_fill>true</horizontal_fill>
+			<line_color>
+				<color red="128" green="0" blue="255" />
+			</line_color>
+			<line_style>0</line_style>
+			<line_width>0</line_width>
+			<name>Rectangle</name>
+			<pv_name></pv_name>
+			<pv_value />
+			<rules />
+			<scale_options>
+				<width_scalable>true</width_scalable>
+				<height_scalable>true</height_scalable>
+				<keep_wh_ratio>false</keep_wh_ratio>
+			</scale_options>
+			<scripts />
+			<tooltip>$(pv_name)
+				$(pv_value)</tooltip>
+			<transparent>false</transparent>
+			<visible>true</visible>
+			<widget_type>Rectangle</widget_type>
+			<width>757</width>
+			<wuid>-211ee1e4:1584a9643b2:-7e56</wuid>
+			<x>0</x>
+			<y>0</y>
+		</widget>
+		<widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+			<actions hook="false" hook_all="false" />
+			<auto_size>false</auto_size>
+			<background_color>
+				<color red="255" green="255" blue="255" />
+			</background_color>
+			<border_color>
+				<color red="0" green="128" blue="255" />
+			</border_color>
+			<border_style>0</border_style>
+			<border_width>1</border_width>
+			<enabled>true</enabled>
+			<font>
+				<opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+			</font>
+			<foreground_color>
+				<color red="0" green="0" blue="0" />
+			</foreground_color>
+			<height>31</height>
+			<horizontal_alignment>1</horizontal_alignment>
+			<name>Label</name>
+			<rules />
+			<scale_options>
+				<width_scalable>true</width_scalable>
+				<height_scalable>true</height_scalable>
+				<keep_wh_ratio>false</keep_wh_ratio>
+			</scale_options>
+			<scripts />
+			<show_scrollbar>false</show_scrollbar>
+			<text>Mitigation node</text>
+			<tooltip></tooltip>
+			<transparent>true</transparent>
+			<vertical_alignment>1</vertical_alignment>
+			<visible>true</visible>
+			<widget_type>Label</widget_type>
+			<width>757</width>
+			<wrap_words>true</wrap_words>
+			<wuid>-211ee1e4:1584a9643b2:-7d94</wuid>
+			<x>0</x>
+			<y>0</y>
+		</widget>
+	</widget>
+	<widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+		<actions hook="false" hook_all="false" />
+		<alarm_pulsing>false</alarm_pulsing>
+		<auto_size>false</auto_size>
+		<backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+		<background_color>
+			<color red="255" green="255" blue="255" />
+		</background_color>
+		<border_alarm_sensitive>true</border_alarm_sensitive>
+		<border_color>
+			<color red="0" green="128" blue="255" />
+		</border_color>
+		<border_style>1</border_style>
+		<border_width>1</border_width>
+		<enabled>true</enabled>
+		<font>
+			<opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+		</font>
+		<forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+		<foreground_color>
+			<color red="0" green="0" blue="0" />
+		</foreground_color>
+		<format_type>0</format_type>
+		<height>19</height>
+		<horizontal_alignment>0</horizontal_alignment>
+		<name>Text Update</name>
+		<precision>0</precision>
+		<precision_from_pv>true</precision_from_pv>
+		<pv_name>loc://$(DID)_bit_trigger(0)</pv_name>
+		<pv_value />
+		<rotation_angle>0.0</rotation_angle>
+		<rules />
+		<scale_options>
+			<width_scalable>true</width_scalable>
+			<height_scalable>true</height_scalable>
+			<keep_wh_ratio>false</keep_wh_ratio>
+		</scale_options>
+		<scripts />
+		<show_units>true</show_units>
+		<text>######</text>
+		<tooltip>$(pv_name)
+			$(pv_value)</tooltip>
+		<transparent>false</transparent>
+		<vertical_alignment>1</vertical_alignment>
+		<visible>false</visible>
+		<widget_type>Text Update</widget_type>
+		<width>85</width>
+		<wrap_words>false</wrap_words>
+		<wuid>7ba39d00:158e06f027f:-687f</wuid>
+		<x>17</x>
+		<y>426</y>
+	</widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_link.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>174</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>0</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>8</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>0</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>8</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>0</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>0</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>18</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>1</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>9</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>1</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>9</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>1</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>1</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>114</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>2</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>10</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>2</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>10</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>2</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>2</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>210</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>3</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>11</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>3</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>11</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>3</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>3</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>306</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>4</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>12</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>4</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>12</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>4</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>4</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>402</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>5</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>13</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>5</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>13</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>5</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>5</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>498</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>6</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>14</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>6</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>14</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>6</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>6</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>594</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+      <NN>0</NN>
+      <NR>15_00</NR>
+      <NB>7</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>216</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+      <NN>1</NN>
+      <NR>15_00</NR>
+      <NB>15</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>258</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+      <NN>2</NN>
+      <NR>31_16</NR>
+      <NB>7</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>300</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+      <NN>3</NN>
+      <NR>31_16</NR>
+      <NB>15</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>342</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>32</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <L>7</L>
+      <NN>4</NN>
+      <NR>39_32</NR>
+      <NB>7</NB>
+    </macros>
+    <name>Linking Container</name>
+    <opi_file>_fps_overview_acq_node.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>84</width>
+    <wuid>-211ee1e4:1584a9643b2:-7874</wuid>
+    <x>690</x>
+    <y>384</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>00</Od>
+      <Val>1</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>18</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>01</Od>
+      <Val>2</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>66</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>02</Od>
+      <Val>4</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>114</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>03</Od>
+      <Val>8</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>162</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>04</Od>
+      <Val>16</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>210</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>05</Od>
+      <Val>32</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>258</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>06</Od>
+      <Val>64</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>306</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>07</Od>
+      <Val>128</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>354</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>08</Od>
+      <Val>256</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>402</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>09</Od>
+      <Val>512</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>450</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>10</Od>
+      <Val>1024</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>498</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>11</Od>
+      <Val>2048</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>546</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>12</Od>
+      <Val>4096</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>594</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>13</Od>
+      <Val>8192</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>642</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>14</Od>
+      <Val>16384</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>690</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+    <actions hook="true" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_output_detail.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+          <Od>$(Od)</Od>
+	  <Val>$(Val)</Val>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <background_color>
+      <color name="GlobalBG" red="240" green="240" blue="240" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <group_name></group_name>
+    <height>71</height>
+    <macros>
+      <include_parent_macros>true</include_parent_macros>
+      <Od>15</Od>
+      <Val>32768</Val>
+    </macros>
+    <name>Linking Container_2</name>
+    <opi_file>_fps_overview_output.opi</opi_file>
+    <resize_behaviour>2</resize_behaviour>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <tooltip></tooltip>
+    <visible>true</visible>
+    <widget_type>Linking Container</widget_type>
+    <width>37</width>
+    <wuid>-211ee1e4:1584a9643b2:-75e7</wuid>
+    <x>738</x>
+    <y>54</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
+    <actions hook="false" hook_all="false">
+      <action type="OPEN_DISPLAY">
+        <path>fps_engineering.opi</path>
+        <macros>
+          <include_parent_macros>true</include_parent_macros>
+	  <Title>FPS Engineering Display</Title>
+        </macros>
+        <mode>1</mode>
+        <description></description>
+      </action>
+    </actions>
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color name="ButtonFG" red="180" green="180" blue="180" />
+    </background_color>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Sans" height="10" style="0">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>25</height>
+    <image></image>
+    <name>Action Button</name>
+    <push_action_index>0</push_action_index>
+    <pv_name></pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <style>0</style>
+    <text>Engineering</text>
+    <toggle_button>false</toggle_button>
+    <tooltip>$(actions)</tooltip>
+    <visible>true</visible>
+    <widget_type>Action Button</widget_type>
+    <width>86</width>
+    <wuid>77faa500:158de8e03a8:-52e2</wuid>
+    <x>690</x>
+    <y>426</y>
+  </widget>
+</display>

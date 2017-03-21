@@ -1,0 +1,7 @@
+epicsEnvSet("ARCH","linux-x86_64")
+epicsEnvSet("IOC","ioc")
+epicsEnvSet("TOP","${RAON_SITEAPPS}/Mobiis_LLRF")
+epicsEnvSet("STARTUP","${RAON_SITEAPPS}/Mobiis_LLRF/iocBoot/ioc")
+epicsEnvSet("DEVICE","RAON:SSR:")
+epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST","NO")
+epicsEnvSet("EPICS_CA_ADDR_LIST","localhost")

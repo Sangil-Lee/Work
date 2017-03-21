@@ -1,0 +1,14 @@
+file ecat2el316x.template
+{
+	pattern {CH_ID, PDO_IDX}
+		{$(MOD_ID)-AI1, 0}
+		{$(MOD_ID)-AI2, 1}
+		{$(MOD_ID)-AI3, 2}
+		{$(MOD_ID)-AI4, 3}
+}
+
+file ecat2slave.template
+{
+	pattern {DEVICENAME}
+		{EL3164}
+}

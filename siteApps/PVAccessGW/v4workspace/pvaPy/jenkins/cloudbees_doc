@@ -1,0 +1,78 @@
+# pvaPy
+# Jenkins @ Cloudbees documentation generation and deployment
+#
+# Jenkins invokes scripts with the "-ex" option. So the build is considered a failure
+# if any of the commands exits with a non-zero exit code.
+#
+# Author: Ralph Lange <Ralph.Lange@gmx.de>
+# Copyright (C) 2013 Helmholtz-Zentrum Berlin für Materialien und Energie GmbH
+# Copyright (C) 2014-2015 ITER Organization.
+# All rights reserved. Use is subject to license terms.
+
+###########################################
+# Set EPICS Base version and upload target
+
+BASE=3.15.3
+PUBLISH=${1:-DONT}
+
+# Dependent module branches (empty = master)
+PVCOMMON_BRANCH=""
+PVDATA_BRANCH=""
+PVACCESS_BRANCH=""
+NORMATIVETYPES_BRANCH=""
+PVACLIENT_BRANCH=""
+PVAPY_BRANCH=""
+
+###########################################
+# Fetch and unpack dependencies
+
+export STUFF=/tmp/stuff
+
+rm -fr ${STUFF}
+mkdir -p ${STUFF}
+cd ${STUFF}
+
+wget -nv https://openepics.ci.cloudbees.com/job/Base-${BASE}_Build/lastSuccessfulBuild/artifact/base-${BASE}.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/pvDataCPP_${PVDATA_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/pvData.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/pvAccessCPP_${PVACCESS_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/pvAccess.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/normativeTypesCPP_${NORMATIVETYPES_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/normativeTypes.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/pvaClientCPP_${PVACLIENT_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/pvaClient.CB-dist.tar.gz
+tar -xzf base-${BASE}.CB-dist.tar.gz
+tar -xzf pvData.CB-dist.tar.gz
+tar -xzf pvAccess.CB-dist.tar.gz
+tar -xzf pvaClient.CB-dist.tar.gz
+tar -xzf normativeTypes.CB-dist.tar.gz
+
+###########################################
+# Generate
+
+cd ${WORKSPACE}
+
+export EPICS_BASE=${STUFF}
+export EPICS4_DIR=${STUFF}
+export EPICS_HOST_ARCH=$(${EPICS_BASE}/startup/EpicsHostArch)
+export LD_LIBRARY_PATH=${EPICS_BASE}/lib/${EPICS_HOST_ARCH}
+
+# Fetch pvaPy "distribution"
+rm -f pvaPy.CB-dist.tar.gz
+wget -nv https://openepics.ci.cloudbees.com/job/pvaPy_${PVAPY_BRANCH}Build/BASE=${BASE},USE_MB=MB_NO/lastSuccessfulBuild/artifact/pvaPy.CB-dist.tar.gz
+tar -xzf pvaPy.CB-dist.tar.gz
+
+virtualenv --distribute DEV
+DEV/bin/pip install Sphinx
+source DEV/bin/activate
+
+export PYTHON_VERSION=`python -c 'import sys; print sys.version[:3]'`
+export PYTHONPATH=${WORKSPACE}/lib/python/${PYTHON_VERSION}/${EPICS_HOST_ARCH}
+make doc
+
+###########################################
+# Publish
+
+if [ "${PUBLISH}" != "DONT" ]; then
+    # Upload explicit dummy to ensure target directory exists
+    echo "Created by CloudBees Jenkins upload job. Should be deleted as part of the job." > DUMMY
+    rsync -q -e ssh DUMMY epics-jenkins@web.sourceforge.net:/home/project-web/epics-pvdata/htdocs/docbuild/pvaPy/${PUBLISH}/
+
+    rsync -aqP --delete -e ssh documentation/sphinx/_build/html/ epics-jenkins@web.sourceforge.net:/home/project-web/epics-pvdata/htdocs/docbuild/pvaPy/${PUBLISH}/
+fi

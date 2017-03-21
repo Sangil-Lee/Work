@@ -1,0 +1,17 @@
+record(stringin, "$(PREFIX):$(MOD_ID)-DEVNAME")
+{
+	field(DESC, "Module type (Not read from device)")
+	field(PINI, "YES")
+	field(VAL,  "$(DEVICENAME)")
+	alias($(PREFIX):$(MOD_ID)-DTYP)
+}
+
+record(bi, "$(PREFIX):$(MOD_ID)-STATUS")
+{
+	field(DESC, "Slave status")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP,  "s$(SLAVE_IDX) STATUS_SLAVE_OP")
+	field(ZNAM, "Not OK")
+	field(ONAM, "OK")
+}

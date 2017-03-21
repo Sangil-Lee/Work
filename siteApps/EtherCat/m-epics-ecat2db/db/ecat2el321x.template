@@ -1,0 +1,79 @@
+# % macro, PREFIX, prefix name
+# % macro, CH_ID   channel identification
+# % macro, INDEX,  index mapping to asyn reason create by ecAsynInit. Same index as the physical numbering.
+# % macro, PORT,   asyn port for device
+# % macro, SCAN,   scan rate
+# Implements mapping one pdo to records on EL321x 
+#  TxPDO 0x1a00 "RTD TxPDO-Map Ch.1"
+#    PDO entry 0x6000:01,  1 bit, "Underrange"
+#    PDO entry 0x6000:02,  1 bit, "Overrange"
+#    PDO entry 0x0000:00,  4 bit, "Gap"
+#    PDO entry 0x6000:07,  1 bit, "Error"
+#    PDO entry 0x0000:00,  7 bit, "Gap"
+#    PDO entry 0x6000:0f,  1 bit, "TxPDO State"
+#    PDO entry 0x6000:10,  1 bit, "TxPDO Toggle"
+#    PDO entry 0x6000:11, 16 bit, "Value"
+
+record(bi, "$(PREFIX):$(CH_ID)-URNG")
+{
+  field(DESC, "Under range")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e0")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-ORNG")
+{
+  field(DESC, "Over range")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e1")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-ERR")
+{
+  field(DESC, "Error")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e3")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-TXPST")
+{
+  field(DESC, "TxPDO State")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e5")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-TXPTOG")
+{
+  field(DESC, "TxPDO Toggle")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e6")
+  field(SCAN, "I/O Intr")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+record(ai, "$(PREFIX):$(CH_ID)")
+{
+  field(DESC, "Analog input value")
+  field(DTYP, "ecat2")
+  field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e7")
+  field(SCAN, "I/O Intr")
+  field(LINR, "SLOPE")
+  field(ESLO, "$(ESLO=1)")
+  field(EOFF, "$(EOFF=0)")
+  field(EGU,  "$(EGU=V)")
+  field(PREC, "$(PREC=7)")
+}
+

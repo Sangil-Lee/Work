@@ -1,0 +1,10 @@
+pvput  byte01 5
+pvput  short01 5
+pvput  int01 5
+pvput  ubyte01 5
+pvput  ushort01 5
+pvput  uint01 5
+pvput  float01 5
+pvput  double01 5
+pvget -r "field(value,alarm,timeStamp)" \
+   byte01 short01 int01 ubyte01 ushort01 uint01 float01 double01

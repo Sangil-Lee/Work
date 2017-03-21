@@ -1,0 +1,11 @@
+# TDS_3000 Oscilloscope
+include "drvVxi11.dbd"
+device(ai,        GPIB_IO, devAiTDS3000Gpib,   "TDS_3000 Scope")
+device(ao,        GPIB_IO, devAoTDS3000Gpib,   "TDS_3000 Scope")
+device(bi,        GPIB_IO, devBiTDS3000Gpib,   "TDS_3000 Scope")
+device(bo,        GPIB_IO, devBoTDS3000Gpib,   "TDS_3000 Scope")
+device(mbbi,      GPIB_IO, devMbbiTDS3000Gpib, "TDS_3000 Scope")
+device(mbbo,      GPIB_IO, devMbboTDS3000Gpib, "TDS_3000 Scope")
+device(stringin,  GPIB_IO, devSiTDS3000Gpib,   "TDS_3000 Scope")
+device(stringout, GPIB_IO, devSoTDS3000Gpib,   "TDS_3000 Scope")
+device(waveform,  GPIB_IO, devWfTDS3000Gpib,   "TDS_3000 Scope")

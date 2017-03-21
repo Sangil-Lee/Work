@@ -1,0 +1,286 @@
+
+record(stringin,"$(SYS)IOC-TIME") {  field(SCAN,".5 second")  field(DTYP,"Soft Timestamp")  field(INP,"@%Y-%m-%d %H:%M:%S ") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR1") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A1 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR2") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A2 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR3") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A3 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR4") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A4 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR5") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A5 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR6") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A6 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR7") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A7 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR8") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A8 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR9") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A9 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR10") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A10 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR11") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A11 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-TFc:ENV:TempR12") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L1 A12 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP1:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[0]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP2:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[1]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP3:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[2]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP4:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[3]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP5:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[4]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP6:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[5]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP7:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[6]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP8:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_0_CH[7]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP9:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[0]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP10:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[1]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP11:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[2]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP12:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[3]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP13:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[4]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP14:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[5]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP15:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[6]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:VGP16:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_1_CH[7]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp1:StatusCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_StatusCode[0]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp2:StatusCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_StatusCode[1]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp3:StatusCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_StatusCode[2]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp4:StatusCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_StatusCode[3]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp1:AlarmCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_AlarmCode[0]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp2:AlarmCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_AlarmCode[1]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp3:AlarmCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_AlarmCode[2]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1-Vac:TPmp4:AlarmCode") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_AlarmCode[3]")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR1") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR1")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR2") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR3") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR3")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR4") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR4")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR5") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR5")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR6") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR6")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR7") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR7")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR8") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR8")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR9") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR9")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR10") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR10")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR11") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR11")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR12") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR12")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR13") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR13")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR14") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR14")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR15") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR15")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR16") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR16")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR17") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR17")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR18") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR18")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR19") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR19")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR20") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR20")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR21") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR21")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR22") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR22")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR23") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR23")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR24") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR24")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR25") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR25")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR26") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR26")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR27") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR27")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR28") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR28")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR29") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR29")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR30") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR30")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR31") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR31")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:TempR32") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrTempR32")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR1") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR1")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR2") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR2")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR3") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR3")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR4") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR4")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR5") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR5")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR6") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR6")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR7") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR7")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR8") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR8")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR9") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR9")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR10") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR10")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR11") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR11")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR12") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR12")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR13") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR13")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR14") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR14")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR15") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR15")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR16") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR16")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR17") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR17")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR18") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR18")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR19") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR19")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR20") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR20")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR21") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR21")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR22") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR22")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR23") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR23")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR24") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR24")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR25") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR25")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR26") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR26")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR27") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR27")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR28") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR28")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR29") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR29")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR30") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR30")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR31") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR31")    field(PREC,"2") }
+record(ai ,"$(SYS)RFQ1:Watr:FlowR32") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc2 RFQ1WatrFlowR32")    field(PREC,"2") }
+record(ao ,"$(SYS)RFQ1-Vac:VGP:CPLimit") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQ1CPumpLimit")    field(EGU,"bar")    field(PREC,"2") }
+record(ao ,"$(SYS)RFQ1-Vac:VGP:TPLimit") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQ1TPumpLimit")    field(EGU,"bar")    field(PREC,"2") }
+
+
+
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR1") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A1 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR2") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A2 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR3") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A3 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR4") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A4 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR5") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A5 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR6") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A6 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR7") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A7 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR8") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A8 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR9") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A9 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR10") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A10 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR11") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A11 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-TFc:ENV:TempR12") {  field(SCAN,"1 second")  field(DTYP,"LakeShore")    field(INP,"#L2 A12 @2")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP1:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[0]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP2:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[1]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP3:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[2]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP4:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[3]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP5:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[4]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP6:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[5]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP7:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[6]")    field(PREC,"2") }
+record(ai ,"$(SYS)MEBT1-Vac:VGP8:Vacuum") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 XGS600_2_CH[7]")    field(PREC,"2") }
+
+
+
+
+record(bi ,"$(SYS)RFQ1-Vac:TPmp1:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_Status[0]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:TPmp2:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_Status[1]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:TPmp3:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_Status[3]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:TPmp4:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG1100_Status[4]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp1:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_0_StartStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp2:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_1_StartStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp3:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_2_StartStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp4:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_3_StartStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp1:Alarm") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_0_AlarmStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp2:Alarm") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_1_AlarmStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp3:Alarm") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_2_AlarmStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp4:Alarm") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_3_AlarmStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp1:Warnning") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_0_WarnStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp2:Warnning") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_1_WarnStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp3:Warnning") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_2_WarnStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bi ,"$(SYS)RFQ1-Vac:DPmp4:Warnning") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 DSP500_3_WarnStatus")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:AutoCtrl:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQ_AutoOn")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:AutoCtrl:Start") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQ_AutoStartStop")    field(ZNAM,"Off")    field(ONAM,"On") }
+
+
+
+
+
+
+
+
+record(bo ,"$(SYS)RFQ1-Vac:TPmp1:StartStop") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 TG1100_StartStop[0]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:TPmp2:StartStop") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 TG1100_StartStop[1]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:TPmp3:StartStop") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 TG1100_StartStop[2]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:TPmp4:StartStop") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 TG1100_StartStop[3]")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp1:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_0_PUMP0_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp2:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_0_PUMP1_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp3:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_0_PUMP2_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp4:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_0_PUMP3_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp5:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_1_PUMP0_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp6:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_1_PUMP1_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp7:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_1_PUMP2_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp8:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_1_PUMP3_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp-EMP1:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_0_EPO")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:CPmp-EMP2:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 HC70_1_EPO")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp1:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_0_PUMP_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp2:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_1_PUMP_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp3:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_2_PUMP_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp4:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_3_PUMP_OnOff")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp1:Reset") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_0_PUMP_Reset")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp2:Reset") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_1_PUMP_Reset")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp3:Reset") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_2_PUMP_Reset")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:DPmp4:Reset") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 DSP500_3_PUMP_Reset")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV1:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve00")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV2:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve01")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV3:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve02")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV4:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve03")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV5:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve04")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV6:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve05")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV7:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve06")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV8:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve07")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV9:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve08")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV10:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve09")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV11:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve10")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV12:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve11")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV13:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve12")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:GV14:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQValve13")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)RFQ1-Vac:INTLCK:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 RFQ1IntLockOn")    field(ZNAM,"Off")    field(ONAM,"On") }
+
+record(bi ,"$(SYS)MEBT1-Vac:Tpmp1:Status") {  field(SCAN,"1 second")  field(DTYP,"EtherIP")    field(INP,"@plc1 TG800_0_Status")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)MEBT1-Vac:AutoCtrl:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 MEBT_AutoOn")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)MEBT1-Vac:AutoCtrl:Start") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 MEBT_AutoStartOn")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)MEBT1-Vac:Dpmp1:On") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 IDP15_PowerOn")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)MEBT1-Vac:GV1:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 MEBTValve00")    field(ZNAM,"Off")    field(ONAM,"On") }
+record(bo ,"$(SYS)MEBT1-Vac:GV2:Open") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 MEBTValve01")    field(ZNAM,"Off")    field(ONAM,"On") }
+
+
+record(bo ,"$(SYS)MEBT1-Vac:Tpmp1:StartStop") {  field(DTYP,"EtherIP")    field(OUT,"@plc1 TG800_StartStop[0]")    field(ZNAM,"Off")    field(ONAM,"On") }
+
+record(ai ,"$(SYS)MEBT1:PS1:VoltR") {  field(SCAN,"5 second")  field(DTYP,"Sorensen")    field(INP,"#L3 A1 @2")    field(EGU,"V")    field(PREC,"2") }
+record(ao, "$(SYS)MEBT1:PS1:VoltSetpt")
+{
+    field(DESC, "Set Voltage Value")
+    field(DTYP, "Sorensen")
+    field(EGU, "V")
+    field(SCAN, "Passive")
+    field(PREC, "2")
+    field(OUT,  "#L3 A1 @4")
+    field(EGUF, "4000")
+    field(EGUL, "0")
+    field(HOPR, "4000")
+    field(LOPR, "0")
+    field(DRVH, "4000")
+    field(DRVL, "0")
+    field(LINR, "LINEAR")
+    field(PINI, "YES")
+    field(VAL, "0")
+}
+
+record(ai ,"$(SYS)MEBT1:PS1:CurrentR") {  field(SCAN,"5 second")  field(DTYP,"Sorensen")    field(INP,"#L3 A1 @1")    field(EGU,"A")    field(PREC,"2") }
+record(ao, "$(SYS)MEBT1:PS1:CurrentSetpt")
+{
+    field(DESC, "Set Current Value")
+    field(DTYP, "Sorensen")
+    field(EGU, "A")
+    field(SCAN, "Passive")
+    field(PREC, "2")
+    field(OUT,  "#L3 A1 @3")
+    field(EGUF, "4000")
+    field(EGUL, "0")
+    field(HOPR, "4000")
+    field(LOPR, "0")
+    field(DRVH, "4000")
+    field(DRVL, "0")
+    field(LINR, "LINEAR")
+    field(PINI, "YES")
+    field(VAL, "0")
+}
+
+
+
+record(ai ,"$(SYS)MEBT1:PS2:VoltR") {  field(SCAN,"5 second")  field(DTYP,"Sorensen")    field(INP,"#L4 A1 @2")    field(EGU,"V")    field(PREC,"2") }
+record(ao, "$(SYS)MEBT1:PS2:VoltSetpt")
+{
+    field(DESC, "Set Voltage Value")
+    field(DTYP, "Sorensen")
+    field(EGU, "V")
+    field(SCAN, "Passive")
+    field(PREC, "2")
+    field(OUT,  "#L4 A1 @4")
+    field(EGUF, "4000")
+    field(EGUL, "0")
+    field(HOPR, "4000")
+    field(LOPR, "0")
+    field(DRVH, "4000")
+    field(DRVL, "0")
+    field(LINR, "LINEAR")
+    field(PINI, "YES")
+    field(VAL, "0")
+}
+
+record(ai ,"$(SYS)MEBT1:PS2:CurrentR") {  field(SCAN,"5 second")  field(DTYP,"Sorensen")    field(INP,"#L4 A1 @1")    field(EGU,"A")    field(PREC,"2") }
+record(ao, "$(SYS)MEBT1:PS2:CurrentSetpt")
+{
+    field(DESC, "Set Current Value")
+    field(DTYP, "Sorensen")
+    field(EGU, "A")
+    field(SCAN, "Passive")
+    field(PREC, "2")
+    field(OUT,  "#L4 A1 @3")
+    field(EGUF, "4000")
+    field(EGUL, "0")
+    field(HOPR, "4000")
+    field(LOPR, "0")
+    field(DRVH, "4000")
+    field(DRVL, "0")
+    field(LINR, "LINEAR")
+    field(PINI, "YES")
+    field(VAL, "0")
+}
