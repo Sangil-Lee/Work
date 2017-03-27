@@ -1,0 +1,16 @@
+include "snmpRecord.dbd"
+include "snmpstrRecord.dbd"
+
+
+# snmpDevAsync.c
+device(snmp,INST_IO,devSNMPRead,"SNMP Read")
+device(snmp,INST_IO,devSNMPWrite,"SNMP Write")
+device(snmpstr,INST_IO,devSNMPRead_str,"SNMP Read")
+
+# device(snmp,CONSTANT,devSNMPRead,"SNMP Read")
+# device(snmp,CONSTANT,devSNMPWrite,"SNMP Write")
+
+# snmpAsync_v3.c
+#registrar(drvSNMPConnInitRegisterCommands)
+#device(snmp,CONSTANT,devSNMPRead,"SNMP Read")
+#variable(SNMPDebug)

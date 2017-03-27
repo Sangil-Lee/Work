@@ -1,0 +1,11 @@
+record(ifstat, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):IFSTAT") {
+  field(NIC, "eth0")
+  field(TONC, "Total")
+  field(SCAN, "1 second")
+  field(EGU, "KBytes")
+  field(PREC, "4")
+  field(HIHI, "60000")
+  field(HIGH, "40000")
+  field(HHSV, "MAJOR")
+  field(HSV, "MINOR")
+}
