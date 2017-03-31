@@ -1,1 +1,0 @@
-../epics/devel/iocBoot/iocex01/st.cmd
