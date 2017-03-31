@@ -1,1 +1,0 @@
-console.log('Sorry, nothing to download here. Please return to http://highcharts.com/download and make a new configuration.');
