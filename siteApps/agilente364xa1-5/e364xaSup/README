@@ -1,0 +1,42 @@
+#Author: silee
+
+#############
+epics/R3.14.12.5/epicsLibs/synApps_5_8/support/asyn-4-26/asyn/devGpib/
+
+devCommonGpib.c for Agilent DC Power Supply, E3632A, using Agilent E364xA power supplies (Asyn) IOC by APS.
+modified following:
+
+#############
+114         if(got_special_linconv) {
+115             char *format = (pgpibCmd->format) ? (pgpibCmd->format) : "%ld";
+116 #ifdef AGILENT_E3632A
+117             char skipChars[39];
+118             char realChars[39];
+119             sscanf(pgpibDpvt->msg, "%39[^+]%s", skipChars,realChars);
+120 #ifdef DEBUG
+121             asynPrint(pasynUser,ASYN_TRACE_ERROR,"msg(%s),%s,%s\n", pgpibDpvt->msg, skip
+122 #endif
+123             result = sscanf(realChars, format, &value);
+124 #else
+125             result = sscanf(pgpibDpvt->msg, format, &rawvalue);
+126 #endif
+127             if(result==1) {pai->rval = rawvalue; pai->udf = FALSE;}
+128         } else {
+129             char *format = (pgpibCmd->format) ? (pgpibCmd->format) : "%lf";
+130 #ifdef AGILENT_E3632A
+131             char skipChars[39];
+132             char realChars[39];
+133             sscanf(pgpibDpvt->msg, "%39[^+]%s", skipChars,realChars);
+134 #ifdef DEBUG
+135             asynPrint(pasynUser,ASYN_TRACE_ERROR,"msg(%s),%s,%s\n", pgpibDpvt->msg, skip
+136 #endif
+137             result = sscanf(realChars, format, &value);
+138 #else
+139             result = sscanf(pgpibDpvt->msg, format, &value);
+140 #endif
+#############
+
+for Compile into Makefile into asyn directory.
+USR_CFLAGS += -DAGILENT_E3632A
+
+#############

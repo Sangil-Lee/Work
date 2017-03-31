@@ -1,0 +1,32 @@
+#Author: silee
+#AsynDriverInterface.cc modified by silee
+
+#############
+epics/R3.14.12.5/epicsLibs/synApps_5_8/support/stream-2-6a/streamDevice/src
+
+AsynDriverInterface.cc.c for Agilent DC Power Supply, E3632A, using Agilent E364xA power supplies (Asyn) IOC by APS.
+modified following:
+
+911 #ifdef AGILENT_E3632A
+912         std::string strBuffer = std::string(buffer);
+913         int index = 0;
+914         for(size_t i = 0; i < strBuffer.size();i++)
+915         {
+916             if(strBuffer.at(i) == '+' || strBuffer.at(i) == '-' ||
+917                 strBuffer.at(i) == 'E' || strBuffer.at(i) == 'e'||
+918                 strBuffer.at(i) == '.' || isdigit(strBuffer.at(i)))
+919             {
+920                 buffer[index++] = strBuffer.at(i);
+921             };
+922         };
+923         buffer[index++] = '\r';
+924         buffer[index++] = '\n';
+925 #endif
+
+#############
+
+USR_CFLAGS   += -DAGILENT_E3632A
+USR_CXXFLAGS += -DAGILENT_E3632A 
+in Makefile
+
+

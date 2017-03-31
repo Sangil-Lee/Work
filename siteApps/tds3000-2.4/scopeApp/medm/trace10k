@@ -1,0 +1,32 @@
+#! /bin/sh
+c=$1
+sys="`echo $c | cut -c1`"
+dev="`echo $c | cut -c2-3`"
+
+
+usage="Usage: trace [1-4][HV or LL]<CR>\n"
+if [ $# -lt 1 ] || [ $sys -gt 4 ] || [ $sys -lt 1 ]
+  then echo $usage
+  exit 1
+fi
+if [ "$dev" != "HV" ] && [ "$dev" != "LL" ]
+  then echo $usage
+  exit 1
+fi
+file=/tmp/RF${sys}${dev}_Tek3000Trace1
+if [ -f $file ]
+then
+   rm -f $file
+fi
+sddswmonitor -PVnames=RF${sys}:${dev}:scaledTimeAxisWF,RF${sys}:${dev}:chan1ScaledWaveWF,RF${sys}:${dev}:chan2ScaledWaveWF,RF${sys}:${dev}:chan3ScaledWaveWF,RF${sys}:${dev}:chan4ScaledWaveWF $file 
+ts=`caget -t RF${sys}:${dev}:WF_timeStampTS`
+sddsplot \
+-col=RF${sys}:${dev}:scaledTimeAxisWF,RF${sys}:${dev}:chan1ScaledWaveWF \
+-col=RF${sys}:${dev}:scaledTimeAxisWF,RF${sys}:${dev}:chan2ScaledWaveWF \
+-col=RF${sys}:${dev}:scaledTimeAxisWF,RF${sys}:${dev}:chan3ScaledWaveWF \
+-col=RF${sys}:${dev}:scaledTimeAxisWF,RF${sys}:${dev}:chan4ScaledWaveWF \
+-grap=line,vary -sep=1 -layout=1,4 \
+-title="$ts" \
+-topTitle \
+$file 
+

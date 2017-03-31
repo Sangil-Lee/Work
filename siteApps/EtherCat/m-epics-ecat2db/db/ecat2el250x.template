@@ -1,0 +1,17 @@
+# EL2502 PDO Description:
+#  RxPDO 0x1600 "PWM RxPDO-Map Ch.1"
+#    PDO entry 0x7000:11, 16 bit, "PWM output"
+#  RxPDO 0x1601 "PWM RxPDO-Map Ch.2"
+#    PDO entry 0x7010:11, 16 bit, "PWM output"
+
+record(ao, "$(PREFIX):$(CH_ID)")
+{
+        field(DESC, "PWM output value")
+	field(DTYP, "ecat2")
+	field(OUT,  "s$(SLAVE_IDX).sm2.p$(PDO_IDX).e0")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.003051850947599719")
+        field(EOFF, "0")
+	field(EGU,  "%")
+	field(PREC, "4")
+}

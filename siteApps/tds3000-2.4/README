@@ -1,0 +1,39 @@
+EPICS Device Support for Tektronix TDS3000-Series Oscilloscopes
+===============================================================
+
+Contents
+========
+  LICENSE        - EPICS Open Licence
+  configure      - Build rules
+  documentation  - Added in R2-2, basic operation description of the
+                   database and the medm displays.
+  iocBoot        - Startup script for example application
+  medm           - A set of MEDM files for controlling an oscilloscope and
+                   viewing the acquired waveforms
+  scopeApp       - Example application
+  tds3000        - Device support
+                   VXI-11/GPIB & RS-232 connection (libdevTDS3000)
+
+To use: Add this directory to the application CONFIGURE/RELEASE file and the
+following lines to the application Makefile:
+    xxx_DBD += devTDS3000.dbd   (or devTDS5000.dbd)
+    xxx_LIBS += devTDS3000
+
+
+Installation
+============
+1) Edit configure/RELEASE and set EPICS_BASE, ASYN and SNCSSEQ appropriately.
+2) cd to this directory and run make.
+
+
+Testing
+=======
+1) cd to iocBoot/iocscope.
+2) Edit the st.cmd script and uncomment/edit the lines to match your hardware.
+   Set the TDS_FAMILY and TDS_ETHER environment variables for your hardware.
+3) Run the application (../../bin/<arch>/scope st.cmd).
+4) cd to medm.
+5) Set the EPICS_CA_MAX_ARRAY_BYTES environment variable:
+   export EPICS_CA_MAX_ARRAY_BYTES=80000
+6) Run medm with arguments to match your st.cmd script:
+   medm -x -macro "scope=<myprefix>" tds3000_c.adl 

@@ -1,0 +1,182 @@
+Release 12.1 - Bitgen M.53d (nt)
+Copyright (c) 1995-2010 Xilinx, Inc.  All rights reserved.
+Loading device for application Rf_Device from file '6vlx240t.nph' in environment
+C:\Xilinx\12.1\ISE_DS\ISE.
+   "top_pr" is an NCD, version 3.2, device xc6vlx240t, package ff1156, speed -1
+Opened constraints file synth_pr/top_pr.pcf.
+
+Thu Apr 07 12:51:03 2011
+
+C:\Xilinx\12.1\ISE_DS\ISE\bin\nt\unwrapped\bitgen.exe -b -g ActiveReconfig:Yes -g Persist:Yes -r synth/top.bit synth_pr/top_pr.ncd top_pr_rawbits.bit 
+
+Summary of Bitgen Options:
++----------------------+----------------------+
+| Option Name          | Current Setting      |
++----------------------+----------------------+
+| Compress             | (Not Specified)*     |
++----------------------+----------------------+
+| Readback             | (Not Specified)*     |
++----------------------+----------------------+
+| CRC                  | Enable*              |
++----------------------+----------------------+
+| DebugBitstream       | No*                  |
++----------------------+----------------------+
+| ConfigRate           | 2*                   |
++----------------------+----------------------+
+| StartupClk           | Cclk*                |
++----------------------+----------------------+
+| CclkPin              | Pullup*              |
++----------------------+----------------------+
+| DonePin              | Pullup*              |
++----------------------+----------------------+
+| HswapenPin           | Pullup*              |
++----------------------+----------------------+
+| M0Pin                | Pullup*              |
++----------------------+----------------------+
+| M1Pin                | Pullup*              |
++----------------------+----------------------+
+| M2Pin                | Pullup*              |
++----------------------+----------------------+
+| ProgPin              | Pullup*              |
++----------------------+----------------------+
+| InitPin              | Pullup*              |
++----------------------+----------------------+
+| CsPin                | Pullup*              |
++----------------------+----------------------+
+| DinPin               | Pullup*              |
++----------------------+----------------------+
+| BusyPin              | Pullup*              |
++----------------------+----------------------+
+| RdWrPin              | Pullup*              |
++----------------------+----------------------+
+| TckPin               | Pullup*              |
++----------------------+----------------------+
+| TdiPin               | Pullup*              |
++----------------------+----------------------+
+| TdoPin               | Pullup*              |
++----------------------+----------------------+
+| TmsPin               | Pullup*              |
++----------------------+----------------------+
+| UnusedPin            | Pulldown*            |
++----------------------+----------------------+
+| GWE_cycle            | 6*                   |
++----------------------+----------------------+
+| GTS_cycle            | 5*                   |
++----------------------+----------------------+
+| OverTempPowerDown    | Disable*             |
++----------------------+----------------------+
+| LCK_cycle            | NoWait*              |
++----------------------+----------------------+
+| Match_cycle          | NoWait               |
++----------------------+----------------------+
+| DONE_cycle           | 4*                   |
++----------------------+----------------------+
+| Persist              | Yes                  |
++----------------------+----------------------+
+| DriveDone            | No*                  |
++----------------------+----------------------+
+| DonePipe             | No*                  |
++----------------------+----------------------+
+| Security             | None*                |
++----------------------+----------------------+
+| UserID               | 0xFFFFFFFF*          |
++----------------------+----------------------+
+| ActivateGclk         | No*                  |
++----------------------+----------------------+
+| ActiveReconfig       | Yes                  |
++----------------------+----------------------+
+| Encrypt              | No*                  |
++----------------------+----------------------+
+| EncryptKeySelect     | bbram*               |
++----------------------+----------------------+
+| Key0                 | pick*                |
++----------------------+----------------------+
+| StartCBC             | pick*                |
++----------------------+----------------------+
+| HKey                 | pick*                |
++----------------------+----------------------+
+| KeyFile              | (Not Specified)*     |
++----------------------+----------------------+
+| DCIUpdateMode        | AsRequired*          |
++----------------------+----------------------+
+| ConfigFallback       | Enable*              |
++----------------------+----------------------+
+| SelectMAPAbort       | Enable*              |
++----------------------+----------------------+
+| BPI_page_size        | 1*                   |
++----------------------+----------------------+
+| BPI_1st_read_cycle   | 1*                   |
++----------------------+----------------------+
+| next_config_addr     | None*                |
++----------------------+----------------------+
+| DoneSignalsPowerDown | Disable*             |
++----------------------+----------------------+
+| InitSignalsError     | Enable*              |
++----------------------+----------------------+
+| ICAP_Encryption      | Disable*             |
++----------------------+----------------------+
+| SysmonPartialReconfig | Disable*             |
++----------------------+----------------------+
+| SecAll               | No*                  |
++----------------------+----------------------+
+| SecError             | No*                  |
++----------------------+----------------------+
+| SecStatus            | No*                  |
++----------------------+----------------------+
+| JTAG_SysMon          | Enable*              |
++----------------------+----------------------+
+| Partial              | (Not Specified)*     |
++----------------------+----------------------+
+| TIMER_CFG            | None*                |
++----------------------+----------------------+
+| TIMER_USR            | None*                |
++----------------------+----------------------+
+| IEEE1532             | No*                  |
++----------------------+----------------------+
+| Binary               | No*                  |
++----------------------+----------------------+
+ *  Default setting.
+ ** The specified setting matches the default setting.
+
+There were 0 CONFIG constraint(s) processed from synth_pr/top_pr.pcf.
+
+
+Running DRC.
+DRC detected 0 errors and 0 warnings.
+INFO:Security:56 - Part 'xc6vlx240t' is not a WebPack part.
+INFO:Security:60 - The XILINXD_LICENSE_FILE environment variable is set to
+'2100@192.168.2.52'.
+INFO:Security:62 - The LM_LICENSE_FILE environment variable is set to
+'C:\modeltech_pe_6.5b\license.txt'.
+INFO:Security:68 - Please run the Xilinx License Configuration Manager
+       (xlcm or "Manage Xilinx Licenses")
+       to assist in obtaining a license.
+ERROR:Security:9 - No 'ISE' feature was available for part 'xc6vlx240t'.
+ERROR:Security:12 - No 'xc6vlx240t' feature was available (-18).
+
+Licensed number of users already reached.
+Feature:       ISE
+License path: 
+2100@192.168.2.52;C:\.Xilinx\Xilinx.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_l
+icenses\ipsb_BE00_flexlm.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_licenses\Xil
+inx.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_licenses\XilinxFree.lic;C:\Xilinx
+\11.1\EDK\data\core_licenses;C:\.Xilinx\Coregen\CoreLicenses;C:\modeltech_pe_6.5
+b\license.txt;C:\Xilinx\12.1\ISE_DS\ISE/data\*.lic;
+FLEXnet Licensing error:-4,132
+For further information, refer to the FLEXnet Licensing documentation,
+available at "www.acresso.com".License server system does not support this
+feature.
+Feature:       xc6vlx240t
+License path: 
+2100@192.168.2.52;C:\.Xilinx\Xilinx.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_l
+icenses\ipsb_BE00_flexlm.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_licenses\Xil
+inx.lic;C:/Xilinx/12.1/ISE_DS/ISE\coregen\core_licenses\XilinxFree.lic;C:\Xilinx
+\11.1\EDK\data\core_licenses;C:\.Xilinx\Coregen\CoreLicenses;C:\modeltech_pe_6.5
+b\license.txt;C:\Xilinx\12.1\ISE_DS\ISE/data\*.lic;
+FLEXnet Licensing error:-18,147
+For further information, refer to the FLEXnet Licensing documentation,
+available at "www.acresso.com".
+
+ERROR:Bitgen:26 - Bitgen only supports DRC but not bitstream generation on this
+   device.  This condition can occur if there are problems obtaining a license
+   to run bitgen or if the design targets a device which is Early Access.

@@ -1,0 +1,69 @@
+static int
+Sorensen_convertOutputStatus(struct gpibDpvt *pdpvt, int P1, int P2, char **P3)
+{
+	struct aiRecord *pai = ((struct aiRecord *)(pdpvt->precord));
+
+	asynOctet *pasynOctet = pdpvt->pasynOctet;
+	void *asynOctetPvt = pdpvt->asynOctetPvt;
+
+	int	 len;
+	char cmd[64] = {0,};
+	char cbuf[64] = {0,};
+
+	int addr;
+	
+	addr = pai->inp.value.gpibio.addr;
+	switch (addr) {
+		default:
+			strcpy(cmd, "OUTP:STAT?\r\n");
+			break;
+	}
+#ifdef DEBUG
+	printf("FUNC::Sorensen_convertOutputStatus() \n");
+	printf("    cmd = %s\n", cmd);
+#endif
+
+	if((pasynOctet->setInputEos(asynOctetPvt,pdpvt->pasynUser,NULL,0) != asynSuccess))
+		return -1;
+	if((pasynOctet->setOutputEos(asynOctetPvt,pdpvt->pasynUser,NULL,0) != asynSuccess))
+		return -1;
+	if(pasynOctet->write(asynOctetPvt,pdpvt->pasynUser,cmd,strlen(cmd),(size_t *) &len) != asynSuccess)
+		return -1;
+
+	memset( cbuf, 0x00, sizeof(cbuf) );
+	pasynOctet->read(asynOctetPvt,pdpvt->pasynUser,cbuf, sizeof(cbuf), (size_t *) &len, NULL);
+
+	if (len == 0){	/* no response: timeout	*/
+		epicsSnprintf(pdpvt->pasynUser->errorMessage, pdpvt->pasynUser->errorMessageSize, "No Response");
+		pai->scan = 10.0;	/* increase scan period	*/
+		return -1;	
+	} 
+	 else
+		pai->scan = 1.0;	/* increase scan period	*/
+
+	if (len < 1){	/* invalid length	*/
+		epicsSnprintf(pdpvt->pasynUser->errorMessage, pdpvt->pasynUser->errorMessageSize, "Invalid reply %d", pdpvt->msgInputLen);
+		return -1;	
+	}
+	
+//	if (check_validReply(cbuf, len) < 0) { /* invalid reply data	*/
+//			epicsSnprintf(pdpvt->pasynUser->errorMessage, pdpvt->pasynUser->errorMessageSize, "Invalid reply %d", pdpvt->msgInputLen);
+//			return -1;
+//	}
+
+	int val = 0, rval;
+
+	rval = atoi(cbuf);
+	pai->rval = rval;
+
+#ifdef DEBUG
+	printf("    SG Read Volt (%s), cbuf string:(%s) rval:%f val = %g\n", pai->name, cbuf, rval, val);
+#endif
+
+	// pai->val = val; // sylee 2016.11.10
+	pai->val = rval;
+	pai->udf = 0;
+	
+	return 0;
+} // end of Sorensen_convertOutputStatus
+

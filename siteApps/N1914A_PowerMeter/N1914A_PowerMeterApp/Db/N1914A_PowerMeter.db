@@ -1,0 +1,27 @@
+#
+# EPICS STREAM DB with STREAM for 
+# LakeShore Model 224 Temperature Monitor
+#
+# - Author  : Jeong Han Lee    
+# - email   : jhlee@ibs.re.kr
+# - license : EPICS open license
+# 
+#  - 0.1       Thursday, July 30 13:53:51 KST 2015, jhlee
+
+##############################################################
+
+##
+# telnet 10.1.4.209 7777
+# - Identification Query
+# - IN : *IDN?
+# - OUT: LSCI,MODEL224,224A02E/3062A6B/3062A6X,1.0
+# 
+record (ai, "$(SYSDEV)CH1")
+{
+    field(DTYP, "stream")
+    field(INP, "@N1914A_PowerMeter.proto read_avg_power $(PORT)")
+    field(EGU, "dBm")
+    field(SCAN, "1 second")
+}
+
+

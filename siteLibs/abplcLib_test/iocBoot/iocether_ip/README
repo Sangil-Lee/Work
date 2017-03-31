@@ -1,0 +1,12 @@
+A bit confusing with all the different versions.
+
+Linux Host, R3.14.4 base:
+ ../../bin/linux-x86/example st.cmd.host
+
+You might need to set this:
+export LD_LIBRARY_PATH=../../lib/linux-x86:$LD_LIBRARY_PATH;
+
+st.cmd.3_14 is meant for a vxWorks IOC under R3.14
+
+st.cmd is meant for vxWorks IOCs under 3.13.7 
+
