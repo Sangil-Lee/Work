@@ -19,17 +19,20 @@ tr1_registerRecordDeviceDriver(pdbbase)
 #dbLoadRecords("db/dbSubExample.db","user=rootHost")
 
 dbLoadRecords("db/dbTr1.vdb","user=leesiHost")
-dbLoadRecords("db/dbTr2.vdb","user=leesiHost")
-dbLoadRecords("db/dbStr.vdb","user=leesiHost")
-dbLoadRecords("db/dbTStr.vdb","user=leesiHost")
-dbLoadRecords("db/dbTr1Final.vdb","user=leesiHost")
-dbLoadRecords("db/dbSEQ.vdb", "user=leesiHost, num=0")
-dbLoadRecords("db/dbSEQ.vdb", "user=leesiHost, num=1")
+dbLoadRecords("db/dbScan.vdb","user=leesiHost")
+#dbLoadRecords("db/dbTr2.vdb","user=leesiHost")
+#dbLoadRecords("db/dbStr.vdb","user=leesiHost")
+#dbLoadRecords("db/dbTStr.vdb","user=leesiHost")
+#dbLoadRecords("db/dbTr1Final.vdb","user=leesiHost")
+#dbLoadRecords("db/dbSEQ.vdb", "user=leesiHost, num=0")
+#dbLoadRecords("db/dbSEQ.vdb", "user=leesiHost, num=1")
 
-dbLoadRecords("db/dbSubLisaju.vdb", "user=leesiHost")
+#dbLoadRecords("db/dbSubLisaju.vdb", "user=leesiHost")
 #dbLoadRecords("db/dbPing.vdb", "user=ICS")
 #dbLoadRecords("db/dbCHFailover.vdb", "user=MST")
-dbLoadRecords("db/gauss.db","P=leesiHost")
+#dbLoadRecords("db/gauss.db","P=leesiHost")
+dbLoadRecords("db/sincalc.db")
+dbLoadRecords("db/remote.vdb")
 
 ## Set this to see messages from mySub
 ## After Database Definition
@@ -50,3 +53,4 @@ var(dbSubFinalDebug,0)
 seq sncWave, "user=leesiHost, num=0"
 seq sncWave, "user=leesiHost, num=1"
 seq sncMonsvrstatus
+seq sncScan, "user=leesiHost"

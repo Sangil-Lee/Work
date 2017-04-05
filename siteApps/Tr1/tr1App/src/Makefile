@@ -76,6 +76,9 @@ ifneq ($(SNCSEQ),)
     tr1_DBD += sncWave.dbd
     tr1_DBD += sncMonsvrstatus.dbd
     tr1_SRCS += sncMonsvrstatus.stt
+    tr1_DBD += sncScan.dbd
+    tr1_SRCS += sncScan.stt
+
     tr1_LIBS += seq pv
 
     # The following builds sncProgram as a standalone application

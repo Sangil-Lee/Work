@@ -26,6 +26,8 @@ DB += dbPing.vdb
 DB += dbCHFailover.vdb
 DB += gauss.db
 DB += sincalc.db
+DB += remote.vdb
+DB += dbScan.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
