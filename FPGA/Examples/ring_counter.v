@@ -11,7 +11,7 @@ module ring_counter (clk, init, count)
 			count = count << 1;
 			count[0] = count[7];
 
-			//Non-blocking assig dont use
+			//Non-blocking assign dont use
 			//count <= count << 1;
 			//count[0] <= count[7];
 		end
