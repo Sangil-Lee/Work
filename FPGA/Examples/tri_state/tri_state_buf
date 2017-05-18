@@ -1,0 +1,37 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x22208d0 .scope module, "tri_state_buf" "tri_state_buf" 2 1;
+ .timescale 0 0;
+v0x2222590_0 .net *"_s0", 0 0, C4<z>; 0 drivers
+v0x2254100_0 .var "data_in", 0 0;
+v0x22541a0_0 .var "enable", 0 0;
+v0x2254240_0 .net "pad", 0 0, L_0x22542f0; 1 drivers
+L_0x22542f0 .functor MUXZ 1, C4<z>, v0x2254100_0, v0x22541a0_0, C4<>;
+    .scope S_0x22208d0;
+T_0 ;
+    %vpi_call 2 9 "$dumpfile", "./tri_state_buf.vcd";
+    %vpi_call 2 10 "$dumpvars", 1'sb0, S_0x22208d0;
+    %vpi_call 2 11 "$monitor", "Enable:%b, Data:%b, PAD:%b", v0x22541a0_0, v0x2254100_0, v0x2254240_0;
+    %delay 1, 0;
+    %set/v v0x22541a0_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0x2254100_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0x22541a0_0, 1, 1;
+    %delay 1, 0;
+    %set/v v0x2254100_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0x22541a0_0, 0, 1;
+    %delay 1, 0;
+    %vpi_call 2 18 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "tri_state_buf.v";

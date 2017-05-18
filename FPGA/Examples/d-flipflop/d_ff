@@ -1,0 +1,42 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0xd8b310 .scope module, "d_ff_nand" "d_ff_nand" 2 1;
+ .timescale 0 0;
+L_0xdbd2f0 .functor NAND 1, v0xdbd210_0, v0xdbd170_0, C4<1>, C4<1>;
+L_0xdbd3d0 .functor NAND 1, L_0xdbd2f0, v0xdbd170_0, C4<1>, C4<1>;
+L_0xdbd500 .functor NAND 1, L_0xdbd560, L_0xdbd2f0, C4<1>, C4<1>;
+L_0xdbd560 .functor NAND 1, L_0xdbd500, L_0xdbd3d0, C4<1>, C4<1>;
+v0xd8b400_0 .net "Q", 0 0, L_0xdbd500; 1 drivers
+v0xdbcf80_0 .net "Q_Bar", 0 0, L_0xdbd560; 1 drivers
+v0xdbd020_0 .net "X", 0 0, L_0xdbd2f0; 1 drivers
+v0xdbd0c0_0 .net "Y", 0 0, L_0xdbd3d0; 1 drivers
+v0xdbd170_0 .var "clk", 0 0;
+v0xdbd210_0 .var "d", 0 0;
+    .scope S_0xd8b310;
+T_0 ;
+    %vpi_call 2 13 "$monitor", "CLK=%b, D=%b, Q=%b, Q_Bar=%b", v0xdbd170_0, v0xdbd210_0, v0xd8b400_0, v0xdbcf80_0;
+    %set/v v0xdbd170_0, 0, 1;
+    %set/v v0xdbd210_0, 0, 1;
+    %delay 3, 0;
+    %set/v v0xdbd210_0, 1, 1;
+    %delay 3, 0;
+    %vpi_call 2 17 "$finish";
+    %end;
+    .thread T_0;
+    .scope S_0xd8b310;
+T_1 ;
+    %delay 2, 0;
+    %load/v 8, v0xdbd170_0, 1;
+    %inv 8, 1;
+    %set/v v0xdbd170_0, 8, 1;
+    %jmp T_1;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "d_flipflop.v";
