@@ -1,0 +1,155 @@
+$date
+	Mon May 22 17:42:21 2017
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module mul_2_tb $end
+$var wire 4 ! p [3:0] $end
+$var reg 2 " a [1:0] $end
+$var reg 2 # b [1:0] $end
+$scope module mul_2_inst $end
+$var wire 2 $ a [1:0] $end
+$var wire 2 % b [1:0] $end
+$var wire 1 & net2 $end
+$var wire 1 ' net3 $end
+$var wire 1 ( net5 $end
+$var wire 1 ) net6 $end
+$var wire 1 * net7 $end
+$var wire 1 + net8 $end
+$var wire 4 , p [3:0] $end
+$upscope $end
+$scope begin stimulus $end
+$var reg 5 - invect [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 -
+b0 ,
+0+
+0*
+0)
+0(
+0'
+0&
+b0 %
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#10
+b1 #
+b1 %
+b1 -
+#20
+b10 #
+b10 %
+b10 -
+#30
+b11 #
+b11 %
+b11 -
+#40
+b1 "
+b1 $
+b0 #
+b0 %
+b100 -
+#50
+b1 !
+b1 ,
+b1 #
+b1 %
+b101 -
+#60
+1(
+1)
+b10 !
+b10 ,
+b10 #
+b10 %
+b110 -
+#70
+0)
+b11 !
+b11 ,
+b11 #
+b11 %
+b111 -
+#80
+0(
+b0 !
+b0 ,
+b10 "
+b10 $
+b0 #
+b0 %
+b1000 -
+#90
+b10 !
+b10 ,
+1*
+1+
+b1 #
+b1 %
+b1001 -
+#100
+b100 !
+b100 ,
+1&
+1'
+0*
+0+
+b10 #
+b10 %
+b1010 -
+#110
+0'
+b110 !
+b110 ,
+1+
+b11 #
+b11 %
+b1011 -
+#120
+b0 !
+b0 ,
+0&
+0+
+b11 "
+b11 $
+b0 #
+b0 %
+b1100 -
+#130
+1*
+b11 !
+b11 ,
+b1 #
+b1 %
+b1101 -
+#140
+1'
+1)
+0*
+b110 !
+b110 ,
+b10 #
+b10 %
+b1110 -
+#150
+0'
+0)
+b1001 !
+b1001 ,
+b11 #
+b11 %
+b1111 -
+#160
+b10000 -
