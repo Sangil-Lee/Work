@@ -40,14 +40,14 @@ record(bi, "$(user):Scan") {
   field(ONAM, "Scan")
 }
 
-record(longin, "$(user):Delay") {
-  field(PINI, "YES")
-  field(VAL, "1000")
-}
-
 record(ai, "$(user):VoltSetpt") {
   field(PINI, "YES")
   field(VAL, "0")
+}
+
+record(ai, "$(user):Dly") {
+  field(PINI, "YES")
+  field(VAL, "1")
 }
 
 #! Further lines contain data used by VisualDCT
@@ -56,11 +56,11 @@ record(ai, "$(user):VoltSetpt") {
 #! Field("$(user):VoltLoSet.VAL",16777215,1,"$(user):VoltLoSet.VAL")
 #! Field("$(user):VoltLoSet.FLNK",16777215,1,"$(user):VoltLoSet.FLNK")
 #! Link("$(user):VoltLoSet.FLNK","$(user):StepInc")
-#! Record("$(user):VoltHiSet",2160,2288,0,1,"$(user):VoltHiSet")
+#! Record("$(user):VoltHiSet",2160,2348,0,1,"$(user):VoltHiSet")
 #! Field("$(user):VoltHiSet.VAL",16777215,1,"$(user):VoltHiSet.VAL")
 #! Field("$(user):VoltHiSet.FLNK",16777215,1,"$(user):VoltHiSet.FLNK")
 #! Link("$(user):VoltHiSet.FLNK","$(user):StepInc")
-#! Record("$(user):StepCount",2160,2468,0,1,"$(user):StepCount")
+#! Record("$(user):StepCount",2160,2548,0,1,"$(user):StepCount")
 #! Field("$(user):StepCount.VAL",16777215,1,"$(user):StepCount.VAL")
 #! Field("$(user):StepCount.FLNK",16777215,1,"$(user):StepCount.FLNK")
 #! Link("$(user):StepCount.FLNK","$(user):StepInc")
@@ -71,6 +71,6 @@ record(ai, "$(user):VoltSetpt") {
 #! Link("$(user):StepInc.INPB","$(user):VoltHiSet.VAL")
 #! Field("$(user):StepInc.INPC",16777215,0,"$(user):StepInc.INPC")
 #! Link("$(user):StepInc.INPC","$(user):StepCount.VAL")
-#! Record("$(user):Scan",2140,2648,0,1,"$(user):Scan")
-#! Record("$(user):Delay",2340,2656,0,1,"$(user):Delay")
-#! Record("$(user):VoltSetpt",2540,2636,0,1,"$(user):VoltSetpt")
+#! Record("$(user):Scan",2140,2848,0,1,"$(user):Scan")
+#! Record("$(user):VoltSetpt",2540,2856,0,1,"$(user):VoltSetpt")
+#! Record("$(user):Dly",2340,2856,0,1,"$(user):Dly")

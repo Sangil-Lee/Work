@@ -28,6 +28,8 @@ DB += gauss.db
 DB += sincalc.db
 DB += remote.vdb
 DB += dbScan.vdb
+#DB += dbEX_Fanout.vdb
+DB += dbEX_Fanout_2.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
