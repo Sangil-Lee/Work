@@ -1,0 +1,23 @@
+record(waveform, "$(P)$(R)O$(Od)GoodState") {
+    field(DESC, "Required input state for output $(Od)")
+    field(DTYP, "asynInt32ArrayOut")
+    field(INP,  "@asyn($(PORT) 0x000$(Oh) 0)")
+    field(FTVL, "LONG")
+    field(NELM, "80")
+}
+record(waveform, "$(P)$(R)O$(Od)Important") {
+    field(DESC, "Important inputs for output $(Od)")
+    field(DTYP, "asynInt32ArrayOut")
+    field(INP,  "@asyn($(PORT) 0x001$(Oh) 0)")
+    field(FTVL, "LONG")
+    field(NELM, "80")
+}
+record(bi, "$(P)$(R)Mitigate$(Od)") {
+    field(DESC, "Mitigation output $(Od)")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT) 0x40$(Oh) 0)")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+}
