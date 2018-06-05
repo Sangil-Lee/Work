@@ -9,6 +9,8 @@ DBD += timingAsynEpics.dbd
 
 LIBRARY_IOC += timingAsynEpicsSupport 
 
+#timingAsynEpicsSupport_SRCS += ts2iic.c ts2ip.c ts2api.c
+timingAsynEpicsSupport_SRCS += ts2iic.cpp ts2api.cpp ts2ip.cpp
 timingAsynEpicsSupport_SRCS += timingAsynEpics.cpp 
 timingAsynEpicsSupport_LIBS += asyn 
 timingAsynEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)

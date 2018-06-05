@@ -11,7 +11,15 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += timingAsynDriver.db
+#DB += timingAsynDriver.db
+DB += bi.template
+DB += bo.template
+DB += mbbi.template
+DB += ai.template
+DB += ao.template
+DB += stringin.template
+DB += stringout.template
+DB += longout.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

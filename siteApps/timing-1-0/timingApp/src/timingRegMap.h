@@ -4,8 +4,48 @@
 #include <stdint.h>
 #include <sys/time.h>
 
-typedef struct timingregmap{
+#include "ts2regmap.h"
 
+class TimingRegmap 
+{
+
+public:
+		TimingRegmap();
+		inline double GetFirmware(){return firmware;}
+		inline double GetSoftware(){return software;}
+
+		inline void SetFirmware(double fware){firmware = fware; printf("FWare:%f\n", firmware);}
+		inline void SetSoftware(double sware){software = sware;}
+
+private:
+		double firmware;
+		double software;
+
+		//Common
+
+		//Link
+		
+		//Event Trigger
+
+		//Soft Event
+
+		//Sequence
+
+		//Multiplexed Counter
+
+		//Pulse Generation
+
+		//Output
+
+		//Input
+
+		//GPIO
+
+		//Upstream Port
+
+		//Frequency 
+	
+#if 0
 		// Constant parameters: set/get by system_open
 		uint32_t maxSizeBufferMB;
 		uint32_t maxSizeSnapshot;
@@ -95,5 +135,6 @@ typedef struct timingregmap{
 		int thread_status;
 
 		//struct daq_system_private *p;
-}timingregmap;
+#endif
+};
 #endif

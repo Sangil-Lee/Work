@@ -1,37 +1,7 @@
-record(bo, "$(SYS):$(SUBSYS):$(DEV):Run")
-{
-    field(PINI,  "1")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))SCOPE_RUN")
-    field(ZNAM, "Stop")
-    field(ONAM, "Run")
-}
-
-record(bi, "$(SYS):$(SUBSYS):$(DEV):Run_RBV")
-{
-    field(PINI, "1")
-    field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))SCOPE_RUN")
-    field(ZNAM, "Done")
-    field(ZSV,  "NO_ALARM")
-    field(ONAM, "Running")
-    field(OSV,  "MINOR")
-    field(SCAN, "I/O Intr")
-}
-
 record(ao, "$(SYS):$(SUBSYS):$(DEV):UpdateTime")
 {
    field(PINI, "1")
    field(DTYP, "asynFloat64")
    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))SCOPE_UPDATE_TIME")
    field(PREC, "3")
-}
-
-record(ai, "$(SYS):$(SUBSYS):$(DEV):UpdateTime_RBV")
-{
-   field(PINI, "1")
-   field(DTYP, "asynFloat64")
-   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))SCOPE_UPDATE_TIME")
-   field(PREC, "3")
-   field(SCAN, "I/O Intr")
 }
