@@ -166,6 +166,11 @@ namespace __gnu_cxx {
 };
 #endif
 
+struct regMap{
+	char alias[64];
+	int	 address;
+};
+
 class timingAsynEpics : public asynPortDriver 
 {
 public:
@@ -327,7 +332,10 @@ private:
 	struct TimingRegmap *pregmap;
 
 	//__gnu_cxx::hash_map<string, string> regmaptable;
-	__gnu_cxx::hash_map<string, struct TimingRegmap> regmaptable;
+	regMap	regmap;
+	__gnu_cxx::hash_map<string, regMap> regmapfile;
+	__gnu_cxx::hash_map<int, regMap> regmaptable;
+
 	int tsMode(const char* mode);
 	void setTime();
 	void setBuildTime();

@@ -1,6 +1,5 @@
 file "db/bi.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,						ALIAS,				SCAN} 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Run,								SCOPE_RUN, 		"I/O Intr"} 
 { SCL3,   TS,				EVR,		timing,	0,			1,			 Fan_Front_A,				FAN_FRONT_A, 	"I/O Intr"} 
 { SCL3,   TS,				EVR,		timing,	0,			1,			 Fan_Front_B,				FAN_FRONT_B, 	"I/O Intr"} 
 { SCL3,   TS,				EVR,		timing,	0,			1,			 Fan_Rear_A,				FAN_REAR_A, 	"I/O Intr"} 
@@ -9,7 +8,6 @@ file "db/bi.template" { pattern
 
 file "db/bo.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS } 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Run_RBV,					SCOPE_RUN } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 User_Trigger,		SEQUENCE_USER_TRIGGER } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 PG_Update,				PULSE_GEN_UPDATE } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 EVR_PG_Pol_1,		EVR_PG_POL_1 } 
@@ -48,13 +46,10 @@ file "db/bo.template" { pattern
 
 file "db/mbbi.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,		ALIAS,			SCAN} 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Mode,			TIMING_MODE,	"I/O Intr"} 
 }
 
 file "db/ao.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS } 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Software,				SCOPE_SOFTWARE } 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Firmware,				SCOPE_FIRMWARE } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 MUX_Counter_A,		MULTIPLEXED_COUNTER_A } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 MUX_Counter_B,		MULTIPLEXED_COUNTER_B } 
 { SCL3,   TS,				EVR,		timing,	0,	1,			 MUX_Counter_C,		MULTIPLEXED_COUNTER_C } 
@@ -145,8 +140,6 @@ file "db/longout.template" { pattern
 
 file "db/ai.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS,				SCAN} 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Firmware_RBV,		SCOPE_FIRMWARE,	"I/O Intr"} 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Software_RBV,		SCOPE_SOFTWARE,	"I/O Intr"} 
 }
 
 file "db/stringin.template" { pattern
@@ -158,5 +151,4 @@ file "db/stringin.template" { pattern
 file "db/stringout.template" { pattern
 { SYS,		SUBSYS,		DEV,		PORT,		ADDR,	TIMEOUT, SIGNAL,					ALIAS } 
 { SCL3,   TS,				EVR,		timing,	0,			1,			 StartTime,			STARTTIME } 
-{ SCL3,   TS,				EVR,		timing,	0,			1,			 Buildtime_RBV,		BUILD_TIMERBV} 
 }

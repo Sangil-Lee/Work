@@ -95,51 +95,79 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 
 		char *pch = 0;
 		if(!(pch = strtok (str," \t,"))) continue;
+		memset(&regmap,0, sizeof(regMap));
 
 #if 1
 		printf("ALIAS_Name(%s)\n", pch);
+		strcpy(regmap.alias, pch);
 		while (pch != NULL)
 		{
 			if(!(pch = strtok (NULL," \t,"))) continue;
 			printf("Addr(%s)\n", pch);
+			regmap.address = strtol(pch,NULL,16);
 			if(!(pch = strtok (NULL," \t,"))) continue;
 			printf("AsynParam(%s)\n", pch);
 		};
 #endif
-		
+		regmapfile[regmap.alias] = regmap;
 	};	
 	
 	
-	
-#if 0
+#if 1
     // System list
     createParam(P_BuildTimeString,        asynParamOctet,		&P_BuildTime);
+	regmaptable[P_BuildTime] = regmapfile[P_BuildTimeString];
+	//regMap reg = regmaptable[P_BuildTime];
     createParam(P_StartTimeString,        asynParamOctet,		&P_Starttime);
+	regmaptable[P_Starttime] = regmapfile[P_StartTimeString];
     createParam(P_IOCStartTimeString,     asynParamOctet,		&P_IOCStartTime);
+	regmaptable[P_IOCStartTime] = regmapfile[P_IOCStartTimeString];
     createParam(P_EVS_TIMEString,  		  asynParamInt32,		&P_EVS_Time);
+	regmaptable[P_EVS_Time] = regmapfile[P_EVS_TIMEString];
     createParam(P_EVS_DAYString,     	  asynParamInt32,		&P_EVS_Day);
+	regmaptable[P_EVS_Day] = regmapfile[P_EVS_DAYString];
     createParam(P_EVS_SETString,     	  asynParamInt32,		&P_EVS_Set);
+	regmaptable[P_EVS_Set] = regmapfile[P_EVS_SETString];
     createParam(P_FRONT_A_String, 		asynParamInt32,				&P_Fan_Front_A);
+	regmaptable[P_Fan_Front_A] = regmapfile[P_FRONT_A_String];
     createParam(P_FRONT_B_String, 		asynParamInt32,				&P_Fan_Front_B);
+	regmaptable[P_Fan_Front_B] = regmapfile[P_FRONT_B_String];
     createParam(P_REAR_A_String, 		asynParamInt32,				&P_Fan_Rear_A);
+	regmaptable[P_Fan_Rear_A] = regmapfile[P_REAR_A_String];
     createParam(P_REAR_B_String, 		asynParamInt32,				&P_Fan_Rear_B);
-
+	regmaptable[P_Fan_Rear_B] = regmapfile[P_REAR_B_String];
 	createParam(P_MUX_Couter_A_String,	asynParamFloat64,		 	&P_MUX_Couter_A);
+	regmaptable[P_MUX_Couter_A] = regmapfile[P_MUX_Couter_A_String];
 	createParam(P_MUX_Couter_B_String,	asynParamFloat64,			&P_MUX_Couter_B);
+	regmaptable[P_MUX_Couter_B] = regmapfile[P_MUX_Couter_B_String];
 	createParam(P_MUX_Couter_C_String,	asynParamFloat64,			&P_MUX_Couter_C);
+	regmaptable[P_MUX_Couter_C] = regmapfile[P_MUX_Couter_C_String];
 	createParam(P_MUX_Couter_D_String,	asynParamFloat64,			&P_MUX_Couter_D);
+	regmaptable[P_MUX_Couter_D] = regmapfile[P_MUX_Couter_D_String];
 	createParam(P_MUX_Couter_E_String,	asynParamFloat64,			&P_MUX_Couter_E);
+	regmaptable[P_MUX_Couter_E] = regmapfile[P_MUX_Couter_E_String];
 	createParam(P_MUX_Couter_F_String,	asynParamFloat64,			&P_MUX_Couter_F);
+	regmaptable[P_MUX_Couter_F] = regmapfile[P_MUX_Couter_F_String];
 	createParam(P_MUX_Couter_G_String,	asynParamFloat64,			&P_MUX_Couter_G);
+	regmaptable[P_MUX_Couter_G] = regmapfile[P_MUX_Couter_G_String];
 	createParam(P_MUX_Couter_H_String,	asynParamFloat64,			&P_MUX_Couter_H);
+	regmaptable[P_MUX_Couter_H] = regmapfile[P_MUX_Couter_H_String];
 	createParam(P_MUX_Couter_I_String,	asynParamFloat64,			&P_MUX_Couter_I);
+	regmaptable[P_MUX_Couter_I] = regmapfile[P_MUX_Couter_I_String];
 	createParam(P_MUX_Couter_J_String,	asynParamFloat64,			&P_MUX_Couter_J);
+	regmaptable[P_MUX_Couter_J] = regmapfile[P_MUX_Couter_J_String];
 	createParam(P_MUX_Couter_K_String,	asynParamFloat64,			&P_MUX_Couter_K);
+	regmaptable[P_MUX_Couter_K] = regmapfile[P_MUX_Couter_K_String];
 	createParam(P_MUX_Couter_L_String,	asynParamFloat64,			&P_MUX_Couter_L);
+	regmaptable[P_MUX_Couter_L] = regmapfile[P_MUX_Couter_L_String];
 	createParam(P_MUX_Couter_M_String,	asynParamFloat64,			&P_MUX_Couter_M);
+	regmaptable[P_MUX_Couter_M] = regmapfile[P_MUX_Couter_M_String];
 	createParam(P_MUX_Couter_N_String,	asynParamFloat64,			&P_MUX_Couter_N);
+	regmaptable[P_MUX_Couter_N] = regmapfile[P_MUX_Couter_N_String];
 	createParam(P_SEQ_USER_Tri_String, 	asynParamInt32,				&P_SEQ_User_Trigger);
+	regmaptable[P_SEQ_User_Trigger] = regmapfile[P_SEQ_USER_Tri_String];
 	createParam(P_PULSE_Gen_String,		asynParamInt32,				&P_PG_Update);
+	regmaptable[P_PG_Update] = regmapfile[P_PULSE_Gen_String];
 
 	createParam(P_PG_Width_1_String,	asynParamInt32,			   &P_PG_Width_1);
 	createParam(P_PG_Width_2_String,	asynParamInt32,			   &P_PG_Width_2);
@@ -174,6 +202,39 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	createParam(P_PG_Width_31_String,	asynParamInt32,			   &P_PG_Width_31);
 	createParam(P_PG_Width_32_String,	asynParamInt32,			   &P_PG_Width_32);
 
+	regmaptable[P_PG_Width_1] = regmapfile[P_PG_Width_1_String];
+	regmaptable[P_PG_Width_2] = regmapfile[P_PG_Width_2_String];
+	regmaptable[P_PG_Width_3] = regmapfile[P_PG_Width_3_String];
+	regmaptable[P_PG_Width_4] = regmapfile[P_PG_Width_4_String];
+	regmaptable[P_PG_Width_5] = regmapfile[P_PG_Width_5_String];
+	regmaptable[P_PG_Width_6] = regmapfile[P_PG_Width_6_String];
+	regmaptable[P_PG_Width_7] = regmapfile[P_PG_Width_7_String];
+	regmaptable[P_PG_Width_8] = regmapfile[P_PG_Width_8_String];
+	regmaptable[P_PG_Width_9] = regmapfile[P_PG_Width_9_String];
+	regmaptable[P_PG_Width_10] = regmapfile[P_PG_Width_10_String];
+	regmaptable[P_PG_Width_11] = regmapfile[P_PG_Width_11_String];
+	regmaptable[P_PG_Width_12] = regmapfile[P_PG_Width_12_String];
+	regmaptable[P_PG_Width_13] = regmapfile[P_PG_Width_13_String];
+	regmaptable[P_PG_Width_14] = regmapfile[P_PG_Width_14_String];
+	regmaptable[P_PG_Width_15] = regmapfile[P_PG_Width_15_String];
+	regmaptable[P_PG_Width_16] = regmapfile[P_PG_Width_16_String];
+	regmaptable[P_PG_Width_17] = regmapfile[P_PG_Width_17_String];
+	regmaptable[P_PG_Width_18] = regmapfile[P_PG_Width_18_String];
+	regmaptable[P_PG_Width_19] = regmapfile[P_PG_Width_19_String];
+	regmaptable[P_PG_Width_20] = regmapfile[P_PG_Width_20_String];
+	regmaptable[P_PG_Width_21] = regmapfile[P_PG_Width_21_String];
+	regmaptable[P_PG_Width_22] = regmapfile[P_PG_Width_22_String];
+	regmaptable[P_PG_Width_23] = regmapfile[P_PG_Width_23_String];
+	regmaptable[P_PG_Width_24] = regmapfile[P_PG_Width_24_String];
+	regmaptable[P_PG_Width_25] = regmapfile[P_PG_Width_25_String];
+	regmaptable[P_PG_Width_26] = regmapfile[P_PG_Width_26_String];
+	regmaptable[P_PG_Width_27] = regmapfile[P_PG_Width_27_String];
+	regmaptable[P_PG_Width_28] = regmapfile[P_PG_Width_28_String];
+	regmaptable[P_PG_Width_29] = regmapfile[P_PG_Width_29_String];
+	regmaptable[P_PG_Width_30] = regmapfile[P_PG_Width_30_String];
+	regmaptable[P_PG_Width_31] = regmapfile[P_PG_Width_31_String];
+	regmaptable[P_PG_Width_32] = regmapfile[P_PG_Width_32_String];
+
 	createParam(P_PG_Delay_1_String,	asynParamInt32,				&P_PG_Delay_1);
 	createParam(P_PG_Delay_2_String,    asynParamInt32,				&P_PG_Delay_2);
 	createParam(P_PG_Delay_3_String,    asynParamInt32,				&P_PG_Delay_3);
@@ -207,6 +268,39 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	createParam(P_PG_Delay_31_String,   asynParamInt32,				&P_PG_Delay_31);
 	createParam(P_PG_Delay_32_String,   asynParamInt32,				&P_PG_Delay_32);
 
+	regmaptable[P_PG_Delay_1] = regmapfile[P_PG_Delay_1_String];
+	regmaptable[P_PG_Delay_2] = regmapfile[P_PG_Delay_2_String];
+	regmaptable[P_PG_Delay_3] = regmapfile[P_PG_Delay_3_String];
+	regmaptable[P_PG_Delay_4] = regmapfile[P_PG_Delay_4_String];
+	regmaptable[P_PG_Delay_5] = regmapfile[P_PG_Delay_5_String];
+	regmaptable[P_PG_Delay_6] = regmapfile[P_PG_Delay_6_String];
+	regmaptable[P_PG_Delay_7] = regmapfile[P_PG_Delay_7_String];
+	regmaptable[P_PG_Delay_8] = regmapfile[P_PG_Delay_8_String];
+	regmaptable[P_PG_Delay_9] = regmapfile[P_PG_Delay_9_String];
+	regmaptable[P_PG_Delay_10] = regmapfile[P_PG_Delay_10_String];
+	regmaptable[P_PG_Delay_11] = regmapfile[P_PG_Delay_11_String];
+	regmaptable[P_PG_Delay_12] = regmapfile[P_PG_Delay_12_String];
+	regmaptable[P_PG_Delay_13] = regmapfile[P_PG_Delay_13_String];
+	regmaptable[P_PG_Delay_14] = regmapfile[P_PG_Delay_14_String];
+	regmaptable[P_PG_Delay_15] = regmapfile[P_PG_Delay_15_String];
+	regmaptable[P_PG_Delay_16] = regmapfile[P_PG_Delay_16_String];
+	regmaptable[P_PG_Delay_17] = regmapfile[P_PG_Delay_17_String];
+	regmaptable[P_PG_Delay_18] = regmapfile[P_PG_Delay_18_String];
+	regmaptable[P_PG_Delay_19] = regmapfile[P_PG_Delay_19_String];
+	regmaptable[P_PG_Delay_20] = regmapfile[P_PG_Delay_20_String];
+	regmaptable[P_PG_Delay_21] = regmapfile[P_PG_Delay_21_String];
+	regmaptable[P_PG_Delay_22] = regmapfile[P_PG_Delay_22_String];
+	regmaptable[P_PG_Delay_23] = regmapfile[P_PG_Delay_23_String];
+	regmaptable[P_PG_Delay_24] = regmapfile[P_PG_Delay_24_String];
+	regmaptable[P_PG_Delay_25] = regmapfile[P_PG_Delay_25_String];
+	regmaptable[P_PG_Delay_26] = regmapfile[P_PG_Delay_26_String];
+	regmaptable[P_PG_Delay_27] = regmapfile[P_PG_Delay_27_String];
+	regmaptable[P_PG_Delay_28] = regmapfile[P_PG_Delay_28_String];
+	regmaptable[P_PG_Delay_29] = regmapfile[P_PG_Delay_29_String];
+	regmaptable[P_PG_Delay_30] = regmapfile[P_PG_Delay_30_String];
+	regmaptable[P_PG_Delay_31] = regmapfile[P_PG_Delay_31_String];
+	regmaptable[P_PG_Delay_32] = regmapfile[P_PG_Delay_32_String];
+
 	createParam(P_PG_POL_1_String,		asynParamInt32,				&P_PG_POL_1);
 	createParam(P_PG_POL_2_String,      asynParamInt32,				&P_PG_POL_2);
 	createParam(P_PG_POL_3_String,      asynParamInt32,				&P_PG_POL_3);
@@ -239,15 +333,47 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	createParam(P_PG_POL_30_String,     asynParamInt32,				&P_PG_POL_30);
 	createParam(P_PG_POL_31_String,     asynParamInt32,				&P_PG_POL_31);
 	createParam(P_PG_POL_32_String,     asynParamInt32,				&P_PG_POL_32);
+
+	regmaptable[P_PG_POL_1] = regmapfile[P_PG_POL_1_String];
+	regmaptable[P_PG_POL_2] = regmapfile[P_PG_POL_2_String];
+	regmaptable[P_PG_POL_3] = regmapfile[P_PG_POL_3_String];
+	regmaptable[P_PG_POL_4] = regmapfile[P_PG_POL_4_String];
+	regmaptable[P_PG_POL_5] = regmapfile[P_PG_POL_5_String];
+	regmaptable[P_PG_POL_6] = regmapfile[P_PG_POL_6_String];
+	regmaptable[P_PG_POL_7] = regmapfile[P_PG_POL_7_String];
+	regmaptable[P_PG_POL_8] = regmapfile[P_PG_POL_8_String];
+	regmaptable[P_PG_POL_9] = regmapfile[P_PG_POL_9_String];
+	regmaptable[P_PG_POL_10] = regmapfile[P_PG_POL_10_String];
+	regmaptable[P_PG_POL_11] = regmapfile[P_PG_POL_11_String];
+	regmaptable[P_PG_POL_12] = regmapfile[P_PG_POL_12_String];
+	regmaptable[P_PG_POL_13] = regmapfile[P_PG_POL_13_String];
+	regmaptable[P_PG_POL_14] = regmapfile[P_PG_POL_14_String];
+	regmaptable[P_PG_POL_15] = regmapfile[P_PG_POL_15_String];
+	regmaptable[P_PG_POL_16] = regmapfile[P_PG_POL_16_String];
+	regmaptable[P_PG_POL_17] = regmapfile[P_PG_POL_17_String];
+	regmaptable[P_PG_POL_18] = regmapfile[P_PG_POL_18_String];
+	regmaptable[P_PG_POL_19] = regmapfile[P_PG_POL_19_String];
+	regmaptable[P_PG_POL_20] = regmapfile[P_PG_POL_20_String];
+	regmaptable[P_PG_POL_21] = regmapfile[P_PG_POL_21_String];
+	regmaptable[P_PG_POL_22] = regmapfile[P_PG_POL_22_String];
+	regmaptable[P_PG_POL_23] = regmapfile[P_PG_POL_23_String];
+	regmaptable[P_PG_POL_24] = regmapfile[P_PG_POL_24_String];
+	regmaptable[P_PG_POL_25] = regmapfile[P_PG_POL_25_String];
+	regmaptable[P_PG_POL_26] = regmapfile[P_PG_POL_26_String];
+	regmaptable[P_PG_POL_27] = regmapfile[P_PG_POL_27_String];
+	regmaptable[P_PG_POL_28] = regmapfile[P_PG_POL_28_String];
+	regmaptable[P_PG_POL_29] = regmapfile[P_PG_POL_29_String];
+	regmaptable[P_PG_POL_30] = regmapfile[P_PG_POL_30_String];
+	regmaptable[P_PG_POL_31] = regmapfile[P_PG_POL_31_String];
+	regmaptable[P_PG_POL_32] = regmapfile[P_PG_POL_32_String];
 #endif
 			
-			
 	//Default Initial Value
-	setIntegerParam(P_TSMode, tsmode);
-	setIntegerParam(P_Run, 0);
-	setDoubleParam(P_UpdateTime, 1);
-	setDoubleParam(P_Firmware, pregmap->GetFirmware());
-	setDoubleParam(P_Software, pregmap->GetSoftware());
+	//setIntegerParam(P_TSMode, tsmode);
+	//setIntegerParam(P_Run, 0);
+	//setDoubleParam(P_UpdateTime, 1);
+	//setDoubleParam(P_Firmware, pregmap->GetFirmware());
+	//setDoubleParam(P_Software, pregmap->GetSoftware());
 	setStringParam(P_BuildTime, "2018-06-01");
 	setTime();
 
@@ -285,22 +411,28 @@ asynStatus timingAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
     pasynUser->timestamp = timeStamp;
 
 	unsigned int rdData;
-	ts2ip_rd(gpSys->ip.ev.fd, addr, (unsigned int*)&rdData);
-
 	if(function == P_Fan_Front_A)
 	{
+		regmap = regmaptable[P_Fan_Front_A];
+		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
 		*value = S_ifanStt4_CntrFrontA(rdData);
 	}
 	else if(function == P_Fan_Front_B)
 	{
+		regmap = regmaptable[P_Fan_Front_B];
+		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
 		*value = S_ifanStt4_CntrFrontB(rdData);
 	}
 	else if(function == P_Fan_Rear_A)
 	{
+		regmap = regmaptable[P_Fan_Rear_A];
+		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
 		*value = S_ifanStt4_CntrRearA(rdData);
 	}
 	else if(function == P_Fan_Rear_B)
 	{
+		regmap = regmaptable[P_Fan_Rear_B];
+		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
 		*value = S_ifanStt4_CntrRearB(rdData);
 	}
 
@@ -339,25 +471,29 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 	} 
 	else if (function == P_EVS_Time)
 	{
-		ts2ip_wr(gpSys->ip.ev.fd, A_evgW_set_Time, C_evgW_set_h8(2) | C_evgW_set_m8(3) | C_evgW_set_s8(4) );
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, C_evgW_set_h8(2) | C_evgW_set_m8(3) | C_evgW_set_s8(4) );
 	}
 	else if (function == P_EVS_Day)
 	{
-		ts2ip_wr(gpSys->ip.ev.fd, A_evgW_set_Time + 4, C_evgW_set_d16(360));
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address + 4, C_evgW_set_d16(360));
 	}
 	else if (function == P_EVS_Set)
 	{
-		ts2ip_wr(gpSys->ip.ev.fd, addr,1);
-		ts2ip_wr(gpSys->ip.ev.fd, addr,0);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,1);
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,0);
 	}
 	else if (function == P_SEQ_User_Trigger)
 	{
 		//ADRR = 0x078
 		//printf("USER Trigger Addr(%x)\n", addr);
 		int value;
+		regmap = regmaptable[function];
 		getIntegerParam(P_SEQ_User_Trigger, &value);
-		ts2ip_wr(gpSys->ip.ev.fd, addr,C_usrTrg(1));
-		ts2ip_wr(gpSys->ip.ev.fd, addr,C_usrTrg(0));
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_usrTrg(1));
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_usrTrg(0));
 		value = 0;
 		setIntegerParam(P_SEQ_User_Trigger, value);
 	}
@@ -365,8 +501,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 	{
 		int pg_update;
 		getIntegerParam(P_PG_Update, &pg_update);
-		ts2ip_wr(gpSys->ip.ev.fd, addr,C_evr_setCtrlReg(1));
-		ts2ip_wr(gpSys->ip.ev.fd, addr,C_evr_setCtrlReg(0));
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_evr_setCtrlReg(1));
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_evr_setCtrlReg(0));
 	}
 	else if (function == P_PG_Width_1 || function == P_PG_Width_2  || function == P_PG_Width_3  || function == P_PG_Width_4 ||
 	         function == P_PG_Width_5 || function == P_PG_Width_6  || function == P_PG_Width_7  || function == P_PG_Width_8 ||
@@ -380,8 +517,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int width;
         getIntegerParam(function, &width);
 		
+		regmap = regmaptable[function];
 		//0xC480
-		ts2ip_wr(gpSys->ip.ev.fd, addr, width);
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, width);
 	}
 	else if (function == P_PG_Delay_1  || function == P_PG_Delay_2  || function == P_PG_Delay_3  || function == P_PG_Delay_4 ||
 	         function == P_PG_Delay_5  || function == P_PG_Delay_6  || function == P_PG_Delay_7  || function == P_PG_Delay_8 ||
@@ -396,8 +534,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int delay;
         getIntegerParam(function, &delay);
 		
+		regmap = regmaptable[function];
 		//0xC400
-		ts2ip_wr(gpSys->ip.ev.fd, addr, delay);
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, delay);
 	}
 	else if (function == P_PG_POL_1)
 	{
@@ -410,7 +549,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	
 	}
 	else if (function == P_PG_POL_2)
@@ -424,7 +564,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_3)
 	{
@@ -437,7 +578,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_4)
 	{
@@ -450,7 +592,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_5)
 	{
@@ -463,7 +606,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_6)
 	{
@@ -476,7 +620,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_7)
 	{
@@ -489,7 +634,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_8)
 	{
@@ -502,7 +648,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_9)
 	{
@@ -515,7 +662,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_10)
 	{
@@ -528,7 +676,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_11)
 	{
@@ -541,7 +690,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_12)
 	{
@@ -554,7 +704,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_13)
 	{
@@ -567,7 +718,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_14)
 	{
@@ -580,7 +732,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_15)
 	{
@@ -593,7 +746,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_16)
 	{
@@ -606,7 +760,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_17)
 	{
@@ -619,7 +774,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_18)
 	{
@@ -632,7 +788,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_19)
 	{
@@ -645,7 +802,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_20)
 	{
@@ -658,7 +816,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_21)
 	{
@@ -671,7 +830,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_22)
 	{
@@ -684,7 +844,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_23)
 	{
@@ -697,7 +858,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_24)
 	{
@@ -710,7 +872,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_25)
 	{
@@ -723,7 +886,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_26)
 	{
@@ -736,7 +900,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_27)
 	{
@@ -749,7 +914,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_28)
 	{
@@ -762,7 +928,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_29)
 	{
@@ -775,7 +942,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_30)
 	{
@@ -788,7 +956,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_31)
 	{
@@ -801,7 +970,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_32)
 	{
@@ -814,7 +984,8 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int polality = (int)polbit.to_ulong();
 
 		//0x104
-		ts2ip_wr(gpSys->ip.ev.fd, addr, polality);
+		regmap = regmaptable[function];
+		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 
 
@@ -882,7 +1053,8 @@ asynStatus timingAsynEpics::readOctet(asynUser *pasynUser, char *value, size_t m
 		printf("Set Build Time\n");
 		unsigned int rdData;
 		//ts2ip_rd(gpSys->ip.ev.fd, A_buildTime, (unsigned int*)&rdData);
-		ts2ip_rd(gpSys->ip.ev.fd, addr, (unsigned int*)&rdData);
+		regmap = regmaptable[function];
+		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
 
 		char timebuf[20];
 		sprintf(timebuf,"20%d/%d/%d %d:%d:%d", S_buildYear(rdData), S_buildMonth(rdData), S_buildDay(rdData), S_buildHour(rdData), S_buildMin(rdData), S_buildSec(rdData));
@@ -973,72 +1145,86 @@ asynStatus timingAsynEpics::writeFloat64(asynUser *pasynUser, epicsFloat64 value
 	{
 		//ts2ip_wr(l_fd, A_mxc14_prescalerReg_00 + mxcN*4, freq );
 		getDoubleParam(P_MUX_Couter_A, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_B)
 	{
 		getDoubleParam(P_MUX_Couter_B, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_C)
 	{
 		getDoubleParam(P_MUX_Couter_C, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_D)
 	{
 		getDoubleParam(P_MUX_Couter_D, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_E)
 	{
 		getDoubleParam(P_MUX_Couter_E, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_F)
 	{
 		getDoubleParam(P_MUX_Couter_F, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_G)
 	{
 		getDoubleParam(P_MUX_Couter_G, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_H)
 	{
 		getDoubleParam(P_MUX_Couter_H, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_I)
 	{
 		getDoubleParam(P_MUX_Couter_I, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_J)
 	{
 		getDoubleParam(P_MUX_Couter_J, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_K)
 	{
 		getDoubleParam(P_MUX_Couter_K, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_L)
 	{
 		getDoubleParam(P_MUX_Couter_L, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_M)
 	{
 		getDoubleParam(P_MUX_Couter_M, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 	else if (function == P_MUX_Couter_N)
 	{
 		getDoubleParam(P_MUX_Couter_N, &value);
-		ts2ip_wr(l_fd, addr, value );
+		regmap = regmaptable[function];
+		ts2ip_wr(l_fd, regmap.address, value );
 	}
 
 		else {
