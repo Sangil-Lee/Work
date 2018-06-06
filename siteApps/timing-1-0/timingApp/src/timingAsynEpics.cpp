@@ -492,6 +492,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int value;
 		regmap = regmaptable[function];
 		getIntegerParam(P_SEQ_User_Trigger, &value);
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), trigger value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, value);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_usrTrg(1));
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_usrTrg(0));
 		value = 0;
@@ -502,6 +505,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 		int pg_update;
 		getIntegerParam(P_PG_Update, &pg_update);
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), update value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pg_update);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_evr_setCtrlReg(1));
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address,C_evr_setCtrlReg(0));
 	}
@@ -518,7 +524,10 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
         getIntegerParam(function, &width);
 		
 		regmap = regmaptable[function];
-		printf("Regmaptable: alias(%s), address(%x)\n",regmap.alias, regmap.address);
+		//printf("Regmaptable: alias(%s), address(%x)\n",regmap.alias, regmap.address);
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), width value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, width);
 		//0xC480
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, width);
 	}
@@ -536,6 +545,10 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
         getIntegerParam(function, &delay);
 		
 		regmap = regmaptable[function];
+		//printf("Delay Regmap Table: alias(%s),address(%x), delay value(%d)\n",regmap.alias, regmap.address, delay);
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), delay value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, delay);
 		//0xC400
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, delay);
 	}
@@ -551,6 +564,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	
 	}
@@ -566,6 +582,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_3)
@@ -580,6 +599,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_4)
@@ -594,6 +616,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_5)
@@ -608,6 +633,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_6)
@@ -622,6 +650,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_7)
@@ -636,6 +667,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_8)
@@ -650,6 +684,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_9)
@@ -664,6 +701,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_10)
@@ -678,6 +718,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_11)
@@ -692,6 +735,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_12)
@@ -706,6 +752,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_13)
@@ -720,6 +769,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_14)
@@ -734,6 +786,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_15)
@@ -748,6 +803,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_16)
@@ -762,6 +820,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_17)
@@ -776,6 +837,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_18)
@@ -790,6 +854,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_19)
@@ -804,6 +871,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_20)
@@ -818,6 +888,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_21)
@@ -832,6 +905,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_22)
@@ -846,6 +922,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_23)
@@ -860,6 +939,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_24)
@@ -874,6 +956,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_25)
@@ -888,6 +973,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_26)
@@ -902,6 +990,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_27)
@@ -916,6 +1007,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_28)
@@ -930,6 +1024,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_29)
@@ -944,6 +1041,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_30)
@@ -958,6 +1058,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_31)
@@ -972,6 +1075,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 	else if (function == P_PG_POL_32)
@@ -986,6 +1092,9 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 		//0x104
 		regmap = regmaptable[function];
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=(%d), name=(%s), regmap.alias(%s), regmap.address(%x), polality value=(%d)\n", 
+			driverName, functionName, function, paramName, regmap.alias, regmap.address, pol);
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, polality);
 	}
 
