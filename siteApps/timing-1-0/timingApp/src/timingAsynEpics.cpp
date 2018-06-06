@@ -41,6 +41,7 @@ timingAsynEpics::timingAsynEpics(const char *portName, int maxSizeSnapshot, int 
                     0 /* Default stack size*/
 										),fileName(filename),driverName("timingAsynEpics"),system_init_ok(0) 
 {
+	printf("GCC Version-(%d)\n", GCC_VERSION);
     asynStatus status;
     const char *functionName = "timingAsynEpics";
 
@@ -48,8 +49,8 @@ timingAsynEpics::timingAsynEpics(const char *portName, int maxSizeSnapshot, int 
 	printf("TSMode(%d)\n", tsmode);
 
 
-	//ts2api_init(tsmode);
-	//ts2api_getInstance(gpSys);
+	ts2api_init(tsmode);
+	ts2api_getInstance(gpSys);
 
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
@@ -98,15 +99,15 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 		memset(&regmap,0, sizeof(regMap));
 
 #if 1
-		printf("ALIAS_Name(%s)\n", pch);
+		//printf("ALIAS_Name(%s)\n", pch);
 		strcpy(regmap.alias, pch);
 		while (pch != NULL)
 		{
 			if(!(pch = strtok (NULL," \t,"))) continue;
-			printf("Addr(%s)\n", pch);
+		//	printf("Addr(%s)\n", pch);
 			regmap.address = strtol(pch,NULL,16);
 			if(!(pch = strtok (NULL," \t,"))) continue;
-			printf("AsynParam(%s)\n", pch);
+		//	printf("AsynParam(%s)\n", pch);
 		};
 #endif
 		regmapfile[regmap.alias] = regmap;
@@ -116,57 +117,56 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 #if 1
     // System list
     createParam(P_BuildTimeString,        asynParamOctet,		&P_BuildTime);
-	regmaptable[P_BuildTime] = regmapfile[P_BuildTimeString];
-	//regMap reg = regmaptable[P_BuildTime];
     createParam(P_StartTimeString,        asynParamOctet,		&P_Starttime);
-	regmaptable[P_Starttime] = regmapfile[P_StartTimeString];
     createParam(P_IOCStartTimeString,     asynParamOctet,		&P_IOCStartTime);
-	regmaptable[P_IOCStartTime] = regmapfile[P_IOCStartTimeString];
     createParam(P_EVS_TIMEString,  		  asynParamInt32,		&P_EVS_Time);
-	regmaptable[P_EVS_Time] = regmapfile[P_EVS_TIMEString];
     createParam(P_EVS_DAYString,     	  asynParamInt32,		&P_EVS_Day);
-	regmaptable[P_EVS_Day] = regmapfile[P_EVS_DAYString];
     createParam(P_EVS_SETString,     	  asynParamInt32,		&P_EVS_Set);
-	regmaptable[P_EVS_Set] = regmapfile[P_EVS_SETString];
     createParam(P_FRONT_A_String, 		asynParamInt32,				&P_Fan_Front_A);
-	regmaptable[P_Fan_Front_A] = regmapfile[P_FRONT_A_String];
     createParam(P_FRONT_B_String, 		asynParamInt32,				&P_Fan_Front_B);
-	regmaptable[P_Fan_Front_B] = regmapfile[P_FRONT_B_String];
     createParam(P_REAR_A_String, 		asynParamInt32,				&P_Fan_Rear_A);
-	regmaptable[P_Fan_Rear_A] = regmapfile[P_REAR_A_String];
     createParam(P_REAR_B_String, 		asynParamInt32,				&P_Fan_Rear_B);
-	regmaptable[P_Fan_Rear_B] = regmapfile[P_REAR_B_String];
-	createParam(P_MUX_Couter_A_String,	asynParamFloat64,		 	&P_MUX_Couter_A);
-	regmaptable[P_MUX_Couter_A] = regmapfile[P_MUX_Couter_A_String];
-	createParam(P_MUX_Couter_B_String,	asynParamFloat64,			&P_MUX_Couter_B);
-	regmaptable[P_MUX_Couter_B] = regmapfile[P_MUX_Couter_B_String];
-	createParam(P_MUX_Couter_C_String,	asynParamFloat64,			&P_MUX_Couter_C);
-	regmaptable[P_MUX_Couter_C] = regmapfile[P_MUX_Couter_C_String];
-	createParam(P_MUX_Couter_D_String,	asynParamFloat64,			&P_MUX_Couter_D);
-	regmaptable[P_MUX_Couter_D] = regmapfile[P_MUX_Couter_D_String];
-	createParam(P_MUX_Couter_E_String,	asynParamFloat64,			&P_MUX_Couter_E);
-	regmaptable[P_MUX_Couter_E] = regmapfile[P_MUX_Couter_E_String];
-	createParam(P_MUX_Couter_F_String,	asynParamFloat64,			&P_MUX_Couter_F);
-	regmaptable[P_MUX_Couter_F] = regmapfile[P_MUX_Couter_F_String];
-	createParam(P_MUX_Couter_G_String,	asynParamFloat64,			&P_MUX_Couter_G);
-	regmaptable[P_MUX_Couter_G] = regmapfile[P_MUX_Couter_G_String];
-	createParam(P_MUX_Couter_H_String,	asynParamFloat64,			&P_MUX_Couter_H);
-	regmaptable[P_MUX_Couter_H] = regmapfile[P_MUX_Couter_H_String];
-	createParam(P_MUX_Couter_I_String,	asynParamFloat64,			&P_MUX_Couter_I);
-	regmaptable[P_MUX_Couter_I] = regmapfile[P_MUX_Couter_I_String];
-	createParam(P_MUX_Couter_J_String,	asynParamFloat64,			&P_MUX_Couter_J);
-	regmaptable[P_MUX_Couter_J] = regmapfile[P_MUX_Couter_J_String];
-	createParam(P_MUX_Couter_K_String,	asynParamFloat64,			&P_MUX_Couter_K);
-	regmaptable[P_MUX_Couter_K] = regmapfile[P_MUX_Couter_K_String];
-	createParam(P_MUX_Couter_L_String,	asynParamFloat64,			&P_MUX_Couter_L);
-	regmaptable[P_MUX_Couter_L] = regmapfile[P_MUX_Couter_L_String];
-	createParam(P_MUX_Couter_M_String,	asynParamFloat64,			&P_MUX_Couter_M);
-	regmaptable[P_MUX_Couter_M] = regmapfile[P_MUX_Couter_M_String];
-	createParam(P_MUX_Couter_N_String,	asynParamFloat64,			&P_MUX_Couter_N);
-	regmaptable[P_MUX_Couter_N] = regmapfile[P_MUX_Couter_N_String];
+	createParam(P_MUX_Counter_A_String,	asynParamFloat64,		 	&P_MUX_Counter_A);
+	createParam(P_MUX_Counter_B_String,	asynParamFloat64,			&P_MUX_Counter_B);
+	createParam(P_MUX_Counter_C_String,	asynParamFloat64,			&P_MUX_Counter_C);
+	createParam(P_MUX_Counter_D_String,	asynParamFloat64,			&P_MUX_Counter_D);
+	createParam(P_MUX_Counter_E_String,	asynParamFloat64,			&P_MUX_Counter_E);
+	createParam(P_MUX_Counter_F_String,	asynParamFloat64,			&P_MUX_Counter_F);
+	createParam(P_MUX_Counter_G_String,	asynParamFloat64,			&P_MUX_Counter_G);
+	createParam(P_MUX_Counter_H_String,	asynParamFloat64,			&P_MUX_Counter_H);
+	createParam(P_MUX_Counter_I_String,	asynParamFloat64,			&P_MUX_Counter_I);
+	createParam(P_MUX_Counter_J_String,	asynParamFloat64,			&P_MUX_Counter_J);
+	createParam(P_MUX_Counter_K_String,	asynParamFloat64,			&P_MUX_Counter_K);
+	createParam(P_MUX_Counter_L_String,	asynParamFloat64,			&P_MUX_Counter_L);
+	createParam(P_MUX_Counter_M_String,	asynParamFloat64,			&P_MUX_Counter_M);
+	createParam(P_MUX_Counter_N_String,	asynParamFloat64,			&P_MUX_Counter_N);
 	createParam(P_SEQ_USER_Tri_String, 	asynParamInt32,				&P_SEQ_User_Trigger);
-	regmaptable[P_SEQ_User_Trigger] = regmapfile[P_SEQ_USER_Tri_String];
 	createParam(P_PULSE_Gen_String,		asynParamInt32,				&P_PG_Update);
+	regmaptable[P_BuildTime] = regmapfile[P_BuildTimeString];
+	regmaptable[P_Starttime] = regmapfile[P_StartTimeString];
+	regmaptable[P_IOCStartTime] = regmapfile[P_IOCStartTimeString];
+	regmaptable[P_EVS_Time] = regmapfile[P_EVS_TIMEString];
+	regmaptable[P_EVS_Day] = regmapfile[P_EVS_DAYString];
+	regmaptable[P_EVS_Set] = regmapfile[P_EVS_SETString];
+	regmaptable[P_Fan_Front_A] = regmapfile[P_FRONT_A_String];
+	regmaptable[P_Fan_Front_B] = regmapfile[P_FRONT_B_String];
+	regmaptable[P_Fan_Rear_A] = regmapfile[P_REAR_A_String];
+	regmaptable[P_Fan_Rear_B] = regmapfile[P_REAR_B_String];
+	regmaptable[P_MUX_Counter_A] = regmapfile[P_MUX_Counter_A_String];
+	regmaptable[P_MUX_Counter_B] = regmapfile[P_MUX_Counter_B_String];
+	regmaptable[P_MUX_Counter_C] = regmapfile[P_MUX_Counter_C_String];
+	regmaptable[P_MUX_Counter_D] = regmapfile[P_MUX_Counter_D_String];
+	regmaptable[P_MUX_Counter_E] = regmapfile[P_MUX_Counter_E_String];
+	regmaptable[P_MUX_Counter_F] = regmapfile[P_MUX_Counter_F_String];
+	regmaptable[P_MUX_Counter_G] = regmapfile[P_MUX_Counter_G_String];
+	regmaptable[P_MUX_Counter_H] = regmapfile[P_MUX_Counter_H_String];
+	regmaptable[P_MUX_Counter_I] = regmapfile[P_MUX_Counter_I_String];
+	regmaptable[P_MUX_Counter_J] = regmapfile[P_MUX_Counter_J_String];
+	regmaptable[P_MUX_Counter_K] = regmapfile[P_MUX_Counter_K_String];
+	regmaptable[P_MUX_Counter_L] = regmapfile[P_MUX_Counter_L_String];
+	regmaptable[P_MUX_Counter_M] = regmapfile[P_MUX_Counter_M_String];
+	regmaptable[P_MUX_Counter_N] = regmapfile[P_MUX_Counter_N_String];
+	regmaptable[P_SEQ_User_Trigger] = regmapfile[P_SEQ_USER_Tri_String];
 	regmaptable[P_PG_Update] = regmapfile[P_PULSE_Gen_String];
 
 	createParam(P_PG_Width_1_String,	asynParamInt32,			   &P_PG_Width_1);
@@ -366,6 +366,7 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	regmaptable[P_PG_POL_30] = regmapfile[P_PG_POL_30_String];
 	regmaptable[P_PG_POL_31] = regmapfile[P_PG_POL_31_String];
 	regmaptable[P_PG_POL_32] = regmapfile[P_PG_POL_32_String];
+	setTime();
 #endif
 			
 	//Default Initial Value
@@ -374,8 +375,7 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	//setDoubleParam(P_UpdateTime, 1);
 	//setDoubleParam(P_Firmware, pregmap->GetFirmware());
 	//setDoubleParam(P_Software, pregmap->GetSoftware());
-	setStringParam(P_BuildTime, "2018-06-01");
-	setTime();
+	//setStringParam(P_BuildTime, "2018-06-01");
 
 
 }
@@ -518,6 +518,7 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
         getIntegerParam(function, &width);
 		
 		regmap = regmaptable[function];
+		printf("Regmaptable: alias(%s), address(%x)\n",regmap.alias, regmap.address);
 		//0xC480
 		ts2ip_wr(gpSys->ip.ev.fd, regmap.address, width);
 	}
@@ -1020,7 +1021,7 @@ void timingAsynEpics::setBuildTime()
 	char timebuf[20];
 	sprintf(timebuf,"20%d/%d/%d %d:%d:%d", S_buildYear(rdData), S_buildMonth(rdData), S_buildDay(rdData), S_buildHour(rdData), S_buildMin(rdData), S_buildSec(rdData));
 
-	printf("Buildtime:%s\n", timebuf);
+	//printf("Buildtime:%s\n", timebuf);
 	setStringParam(P_BuildTime, timebuf);
 
 #if 0
@@ -1141,93 +1142,92 @@ asynStatus timingAsynEpics::writeFloat64(asynUser *pasynUser, epicsFloat64 value
 		getDoubleParam(P_Software, &value);
 		pregmap->SetSoftware(value);
 	}
-	else if (function == P_MUX_Couter_A)
+	else if (function == P_MUX_Counter_A)
 	{
 		//ts2ip_wr(l_fd, A_mxc14_prescalerReg_00 + mxcN*4, freq );
-		getDoubleParam(P_MUX_Couter_A, &value);
+		getDoubleParam(P_MUX_Counter_A, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_B)
+	else if (function == P_MUX_Counter_B)
 	{
-		getDoubleParam(P_MUX_Couter_B, &value);
+		getDoubleParam(P_MUX_Counter_B, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_C)
+	else if (function == P_MUX_Counter_C)
 	{
-		getDoubleParam(P_MUX_Couter_C, &value);
+		getDoubleParam(P_MUX_Counter_C, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_D)
+	else if (function == P_MUX_Counter_D)
 	{
-		getDoubleParam(P_MUX_Couter_D, &value);
+		getDoubleParam(P_MUX_Counter_D, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_E)
+	else if (function == P_MUX_Counter_E)
 	{
-		getDoubleParam(P_MUX_Couter_E, &value);
+		getDoubleParam(P_MUX_Counter_E, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_F)
+	else if (function == P_MUX_Counter_F)
 	{
-		getDoubleParam(P_MUX_Couter_F, &value);
+		getDoubleParam(P_MUX_Counter_F, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_G)
+	else if (function == P_MUX_Counter_G)
 	{
-		getDoubleParam(P_MUX_Couter_G, &value);
+		getDoubleParam(P_MUX_Counter_G, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_H)
+	else if (function == P_MUX_Counter_H)
 	{
-		getDoubleParam(P_MUX_Couter_H, &value);
+		getDoubleParam(P_MUX_Counter_H, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_I)
+	else if (function == P_MUX_Counter_I)
 	{
-		getDoubleParam(P_MUX_Couter_I, &value);
+		getDoubleParam(P_MUX_Counter_I, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_J)
+	else if (function == P_MUX_Counter_J)
 	{
-		getDoubleParam(P_MUX_Couter_J, &value);
+		getDoubleParam(P_MUX_Counter_J, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_K)
+	else if (function == P_MUX_Counter_K)
 	{
-		getDoubleParam(P_MUX_Couter_K, &value);
+		getDoubleParam(P_MUX_Counter_K, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_L)
+	else if (function == P_MUX_Counter_L)
 	{
-		getDoubleParam(P_MUX_Couter_L, &value);
+		getDoubleParam(P_MUX_Counter_L, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_M)
+	else if (function == P_MUX_Counter_M)
 	{
-		getDoubleParam(P_MUX_Couter_M, &value);
+		getDoubleParam(P_MUX_Counter_M, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-	else if (function == P_MUX_Couter_N)
+	else if (function == P_MUX_Counter_N)
 	{
-		getDoubleParam(P_MUX_Couter_N, &value);
+		getDoubleParam(P_MUX_Counter_N, &value);
 		regmap = regmaptable[function];
 		ts2ip_wr(l_fd, regmap.address, value );
 	}
-
-		else {
+	else {
         /* All other parameters just get set in parameter list, no need to
          * act on them here */
     }
