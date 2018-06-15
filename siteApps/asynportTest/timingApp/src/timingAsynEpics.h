@@ -212,7 +212,7 @@ private:
 	hash_map<int, RegMap> regmaptable;
 
 	int tsMode(const char* mode);
-	void setTime();
+	void setIOCStartTime();
 
 	int setParamValue(const string drvname, const string svalue);
 	int setParamValue(const string drvname, const int ival);
@@ -230,7 +230,5 @@ private:
 	asynStatus writeFloat64Value(const RegMap &regmap);
 	asynStatus readStringValue(const RegMap &regmap, char *value);
 };
-
-#define NUM_SCOPE_PARAMS (&LAST_SCOPE_COMMAND - &FIRST_SCOPE_COMMAND + 1)
 
 #endif

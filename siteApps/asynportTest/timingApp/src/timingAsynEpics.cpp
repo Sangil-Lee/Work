@@ -111,8 +111,8 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 		regmap.index = 0;
 		createParamNMap(regmap);
 	};	
-	
-	setTime();
+
+	setIOCStartTime();
 			
 	//Default Initial Value
 	//setIntegerParam(P_TSMode, tsmode);
@@ -121,8 +121,6 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 	//setDoubleParam(P_Firmware, pregmap->GetFirmware());
 	//setDoubleParam(P_Software, pregmap->GetSoftware());
 	//setStringParam(P_BuildTime, "2018-06-01");
-
-
 }
 
 asynParamType timingAsynEpics::getAsynParamType(const char *paramstring)
@@ -907,7 +905,7 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 	return status;
 }
 
-void timingAsynEpics::setTime()
+void timingAsynEpics::setIOCStartTime()
 {
 	epicsTimeStamp current;
 	epicsTimeGetCurrent (&current);
@@ -961,7 +959,7 @@ asynStatus timingAsynEpics::readStringValue(const RegMap &regmap, char *value)
 	{
 		unsigned int rdData = 0;
 		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
-		//BCDCode, Sec(6bit)/Min(6bit)/Hour(5bit), Day(5bit)/Hour(4bit)/Year(5bit)
+		//BCDCode for time structure register, Sec(6bit)/Min(6bit)/Hour(5bit), Day(5bit)/Hour(4bit)/Year(5bit)
 		int year  = (rdData & 0x007E0000) >> 17;
 		int month = (rdData & 0x07800000) >> 23;
 		int day   = (rdData & 0xF8000000) >> 27;
@@ -991,24 +989,6 @@ asynStatus timingAsynEpics::readOctet(asynUser *pasynUser, char *value, size_t m
     /* Set the timestamp */
     pasynUser->timestamp = timeStamp;
 	readStringValue(regmaptable[function], value);
-#if 0
-	*value = readStringValue(regmap);
-	if(function == P_BuildTime)
-	{
-		printf("Set Build Time\n");
-		unsigned int rdData;
-		//ts2ip_rd(gpSys->ip.ev.fd, A_buildTime, (unsigned int*)&rdData);
-		regmap = regmaptable[function];
-		ts2ip_rd(gpSys->ip.ev.fd, regmap.address, (unsigned int*)&rdData);
-
-		char timebuf[20];
-		sprintf(timebuf,"20%d/%d/%d %d:%d:%d", S_buildYear(rdData), S_buildMonth(rdData), S_buildDay(rdData), S_buildHour(rdData), S_buildMin(rdData), S_buildSec(rdData));
-		strcpy(value, (char*)timebuf);
-
-		printf("Buildtime:%s\n", timebuf);
-	};
-#endif
-
 		
     if (status) 
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
