@@ -22,12 +22,8 @@ namespace __gnu_cxx {
 
 #include <iostream>
 #include <fstream>
-
-#include "inc/com_def.h"
-#include "ts2regmap.h"
-#include "ts2ip.h"
-#include "ts2iic.h"
-#include "ts2api.h"
+#include <vector>
+#include <tuple>
 
 #include "asynPortDriver.h"
 #include "timingDriver.h"
@@ -35,20 +31,11 @@ namespace __gnu_cxx {
 extern "C" {
 }
 
-using namespace std;
-
-
 class timingAsynEpics : public asynPortDriver 
 {
 public:
-	timingAsynEpics(const char *portName, int maxSizeSnapshot, int maxSizeBufferMB, int clientMode, const char* filename, const char *deviceName);
+	timingAsynEpics(const char *portName, int maxSizeSnapshot, int maxSizeBufferMB, int clientMode, const char* filename, const char *deviceName, const int evrNum);
 	void userProcess();
-	virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-	virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
-	virtual asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
-	virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-
-	virtual asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
 	int clientThreadMode;
 
 protected:
@@ -58,17 +45,22 @@ private:
 	string fileName;
 	const char *driverName;
     epicsEventId eventId_;
-    int scanRateHz;
     int system_init_ok;
     int tsmode;
+    int tsnum;
+
+	char iocStartTime[25];
 
 	timing::timingDriver *ptiming;
-	bitset<40>	polbit;
+	//bitset<40>	polbit;
 
 	struct RegMap{
 		char			drvname[64];
 		int				address;
 		asynParamType	paramtype;
+		int				option1;
+		int				option2;
+		char			drvLink[64];
 		int				index;
 	};
 
@@ -78,26 +70,47 @@ private:
 	hash_map<int,	 RegMap> regmaptable;
 	hash_map<string, RegMap>::const_iterator check_iter;
 
+	typedef	vector<unsigned long> vecCode;
+	hash_map<string, vecCode> vecCodeMap;
+
 	int tsMode(const char* mode);
-	void setIOCStartTime();
+	void registerParamListFromFile(string filename);
+	asynParamType getAsynParamType(const char *paramstring);
+	asynStatus createParamNMap(RegMap &reg);
+	int checkParam(const string drvname);
 
 	int setParamValue(const string drvname, const string svalue);
 	int setParamValue(const string drvname, const int ival);
 	int setParamValue(const string drvname, const double dval);
-
 	asynStatus getParamValue(const string drvname, int maxChars, char *value );
 	asynStatus getParamValue(const string drvname, int &value);
 	asynStatus getParamValue(const string drvname, double &value);
 
-	void registerParamListFromFile(string filename);
-	asynParamType getAsynParamType(const char *paramstring);
-	asynStatus createParamNMap(RegMap &reg);
-	epicsInt32 readInt32Value(const RegMap &regmap);
-	int writeFloat64Value(const RegMap &regmap);
+
+	asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
 	int writeInt32Value(const RegMap &regmap);
+
+	asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
+	int writeFloat64Value(const RegMap &regmap);
+
+	asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
 	int writeOctetValue(const RegMap &regmap);
+
+	asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
 	asynStatus readStringValue(const RegMap &regmap, char *value);
-	int checkParam(const string drvname);
+
+	asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
+	epicsInt32 readInt32Value(const RegMap &regmap);
+
+	//New 
+	asynStatus	readValue(const RegMap &regmap, epicsInt32 &value);
+	asynStatus	readValue(const RegMap &regmap, epicsFloat64 &value);
+
+	//WaveformPV Setup
+    asynStatus readInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements, size_t *nIn);
+
+	//tuple < float, int, int, int > cal(int n1, int n2);
+	//void caltest();
 };
 
 #endif

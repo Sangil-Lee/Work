@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/timing
+#!../../bin/linux-arm/timing
 
 ## You may have to change timing to something else
 ## everywhere it appears in this file
@@ -16,9 +16,8 @@ timingAsynEpicsConfigure("timing", 1000, 0, 10, "${TOP}/iocBoot/${IOC}/TimingReg
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluserHost")
 #dbLoadRecords("db/timingAsynDriver.db","SYS=SCL3,SUBSYS=TS,DEV=EVR,PORT=timing,OFFSET=0,TIMEOUT=1,NPOINTS=1000")
-dbLoadRecords("db/timeStamp.db","SYS=SCL3,SUBSYS=TS,DEV=EVR")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/timing.sub")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/timing_test.sub")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/timing_evr_2.sub")
 asynSetTraceIOMask("timing", 0, 0x2)
 
 cd "${TOP}/iocBoot/${IOC}"

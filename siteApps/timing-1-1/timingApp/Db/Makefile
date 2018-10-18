@@ -20,6 +20,10 @@ DB += ao.template
 DB += stringin.template
 DB += stringout.template
 DB += longout.template
+DB += longin.template
+DB += timeStamp.db
+DB += fanoutBit.vdb
+DB += fanoutShort.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
