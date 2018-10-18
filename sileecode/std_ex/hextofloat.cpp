@@ -31,17 +31,15 @@ float hexstr2float(const std::string& hexstr)
 	return value.d;
 }
 
-
-
 int main(int argc, char* argv[])
 {
 
 	if(argc != 2) return 0;
 
 
-	std::cout << "413DF3EBA463B0 = " << hexstr2double("413DF3EBA463B0") << '\n';
-	std::cout << "7F00FF00 = " << hexstr2float("7F00FF00") << '\n';
+	//std::cout << "413DF3EBA463B0 = " << hexstr2double("413DF3EBA463B0") << '\n';
 	std::cout << string(argv[1]) << " = "<< hexstr2float(string(argv[1])) << '\n';
+	std::cout << string(argv[1]) << " = "<< hexstr2double(string(argv[1])) << '\n';
 	return 0;
 
 }
