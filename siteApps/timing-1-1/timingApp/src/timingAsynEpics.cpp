@@ -60,8 +60,8 @@ timingAsynEpics::timingAsynEpics(const char *portName, int maxSizeSnapshot, int 
 			1,  /*maxAddr */ 
 			/*0xC600, maxAddr*/
                     15000,
-                    asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask |asynDrvUserMask, /* Interface mask */
-                    asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
+                    asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynInt32ArrayMask| asynFloat64ArrayMask | asynEnumMask | asynOctetMask |asynDrvUserMask, /* Interface mask */
+                    asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynInt32ArrayMask| asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
                     1, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
                     1, /* Autoconnect */
                     0, /* Default priority */
@@ -80,7 +80,7 @@ timingAsynEpics::timingAsynEpics(const char *portName, int maxSizeSnapshot, int 
     //ptiming = (timingDriver *)calloc(1,sizeof(timingDriver));
     ptiming = new timingDriver(tsmode,deviceNum);
 	
-	if(ptiming->isInit != 1) return;
+	//if(ptiming->isInit != 1) return;
 
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
@@ -307,7 +307,7 @@ epicsInt32 timingAsynEpics::readInt32Value(const RegMap &regmap)
 	return (value);	
 }
 
-asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
+asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 value)
 {
 	//Register address read.
 	//....
@@ -333,7 +333,7 @@ asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
 	D2_Type		 = (regmap.option1 >>24) & 0x0000000F;
 	D2_Offset	 = (regmap.option1 >>16) & 0x000000FF;
 	D3_Type		 = (regmap.option1 >>12) & 0x0000000F;
-	isWaveform   = (regmap.option1) & 0x00000001;
+	isWaveform   = (regmap.option1) & 0x00000002;
 
     switch(IP_Index)
 	{
@@ -367,7 +367,7 @@ asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
 		vecCode uval = vecCodeMap[regmap.drvLink];
 
 		if(timingDebug)
-			printf("-%s-,Sub_drvname(%s), Size(%ld)\n", functionName, regmap.drvLink, uval.size());
+			printf("-%s-,Sub_drvname(%s), Size(%ld), WaveCount(%d)\n", functionName, regmap.drvLink, uval.size(), wavecount);
 
 		if(uval.size() == 0 || wavecount > 2047) return (status);
 
@@ -417,20 +417,19 @@ asynStatus timingAsynEpics::readInt32Array(asynUser *pasynUser, epicsInt32 *valu
 	RegMap regmap = regmaptable[function];
 	vecCodeMap[regmap.drvname].clear();
 
-	if (strcmp(regmap.drvname,"EV_SEQA_CFG")	== 0 || strcmp(regmap.drvname,"EV_SEQA_TSTAMP") == 0 ||
-		strcmp(regmap.drvname,"EV_SEQB_CFG")	== 0 || strcmp(regmap.drvname,"EV_SEQB_TSTAMP") == 0 ||
-		strcmp(regmap.drvname,"EV_MAP_RAM")		== 0 )
+	if(timingDebug)
+		printf("%s(%s)\n",functionName,regmap.drvname);
+
+	vecCode uval;
+	for(size_t i = 0; i < (size_t)nElements;i++)
 	{
-		vecCode uval;
-		for(size_t i = 0; i < (size_t)nElements;i++)
-		{
-			if(value[i] <= 0) break;
-			uval.push_back((value[i] & 0x7ff));
-			if(timingDebug && i < (size_t)timingPrintCount)
-				printf("%s(%s)-[%ld]:LONG(0x%03lx),Value(%d)\n",functionName,regmap.drvname, i, uval.at(i), value[i]);
-		};
-		vecCodeMap[regmap.drvname] = uval;
+		if(value[i] <= 0) break;
+		uval.push_back((value[i] & 0xffff));
+		if(timingDebug && i < (size_t)timingPrintCount)
+			printf("%s(%s)-[%ld]:LONG(0x%03lx),Value(%d)\n",functionName,regmap.drvname, i, uval.at(i), value[i]);
 	};
+	vecCodeMap[regmap.drvname] = uval;
+
     return status;
 }
 
@@ -455,6 +454,7 @@ asynStatus timingAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
 	*value = readInt32Value(regmaptable[function]);
 #else
 	//New
+	//readValue(regmaptable[function], *value);
 	readValue(regmaptable[function], *value);
 #endif
 
@@ -482,12 +482,17 @@ asynStatus timingAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
 
 	/* Set the parameter in the parameter library. */
 	status = (asynStatus) setIntegerParam(function, value);
-	printf("[writeInt32] %s : 0x%08x\r\n",paramName,value);
+
+	if(timingDebug)
+		printf("[%s] : %d\n",functionName,value);
 
 
 	/* Fetch the parameter string name for possible use in debugging */
 	getParamName(function, &paramName);
-	writeInt32Value(regmaptable[function]);
+	//writeInt32Value(regmaptable[function]);
+
+
+	writeValue(regmaptable[function], value);
 
 	/* Do callbacks so higher layers see any changes */
 	status = (asynStatus) callParamCallbacks();
@@ -813,6 +818,101 @@ int timingAsynEpics::writeFloat64Value(const RegMap &regmap)
     return  (status);
 }
 
+asynStatus timingAsynEpics::writeValue(const RegMap & regmap, const epicsInt32 value)
+{
+    asynStatus status = asynSuccess;
+	const char* functionName = regmap.drvname;
+
+	if( -1 == checkParam(regmap.drvname) ) return(asynError);
+
+	//Register address read.
+	unsigned int rdData;
+	unsigned int IP_Index;
+	unsigned int D_Addr;
+	unsigned int D1_Type;
+	unsigned int D2_Type;
+	unsigned int D3_Type;
+	unsigned int isWaveform;
+	unsigned int D2_Offset;
+
+	int l_fd = -1;
+
+	IP_Index = (regmap.address >>28) & 0x0000000F;
+	D_Addr   = (regmap.address & 0x0FFFFFFF);
+
+	D1_Type		 = (regmap.option1 >>28) & 0x0000000F;
+	D2_Type		 = (regmap.option1 >>24) & 0x0000000F;
+	D2_Offset	 = (regmap.option1 >>16) & 0x000000FF;
+	D3_Type		 = (regmap.option1 >>12) & 0x0000000F;
+	isWaveform   = (regmap.option1) & 0x00000003;
+
+	if(timingDebug)
+		printf("-%s-,Sub_drvname(%s), value(%d)\n", functionName, regmap.drvLink, value);
+
+    switch(IP_Index)
+	{
+		case 1  : l_fd = ptiming->ev.fd;
+			break;
+		case 2  : l_fd = ptiming->gtp.fd;
+			break;
+		case 0  :
+		default : l_fd = -1;
+			break;
+	};
+
+	if(l_fd != -1) 
+	{
+		ptiming->ip_rd(l_fd, D_Addr, (unsigned int*)&rdData);
+		
+		switch(D2_Type){
+			case 1  : break;
+			case 2  : rdData = (rdData >> D2_Offset);	rdData &= 0xFFFF;	break;
+			case 3  : rdData = (rdData >> D2_Offset);	rdData &= 0xFF;		break;
+			case 4  : rdData = (rdData >> D2_Offset);	rdData &= 0xF;		break;
+			case 5  : rdData = (rdData >> D2_Offset);	rdData &= 0x3;		break;
+			case 6  : rdData = (rdData >> D2_Offset);	rdData &= 0x1;		break;
+			default : return (status);
+		};
+	}
+	else if (isWaveform)
+	{
+		int wavecount = (value > 2047)? 2047:value;
+		vecCode uval = vecCodeMap[regmap.drvLink];
+
+		int wavesize = uval.size();
+
+		if(timingDebug)
+			printf("-%s-,Sub_drvname(%s),isWave(%d), Size(%ld), WaveCount(%d)\n", functionName, regmap.drvLink, 
+							isWaveform,uval.size(), wavecount);
+
+		if(wavesize == 0 || wavecount < 0) return (status);
+		
+		if (wavesize < wavecount) wavecount = wavesize;
+
+		unsigned long eval = 0;
+		for(int i = 0; i < wavecount;i++)
+		{
+			eval = uval.at(i);
+			if(timingDebug && i < timingPrintCount)
+				printf("%s(%s)-[%ld]:(0x%03lx),Value(%ld)\n",functionName,regmap.drvLink, i, eval, eval);
+
+			//ptiming->IP_WR(D_Addr+(i*4), eval);
+		};
+
+		if(isWaveform > 2)
+		{
+			eval = uval.at(wavecount - 1)+0x80000000;
+			//ptiming->IP_WR(D_Addr+(i*4), eval);
+		};
+
+		if(timingDebug && isWaveform > 2)
+			printf("%s(%s):(0x%03lx),Value(%ld)\n",functionName,regmap.drvLink, eval, eval);
+
+	};
+
+	return (status);
+}
+
 //===================laykim longout
 int timingAsynEpics::writeInt32Value(const RegMap &regmap)
 {
@@ -859,8 +959,6 @@ int timingAsynEpics::writeInt32Value(const RegMap &regmap)
 	else
 		getParamValue(regmap.drvname, value);
 
-	// printf("writeInt32Value: %s, 0x%08x\r\n",regmap.drvname, value);
-	// printf("writeInt32Value: %s, 0x%08x, %d, 0x%08x, %d, %d, %d, %d\r\n",regmap.drvname, value, l_fd, D_Addr, D1_Type, D2_Type, D2_Offset, D3_Type);
 
 	if(l_fd != -1) 
 	{
@@ -878,7 +976,6 @@ int timingAsynEpics::writeInt32Value(const RegMap &regmap)
 		wrData = rdData & tmpData;
 		wrData |= value;
 
-		// printf("writeInt32Value");
 		switch(D3_Type){
 			case 0  : 
 				ptiming->ip_wr(l_fd, D_Addr, (unsigned int)wrData);

@@ -176,11 +176,6 @@ file "db/longin.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQB_CFG,	EV_SEQB_CFG,	,	"I/O Intr"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQB_TSTAMP,	EV_SEQB_TSTAMP,	,	"I/O Intr"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MAP_RAM,	EV_MAP_RAM,	,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,	SYS_SEQA_CFG_SET,	,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,	,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,	SYS_SEQB_CFG_SET,	,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_TSTAMP_SET,	SYS_SEQB_TSTAMP_SET,	,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_MAP_RAM,	SYS_MAP_RAM,	,	"I/O Intr"	}
 }
 
 
@@ -377,6 +372,11 @@ file "db/longout.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_29,	EV_MEVCODEA_29,		}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_30,	EV_MEVCODEA_30,		}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_31,	EV_MEVCODEA_31,		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,		SYS_SEQA_CFG_SET,	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,		SYS_SEQB_CFG_SET,	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_TSTAMP_SET,	SYS_SEQB_TSTAMP_SET,}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_MAP_RAM,			SYS_MAP_RAM,		}
 }
 
 

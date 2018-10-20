@@ -21,6 +21,7 @@ DB += stringin.template
 DB += stringout.template
 DB += longout.template
 DB += longin.template
+DB += waveform.template
 DB += timeStamp.db
 DB += fanoutBit.vdb
 DB += fanoutShort.vdb
