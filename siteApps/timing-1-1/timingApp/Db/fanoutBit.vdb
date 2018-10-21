@@ -15,7 +15,7 @@ record(longin, "$(SYS)-$(SUBSYS):$(DEV):PDPRunSTTLong") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):OneFO")
   field(VAL, "16711935")
-  field(INP, "$(SYS)-$(SUBSYS):$(DEV):EV_PDPRUNSTT")
+  field(INP, "$(SYS):$(SUBSYS):$(DEV):EV_PDPRUNSTT")
 }
 
 record(calc, "$(SYS)-$(SUBSYS):$(DEV):CalcHigh") {

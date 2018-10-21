@@ -40,7 +40,7 @@ file "db/longin.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_EVCODE_CNTR,	EV_TX_EVCODE_CNTR,""	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RX_EVCODE_CNTR,	EV_RX_EVCODE_CNTR,""	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EMERGENCYSTOPCNTR,	EV_EMERGENCYSTOPCNTR,""	,	"1 second"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"SCL3-TS:EVS1:PDPRunSTTLong",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_0,	EV_PDPCNTR_0,	"",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_1,	EV_PDPCNTR_1,	"",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_2,	EV_PDPCNTR_2,	"",	"1 second"	}
@@ -333,11 +333,12 @@ file "db/longout.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_29,	EV_MEVCODEA_29,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_30,	EV_MEVCODEA_30,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_31,	EV_MEVCODEA_31,	""}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,		SYS_SEQA_CFG_SET,		"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,		SYS_SEQB_CFG_SET,		"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_TSTAMP_SET,	SYS_SEQB_TSTAMP_SET,	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_MAP_RAM,			SYS_MAP_RAM_SET,		"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,		SYS_SEQA_CFG_SET,		""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,		SYS_SEQB_CFG_SET,		""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_TSTAMP_SET,	SYS_SEQB_TSTAMP_SET,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_MAP_RAM_SET,		SYS_MAP_RAM_SET,		""	}
+#{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"SCL3-TS:EVS1:PDPRunSTTLong"}
 }
 
 
