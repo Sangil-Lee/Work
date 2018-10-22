@@ -413,15 +413,14 @@ int timingDriver::test(int argc, char *argv[])
                               //dbus, evCodeA, evCodeB, stream data, pdp out
                 break;
       case 3 :
+				prn_evLog();
                 break;
       case 4 :
+				prn_all(4);
                 break;
       default:
                 break;
     }
-
-    if((evMode == RAON_EVG) || (evMode == RAON_EVS))
-      set_evUser(1920);
 
     return RET_OK;
   }  

@@ -89,6 +89,7 @@ private:
 
 	asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
 	asynStatus writeValue(const RegMap &regmap, const epicsInt32 value);
+	int writeInt32Value(const RegMap &regmap, epicsInt32 value);
 	int writeInt32Value(const RegMap &regmap);
 
 	asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
@@ -104,7 +105,7 @@ private:
 	epicsInt32 readInt32Value(const RegMap &regmap);
 
 	//New 
-	asynStatus	readValue(const RegMap &regmap, epicsInt32 value);
+	asynStatus	readValue(const RegMap &regmap, epicsInt32 &value);
 	asynStatus	readValue(const RegMap &regmap, epicsFloat64 &value);
 
 	//WaveformPV Setup
