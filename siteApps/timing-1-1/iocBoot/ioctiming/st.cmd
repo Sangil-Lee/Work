@@ -18,6 +18,7 @@ timingAsynEpicsConfigure("timing", 1000, 0, 10, "${TOP}/iocBoot/${IOC}/TimingReg
 #dbLoadRecords("db/timingAsynDriver.db","SYS=SCL3,SUBSYS=TS,DEV=EVR,PORT=timing,OFFSET=0,TIMEOUT=1,NPOINTS=1000")
 dbLoadRecords("db/timeStamp.db","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
 dbLoadRecords("db/fanoutBit.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
+dbLoadRecords("db/fanoutShort.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/timing.sub")
 asynSetTraceIOMask("timing", 0, 0x2)
 

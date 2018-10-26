@@ -52,7 +52,6 @@ private:
 	char iocStartTime[25];
 
 	timing::timingDriver *ptiming;
-	//bitset<40>	polbit;
 
 	struct RegMap{
 		char			drvname[64];
@@ -96,7 +95,7 @@ private:
 	int writeFloat64Value(const RegMap &regmap);
 
 	asynStatus writeOctet(asynUser *pasynUser, const char *value, size_t maxChars, size_t *nActual);
-	int writeOctetValue(const RegMap &regmap);
+	asynStatus writeOctetValue(const RegMap &regmap, const char *value);
 
 	asynStatus readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason);
 	asynStatus readStringValue(const RegMap &regmap, char *value);
@@ -109,7 +108,8 @@ private:
 	asynStatus	readValue(const RegMap &regmap, epicsFloat64 &value);
 
 	//WaveformPV Setup
-    asynStatus readInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements, size_t *nIn);
+    //asynStatus readInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements, size_t *nIn);
+	asynStatus writeFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements);
 
 	//tuple < float, int, int, int > cal(int n1, int n2);
 	//void caltest();

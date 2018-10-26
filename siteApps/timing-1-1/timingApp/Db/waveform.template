@@ -4,6 +4,6 @@ record(waveform, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
     field(DTYP,  "$(DTYP)")
     field(INP,   "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
     field(NELM,  "$(NELM)")
-    field(FTVL,  "LONG")
+    field(FTVL,  "DOUBLE")
     field(SCAN,  "$(SCAN)")
 }

@@ -25,6 +25,7 @@ DB += waveform.template
 DB += timeStamp.db
 DB += fanoutBit.vdb
 DB += fanoutShort.vdb
+DB += strToValuesub.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

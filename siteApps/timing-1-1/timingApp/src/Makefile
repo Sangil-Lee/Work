@@ -30,7 +30,7 @@ DBD += timing.dbd
 # timing.dbd will be made up from these files:
 timing_DBD += base.dbd
 timing_DBD += timingAsynEpics.dbd timestampRecord.dbd
-timing_DBD += timestampDevSoft.dbd
+timing_DBD += timestampDevSoft.dbd strToValue.dbd
 
 # Include dbd files from all support applications:
 #timing_DBD += xxx.dbd
@@ -40,6 +40,7 @@ timing_DBD += timestampDevSoft.dbd
 
 # timing_registerRecordDeviceDriver.cpp derives from timing.dbd
 timing_SRCS += timing_registerRecordDeviceDriver.cpp
+timing_SRCS += strToValue.cpp
 timing_LIBS += timingAsynEpicsSupport 
 timing_LIBS += asyn timeStamp
 

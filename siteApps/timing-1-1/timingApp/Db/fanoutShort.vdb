@@ -53,7 +53,7 @@ record(longin, "$(SYS)-$(SUBSYS):$(DEV):SYS_FANA") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):FanSpeedFO")
   field(VAL, "0")
-  field(INP, "$(SYS)-$(SUBSYS):$(DEV):EV_FANA.VAL")
+  field(INP, "$(SYS):$(SUBSYS):$(DEV):EV_FAN_A.VAL")
 }
 
 
@@ -62,7 +62,7 @@ record(longin, "$(SYS)-$(SUBSYS):$(DEV):SYS_FANB") {
   field(SCAN, "Passive")
   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):FanSpeedFO2")
   field(VAL, "0")
-  field(INP, "$(SYS)-$(SUBSYS):$(DEV):EV_FANB.VAL")
+  field(INP, "$(SYS):$(SUBSYS):$(DEV):EV_FAN_B.VAL")
 }
 
 #! Further lines contain data used by VisualDCT
