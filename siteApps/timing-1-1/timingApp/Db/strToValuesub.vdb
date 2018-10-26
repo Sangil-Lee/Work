@@ -9,25 +9,25 @@ record(sub, "$(SYS):$(SUBSYS):$(DEV):ARRINIT") {
   field(INPE, "$(SYS):$(SUBSYS):$(DEV):EV_MAP_RAM")
   field(INPF, "$(SYS):$(SUBSYS):$(DEV):ARRINITVAL")
   field(INPG, "$(SYS):$(SUBSYS):$(DEV):ARRINITCOUNT")
+  field(INPH, "$(SYS):$(SUBSYS):$(DEV):ARRINITINC")
   field(SCAN, "")
 }
 
 record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITVAL") {
   field(PINI, "YES")
   field(VAL, "0")
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):ARRINIT")
+#  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):ARRINIT")
 }
 
 record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITCOUNT") {
   field(PINI, "YES")
   field(VAL, "2048")
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):ARRINIT")
+#  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):ARRINIT")
 }
 
-record(waveform, "$(SYS):$(SUBSYS):$(DEV):WAVETESTDOUBLE") {
+record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITINC") {
   field(PINI, "YES")
   field(VAL, "0")
-  field(FTVL, "DOUBLE")
-  field(NELM, "100")
+#  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):ARRINIT")
 }
 

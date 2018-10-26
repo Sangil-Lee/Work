@@ -40,6 +40,7 @@ static long procStrToValue(subRecord *precord)
 
 	long initvalue = precord->f;
 	long initcount = precord->g;
+	long initinc   = precord->h;
 
 	if(initvalue > 2047 ) return (-1);
 
@@ -58,14 +59,14 @@ static long procStrToValue(subRecord *precord)
 	waveformRecord *precordLinkD = (waveformRecord *)pdbAddrD->precord;
 	waveformRecord *precordLinkE = (waveformRecord *)pdbAddrE->precord;
 
-	printf("record type:%d\n",record);
 	switch(record)
 	{
 		case EV_SEQA_CFG:
 			{
 				for(int i = 0; i < initcount; i++)
 				{
-					pfieldLinkA[i] = (long)initvalue;
+					pfieldLinkA[i] = (long)initvalue+(i+1)*initinc;
+					if(pfieldLinkA[i]>2047) pfieldLinkA[i] = 2047; 
 				}
 				precordLinkA->nord = initcount;
 				dbProcess((dbCommon*)precordLinkA);
@@ -74,7 +75,10 @@ static long procStrToValue(subRecord *precord)
 		case EV_SEQA_TSTAMP:
 			{
 				for(int i = 0; i < initcount; i++)
-					pfieldLinkB[i] = (long)initvalue;
+				{
+					pfieldLinkB[i] = (long)initvalue+(i+1)*initinc;
+					if(pfieldLinkB[i]>2047) pfieldLinkB[i] = 2047; 
+				}
 				precordLinkB->nord = initcount;
 			}
 			dbProcess((dbCommon*)precordLinkB);
@@ -82,7 +86,10 @@ static long procStrToValue(subRecord *precord)
 		case EV_SEQB_CFG:
 			{
 				for(int i = 0; i < initcount; i++)
-					pfieldLinkC[i] = (long)initvalue;
+				{
+					pfieldLinkC[i] = (long)initvalue+(i+1)*initinc;
+					if(pfieldLinkC[i]>2047) pfieldLinkC[i] = 2047; 
+				}
 				precordLinkC->nord = initcount;
 			}
 			dbProcess((dbCommon*)precordLinkC);
@@ -90,7 +97,10 @@ static long procStrToValue(subRecord *precord)
 		case EV_SEQB_TSTAMP:
 			{
 				for(int i = 0; i < initcount; i++)
-					pfieldLinkD[i] = (long)initvalue;
+				{
+					pfieldLinkD[i] = (long)initvalue+(i+1)*initinc;
+					if(pfieldLinkD[i]>2047) pfieldLinkD[i] = 2047; 
+				}
 				precordLinkD->nord = initcount;
 			}
 			dbProcess((dbCommon*)precordLinkD);
@@ -98,7 +108,10 @@ static long procStrToValue(subRecord *precord)
 		case EV_MAP_RAM:
 			{
 				for(int i = 0; i < initcount; i++)
-					pfieldLinkE[i] = (long)initvalue;
+				{
+					pfieldLinkE[i] = (long)initvalue+(i+1)*initinc;
+					if(pfieldLinkE[i]>2047) pfieldLinkE[i] = 2047; 
+				}
 				precordLinkE->nord = initcount;
 			}
 			dbProcess((dbCommon*)precordLinkE);
