@@ -15,6 +15,7 @@ include $(TOP)/configure/CONFIG
 DB += bi.template
 DB += bo.template
 DB += mbbi.template
+DB += mbbo.template
 DB += ai.template
 DB += ao.template
 DB += stringin.template

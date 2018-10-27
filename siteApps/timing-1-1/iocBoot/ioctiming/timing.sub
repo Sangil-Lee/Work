@@ -15,7 +15,12 @@ file "db/mbbi.template" { pattern
 
 
 file "db/mbbo.template" { pattern
-{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK }
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, ZRST, ONST, TWST, THST, FRST, FVST, SXST, SVST, EIST, NIST, TEST, ELST, TVST, TTST, FTST, FFST }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_0, EV_SEQTRGMSKA_0, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_1, EV_SEQTRGMSKA_1, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_0, EV_SEQTRGMSKB_0, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_1, EV_SEQTRGMSKB_1, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVTRGMSK, EV_EVTRGMSK, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
 }
 
 file "db/waveform.template" { pattern
@@ -34,13 +39,13 @@ file "db/longin.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK,	GT_TRACKOK,	"",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK_0,	GT_TRACKOK_0,	"",	"I/O Intr"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK_1,	GT_TRACKOK_1,	"",	"I/O Intr"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_A,	EV_FAN_A,"$(SYS)-$(SUBSYS):$(DEV):SYS_FANA",	"1 second"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_B,	EV_FAN_B,"$(SYS)-$(SUBSYS):$(DEV):SYS_FANB"	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_A,	EV_FAN_A,"$(SYS):$(SUBSYS):$(DEV):SYS_FANA",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_B,	EV_FAN_B,"$(SYS):$(SUBSYS):$(DEV):SYS_FANB"	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVG_STATUS,	EV_EVG_STATUS,""	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_EVCODE_CNTR,	EV_TX_EVCODE_CNTR,""	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RX_EVCODE_CNTR,	EV_RX_EVCODE_CNTR,""	,	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EMERGENCYSTOPCNTR,	EV_EMERGENCYSTOPCNTR,""	,	"1 second"	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"$(SYS)-$(SUBSYS):$(DEV):PDPRunSTTLong",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"$(SYS):$(SUBSYS):$(DEV):PDPRunSTTLong",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_0,	EV_PDPCNTR_0,	"",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_1,	EV_PDPCNTR_1,	"",	"1 second"	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_2,	EV_PDPCNTR_2,	"",	"1 second"	}
@@ -169,14 +174,9 @@ file "db/longout.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_6,	EV_TX_DBUS_6,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_7,	EV_TX_DBUS_7,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVUSER,	EV_EVUSER,""		}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVTRGMSK,	EV_EVTRGMSK,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVTRGSELREG,	EV_EVTRGSELREG,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGSEL_0,	EV_SEQTRGSEL_0,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGSEL_1,	EV_SEQTRGSEL_1,	""	}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_0,	EV_SEQTRGMSKA_0,	""}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_1,	EV_SEQTRGMSKA_1,	""}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_0,	EV_SEQTRGMSKB_0,	""}
-{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_1,	EV_SEQTRGMSKB_1,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQ_REPEATREG_0,	EV_SEQ_REPEATREG_0,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQ_REPEATREG_1,	EV_SEQ_REPEATREG_1,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_0,	EV_MXC14_PRESCALERREG_0,	""}
@@ -333,6 +333,16 @@ file "db/longout.template" { pattern
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_29,	EV_MEVCODEA_29,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_30,	EV_MEVCODEA_30,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_31,	EV_MEVCODEA_31,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_SEL_A,	EV_TX_DBUS_SEL_A,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_SEL_B,	EV_TX_DBUS_SEL_B,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_A,	EV_TRIG_SEL_A,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_B,	EV_TRIG_SEL_B,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_C,	EV_TRIG_SEL_C,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_D,	EV_TRIG_SEL_D,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_E,	EV_TRIG_SEL_E,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_F,	EV_TRIG_SEL_F,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_G,	EV_TRIG_SEL_G,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_H,	EV_TRIG_SEL_H,	""}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,		SYS_SEQA_CFG_SET,		""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,	""	}
 {SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,		SYS_SEQB_CFG_SET,		""	}

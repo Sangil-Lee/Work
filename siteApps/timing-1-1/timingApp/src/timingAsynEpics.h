@@ -58,7 +58,6 @@ private:
 		int				address;
 		asynParamType	paramtype;
 		int				option1;
-		int				option2;
 		char			drvLink[64];
 		int				index;
 	};
@@ -108,7 +107,6 @@ private:
 	asynStatus	readValue(const RegMap &regmap, epicsFloat64 &value);
 
 	//WaveformPV Setup
-    //asynStatus readInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements, size_t *nIn);
 	asynStatus writeFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements);
 
 	//tuple < float, int, int, int > cal(int n1, int n2);

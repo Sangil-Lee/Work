@@ -745,12 +745,12 @@ int timingDriver::start_thread()
 
 	switch(evMode)
 	{
-		case RAON_EVG    : sprintf(evName, "%s"     , "EVG"      ); sprintf(lcdStr, "   [ RAON %s ]\n", evName); break;
-		case RAON_EVF    : sprintf(evName, "%s-%03d", "EVF",evNum); sprintf(lcdStr, " [ RAON %s ]\n"  , evName); break;
-		case RAON_EVS    : sprintf(evName, "%s"     , "EVS"      ); sprintf(lcdStr, "   [ RAON %s ]\n", evName); break;
-		case RAON_EVR    : sprintf(evName, "%s-%03d", "EVR",evNum); sprintf(lcdStr, " [ RAON %s ]\n"  , evName); break;
-		case RAON_EVR_FP : sprintf(evName, "%s"     , "EVR-FP"   ); sprintf(lcdStr, "  [ RAON %s ]\n" , evName); break;
-		default          : sprintf(evName, "%s"     , "NONE"     ); sprintf(lcdStr, "   [ %s ]\n"     , evName); break;
+		case RAON_EVG    : sprintf(lcdStr, "   [ RAON %s ]\n", evName); break;
+		case RAON_EVF    : sprintf(lcdStr, " [ RAON %s ]\n"  , evName); break;
+		case RAON_EVS    : sprintf(lcdStr, "   [ RAON %s ]\n", evName); break;
+		case RAON_EVR    : sprintf(lcdStr, " [ RAON %s ]\n"  , evName); break;
+		case RAON_EVR_FP : sprintf(lcdStr, "  [ RAON %s ]\n" , evName); break;
+		default          : sprintf(lcdStr, "   [ %s ]\n"     , evName); break;
 	}
 
 	lcdSetColor(0x5C);
@@ -1176,6 +1176,16 @@ int timingDriver::start_thread()
     ip_wr(ev.fd, A_cfgSys_IO_LSB, 0x0000ffff);
     ip_wr(ev.fd, A_cfgSys_IO_MSB, 0x0000ffff);
     ip_wr(ev.fd, A_cfgEvg_sw_evgW0, 1);
+
+   	switch(evMode)
+    {
+      case RAON_EVG    : sprintf(evName, "%s"     , "EVG"      ); break;
+      case RAON_EVF    : sprintf(evName, "%s-%03d", "EVF",evNum); break;
+      case RAON_EVS    : sprintf(evName, "%s"     , "EVS"      ); break;
+      case RAON_EVR    : sprintf(evName, "%s-%03d", "EVR",evNum); break;
+      case RAON_EVR_FP : sprintf(evName, "%s"     , "EVR-FP"   ); break;
+      default          : sprintf(evName, "%s"     , "NONE"     ); break;
+    }
 
     sprintf(ev.evgTime.name, "evgTime");
     ev.evgTime.type = 1;

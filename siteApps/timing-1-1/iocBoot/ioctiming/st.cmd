@@ -4,6 +4,9 @@
 ## everywhere it appears in this file
 
 < envPaths
+< /mnt/sdcard/envDev
+
+epicsEnvSet("EPICS_CA_MAX_ARRAY_BYTES","6553500")
 
 cd "${TOP}"
 
@@ -11,15 +14,14 @@ cd "${TOP}"
 dbLoadDatabase "dbd/timing.dbd"
 timing_registerRecordDeviceDriver pdbbase
 
-timingAsynEpicsConfigure("timing", 1000, 0, 10, "${TOP}/iocBoot/${IOC}/TimingRegister.reg","EVS")
+timingAsynEpicsConfigure("timing", 1000, 0, 10, "${TOP}/iocBoot/${IOC}/TimingRegister.reg","${DEV_NAME}",${DEV_NUM})
 
 ## Load record instances
-#dbLoadRecords("db/xxx.db","user=ctrluserHost")
-#dbLoadRecords("db/timingAsynDriver.db","SYS=SCL3,SUBSYS=TS,DEV=EVR,PORT=timing,OFFSET=0,TIMEOUT=1,NPOINTS=1000")
-dbLoadRecords("db/timeStamp.db","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
-dbLoadRecords("db/fanoutBit.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
-dbLoadRecords("db/fanoutShort.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/timing.sub")
+dbLoadRecords("db/timeStamp.db","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
+dbLoadRecords("db/fanoutBit.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
+dbLoadRecords("db/fanoutShort.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
+dbLoadRecords("db/strToValuesub.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
+dbLoadTemplate("${TS_LOCAL}/timing.sub")
 asynSetTraceIOMask("timing", 0, 0x2)
 
 cd "${TOP}/iocBoot/${IOC}"

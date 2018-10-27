@@ -78,13 +78,15 @@ timingAsynEpics::timingAsynEpics(const char *portName, int maxSizeSnapshot, int 
 
     ptiming = new timingDriver(tsmode,deviceNum);
 	
-	//if(ptiming->isInit != 1) return;
+	if(ptiming->isInit != 1) return;
 
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
 
     // register parameter list from register file.  
 	registerParamListFromFile(fileName);
+
+	// OPI Java Script Logic
 
 	if (system_init_ok==1) 
 	{
@@ -124,33 +126,29 @@ void timingAsynEpics::registerParamListFromFile(string filename)
 
 		memset(&regmap,0, sizeof(RegMap));
 
-		if(!(pch = strtok (str,", "))) continue;
+		if(!(pch = strtok (str,","))) continue;
 		// printf("ALIAS_Name(%s)\n", pch);
 		strcpy(regmap.drvname, pch);
 
-		if(!(pch = strtok (NULL,", "))) continue;
+		if(!(pch = strtok (NULL,","))) continue;
 		// printf("address(%s)\n", pch);
 		regmap.address = strtol(pch,NULL,16);
 
-		if(!(pch = strtok (NULL,", "))) continue;
+		if(!(pch = strtok (NULL,","))) continue;
 		// printf("paramtype(%s)\n", pch);
 		regmap.paramtype = getAsynParamType(pch);
 
-		if(!(pch = strtok (NULL,", "))) continue;
+		if(!(pch = strtok (NULL,","))) continue;
 		// printf("option1(%s)\n", pch);
 		regmap.option1 = strtol(pch,NULL,16);
 
-		if(!(pch = strtok (NULL,", "))) continue;
-		// printf("option2(%s)\n", pch);
-		regmap.option2 = strtol(pch,NULL,16);
-		
-		if(!(pch = strtok (NULL,", "))) continue;
+		if(!(pch = strtok (NULL,","))) continue;
 		// printf("drvLink(%s)\n", pch);
 		strcpy(regmap.drvLink, pch);
 
-//		printf("%s:index(%d),addr(0x%08x),paramtype(%s),option1(0x%08x),option2(0x%08x),drvLink(%s)\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1, regmap.option2, regmap.drvLink);
-//		printf("%s:index(%d),addr(0x%08x),paramtype(%d),option1(0x%08x),option2(0x%08x)\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1, regmap.option2);
-//		printf("%s, %d, 0x%08x, %d, 0x%08x, 0x%08x\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1, regmap.option2);
+//		printf("%s:index(%d),addr(0x%08x),paramtype(%s),option1(0x%08x),drvLink(%s)\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1, regmap.drvLink);
+//		printf("%s:index(%d),addr(0x%08x),paramtype(%d),option1(0x%08x),\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1);
+//		printf("%s, %d, 0x%08x, %d, 0x%08x\n", regmap.drvname, regmap.index, regmap.address, regmap.paramtype, regmap.option1);
 		createParamNMap(regmap);
 		regmap.index++;
 	};	
@@ -186,16 +184,34 @@ asynParamType timingAsynEpics::getAsynParamType(const char *paramstring)
 	return (paramtype);
 }
 
-asynStatus timingAsynEpics::createParamNMap(RegMap &reg)
+asynStatus timingAsynEpics::createParamNMap(RegMap &regmap)
 {
+	unsigned int IP_Index = 0, D_Addr = 0, D1_Type = 0,
+				D2_Type = 0, D3_Type = 0, D2_Offset = 0;
+
     asynStatus status = asynSuccess;
-   	createParam(reg.drvname, reg.paramtype, &reg.index);
-	//regmapfile[reg.drvname] = reg;
-	//regmaptable[reg.index] = regmapfile[reg.drvname];
-	regmaptable[reg.index] = regmapfile[reg.drvname] = reg;
+   	createParam(regmap.drvname, regmap.paramtype, &regmap.index);
+	//regmapfile[regmap.drvname] = regmap;
+	//regmaptable[regmap.index] = regmapfile[regmap.drvname];
+	regmaptable[regmap.index] = regmapfile[regmap.drvname] = regmap;
+
+	IP_Index = (regmap.address >>28) & 0x0000000F;
+	D_Addr   = (regmap.address & 0x0FFFFFFF);
+
+	D1_Type   = (regmap.option1 >>28) & 0x0000000F; // scan or not check
+	D2_Type   = (regmap.option1 >>24) & 0x0000000F; // data type 32bit, 16bit, 8bit, 4bit, 2bit, 1bit 
+	D2_Offset = (regmap.option1 >>16) & 0x000000FF; // offset of data type
+	D3_Type   = (regmap.option1 >>12) & 0x0000000F; // normal, pulse, getset, timeType0, timeType1 value
+
+	if(regmap.index == 0 && timingDebug)
+	{
+		printf("%s\r\n", "===================================================================================================");
+		printf("%4s, %-26s, %10s, %5s, %10s, %4s, %4s, %5s, %4s, %-26s\r\n", "index", "drvname", "paramtype", "IP", "Addr", "D1", "D2", "Offset", "D3", "drvLink");
+		printf("%s\r\n", "---------------------------------------------------------------------------------------------------");
+	}
 
 	if(timingDebug)
-		printf("drvname(%s), ptype(%d), index(%d), o1(0x%08x), o2(0x%08x), drvLink(%s)\n",reg.drvname, reg.paramtype, reg.index, reg.option1, reg.option2, reg.drvLink);
+		printf("%5d, %-26s, %10d, %5d, 0x%08x, %4d, %4d, %6d, %4d, %-26s\r\n", regmap.index, regmap.drvname, regmap.paramtype, IP_Index, D_Addr, D1_Type, D2_Type, D2_Offset, D3_Type,  regmap.drvLink);
 	return (status);
 }
 
@@ -217,7 +233,6 @@ int timingAsynEpics::tsMode(const char* mode)
 epicsInt32 timingAsynEpics::readInt32Value(const RegMap &regmap)
 {
 	unsigned int rdData = 0;
-	int rdData2 = 0;
 
 	unsigned int IP_Index;
 	unsigned int D_Addr;
@@ -261,35 +276,6 @@ epicsInt32 timingAsynEpics::readInt32Value(const RegMap &regmap)
 			case 6  : rdData = (rdData >> D2_Offset);	rdData &= 0x1;		break;
 			default : return 0; break;
 		}
-
-		if(D3_Type == 6)
-		{
-			RegMap slvRegmap;
-
-			for(int i = 0; i<regmap.option2; i++)
-			{
-				slvRegmap = regmaptable[regmap.index+i+1];
-
-				D1_Type   = (slvRegmap.option1 >>28) & 0x0000000F;
-				D2_Type   = (slvRegmap.option1 >>24) & 0x0000000F;
-				D2_Offset = (slvRegmap.option1 >>16) & 0x000000FF;
-				D3_Type   = (slvRegmap.option1 >>12) & 0x0000000F;
-
-				switch(D2_Type){
-					case 1  : rdData2 = rdData;		break;
-					case 2  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xFFFF;	break;
-					case 3  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xFF;	break;
-					case 4  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xF;		break;
-					case 5  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0x3;		break;
-					case 6  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0x1;		break;
-					default : break;
-				};
-
-				setParamValue(slvRegmap.drvname,rdData2);
-				// callParamCallbacks();
-			};
-		};
-
 	};
 
 	epicsInt32 value = rdData;
@@ -301,7 +287,6 @@ asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
 	//Register address read.
     asynStatus status = asynSuccess;
 
-	int rdData2 = 0;
 	unsigned int rdData = 0,IP_Index = 0, D_Addr = 0, D1_Type = 0,
 				D2_Type = 0, D3_Type = 0, isWaveform = 0, D2_Offset = 0;
 	int l_fd = -1;
@@ -339,31 +324,6 @@ asynStatus timingAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
 			default : return (status);
 		};
 
-		if(D3_Type == 6)
-		{
-			RegMap slvRegmap;
-			for(int i = 0; i<regmap.option2; i++)
-			{
-				slvRegmap = regmaptable[regmap.index+i+1];
-				D1_Type   = (slvRegmap.option1 >>28) & 0x0000000F;
-				D2_Type   = (slvRegmap.option1 >>24) & 0x0000000F;
-				D2_Offset = (slvRegmap.option1 >>16) & 0x000000FF;
-				D3_Type   = (slvRegmap.option1 >>12) & 0x0000000F;
-
-				switch(D2_Type){
-					case 1  : rdData2 = rdData;		break;
-					case 2  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xFFFF;	break;
-					case 3  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xFF;	break;
-					case 4  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0xF;		break;
-					case 5  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0x3;		break;
-					case 6  : rdData2 = (rdData >> D2_Offset);	rdData2 &= 0x1;		break;
-					default : break;
-				};
-
-				setParamValue(slvRegmap.drvname,rdData2);
-				// callParamCallbacks();
-			};
-		};
 	};
 
 	value = rdData;
@@ -396,39 +356,24 @@ asynStatus timingAsynEpics::writeFloat64Array(asynUser *pasynUser, epicsFloat64 
     getTimeStamp(&timeStamp);
     pasynUser->timestamp = timeStamp;
 
-	RegMap regmap = regmaptable[function];
-	vecCodeMap[regmap.drvname].clear();
+    RegMap regmap = regmaptable[function];
+    vecCodeMap[regmap.drvname].clear();
 
-	if(timingDebug)
-		printf("%s(%s),nEle(%ld)\n",functionName,regmap.drvname, nElements);
+    if(timingDebug)
+        printf("%s(%s),nEle(%ld)\n",functionName,regmap.drvname, nElements);
 
-	vecCode uval;
-	for(size_t i = 0; i < (size_t)nElements;i++)
-	{
-		//if(value[i] <= 0) break;
-		uval.push_back((unsigned long)value[i] & 0xffff);
-		if(timingDebug && i < (size_t)timingPrintCount)
-			printf("%s(%s)-[%ld]:LONG(0x%03lx),Value(%ld)\n",functionName,regmap.drvname, i, uval.at(i), (unsigned long)value[i]);
-	};
-	vecCodeMap[regmap.drvname] = uval;
-
-    return status;
-}
-
-#if 0
-asynStatus timingAsynEpics::readInt32Array(asynUser *pasynUser, epicsInt32 *value, size_t nElements, size_t *nIn)
-{
-    int function = pasynUser->reason;
-    asynStatus status = asynSuccess;
-    epicsTimeStamp timeStamp;
-    const char *functionName = "readInt32Array";
-
-    getTimeStamp(&timeStamp);
-    pasynUser->timestamp = timeStamp;
+    vecCode uval;
+    for(size_t i = 0; i < (size_t)nElements;i++)
+    {    
+        //if(value[i] <= 0) break;
+        uval.push_back((unsigned long)value[i] & 0xffff);
+        if(timingDebug && i < (size_t)timingPrintCount)
+            printf("%s(%s)-[%ld]:LONG(0x%03lx),Value(%ld)\n",functionName,regmap.drvname, i, uval.at(i), (unsigned long)value[i]);
+    };   
+    vecCodeMap[regmap.drvname] = uval;
 
     return status;
 }
-#endif
 
 asynStatus timingAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
@@ -572,6 +517,7 @@ asynStatus timingAsynEpics::readStringValue(const RegMap &regmap, char *value)
 				D2_Type = 0, D3_Type = 0, D2_Offset = 0;
 	int l_fd = -1;
 
+
 	IP_Index = (regmap.address >>28) & 0x0000000F;
 	D_Addr   = (regmap.address & 0x0FFFFFFF);
 
@@ -580,12 +526,21 @@ asynStatus timingAsynEpics::readStringValue(const RegMap &regmap, char *value)
 	D2_Offset = (regmap.option1 >>16) & 0x000000FF; // offset of data type
 	D3_Type   = (regmap.option1 >>12) & 0x0000000F; // normal, pulse, getset, timeType0, timeType1 value
 
+	// printf("%s\r\n", "===================================================================================================");
+	// printf("%4s, %-26s, %10s, %5s, %10s, %4s, %4s, %5s, %4s, %-26s\r\n", "index", "drvname", "paramtype", "IP", "Addr", "D1", "D2", "Offset", "D3", "drvLink");
+	// printf("%s\r\n", "---------------------------------------------------------------------------------------------------");
+	// printf("%5d, %-26s, %10d, %5d, 0x%08x, %4d, %4d, %6d, %4d, %-26s\r\n", regmap.index, regmap.drvname, regmap.paramtype, IP_Index, D_Addr, D1_Type, D2_Type, D2_Offset, D3_Type,  regmap.drvLink);
+	
 	switch(IP_Index){
-		case 1  : l_fd = ptiming->ev.fd;
+		case 1  : 
+			l_fd = ptiming->ev.fd;
 			break;
-		case 2  : l_fd = ptiming->gtp.fd;
+		case 2  : 
+			l_fd = ptiming->gtp.fd;
 			break;
-		case 0  : l_fd = -1;
+		case 0  : 
+			l_fd = -1;
+			break;
 		default : return asynError;
 	}
 
@@ -596,7 +551,7 @@ asynStatus timingAsynEpics::readStringValue(const RegMap &regmap, char *value)
 			if(D3_Type == 4)
 			{
 				writeInt32Value(regmapfile[regmap.drvLink]);
-				ptiming->ip_rd(l_fd, regmap.option2*4, (unsigned int*)&rdData2);
+				ptiming->ip_rd(l_fd, D_Addr+4, (unsigned int*)&rdData2);
 			}
 
 			ptiming->ip_rd(l_fd, D_Addr, (unsigned int*)&rdData1);
@@ -652,6 +607,8 @@ asynStatus timingAsynEpics::readStringValue(const RegMap &regmap, char *value)
 	}
 	else
 	{
+		printf("str in init [%s]\r\n",regmap.drvname);
+
 		if (strcmp(regmap.drvname, "FIRMWARE") == 0 )
 		{
 			sprintf(strbuf,"Ver %f"	,	ptiming->firmware );
@@ -719,19 +676,8 @@ asynStatus timingAsynEpics::writeOctet(asynUser *pasynUser, const char *value, s
 
     /* Set the parameter in the parameter library. */
     status = (asynStatus) setStringParam(function, value);
-	
+
 	status = writeOctetValue(regmaptable[function],value);
-
-#if 0
-	if (function == P_Starttime) {
-		/* Make sure the update time is valid. If not change it and put back in parameter library */
-		char svalue[maxChars] = "";
-		getStringParam(P_Starttime, maxChars, svalue);
-		//printf("writeOctet*****:%s(%ld)\n", svalue, maxChars);
-	}
-#endif
-
-    //status = (asynStatus) callParamCallbacks();
 
     if (status) 
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
@@ -750,19 +696,6 @@ asynStatus timingAsynEpics::writeOctetValue(const RegMap &regmap, const char *va
 {
 	asynStatus status = asynSuccess;
 	if(checkParam(regmap.drvname) == -1) return(asynError);
-
-	//char svalue[64] = "";
-
-	// printf("[writeOctetValue] %s:%s[%d]\r\n",regmap.drvname, svalue, status);
-
-	if(timingDebug)
-		printf("[writeOctetValue] %s(%s): Value:%s\n",regmap.drvname,regmap.drvLink,value);
-
-	//RegMap rmap = regmapfile[regmap.drvLink];
-	//writeInt32Value(rmap, regenum[value]);
-	//setParamValue(regmap.drvLink, regenum[value]);
-	//callParamCallbacks();
-	//ptiming->ts2ip_wr(evfile, regmap.address, value );
 
     return  (status);
 }
@@ -837,7 +770,7 @@ int timingAsynEpics::writeInt32Value(const RegMap &regmap, epicsInt32 value)
 				ptiming->ip_wr(l_fd, D_Addr, 0);
 				break;
 			case 2  :
-				ptiming->ip_wr(l_fd, D_Addr, (unsigned int)(value | regmap.option2));
+				ptiming->ip_wr(l_fd, D_Addr, (unsigned int)(value));
 				if(timingDebug)
 					printf("%s: value:%d\n", regmap.drvname, value);
 				writeInt32Value(regmapfile[regmap.drvLink]);
@@ -980,8 +913,8 @@ int timingAsynEpics::writeInt32Value(const RegMap &regmap)
 				// printf("1: %s-value(%08x)",regmap.drvname, value);
 				break;
 			case 2  :
-				ptiming->ip_wr(l_fd, D_Addr, (unsigned int)(value | regmap.option2));
-				// printf("2: %s-value(%08x)",regmap.drvname, value | regmap.option2);
+				ptiming->ip_wr(l_fd, D_Addr, (unsigned int)(value));
+				// printf("2: %s-value(%08x)",regmap.drvname, value);
 				writeInt32Value(regmapfile[regmap.drvLink]);
 				break;
 			default : return 0;
