@@ -13,7 +13,8 @@ mbboLong_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluserHost")
-dbLoadRecords("db/mbbo2LongCalc.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1")
+dbLoadRecords("db/mbbo2LongCalc.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1,MBBO=EX1, OUTSIGNAL=EV_LONG_DATA")
+dbLoadRecords("db/mbbo2LongCalc.vdb","SYS=SCL3,SUBSYS=TS,DEV=EVS1,MBBO=EX2, OUTSIGNAL=EV_LONG_DATA2")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
