@@ -21,6 +21,8 @@ dbLoadRecords("db/timeStamp.db","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_N
 dbLoadRecords("db/fanoutBit.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
 dbLoadRecords("db/fanoutShort.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
 dbLoadRecords("db/strToValuesub.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}")
+#dbLoadRecords("db/mbbo2LongCalc.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}, MBBO=MBBO1,OUTSIGNAL=EV_LONG_DATA")
+#dbLoadRecords("db/mbbo2LongCalc.vdb","SYS=${DEV_SYS},SUBSYS=${DEV_SUBSYS},DEV=${DEV_NAME}${DEV_NUM}, MBBO=MBBO2,OUTSIGNAL=EV_LONG_DATA2")
 dbLoadTemplate("${TS_LOCAL}/timing.sub")
 asynSetTraceIOMask("timing", 0, 0x2)
 

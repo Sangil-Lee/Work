@@ -4,99 +4,113 @@
 #! DBDEND
 
 
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_1") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
 }
 
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_2") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
 }
 
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_3") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
 }
 
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_4") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
 }
 
-record(calcout, "$(SYS):$(SUBSYS):$(DEV):m2LCalc") {
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+}
+
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+}
+
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+}
+
+record(mbbo, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8") {
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+}
+
+record(calcout, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc") {
   field(SCAN, "Passive")
   field(CALC, "A+(B<<4)+(C<<8)+(D<<12)+(E<<16)+(F<<20)+(G<<24)+(H<<28)")
-  field(INPA, "$(SYS):$(SUBSYS):$(DEV):mbbo_1")
-  field(INPB, "$(SYS):$(SUBSYS):$(DEV):mbbo_2")
-  field(INPC, "$(SYS):$(SUBSYS):$(DEV):mbbo_3")
-  field(INPD, "$(SYS):$(SUBSYS):$(DEV):mbbo_4")
-  field(INPE, "$(SYS):$(SUBSYS):$(DEV):mbbo_5")
-  field(INPF, "$(SYS):$(SUBSYS):$(DEV):mbbo_6")
-  field(INPG, "$(SYS):$(SUBSYS):$(DEV):mbbo_7")
-  field(INPH, "$(SYS):$(SUBSYS):$(DEV):mbbo_8")
+  field(INPA, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.VAL")
+  field(INPB, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.VAL")
+  field(INPC, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.VAL")
+  field(INPD, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.VAL")
+  field(INPE, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.VAL")
+  field(INPF, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.VAL")
+  field(INPG, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.VAL")
+  field(INPH, "$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.VAL")
+  field(OUT, "$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)")
 }
 
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_5") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-}
-
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_6") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-}
-
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_7") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-}
-
-record(mbbo, "$(SYS):$(SUBSYS):$(DEV):mbbo_8") {
-  field(FLNK, "$(SYS):$(SUBSYS):$(DEV):m2LCalc")
+record(longout, "$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)") {
+  field(SCAN, "Passive")
 }
 
 #! Further lines contain data used by VisualDCT
-#! View(1347,1783,0.8)
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_1",2120,2269,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_1")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_1.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_1.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_1.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_1.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_1.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_2",2120,2409,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_2")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_2.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_2.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_2.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_2.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_2.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_3",2120,2549,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_3")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_3.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_3.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_3.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_3.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_3.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_4",2120,2709,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_4")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_4.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_4.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_4.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_4.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_4.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):m2LCalc",2800,2563,0,1,"$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPA",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPA")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPA","$(SYS):$(SUBSYS):$(DEV):mbbo_1.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPB",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPB")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPB","$(SYS):$(SUBSYS):$(DEV):mbbo_2.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPC",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPC")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPC","$(SYS):$(SUBSYS):$(DEV):mbbo_3.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPD",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPD")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPD","$(SYS):$(SUBSYS):$(DEV):mbbo_4.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPE",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPE")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPE","$(SYS):$(SUBSYS):$(DEV):mbbo_5.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPF",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPF")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPF","$(SYS):$(SUBSYS):$(DEV):mbbo_6.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPG",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPG")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPG","$(SYS):$(SUBSYS):$(DEV):mbbo_7.VAL")
-#! Field("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPH",16777215,0,"$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPH")
-#! Link("$(SYS):$(SUBSYS):$(DEV):m2LCalc.INPH","$(SYS):$(SUBSYS):$(DEV):mbbo_8.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_5",2120,2849,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_5")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_5.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_5.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_5.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_5.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_5.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_6",2120,2989,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_6")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_6.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_6.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_6.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_6.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_6.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_7",2120,3129,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_7")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_7.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_7.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_7.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_7.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_7.VAL")
-#! Record("$(SYS):$(SUBSYS):$(DEV):mbbo_8",2120,3269,0,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_8")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_8.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_8.FLNK")
-#! Link("$(SYS):$(SUBSYS):$(DEV):mbbo_8.FLNK","$(SYS):$(SUBSYS):$(DEV):m2LCalc")
-#! Field("$(SYS):$(SUBSYS):$(DEV):mbbo_8.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):mbbo_8.VAL")
+#! View(1551,1728,0.8)
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1",2120,2269,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2",2120,2409,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3",2120,2549,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4",2120,2709,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5",2120,2849,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6",2120,2989,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7",2120,3129,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8",2120,3269,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.FLNK","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.VAL",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.VAL")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc",2800,2507,0,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPA",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPA")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPA","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_1.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPB",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPB")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPB","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_2.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPC",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPC")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPC","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_3.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPD",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPD")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPD","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_4.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPE",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPE")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPE","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_5.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPF",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPF")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPF","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_6.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPG",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPG")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPG","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_7.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPH",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPH")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.INPH","$(SYS):$(SUBSYS):$(DEV):$(MBBO)_8.VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.OUT",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.OUT")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.OUT","$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL).VAL")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.FLNK",16777215,1,"$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.FLNK")
+#! Link("$(SYS):$(SUBSYS):$(DEV):$(MBBO)_Calc.FLNK","$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)")
+#! Record("$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)",3280,2669,0,0,"$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL)")
+#! Field("$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL).VAL",16777215,0,"$(SYS):$(SUBSYS):$(DEV):$(OUTSIGNAL).VAL")
