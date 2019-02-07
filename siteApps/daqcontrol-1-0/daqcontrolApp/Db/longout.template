@@ -1,0 +1,8 @@
+record(longout, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+	field(PINI, "$(PINI)")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(VAL,  "$(VAL)")
+	field(SCAN, "$(SCAN)")
+}

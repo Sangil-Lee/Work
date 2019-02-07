@@ -1,0 +1,8 @@
+record(ao, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+	field(PINI, "$(PINI)")
+	field(DTYP, "asynFloat64")
+	field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+	field(PREC, "3")
+    field(VAL,  "$(VAL)")
+}

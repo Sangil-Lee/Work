@@ -1,0 +1,15 @@
+record(mbbi, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+	field(PINI, "NO")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(ZRVL, "0")
+    field(ZRST, "NOT")
+    field(ONVL, "1")
+    field(ONST, "EVG")
+    field(TWVL, "2")
+    field(TWST, "EVR")
+    field(THVL, "3")
+    field(THST, "EVS")
+		field(SCAN, "$(SCAN)")
+}

@@ -11,11 +11,10 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-#DB += HeInventory.vdb
-DB += HeInventory_1sec.vdb
-DB += S7.db
-DB += S7_One.db
-DB += S7_Three.db
+DB += ai.template bi.template longin.template mbbo.template
+DB += stringin.template ao.template bo.template longout.template
+DB += mbbi.template stringout.template waveform.template
+DB += pvTrigger.db fanoutShort.vdb timeStamp.db fanoutBit.vdb mbbiDirectTest.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

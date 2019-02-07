@@ -12,5 +12,5 @@ if [ ! -d ${DIRNAME} ]; then
 	mkdir ${DIRNAME}/
 fi
 
-g++ -c -fPIC Dnst6501.f Dnst6505.f  TempK5301.f DnstL5301.f Dnst5301.f -lgfortran
-mv Dnst6501.o Dnst6505.o TempK5301.o DnstL5301.o Dnst5301.o ${DIRNAME}/
+g++ -c -fPIC Dnst6501.f Dnst6505.f  TempK5301.f DnstL5301.f Dnst5301.f Heprop.f -lgfortran
+mv Dnst6501.o Dnst6505.o TempK5301.o DnstL5301.o Dnst5301.o Heprop.o ${DIRNAME}/
