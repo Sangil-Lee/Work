@@ -1,0 +1,16 @@
+
+NET "clka" TNM_NET = clka;
+TIMESPEC TS_clka = PERIOD "clka" 8 ns HIGH 50%;
+
+NET "clkb" TNM_NET = clkb;
+TIMESPEC TS_clkb = PERIOD "clkb" 4.4 ns HIGH 50%;
+
+NET "wea" OFFSET = IN 6 ns VALID 6 ns BEFORE "clka" RISING;
+NET "web" OFFSET = IN 1.7 ns VALID 1.7 ns BEFORE "clkb" RISING;
+
+INST "douta_qo<*>" TNM = douta;
+
+TIMEGRP "douta" OFFSET = OUT 7 ns AFTER "clka";
+
+NET "reset" MAXDELAY = 3.5 ns;
+NET "reset" MAXSKEW = 3 ns;

@@ -1,0 +1,9 @@
+record(bi, "$(P)$(R)L$(L)N$(N)I$(Id)") {
+    field(DESC, "Link $(L), node $(N), input $(Id)")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT) 0x$(Sa) 0)")
+    field(SCAN, "I/O Intr")
+    field(TSE,  "-2")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+}

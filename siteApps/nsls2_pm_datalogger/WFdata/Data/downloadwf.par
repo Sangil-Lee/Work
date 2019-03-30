@@ -1,0 +1,24 @@
+version 1.01
+pause 3000 --- sleep time (msecs) between reads, 3 seconds.
+priority 20 --- Priority
+timeouts 2.0 2.0 2.0  --- timeout values
+delay 30 /* if detected, delay 10 seconds and reread status, if detected, download waveforms */
+logfile downloadwf.log
+dlprog /WFdata/bin/gendl_v5.3
+nwf_progs 9
+aiwf /WFdata WFdata AI.par 1
+cell08 /WFdata WFdata CC08.par 1
+cell22 /WFdata WFdata CC22.par 1
+cell23 /WFdata WFdata CC23.par 1
+bpmfawf /WFdata WFdata BPMfa.par 1
+bpmtbtwf /WFdata WFdata BPMtbt.par 1
+bpmADCsum /WFdata WFdata BPMadc.par 1
+pswf /WFdata WFdata PSwf.par 1
+llrfwf /WFdata WFdata LLrf.par 1
+# 
+ntrigs 1
+SR:C23-BI{BPM:10}PM:Status-I 0 /* 0: Detected, 1: Normal */
+nresets 1
+SR:C23-BI{BPM:10}PM:LemoReset-SP 1 /* send 1 to this PV */
+#
+END

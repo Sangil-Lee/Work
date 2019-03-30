@@ -1,0 +1,9 @@
+message log_packet {
+	required fixed64 log_time =1;
+	required fixed32 log_micro_sec =2;
+	required fixed32 sequence_no =3;
+	required fixed32 shm_app_id =4;
+	required string packet_id =5;
+	required string log_level=6;
+	required string log_msg=7;
+}

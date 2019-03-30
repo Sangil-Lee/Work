@@ -1,0 +1,9 @@
+NET "clk" TNM_NET = "clk";
+TIMESPEC TS_clk = PERIOD "clk" 200 MHz HIGH 50 %;
+
+
+INST "data_sink" AREA_GROUP = "data_sink";
+AREA_GROUP "data_sink" RANGE=SLICE_X41Y40:SLICE_X48Y49;
+
+INST "rom" AREA_GROUP = "rom";
+AREA_GROUP "rom" RANGE=RAMB16_X1Y20:RAMB16_X1Y22;

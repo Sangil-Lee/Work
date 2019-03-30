@@ -1,0 +1,2934 @@
+record(stringin,"$(SYS):IOC-TIME"){
+  field(DTYP, "Soft Timestamp")
+  field(SCAN, ".5 second")
+#  field(INP, "@%Y-%m-%d %H:%M:%S:%03f")
+  field(INP, "@%Y-%m-%d %H:%M:%S")
+}
+
+record(ai, "$(SYS):CVL1-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CVL2-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):4KS-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP1-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP2-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):2KS-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CV1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CV2-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T03") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T03") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T04") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T06") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T05") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T06") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T07") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T08") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T09") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP-R-T03") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP-R-T04") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP-R-T05") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP1-R-T13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP2-R-T13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):BP-R-T06") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T04") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T05") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T06") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T07") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T08") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T09") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):2KB-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):2KB-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CAS-R-T11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T03") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T04") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T05") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T06") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T07") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T08") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T09") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T15") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T16") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA2-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA1-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):4KR-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):2KR-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CVL1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CVL2-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA2-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):4KS-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CP2-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CV2-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SB1-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SB2-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T00") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HX-R-T01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HX-R-T02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T17") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T18") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):TS-R-T99") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T19") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T20") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T25") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T26") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T27") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T28") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T29") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T30") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T31") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T32") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T33") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T34") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T35") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[0]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T36") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[1]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T37") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[2]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T38") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[3]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T39") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[4]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T40") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[5]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T41") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[6]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T42") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[7]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T43") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[8]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T44") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[9]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T45") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[10]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):SP-R-T46") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9[11]")
+	field(EGU,  "K")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):2KR-R-L10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_01.InputAnalog")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_01.SET_HighHigh")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_01.SET_High")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_01.SET_Low")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_01.SET_LowLow")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):2KR-R-L20") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_02.AnalogValue")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_02.SET_HighHigh")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_02.SET_High")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_02.SET_Low")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-L24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_02.SET_LowLow")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):4KR-R-L10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4_5K_01.InputAnalog")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_01.SET_HighHigh")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_01.SET_High")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_01.SET_Low")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_01.SET_LowLow")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):4KR-R-L20") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4_5K_02.AnalogValue")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_02.SET_HighHigh")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_02.SET_High")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_02.SET_Low")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-L24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4_5K_02.SET_LowLow")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):TP1-R-SD01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Speed_Feedback")
+	field(EGU,  "RPM")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):TP2-R-SD01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Speed_Feedback")
+	field(EGU,  "RPM")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):4KR-R-P10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_Pressure.InputAnalog")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4K_Pressure.SET_HighHigh")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4K_Pressure.SET_High")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4K_Pressure.SET_Low")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_4K_Pressure.SET_LowLow")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):2KR-R-P10") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_Pressure.InputAnalog")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-P11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_Pressure.SET_HighHigh")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-P12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_Pressure.SET_High")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-P13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_Pressure.SET_Low")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):2KR-S-P14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_2K_Pressure.SET_LowLow")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):4KR-R-P20") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_THS_Pressure.InputAnalog")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_THS_Pressure.SET_HighHigh")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_THS_Pressure.SET_High")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_THS_Pressure.SET_Low")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):4KR-S-P24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Reservoir_THS_Pressure.SET_LowLow")
+	field(EGU,  "Bar")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):HT1-R-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.MonitorValue[0]")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT1-R-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.MonitorValue[1]")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT1-R-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.MonitorValue[2]")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT1-S-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater1.SetVolt")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT1-S-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater1.SetCurr")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT1-S-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater1.Set_Watt")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT1-R-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.MonitorValue[0]")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT1-R-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.MonitorValue[1]")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT2-R-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.MonitorValue[2]")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT2-S-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater2.Set_Voltage")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT2-S-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater2.Set_Current")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT2-S-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater2.Set_Watt")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT3-R-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.MonitorValue[0]")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT3-R-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.MonitorValue[1]")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):HT3-R-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.MonitorValue[2]")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT3-S-V01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater3.Set_Voltage")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT3-S-I01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater3.Set_Current")
+	field(EGU,  "A")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):HT3-S-W01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater3.Set_Watt")
+	field(EGU,  "W")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):CV1-S-Pg01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV45K.PGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV1-S-Ig01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV45K.IGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV1-S-Dg01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV45K.DGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV1-S-O01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV45K.CVOper")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):CV1-R-O01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV45K.CV")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):CV1-S-O02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV45K.SPOper")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):CV1-R-O02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV45K.SP")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV2-S-Pg01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV2K.PGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV2-S-Ig01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV2K.IGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV2-S-Dg01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV2K.DGain")
+	field(PREC, "4")
+}
+		
+record(ao, "$(SYS):CV2-S-O01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV2K.CVOper")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):CV2-R-O01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV2K.CV")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):CV2-S-O02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_VV2K.SPOper")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):CV2-R-O02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV2K.SP")
+	field(PREC, "4")
+}
+		
+record(ai, "$(SYS):CV1-R-FB01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_4K_JT_VALVE")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ai, "$(SYS):CV2-R-FB01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_2K_JT_VALVE")
+	field(EGU,  "%")
+	field(PREC, "0")
+}
+		
+record(ao, "$(SYS):SV2-S-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2K_Sol.Open_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV2-S-CL01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2K_Sol.Close_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV2-S-TI01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2K_Sol.TimeSet")
+}
+	
+record(ao, "$(SYS):SV1-S-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_4K_Sol.Open_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV1-S-CP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_4K_Sol.Close_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV1-S-TI01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_4K_Sol.TimeSet")
+}
+	
+record(ao, "$(SYS):SV3-S-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Chamber_Sol.Open_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV3-S-CP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Chamber_Sol.Close_Set")
+	field(EGU,  "Bar")
+	field(PREC, "2")
+}
+		
+record(ao, "$(SYS):SV3-S-TI01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Chamber_Sol.TimeSet")
+}
+	
+record(ai, "$(SYS):VS-R-P01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Chamber_Gauge")
+	field(EGU,  "mBar")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA-R-LP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Vacuum_Gauge_01")
+	field(EGU,  "mBar")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):CA-R-HP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 cavity_vacuum_Gauge_02")
+	field(EGU,  "mBar")
+	field(PREC, "2")
+}
+		
+record(ai, "$(SYS):PLC-R-C01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 PLC_Comm")
+	field(PREC, "0")
+}
+		
+record(bi, "$(SYS):2KR-A-L11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_01.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_01.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_01.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_01.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_02.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_02.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_02.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-L24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_02.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_01.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_01.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_01.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_01.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_02.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_02.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_02.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-L24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_02.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TP2-R-RM_ER_RS01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Remote_ErrorReset")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP2-S-RPM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Turbo.RotationSpeedS_W")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP2-S-SGV_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Turbo.SealingGasValveOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Run_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP2-S-SBy_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Turbo.StandBy_On")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP2-S-HT_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Turbo.Heating_On")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-NoER01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.NoError")
+	field(ZNAM, "On")
+	field(ONAM, "Off")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_Pressure.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_Pressure.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_Pressure.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_4K_Pressure.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-P11") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_Pressure.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-P12") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_Pressure.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-P13") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_Pressure.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):2KR-A-P14") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_2K_Pressure.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P21") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_THS_Pressure.HighHigh")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P22") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_THS_Pressure.High")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P23") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_THS_Pressure.Low")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):4KR-A-P24") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Reservoir_THS_Pressure.LowLow")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM1-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm1.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM2-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm2.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM3-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm3.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM4-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm4.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM5-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm5.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM6-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm6.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM7-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm7.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM8-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm8.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM9-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 MonitorComm9.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM1-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp1_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM2-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp2_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM3-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp3_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM4-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp4_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM5-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp5_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM6-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp6_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM7-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp7_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM8-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp8_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TM9-S-RC01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Temp9_Reconnect")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):PL-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 LOCAL_Remote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):DP1-A-Pump01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Dry_Pump_Alarm")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):DP2-A-Pump01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 VESSEL_Dry_Pump_Alarm")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):CA-A-HT01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Heater_Alarm")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):TP1-R-RPM_P02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.RotationSpeedS_W")		
+}
+
+record(bi, "$(SYS):TP1-R-NoER02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.NoError")
+	field(ZNAM, "Alarm")
+	field(ZSV,  "MAJOR")		}
+record(bi, "$(SYS):TP2-R-RPM_P02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.RotationSpeedS_W")		
+}
+
+record(bi, "$(SYS):TP2-R-NoER02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.NoError")
+	field(ZNAM, "Alarm")
+	field(ZSV,  "MAJOR")		}
+record(bi, "$(SYS):GV1-R-Open01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Gate1_Valve_Open")		
+}
+
+record(bi, "$(SYS):GV1-R-Close01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Gate1_Valve_Close")		
+}
+
+record(bi, "$(SYS):GV2-R-Open01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Gate2_Valve_Open")		
+}
+
+record(bi, "$(SYS):GV2-R-Close01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Gate2_Valve_Close")		
+}
+
+record(bi, "$(SYS):HT1-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.LocalRemote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):HT1-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.Status")		
+}
+
+record(bo, "$(SYS):HT1-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater1.Hmi_PowerOn")		
+}
+
+record(bo, "$(SYS):HT1-S-SP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater1.Hmi_PowerOff")		
+}
+
+record(bi, "$(SYS):HT1-R-ER01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater1.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):HT2-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.LocalRemote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):HT2-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.Status")		
+}
+
+record(bo, "$(SYS):HT2-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater2.Hmi_PowerOn")		
+}
+
+record(bo, "$(SYS):HT2-S-SP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater2.Hmi_PowerOff")		
+}
+
+record(bi, "$(SYS):HT2-R-ER01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater2.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bi, "$(SYS):HT3-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.LocalRemote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):HT3-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.Status")		
+}
+
+record(bo, "$(SYS):HT3-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Heater3.Hmi_PowerOn")		
+}
+
+record(bi, "$(SYS):HT3-R-ER01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Heater3.CommError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+	field(ZSV,  "NO_ALARM")
+	field(OSV,  "MAJOR")
+}
+
+record(bo, "$(SYS):CV1-S-Pid01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_45K_Auto")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bo, "$(SYS):CV2-S-Pid01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2K_Auto")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bi, "$(SYS):CV1-R-Auto01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV45K.Auto")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bi, "$(SYS):CV1-R-MN01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV45K.Manual")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bi, "$(SYS):CV2-R-Auto01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV2K.Auto")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bi, "$(SYS):CV2-R-MN01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_VV2K.Manual")
+	field(ZNAM, "Manual")
+	field(ONAM, "Auto")
+}
+
+record(bi, "$(SYS):SV1-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_4K_Sol.Local_Remote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):SV1-R-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_4K_Sol.Open_Lamp")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bi, "$(SYS):SV1-R-CL01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_4K_Sol.Close_Lamp")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bo, "$(SYS):SV1-S-OP02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_4K_Sol.HMI_Open")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bo, "$(SYS):SV1-S-CL02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_4K_Sol.HMI_Close")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bi, "$(SYS):SV2-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_2k_Sol.Local_Remote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):SV2-R-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_2k_Sol.Open_Lamp")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bi, "$(SYS):SV2-R-CL01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cryogenic_2k_Sol.Close_Lamp")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bo, "$(SYS):SV2-S-OP02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2k_Sol.HMI_Open")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bo, "$(SYS):SV2-S-CL02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cryogenic_2k_Sol.HMI_Close")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bi, "$(SYS):SV3-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Chamber_Sol.Local_Remote")
+	field(ZNAM, "Local")
+	field(ONAM, "Remote")
+}
+
+record(bi, "$(SYS):SV3-R-OP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Chamber_Sol.Open_Lamp")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bi, "$(SYS):SV3-R-CL01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Chamber_Sol.Close_Lamp")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bo, "$(SYS):SV3-S-OP02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Chamber_Sol.HMI_Open")
+	field(ZNAM, "Close")
+	field(ONAM, "Open")
+}
+
+record(bo, "$(SYS):SV3-S-CL02") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Chamber_Sol.HMI_Close")
+	field(ZNAM, "Open")
+	field(ONAM, "Close")
+}
+
+record(bi, "$(SYS):DP1-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Dry_Pump.Local_Remote")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):DP1-R-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Dry_Pump.Run_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):DP1-R-SP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Dry_Pump.Stop_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):DP1-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Dry_Pump.HMI_Btn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):DP2-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Dry_Pump.Local_Remote")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):DP2-R-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Dry_Pump.Run_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):DP2-R-SP01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Dry_Pump.Stop_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):DP2-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Dry_Pump.HMI_Btn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Local_Remote")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP1-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Turbo.HMI_Btn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-RM_VE01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Remote_VentingEnable")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-RM_Sby_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Remote_StandbyOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-RM_HT_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Remote_HeatingOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-RM_ER_RS01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Remote_ErrorReset")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP1-S-RPM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Turbo.RotationSpeedS_W")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP1-S-SGV_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Turbo.SealingGasValveOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.Run_Status")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP1-S-SBy_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Turbo.StandBy_On")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP1-R-NoER01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Cavity_Turbo.NoError")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP1-S-HT_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Cavity_Turbo.Heating_On")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-LC_RM01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Local_Remote")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bo, "$(SYS):TP2-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 Vessel_Turbo.HMI_Btn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-RM_VE01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Remote_VentingEnable")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-RM_Sby_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Remote_StandbyOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):TP2-R-RM_HT_On01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 Vessel_Turbo.Remote_HeatingOn")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(SYS):HWR-R-Status01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(INP,  "@plc1 HWR.Run_Status")
+	field(ZNAM, "Stop")
+	field(ONAM, "Start")
+}
+
+record(bo, "$(SYS):HWR-S-ST01") 
+{
+	field(SCAN, "1 second")
+	field(DTYP, "EtherIP")
+	field(OUT,  "@plc1 HWR.Remote_START")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}

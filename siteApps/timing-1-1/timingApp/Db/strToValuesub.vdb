@@ -1,0 +1,69 @@
+record(sub, "$(SYS):$(SUBSYS):$(DEV):ARRINIT") {
+  field(PINI, "YES")
+  field(INAM, "initStrToValue")
+  field(SNAM, "procStrToValue")
+  field(INPA, "$(SYS):$(SUBSYS):$(DEV):EV_SEQA_CFG")
+  field(INPB, "$(SYS):$(SUBSYS):$(DEV):EV_SEQA_TSTAMP")
+  field(INPC, "$(SYS):$(SUBSYS):$(DEV):EV_SEQB_CFG")
+  field(INPD, "$(SYS):$(SUBSYS):$(DEV):EV_SEQB_TSTAMP")
+  field(INPE, "$(SYS):$(SUBSYS):$(DEV):EV_MAP_RAM")
+  field(INPF, "$(SYS):$(SUBSYS):$(DEV):ARRINITVAL")
+  field(INPG, "$(SYS):$(SUBSYS):$(DEV):ARRINITCOUNT")
+  field(INPH, "$(SYS):$(SUBSYS):$(DEV):ARRINITINC")
+  field(SCAN, "")
+}
+
+record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITVAL") {
+  field(PINI, "YES")
+  field(VAL, "0")
+}
+
+record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITCOUNT") {
+  field(PINI, "YES")
+  field(VAL, "2048")
+}
+
+record(longin, "$(SYS):$(SUBSYS):$(DEV):ARRINITINC") {
+  field(PINI, "YES")
+  field(VAL, "0")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_0") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_1") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_2") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_3") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_4") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_5") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_6") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}
+
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):SYS_STR_TX_DBUS_SEL_7") {
+  field(PINI, "YES")
+  field(VAL, "User Trigger")
+}

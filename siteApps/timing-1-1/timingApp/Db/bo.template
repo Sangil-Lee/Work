@@ -1,0 +1,9 @@
+record(bo, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+	field(PINI, "YES")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(ZNAM, "$(ZNAM)")
+    field(ONAM, "$(ONAM)")
+    field(VAL, "0")
+}

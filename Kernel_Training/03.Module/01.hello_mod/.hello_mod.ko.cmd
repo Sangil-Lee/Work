@@ -1,0 +1,1 @@
+cmd_/media/sf_share/03.Module/01.hello_mod/hello_mod.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.8.0-35-generic/scripts/module-common.lds --build-id  -o /media/sf_share/03.Module/01.hello_mod/hello_mod.ko /media/sf_share/03.Module/01.hello_mod/hello_mod.o /media/sf_share/03.Module/01.hello_mod/hello_mod.mod.o

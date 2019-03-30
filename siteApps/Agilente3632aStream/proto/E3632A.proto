@@ -1,0 +1,50 @@
+# Agilent E3632A RS-485 Communication Protocol
+# Data format
+# 	baud rate: 9600
+#	start: 1
+#	parity: None
+#	data: 8
+#	stop: 1
+#	hardware handshake: None
+# Communication Procedure
+# Transmit: Mnemonics[and parameters] <CR>[<LF>]
+# Receive: <ACK><CR><LF>
+# Transmit: <ENQ>
+# Receive: Measurement values or parameters <CR>
+
+#Terminator = NL;
+
+OutTerminator = LF;
+InTerminator = CR LF;
+
+#ReplyTimeout = 2000;
+
+#-----------------------------------------------#
+setRemote
+{
+	out "SYST:REM";
+}
+
+getVoltage
+{
+	out "VOLT?"; in "%f";
+}
+
+#-----------------------------------------------#
+setVoltage
+{
+	out "VOLT %g";
+	@init{ out "VOLT?"; in "%f" }
+}
+
+getCurrent
+{
+	out "CURR?"; in "%f";
+}
+
+#-----------------------------------------------#
+setCurrent
+{
+	out "CURR %g";
+	@init{ out "CURR?"; in "%f"}
+}

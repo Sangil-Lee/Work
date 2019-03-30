@@ -1,0 +1,382 @@
+file "db/bi.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, SCAN }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_ISMASTER,	EV_ISMASTER,""	,	"I/O Intr"	}
+}
+
+
+file "db/bo.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK }
+}
+
+
+file "db/mbbi.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, SCAN }
+}
+
+
+file "db/mbbo.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, ZRST, ONST, TWST, THST, FRST, FVST, SXST, SVST, EIST, NIST, TEST, ELST, TVST, TTST, FTST, FFST }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_0, EV_SEQTRGMSKA_0, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKA_1, EV_SEQTRGMSKA_1, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_0, EV_SEQTRGMSKB_0, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGMSKB_1, EV_SEQTRGMSKB_1, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVTRGMSK, EV_EVTRGMSK, "", "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen" }
+}
+
+file "db/waveform.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL,		ALIAS,				DTYP,  NELM,		FLNK, SCAN }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQA_CFG,	EV_SEQA_CFG,		"asynInt32ArrayOut"	2048,		"",	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQA_TSTAMP,	EV_SEQA_TSTAMP,		"asynInt32ArrayOut"	2048,		"",	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQB_CFG,	EV_SEQB_CFG,		"asynInt32ArrayOut"	2048,		"",	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQB_TSTAMP,	EV_SEQB_TSTAMP,		"asynInt32ArrayOut"	2048,		"",	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MAP_RAM,		EV_MAP_RAM,			"asynInt32ArrayOut"	2048,		"",	""	}
+}
+
+
+file "db/longin.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, SCAN }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_OPMODE,	SYS_OPMODE,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK,	GT_TRACKOK,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK_0,	GT_TRACKOK_0,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	GT_TRACKOK_1,	GT_TRACKOK_1,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_A,	EV_FAN_A,"$(SYS):$(SUBSYS):$(DEV):SYS_FANA",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_FAN_B,	EV_FAN_B,"$(SYS):$(SUBSYS):$(DEV):SYS_FANB"	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVG_STATUS,	EV_EVG_STATUS,""	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_EVCODE_CNTR,	EV_TX_EVCODE_CNTR,""	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RX_EVCODE_CNTR,	EV_RX_EVCODE_CNTR,""	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EMERGENCYSTOPCNTR,	EV_EMERGENCYSTOPCNTR,""	,	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNSTT,	EV_PDPRUNSTT,	"$(SYS):$(SUBSYS):$(DEV):PDPRunSTTLong",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_0,	EV_PDPCNTR_0,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_1,	EV_PDPCNTR_1,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_2,	EV_PDPCNTR_2,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_3,	EV_PDPCNTR_3,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_4,	EV_PDPCNTR_4,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_5,	EV_PDPCNTR_5,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_6,	EV_PDPCNTR_6,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_7,	EV_PDPCNTR_7,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_8,	EV_PDPCNTR_8,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_9,	EV_PDPCNTR_9,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_10,	EV_PDPCNTR_10,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_11,	EV_PDPCNTR_11,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_12,	EV_PDPCNTR_12,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_13,	EV_PDPCNTR_13,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_14,	EV_PDPCNTR_14,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_15,	EV_PDPCNTR_15,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_16,	EV_PDPCNTR_16,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_17,	EV_PDPCNTR_17,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_18,	EV_PDPCNTR_18,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_19,	EV_PDPCNTR_19,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_20,	EV_PDPCNTR_20,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_21,	EV_PDPCNTR_21,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_22,	EV_PDPCNTR_22,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_23,	EV_PDPCNTR_23,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_24,	EV_PDPCNTR_24,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_25,	EV_PDPCNTR_25,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_26,	EV_PDPCNTR_26,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_27,	EV_PDPCNTR_27,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_28,	EV_PDPCNTR_28,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_29,	EV_PDPCNTR_29,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_30,	EV_PDPCNTR_30,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPCNTR_31,	EV_PDPCNTR_31,	"",	"1 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_0,	EV_PDPRUNCNTR_0,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_1,	EV_PDPRUNCNTR_1,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_2,	EV_PDPRUNCNTR_2,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_3,	EV_PDPRUNCNTR_3,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_4,	EV_PDPRUNCNTR_4,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_5,	EV_PDPRUNCNTR_5,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_6,	EV_PDPRUNCNTR_6,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_7,	EV_PDPRUNCNTR_7,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_8,	EV_PDPRUNCNTR_8,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_9,	EV_PDPRUNCNTR_9,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_10,	EV_PDPRUNCNTR_10,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_11,	EV_PDPRUNCNTR_11,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_12,	EV_PDPRUNCNTR_12,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_13,	EV_PDPRUNCNTR_13,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_14,	EV_PDPRUNCNTR_14,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_15,	EV_PDPRUNCNTR_15,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_16,	EV_PDPRUNCNTR_16,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_17,	EV_PDPRUNCNTR_17,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_18,	EV_PDPRUNCNTR_18,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_19,	EV_PDPRUNCNTR_19,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_20,	EV_PDPRUNCNTR_20,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_21,	EV_PDPRUNCNTR_21,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_22,	EV_PDPRUNCNTR_22,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_23,	EV_PDPRUNCNTR_23,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_24,	EV_PDPRUNCNTR_24,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_25,	EV_PDPRUNCNTR_25,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_26,	EV_PDPRUNCNTR_26,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_27,	EV_PDPRUNCNTR_27,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_28,	EV_PDPRUNCNTR_28,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_29,	EV_PDPRUNCNTR_29,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_30,	EV_PDPRUNCNTR_30,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPRUNCNTR_31,	EV_PDPRUNCNTR_31,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_0,	EV_PDPERRCNTR_0,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_1,	EV_PDPERRCNTR_1,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_2,	EV_PDPERRCNTR_2,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_3,	EV_PDPERRCNTR_3,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_4,	EV_PDPERRCNTR_4,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_5,	EV_PDPERRCNTR_5,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_6,	EV_PDPERRCNTR_6,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_7,	EV_PDPERRCNTR_7,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_8,	EV_PDPERRCNTR_8,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_9,	EV_PDPERRCNTR_9,	"",  "I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_10,	EV_PDPERRCNTR_10,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_11,	EV_PDPERRCNTR_11,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_12,	EV_PDPERRCNTR_12,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_13,	EV_PDPERRCNTR_13,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_14,	EV_PDPERRCNTR_14,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_15,	EV_PDPERRCNTR_15,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_16,	EV_PDPERRCNTR_16,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_17,	EV_PDPERRCNTR_17,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_18,	EV_PDPERRCNTR_18,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_19,	EV_PDPERRCNTR_19,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_20,	EV_PDPERRCNTR_20,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_21,	EV_PDPERRCNTR_21,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_22,	EV_PDPERRCNTR_22,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_23,	EV_PDPERRCNTR_23,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_24,	EV_PDPERRCNTR_24,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_25,	EV_PDPERRCNTR_25,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_26,	EV_PDPERRCNTR_26,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_27,	EV_PDPERRCNTR_27,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_28,	EV_PDPERRCNTR_28,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_29,	EV_PDPERRCNTR_29,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_30,	EV_PDPERRCNTR_30,	"",	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPERRCNTR_31,	EV_PDPERRCNTR_31,	"",	"I/O Intr"	}
+}
+
+
+file "db/longout.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVGW_RST,	EV_EVGW_RST,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_IGEN_RST,	EV_IGEN_RST,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_IDEC_RST,	EV_IDEC_RST,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUSSEL_SET,	EV_TX_DBUSSEL_SET,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVSRC_SET,	EV_EVSRC_SET,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_USRTRG,	EV_USRTRG,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_GETTIME,	EV_GETTIME,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_IGEN_SET_TIME,	EV_IGEN_SET_TIME,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SW_EVGW_SET_TIME,	EV_SW_EVGW_SET_TIME,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRG_RESUME_0,	EV_SEQTRG_RESUME_0,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRG_RESUME_1,	EV_SEQTRG_RESUME_1,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TXENABLE_DBUS,	EV_TXENABLE_DBUS,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TXENABLE_EVCODEA,	EV_TXENABLE_EVCODEA,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TXENABLE_EVCODEB,	EV_TXENABLE_EVCODEB,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TXENABLE_MEVCODEA,	EV_TXENABLE_MEVCODEA,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRG_EN_0,	EV_SEQTRG_EN_0,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRG_EN_1,	EV_SEQTRG_EN_1,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14ENABLE,	EV_MXC14ENABLE,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_0,	EV_TX_DBUS_0,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_1,	EV_TX_DBUS_1,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_2,	EV_TX_DBUS_2,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_3,	EV_TX_DBUS_3,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_4,	EV_TX_DBUS_4,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_5,	EV_TX_DBUS_5,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_6,	EV_TX_DBUS_6,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_7,	EV_TX_DBUS_7,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVUSER,	EV_EVUSER,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVTRGSELREG,	EV_EVTRGSELREG,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGSEL_0,	EV_SEQTRGSEL_0,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQTRGSEL_1,	EV_SEQTRGSEL_1,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQ_REPEATREG_0,	EV_SEQ_REPEATREG_0,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_SEQ_REPEATREG_1,	EV_SEQ_REPEATREG_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_0,	EV_MXC14_PRESCALERREG_0,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_1,	EV_MXC14_PRESCALERREG_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_2,	EV_MXC14_PRESCALERREG_2,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_3,	EV_MXC14_PRESCALERREG_3,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_4,	EV_MXC14_PRESCALERREG_4,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_5,	EV_MXC14_PRESCALERREG_5,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_6,	EV_MXC14_PRESCALERREG_6,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_7,	EV_MXC14_PRESCALERREG_7,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_8,	EV_MXC14_PRESCALERREG_8,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_9,	EV_MXC14_PRESCALERREG_9,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_10,	EV_MXC14_PRESCALERREG_10,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_11,	EV_MXC14_PRESCALERREG_11,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_12,	EV_MXC14_PRESCALERREG_12,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MXC14_PRESCALERREG_13,	EV_MXC14_PRESCALERREG_13,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVRW_RST,	EV_EVRW_RST,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVR_GETSTATREG,	EV_EVR_GETSTATREG,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVR_SETCTRLREG,	EV_EVR_SETCTRLREG,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RXENABLE_DBUS,	EV_RXENABLE_DBUS,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RXENABLE_EVCODEA,	EV_RXENABLE_EVCODEA,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RXENABLE_EVCODEB,	EV_RXENABLE_EVCODEB,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RXENABLE_STREAMDATA,	EV_RXENABLE_STREAMDATA,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPENABLE,	EV_PDPENABLE,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EXTOUTSEL_1PPS,	EV_EXTOUTSEL_1PPS,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVR_PDPTRGSRCSEL,	EV_EVR_PDPTRGSRCSEL,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_RX_DBUSSEL8,	EV_RX_DBUSSEL8,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVLOGFIFO_ENABLE_USER,	EV_EVLOGFIFO_ENABLE_USER,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_0,	EV_PDPPOLARITY_0,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_1,	EV_PDPPOLARITY_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_2,	EV_PDPPOLARITY_2,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_3,	EV_PDPPOLARITY_3,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_4,	EV_PDPPOLARITY_4,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_5,	EV_PDPPOLARITY_5,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_6,	EV_PDPPOLARITY_6,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_7,	EV_PDPPOLARITY_7,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_8,	EV_PDPPOLARITY_8,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_9,	EV_PDPPOLARITY_9,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_10,	EV_PDPPOLARITY_10,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_11,	EV_PDPPOLARITY_11,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_12,	EV_PDPPOLARITY_12,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_13,	EV_PDPPOLARITY_13,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_14,	EV_PDPPOLARITY_14,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_15,	EV_PDPPOLARITY_15,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_16,	EV_PDPPOLARITY_16,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_17,	EV_PDPPOLARITY_17,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_18,	EV_PDPPOLARITY_18,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_19,	EV_PDPPOLARITY_19,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_20,	EV_PDPPOLARITY_20,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_21,	EV_PDPPOLARITY_21,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_22,	EV_PDPPOLARITY_22,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_23,	EV_PDPPOLARITY_23,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_24,	EV_PDPPOLARITY_24,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_25,	EV_PDPPOLARITY_25,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_26,	EV_PDPPOLARITY_26,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_27,	EV_PDPPOLARITY_27,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_28,	EV_PDPPOLARITY_28,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_29,	EV_PDPPOLARITY_29,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_30,	EV_PDPPOLARITY_30,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPPOLARITY_31,	EV_PDPPOLARITY_31,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_BIST,	SYS_BIST,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_0,	EV_PDPDELAY_0,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_1,	EV_PDPDELAY_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_2,	EV_PDPDELAY_2,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_3,	EV_PDPDELAY_3,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_4,	EV_PDPDELAY_4,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_5,	EV_PDPDELAY_5,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_6,	EV_PDPDELAY_6,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_7,	EV_PDPDELAY_7,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_8,	EV_PDPDELAY_8,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_9,	EV_PDPDELAY_9,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_10,	EV_PDPDELAY_10,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_11,	EV_PDPDELAY_11,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_12,	EV_PDPDELAY_12,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_13,	EV_PDPDELAY_13,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_14,	EV_PDPDELAY_14,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_15,	EV_PDPDELAY_15,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_16,	EV_PDPDELAY_16,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_17,	EV_PDPDELAY_17,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_18,	EV_PDPDELAY_18,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_19,	EV_PDPDELAY_19,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_20,	EV_PDPDELAY_20,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_21,	EV_PDPDELAY_21,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_22,	EV_PDPDELAY_22,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_23,	EV_PDPDELAY_23,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_24,	EV_PDPDELAY_24,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_25,	EV_PDPDELAY_25,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_26,	EV_PDPDELAY_26,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_27,	EV_PDPDELAY_27,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_28,	EV_PDPDELAY_28,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_29,	EV_PDPDELAY_29,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_30,	EV_PDPDELAY_30,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPDELAY_31,	EV_PDPDELAY_31,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_0,	EV_PDPWIDTH_0,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_1,	EV_PDPWIDTH_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_2,	EV_PDPWIDTH_2,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_3,	EV_PDPWIDTH_3,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_4,	EV_PDPWIDTH_4,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_5,	EV_PDPWIDTH_5,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_6,	EV_PDPWIDTH_6,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_7,	EV_PDPWIDTH_7,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_8,	EV_PDPWIDTH_8,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_9,	EV_PDPWIDTH_9,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_10,	EV_PDPWIDTH_10,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_11,	EV_PDPWIDTH_11,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_12,	EV_PDPWIDTH_12,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_13,	EV_PDPWIDTH_13,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_14,	EV_PDPWIDTH_14,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_15,	EV_PDPWIDTH_15,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_16,	EV_PDPWIDTH_16,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_17,	EV_PDPWIDTH_17,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_18,	EV_PDPWIDTH_18,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_19,	EV_PDPWIDTH_19,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_20,	EV_PDPWIDTH_20,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_21,	EV_PDPWIDTH_21,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_22,	EV_PDPWIDTH_22,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_23,	EV_PDPWIDTH_23,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_24,	EV_PDPWIDTH_24,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_25,	EV_PDPWIDTH_25,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_26,	EV_PDPWIDTH_26,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_27,	EV_PDPWIDTH_27,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_28,	EV_PDPWIDTH_28,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_29,	EV_PDPWIDTH_29,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_30,	EV_PDPWIDTH_30,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_PDPWIDTH_31,	EV_PDPWIDTH_31,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_1,	EV_MEVCODEA_1,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_2,	EV_MEVCODEA_2,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_3,	EV_MEVCODEA_3,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_4,	EV_MEVCODEA_4,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_5,	EV_MEVCODEA_5,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_6,	EV_MEVCODEA_6,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_7,	EV_MEVCODEA_7,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_8,	EV_MEVCODEA_8,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_9,	EV_MEVCODEA_9,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_10,	EV_MEVCODEA_10,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_11,	EV_MEVCODEA_11,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_12,	EV_MEVCODEA_12,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_13,	EV_MEVCODEA_13,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_14,	EV_MEVCODEA_14,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_15,	EV_MEVCODEA_15,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_16,	EV_MEVCODEA_16,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_17,	EV_MEVCODEA_17,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_18,	EV_MEVCODEA_18,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_19,	EV_MEVCODEA_19,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_20,	EV_MEVCODEA_20,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_21,	EV_MEVCODEA_21,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_22,	EV_MEVCODEA_22,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_23,	EV_MEVCODEA_23,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_24,	EV_MEVCODEA_24,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_25,	EV_MEVCODEA_25,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_26,	EV_MEVCODEA_26,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_27,	EV_MEVCODEA_27,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_28,	EV_MEVCODEA_28,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_29,	EV_MEVCODEA_29,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_30,	EV_MEVCODEA_30,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_MEVCODEA_31,	EV_MEVCODEA_31,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_SEL_A,	EV_TX_DBUS_SEL_A,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TX_DBUS_SEL_B,	EV_TX_DBUS_SEL_B,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_A,	EV_TRIG_SEL_A,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_B,	EV_TRIG_SEL_B,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_C,	EV_TRIG_SEL_C,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_D,	EV_TRIG_SEL_D,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_E,	EV_TRIG_SEL_E,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_F,	EV_TRIG_SEL_F,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_G,	EV_TRIG_SEL_G,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_TRIG_SEL_H,	EV_TRIG_SEL_H,	""}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_CFG_SET,		SYS_SEQA_CFG_SET,		""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQA_TSTAMP_SET,	SYS_SEQA_TSTAMP_SET,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_CFG_SET,		SYS_SEQB_CFG_SET,		""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_SEQB_TSTAMP_SET,	SYS_SEQB_TSTAMP_SET,	""	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_MAP_RAM_SET,		SYS_MAP_RAM_SET,		""	}
+}
+
+
+file "db/ai.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, SCAN }
+}
+
+
+file "db/ao.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK }
+}
+
+
+file "db/stringin.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK, SCAN }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	IOCSTARTTIME,	IOCSTARTTIME,""	,	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	FIRMWARE,	FIRMWARE,""	,	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SOFTWARE,	SOFTWARE,""	,	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_EVNAME,	SYS_EVNAME,""	,	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_BUILDTIME,	EV_BUILDTIME,""	,	"I/O Intr"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVG_CURRTIME,	EV_EVG_CURRTIME,""	,	".5 second"	}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_EVR_CURRTIME,	EV_EVR_CURRTIME,""	,	".5 second"	}
+}
+
+
+file "db/stringout.template" { pattern
+{SYS, SUBSYS, DEV, PORT, ADDR, TIMEOUT, SIGNAL, ALIAS, FLNK }
+{SCL3,	TS,	EVS1,	timing,	0,	1,	EV_STRTEST,	EV_STRTEST,""		}
+{SCL3,	TS,	EVS1,	timing,	0,	1,	SYS_STR_TX_DBUS_0,	SYS_STR_TX_DBUS_0,""		}
+}
+
+

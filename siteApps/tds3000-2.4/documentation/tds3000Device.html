@@ -1,0 +1,888 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <title>tds3000: Tektronix Scope Device Support</title>
+  <meta content="Nicholas DiMonte" name="author">
+  <meta content="Overview of the TDS3000 device support package"
+ name="description">
+</head>
+<body>
+<center>
+<h1>tds3000: Tektronix 3000/5000 series <br>
+</h1>
+<h1>Oscilloscope device support<br>
+</h1>
+<br>
+<h2>Release 2.4<br>
+</h2>
+<h2>Nicholas DiMonte<br>
+</h2>
+<h2>December 2006</h2>
+<br>
+<hr style="width: 100%; height: 2px;"><big><big><span
+ style="font-weight: bold;">License Agreement</span></big></big>
+<center></center>
+<p style="text-align: left;">This product is available via the <a
+ href="#LicenseAgreement">open source
+license</a> described at the end of this document.</p>
+</center>
+<hr>
+<center>
+<h2><a name="Content"></a>Contents</h2>
+</center>
+<a href="tds3000Device.html#Overview">Overview of tds3000</a><br>
+<a href="#Status">Status</a> <br>
+<a href="#History">History</a><br>
+<a href="#Acknowledgments">Acknowledgments</a> <br>
+<a href="#asynDriver">Database Overview</a>&nbsp; <br>
+<a href="#asynSyncIO">Display Overview</a> <br>
+<a href="#theoryOfOperation">Startup file configuration</a> <br>
+<a href="#asynRecord">asynRecord Support</a> <br>
+<a href="#LicenseAgreement">License Agreement</a> <br>
+<br>
+<hr>
+<center><a name="Overview"></a><big><big><span
+ style="font-weight: bold;">Overview of tds3000</span></big></big><br>
+</center>
+<p>The tds3000 device support is a general purpose facility for
+interfacing to all the oscilloscopes in the TDS 3000 and 5000 series. The intent
+of this device support is to provide an interface though EPICS that had
+a simple user interface. All of the main controls on the these scopes
+are provided with an easy to use displays. These displays have been
+developed with MEDM which has been a proven and reliable display
+manager for EPICS. <br>
+</p>
+<p>Interfacing to these scopes can be accomplished though GPIB, Serial
+and Ethernet.</p>
+<a href="#Content">Back</a><br>
+<hr>
+<center>
+<h2><a name="Status"></a>Status</h2>
+</center>
+<p>This version provides</p>
+<ul>
+  <li>TDS3000 device&nbsp; support for GPIB, serial and ethernet though
+the asynManager, i.e. the software layer between device support and
+drivers.</li>
+  <li>Three models in the 3000 series have been tested - the TDS3034B,
+  <li>One model in the 5000 series have been tested - the TDS5054B-NV.</li>
+  <li>EPICS version R3.14.9 and higher.</li>
+  <li>Device support is configured for 10k data points.</li>
+</ul>
+<a href="tds3000Device.html#Content">Back</a>
+<hr style="width: 100%; height: 2px;">
+<h2 style="text-align: center;"><a name="History"></a>History</h2>
+This device support&nbsp; was originally developed for the TDS3054 GPIB
+interface using the gipbCore under EPICS R3.13. The limitation at that
+time was a waveform of only 500 data points, but a simple display
+control was the main focus. This scope support was only intended for
+the RF group at the APS. The scopes where only configured for single
+sequence trigger to catch faults with the RF systems. They also wanted
+the scopes to print the displays and then rearm for the next event.
+With the release of EPICS R3.14, waveform data of 10k words, a total of
+20k bytes per waveform, was now achievable. With the asynManager, the
+basic GPIB device support was slightly modified to support serial and
+ethernet interfaces. The scopes in the RF systems now use the ethernet
+interface (vxi11 protocol), waveforms are now stored in SDDS format, a
+hard copy is
+still being printed and the scopes are being rearmed and everyone is
+now happy.<br>
+<br>
+The initial device support for the TDS3054 was based on the Hp54540
+device support in an attempt to make a common scope support package.
+Since the Tektronix and the HP used different commands which were not
+compatible with each other, the common scope support was abandoned.
+Most of the principle design from the Hp54540 has been mimicked in the
+TDS3000 support, but the TDS3000 support has add features and user
+friendly MEDM display.<br>
+<br>
+Support has now been added for the TDS5000 series of oscilloscopes.  The
+commands for the 3000 and 5000 series differ somewhat so an application must
+specify devTDS3000.dbd or devTDS5000.dbd as appropriate.  A single database
+file (TDSxxxx.vdb) supports both families.  The FAMILY macro must be set to
+3000 or 5000 when loading this database file into an IOC. <br>
+<br>
+<a href="tds3000Device.html#Content">Back</a><br>
+<hr>
+<center>
+<h2><a name="Acknowledgments"></a>Acknowledgments</h2>
+</center>
+<dl>
+  <dt>Eric Norum</dt>
+  <dd>Who had helped
+me convert the TDS3054 device support, which only supported GPIB, to
+the
+TDS3000 device support which uses the asynDriver.<br>
+  </dd>
+</dl>
+<a href="tds3000Device.html#Content">Back</a>
+<hr>
+<center>
+<h2><a name="asynDriver"></a>Database overview</h2>
+<div style="text-align: left;"><br>
+</div>
+<div style="text-align: left;"><big><span style="font-weight: bold;">Scope
+channel configuation.<br>
+</span><small>Note: n is 1 to 4.</small><br>
+</big></div>
+</center>
+<table style="text-align: left; width: 764px; height: 301px;" border="1"
+ cellpadding="2" cellspacing="2">
+  <caption><br>
+  </caption><tbody>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}CoupleMI</td>
+      <td style="vertical-align: top;">Channel n Couple status<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}CoupleMO</td>
+      <td style="vertical-align: top;">Channel n Couple control<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}EnableBI</td>
+      <td style="vertical-align: top;">Channel n On/Off status<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}EnableBO</td>
+      <td style="vertical-align: top;">Channel n On/Off Control<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}OffAI</td>
+      <td style="vertical-align: top;">Channel n Offset value </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}OffAO</td>
+      <td style="vertical-align: top;">Channel n Offset setting </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}VdivAI</td>
+      <td style="vertical-align: top;">Channel n Voltage per division
+analog value </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}VdivMI</td>
+      <td style="vertical-align: top;">Channel n Voltage per division
+value </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}VdivMO</td>
+      <td style="vertical-align: top;">Channel n Voltage per division
+setting </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}_ImpedBI</td>
+      <td style="vertical-align: top;">Channel n Impedance value </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)chan{n}_ImpedBO</td>
+      <td style="vertical-align: top;">Channel n Impedance setting </td>
+    </tr>
+  </tbody>
+</table>
+<p><big><span style="font-weight: bold;">Scope time settings.</span></big><br>
+</p>
+<table style="width: 660px; height: 225px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)timeBaseAI</td>
+      <td style="vertical-align: top;">Read Horizontal Time Scale<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeDelayAI</td>
+      <td style="vertical-align: top;">Read Time Delay<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeDelayAO</td>
+      <td style="vertical-align: top;">Write Time Delay<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeDivAMO</td>
+      <td style="vertical-align: top;">Select Time/Div Magnitude<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeDivAO</td>
+      <td style="vertical-align: top;">Set Horizontal Time Scale</td>
+    </tr>
+    <tr>
+      <td>$(scope)timeDivBMO</td>
+      <td style="vertical-align: top;">Select Time/Div unit<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeModeMI</td>
+      <td style="vertical-align: top;">Read Time Mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)timeModeMO</td>
+      <td style="vertical-align: top;">Set Time Mode<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><big><span style="font-weight: bold;">Scopes trigger settings.</span></big><br>
+</p>
+<table style="width: 599px; height: 274px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)timeRefAI</td>
+      <td style="vertical-align: top;">Trigger position</td>
+    </tr>
+    <tr>
+      <td>$(scope)timeRefMO</td>
+      <td style="vertical-align: top;">Set Trigger position</td>
+    </tr>
+    <tr>
+      <td>$(scope)holdoffAI</td>
+      <td style="vertical-align: top;">Trigger A Holdoff time</td>
+    </tr>
+    <tr>
+      <td>$(scope)holdoffAO</td>
+      <td style="vertical-align: top;">Set Trigger A Holdoff time</td>
+    </tr>
+    <tr>
+      <td>$(scope)trigLevAI</td>
+      <td style="vertical-align: top;">Read Trigger Level<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)trigLevAO</td>
+      <td style="vertical-align: top;">Set Trigger Level<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)trigSlopeMI</td>
+      <td style="vertical-align: top;">Read Trigger Slope<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)trigSlopeMO</td>
+      <td style="vertical-align: top;">Set Trigger Slope</td>
+    </tr>
+    <tr>
+      <td>$(scope)trigSourMI</td>
+      <td style="vertical-align: top;">Read Trigger Source<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)trigSourMO</td>
+      <td style="vertical-align: top;">Select Trigger Source</td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+<big><span style="font-weight: bold;">Scopes acquisition control and
+waveform readbacks.<br>
+</span><small>Note: n is 1 to 4.</small><span style="font-weight: bold;"><br>
+</span></big></p>
+<table style="width: 700px; height: 342px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)chan{n}ScaledWaveWF</td>
+      <td style="vertical-align: top;">Waveform n Scaled data<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)scaledTimeAxisWF</td>
+      <td style="vertical-align: top;">Scaled time used for Scaled
+Waveform data<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)TimeAxisCountLI</td>
+      <td style="vertical-align: top;">Counts the number of record
+points<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)acquireStatBI</td>
+      <td style="vertical-align: top;">Scope Acquire Status<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)singleSeqBI</td>
+      <td style="vertical-align: top;">Acquire Single trigger<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)singleSeqBO</td>
+      <td style="vertical-align: top;">Select sequence mode<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)runBO</td>
+      <td style="vertical-align: top;">Run Normal acquisition<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)stopBO</td>
+      <td style="vertical-align: top;">Stop Normal acquisition</td>
+    </tr>
+    <tr>
+      <td>$(scope)stopReadRunSQ</td>
+      <td style="vertical-align: top;">Single read cycle<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)triggerStateMI</td>
+      <td style="vertical-align: top;">Scope trigger state for
+acquisition</td>
+    </tr>
+    <tr>
+      <td>$(scope)ScopeTriggedCC</td>
+      <td style="vertical-align: top;">Scope Trigger status<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><big><span style="font-weight: bold;"><br>
+Scopes misc functions.</span></big><br>
+</p>
+<table style="width: 700px; height: 297px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)Name</td>
+      <td style="vertical-align: top;">Scope ID label<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)GPIBenableBO</td>
+      <td style="vertical-align: top;">Remote/Local control<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)autoScaleBO</td>
+      <td style="vertical-align: top;">Auto scale the scope<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)erasePlotBO</td>
+      <td style="vertical-align: top;">Clears MEDM display waveforms<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)initBO</td>
+      <td style="vertical-align: top;">Initialize scope to define
+values at IOC power up or when scope is set to remote.<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)resetBO</td>
+      <td style="vertical-align: top;">Sends *RST command to scope<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)readSetupWF</td>
+      <td style="vertical-align: top;">Reads the oscilloscope setting.<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)writeSetupWF</td>
+      <td style="vertical-align: top;">Not valid for the TDS3000 series<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)recallMO</td>
+      <td style="vertical-align: top;">Recall scope setup 1-10<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)saveMO</td>
+      <td style="vertical-align: top;">Save scope setup 1-10<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)displayCtlMO</td>
+      <td style="vertical-align: top;">Select 1 of 6 MEDM scope control
+displays<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">$(scope)displayCtl1MO</td>
+      <td style="vertical-align: top;">Select single or multi MEDM
+waveform display<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><big style="font-weight: bold;"><br>
+Scopes print commands and print status, front panel display controls.<br>
+</big><big><small>Note: These pvs are also used in the AutoPrint SNL
+program.</small></big><big style="font-weight: bold;"><br>
+</big></p>
+<table style="width: 777px; height: 613px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)scopeBusyBI</td>
+      <td style="vertical-align: top;">Printing OR Acquire status<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)scopeInUseMO</td>
+      <td style="vertical-align: top;">User definable Semaphore<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)ClearEventsBO</td>
+      <td style="vertical-align: top;">Clear scopes Event Status<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)DESERegAI</td>
+      <td style="vertical-align: top;">Read Device Event Status Enable
+Register<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)DESERegAO</td>
+      <td style="vertical-align: top;">Set Device Event Status Enable
+Register</td>
+    </tr>
+    <tr>
+      <td>$(scope)EventQueueAI</td>
+      <td style="vertical-align: top;">Check for pending Events<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)SESRegAI</td>
+      <td style="vertical-align: top;">read Standard Event Status
+Register<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printDisplayBO</td>
+      <td style="vertical-align: top;">Print the display<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printErrBO</td>
+      <td style="vertical-align: top;">SNL print error status<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerAbortBO</td>
+      <td style="vertical-align: top;">Abort print operation<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerFormatMI</td>
+      <td style="vertical-align: top;">Read print format<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerFormatMO</td>
+      <td style="vertical-align: top;">Write print format<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerPortMI</td>
+      <td style="vertical-align: top;">Read printer port type<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerPortMO</td>
+      <td style="vertical-align: top;">Write printer port type<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)printerSetupBO</td>
+      <td style="vertical-align: top;">Configure printer port <br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)clearMenuBO</td>
+      <td style="vertical-align: top;">Clear scope display of any menus<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)frontPanelLockBI</td>
+      <td style="vertical-align: top;">Front Panel Lock status<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)frontPanelLockBO</td>
+      <td style="vertical-align: top;">Lock Front Panel controls<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)ethernetNameSI</td>
+      <td style="vertical-align: top;">Ethernet name of scope<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)WF_timeStampTS</td>
+      <td style="vertical-align: top;">Time stamp of last single
+sequence trigger<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+<big><span style="font-weight: bold;">Waveform data in raw format, not
+scaled.<br>
+</span><small>By default, these pvs are disabled.</small><br>
+</big></p>
+<table style="width: 735px; height: 85px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)ref{n}WaveWF</td>
+      <td style="vertical-align: top;">Raw reference waveform data (not
+tested)<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)chan{n}WaveWF</td>
+      <td style="vertical-align: top;">Raw waveform data (not tested)</td>
+    </tr>
+    <tr>
+      <td>$(scope)WFenableBO</td>
+      <td style="vertical-align: top;">Enable these waveforms to be
+updated.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+<big><span style="font-weight: bold;">Waveform preamble information<br>
+</span><small>Note: These fields are provided for diagnostics. All
+other pvs must stop scanning. Then the DAT:SOURCE <br>
+command must issued to select the channel to view.<br>
+</small><span style="font-weight: bold;"></span></big></p>
+<table style="width: 736px; height: 220px;" border="1" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td>$(scope)countAI</td>
+      <td style="vertical-align: top;">No count value (not used)<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)pointsAI</td>
+      <td style="vertical-align: top;">Number of waveform points<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)XincAI</td>
+      <td style="vertical-align: top;">Sampling interval in seconds or
+Hz per point<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)XorAI</td>
+      <td style="vertical-align: top;">Not used<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)XrefAI</td>
+      <td style="vertical-align: top;">First sample in waveform<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)YincAI</td>
+      <td style="vertical-align: top;">Vertical scale;e factor, usually
+in volts<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)YorAI</td>
+      <td style="vertical-align: top;">Vertical offset of a waveform.<br>
+      </td>
+    </tr>
+    <tr>
+      <td>$(scope)YrefAI</td>
+      <td style="vertical-align: top;">Vertical position of a waveform<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><br>
+<a href="tds3000Device.html#Content">Back</a><br>
+</p>
+<center>
+<hr style="width: 100%; height: 2px;"><br>
+<h2><a name="asynSyncIO"></a>MEDM display overview<br>
+</h2>
+</center>
+<p><big><small>Generic MEDM displays were created to mimic the TDS3000
+series front panel scope controls. Most of the basic functions of the
+scope will be found in these display. Each display is shown below with
+a brief description.</small><br>
+</big></p>
+<p><big><span style="font-weight: bold;">STATUS Display:<br>
+</span><small>This display shows the status for all four channels. Each
+channel is color matched to the scope traces.<br>
+In this display a Multi waveform mode is displayed to allow each
+channel to have its own vertical<br>
+scale. A single waveform display mode can be selected by selecting the
+SCOPE DISPLAY menu.<br>
+This mode is not shown.<br>
+</small></big></p>
+<p><img alt="TDS3000 Status display" src="tds3000_status.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<p><big><span style="font-weight: bold;">VERTICAL Display:<br>
+</span><small>This display gives the user access to each channels
+vertical settings. Each channel can be turned ON<br>
+or OFF in addition to changing the characteristics of each channel.<br>
+</small></big></p>
+<p><img alt="TDS3000 Vertical display" src="tds3000_vertical.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<p><big><span style="font-weight: bold;">HORIZONTAL Display:<br>
+</span><small>This display has a reduced set of commands to control the
+horizontal settings. If finer adjustments are<br>
+needed or other options need to be set, then the user needs to make the
+adjustments via the local scope<br>
+front panel or other remote options. See <span
+ style="font-weight: bold;">Other Remote Option</span> for more details.<br>
+</small></big></p>
+<p><img alt="TDS3000 Horizontal display" src="tds3000_horizontal.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<p><big><span style="font-weight: bold;">TRIGGER Display:<br>
+</span><small>This display provides the basic trigger function of the
+scope.</small><br>
+</big></p>
+<p><img alt="TDS3000 Trigger diplay" src="tds3000_trigger.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<p><big><span style="font-weight: bold;">ACQUIRE Display:<br>
+</span><small>This display controls the acquisition of the scope. Two
+modes are provided, single sequence and normal<br>
+mode. In Single Sequence mode, the Normal acquisition controls are
+disabled to prevent the user from <br>
+interferring with single sequence operation. To place the scope in
+single sequence mode, select <br>
+SEQUENCE and then click on "Single SQ" button. The single sequence
+armed indicator should come<br>
+on in about 5 seconds. Once a trigger is received, the displays will
+update in about 5 to 10 seconds. This<br>
+is due to the scan rate being set to 5 seconds. In most cases this will
+not be an issue since single sequence <br>
+mode is used to capture a very inferquent event. If however a faster
+update is desired, change pv<br>
+<span style="font-weight: bold;">$(scope)readScaledWfsCC.SCAN</span>
+field to a faster rate. SRQs would be nicer, but this was originaly<br>
+developed using the EPICS GPIB support interfacing to an NI-1014 VME
+module. The SRQ never realy<br>
+worked for the Tektronic scopes, so this scope package just simply
+polls the Acquire and Trigger<br>
+status. Once the scope has triggered, the waveforms are acquired and
+then the MEDM display is updated.<br>
+</small></big></p>
+<p><big><small>Normal mode has a <span style="font-weight: bold;">RUN</span>
+and <span style="font-weight: bold;">STOP</span> buttons to control
+the waveform acquisition. A scan rate menu<br>
+is provided to control the update rate of the waveforms. An old legacy
+function called <span style="font-weight: bold;">Stop/Read/Run</span><br>
+is provided to pause the update cycle to insure all four waveforms are
+read with the same trigger event.<br>
+The number below the Erase button is the delay value in seconds from
+the time the last waveform is read<br>
+from the scope to the time the scope is set to RUN state again.<br>
+</small></big></p>
+<p><big><small>The<span style="font-weight: bold;"> Erase </span>button
+will only erase the MEDM waveforms being displayed. This function will
+not erase the <br>
+waveforms at the scope. <br>
+</small></big></p>
+<p><big><small>The <span style="font-weight: bold;">AutoSet</span>
+button will change the vertical and horizontal setting to match the
+current channel input <br>
+signals.<br>
+</small></big></p>
+<p><big><small>The <span style="font-weight: bold;">Reset</span>
+button will issue the *RST command followed by $(scope)initBO pv which
+will reconfigure<br>
+the scopes operating parameters. This command will not change the
+vertical or horizontal settings.<br>
+</small></big></p>
+<p><img alt="TDS3000 Acquire display" src="tds3000_acquire.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<p><big><span style="font-weight: bold;">UTILITY Display:<br>
+</span><small>This display provides access printer functions and
+configuration functions. The <span style="font-weight: bold;">Configure
+Printer <br>
+<span style="font-weight: bold;"></span></span>button does the
+following: Ink saver ON, landscape, color waveforms, ethernet port and
+format set to <br>
+EPSCOLOR. The first three parameter is set by $(scope)printerSetupBO
+record. The ethernet port is<br>
+selected by </small></big><big><small>$(scope)printerPortMO and the
+format is selected by </small></big><big><small>$(scope)printerFormatMO.
+Use these <br>
+records to change the default settings.<br>
+<span style="font-weight: bold;"><br>
+<span style="font-weight: bold;"></span></span>Also, a network printer
+must be configured on the scope if a network printer is used.</small></big></p>
+<p><img alt="TDS3000 Utility display" src="tds3000_utility.jpeg"
+ style="width: 655px; height: 457px;"><br>
+</p>
+<center>
+<div style="text-align: left;"><br>
+Feel free to edit these displays to your appilcation. A word of
+caution. I would advise changing the eight composite objects on the
+tds3000_c.adl file. Instead, edit the eight adl files that are
+asscoiated with each of the composite objects. Basicaly, each composite
+object is linked to a composite file. These composite file are made to
+be invisible until a pv is set to the correct value. The six composite
+files displayed on the right hand side such as STATUS, VERTICAL, etc.
+are controlled by pv <span style="font-weight: bold;">$(scope)displayCtlMO,
+</span>while the two waveform displays are controlled by pv <span
+ style="font-weight: bold;">$(scope)displayCtl1MO</span>. By just
+editing the composite files you reduce the headache of editing
+overlapping objects.<br>
+</div>
+<div style="text-align: left;"><a href="tds3000Device.html#Content">Back</a></div>
+<hr style="width: 100%; height: 2px;"><br>
+<h2><a name="theoryOfOperation"></a>Startup file configuration</h2>
+<div style="text-align: left;">This is the recommended configuration
+for a soft IOC using Asyn support. The configuration<br>
+below is used to control eight TDS300 series scopes at the Advanced
+Photon Source.<br>
+<br>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>
+&lt; envPaths<br>
+&lt; envParams<br>
+<br>
+cd ${TOP}<br>
+<br>
+## Register all support components<br>
+dbLoadDatabase("dbd/rf.dbd",0,0)<br>
+rf_registerRecordDeviceDriver(pdbbase)<br>
+<br>
+# reboot scopes........use IP address<br>
+TDS3000Reboot xxx.xxx.xxx.47<br>
+TDS3000Reboot xxx.xxx.xxx.48<br>
+TDS3000Reboot xxx.xxx.xxx.49<br>
+TDS3000Reboot xxx.xxx.xxx.50<br>
+TDS3000Reboot xxx.xxx.xxx.53<br>
+TDS3000Reboot xxx.xxx.xxx.54<br>
+TDS3000Reboot xxx.xxx.xxx.51<br>
+TDS3000Reboot xxx.xxx.xxx.52<br>
+epicsThreadSleep(60)<br>
+<br>
+## Set up IOC/hardware links<br>
+vxi11Configure("L0", "xxx.xxx.xxx.47", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L1", "xxx.xxx.xxx.48", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L2", "xxx.xxx.xxx.49", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L3", "xxx.xxx.xxx.50", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L4", "xxx.xxx.xxx.53", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L5", "xxx.xxx.xxx.54", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L6", "xxx.xxx.xxx.51", 0, 0.0, "inst0", 0)<br>
+vxi11Configure("L7", "xxx.xxx.xxx.52", 0, 0.0, "inst0", 0)<br>
+#asynSetTraceMask("L1",3,0xff)<br>
+#asynSetTraceIOMask("L1",3,0x2)<br>
+<br>
+## Load record instances<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF1:HV:,L=0,A=0,ASG=RF1CTL,rfsys=1")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF2:HV:,L=1,A=0,ASG=RF2CTL,rfsys=2")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF3:HV:,L=2,A=0,ASG=RF3CTL,rfsys=3")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF4:HV:,L=3,A=0,ASG=RF4CTL,rfsys=4")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF1:LL:,L=4,A=0,ASG=RF1CTL,rfsys=5")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF2:LL:,L=5,A=0,ASG=RF2CTL,rfsys=6")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF3:LL:,L=6,A=0,ASG=RF3CTL,rfsys=7")<br>
+dbLoadRecords("db/scopeMessage.vdb","scope=RF4:LL:,L=7,A=0,ASG=RF4CTL,rfsys=8")<br>
+<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF1:HV:,L=0,A=0,ASG=RF1CTL,Name=RF1-HV,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF2:HV:,L=1,A=0,ASG=RF2CTL,Name=RF2-HV,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF3:HV:,L=2,A=0,ASG=RF3CTL,Name=RF3-HV,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF4:HV:,L=3,A=0,ASG=RF4CTL,Name=RF4-HV,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF1:LL:,L=4,A=0,ASG=RF1CTL,Name=RF1-LL,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF2:LL:,L=5,A=0,ASG=RF2CTL,Name=RF2-LL,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF3:LL:,L=6,A=0,ASG=RF3CTL,Name=RF3-LL,FAMILY=3000")<br>
+dbLoadRecords("db/TDSxxxx.vdb","scope=RF4:LL:,L=7,A=0,ASG=RF4CTL,Name=RF4-LL,FAMILY=3000")<br>
+<br>
+dbLoadRecords("db/asynRecord.db","P=RF1:,R=HV:scopeAS,PORT=L0,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF2:,R=HV:scopeAS,PORT=L1,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF3:,R=HV:scopeAS,PORT=L2,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF4:,R=HV:scopeAS,PORT=L3,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF1:,R=LL:scopeAS,PORT=L4,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF2:,R=LL:scopeAS,PORT=L5,ADDR=0,OMAX=0,IMAX=0")<br>
+dbLoadRecords("db/asynRecord.db","P=RF3:,R=LL:scopeAS,PORT=L6,ADDR=0,OMAX=0,IMAX=0")<br>
+<br>
+epicsThreadSleep(5)<br>
+cd ${TOP}/iocBoot/${IOC}<br>
+iocInit()<br>
+<br>
+# Turn off error messages, this will allow scope to be powered off<br>
+# without causing error messages on the IOC console.<br>
+dbpf "RF1:HV:scopeAS.TB0","0"<br>
+dbpf "RF2:HV:scopeAS.TB0","0"<br>
+dbpf "RF3:HV:scopeAS.TB0","0"<br>
+dbpf "RF4:HV:scopeAS.TB0","0"<br>
+dbpf "RF1:LL:scopeAS.TB0","0"<br>
+dbpf "RF2:LL:scopeAS.TB0","0"<br>
+dbpf "RF3:LL:scopeAS.TB0","0"<br>
+dbpf "RF4:LL:scopeAS.TB0","0"<br>
+epicsThreadSleep(5)<br>
+<br>
+## Start any sequence programs<br>
+seq scopeAutoArmPrint,"scope=RF1:HV:"<br>
+seq scopeAutoArmPrint,"scope=RF2:HV:"<br>
+seq scopeAutoArmPrint,"scope=RF3:HV:"<br>
+seq scopeAutoArmPrint,"scope=RF4:HV:"<br>
+seq scopeAutoArmPrint,"scope=RF1:LL:"<br>
+seq scopeAutoArmPrint,"scope=RF2:LL:"<br>
+seq scopeAutoArmPrint,"scope=RF3:LL:"<br>
+seq scopeAutoArmPrint,"scope=RF4:LL:"<br>
+<br>
+</div>
+</center>
+<a href="tds3000Device.html#Content">Back</a>
+<hr>
+<center>
+<h2><a name="asynRecord"></a>asynRecord: Generic EPICS Record Support</h2>
+</center>
+<p>A special record type call asynRecord is provided. It is recommended
+to use this record as shown in the st.cmd file.&nbsp; Details are
+described
+in <a href="../../../soft/asyn/index.html">asynRecord</a>.
+This section provides a
+brief
+description of how to use it.</p>
+<p>Each IOC can load one or more instances of asynRecord. An example is:</p>
+<pre>cd ${ASYN}<br>dbLoadRecords("db/asynRecord.db","P=asyn,R=Test,PORT=L0,ADDR=15,IMAX=0,OMAX=0")</pre>
+<p>The example creates a record with name "asynTest" (formed from the
+concatenation of the P and R macros) that will connect to port "L0" and
+addr
+15. After the ioc is started, it is possible to change PORT and/or
+ADDR. Thus
+a single record can be used to access all asyn devices connected to the
+IOC.
+Multiple records are only needed if one or more devices need a
+dedicated
+record.</p>
+<p>An medm display is available for accessing an asynRecord. It is
+started as
+follows:</p>
+<pre>cd &lt;asyn&gt;/medm<br>medm -x -macro "P=asyn,R=Test" asynRecord.adl</pre>
+<p>The following medm display appears.</p>
+<p><img src="./asynRecord.gif" alt="asynRecordDebug" height="645"
+ width="450"></p>
+<a href="tds3000Device.html#Content">Back</a>
+<hr>
+<center>
+<h2><a name="LicenseAgreement"></a>License Agreement</h2>
+</center>
+<pre>Copyright (c) 2005 University of Chicago All rights reserved.<br>tds3000 is distributed subject to the following license conditions:<br><br>SOFTWARE LICENSE AGREEMENT<br>Software: tds3000<br><br> 1. The "Software", below, refers to tds3000 (in either source code, or<br>    binary form and accompanying documentation). Each licensee is<br>    addressed as "you" or "Licensee."<br><br> 2. The copyright holders shown above and their third-party licensors<br>    hereby grant Licensee a royalty-free nonexclusive license, subject to<br>    the limitations stated herein and U.S. Government license rights.<br><br> 3. You may modify and make a copy or copies of the Software for use<br>    within your organization, if you meet the following conditions:<br>      a. Copies in source code must include the copyright notice and this<br>         Software License Agreement.<br>      b. Copies in binary form must include the copyright notice and this<br>         Software License Agreement in the documentation and/or other<br>         materials provided with the copy.<br><br> 4. You may modify a copy or copies of the Software or any portion of it,<br>    thus forming a work based on the Software, and distribute copies of<br>    such work outside your organization, if you meet all of the following<br>    conditions:<br>      a. Copies in source code must include the copyright notice and this<br>         Software License Agreement;<br>      b. Copies in binary form must include the copyright notice and this<br>         Software License Agreement in the documentation and/or other<br>         materials provided with the copy;<br>      c. Modified copies and works based on the Software must carry<br>         prominent notices stating that you changed specified portions of<br>         the Software.<br><br> 5. Portions of the Software resulted from work developed under a U.S.<br>    Government contract and are subject to the following license: the<br>    Government is granted for itself and others acting on its behalf a<br>    paid-up, nonexclusive, irrevocable worldwide license in this computer<br>    software to reproduce, prepare derivative works, and perform publicly<br>    and display publicly.<br><br> 6. WARRANTY DISCLAIMER. THE SOFTWARE IS SUPPLIED "AS IS" WITHOUT WARRANTY<br>    OF ANY KIND. THE COPYRIGHT HOLDERS, THEIR THIRD PARTY LICENSORS, THE<br>    UNITED STATES, THE UNITED STATES DEPARTMENT OF ENERGY, AND THEIR<br>    EMPLOYEES: (1) DISCLAIM ANY WARRANTIES, EXPRESS OR IMPLIED, INCLUDING<br>    BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS<br>    FOR A PARTICULAR PURPOSE, TITLE OR NON-INFRINGEMENT, (2) DO NOT ASSUME<br>    ANY LEGAL LIABILITY OR RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS,<br>    OR USEFULNESS OF THE SOFTWARE, (3) DO NOT REPRESENT THAT USE OF THE<br>    SOFTWARE WOULD NOT INFRINGE PRIVATELY OWNED RIGHTS, (4) DO NOT WARRANT<br>    THAT THE SOFTWARE WILL FUNCTION UNINTERRUPTED, THAT IT IS ERROR-FREE<br>    OR THAT ANY ERRORS WILL BE CORRECTED.<br><br> 7. LIMITATION OF LIABILITY. IN NO EVENT WILL THE COPYRIGHT HOLDERS, THEIR<br>    THIRD PARTY LICENSORS, THE UNITED STATES, THE UNITED STATES DEPARTMENT<br>    OF ENERGY, OR THEIR EMPLOYEES: BE LIABLE FOR ANY INDIRECT, INCIDENTAL,<br>    CONSEQUENTIAL, SPECIAL OR PUNITIVE DAMAGES OF ANY KIND OR NATURE,<br>    INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS OR LOSS OF DATA, FOR ANY<br>    REASON WHATSOEVER, WHETHER SUCH LIABILITY IS ASSERTED ON THE BASIS OF<br>    CONTRACT, TORT (INCLUDING NEGLIGENCE OR STRICT LIABILITY), OR<br>    OTHERWISE, EVEN IF ANY OF SAID PARTIES HAS BEEN WARNED OF THE<br>    POSSIBILITY OF SUCH LOSS OR DAMAGES.<br><br><a
+ href="tds3000Device.html#Content">Back</a><br></pre>
+</body>
+</html>

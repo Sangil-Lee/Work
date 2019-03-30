@@ -1,0 +1,167 @@
+record(rdbmySQL, "$(SYS):READ_DATA") 
+{
+#  field(SCAN, "1 second")
+  field(SCAN, "I/O Intr")
+  field(PINI, "YES")
+  field(DTYP, "ReadData")
+  field(TABL, "online_model")
+  field(FILD, "data_float")
+#field(QRY, "select in_data,setvalue1,setvalue2,setvalue3,setvalue4,setvalue5,setvalue6 from t_set_parameters")
+  field(QRY, "select olm_esq_volt01,olm_esq_volt02,olm_esq_volt03,olm_esq_volt04,olm_esq_volt05,olm_esq_volt06,olm_esq_volt07,olm_esq_volt08,olm_esq_volt09,olm_esq_volt10,olm_esq_volt11,olm_esq_volt12,olm_esq_volt13,olm_mq_gauss01,olm_mq_gauss02,olm_mq_gauss03,olm_mq_gauss04,olm_mq_gauss05,olm_bcav_ampl01,olm_bcav_phase01,olm_bcav_amp02,olm_qwrcav_phase01 from t_machine_parameters")
+  field(INP, "$(SYS):EsQ:Volt01")
+  field(INPA, "$(SYS):EsQ:Volt02")
+  field(INPB, "$(SYS):EsQ:Volt03")
+  field(INPC, "$(SYS):EsQ:Volt04")
+  field(INPD, "$(SYS):EsQ:Volt05")
+  field(INPE, "$(SYS):EsQ:Volt06")
+  field(INPF, "$(SYS):EsQ:Volt07")
+  field(INPG, "$(SYS):EsQ:Volt08")
+  field(INPH, "$(SYS):EsQ:Volt09")
+  field(INPI, "$(SYS):EsQ:Volt10")
+  field(INPJ, "$(SYS):EsQ:Volt11")
+  field(INPK, "$(SYS):EsQ:Volt12")
+  field(INPL, "$(SYS):EsQ:Volt13")
+  field(INPM, "$(SYS):QM:Gauss01")
+  field(INPN, "$(SYS):QM:Gauss02")
+  field(INPO, "$(SYS):QM:Gauss03")
+  field(INPP, "$(SYS):QM:Gauss04")
+  field(INPQ, "$(SYS):QM:Gauss05")
+  field(INPR, "$(SYS):BCav:Ampl01")
+  field(INPS, "$(SYS):BCav:Phase01")
+  field(INPT, "$(SYS):BCav:Ampl02")
+  field(INPU, "$(SYS):QCav:Phase01")
+}
+
+record(ai, "$(SYS):EsQ:Volt01") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt02") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt03") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt04") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt05") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt06") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt07") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt08") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt09") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt10") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt11") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt12") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):EsQ:Volt13") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+
+record(ai, "$(SYS):QM:Gauss01") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):QM:Gauss02") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):QM:Gauss03") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):QM:Gauss04") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(ai, "$(SYS):QM:Gauss05") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(longin, "$(SYS):BCav:Ampl01") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(longin, "$(SYS):BCav:Phase01") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(longin, "$(SYS):BCav:Ampl02") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}
+record(longin, "$(SYS):QCav:Phase01") {
+  field(SCAN, "Passive")
+  field(STAT, "NO_ALARM")
+  field(SEVR, "NO_ALARM")
+  field(UDF, "0")
+}

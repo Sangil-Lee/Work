@@ -1,0 +1,940 @@
+# danfysikMps9100.template
+# Template database for a Danfysik System 9100 power supply
+# Pete Owens - 13/5/2016
+#
+# substitutions:
+# device  - device name
+# port    - serial port on IOC (steam device code ie /ty/0/1 => ty_0_1)
+# inom    - nominal current (A) - set to 1000 if power supply output Amps
+# imax    - maximum output current (A)
+# imin    - minimum output current (A) (default = 0 for unipolar supply)
+# ilim    - warning limit current (A) - do mot set alarms below this value
+# vnom    - nominal voltage (V) - set to 10 if power supply outputs Amps
+# vmax    - maximum voltage (V)
+# vmin    - minimum voltage (V) (default = 0 for unipolar supply)
+################################################################################
+# External Reset
+# Switch PLC module ON before resetting local interlocks
+#
+record(seq, "$(device):EXTRST")
+{
+    field(DESC, "External Reset")
+    field(SELM, "All")
+    field(DOL1, "1") field(LNK1, "$(device):RESET PP")
+    field(DOL2, "1") field(LNK2, "$(device):On PP")
+    field(DOL3, "0") field(LNK3, "$(device):On PP")    field(DLY3,"0.5")
+    field(DOL4, "0") field(LNK4, "$(device):RESET PP") field(DLY4,"0.5")
+    field(DOL5, "1") field(LNK5, "$(device):Rst PP")
+    field(DOL6, "0") field(LNK6, "$(device):Rst PP")   field(DLY6,"0.5")
+}
+################################################################################
+# Answer Mode
+#
+record(bo, "$(device):ANSWER")
+{
+    field(DESC, "Answer Mode")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9100.proto answer $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+    field(DOL, "1")
+    field(PINI, "YES")
+}
+################################################################################
+# Command Line
+#
+record(bi, "$(device):CMDLINE")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(INP, "@danfysikMps9100.proto getcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(SCAN, "1 second")
+}
+record(bo, "$(device):SETCMDLINE")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9100.proto setcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(DOL, "1")
+    field(PINI, "YES")
+}
+################################################################################
+# Polarity
+#
+record(bi, "$(device):POL")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(INP, "@danfysikMps9100.proto getpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SCAN, "1 second")
+}
+#record(bo, "$(device):SETPOL")
+#{
+#    field(DESC, "Polarity")
+#    field(DTYP, "stream")
+#    field(OUT, "@danfysikMps9100.proto setpol $(port) 0")
+#    field(ZNAM, "+")
+#    field(ONAM, "-")
+#}
+################################################################################
+# Main Power
+#
+record(bo, "$(device):SPOWER")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9100.proto power $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+record(bo, "$(device):RESET")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9100.proto reset $(port) 0")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+}
+################################################################################
+# ADCs
+#
+################################################################################
+# ADC 0 - Output current (12 bit)
+#
+record(ai, "$(device):ADC0")
+{
+    field(DESC, "ADC Channel 0")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-1000")
+    field(HOPR, "1000")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):I12")
+{
+    field(DESC, "Output Current")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(EGU,  "A")
+    field(PREC, "0")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 1 - Ambient Temperature
+#
+record(ai, "$(device):ADC1")
+{
+    field(DESC, "ADC Channel 1")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(1) $(port) 0")
+    field(SCAN, "5 second")
+    field(FLNK, "$(device):TEMP")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOLO, "0")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+    field(PREC, "0")
+}
+record(ai, "$(device):TEMP")
+{
+    field(DESC, "Ambient Temperature")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(1) $(port) 0")
+    field(SCAN, "5 second")
+    field(EGU,  "C")
+    field(PREC, "0")
+    field(LOPR, "0")
+    field(HOPR, "100")
+    field(LOW,  "0")
+    field(HIGH, "50")
+    field(HIHI, "100")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 2 - Output Voltage
+#
+record(ai, "$(device):ADC2")
+{
+    field(DESC, "ADC Channel 2")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(2) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-1000")
+    field(HOPR, "1000")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):V")
+{
+    field(DESC, "Output Voltage")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(2) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "-$(vnom)")
+    field(HOPR, "$(vnom)")
+    field(LOW,  "$(vmin=0)")
+    field(HIGH, "$(vmax)")
+    field(LOLO, "$(vmin=0)")
+    field(HIHI, "$(vmax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 3 - Internal +15V sup.
+#
+record(ai, "$(device):ADC3")
+{
+    field(DESC, "ADC Channel 3")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(3) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOLO, "0")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):V15")
+{
+    field(DESC, "Internal +15V")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(3) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "0")
+    field(HOPR, "100")
+    field(LOW,  "13.5")
+    field(HIGH, "16.5")
+    field(LOLO, "12")
+    field(HIHI, "18")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 4 - Internal -15V sup.
+#
+record(ai, "$(device):ADC4")
+{
+    field(DESC, "ADC Channel 4")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(4) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOLO, "0")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):VN15")
+{
+    field(DESC, "Internal -15V")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(4) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "-0.1")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "-100")
+    field(HOPR, "0")
+    field(LOW,  "-16.5")
+    field(HIGH, "-13.5")
+    field(LOLO, "-18")
+    field(HIHI, "-12")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 5 - Internal +5V sup.
+#
+record(ai, "$(device):ADC5")
+{
+    field(DESC, "ADC Channel 5")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(5) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOLO, "0")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):V5")
+{
+    field(DESC, "Internal 5V")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(5) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "0")
+    field(HOPR, "10")
+    field(LOW,  "4.5")
+    field(HIGH, "5.5")
+    field(LOLO, "4")
+    field(HIHI, "6")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 6 - Delta Temperature
+#
+record(ai, "$(device):ADC6")
+{
+    field(DESC, "ADC Channel 6")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(6) $(port) 0")
+    field(SCAN, "5 second")
+    field(FLNK, "$(device):DT")
+    field(LOPR, "-100")
+    field(HOPR, "100")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):DT")
+{
+    field(DESC, "Delta Temperature")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(6) $(port) 0")
+    field(SCAN, "5 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "C")
+    field(PREC, "1")
+    field(LOPR, "-10")
+    field(HOPR, "10")
+    field(LOW,  "-9.5")
+    field(HIGH, "9.5")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+}
+################################################################################
+# ADC 7 -  I set value
+#
+record(ai, "$(device):ADC7")
+{
+    field(DESC, "ADC Channel 7")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(7) $(port) 0")
+    field(SCAN, "2 second")
+    field(FLNK, "$(device):ISETV")
+    field(LOPR, "-1000")
+    field(HOPR, "1000")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):ISETV")
+{
+    field(DESC, "I set value")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(7) $(port) 0")
+    field(SCAN, "2 second")
+    field(EGU,  "A")
+    field(PREC, "0")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 8 - Optional Iout (16 bit)
+#
+record(ai, "$(device):ADC8")
+{
+    field(DESC, "ADC Channel 8")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(8) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-1000000")
+    field(HOPR, "1000000")
+    field(LOLO, "-999999")
+    field(HIHI, "999999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):READI")
+{
+    field(DESC, "Optional Iout")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(8) $(port) 0")
+    field(SCAN, ".5 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.01")
+    field(EGU,  "A")
+    field(PREC, "2")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 9 - Iout (16 bit)(ctrl panel)
+#
+record(ai, "$(device):ADC9")
+{
+    field(DESC, "ADC Channel 9")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(9) $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(device):I16")
+    field(LOPR, "-1000")
+    field(HOPR, "1000")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(calc, "$(device):I16")
+{
+    field(DESC, "Iout (16 bit)")
+    field(CALC, "A*B/C")
+    field(INPA, "$(device):ADC9 MS")
+    field(INPB, "$(inom)")
+    field(INPC, "120")
+    field(EGU,  "A")
+    field(PREC, "0")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 10 - Not used
+#
+################################################################################
+# ADC 11 - Output current display
+#
+record(ai, "$(device):ADC11")
+{
+    field(DESC, "ADC Channel 11")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(11) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-10000")
+    field(HOPR, "10000")
+    field(LOLO, "-9999")
+    field(HIHI, "9999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):IDSP")
+{
+    field(DESC, "OP current disp")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(11) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "A")
+    field(PREC, "1")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 12 - Output voltage display
+#
+record(ai, "$(device):ADC12")
+{
+    field(DESC, "ADC Channel 12")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(12) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-10000")
+    field(HOPR, "10000")
+    field(LOLO, "-9999")
+    field(HIHI, "9999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):VDSP")
+{
+    field(DESC, "OP voltage disp")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(12) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.1")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "-$(vnom)")
+    field(HOPR, "$(vnom)")
+    field(LOW,  "$(vmin=0)")
+    field(HIGH, "$(vmax)")
+    field(LOLO, "$(vmin=0)")
+    field(HIHI, "$(vmax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADCs 13-16 - Not used
+#
+################################################################################
+# ADC 17 - I set value
+#
+record(ai, "$(device):ADC17")
+{
+    field(DESC, "ADC Channel 17")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(17) $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(device):ISET")
+    field(LOPR, "-1000")
+    field(HOPR, "1000")
+    field(LOLO, "-999")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ai, "$(device):ISET")
+{
+    field(DESC, "I set value")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(17) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.5")
+    field(EGU,  "A")
+    field(PREC, "1")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# ADC 18 - Spare
+#
+record(ai, "$(device):ADC18")
+{
+    field(DESC, "ADC Channel 18")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto adc(18) $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(device):SPARE")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOLO, "0")
+    field(HIHI, "999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(calc, "$(device):SPARE")
+{
+    field(DESC, "Ambient Temperature")
+    field(CALC, "A/B")
+    field(INPA, "$(device):ADC18 MS")
+    field(INPB, "100")
+    field(EGU,  "X")
+    field(PREC, "2")
+    field(LOPR, "0")
+    field(HOPR, "10")
+    field(LOW,  "0")
+    field(HIGH, "10")
+    field(LOW,  "0")
+    field(HIHI, "10")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# DACs
+#
+# DAC 0 = Output Current
+#
+record(ao, "$(device):SETDAC0")
+{
+    field(DESC, "DAC 0")
+    field(DTYP, "stream")
+    field(OUT,  "@danfysikMps9100.proto wrdac(0) $(port) 0")
+    field(LOPR, "-999999")
+    field(HOPR, "999999")
+    field(DRVL, "-999999")
+    field(DRVH, "999999")
+}
+record(ai, "$(device):DAC0")
+{
+    field(DESC, "DAC 0")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto rddac(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "-999999")
+    field(HOPR, "999999")
+    field(LOLO, "-999999")
+    field(HIHI, "999999")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ao, "$(device):SETI")
+{
+    field(DESC, "Set Output Current")
+    field(DTYP, "stream")
+    field(OUT,  "@danfysikMps9100.proto wrdac(0) $(port) 0")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.001")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(DRVL, "$(imin=0)")
+    field(DRVH, "$(imax)")
+}
+record(ai, "$(device):GETSETI")
+{
+    field(DESC, "Output Current")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto rddac(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.001")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# DAC 1 = Slew Rate
+#
+record(ao, "$(device):SETDAC1")
+{
+    field(DESC, "DAC 1")
+    field(DTYP, "stream")
+    field(OUT,  "@danfysikMps9100.proto wrdac(1) $(port) 0")
+    field(LOPR, "0")
+    field(HOPR, "250000")
+    field(DRVL, "0")
+    field(DRVH, "250000")
+}
+record(ai, "$(device):DAC1")
+{
+    field(DESC, "DAC 1")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto rddac(1) $(port) 0")
+    field(SCAN, "1 second")
+    field(LOPR, "0")
+    field(HOPR, "250000")
+    field(LOLO, "0")
+    field(HIHI, "250000")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+record(ao, "$(device):SETSLEW")
+{
+    field(DESC, "Slew Rate")
+    field(DTYP, "stream")
+    field(OUT,  "@danfysikMps9100.proto wrdac(1) $(port) 0")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.01")
+    field(EGU,  "A/s")
+    field(PREC, "2")
+    field(HOPR, "1000")
+    field(LOPR, "0")
+    field(DRVH, "1000")
+    field(DRVL, "0")
+}
+record(ai, "$(device):SLEW")
+{
+    field(DESC, "Slew Rate")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto rddac(1) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.01")
+    field(EGU,  "A/s")
+    field(PREC, "2")
+    field(LOPR, "0")
+    field(HOPR, "1000")
+    field(LOW,  "0.01")
+    field(HIGH, "1000")
+    field(LOLO, "0")
+    field(HIHI, "1000")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# Status
+#
+record(ai, "$(device):STA")
+{
+    field(DESC, "Status")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto status(1) $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(device):CALSTA1")
+    field(PREC, "0")
+}
+record(calcout, "$(device):CALSTA1")
+{
+    field(DESC, "Status bits 1-8")
+    field(OUT,  "$(device):STA1 PP MS")
+    field(CALC, "(A>>B)&C")
+    field(INPA, "$(device):STA MS")
+    field(INPB, "16")
+    field(INPC, "255")
+    field(FLNK, "$(device):CALSTA2")
+}
+record(mbbiDirect, "$(device):STA1")
+{
+    field(DESC, "Status")
+    field(NOBT, "8")
+}
+record(calcout, "$(device):CALSTA2")
+{
+    field(DESC, "Status bits 9-24")
+    field(OUT,  "$(device):STA2 PP MS")
+    field(CALC, "A&B")
+    field(INPA, "$(device):STA MS")
+    field(INPB, "65535")
+    field(FLNK, "$(device):CALPOWER")
+}
+record(mbbiDirect, "$(device):STA2")
+{
+    field(DESC, "Status")
+}
+record(calcout, "$(device):CALPOWER")
+{
+    field(DESC, "Status bit1")
+    field(OUT,  "$(device):RPOWER PP MS")
+    field(CALC, "A?0:1")
+    field(INPA, "$(device):STA1.B7 MS")
+    field(FLNK, "$(device):RILK")
+}
+record(bi, "$(device):RPOWER")
+{
+    field(DESC, "Power")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+record(bi, "$(device):RILK")
+{
+    field(DESC, "Interlocks")
+    field(INP,  "$(device):STA2.BE MS")
+    field(ZNAM, "OK")
+    field(ONAM, "Interlock")
+}
+################################################################################
+# First Status
+#
+record(ai, "$(device):FSTA")
+{
+    field(DESC, "First Status")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto first $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(device):CALFSTA1")
+    field(PREC, "0")
+}
+record(calcout, "$(device):CALFSTA1")
+{
+    field(DESC, "Status bits 1-8")
+    field(OUT,  "$(device):FSTA1 PP MS")
+    field(CALC, "(A>>B)&C")
+    field(INPA, "$(device):FSTA MS")
+    field(INPB, "16")
+    field(INPC, "255")
+    field(FLNK, "$(device):CALFSTA2")
+}
+record(mbbiDirect, "$(device):FSTA1")
+{
+    field(DESC, "Status")
+    field(NOBT, "8")
+}
+record(calcout, "$(device):CALFSTA2")
+{
+    field(DESC, "Status bits 9-24")
+    field(OUT,  "$(device):FSTA2 PP MS")
+    field(CALC, "A&B")
+    field(INPA, "$(device):FSTA MS")
+    field(INPB, "65535")
+}
+record(mbbiDirect, "$(device):FSTA2")
+{
+    field(DESC, "Status")
+}
+################################################################################
+# Extended Status
+#
+record(mbbiDirect, "$(device):STA3")
+{
+    field(DESC, "Extended Status")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto status(3) $(port) 0")
+    field(SCAN, "1 second")
+}
+################################################################################
+record(stringin, "$(device):INFO")
+{
+    field(DESC, "User Information")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9100.proto print $(port) 0")
+    field(SCAN, "10 second")
+}
+################################################################################
+# calculate limits
+#
+record(calcout, "$(device):CALHLIM")
+{
+    field(DESC, "upper limit")
+    field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
+    field(OUT,  "$(device):READI.HIGH")
+    field(INPA, "$(device):SETI")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "1000")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(device):CALHHLIM")
+{
+    field(DESC, "upper limit")
+    field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
+    field(OUT,  "$(device):READI.HIHI")
+    field(INPA, "$(device):SETI")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "100")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(device):CALLLIM")
+{
+    field(DESC, "lower limit")
+    field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
+    field(OUT,  "$(device):READI.LOW")
+    field(INPA, "$(device):SETI")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "1000")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(device):CALLLLIM")
+{
+    field(DESC, "lower limit")
+    field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
+    field(OUT,  "$(device):READI.LOLO")
+    field(INPA, "$(device):SETI")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "100")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(seq, "$(device):DISLIMS")
+{
+    field(DESC, "disable limits")
+    field(SELM, "All")
+    field(DOL1, "-10")
+    field(DOL2, "-10")
+    field(DOL3, "$(imax)")
+    field(DOL4, "$(imax)")
+    field(LNK1, "$(device):READI.LOLO")
+    field(LNK2, "$(device):READI.LOW")
+    field(LNK3, "$(device):READI.HIGH")
+    field(LNK4, "$(device):READI.HIHI")
+}
+record(calc, "$(device):ALM")
+{
+    field(DESC, "Alarm Sum")
+    field(CALC, "A+B+C+D")
+    field(INPA, "$(device):RILK MS")
+    field(INPB, "$(device):READI MS")
+    field(INPC, "$(device):V MS")
+    field(INPD, "$(device):DT MS")
+    field(SCAN, "1 second")
+    field(PHAS, "3")
+}
+################################################################################

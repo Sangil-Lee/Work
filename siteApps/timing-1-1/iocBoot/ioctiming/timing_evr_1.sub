@@ -1,0 +1,159 @@
+file "db/bi.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,						ALIAS,				SCAN} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 Fan_Front_A,				FAN_FRONT_A, 	"I/O Intr"} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 Fan_Front_B,				FAN_FRONT_B, 	"I/O Intr"} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 Fan_Rear_A,				FAN_REAR_A, 	"I/O Intr"} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 Fan_Rear_B,				FAN_REAR_B, 	"I/O Intr"} 
+}
+
+file "db/bo.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 User_Trigger,		SEQUENCE_USER_TRIGGER } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 PG_Update,				PULSE_GEN_UPDATE } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_1,		EVR_PG_POL_1 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_2,		EVR_PG_POL_2 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_3,		EVR_PG_POL_3 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_4,		EVR_PG_POL_4 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_5,		EVR_PG_POL_5 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_6,		EVR_PG_POL_6 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_7,		EVR_PG_POL_7 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_8,		EVR_PG_POL_8 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_9,		EVR_PG_POL_9 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_10,		EVR_PG_POL_10 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_11,		EVR_PG_POL_11 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_12,		EVR_PG_POL_12 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_13,		EVR_PG_POL_13 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_14,		EVR_PG_POL_14 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_15,		EVR_PG_POL_15 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_16,		EVR_PG_POL_16 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_17,		EVR_PG_POL_17 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_18,		EVR_PG_POL_18 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_19,		EVR_PG_POL_19 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_20,		EVR_PG_POL_20 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_21,		EVR_PG_POL_21 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_22,		EVR_PG_POL_22 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_23,		EVR_PG_POL_23 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_24,		EVR_PG_POL_24 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_25,		EVR_PG_POL_25 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_26,		EVR_PG_POL_26 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_27,		EVR_PG_POL_27 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_28,		EVR_PG_POL_28 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_29,		EVR_PG_POL_29 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_30,		EVR_PG_POL_30 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_31,		EVR_PG_POL_31 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Pol_32,		EVR_PG_POL_32 } 
+}
+
+file "db/mbbi.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,		ALIAS,			SCAN} 
+}
+
+file "db/ao.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_A,		MULTIPLEXED_COUNTER_A } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_B,		MULTIPLEXED_COUNTER_B } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_C,		MULTIPLEXED_COUNTER_C } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_D,		MULTIPLEXED_COUNTER_D } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_E,		MULTIPLEXED_COUNTER_E } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_F,		MULTIPLEXED_COUNTER_F } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_G,		MULTIPLEXED_COUNTER_G } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_H,		MULTIPLEXED_COUNTER_H } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_I,		MULTIPLEXED_COUNTER_I } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_J,		MULTIPLEXED_COUNTER_J } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_K,		MULTIPLEXED_COUNTER_K } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_L,		MULTIPLEXED_COUNTER_L } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_M,		MULTIPLEXED_COUNTER_M } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 MUX_Counter_N,		MULTIPLEXED_COUNTER_N } 
+}
+
+
+file "db/longout.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,									ALIAS } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVGTime,								EVS_TIME } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVGDay,								EVS_DAY } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVGSet,								EVS_SET } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_1,				EVR_PG_DELAY_1 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_2,				EVR_PG_DELAY_2 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_3,				EVR_PG_DELAY_3 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_4,				EVR_PG_DELAY_4 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_5,				EVR_PG_DELAY_5 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_6,				EVR_PG_DELAY_6 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_7,				EVR_PG_DELAY_7 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_8,				EVR_PG_DELAY_8 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_9,				EVR_PG_DELAY_9 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_10,				EVR_PG_DELAY_10 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_11,				EVR_PG_DELAY_11 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_12,				EVR_PG_DELAY_12 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_13,				EVR_PG_DELAY_13 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_14,				EVR_PG_DELAY_14 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_15,				EVR_PG_DELAY_15 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_16,				EVR_PG_DELAY_16 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_17,				EVR_PG_DELAY_17 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_18,				EVR_PG_DELAY_18 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_19,				EVR_PG_DELAY_19 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_20,				EVR_PG_DELAY_20 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_21,				EVR_PG_DELAY_21 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_22,				EVR_PG_DELAY_22 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_23,				EVR_PG_DELAY_23 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_24,				EVR_PG_DELAY_24 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_25,				EVR_PG_DELAY_25 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_26,				EVR_PG_DELAY_26 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_27,				EVR_PG_DELAY_27 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_28,				EVR_PG_DELAY_28 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_29,				EVR_PG_DELAY_29 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_30,				EVR_PG_DELAY_30 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_31,				EVR_PG_DELAY_31 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Delay_32,				EVR_PG_DELAY_32 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_1,				EVR_PG_WIDTH_1 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_2,				EVR_PG_WIDTH_2 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_3,				EVR_PG_WIDTH_3 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_4,				EVR_PG_WIDTH_4 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_5,				EVR_PG_WIDTH_5 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_6,				EVR_PG_WIDTH_6 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_7,				EVR_PG_WIDTH_7 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_8,				EVR_PG_WIDTH_8 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_9,				EVR_PG_WIDTH_9 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_10,				EVR_PG_WIDTH_10 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_11,				EVR_PG_WIDTH_11 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_12,				EVR_PG_WIDTH_12 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_13,				EVR_PG_WIDTH_13 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_14,				EVR_PG_WIDTH_14 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_15,				EVR_PG_WIDTH_15 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_16,				EVR_PG_WIDTH_16 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_17,				EVR_PG_WIDTH_17 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_18,				EVR_PG_WIDTH_18 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_19,				EVR_PG_WIDTH_19 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_20,				EVR_PG_WIDTH_20 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_21,				EVR_PG_WIDTH_21 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_22,				EVR_PG_WIDTH_22 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_23,				EVR_PG_WIDTH_23 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_24,				EVR_PG_WIDTH_24 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_25,				EVR_PG_WIDTH_25 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_26,				EVR_PG_WIDTH_26 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_27,				EVR_PG_WIDTH_27 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_28,				EVR_PG_WIDTH_28 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_29,				EVR_PG_WIDTH_29 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_30,				EVR_PG_WIDTH_30 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_31,				EVR_PG_WIDTH_31 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PG_Width_32,				EVR_PG_WIDTH_32 } 
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_DBUS_EN,					EVR_DBUS_EN		}
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_EVCODEA_EN,				EVR_EVCODEA_EN	}
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_EVCODEB_EN,				EVR_EVCODEB_EN	}
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_STREAM_EN,					EVR_STREAM_EN	}
+{ SCL3,   TS,				EVR_1,		timing,	0,	1,			 EVR_PDP_EN,					EVR_PDP_EN		}
+}
+
+file "db/ai.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS,				SCAN} 
+}
+
+file "db/stringin.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,					ALIAS,				SCAN} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 IOCStartTime,		IOCSTARTTIME,			"I/O Intr"} 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 Buildtime,				BUILD_TIME,			"I/O Intr"} 
+}
+
+file "db/stringout.template" { pattern
+{ SYS,		SUBSYS,		DEV,		PORT,		ADDR,	TIMEOUT, SIGNAL,					ALIAS } 
+{ SCL3,   TS,				EVR_1,		timing,	0,			1,			 StartTime,			STARTTIME } 
+}

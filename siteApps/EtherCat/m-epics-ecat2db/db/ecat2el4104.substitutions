@@ -1,0 +1,14 @@
+file ecat2slave.template
+{
+	pattern {DEVICENAME}
+		{EL4104}
+}
+
+file ecat2el41xx.template
+{
+	pattern {CH_ID, PDO_IDX, EGU, EOFF, ESLO, DRVL, DRVH}
+		{$(MOD_ID)-AO1, 0, V, 0, 0.0003051850947599719, 0, 10}
+		{$(MOD_ID)-AO2, 1, V, 0, 0.0003051850947599719, 0, 10}
+		{$(MOD_ID)-AO3, 2, V, 0, 0.0003051850947599719, 0, 10}
+		{$(MOD_ID)-AO4, 3, V, 0, 0.0003051850947599719, 0, 10}
+}

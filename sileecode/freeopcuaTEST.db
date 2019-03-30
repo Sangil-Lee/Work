@@ -1,0 +1,100 @@
+record(ao,"REC:setProp"){
+        field(TSE, "-2")
+        field(DOL, "2.2")
+#        field(PINI,"YES")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(OUT,"@2:NewObject.MyProperty")
+        field(LOPR,"-100")
+        field(HOPR,"100")
+        
+}
+record(longout,"REC:setPropINT"){
+#        field(TPRO, "3")
+        field(TSE, "-2")
+#        field(PINI,"YES")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(OUT,"@2:NewObject.MyProperty")
+        field(LOPR,"-100")
+        field(HOPR,"100")
+        
+}
+record(ai,"REC:rdProp"){
+#        field(SCAN,"1 second")
+        field(SCAN,"I/O Intr")
+        field(TSE, "-2")
+        field(PINI,"YES")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyProperty")
+}
+record(ai,"REC:rdVariable"){
+#        field(SCAN,"1 second")
+        field(SCAN,"I/O Intr")
+#        field(PINI,"YES")
+        field(TSE, "-2")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyVariable")
+        field(LINR,"SLOPE")
+        field(ESLO,"0.1")
+        field(EOFF,"-4")
+}
+record(longin,"REC:rdVariableINT"){
+#        field(SCAN,"5 second")
+        field(SCAN,"I/O Intr")
+        field(PINI,"YES")
+        field(TSE, "-2")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyVariable")
+}
+record(mbbiDirect,"REC:rdBit23"){
+#        field(SCAN,"5 second")
+        field(SCAN,"I/O Intr")
+        field(PINI,"YES")
+        field(TSE, "-2")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyVariable")
+        field(NOBT,"2")
+        field(SHFT,"2")
+}
+record(mbbi,"REC:stBit23"){
+#        field(SCAN,"5 second")
+        field(SCAN,"I/O Intr")
+        field(PINI,"YES")
+        field(TSE, "-2")
+        field(DTYP,"OPCUA")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyVariable")
+        field(NOBT,"2")
+        field(SHFT,"1")
+        field(ZRVL,"0")
+        field(ONVL,"1")
+        field(TWVL,"2")
+        field(THVL,"3")
+        field(ZRST,"NULL")
+        field(ONST,"EINS")
+        field(TWST,"ZWEI")
+        field(THST,"DREI")
+}
+record(stringin,"REC:rdString"){
+        field(DTYP,"OPCUA")
+        field(SCAN,"5 second")
+        field(PINI,"YES")
+        field(VAL ,"YES I Am")
+#        field(SCAN,"I/O Intr")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyStringVar")
+}
+
+record(waveform,"REC:rdIntArr"){
+        field(DTYP,"OPCUA")
+        field(NELM,"5")
+        field(FTVL,"LONG")
+        field(SCAN,"I/O Intr")
+        field(DISS,"INVALID")
+        field(INP,"@2:NewObject.MyArrayVar")
+}

@@ -1,0 +1,474 @@
+Release 12.1 Map M.53d (nt)
+Xilinx Mapping Report File for Design 'shift_regs'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc6slx45-fgg676-3 -w -ol high -t 1 -xt 0
+-register_duplication off -global_opt off -detail -ir off -pr off -lc off -power
+off -o shift_regs_map.ncd shift_regs.ngd shift_regs.pcf 
+Target Device  : xc6slx45
+Target Package : fgg676
+Target Speed   : -3
+Mapper Version : spartan6 -- $Revision: 1.52 $
+Mapped Date    : Mon Jan 31 21:01:32 2011
+
+Design Summary
+--------------
+Number of errors:      0
+Number of warnings:    1
+Slice Logic Utilization:
+  Number of Slice Registers:                    68 out of  54,576    1%
+    Number used as Flip Flops:                  68
+    Number used as Latches:                      0
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:                0
+  Number of Slice LUTs:                         34 out of  27,288    1%
+    Number used as logic:                        0 out of  27,288    0%
+    Number used as Memory:                       2 out of   6,408    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:             2
+        Number using O6 output only:             2
+        Number using O5 output only:             0
+        Number using O5 and O6:                  0
+    Number used exclusively as route-thrus:     32
+      Number with same-slice register load:     32
+      Number with same-slice carry load:         0
+      Number with other load:                    0
+
+Slice Logic Distribution:
+  Number of occupied Slices:                    12 out of   6,822    1%
+  Number of LUT Flip Flop pairs used:           37
+    Number with an unused Flip Flop:             1 out of      37    2%
+    Number with an unused LUT:                   3 out of      37    8%
+    Number of fully used LUT-FF pairs:          33 out of      37   89%
+    Number of unique control sets:               4
+    Number of slice register sites lost
+      to control set restrictions:              18 out of  54,576    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                        13 out of     358    3%
+
+Specific Feature Utilization:
+  Number of RAMB16BWERs:                         2 out of     116    1%
+  Number of RAMB8BWERs:                          0 out of     232    0%
+  Number of BUFIO2/BUFIO2_2CLKs:                 0 out of      32    0%
+  Number of BUFIO2FB/BUFIO2FB_2CLKs:             0 out of      32    0%
+  Number of BUFG/BUFGMUXs:                       2 out of      16   12%
+    Number used as BUFGs:                        2
+    Number used as BUFGMUX:                      0
+  Number of DCM/DCM_CLKGENs:                     0 out of       8    0%
+  Number of ILOGIC2/ISERDES2s:                   0 out of     376    0%
+  Number of IODELAY2/IODRP2/IODRP2_MCBs:         0 out of     376    0%
+  Number of OLOGIC2/OSERDES2s:                   0 out of     376    0%
+  Number of BSCANs:                              0 out of       4    0%
+  Number of BUFHs:                               0 out of     256    0%
+  Number of BUFPLLs:                             0 out of       8    0%
+  Number of BUFPLL_MCBs:                         0 out of       4    0%
+  Number of DSP48A1s:                            0 out of      58    0%
+  Number of ICAPs:                               0 out of       1    0%
+  Number of MCBs:                                0 out of       2    0%
+  Number of PCILOGICSEs:                         0 out of       2    0%
+  Number of PLL_ADVs:                            0 out of       4    0%
+  Number of PMVs:                                0 out of       1    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of SUSPEND_SYNCs:                       0 out of       1    0%
+
+Average Fanout of Non-Clock Nets:                1.97
+
+Peak Memory Usage:  257 MB
+Total REAL time to MAP completion:  26 secs 
+Total CPU time to MAP completion:   14 secs 
+
+Table of Contents
+-----------------
+Section 1 - Errors
+Section 2 - Warnings
+Section 3 - Informational
+Section 4 - Removed Logic Summary
+Section 5 - Removed Logic
+Section 6 - IOB Properties
+Section 7 - RPMs
+Section 8 - Guide Report
+Section 9 - Area Group and Partition Summary
+Section 10 - Timing Report
+Section 11 - Configuration String Information
+Section 12 - Control Set Information
+Section 13 - Utilization by Hierarchy
+
+Section 1 - Errors
+------------------
+
+Section 2 - Warnings
+--------------------
+WARNING:Security:42 - Your software subscription period has lapsed. Your current
+version of Xilinx tools will continue to function, but you no longer qualify for
+Xilinx software updates or new releases.
+WARNING:Pack:2768 - At least one timing constraint is impossible to meet because component switching limit violations have been detected for
+   a constrained component. A timing constraint summary below shows the failing constraints (preceded with an Asterisk (*)). Please use the
+   Timing Analyzer (GUI) or TRCE (command line) with the Mapped NCD and PCF files to evaluate the component switching limit violations in
+   more detail. Evaluate the datasheet for alternative configurations for the component that could allow the frequencies requested in the
+   constraint. Otherwise, the timing constraint covering this component might need to be modified to satisfy the component switching limits
+   specified in the datasheet.
+
+Section 3 - Informational
+-------------------------
+INFO:Security:54 - 'xc6slx45' is a WebPack part.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/a<3> has no load.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/a<2> has no load.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/a<1> has no load.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/a<0> has no load.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/sinit has no load.
+INFO:LIT:243 - Logical network shift_ram_coregen/BU2/sset has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<63> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<62> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<61> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<60> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<59> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<58> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<57> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<56> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<55> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<54> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<53> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<52> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<51> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<50> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<49> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<48> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<47> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<46> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<45> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<44> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<43> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<42> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<41> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<40> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<39> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<38> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<37> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<36> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<35> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<34> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<33> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<32> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<31> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<30> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<29> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<28> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<27> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<26> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<25> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<24> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<23> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<22> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<21> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<20> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<19> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<18> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<17> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<16> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<15> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<14> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<13> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<12> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<11> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<10> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<9> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<8> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<7> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<6> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<5> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<4> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<3> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<2> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<1> has no load.
+INFO:LIT:243 - Logical network shift_bram/blk_mem/doutb<0> has no load.
+INFO:MapLib:562 - No environment variables are currently set.
+INFO:LIT:244 - All of the single ended outputs in this design are using slew
+   rate limited output drivers. The delay on speed critical single ended outputs
+   can be dramatically reduced by designating them as fast outputs.
+INFO:Pack:1716 - Initializing temperature to 85.000 Celsius. (default - Range:
+   0.000 to 85.000 Celsius)
+INFO:Pack:1720 - Initializing voltage to 1.140 Volts. (default - Range: 1.140 to
+   1.260 Volts)
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+INFO:Pack:1650 - Map created a placed design.
+
+Section 4 - Removed Logic Summary
+---------------------------------
+   4 block(s) removed
+   5 block(s) optimized away
+  64 signal(s) removed
+
+Section 5 - Removed Logic
+-------------------------
+
+The trimmed logic report below shows the logic removed from your design due to
+sourceless or loadless signals, and VCC or ground connections.  If the removal
+of a signal or symbol results in the subsequent removal of an additional signal
+or symbol, the message explaining that second removal will be indented.  This
+indentation will be repeated as a chain of related logic is removed.
+
+To quickly locate the original cause for the removal of a chain of logic, look
+above the place where that logic is listed in the trimming report, then locate
+the lines that are least indented (begin at the leftmost edge).
+
+The signal "shift_bram/blk_mem/doutb<63>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<62>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<61>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<60>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<59>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<58>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<57>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<56>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<55>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<54>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<53>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<52>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<51>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<50>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<49>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<48>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<47>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<46>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<45>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<44>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<43>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<42>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<41>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<40>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<39>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<38>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<37>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<36>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<35>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<34>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<33>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<32>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<31>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<30>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<29>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<28>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<27>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<26>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<25>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<24>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<23>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<22>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<21>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<20>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<19>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<18>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<17>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<16>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<15>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<14>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<13>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<12>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<11>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<10>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<9>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<8>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<7>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<6>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<5>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<4>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<3>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<2>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<1>" is sourceless and has been removed.
+The signal "shift_bram/blk_mem/doutb<0>" is sourceless and has been removed.
+Unused block "shift_ram_coregen/GND" (ZERO) removed.
+Unused block "shift_ram_coregen/VCC" (ONE) removed.
+Unused block "shift_bram/blk_mem/GND" (ZERO) removed.
+Unused block "shift_bram/blk_mem/VCC" (ONE) removed.
+
+Optimized Block(s):
+TYPE 		BLOCK
+GND 		shift_ram_coregen/BU2/U0/i_bb_inst/XST_GND
+VCC 		shift_ram_coregen/BU2/U0/i_bb_inst/XST_VCC
+GND 		shift_bram/XST_GND
+GND 		shift_bram/blk_mem/BU2/XST_GND
+VCC 		shift_bram/blk_mem/BU2/XST_VCC
+
+Section 11 - Timing Report
+--------------------------
+INFO:Timing:3284 - This timing report was generated using estimated delay 
+   information.  For accurate numbers, please refer to the post Place and Route 
+   timing report.
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+----------------------------------------------------------------------------------------------------------
+  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
+                                            |             |    Slack   | Achievable | Errors |    Score   
+----------------------------------------------------------------------------------------------------------
+* TS_clk_ff = PERIOD TIMEGRP "clk_ff" 2.25  | SETUP       |     1.671ns|     0.579ns|       0|           0
+  ns HIGH 50%                               | HOLD        |     0.257ns|            |       0|           0
+                                            | MINPERIOD   |    -0.020ns|     2.270ns|       1|          20
+----------------------------------------------------------------------------------------------------------
+  TS_clk_srl = PERIOD TIMEGRP "clk_srl" 1.4 | SETUP       |     0.726ns|     0.674ns|       0|           0
+   ns HIGH 50%                              | HOLD        |     0.293ns|            |       0|           0
+                                            | MINPERIOD   |     0.001ns|     1.399ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_clk_bram = PERIOD TIMEGRP "clk_bram" 3 | SETUP       |     1.065ns|     2.435ns|       0|           0
+  .5 ns HIGH 50%                            | HOLD        |     0.145ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+
+
+1 constraint not met.
+
+
+
+Section 6 - IOB Properties
+--------------------------
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
+|                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clk_bram                           | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_ff                             | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| clk_srl                            | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| enable_shift_bram                  | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| enable_shift_flops                 | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| enable_shift_ram                   | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| reset                              | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| shift_bram_din                     | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| shift_bram_dout                    | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| shift_flops_din                    | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| shift_flops_dout                   | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
+| shift_ram_din                      | IOB              | INPUT     | LVCMOS25             |       |          |      |              |          |          |
+| shift_ram_dout                     | IOB              | OUTPUT    | LVCMOS25             |       | 12       | SLOW |              |          |          |
++---------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Section 7 - RPMs
+----------------
+
+Section 8 - Guide Report
+------------------------
+Guide not run on this design.
+
+Section 9 - Area Group and Partition Summary
+--------------------------------------------
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+Area Group Information
+----------------------
+
+Area Group "pblock_shift_bram"
+  No COMPRESSION specified for Area Group "pblock_shift_bram"
+  RANGE: SLICE_X2Y72:SLICE_X7Y80
+  Slice Logic Utilization:
+    Number of Slice Registers:               2 out of    432    1%
+  Slice Logic Distribution:
+    Number of occupied Slices:               1 out of     54    1%
+    Number of LUT Flip Flop pairs used:      1
+      Number with an unused Flip Flop:       0 out of      1    0%
+      Number with an unused LUT:             0 out of      1    0%
+      Number of fully used LUT-FF pairs:     1 out of      1  100%
+  Number of RAMB16BWER:                      2 out of      3   66%
+
+Area Group "pblock_shift_flops"
+  No COMPRESSION specified for Area Group "pblock_shift_flops"
+  RANGE: SLICE_X8Y56:SLICE_X17Y63
+  Slice Logic Utilization:
+    Number of Slice Registers:              64 out of    640   10%
+  Slice Logic Distribution:
+    Number of occupied Slices:               9 out of     80   11%
+    Number of LUT Flip Flop pairs used:     33
+      Number with an unused Flip Flop:       0 out of     33    0%
+      Number with an unused LUT:             2 out of     33    6%
+      Number of fully used LUT-FF pairs:    31 out of     33   93%
+
+Area Group "pblock_shift_ram_coregen"
+  No COMPRESSION specified for Area Group "pblock_shift_ram_coregen"
+  RANGE: SLICE_X0Y40:SLICE_X3Y55
+  Slice Logic Utilization:
+    Number of Slice Registers:               2 out of    512    1%
+    Number of Slice LUTs:                    4 out of    256    1%
+      Number used as logic:                  2
+      Number used as Memory:                 2
+  Slice Logic Distribution:
+    Number of occupied Slices:               2 out of     64    3%
+    Number of LUT Flip Flop pairs used:      3
+      Number with an unused Flip Flop:       1 out of      3   33%
+      Number with an unused LUT:             1 out of      3   33%
+      Number of fully used LUT-FF pairs:     1 out of      3   33%
+
+
+Section 10 - Timing Report
+--------------------------
+A logic-level (pre-route) timing report can be generated by using Xilinx static
+timing analysis tools, Timing Analyzer (GUI) or TRCE (command line), with the
+mapped NCD and PCF files. Please note that this timing report will be generated
+using estimated delay information. For accurate numbers, please generate a
+timing report with the post Place and Route NCD file.
+
+For more information about the Timing Analyzer, consult the Xilinx Timing
+Analyzer Reference Manual; for more information about TRCE, consult the Xilinx
+Command Line Tools User Guide "TRACE" chapter.
+
+Section 11 - Configuration String Details
+-----------------------------------------
+
+Section 12 - Control Set Information
+------------------------------------
++----------------------------------------------------------------------------------------------------------+
+| Clock Signal   | Reset Signal | Set Signal | Enable Signal           | Slice Load Count | Bel Load Count |
++----------------------------------------------------------------------------------------------------------+
+| clk_bram_BUFGP | reset_IBUF   |            |                         | 1                | 2              |
++----------------------------------------------------------------------------------------------------------+
+| clk_ff_BUFGP   | reset_IBUF   |            | enable_shift_flops_IBUF | 9                | 64             |
++----------------------------------------------------------------------------------------------------------+
+| clk_srl_IBUF   |              |            | enable_shift_ram_IBUF   | 2                | 3              |
+| clk_srl_IBUF   | reset_IBUF   |            | enable_shift_ram_IBUF   | 1                | 1              |
++----------------------------------------------------------------------------------------------------------+
+
+Section 13 - Utilization by Hierarchy
+-------------------------------------
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Module                           | Partition | Slices*       | Slice Reg     | LUTs          | LUTRAM        | BRAM/FIFO | DSP48A1 | BUFG  | BUFIO | BUFR  | DCM   | PLL_ADV   | Full Hierarchical Name                                                                            |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| shift_regs/                      |           | 9/21          | 0/68          | 32/34         | 0/2           | 0/2       | 0/0     | 2/2   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs                                                                                        |
+| +shift_bram                      |           | 1/1           | 2/2           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram                                                                             |
+| ++blk_mem                        |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem                                                                     |
+| +++BU2                           |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2                                                                 |
+| ++++U0                           |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0                                                              |
+| +++++blk_mem_generator           |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator                                            |
+| ++++++valid.cstr                 |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/2       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator/valid.cstr                                 |
+| +++++++ramloop[0].ram.r          |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/1       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator/valid.cstr/ramloop[0].ram.r                |
+| ++++++++s6_noinit.ram            |           | 0/0           | 0/0           | 0/0           | 0/0           | 1/1       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator/valid.cstr/ramloop[0].ram.r/s6_noinit.ram  |
+| +++++++ramloop[1].ram.r          |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/1       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator/valid.cstr/ramloop[1].ram.r                |
+| ++++++++s6_noinit.ram            |           | 0/0           | 0/0           | 0/0           | 0/0           | 1/1       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_bram/blk_mem/BU2/U0/blk_mem_generator/valid.cstr/ramloop[1].ram.r/s6_noinit.ram  |
+| +shift_flops                     |           | 9/9           | 64/64         | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_flops                                                                            |
+| +shift_ram_coregen               |           | 0/2           | 0/2           | 0/2           | 0/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen                                                                      |
+| ++BU2                            |           | 0/2           | 0/2           | 0/2           | 0/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen/BU2                                                                  |
+| +++U0                            |           | 0/2           | 0/2           | 0/2           | 0/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen/BU2/U0                                                               |
+| ++++i_bb_inst                    |           | 1/2           | 1/2           | 2/2           | 2/2           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen/BU2/U0/i_bb_inst                                                     |
+| +++++gen_output_regs.output_regs |           | 0/1           | 0/1           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen/BU2/U0/i_bb_inst/gen_output_regs.output_regs                         |
+| ++++++fd                         |           | 1/1           | 1/1           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_ram_coregen/BU2/U0/i_bb_inst/gen_output_regs.output_regs/fd                      |
+| +shift_regs                      |           | 0/0           | 0/0           | 0/0           | 0/0           | 0/0       | 0/0     | 0/0   | 0/0   | 0/0   | 0/0   | 0/0       | shift_regs/shift_regs                                                                             |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+* Slices can be packed with basic elements from multiple hierarchies.
+  Therefore, a slice will be counted in every hierarchical module
+  that each of its packed basic elements belong to.
+** For each column, there are two numbers reported <A>/<B>.
+   <A> is the number of elements that belong to that specific hierarchical module.
+   <B> is the total number of elements from that hierarchical module and any lower level
+   hierarchical modules below.
+*** The LUTRAM column counts all LUTs used as memory including RAM, ROM, and shift registers.

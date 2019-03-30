@@ -1,0 +1,48 @@
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):InitVal") {
+  field(DESC, "Initial Value for Auto Scan")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "-10")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):StepInc")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):FinVal") {
+  field(DESC, "Final Value for Auto Scan")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "10")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):StepInc")
+}
+
+record(longin, "$(SYS)-$(SUBSYS):$(DEV):StepCnt") {
+  field(DESC, "Step Count for Auto Scan")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "20")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):StepInc")
+}
+
+record(calc, "$(SYS)-$(SUBSYS):$(DEV):StepInc") {
+  field(DESC, "Step Increment for Auto Scan")
+  field(PINI, "YES")
+  #field(CALC, "(abs(A)+abs(B))/C")
+  field(CALC, "(B-A)/C")
+  field(INPA, "$(SYS)-$(SUBSYS):$(DEV):InitVal")
+  field(INPB, "$(SYS)-$(SUBSYS):$(DEV):FinVal")
+  field(INPC, "$(SYS)-$(SUBSYS):$(DEV):StepCnt")
+}
+
+record(bi, "$(SYS)-$(SUBSYS):$(DEV):ScanMod") {
+  field(DESC, "Auto Scan Mode")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(ZNAM, "StoppedScan")
+  field(ONAM, "Scanning")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):StepDly") {
+  field(DESC, "Step Delay for Auto Scan")
+  field(PINI, "YES")
+  field(VAL, "1")
+}
+

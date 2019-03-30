@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="300">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <title>KBSI Site Environment Monitoring Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+
+  <script type="text/javascript">
+    $(window).load(function() {
+    $("header[data-role=header]").on("click", function () {
+    $("div[data-role=navbar]").slideToggle(300);
+    });
+    $("div[data-role=navbar]").on("click", function (e) {
+    e.stopPropagation();
+    });
+    });
+  </script>
+  <style>
+    img {
+    display: block;
+    margin: 0 auto;
+    max-width: 90%;
+    height: auto;
+    float: center;
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <!-- Start of second page -->
+  <section id="snapshot" data-role="page" >
+    <header data-role="header" style="overflow:hidden;" data-theme="a">
+      <h1>KBSI Site Environment Monitoring Page</h1>
+      <div data-role="navbar" data-iconpos="bottom">
+        <ul>
+          <li><a href="index.html" data-icon="info"> Monitoring</a></li>
+          <li><a href="snapshot.html" data-icon="camera" class="ui-btn-active" >Snapshots</a></li>
+          <li><a href="about.html" data-icon="info">About</a></li>
+        </ul>
+      </div><!-- /navbar -->
+    </header>
+
+      <article role="main" data-role="content">
+ 	<h3>Camera Snapshot </h3>
+ 	<picture>
+ 	  <img
+ 	     src="images/kbsi-pi0.png"
+ 	     alt="Camera Snapshot">
+ 	  <br />
+ 	</picture>
+    </article>
+
+    <footer data-role="footer">
+
+    </footer><!-- /footer -->
+  </section>
+
+</body>
+
+</html>

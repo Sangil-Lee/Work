@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <title>EPICS pvaSrv Specification Ideas</title>
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/base.css" />
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/epicsv4.css" />
+  <!-- Script that generates the Table of Contents -->
+  <script type="text/javascript"
+  src="http://epics-pvdata.sourceforge.net/script/tocgen.js">
+  </script>
+</head>
+<body>
+
+<div class="head">
+<h1>EPICS pvaSrv Specification Ideas</h1>
+<!-- Maturity: Working Draft or Request for Comments, or Recommendation, and date.  -->
+
+<h2 class="nocount">EPICS v4 Working Group, Working Draft, 23-Jan-2013</h2>
+<dl>
+  <dt>This version:</dt>
+    <dd><a
+      href="pvaSrvSpec_20130123.html">pvaSrvSpec_20130123.html</a></dd>
+  <dt>Latest version:</dt>
+    <dd><a
+      href="pvaSrvSpec.html">pvaSrvSpec.html</a></dd>
+  <dt>Editors:</dt>
+  <dd>Marty Kraimer, BNL<br>Ralph Lange, HZB / BESSY II</dd>
+</dl>
+<p class="copyright">This product is made available subject to acceptance of the <a
+href="http://epics-pvdata.sourceforge.net/LICENSE.html">EPICS open source
+license.</a></p>
+<hr />
+</div>
+
+<h2 class="nocount" id="abstract">Abstract</h2>
+<p>pvaSrv is a pvAccess server running on top of an EPICS V3 database, implemented in C++.</p>
+
+<p>This product is part of the <a
+href="http://epics-pvdata.sourceforge.net/">V4</a> implementation of <a
+href="http://www.aps.anl.gov/epics/">EPICS</a> (Experimental Physics and Industrial
+Control System).</p>
+
+<h2 class="nocount">Status of this Document</h2>
+
+<p>This is the 23-Jan-2013 version of the pvaSrv Specification, as discussed in the EPICS V4
+Workgroup Meeting at PSI, Villigen.</p>
+
+<div id="toc">
+<h2 class="nocount" style="page-break-before: always">Table of Contents</h2>
+</div>
+
+<div id="contents" class="contents">
+
+<h2 id="introduction">Introduction</h2>
+
+<p>pvaSrv is a pvAccess server that runs in the EPICS V3 IOC.</p>
+
+<p>It allows you to get, put and monitor V3 PVs (fields of V3 records) over pvAccess, translating
+the value and its meta data (graphics limits, alarm status, timestamp) into Normative Type (NT)
+pvData structures (NTScalar, NTScalarArray).
+This functionality is implemented as a pvAccess channel provider called "v3Channel".</p>
+
+<p>It also allows you to specify named groups of V3 PVs through an RPC type call,
+which then can be accessed through the new name as a collection of NT structures.
+If the records of such a collection are within one V3 database lock set of the IOC,
+put and get operations are atomic.
+This functionality is implemented as a pvAccess channel provider called "molecule".</p>
+
+<p>Put, Get and Monitor operations will be supported. Put and Get support the "process=true" request parameter,
+which processes the record after the Put or before the Get.</p>
+
+<p>In future versions (based on EPICS Base >= 3.15) it is intended to use server-side plug-ins to implement
+other request and monitor parameters.</p>
+
+<h2 id="v3channel">V3Channel</h2>
+
+<h3>Operation</h3>
+
+<p>Connections can be made to any V3 PV inside the IOC's database, addressed either by using the full
+"record.field" name, or the "record" short form that connects to the .VAL field.</p>
+
+<h3>PV Data Representation</h3>
+
+<p>The pvData structure used to represent the PV's
+data will be an NTScalar (NTScalarArray for array data), with the NT defined structures filled on a
+best effort basis with the data from the corresponding DBR_xxx types.</p>
+
+
+<h2 id="molecule">Molecule</h2>
+
+<h3>Operation</h3>
+
+<p>Molecule works in two steps:</p>
+
+<ol>
+<li>Create a named group of V3 PVs (molecule) through an RPC type call.</li>
+<li>Operate on this group through its new name.</li>
+</ol>
+
+<p>All PVs whose data types can be held by an NTScalar or NTScalarArray are supported. Types can be mixed.</p>
+
+<h3>Pre-Configured vs. On-the-Fly Groups</h3>
+
+<p>Both types of configuration will be supported.</p>
+
+<p>Pre-configuration is expected to happen either through the V3 database (e.g. by using info fields),
+or remotely (e.g. from a service that keeps and persists the supported well-known groups).
+On-the-fly configuration is expected to be done by a client, that first specifies a group, then does
+the operation on that group.
+To facilitate this, the RPC type call is available as a local function call as well as remotely
+through ChannelRPC.</p>
+
+<h3>RPC Type Interface</h3>
+
+<p>There will be two calls, "create group" and "delete group".</p>
+
+<h4>Create Group</h4>
+
+<p>In the arguments to the "create group" RPC call, the client will specify:</p>
+
+<dl>
+<dt>group name</dt>
+<dd>name of the PV group to be created</dd>
+
+<dt>PV names</dt>
+<dd>ordered list of the group's member PVs</dd>
+
+<dt>lifetime</dt>
+<dd>specify the condition under which the group will be deleted: lifetime is the time the group is guaranteed
+to be accessible and responsive after all clients have disconnected</dd>
+
+<dt>processMask</dt>
+<dd>bitfield indicating which PV's records will be processed when an operation specifies "process=true"<br>
+maybe special tags to define "first", "last", "all"?</dd>
+
+<dt>requireAtomic</dt>
+<dd>flag indicating that put and get operations will fail if they cannot be executed atomically for the whole group</dd>
+
+<dt>time bin : opt</dt>
+<dd>time that pvaSrv will wait after receiving an update for one of the PVs before sending out the pvAccess update</dd>
+</dl>
+
+<p>The call will return success or failure.</p>
+
+<h4>Delete Group</h4>
+
+<p>In the arguments to the "delete group" RPC call, the client will specify:</p>
+
+<dl>
+<dt>group name</dt>
+<dd>name of the PV group to be deleted</dd>
+</dl>
+
+<p>The call will return success or failure.</p>
+
+<h3>Operation Interface</h3>
+
+<p>The client may either send a single pvRequest/pvMonitor structure or an array of pvRequest/pvMonitor structures.
+A single structure will be used for all PVs, an array will specify a separate structure for each of the PVs.<br>
+<font color="red">Unclear: Can the client supply an array of those structures for an operation?
+If not, there is no way to specify individual request/monitor specifications.</font></p>
+
+<h3>PV Data Representation</h3>
+
+<p>The PV group data will be represented by a top level pvData structure, that contains the NTScalar (or NTScalarArray)
+structures of the PVs, each having the name of the PV.</p>
+
+<h3>Persistence</h3>
+
+<p>The group configurations should be persistent, i.e. survive an IOC reboot. It is currently unclear how this
+can be achieved.
+A more generic service, similar to the AutoSaveRestore module, would be very helpful.</p>
+
+
+<h2>Other Issues</h2>
+
+<h3>Authentication and Authorization</h3>
+
+<p>Allowing unrestricted access to an IOC's database through pvaSrv would create a serious security hole.
+To mitigate this risk, pvaSrv will take a "user" argument when started.
+This user name and the host name of the pvAccess client (which is available through unadvertised calls)
+will be used as credentials against the Access Security layer of the IOC.<br>
+<font color="red">Unclear: Does pvAccess support access right change events sent from the server to
+the client?</font></p>
+
+<h3>User Tag in Timestamp Structure</h3>
+
+<p>There should be a way (using plug-ins?) to configure additional special functionality, e.g. setting the user tag part
+of the timestamp structure to data taken from someother record or device support that connects to a timing system.</p>
+
+</div>
+</body>
+</html>

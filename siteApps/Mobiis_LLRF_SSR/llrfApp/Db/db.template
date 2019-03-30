@@ -1,0 +1,136 @@
+file db/mbbo.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,			ZRST,			ONST}
+	{RAON:SSR:,	TRIGGER:IN,					0,	0,	triggerIn,			"Trigger In",		"EXT_TRIG",		"INT_TRIG"}
+	{RAON:SSR:,	CLK:SEL,						0,	0,	clockSelect,		"Clock select",		"CLK RFM",		"PLL"}
+}
+
+file db/waveform.db {
+pattern{D,		NAME,						C,	S,	P,			DESC,						NELM}
+	{RAON:SSR:,	CH0:WF						0,	0,	readData,		"waveform",					3330}
+	{RAON:SSR:,	CH1:WF						0,	1,	readData,		"waveform",					3330}
+	{RAON:SSR:,	CH2:WF						0,	2,	readData,		"waveform",					3330}
+}
+
+file db/ai.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,					EGU,		PREC,	HIHI,	LOLO,	HIGH,	LOW, 	HHSV,	HSV,	LSV,	LLSV,	LINK}
+	{RAON:SSR:,	CH0:AMPLITUDE,				0,	0,	power,			"Channle Power",			"voltage",		3,	1257.434,	22.35,	1257.434,	39.761,	MAJOR,	MINOR,	MINOR,	MAJOR, RAON:SSR:CH0:AMPLITUDE:FANOUT}
+	{RAON:SSR:,	CH1:AMPLITUDE,				0,	1,	power,			"Channle Power",			"voltage",		3,	1257.434,	2.235,	1257.434,	7.071,	MAJOR,	MINOR,	MINOR,	MAJOR, RAON:SSR:CH1:AMPLITUDE:FANOUT}
+	{RAON:SSR:,	CH2:AMPLITUDE,				0,	2,	power,			"Channle Power",			"voltage",		3,	1257.434,	2.235,	1257.434,	7.071,	MAJOR,	MINOR,	MINOR,	MAJOR, RAON:SSR:CH2:AMPLITUDE:FANOUT}
+	{RAON:SSR:,	CH0:PHASE,					0,	0,	phase,			"Channle Phase",			"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH1:PHASE,					0,	1,	phase,			"Channle Phase",			"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH2:PHASE,					0,	2,	phase,			"Channle Phase",			"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH0:RMS:POWER:SDEV,			0,	0,	rmsAmplitude,		"Channle rms power sdev",	"%",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH1:RMS:POWER:SDEV,			0,	1,	rmsAmplitude,		"Channle rms power sdev",	"%",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH2:RMS:POWER:SDEV,			0,	2,	rmsAmplitude,		"Channle rms power sdev",	"%",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH0:RMS:DIFF:PHASE:SDEV,		0,	0,	rmsDiffPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH1:RMS:DIFF:PHASE:SDEV,		0,	1,	rmsDiffPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH2:RMS:DIFF:PHASE:SDEV,		0,	2,	rmsDiffPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH0:RMS:ORG:PHASE:SDEV,		0,	0,	rmsOrgPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH1:RMS:ORG:PHASE:SDEV,		0,	1,	rmsOrgPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH2:RMS:ORG:PHASE:SDEV,		0,	2,	rmsOrgPhase,		"Channle rms phase sdev",	"degree",		3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV0,					0,	0,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV1,					0,	1,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV2,					0,	2,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV3,					0,	3,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV4,					0,	4,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	TEMPER:DEV5,					0,	5,	temperature,		"Channle temperature",		"กษ",			3,	0,	0,	0,	0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH0:POWER,					0,	0,	dBmPower,		"Channle Power",			"dBm",		3,	15,	-20,	15,	-15,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH1:POWER,					0,	1,	dBmPower,		"Channle Power",			"dBm",		3,	15,	-40,	15,	-30,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	CH2:POWER,					0,	2,	dBmPower,		"Channle Power",			"dBm",		3,	15,	-40,	15,	-30,	MAJOR,	MINOR,	MINOR,	MAJOR, RAON:SSR:PAC:SWITCH}
+	{RAON:SSR:,	STEP:AMP,					0,	0,	stepAmp,			"Stepping of Amplitude",		"dBm",		3,	27,	-100,	27,	-100,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	STEP:PHASE,					0,	0,	stepPhase,		"Stepping of Phase",		"degree",		3,	360,	 0,	360, 0,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}
+	{RAON:SSR:,	OUTPUT:DBM,					0,	0,	outputDBM,		"Output PAC dbm",			"dBm",		3,	12,		-100,	10,		-100,	MAJOR,	MINOR,	MINOR,	MAJOR, 0}	
+}
+
+file db/ao.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,						EGU,		PREC,	DRVH,	DRVL,	HOPR,	LOPR,		LINK}
+	{RAON:SSR:,	AMP:OFFSET1:ON,				0,	0,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:OFFSET2:ON,				0,	1,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:OFFSET3:ON,				0,	2,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:OFFSET1:OFF,				0,	3,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:OFFSET2:OFF,				0,	4,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:OFFSET3:OFF,				0,	5,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:LOSS1,					0,	6,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:LOSS2,					0,	7,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	AMP:LOSS3,					0,	8,	ampOffset,		"Amplitude Offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	PAC:AMPLITUDE,				0,	0,	pacAmplitude,		"Pac target amplitdue",			"dBm",		3,		15,		-80,		15,		-80,		0}
+	{RAON:SSR:,	PAC:PHASE,					0,	0,	pacPhase,		"Pac target phase",				"degree",		3,		360,		0,		360,		0,		0}
+	{RAON:SSR:,	PAC:OFFSET,					0,	0,	pacOffset,		"Pac out offset",				"",			4,		10,		0,		10,		0,		0}
+	{RAON:SSR:,	PHASE:KP,					0,	0,	pKp,				"phase control constant",		"",			6,		100,	0,		100,	0,		0}
+	{RAON:SSR:,	AMPLITUDE:KP,				0,	0,	aKp,				"amplitude control constant",	"",			6,		100,	0,		100,	0,		0}
+	{RAON:SSR:,	PHASE:KI,					0,	0,	pKi,				"phase control constant",		"",			6,		100,	0,		100,	0,		0}
+	{RAON:SSR:,	AMPLITUDE:KI,				0,	0,	aKi,				"amplitude control constant",	"",			6,		100,	0,		100,	0,		0}	
+	{RAON:SSR:,	PHASE:KD,					0,	0,	pKd,				"phase control constant",		"",			6,		100,	0,		100,	0,		0}
+	{RAON:SSR:,	AMPLITUDE:KD,				0,	0,	aKd,				"amplitude control constant",	"",			6,		100,	0,		100,	0,		0}
+	{RAON:SSR:,	MAX:AMPLITUDE1,				0,	0,	maxAmplitude,		"Max Amplitude1",				"",			2,		100,		0,		100,		0,		0}
+	{RAON:SSR:,	MAX:AMPLITUDE2,				0,	1,	maxAmplitude,		"Max Amplitude2",				"",			2,		100,		0,		100,		0,		0}
+	{RAON:SSR:,	TRIGGER:ONTIME,				0,	0,	triggerOnTime,		"Trigger time",					"us",			2,		1000,	0,		1000,	0,		0}
+	{RAON:SSR:,	STEPSIZE:AMP,					0,	0,	stepSizeAmp,		"Step Size of Amplitude",			"dBm",		3,		10,		-10,		10,		-10,		0}	
+	{RAON:SSR:,	STEPSIZE:PHASE,				0,	0,	stepSizePhase,	"Step Size of Phase",			"degree",		3,		355,		0,		355,		0,		0}	
+	{RAON:SSR:,	TIMEINTERVAL,					0,	0,	timeInterval,		"Step Time Interval",			"s",			0,		1000,	0,		1000,	0,		0}
+	{RAON:SSR:,	AMP:HIGH:LIMIT,				0,	0,	ampHighLimit,		"Feedback amp High Limit",		"dBm",		3,		14.945,	-80,		14.945,	-80,		0}
+	{RAON:SSR:,	CH0:OVER:VAL,				0,	0,	overPower,		"Over Power",					"voltage",		3,		22360680,		-80,		22360680,		-80,		RAON:SSR:CH0:OVER:VAL:CALC:INP}
+	{RAON:SSR:,	CH1:OVER:VAL,				0,	1,	overPower,		"Over Power",					"voltage",		3,		22360680,		-80,		22360680,		-80,		RAON:SSR:CH1:OVER:VAL:CALC:INP}
+	{RAON:SSR:,	CH2:OVER:VAL,				0,	2,	overPower,		"Over Power",					"voltage",		3,		22360680,		-80,		22360680,		-80,		RAON:SSR:CH2:OVER:VAL:CALC:INP}
+}
+
+file db/bi.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,				SCAN		ZNAM,		ONAM,		ZSV,				OSV,			LINK}
+        {RAON:SSR:,   CH1:POWER:STATE,				0,     1,	powerState,		"Power state Ch1",		"I/O Intr"		"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:CH1:POWER:STATE:DET}
+        {RAON:SSR:,   CH2:POWER:STATE,				0,     2, 	powerState,		"Power state Ch2",		"I/O Intr"		"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:CH2:POWER:STATE:DET}
+        {RAON:SSR:,   CH0:ADC:STATE,				0,     0, 	adcState,			"Adc state REF",		"I/O Intr"		"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:CH0:ADC:STATE:DET}
+        {RAON:SSR:,   CH1:ADC:STATE,				0,     1, 	adcState,			"Adc state CH1",		"I/O Intr"		"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:CH1:ADC:STATE:DET}
+        {RAON:SSR:,   CH2:ADC:STATE,				0,     2, 	adcState,			"Adc state CH2",		"I/O Intr"		"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:CH2:ADC:STATE:DET}
+        {RAON:SSR:,	CUR:MODE,					0,	0,	currentMode,		"",					"I/O Intr",	"NORMAL",	"GRAPH",		"NO_ALARM",		"NO_ALARM",	0}
+        {RAON:SSR:,	REF:AMPLITUDE:RANGE,			0,	0,	ampRange,		"Amplitude range check",	"I/O Intr",	"Off",		"On",		"NO_ALARM",		"MAJOR",		RAON:SSR:REF:AMPLITUDE:RANGE:DET}
+        {RAON:SSR:,	CH1:AMPLITUDE:RANGE,			0,	1,	ampRange,		"Amplitude range check",	"I/O Intr",	"Off",		"On",		"NO_ALARM",		"MAJOR",		0}
+        {RAON:SSR:,	CH2:AMPLITUDE:RANGE,			0,	2,	ampRange,		"Amplitude range check",	"I/O Intr",	"Off",		"On",		"NO_ALARM",		"MAJOR",		0}
+}
+
+file db/bo.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,						ZNAM,		ONAM,			LINK}
+	{RAON:SSR:,	PHASE:FB,					0,	0,	phaseFB,			"Phase Feedback On/Off",		"Off",		"On",			0}
+	{RAON:SSR:,	AMPLITUDE:FB,					0,	0,	amplitudeFB,		"Amplitude Feedback On/Off",		"Off",		"On",			0}
+	{RAON:SSR:,	AUDIO:MUTE,					0,	0,	audioMute,		"Audio mute",					"Off",		"On",			0}
+	{RAON:SSR:,	TRIGGER:SYNPOL,				0,	0,	triggerSyncPol,		"Trigger sync pol",				"Rising Edge",	"Falling Edge",		0}
+	{RAON:SSR:,	TRIGGER:OUT,					0,	0,	TriggerOut,		"Trigger out",					"Internal",	"External",		0}
+	{RAON:SSR:,	RUN:MODE,					0,	0,	runMode,			"IOC Run mode",				"Normal",		"Graph",			0}
+	{RAON:SSR:,	POWER:ON,					0,	0,	powerOn,			"PAC Power On",				"Off",		"On",			0}
+	{RAON:SSR:,  REFRESH,						0,	0,	reFresh			"Refresh On"					"Off",		"On",			0}
+	{RAON:SSR:,  STEPMOD:AMP,					0,	0,	stepModAmp		"Step Mode Amplitude On"		"Off",		"On",			0}
+	{RAON:SSR:,  STEPMOD:PHASE,				0,	0,	stepModPhase		"Step Mode Phase On"			"Off",		"On",			0}
+	{RAON:SSR:,	CH0:AMP:ON,					0,	0,	ampOn,			"Amplitude On Ch0",			"Off",		"On",			0}
+        {RAON:SSR:,	CH1:AMP:ON,					0,	1,	ampOn,			"Amplitude On Ch1",			"Off",		"On",			0}
+        {RAON:SSR:,	CH2:AMP:ON,					0,	2,	ampOn,			"Amplitude On Ch2",			"Off",		"On",			0}
+	{RAON:SSR:,	FB:CH,						0,	0,	FBCh,			"Feedback Channel",			"CH1",		"CH2",			0}
+}
+
+file db/longout.db {
+pattern{D,		NAME,						C,	S,	P,				DESC,						EGU,		DRVH,	DRVL,	HOPR,	LOPR}
+	{RAON:SSR:,	RMS:SAMPLE,					0,	0,	rmsSample,		"Rms samples",				"",		512,		1,		512,		1}
+	{RAON:SSR:,	AUDIO:FREQ,					0,	0,	audioFreq,		"audio frequency",				"Hz",	10000,	0,		10000,	0}
+	{RAON:SSR:,	TRIGGER:FREQ,				0,	0,	triggerFreq,		"trigger frequency",				"Hz",	120,		0,		120,		0}
+}
+
+file db/calcout.db {
+pattern{D,		NAME,					DESC,					CALC,				INPA,							INPB,						INPC,		OUT,							OOPT,			LINK}
+	{RAON:SSR:,	CH0:OVER:VAL:DET,			"Over value detect",		"(A > B && C = 1) ? 0 : 1",		"RAON:SSR:CH0:AMPLITUDE",			"RAON:SSR:CH0:OVER:VAL:CMP",	"RAON:SSR:POWER:SWITCH",			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH1:OVER:VAL:DET,			"Over value detect",		"(A > B && C = 1) ? 0 : 1",		"RAON:SSR:CH1:AMPLITUDE",			"RAON:SSR:CH1:OVER:VAL:CMP",	"RAON:SSR:POWER:SWITCH",			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH2:OVER:VAL:DET,			"Over value detect",		"(A > B && C = 1) ? 0 : 1",		"RAON:SSR:CH2:AMPLITUDE",			"RAON:SSR:CH2:OVER:VAL:CMP",	"RAON:SSR:POWER:SWITCH",			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH1:POWER:STATE:DET,		"Power state detect",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:CH1:POWER:STATE",		"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH2:POWER:STATE:DET,		"Power state detect",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:CH2:POWER:STATE",		"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	REF:AMPLITUDE:RANGE:DET,	"REF Amplitude range",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:REF:AMPLITUDE:RANGE",	"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+#	{RAON:SSR:,	CH1:AMPLITUDE:RANGE:DET,	"CH1 Amplitude range",		"(A = 1) ? 0 : 1",		"RAON:SSR:CH1:AMPLITUDE:RANGE",	0,							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+#	{RAON:SSR:,	CH2:AMPLITUDE:RANGE:DET,	"CH2 Amplitude range",		"(A = 1) ? 0 : 1",		"RAON:SSR:CH2:AMPLITUDE:RANGE",	0,							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH0:ADC:STATE:DET,		"ADC State Over Detect",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:CH0:ADC:STATE",			"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH1:ADC:STATE:DET,		"ADC State Over Detect",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:CH1:ADC:STATE",			"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+	{RAON:SSR:,	CH2:ADC:STATE:DET,		"ADC State Over Detect",		"(A = 1 && B = 1) ? 0 : 1",		"RAON:SSR:CH2:ADC:STATE",			"RAON:SSR:POWER:SWITCH",							0,			RAON:SSR:POWER:ON,			"When Zero",		0}
+}
+
+file db/fanout.db {
+pattern{D,		NAME,					DESC,					LNK1,							LNK2,								LNK3,							LNK4}
+	{RAON:SSR:,	OVER:VAL:CNVT,			"Value Converter",			RAON:SSR:CH0:OVER:VAL:CALC:TYPE,	RAON:SSR:CH1:OVER:VAL:CALC:TYPE,		RAON:SSR:CH2:OVER:VAL:CALC:TYPE,	0}
+	{RAON:SSR:,	CH0:AMPLITUDE:FANOUT,	"Amplitude Ch0 fanout",		RAON:SSR:CH0:OVER:VAL:ALRM,		RAON:SSR:CH0:OVER:VAL:DET,									RAON:SSR:REF:AMPLITUDE:RANGE:DET,								0}
+	{RAON:SSR:,	CH1:AMPLITUDE:FANOUT,	"Amplitude Ch1 fanout",		RAON:SSR:CH1:OVER:VAL:ALRM,		RAON:SSR:CH1:OVER:VAL:DET,									0,								0}
+	{RAON:SSR:,	CH2:AMPLITUDE:FANOUT,	"Amplitude Ch2 fanout",		RAON:SSR:CH2:OVER:VAL:ALRM,		RAON:SSR:CH2:OVER:VAL:DET,									0,								0}
+}

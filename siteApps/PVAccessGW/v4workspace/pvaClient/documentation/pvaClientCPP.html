@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+  <title>EPICS pva</title>
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/base.css" />
+  <link rel="stylesheet" type="text/css"
+  href="http://epics-pvdata.sourceforge.net/epicsv4.css" />
+  <style type="text/css">
+/*<![CDATA[*/
+     .about { margin-left: 3em; margin-right: 3em; font-size: .83em}
+     table { margin-left: auto; margin-right: auto }
+     .diagram { text-align: center; margin: 2.5em 0 }
+     body { margin-right: 10% }
+/*]]>*/</style>
+
+ <!-- Script that generates the Table of Contents -->
+  <script type="text/javascript" src="http://epics-pvdata.sourceforge.net/script/tocgen.js"></script>
+
+</head>
+
+<body>
+
+<div class="head">
+<h1>EPICS pvaClientCPP</h1>
+<h2 class="nocount">Release 4.2 - 2016.01.12</h2>
+
+<h2 class="nocount">Abstract</h2>
+
+<p>pvaClient is a software library that provides to an EPICS client programmer, a friendly
+client side programming interface to the data of an EPICS based control system. It is intended 
+for such uses as rapid development of ad hoc programs by controls engineers, or to provide 
+scientists a way to directly develop analytical applications.</p>
+
+<p>Specifically, pvaClient provides a synchronous interface for pvAccess, which is the
+software support for high speed controls network communications used in EPICS version 4.
+pvAccess provides a callback based interface, which can be hard to use.
+pvaClient provides an interface that does not require callbacks even for monitors.
+</p>
+<p>
+pvaClientChannel provides many "convenience" methods to directly get and put 
+scalar and scalarArray data types.
+Additional methods provide access to the full features of pvAccess.
+</p>
+<p>
+pvaClientMultiChannel provides access to data from multiple channels.
+It can be used directly by a client or via pvaClientMultiDouble or pvaClientNTMultiChannel.
+pvaClientMultiDouble allows the client to get and put data to multiple channels.
+But each channel must have a value field that is a numeric scalar.
+pvaClientNTMultiChannel allows the client to get and put data to multiple channels.
+Each channel must have a value field.
+The data for the channels is presented via normative type NTMultiChannel.
+</p>
+  <!-- last para of Abstract is boilerplate reference to EPICS -->
+      <p>For more information about EPICS generally, please refer to the home page of the <a
+       href="http://www.aps.anl.gov/epics/">Experimental Physics and Industrial
+      Control System</a>.</p>
+
+
+</div> <!-- head -->
+
+<div id="toc">
+  <h2 class="nocount">Table of Contents</h2>
+</div>
+
+<!-- Place what you would like in the Table of Contents, inside the contents div -->
+<div id="contents" class="contents">	  
+<hr />
+
+<h2>Introduction</h2>
+
+<p>PvaClient is a synchronous API for accessing PVData via PVAccess.
+It also provides a number of convenience methods.
+It allows the client to request access without checking for failure,
+but throws an exception if a request fails.
+A client can also check for failues and thus prevent exceptions.</p>
+
+<p>Doxygen documentation is available at <a
+href="./html/index.html">doxygenDoc</a></p>
+
+<p>The PvaClient API has the following features:</p>
+<ol>
+  <li>Provides a synchronous API rather than the callback API provided by pvAccess.</li>
+  <li>Makes common requests easy.</li>
+  <li>Provides full access to the pvAccess API for more demanding
+  applications</li>
+  <li>Allows efficient client side programs.</li>
+  <li>Takes care of most object resource management problems.</li>
+</ol>
+<p>Simple examples of using pva:</p>
+<pre>
+// pvaGet
+PvaClientPtr pva = PvaClient::create();
+double value = pva-&gt;channel("exampleDouble")-&gt;get()-&gt;getData()-&gt;getDouble();
+
+// pvaPut
+PvaClientChannelPtr channel = pva-&gt;channel("exampleDouble");
+PvaClientPutPtr put = channel-&gt;put();
+PvaClientPutDataPtr putData = put-&gt;getData();
+putData-&gt;putDouble(3.0); put-&gt;put();
+
+// pvaMonitor
+PvaClientMonitorPtr monitor = pva-&gt;channel("examplePowerSupply")-&gt;monitor("");
+PvaClientMonitorDataPtr pvaData = monitor-&gt;getData();
+while(true) {
+    monitor-&gt;waitEvent();
+    cout &lt;&lt; "changed\n";
+    pvaData-&gt;showChanged(cout);
+    cout &lt;&lt; "overrun\n";
+    pvaData-&gt;showOverrun(cout);
+    monitor-&gt;releaseEvent();
+}
+
+// pvaProcess
+PvaClientChannelPtr channel = pva-&gt;channel("exampleDouble");
+PvaClientProcessPtr process = channel-&gt;createProcess();
+process-&gt;process();
+
+</pre>
+<p>A separate project <b>exampleCPP</b> has examples for <b>pvDatabaseCPP</b>
+and for <b>pvaClientCPP</b>.
+See it for pvaClientCPP examples.
+</p>
+<p>pvaClient does <b>not</b> provide support for:</p>
+<dl>
+   <dt>ChannelArray</dt>
+     <dd>TBD</dd>
+   <dt>ChannelRPC</dt>
+     <dd>pvAccess itself already provides a synchronous interface.
+       <b>exampleCPP</b> provides <b>helloRPC</b>, which is an example of using channelRPC.
+     </dd>
+</dl>
+
+<h2>Building pvaClientCPP</h2>
+<p>
+If a proper <b>RELEASE.local</b> is present one directory level above <b>pvaClientCPP</b>.
+</p>
+<p>
+Just type:
+</p>
+<pre>
+make
+</pre>
+<p>
+An example of a proper <b>RELEASE.local</b> is:
+</p>
+<pre>
+EPICS4_DIR=/home/epicsv4/master
+EXAMPLE=${EPICS4_DIR}/exampleCPP
+PVDATABASE=${EPICS4_DIR}/pvDatabaseCPP
+PVACLIENT=${EPICS4_DIR}/pvaClientCPP
+PVASRV=${EPICS4_DIR}/pvaSrv
+PVACCESS=${EPICS4_DIR}/pvAccessCPP
+NORMATIVETYPES=${EPICS4_DIR}/normativeTypesCPP
+PVDATA=${EPICS4_DIR}/pvDataCPP
+PVCOMMON=${EPICS4_DIR}/pvCommonCPP
+
+EPICS_BASE=/home/install/epics/base
+</pre>
+
+<p>pvaClientCPP can also be built if a file RELEASE.local exists in directory configure.
+To create one do the following:</p>
+<pre>
+mrk&gt; pwd
+/home/hg/pvaClientCPP/configure
+mrk&gt; cp ExampleRELEASE.local RELEASE.local
+</pre>
+<p>Then edit <b>RELEASE.local</b> so that it has the correct location of each
+product pvaClientCPP requires.
+Than at the top level just execute <b>make</b>:</p>
+<pre>
+mrk&gt; cd ..
+mrk&gt; pwd
+/home/epicsv4/master/pvaClientCPP
+mrk&gt; make
+</pre>
+
+<h2>PvaClient</h2>
+<p>An instance of PvaClient is obtained via the call:</p>
+<pre>
+PvaClientPtr pva = PvaClient::create();
+</pre>
+
+<p>PvaClient has methods to create instances of <b>PvaClientChannel</b>.
+The client can specify the provider name or use the default provider.
+The client can manage it's own channels or can let pvaClient cache channels.
+An example of using the cached method is:</p>
+<pre>
+PvaClientChannelPtr pvaChannel = pva-&gt;channel("exampleDouble");
+</pre>
+<p>This will attempt to connect to channel exampleDouble.
+Since the client did not specify a timeout an exception wll be thrown if
+the connection request fails.
+The client will block until the connection is made or an exception is thrown.
+If the request succeeds, pva caches the pvaChannel so that if the
+client makes another request for the same channel the cached object is
+returned to the client.
+</p>
+<p>An example of using a non cached method is:</p>
+<pre>
+PvaClientChannelPtr pvaChannel = pva-&gt;createChannel("exampleDouble");
+</pre>
+<p>This will create an PvaClientChannel and return it to the client.
+The client must itself connect.
+This is useful if the client wants to connect to multiple channels in parallel.
+</p>
+
+<h2>PvaClientChannel - Wrapper For Single Channel</h2>
+<h3>PvaClientChannel</h3>
+<p>This provides methods for connecting to a channel and for creating instances of
+PvaClientField, PvaClientProcess, ..., PvaClientPutGet.</p>
+<p>Connection must be made before any create  method is called or
+an exception is raised.
+The following is a synchronous connection request:</p>
+<pre>
+pvaChannel-&gt;connect(5.0); // BLOCKS AND THROWS IF NO CONNECT
+</pre>
+<p>This blocks until then connection is made or until timout occurs.
+An exception is raised if the connection request fails.
+</p>
+<p>The same request can be made without blocking and without exceptions.</p>
+<pre>
+pvaChannel-&gt;issueConnect(); // DOES NOT BLOCK
+.....
+Status status =pvaChannel-&gt;waitConnect(5.0);  // BLOCKS DOES NOT THROW
+if(!status.isOK()) {
+   // failure do something
+}
+</pre>
+<p>Once the channel is connected other PvaClient objects can be created.
+For example:</p>
+<pre>
+PvaClientGetPtr pvaGet = pvaChannel-&gt;get(); // DOES BLOCK
+</pre>
+<p>This is a caching request.
+If the client already has made an identical request the client will receive the
+cached object.
+If a new pvaGet is created than it is connected before it is returned to the client.
+</p>
+<p>The client can also managed it's own objects:</p>
+<pre>
+PvaClientGetPtr pvaGet = pvaChannel-&gt;createGet(); // DOES NOT BLOCK
+</pre>
+<p>The client must connect the pvaGet.</p>
+
+<h3>PvaClientGetData</h3>
+<p>This provides the data returned by pvaGet and pvaPutGet.
+It is obtained via:</p>
+<pre>
+PvaClientGetDataPtr pvaData = pvaGet-&gt;getData();
+</pre>
+<p>It provides methods to get everything returned by channelGet.
+In addition there are methods that make it easier to handle a value
+field that is a scalar or a scalarArray.
+Also for a scalar that is a double or a scalarArray with element type double.
+</p>
+<p>An example is:</p>
+<pre>
+double value = pvaData-&gt;getDouble();
+</pre>
+<p>It also keeps a bitSet showing which fields have changed since the last channelGet or channelPutGet.</p>
+
+<h3>PvaClientMonitorData</h3>
+<p>To the client this looks identical to PvaClientGetData except that
+it provides two BitSets: changedBitSet and overrrunBitSet.
+It is used by pvaMonitor.
+</p>
+<h3>PvaClientPutData</h3>
+<p>This is used to provided data for pvaPut and pvaPutGet.
+It has many of the same methods as pvaGetData.
+It does not have a bitSet.
+It also has put methods like:</p>
+<pre>
+void pvaData-&gt;putDouble(5.0);
+</pre>
+<h3>PvaClientGet</h3>
+<p>This provides methods to connect to channelGet and to issue get request.
+To connect via a single synchronous call:</p>
+<pre>
+easyGet-&gt;connect();  // BLOCKS AND CAN THROW
+</pre>
+<p>This can also be done in two steps:</p>
+<pre>
+pvaGet-&gt;issueConnect(); // DOES NOT BLOCK
+...
+Status status = pvaGet-&gt;waitConnect(); // BLOCKS AND DOES NOT THROW
+</pre>
+<p>Once connected gets are issued via either:</p>
+<pre>
+void pvaGet-&gt;get(); // BLOCKS AND CAN THROW
+</pre>
+or
+<pre>
+pvaGet-&gt;issueGet(); // DOES NOT BLOCK
+...
+Status status = pvaGet-&gt;waitGet(); // BLOCKS AND DOES NOT THROW
+</pre>
+<h3>PvaClientPut</h3>
+<p>This is similar to pvaGet except that it wraps channelPut instead of channelGet.
+</p>
+<p>Once connected puts are issued via either:</p>
+<pre>
+void pvaPut-&gt;put(); // BLOCKS AND CAN THROW
+</pre>
+or
+<pre>
+pvaPut-&gt;issuePut(); // DOES NOT BLOCK
+...
+Status status = pvaPut-&gt;waitPut(); // BLOCKS AND DOES NOT THROW
+</pre>
+<h3>PvaClientMonitor</h3>
+<p>Connecting is similar to pvaGet and pvaPut.
+The other methods are:</p>
+<dl>
+   <dt>start</dt>
+     <dd>Starts monitoring</dd>
+   <dt>stop</dt>
+     <dd>Stops monitoring</dd>
+   <dt>poll</dt>
+     <dd>polls for a monitorEvent.
+      The data is avalable via pvaMonitorData.
+     </dd>
+   <dt>releaseEvent</dt>
+      <dd>Release the data from the last poll.
+       Note that this must be called before another poll is requested.
+       </dd>
+   <dt>waitEvent</dt>
+      <dd>Block until a monitorEvent is available.
+      If true is returned a poll has already been issued.
+      </dd>
+   <dt>setRequester</dt>
+      <dd>A client callback is registered to receive notice of monitorEvents.</dd>
+</dl>
+<h3>PvaClientProcess</h3>
+<p>Connecting is similar to pvaGet.
+It has methods:</p>
+<dl>
+   <dt>process</dt>
+     <dd>call issueProcess and waitProcess.</dd>
+   <dt>issueProcess</dt>
+      <dd>call channelProcess-&gt;process() and return immediately.
+      </dd>
+   <dt>waitProcess</dt>
+      <dd>Wait for process to complete.</dd>
+</dl>
+<h3>PvaClientPutGet</h3>
+<p>Connecting is similar to pvaGet.
+It has methods:</p>
+<dl>
+    <dt>putGet</dt>
+       <dd>calls issuePutGet and waitPutGet.
+        throws an exception if not successfull.
+       </dd>
+    <dt>issuePutGet</dt>
+        <dd>
+         Calls channel-&gt;putGet() and returns.
+        </dd>
+    <dt>waitPutGet</dt>
+        <dd>
+          Waits until putGet completes and returns status.
+        </dd>
+    <dt>getGet,issueGetGet, and waitGetGet</dt>
+        <dd>Gets the data for the get part of channelPutGet.</dd>
+    <dt>getPut,issueGetPut,and waitGetPut</dt>
+        <dd>Gets the data for the put part of channelPutGet.</dd>
+    <dt>getPutData</dt>
+        <dd>
+         Returns the PvaClientData for the put part of channelPutGet.
+        </dd>
+    <dt>getGetData</dt>
+        <dd>
+         Returns the PvaClientData for the get part of channelPutGet.
+        </dd>
+</dl>
+<p>Look at javaDoc for details.</p>
+
+<h2>PvaClientMultiChannel - Wrapper For Multiple Channels</h2>
+<h3>PvaClientMultiChannel</h3>
+<p>This provides methods for connecting to multiple channels.
+</p>
+<h3>PvaClientMultiGetDouble</h3>
+<p>This provides support for channelGet to multiple channels where each channel has a value field that is a numeric scalar.
+</p>
+<h3>PvaClientMultiPutDouble</h3>
+<p>This provides support for channelPut to multiple channels where each channel has a value field that is a numeric scalar.
+</p>
+<h3>PvaClientMultiMonitorDouble</h3>
+<p>This provides support for monitoring changes to multiple channels where each channel has a value field that is a numeric scalar.
+</p>
+<h3>PvaClientNTMultiGet</h3>
+<p>This provides support for channelGet to multiple channels where each channel has a value field that has any valid type.
+</p>
+<h3>PvaClientNTMultiPut</h3>
+<p>This provides support for channelPut to multiple channels where each channel has a value 
+field that has any valid type.
+</p>
+<h3>PvaClientNTMultiMonitor</h3>
+<p>This provides support for monitoring changes to multiple channels where each channel has a 
+value field that has any valid type.
+</p>
+<h3>PvaClientNTMultiData</h3>
+<p>This provides support for monitoring changes to multiple channels where each channel has a value field that has any valid type.
+The client can get the data as normative type NTMultiChannel.
+</p>
+
+</div> <!-- class="contents" -->
+</body>
+</html>

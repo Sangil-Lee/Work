@@ -1,0 +1,77 @@
+program sncAutoScan
+option +r;
+option -c;
+
+%% #include <epicsThread.h>
+
+double hiset;
+//assign hiset to "{SYS}-{SUBSYS}:{DEV}:FinVal";
+assign hiset to "{SYS}-{SUBSYS}:{DEV}:{HISET}";
+monitor hiset;
+
+double loset;
+//assign loset to "{SYS}-{SUBSYS}:{DEV}:InitVal";
+assign loset to "{SYS}-{SUBSYS}:{DEV}:{LOSET}";
+monitor loset;
+
+double increment;
+assign increment to "{SYS}-{SUBSYS}:{DEV}:StepInc";
+monitor increment;
+
+/*
+* Target PV for auto scannig.
+* Gauss, Current or Voltage
+*/
+double scanset;
+//assign scanset to "{SYS}-{SUBSYS}:{DEV}:VoltSetpt";
+//assign scanset to "MEBT:HWRGAUSS";
+assign scanset to "{TARGET}";
+monitor scanset;
+
+int scan;
+assign scan to "{SYS}-{SUBSYS}:{DEV}:ScanMod";
+monitor scan;
+
+double dly;
+assign dly to "{SYS}-{SUBSYS}:{DEV}:StepDly";
+monitor dly;
+
+
+ss autoScan 
+{
+	state init{
+		when(TRUE){
+			scan = 0;
+			pvPut(scan);
+			printf("Going Scan Stoped\n");
+		}state scanStop
+	}
+
+	state scanStop
+	{
+		/*when(scan==1 && scanset <= hiset && scanset >= loset)*/
+		when(scan==1)
+		{
+			scanset = loset;
+			printf("Going targetScan Scan...\n");
+			pvPut(scanset);
+
+		}state targetScan
+	}
+
+	state targetScan
+	{
+		when(scan==0 || scanset >= hiset || scanset < loset)
+		{
+			scan = 0;
+			pvPut(scan);
+			printf("Scan Stoped\n");
+		}state scanStop
+
+		when(delay(dly) && scan==1 && scanset <= hiset && scanset >= loset)
+		{
+			scanset += increment;
+			pvPut(scanset);
+		}state targetScan
+	}
+}

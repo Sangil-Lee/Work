@@ -1,0 +1,99 @@
+record(bi, "$(PREFIX):$(CH_ID)-URNG")
+{
+        field(DESC, "Under range")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP, "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e0")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-ORNG")
+{
+        field(DESC, "Over range")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP, "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e1")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(mbbi, "$(PREFIX):$(CH_ID)-LIM1")
+{
+        field(DESC, "Limit 1")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e2")
+	field(NOBT, "2")
+	field(ZRST, "Not active")
+	field(ONST, "Smaller")
+	field(TWST, "Larger")
+	field(THST, "Equal")
+}
+
+record(mbbi, "$(PREFIX):$(CH_ID)-LIM2")
+{
+        field(DESC, "Limit 2")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e3")
+	field(NOBT, "2")
+	field(ZRST, "Not Active")
+	field(ONST, "Smaller")
+	field(TWST, "Larger")
+	field(THST, "Equal")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-ERR")
+{
+        field(DESC, "Error")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e4")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-SYNCERR")
+{
+        field(DESC, "DC synchronization Error")
+	field(SCAN, "I/O Intr")
+	field(DTYP, "ecat2")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e7")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-TXPST")
+{
+        field(DESC, "Internal Error")
+	field(DTYP, "ecat2")
+	field(SCAN, "I/O Intr")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e8")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(bi, "$(PREFIX):$(CH_ID)-TXPTOG")
+{
+        field(DESC, "Toggle for each new value")
+	field(DTYP, "ecat2")
+	field(SCAN, "I/O Intr")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e9")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(ai, "$(PREFIX):$(CH_ID)")
+{
+        field(DESC, "Analog input value")
+	field(DTYP, "ecat2")
+	field(SCAN, "I/O Intr")
+	field(INP,  "s$(SLAVE_IDX).sm3.p$(PDO_IDX).e10")
+	field(LINR, "SLOPE")
+	field(ESLO, "0.0003051850947599719")
+        field(EOFF, "0")
+	field(EGU,  "V")
+	field(PREC, "2")
+}
+

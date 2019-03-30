@@ -1,0 +1,10 @@
+record(stringout, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+    field(PINI,  "NO")
+    field(DTYP, "asynOctetWrite")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(VAL,  "StringValue")
+    field(STAT,  "NO_ALARM")
+    field(SEVR,  "NO_ALARM")
+    field(NSEV,  "NO_ALARM")
+}

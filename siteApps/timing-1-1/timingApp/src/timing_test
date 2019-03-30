@@ -1,0 +1,40 @@
+//Test1. using Ev Log
+caput SCL3:TS:EVS1:SYS_SEQA_CFG_SET 10
+caput SCL3:TS:EVS1:EV_RXENABLE_STREAMDATA 1
+caput SCL3:TS:EVS1:EV_RXENABLE_EVCODEB 1
+caput SCL3:TS:EVS1:EV_TXENABLE_EVCODEB 1
+caput SCL3:TS:EVS1:EV_EVUSER 1936
+caput SCL3:TS:EVS1:EV_EVUSER 100
+caput SCL3:TS:EVS1:SYS_BIST 3
+
+//Test2.
+1. Hardware Configuration
+caput SCL3:TS:EVS1:SYS_BIST 2  // Need to summarize the H/W initialization 
+caput SCL3:TS:EVS1:SYS_BIST 3
+caput SCL3:TS:EVS1:SYS_BIST 4  //check status (idle, pending), seqA_isRunning : 1, [0:stop, 1:idle, 2:run, 3:pending]
+	A.pending -> Trigger Resume(3), confirm idle status
+
+2. User Trigger.
+caput SCL3:TS:EVS1:EV_USRTRG 1
+caput SCL3:TS:EVS1:EV_USRTRG 0
+
+3. Trigger Resume.
+caput SCL3:TS:EVS1:EV_SEQTRG_RESUME_0 1
+caput SCL3:TS:EVS1:EV_SEQTRG_RESUME_0 0
+
+4. Sequcencer A Waveform Configuration Setup
+caput -a SCL3:TS:EVS1:EV_SEQA_CFG 6 1936 100 200 300 400 0
+caput SCL3:TS:EVS1:SYS_SEQA_CFG_SET 6     |	  |	  |	  |
+# 1936(for evLog event)
+										  |	  |	  |	  |
+5.Sequcencer A Timestamp Waveform Setup   |	  |	  |	  |
+caput -a SCL3:TS:EVS1:EV_SEQA_TSTAMP 6  11  23  36  50 65
+caput SCL3:TS:EVS1:SYS_SEQA_TSTAMP_SET 6
+
+
+6. EV Mapping RAM
+caput -a SCL3:TS:EVS1:EV_MAP_RAM 6 0 255 2 4 8 16
+caput SCL3:TS:EVS1:SYS_MAP_RAM_SET 6
+caput SCL3:TS:EVS1:EV_EVUSER 1
+
+

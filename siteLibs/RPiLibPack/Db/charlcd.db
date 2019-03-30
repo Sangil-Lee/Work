@@ -1,0 +1,40 @@
+record(ao, "LCD:A")
+{
+  field(FLNK, "LCD:STR")
+}
+
+record(ao, "LCD:B")
+{
+  field(FLNK, "LCD:STR")
+}
+
+record(ao, "LCD:C")
+{
+  field(FLNK, "LCD:STR")
+}
+
+record(ao, "LCD:D")
+{
+  field(FLNK, "LCD:STR")
+}
+
+record(lcdout, "LCD:STR")
+{
+  field(DTYP, "HD44780U")
+  field(OUT, "@2 16 4 28 29 26 21 22 23")
+  field(DIRS, "1")
+  field(INPA, "LCD:A")
+  field(STRA, "StringA")
+  field(UNIA, "Ua")
+  field(INPB, "LCD:B")
+  field(STRB, "StringB")
+  field(UNIB, "Ub")
+  field(INPC, "LCD:C")
+  field(STRC, "StringC")
+  field(UNIC, "Uc")
+  field(INPD, "LCD:D")
+  field(STRD, "StringD")
+  field(UNID, "Ud")
+
+}
+
