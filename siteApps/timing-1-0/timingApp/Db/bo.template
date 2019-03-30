@@ -1,8 +1,0 @@
-record(bo, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
-{
-	field(PINI, "NO")
-    field(DTYP, "asynInt32")
-    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
-    field(ZNAM, "Stop")
-    field(ONAM, "Run")
-}
