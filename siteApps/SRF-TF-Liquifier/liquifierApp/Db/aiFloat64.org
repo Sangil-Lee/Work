@@ -1,0 +1,19 @@
+# ai record template for register inputs
+record(ai, "$(SYS)$(SUBSYS):$(DEV)$(SUBDEV):$(FIELD)") {
+    field(DTYP,"asynFloat64")
+    field(INP,"@asyn($(PORT) $(OFFSET))$(DATA_TYPE)")
+    field(HOPR,"$(HOPR)")
+    field(LOPR,"$(LOPR)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
+    field(SCAN,"$(SCAN)")
+#    field(HIHI,"$(HIHI)")
+#    field(HIGH,"$(HIGH)")
+#    field(LOW,"$(LOW)")
+#    field(LOLO,"$(LOLO)")
+#    field(HHSV,"$(HHSV)")
+#    field(HSV,"$(HSV)")
+#    field(LSV,"$(LSV)")
+#    field(LLSV,"$(LLSV)")
+}
+

@@ -1,0 +1,21 @@
+file "db/aiFloat64.template" { pattern
+{SYS,       SUBSYS,         DEV,		SUBDEV,			FIELD,				PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,		EGU}
+{SRF01-,    L280,			CBx01-,		CV3130,			ManRmpRB,			DB983,    34,       FLOAT32_BE,   -1e6,  1e6,	 0,		"I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3160,			ManRmpRB,			DB983,    46,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3170,			ManRmpRB,			DB983,    50,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3290,			ManRmpRB,			DB983,    54,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManRmpRB,			DB983,    146,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManRmpRB,			DB983,    150,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManRmpRB,			DB983,    154,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3130,			ManValRB,			DB983,    186,      FLOAT32_BE,   -1e6,  1e6,	 0,		"I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3160,			ManValRB,			DB983,    198,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3170,			ManValRB,			DB983,    202,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    L280,			CBx01-,		CV3290,			ManValRB,			DB983,    206,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManValRB,			DB983,    298,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManValRB,			DB983,    302,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManValRB,			DB983,    306,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit314RB,		DB983,    314,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit315RB,		DB983,    315,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit318RB,		DB983,    318,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit326RB,		DB983,    326,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
+}

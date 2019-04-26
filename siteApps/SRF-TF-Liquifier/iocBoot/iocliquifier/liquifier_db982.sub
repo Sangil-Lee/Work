@@ -1,0 +1,21 @@
+file "db/aoFloat64.template" { pattern
+{SYS,       SUBSYS,         DEV,		SUBDEV,			FIELD,			PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC}
+{SRF01-,    L280,			CBx01-,		CV3130,			ManRmp,			DB982,    34,       FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3160,			ManRmp,			DB982,    46,       FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3170,			ManRmp,			DB982,    50,       FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3290,			ManRmp,			DB982,    54,       FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManRmp,			DB982,    146,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManRmp,			DB982,    150,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManRmp,			DB982,    154,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3130,			ManVal,			DB982,    186,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3160,			ManVal,			DB982,    198,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3170,			ManVal,			DB982,    202,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,    L280,			CBx01-,		CV3290,			ManVal,			DB982,    206,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManVal,			DB982,    298,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManVal,			DB982,    302,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManVal,			DB982,    306,      FLOAT32_BE,   -1e6,  1e6,	 3}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit314,		DB982,    314,      UINT16,		  -1e6,  1e6,	 0}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit315,		DB982,    315,      UINT16,		  -1e6,  1e6,	 0}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit318,		DB982,    318,      UINT16,		  -1e6,  1e6,	 0}
+{SRF01-,	L280,			CBx01-,		CVBits,			ManBit326,		DB982,    326,      UINT16,		  -1e6,  1e6,	 0}
+}
