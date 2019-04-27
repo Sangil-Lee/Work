@@ -1,45 +1,60 @@
 file "db/aiFloat64.template" { pattern
-{SYS,       SUBSYS,         DEV,		SUBDEV,			FIELD,			PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,			EGU}
-{SRF01-,    L280,			CBx01-,		CV3130,			PercOpen,	    DB981,    17,       FLOAT32_BE,   -1e6,  1e6,	 3,		"I/O Intr",		"%"}
-{SRF01-,    L280,			CBx01-,		CV3160,			PercOpen,	    DB981,    19,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-{SRF01-,    L280,			CBx01-,		CV3170,			PercOpen,	    DB981,    21,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,    L280,			CBx01-,		CV3130,			PercOpen,	    DB981,    34,       FLOAT32_BE,   -1e6,  1e6,	 3,		"I/O Intr",		"%"}
-#{SRF01-,    L280,			CBx01-,		CV3160,			PercOpen,	    DB981,    46,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,    L280,			CBx01-,		CV3170,			PercOpen,	    DB981,    50,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,    L280,			CBx01-,		CV3290,			PercOpen,	    DB981,    54,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,	L280,			WCS01-,		CV2250,			PercOpen,       DB981,    146,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,	L280,			WCS01-,		CV2160,			PercOpen,       DB981,    150,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,	L280,			WCS01-,		CV2150,			PercOpen,       DB981,    154,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,	L280,			CBx01-,		PT3905,			Press,		    DB981,    180,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",		"mbar"}
-#{SRF01-,	L280,			CBx01-,		PT3905,			State,		    DB981,    184,      INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3112,			State,          DB981,	  196,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3130,			State,          DB981,    202,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3155,			State,          DB981,    208,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3280,			State,          DB981,    214,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3501A,		TempK,          DB981,	  264,	    FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
-#{SRF01-,	L280,			CBx01-,		TT3501A,		State,          DB981,	  268,	    INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3501B,		TempK,          DB981,	  270,	    FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
-#{SRF01-,	L280,			CBx01-,		TT3501B,		State,          DB981,	  274,		INT16,	  	  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		PT3130,			Press,          DB981,	  288,	    FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			CBx01-,		PT3130,			State,          DB981,	  292,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		ST3131,			Speed,          DB981,    294,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"RPS"}
-#{SRF01-,	L280,			CBx01-,		ST3131,			State,          DB981,    298,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		PT3150,			Press,          DB981,    300,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			CBx01-,		PT3150,			State,          DB981,	  304,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		ST3151,			Speed,          DB981,	  306,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"RPS"}
-#{SRF01-,	L280,			CBx01-,		ST3151,			State,          DB981,	  310,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		PT3290,			Press,          DB981,	  312,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			CBx01-,		PT3290,			State,          DB981,	  316,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			Dwr01-,		LT5200,			level,          DB981,	  324,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"%"}
-#{SRF01-,	L280,			Dwr01-,		LT5200,			State,          DB981,    328,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			WCS01-,		PT2160,			Press,          DB981,	  420,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			WCS01-,		PT2160,			State,          DB981,	  424,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			WCS01-,		PT2170,			Press,          DB981,	  426,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			WCS01-,		PT2170,			State,          DB981,	  430,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			WCS01-,		PT2240,			Press,          DB981,	  432,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
-#{SRF01-,	L280,			WCS01-,		PT2240,			State,          DB981,	  436,		INT16,		  -1e6,  1e6,	 3,     "I/O Intr",		""}
-#{SRF01-,	L280,			CBx01-,		TT3112,			TempK,          DB981,	  500,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
-#{SRF01-,	L280,			CBx01-,		TT3130,			TempK,          DB981,	  506,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
-#{SRF01-,	L280,			CBx01-,		TT3155,			TempK,          DB981,	  512,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
-#{SRF01-,	L280,			CBx01-,		TT3280,			TempK,          DB981,	  518,		FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SYS,           SUBSYS,                 DEV,		SUBDEV,			FIELD,		PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,			EGU}
+{SRF01-,	L280,			CBx01-,		CV3130,			PercOpen,  	DB981,    17,      FLOAT32_BE,    -1e6,  1e6,	 3,	"I/O Intr",		"%"}
+{SRF01-,	L280,			CBx01-,		CV3160,			PercOpen,	DB981,    23,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			CBx01-,		CV3170,			PercOpen,	DB981,    25,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			CBx01-,		CV3290,			PercOpen,	DB981,    27,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			WCS01-,		CV2250,			PercOpen,       DB981,    73,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			WCS01-,		CV2160,			PercOpen,       DB981,    75,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			WCS01-,		CV2150,			PercOpen,       DB981,    77,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			CBx01-,		AS,			Warn,		DB981,    81,      INT16,    	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		PT3905,			Press,		DB981,    90,      FLOAT32_BE,    -1e6,  1e6,	 3,     "I/O Intr",		"mbar"}
+{SRF01-,	L280,			CBx01-,		PT3905,			State,	    	DB981,    92,      INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3112,			State,          DB981,	  98,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3130,			State,          DB981,    101,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3155,			State,          DB981,    104,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3280,			State,          DB981,    107,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
 }
+
+file "db/aiFloat64.template" { pattern
+{SYS,           SUBSYS,                 DEV,		SUBDEV,			FIELD,		PORT,	  	OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,			EGU}
+{SRF01-,	L280,			CBx01-,		TT3501A,		TempK,          DB981-2,	  0,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SRF01-,	L280,			CBx01-,		TT3501A,		State,          DB981-2,	  2,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3501B,		TempK,          DB981-2,	  3,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SRF01-,	L280,			CBx01-,		TT3501B,		State,          DB981-2,	  5,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		PT3130,			Press,          DB981-2,	  12,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			CBx01-,		PT3130,			State,          DB981-2,	  14,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		ST3131,			Speed,          DB981-2,    	  15,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"RPS"}
+{SRF01-,	L280,			CBx01-,		ST3131,			State,          DB981-2,  	  17,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		PT3150,			Press,          DB981-2,          18,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			CBx01-,		PT3150,			State,          DB981-2,	  20,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		ST3151,			Speed,          DB981-2,	  21,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"RPS"}
+{SRF01-,	L280,			CBx01-,		ST3151,			State,          DB981-2,	  23,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		PT3290,			Press,          DB981-2,	  24,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			CBx01-,		PT3290,			State,          DB981-2,	  26,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			Dwr01-,		LT5200,			level,          DB981-2,	  30,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"%"}
+{SRF01-,	L280,			Dwr01-,		LT5200,			State,          DB981-2,          32,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+}
+
+file "db/aiFloat64.template" { pattern
+{SYS,           SUBSYS,                 DEV,		SUBDEV,			FIELD,		PORT,	  	OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,			EGU}
+{SRF01-,	L280,			WCS01-,		PT2160,			Press,          DB981-3,	  0,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			WCS01-,		PT2160,			State,          DB981-3,	  2,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			WCS01-,		PT2170,			Press,          DB981-3,	  3,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			WCS01-,		PT2170,			State,          DB981-3,	  5,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			WCS01-,		PT2240,			Press,          DB981-3,	  6,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"bara"}
+{SRF01-,	L280,			WCS01-,		PT2240,			State,          DB981-3,	  8,	   INT16,	  -1e6,  1e6,	 3,     "I/O Intr",		""}
+{SRF01-,	L280,			CBx01-,		TT3112,			TempK,          DB981-3,	  40,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SRF01-,	L280,			CBx01-,		TT3130,			TempK,          DB981-3,	  43,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SRF01-,	L280,			CBx01-,		TT3155,			TempK,          DB981-3,	  46,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+{SRF01-,	L280,			CBx01-,		TT3280,			TempK,          DB981-3,	  49,	   FLOAT32_BE,	  -1e6,  1e6,	 3,     "I/O Intr",		"K"}
+}
+
+file "db/bi_word.template" { pattern
+{SYS,    SUBSYS,  DEV,		SUBDEV,		FIELD,	       PORT,	  	OFFSET,     MASK,     ZNAM,  ONAM,	ZSV,		OSV,	SCAN}
+{SRF01-, L280,	  CBx01-,	AS3001,		Warn,          DB981-4,         0,	    0x0100,   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	AS3002,		Error,         DB981-4,         0,	    0x0200,   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3410,		StateOpen,     DB981-4,	 	1,	    0x0001,   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3415,		StateOpen,     DB981-4,	  	1,	    0x0002,   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+}
+

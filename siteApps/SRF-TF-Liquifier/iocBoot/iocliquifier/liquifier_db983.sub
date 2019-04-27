@@ -1,21 +1,36 @@
 file "db/aiFloat64.template" { pattern
 {SYS,       SUBSYS,         DEV,		SUBDEV,			FIELD,				PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,		EGU}
-{SRF01-,    L280,			CBx01-,		CV3130,			ManRmpRB,			DB983,    34,       FLOAT32_BE,   -1e6,  1e6,	 0,		"I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3160,			ManRmpRB,			DB983,    46,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3170,			ManRmpRB,			DB983,    50,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3290,			ManRmpRB,			DB983,    54,       FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2250,			ManRmpRB,			DB983,    146,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2160,			ManRmpRB,			DB983,    150,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2150,			ManRmpRB,			DB983,    154,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3130,			ManValRB,			DB983,    186,      FLOAT32_BE,   -1e6,  1e6,	 0,		"I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3160,			ManValRB,			DB983,    198,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3170,			ManValRB,			DB983,    202,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,    L280,			CBx01-,		CV3290,			ManValRB,			DB983,    206,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2250,			ManValRB,			DB983,    298,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2160,			ManValRB,			DB983,    302,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			WCS01-,		CV2150,			ManValRB,			DB983,    306,      FLOAT32_BE,   -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			CBx01-,		CVBits,			ManBit314RB,		DB983,    314,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			CBx01-,		CVBits,			ManBit315RB,		DB983,    315,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			CBx01-,		CVBits,			ManBit318RB,		DB983,    318,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
-{SRF01-,	L280,			CBx01-,		CVBits,			ManBit326RB,		DB983,    326,      UINT16,		  -1e6,  1e6,	 0,     "I/O Intr",		}
+{SRF01-,    	L280,			CBx01-,		CV3130,			ManRmpRB,		DB983,    0,       FLOAT32_BE,   -1e6,  1e6,	 3,	"I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3160,			ManRmpRB,		DB983,    6,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3170,			ManRmpRB,		DB983,    8,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3290,			ManRmpRB,		DB983,    10,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+}
+
+file "db/aiFloat64.template" { pattern
+{SYS,       SUBSYS,         DEV,		SUBDEV,			FIELD,				PORT,	  OFFSET,   DATA_TYPE,    LOPR,  HOPR,	 PREC,  SCAN,		EGU}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManRmpRB,		DB983-2,    0,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManRmpRB,		DB983-2,    2,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManRmpRB,		DB983-2,    4,       FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3130,			ManValRB,		DB983-2,    20,      FLOAT32_BE,   -1e6,  1e6,	 3,	"I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3160,			ManValRB,		DB983-2,    26,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3170,			ManValRB,		DB983-2,    28,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,    	L280,			CBx01-,		CV3290,			ManValRB,		DB983-2,    30,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,	L280,			WCS01-,		CV2250,			ManValRB,		DB983-2,    76,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,	L280,			WCS01-,		CV2160,			ManValRB,		DB983-2,    78,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+{SRF01-,	L280,			WCS01-,		CV2150,			ManValRB,		DB983-2,    80,      FLOAT32_BE,   -1e6,  1e6,	 3,     "I/O Intr",	""}
+}
+
+file "db/bi_word.template" { pattern
+{SYS,    SUBSYS,  DEV,		SUBDEV,		FIELD,		PORT,	  OFFSET,   MASK,    ZNAM,  ONAM,	ZSV,		OSV,	SCAN}
+{SRF01-, L280,	  CBx01-,	CV3130,		ManRB,          DB983-3,  0,	    0x4000   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	CV3160,		ManRB,          DB983-3,  0,	    0x0002   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	CV3170,		ManRB,          DB983-3,  0,	    0x0004   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	CV3290,		ManRB,          DB983-3,  0,	    0x0008   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  WCS01-,	CV2250,		ManRB,          DB983-3,  2,	    0x0400   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  WCS01-,	CV2160,		ManRB,          DB983-3,  2,	    0x0800   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  WCS01-,	CV2150,		ManRB,          DB983-3,  2,	    0x1000   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3410,		ManRB,          DB983-3,  6,	    0x0100   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3410,		ManOpenRB,      DB983-3,  6,	    0x0200   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3415,		ManRB,          DB983-3,  6,	    0x0400   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
+{SRF01-, L280,	  CBx01-,	XV3415,		ManOpenRB,      DB983-3,  6,	    0x0800   Low,   High,	NO_ALARM,	MAJOR,	"I/O Intr"}
 }

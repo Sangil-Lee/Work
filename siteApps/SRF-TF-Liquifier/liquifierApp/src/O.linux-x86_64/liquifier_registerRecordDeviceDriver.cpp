@@ -470,7 +470,7 @@ static struct iocshVarDef vardefs[] = {
 
 int liquifier_registerRecordDeviceDriver(DBBASE *pbase)
 {
-    const char *bldTop = "/home/ctrluser/epics/R3.14.12.5/siteApps/Local_IOC/SRF-TF-Liquifier";
+    const char *bldTop = "/home/cryoeng/epics/R3.14.12.5/siteApps/Local_IOC/SRF-TF-Liquifier";
     const char *envTop = getenv("TOP");
 
     if (envTop && strcmp(envTop, bldTop)) {
