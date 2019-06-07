@@ -1,0 +1,12 @@
+
+file "db/ai.template" { pattern
+{ SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,				SCAN} 
+{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 AI_00,				NIDAQ_MX_SLOT5_AI0,	"1 second" } 
+}
+
+file "db/waveform.template" { pattern
+{SYS,	SUBSYS, DEV,	PORT,		ADDR,	TIMEOUT,	SIGNAL,		ALIAS,						DTYP,					NELM,	FLNK,	SCAN }
+{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayIn",	1000,	"",		"1 second"	}
+#{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayOut",	1000,	"",		"1 second"	}
+}
+

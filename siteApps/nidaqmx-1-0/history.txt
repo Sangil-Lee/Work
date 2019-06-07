@@ -1,0 +1,308 @@
+  336  mv synApps_5_8 synApps
+  337  ls
+  338  cd synApps/
+  339  ls
+  340  cd support/
+  341  ls
+  342  make
+  343  cd configure/
+  344  ls
+  345  vi CONFIG
+  346  make
+  347  make clean
+  348  make
+  349  vi RELEASE 
+  350  ls
+  351  vi CONFIG
+  352  grep -rw oxygen *
+  353  make distclean
+  354  ls
+  355  make
+  356  make clean
+  456  git
+  457  sudo yum install git
+  458  git
+  459  sudo yum search git
+  460  sudo yum install git.x86_64
+  473  sudo yum install git.x86_64
+  490  . setEpicsEnv.sh 
+  491  ls
+  492  git clone https://192.168.11:30000/raoncontrol/siteapps.git siteApps
+  493  git clone https://192.168.60.11:30000/raoncontrol/siteapps.git siteApps
+  494  ping 192.168.60.11
+  495  git clone https://192.168.60.11:30000/raoncontrol/siteapps.git siteApps
+  496  git config --global http.sslverify false
+  497  ls
+  498  git clone https://192.168.60.11:30000/raoncontrol/siteapps.git siteApps
+  499  ls
+  500  git clone https://192.168.60.11:30000/raoncontrol/sitelibs siteLibs
+  501  git clone https://192.168.60.11:30000/raoncontrol/sitelibs.git siteLibs
+  502  ls
+  503  cd siteLibs/
+  504  ls
+  505  make
+  506  ls
+  507  sudo yum search libsnmp
+  508  sudo yum search snmp
+  509  sudo yum install net-snmp.x86_64 net-snmp-devel.x86_64 net-snmp-libs.x86_64
+  512  ls
+  513  cd snmpLib/
+  514  ls
+  515  tar xvfz net-snmp-5.7.3.tar.gz 
+  516  ls
+  517  cd net-snmp-5.7.3/
+  518  ls
+  519  ./configure
+  520  ls
+  521  sudo make install
+  522  ls
+  523  cd ../
+  524  ls
+  525  cd ../
+  526  ls
+  527  cd snmpLib/
+  555  git pull
+  556  git status .
+  557  git checkout -- RELEASE
+  558  git pull
+  559  ls
+  560  vi RELEASE
+  561  git status .
+  562  git pull
+  563  ls
+  564  make
+  565  cd ../
+  566  ls
+  567  make
+  568  sudo yum search fortran
+  569  sudo yum install libgfortran.x86_64 gcc-gfortran.x86_64
+  570  ls
+  571  make
+  572  make install
+  573  ls
+  574  cd ../
+  575  ls
+  576  cd ../
+  577  ls
+  578  cd R3.14.12.5/
+  579  ls
+  580  cd siteApps/
+  581  ls
+  582  cd ../
+  583  ls
+  591  ./autogen.sh 
+  592  sudo yum search autoreconf
+  593  sudo yum search all autoreconf
+  594  sudo yum install dh-autoreconf.noarch
+  595  ls
+  596  ./autogen.sh 
+  597  ls
+  598  ./configure 
+  599  make
+  600  sudo yum search boost
+  601  sudo yum install boost169-python3-devel.x86_64
+  602  make
+  603  sudo yum search python
+  604  clean
+  605  clear
+  606  sudo yum search python
+  607  sudo make install
+  608  ls
+  609  cd .libs/
+  610  ls
+  611  cd ../
+  612  ls
+  613  cd ../
+  614  ls
+  615  cd siteApps/
+  616  ls
+  617  cd Ctrl_IOC/
+  618  ls
+  619  cd siemensOPCUA-1-0/
+  620  ls
+  621  make
+  622  ls
+  623  cd configure/
+  624  ls
+  625  vi RELEASE.local 
+  626  ls
+  627  make
+  628  cd ../
+  629  ls
+  630  make
+  650  cd siemensOPCUA-1-0/
+  651  ls
+  652  make
+  653  make install
+  673  cd R3.14.12.5/
+  674  ls
+  675  . setEpicsEnv.sh 
+  686  cd install_epics/
+  687  ls
+  688  ./install_scripts 
+  706  ls
+  707  make install
+  747  make
+  748  yum search hdf5
+  749  sudo yum install hdf5.x86_64
+  750  make
+  751  yum search hdf5
+  752  sudo yum install hdf5-devel.x86_64
+  753  make
+  754  ls
+  755  ccd areaDetector-R2-0/
+  756  ls
+  757  cd areaDetector-R2-0/
+  758  ls
+  759  make
+  760  ls
+  761  vi Makefile 
+  762  make
+  763  cd ADCore-R2-2/
+  764  ls
+  765  make
+  766  ls
+  767  cd ADApp/
+  768  ls
+  769  make
+  770  ls
+  771  cd nexusSrc/
+  772  ls
+  773  vi Makefile 
+  774  cd ../
+  775  ls
+  776  cd ../
+  777  ls
+  778  cd configure/
+  779  ls
+  780  vi RELEASE 
+  781  ls
+  782  cd ../
+  783  ls
+  784  make
+  785  grep -rw serial *
+  786  ls
+  787  cd configure/
+  788  ls
+  789  make
+  790  cd ../
+  791  ls
+  792  make
+  793  ls
+  794  cd ADApp/
+  795  ls
+  796  cd nexusSrc/
+  797  ls
+  798  vi Makefile 
+  799  make
+  800  cd ../
+  801  ls
+  860  sudo find . -name libhdf5.a
+  861  sudo yum search libhdf5
+  862  sudo yum search hdf5
+  863  sudo yum install hdf5-static.x86_64
+  864  sudo yum search hdf5
+  865  sudo yum install hdf5.x86_64
+  866  cd /
+  867  find . -name libhdf5.a
+  868  sudo yum search tiffio
+  869  sudo yum search tiff
+  870  sudo yum install libtiff.x86_64 libtiff-dev
+  871  sudo yum search xml
+  872  sudo yum install libxml2.x86_64 libxml2-devel.x86_64 libxml2-static.x86_64
+ 1000  lsmod | grep ni
+ 1001  lvlsdev
+ 1002  nilsdev
+ 1003  nilsdev --verbose
+ 1004  nidaqmxconfig PXI1Slot5
+ 1005  nidaqmxconfig --help
+ 1006  nidaqmxconfig --self-test PXI1Slot5
+ 1007  cd /hoem
+ 1008  cd /home/
+ 1009  ls
+ 1010  cd wjeong
+ 1011  ls
+ 1012  cd Downloads/
+ 1013  ls
+ 1014  cd NI-DAQmx\ 18.1\ Linux\ C\ Examples/
+ 1015  ls
+ 1016  cd Analog\ In/
+ 1017  ls
+ 1018  cd Measure\ Voltage/
+ 1019  ls
+ 1020  cd Acq-Int\ Clk
+ 1021  ls
+ 1022  make
+ 1023  ls
+ 1024  ./Acq-IntClk 
+ 1025  yum update ni-daqmx
+ 1026  su
+ 1027  sudo yum update ni-daqmx
+ 1028  ./Acq-IntClk 
+ 1029  yum install ni-daqmx
+ 1030  su
+ 1031  sudo yum install ni-daqmx
+ 1032  sudo yum install ni-syscfg-runtime
+ 1033  cd /home/wjeong/Down
+ 1034  cd /home/wjeong/Downloads
+ 1035  ls
+ 1036  rpm -i ni-pxiplatformservices-18.1.0_RHEL7CentOS7.rpm 
+ 1037  sudo rpm -i ni-pxiplatformservices-18.1.0_RHEL7CentOS7.rpm 
+ 1038  sudo yum install ni-pxiplatformservices
+ 1039  sudo yum install ni-daqmx
+ 1040  ls
+ 1041  cd NI-DAQmx\ 18.1\ Linux\ C\ Examples/
+ 1042  ls
+ 1043  cd Analog\ In/
+ 1044  ls
+ 1045  cd Measure\ Voltage/
+ 1046  ls
+ 1047  cd Acq-Int\ Clk
+ 1048  ls
+ 1049  ./Acq-IntClk 
+ 1050  ./Acq-IntClk PXI1Slot5/ai0
+ 1051  ./Acq-IntClk PXI1Slot5
+ 1052  nilsdev --verbose
+ 1053  ./Acq-IntClk PXI1Slot5\ai0
+ 1054  sudo ./Acq-IntClk
+ 1055  sudo ./Acq-IntClk ai0
+ 1056  sudo ./Acq-IntClk PXI1Slot5/ai0
+ 1057  sudo ./Acq-IntClk PXI1Slot5
+ 1058  ls
+ 1059  vi Makefile 
+ 1060  ls
+ 1061  vi Acq-IntClk.c 
+ 1062  ./Acq-IntClk 
+ 1063  ./Acq-IntClk PCI/PXI Devices
+ 1064  ./Acq-IntClk PXI1Slot5
+ 1065  nilsdev --verbose
+ 1066  ./Acq-IntClk PXI1
+ 1067  ./Acq-IntClk 0x1B01469
+ 1068  ./Acq-IntClk PXIe-6355
+ 1069  nilsdev
+ 1070  ./Acq-IntClk
+ 1071  ls
+ 1072  vi Acq-IntClk.c 
+ 1073  ls /dev
+ 1074  ls
+ 1075  vi Acq-IntClk.c 
+ 1076  nilsdev
+ 1077  vi Acq-IntClk.c 
+ 1078  ls
+ 1079  make
+ 1080  ls
+ 1081  make
+ 1082  ls
+ 1083  ./Acq-IntClk 
+ 1084  vi Acq-IntClk.c 
+ 1085  make
+ 1086  vi Acq-IntClk.c 
+ 1087  make
+ 1088  ls
+ 1089  ./Acq-IntClk 
+ 1090  vi Acq-IntClk.c 
+ 1091  make install
+ 1092  make
+ 1093  ls
+ 1094  ./Acq-IntClk 
+ 1095  history > history.txt

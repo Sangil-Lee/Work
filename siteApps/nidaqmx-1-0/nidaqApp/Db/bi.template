@@ -1,0 +1,12 @@
+record(bi, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+    field(PINI, "YES")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(ZNAM, "Stop")
+    field(ZSV,  "NO_ALARM")
+    field(ONAM, "Running")
+    field(OSV,  "NO_ALARM")
+    field(SCAN, "$(SCAN)")
+    field(VAL, 	"0")
+}
