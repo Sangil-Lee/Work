@@ -1,5 +1,5 @@
-#ifndef		_TIMING_ASYN_EPICS_H
-#define		_TIMING_ASYN_EPICS_H
+#ifndef		_NIDAQ_ASYN_EPICS_H
+#define		_NIDAQ_ASYN_EPICS_H
 
 #define GCC_VERSION (__GNUC__ * 10000 \
     + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
@@ -24,6 +24,7 @@ namespace __gnu_cxx {
 #include <fstream>
 #include <vector>
 #include <tuple>
+#include <memory>
 
 #include "paramVal.h"
 #include "asynParamType.h"
@@ -43,8 +44,7 @@ class nidaqAsynEpics : public asynPortDriver
 {
 public:
 	nidaqAsynEpics(const char *portName, const char* filename, const char *deviceName);
-	void userProcess();
-	int clientThreadMode;
+	void UserProcess();
 
 protected:
 	/** Values used for pasynUser->reason, and indexes into the parameter library. */
@@ -54,26 +54,22 @@ private:
 	const char *driverName;
     epicsEventId eventId_;
     int system_init_ok;
-    int tsmode;
-    int tsnum;
 
-	char iocStartTime[25];
-
+	//unsigned long bit test
 	typedef bitset<32> OptionBit;
 	OptionBit optbit;
 
-	nidaq::nidaqDriver *pnidaq;
-
 	struct RegMap{
 		char			drvname[64];
-		int				address;
+		unsigned long	options;
+		float64			scaleparameter[4];
 		asynParamType	paramtype;
-		unsigned long	option;
-		char			drvLink[64];
+		char			devicename[64];
+		char			drvlink[64];
 		int				index;
+		//nidaq::nidaqDriver *pNIDAQ;
+		shared_ptr<nidaq::nidaqDriver> pNIDAQ;
 	};
-
-	int		evfile;
 
 	//GCC Version > 4.3, unordered_map
 	hash_map<string, RegMap> regmapfile;
@@ -83,7 +79,6 @@ private:
 	typedef	vector<unsigned long> vecCode;
 	hash_map<string, vecCode> vecCodeMap;
 
-	int tsMode(const char* mode);
 	void registerParamListFromFile(string filename);
 	asynParamType getAsynParamType(const char *paramstring);
 	asynStatus createParamNMap(RegMap &reg);
@@ -130,6 +125,7 @@ private:
 	//BO Record
     asynStatus writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value, epicsUInt32 mask);
 	
+#if 1
 	void getOptionBitset(OptionBit &optionbit, epicsUInt32 option, epicsUInt32 shift = 0, epicsUInt32 mask = 0);
 
 	//Instead of bitset
@@ -138,6 +134,7 @@ private:
 	epicsUInt32 setBitOnOff(epicsUInt32 option, epicsUInt32 nbit, bool bit);
 	epicsUInt32 setExclusiveBit(epicsUInt32 option, epicsUInt32 nbit);
 	bool checkBit(epicsUInt32 option, epicsUInt32 nbit);
+#endif
 
 	//tuple < float, int, int, int > cal(int n1, int n2);
 	//void caltest();

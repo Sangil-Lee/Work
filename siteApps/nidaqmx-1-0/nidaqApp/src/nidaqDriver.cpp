@@ -8,12 +8,16 @@
 
 namespace nidaq
 {
+
+int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData);
+int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callbackData);
 	//==============================================================================
 	//----===@ nidaqDriver
 	// Parameters  :
 	// Description :
 	//==============================================================================
-	nidaqDriver::nidaqDriver(const string device, const int32 termConfig, const float64 minVal, const float64 maxVal, const float64 sampRate):software(0.1),g_taskHandle(0)
+	nidaqDriver::nidaqDriver(const string device, const float64 minVal, const float64 maxVal, const float64 slope, 
+			const float64 offset, const int32 scale, const int32 moduletype, const int32 termConfig, const float64 sampRate):software(0.1),g_taskHandle(0)
 	{
 		/*********************************************/
 		// DAQmx Configure Code
@@ -28,18 +32,73 @@ namespace nidaq
 		//Default Create AI Channel
 		//CreateAIVoltChannel(device, termConfig, minVal, maxVal);
 		//CreateAIVoltChannel(device, termConfig, minVal, maxVal,DAQmx_Val_FromCustomScale, "UserLineScale");
-		CreateAIVoltChannel(device, termConfig, 0.0, 100.0, DAQmx_Val_FromCustomScale, "UserLineScale");
-
-		//Default Sampling Clock Timing.
-		ConfigSampleClock();
-
-		//setScale(nidaqDriver::LinearScale, "UserLineScale");
-		setScale(nidaqDriver::LinearScale, "UserLineScale", 10.0, 5.0, DAQmx_Val_Volts, "bar");
+		//According to regmap.options
+		if(moduletype == 0)
+		{
+			if(scale)
+			{
+				//createAIVoltChannel(device, minVal, maxVal,termConfig, DAQmx_Val_FromCustomScale, "UserLineScale");
+				createAIVoltChannel(device, minVal, maxVal,DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserLineScale");
+				//Default Sampling Clock Timing.
+				configSampleClock();
+				//setScale(nidaqDriver::LinearScale, "UserLineScale");
+				setScale(nidaqDriver::LinearScale, "UserLineScale", slope, offset, DAQmx_Val_Volts, "bar");
+			}
+			else
+			{
+				createAIVoltChannel(device, minVal, maxVal);
+				//Default Sampling Clock Timing.
+				configSampleClock();
+			};
+		}
+		else if(moduletype == 1 )
+		{
+			//Current Module
+			printf("For future, will be developed ...\n");
+		};
 
 		/*********************************************/
 		// DAQmx Start Code
 		/*********************************************/
 		DAQmxStartTask(g_taskHandle);
+	};
+
+	nidaqDriver::nidaqDriver(const string device, float64 scaleparameter[],
+			  const int32 scale,const int32 moduletype, const int32 termConfig,const float64 samplRate):software(0.1),g_taskHandle(0)
+	{
+		/*********************************************/
+		// DAQmx Configure Code
+		/*********************************************/
+		DAQmxCreateTask("",&g_taskHandle);
+
+		if(moduletype == 0)
+		{
+			if(scale)
+			{
+				createAIVoltChannel(device, scaleparameter[0], scaleparameter[1], DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserLineScale");
+
+				configSampleClock();
+				setScale(nidaqDriver::LinearScale, "UserLineScale", scaleparameter[2], scaleparameter[3], DAQmx_Val_Volts, "bar");
+			}
+			else
+			{
+				createAIVoltChannel(device, scaleparameter[0], scaleparameter[1]);
+				//Default Sampling Clock Timing.
+				configSampleClock();
+			};
+		}
+		else if(moduletype == 1 )
+		{
+			//Current Module
+			printf("For future, will be developed ...\n");
+		};
+
+
+		/*********************************************/
+		// DAQmx Start Code
+		/*********************************************/
+		DAQmxStartTask(g_taskHandle);
+
 	};
 
 	//==============================================================================
@@ -78,14 +137,14 @@ namespace nidaq
 	};
 
 
-	int nidaqDriver::CreateAIVoltChannel( const string device, const int32 termConfig, const float64 minVal, const float64 maxVal, const int32 units, const string scaleUnits )
+	int nidaqDriver::createAIVoltChannel(const string device, const float64 minVal, const float64 maxVal, const int32 termConfig, const int32 units, const string scaleUnits )
 	{
 		//int32 DAQmxCreateAIVoltageChan (TaskHandle taskHandle, const char physicalChannel[], const char nameToAssignToChannel[], int32 terminalConfig, float64 minVal, float64 maxVal, int32 units, const char customScaleName[]);
 		//return(DAQmxCreateAIVoltageChan(g_taskHandle, device.c_str(), "", termConfig, minVal, maxVal, DAQmx_Val_Volts, NULL));
 		return(DAQmxCreateAIVoltageChan(g_taskHandle, device.c_str(), "", termConfig, minVal, maxVal, units, scaleUnits.c_str()));
 	};
 
-	int nidaqDriver::ConfigSampleClock(const float64 sampRate, const int32 activeEdge, const uInt64 buffsize)
+	int nidaqDriver::configSampleClock(const float64 sampRate, const int32 activeEdge, const uInt64 buffsize)
 	{
 		//int32 DAQmxCfgSampClkTiming (TaskHandle taskHandle, const char source[], float64 rate, int32 activeEdge, int32 sampleMode, uInt64 sampsPerChanToAcquire);
 		return (DAQmxCfgSampClkTiming(g_taskHandle, "", sampRate, activeEdge, DAQmx_Val_ContSamps, buffsize));
@@ -162,7 +221,40 @@ namespace nidaq
 #endif
 		return 0;
 
+	};
+
+	void nidaqDriver::compileAPITest()
+	{
+		//DAQ MX Current Module
+		DAQmxCreateAICurrentChan(g_taskHandle,"SC1Mod1/ai0","",DAQmx_Val_Cfg_Default,0.0,0.02,DAQmx_Val_Amps,DAQmx_Val_Default,249.0,"");
+		DAQmxCfgSampClkTiming(g_taskHandle,"",1000.0,DAQmx_Val_Rising,DAQmx_Val_ContSamps,1000);
+
+		DAQmxRegisterEveryNSamplesEvent(g_taskHandle,DAQmx_Val_Acquired_Into_Buffer,1000,0,EveryNCallback,NULL);
+		DAQmxRegisterDoneEvent(g_taskHandle,0,DoneCallback,NULL);
+	};
+
+int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData)
+{
+	static int  totalRead=0;
+	int32       read=0;
+	float64     data[1000];
+
+	/*********************************************/
+	// DAQmx Read Code
+	/*********************************************/
+	DAQmxReadAnalogF64(taskHandle,1000,10.0,DAQmx_Val_GroupByScanNumber,data,1000,&read,NULL);
+	if( read>0 ) {
+		printf("Acquired %d samples. Total %d\r",(int)read,(int)(totalRead+=read));
+		fflush(stdout);
 	}
+	return 0;
+}
+
+int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callbackData)
+{
+	// Check to see if an error stopped the task.
+	return 0;
+}
 
 }; //name space end
 

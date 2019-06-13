@@ -46,15 +46,11 @@ nidaqAsynEpics::nidaqAsynEpics(const char *portName, const char* filename, const
     asynStatus status;
     const char *functionName = "nidaqAsynEpics";
 
-	tsmode = tsMode(deviceName);
-
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
 
     // register parameter list from register file.  
 	registerParamListFromFile(fileName);
-
-	pnidaq = new nidaqDriver(deviceName);
 
 	if (system_init_ok==1) 
 	{
@@ -92,52 +88,58 @@ void nidaqAsynEpics::registerParamListFromFile(string filename)
 		strcpy (str, strToken.c_str());
 		memset(&regmap,0, sizeof(RegMap));
 
-		if(!(pch = strtok (str,","))) continue;
+		if(!(pch = strtok (str,"\t, "))) continue;
 		strcpy(regmap.drvname, pch);
 
-		if(!(pch = strtok (NULL,","))) continue;
-		regmap.address = strtol(pch,NULL,16);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.options = strtoul(pch,NULL,16);
 
-		if(!(pch = strtok (NULL,","))) continue;
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.scaleparameter[0] = strtof(pch,NULL);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.scaleparameter[1] = strtof(pch,NULL);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.scaleparameter[2] = strtof(pch,NULL);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.scaleparameter[3] = strtof(pch,NULL);
+
+		if(!(pch = strtok (NULL,"\t, "))) continue;
 		regmap.paramtype = getAsynParamType(pch);
 
-		if(!(pch = strtok (NULL,","))) continue;
-		regmap.option = strtoul(pch,NULL,16);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		strcpy(regmap.devicename, pch);
 
-		if(!(pch = strtok (NULL,","))) continue;
-		strcpy(regmap.drvLink, pch);
+		if(!(pch = strtok (NULL,"\t, "))) continue;
+		strncpy(regmap.drvlink, pch, strlen(pch)-1);	// string '\0' null termination remove
 
 		createParamNMap(regmap);
 		regmap.index++;
 	};	
+
+#if 0
+	for(int i = 0; i < regmaptable.size();i++)
+	{
+		//regmaptable[i].pNIDAQ = new nidaqDriver(regmaptable[i].devicename);
+		regmaptable[i].pNIDAQ = make_shared<nidaq::nidaqDriver>(regmaptable[i].devicename);
+	};
+#endif
 }
 
 asynParamType nidaqAsynEpics::getAsynParamType(const char *paramstring)
 {
 	asynParamType paramtype = asynParamNotDefined;
 
-	if( 0 == strcmp("asynParamNotDefined",paramstring))
-		paramtype = asynParamNotDefined;
-	else if(0 == strcmp("asynParamInt32",paramstring))
-		paramtype = asynParamInt32;
-	else if(0 == strcmp("asynParamUInt32Digital",paramstring))
-		paramtype = asynParamUInt32Digital;
-	else if(0 == strcmp("asynParamFloat64",paramstring))
-		paramtype = asynParamFloat64;
-	else if(0 == strcmp("asynParamOctet",paramstring))
-		paramtype = asynParamOctet;
-	else if(0 == strcmp("asynParamInt8Array",paramstring))
-		paramtype = asynParamInt8Array;
-	else if(0 == strcmp("asynParamInt16Array",paramstring))
-		paramtype = asynParamInt16Array;
-	else if(0 == strcmp("asynParamInt32Array",paramstring))
-		paramtype = asynParamInt32Array;
-	else if(0 == strcmp("asynParamFloat32Array",paramstring))
-		paramtype = asynParamFloat32Array;
-	else if(0 == strcmp("asynParamFloat64Array",paramstring))
-		paramtype = asynParamFloat64Array;
-	else if(0 == strcmp("asynParamGenericPointer",paramstring))
-		paramtype = asynParamGenericPointer;
+	if( 0 == strcmp("asynParamNotDefined",paramstring))			paramtype = asynParamNotDefined;
+	else if(0 == strcmp("asynParamInt32",paramstring))			paramtype = asynParamInt32;
+	else if(0 == strcmp("asynParamUInt32Digital",paramstring))	paramtype = asynParamUInt32Digital;
+	else if(0 == strcmp("asynParamFloat64",paramstring))		paramtype = asynParamFloat64;
+	else if(0 == strcmp("asynParamOctet",paramstring))			paramtype = asynParamOctet;
+	else if(0 == strcmp("asynParamInt8Array",paramstring))		paramtype = asynParamInt8Array;
+	else if(0 == strcmp("asynParamInt16Array",paramstring))		paramtype = asynParamInt16Array;
+	else if(0 == strcmp("asynParamInt32Array",paramstring))		paramtype = asynParamInt32Array;
+	else if(0 == strcmp("asynParamFloat32Array",paramstring))	paramtype = asynParamFloat32Array;
+	else if(0 == strcmp("asynParamFloat64Array",paramstring))	paramtype = asynParamFloat64Array;
+	else if(0 == strcmp("asynParamGenericPointer",paramstring)) paramtype = asynParamGenericPointer;
 	
 	return (paramtype);
 }
@@ -146,64 +148,73 @@ asynStatus nidaqAsynEpics::createParamNMap(RegMap &regmap)
 {
     asynStatus status = asynSuccess;
    	createParam(regmap.drvname, regmap.paramtype, &regmap.index);
+#if 0
+	getOptionBitset(optbit, regmap.option,  0, 0xFFF);   //12bit to 32 bitset
+#else
+	getOptionBitset(optbit, regmap.options);			//full option to 32 bitset
+#endif
+	float64 minVal = 0.0, maxVal = 10.0, slope = 1.0, offset = 0.0;
+	int scale = 0, current = 0;
+
+	if(optbit.test(16) == true) current = 1;
+
+	//Applying option bit.
+	if(optbit.test(0) == true)
+	{
+		//getParamValue
+		//NIDAQ_MX_SLOT5_
+		//getParamValue("NIDAQ_MX_SLOT5_LINEARSCALE_SLOPE",  slope);
+		//getParamValue("NIDAQ_MX_SLOT5_LINEARSCALE_OFFSET", offset);
+		//getParamValue("NIDAQ_MX_SLOT5_MIN_VALUE", minVal);
+		//getParamValue("NIDAQ_MX_SLOT5_MAX_VALUE", maxVal);
+		scale = 1;
+		minVal = regmap.scaleparameter[0];
+		maxVal = regmap.scaleparameter[1];
+		slope  = regmap.scaleparameter[2];
+		offset = regmap.scaleparameter[3];
+	}
+	else
+	{
+		minVal = 0.0;
+		maxVal = 10.0;
+	};
+
+	long unsigned int optval = optbit.to_ulong();
+
+	if(optval>=1)
+	{
+		printf("minval(%f),maxval(%f),slope(%f),offset(%f),optval(%lu)\n", minVal, maxVal, slope, offset, optval);
+		//regmap.pNIDAQ = make_shared<nidaq::nidaqDriver>(regmap.devicename, minVal, maxVal,slope, offset, scale, current);
+		regmap.pNIDAQ = make_shared<nidaq::nidaqDriver>(regmap.devicename, regmap.scaleparameter, scale, current);
+	};
+
+	//regmap.pNIDAQ = shared_ptr<nidaq::nidaqDriver>(new nidaqDriver(regmap.devicename));
 	regmaptable[regmap.index] = regmapfile[regmap.drvname] = regmap;
 
-	unsigned int IP_Index = 0, D_Addr = 0, D1_Type = 0, D2_Type = 0, D3_Type = 0, D2_Offset = 0;
-
-	IP_Index  = getRShiftMask(regmap.address, 28, 0xF);
-	D_Addr	  = getRShiftMask(regmap.address,  0, 0x0FFFFFFF);
-
-	//Option Check (32bits)
-	D1_Type   = getRShiftMask(regmap.option, 28, 0xF);	// scan or not check(4bit)
-	D2_Type   = getRShiftMask(regmap.option, 24, 0xF);	// data type 32bit, 16bit, 8bit, 4bit, 2bit, 1bit(4bit)
-	D2_Offset = getRShiftMask(regmap.option, 16, 0xFF);  // offset of data type(16bit)
-	D3_Type   = getRShiftMask(regmap.option, 12, 0xF);   // normal, pulse, getset, timeType0, timeType1 value(4bit)
-
-	getOptionBitset(optbit, regmap.option);				//full option to 32 bitset
 	string strOpt = optbit.to_string();
 	stringstream sstream;
 
 	for(size_t i = 1; i < 33; i ++)
 	{
-		if(i%4 == 0) {
-			//cout << strOpt.at(i-1) << ",";
+		if((i%4)== 0 && (i!=32)) 
 			sstream << strOpt.at(i-1) << ",";
-		} else {
-			//cout << strOpt.at(i-1);
+		else 
 			sstream << strOpt.at(i-1);
-		};
 	};
-	//cout << endl;
-	//sstream << endl;
-
 	string strOption = sstream.str();
 
 	if(regmap.index == 0 && nidaqDebug)
 	{
-		printf("%s\n", "=============================================================================================================================================================================");
-		printf("%4s, %-26s, %10s, %5s, %10s, %4s, %4s, %5s, %4s, %-26s, %-31s\n", "index", "drvname", "paramtype", "IP", "Addr", "D1", "D2", "Offset", "D3", "drvLink", "option");
-		printf("%s\n", "-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		printf("%s\n", "==========================================================================================");
+		printf("%4s, %-34s(%s), %10s, %10s, %-10s\n", "index", "drvname","options", "paramtype", "devicename", "drvlink");
+		printf("%s\n", "------------------------------------------------------------------------------------------");
 	}
 
 	if(nidaqDebug)
-		printf("%5d, %-26s, %10d, %5d, 0x%08x, %4d, %4d, %6d, %4d, %-26s, %-31s(0x%08x)\n", regmap.index, regmap.drvname, regmap.paramtype, IP_Index, D_Addr, D1_Type, D2_Type, D2_Offset, D3_Type,  regmap.drvLink, strOption.c_str(),regmap.option);
+		printf("%5d, %-34s(%s), %10d, %10s(len:%u), %-10s(len:%d)\n", regmap.index, regmap.drvname, strOption.c_str(),regmap.paramtype,regmap.devicename, 
+				(int)strlen(regmap.devicename),regmap.drvlink,(int)strlen(regmap.drvlink));
 
 	return (status);
-}
-
-int nidaqAsynEpics::tsMode(const char* mode)
-{
-		//{1 [evg] | 2 [evr] | 3 [evf] | 4 [evs]}");
-		if(strcmp(mode, "EVR") == 0 || strcmp(mode, "evs") == 0)
-			tsmode = 2;
-		else if(strcmp(mode, "EVF") == 0 || strcmp(mode, "evf") == 0)
-			tsmode = 3;
-		else if(strcmp(mode, "EVS") == 0 || strcmp(mode, "evs") == 0)
-			tsmode = 4;
-		else
-			tsmode = 1;
-
-		return(tsmode);
 }
 
 epicsInt32 nidaqAsynEpics::readInt32Value(const RegMap &regmap)
@@ -232,10 +243,7 @@ asynStatus nidaqAsynEpics::readValue(const RegMap &regmap, epicsFloat64 &value)
 	//epicsFloat64 rdValue = 0.0;
     asynStatus status = asynSuccess;
 
-	float64		rdValue;
-	int count;
-	pnidaq->ReadAnalog(&rdValue, &count, 1, 2.0);
-
+	float64		rdValue = 0.0;
 	value = rdValue;
 
 	return (status);	
@@ -253,22 +261,26 @@ asynStatus nidaqAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *v
 
     RegMap regmap = regmaptable[function];
 
-#if 0
-    if(nidaqDebug)
+#if 1
+    if(nidaqDebug > 2)
         printf("%s(%s),nEle(%ld)\n",functionName,regmap.drvname, nElements);
 #endif
 
 	float64	rdValue[nElements];
 	int count = 0;
-	//pnidaq->ReadAnalog(rdValue, &count, 1000, 2.0);
-	pnidaq->ReadAnalog(rdValue, &count, nElements, 2.0);
 
-	//double avg = accumulate(rdValue, 0.0) / (double)nElements;
-	//
-	if(nidaqDebug)
+	regmap.pNIDAQ->ReadAnalog(rdValue, &count, nElements, 2.0);
+
+	string strData = string(regmap.drvlink);
+	if(strData.compare("NA") != 0)
 	{
-		float64 avg = accumulate(rdValue, rdValue+nElements, 0.0, plus<float64>() )/1000;
-		cout << "Avg: " << avg << endl;
+		float64 avg = accumulate(rdValue, rdValue+nElements, 0.0, plus<float64>()) / nElements;
+		if(nidaqDebug)	printf("Avg: %f\n", avg);
+		if((setParamValue(regmap.drvlink, avg)) == 0)
+		{
+			callParamCallbacks();
+			epicsEventSignal(eventId_);
+		};
 	};
 
 #if 0
@@ -278,16 +290,10 @@ asynStatus nidaqAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *v
 	cout << "Average Val: " << avg << endl;
 #endif
 
-#if 0
-	for(int i = 0; i < nElements; i++)
-		value[i] = rdValue[i];
-#endif
-
-	//printf("Count:%d\n", count);
 	memcpy(value, rdValue, nElements*sizeof(epicsFloat64));
 	doCallbacksFloat64Array(value, nElements, regmap.index, 0);
-
 	*nIn = nElements;
+
     return status;
 }
 
@@ -312,7 +318,7 @@ asynStatus nidaqAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
 	*value = readInt32Value(regmaptable[function]);
 #else
 	//New
-	readValue(regmaptable[function], *value);
+	//readValue(regmaptable[function], *value);
 #endif
 
     if (status) 
@@ -342,14 +348,14 @@ asynStatus nidaqAsynEpics::readFloat64(asynUser *pasynUser, epicsFloat64 *value)
     /* Set the timestamp */
     pasynUser->timestamp = timeStamp;
 
-	readValue(regmaptable[function], *value);
+	//readValue(regmaptable[function], *value);
 
     if (status) 
         epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
-                  "%s:%s: status=%d, function=%d, value=%d", 
+                  "%s:%s: status=%d, function=%d, value=%f", 
                   driverName, functionName, status, function, *value);
     else        
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, "%s:%s: function=%d, value=%d\n", 
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, "%s:%s: function=%d, value=%f\n", 
 											driverName, functionName, function, *value);
 	status = (asynStatus) callParamCallbacks();
 
@@ -556,7 +562,7 @@ asynStatus nidaqAsynEpics::writeStringValue(const RegMap &regmap, const char *st
 	if(checkParam(regmap.drvname) == -1) return(asynError);
 
 	if(nidaqDebug)
-		printf("Sub_drvname(%s),strValue(%s)\n", regmap.drvLink, strValue);
+		printf("Sub_drvname(%s),strValue(%s)\n", regmap.drvname, strValue);
 
 
     return  (status);
@@ -626,11 +632,10 @@ asynStatus nidaqAsynEpics::writeFloat64(asynUser *pasynUser, epicsFloat64 value)
 }
 
 
-void nidaqAsynEpics::userProcess()
+void nidaqAsynEpics::UserProcess()
 {
 	//struct timespec vartime;
 	//long time_elapsed_nanos;
-	int run = 1;
 
 	lock();
 
@@ -639,9 +644,9 @@ void nidaqAsynEpics::userProcess()
 	 */    
 	while (1) { 
 		unlock();
-		epicsEventWaitWithTimeout(eventId_, 1);
+		//epicsEventWaitWithTimeout(eventId_, 1);
+		epicsEventWait(eventId_);
 		lock();
-		if(!run)		continue;
 	};
 }
 
@@ -701,8 +706,7 @@ void nidaqAsynEpics::caltest()
 void userProcess(void *drvPvt)
 {
 	nidaqAsynEpics *pPvt = (nidaqAsynEpics *)drvPvt;
-
-	if(pPvt!=NULL) pPvt->userProcess();
+	if(pPvt!=NULL) pPvt->UserProcess();
 }
 
 #if 0

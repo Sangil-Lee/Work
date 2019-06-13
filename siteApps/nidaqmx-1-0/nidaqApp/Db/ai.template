@@ -1,8 +1,9 @@
 record(ai, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
 {
-   field(PINI, "NO")
+   field(PINI, "YES")
    field(DTYP, "asynFloat64")
    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
    field(PREC, "3")
    field(SCAN, "$(SCAN)")
+   field(VAL, "$(VAL)")
 }
