@@ -1,0 +1,10 @@
+file "db/longin.template" { pattern
+{ SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,					SCAN,	VAL,	FLNK } 
+{ SCL3, LVFPGA,		ACCT,		lvfpga,	0,			1,		 CountRegister,		CRIO_COUNT_REGISTER,	".1 second",  0,		""} 
+}
+
+file "db/bi.template" { pattern
+{ SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,					SCAN,		VAL } 
+#{ SCL3, LVFPGA,		ACCT,		lvfpga,	0,			1,		 DI_0,				CRIO_DI_O,				"1 second",  0	} 
+}
+

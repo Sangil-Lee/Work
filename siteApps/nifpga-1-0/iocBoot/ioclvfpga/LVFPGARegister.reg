@@ -1,0 +1,5 @@
+##ALIAS##,##Module Options##,##scale parameter ##Param Type##,##devicename##
+#Module Options, scaleparameter(minval, maxval, slope, offset)
+#CRIO_DI_O,				0x00000000,		asynParamInt32,		NiFpga_FPGA_1_IndicatorBool_Mod8DI0,		NA
+CRIO_COUNT_REGISTER,	0x00000000,		asynParamInt32,		NiFpga_FPGA_1_IndicatorU16_CountRegister,	NA
+#NIDAQ_MX_SLOT5_WAVE_1,	 			0x00000001, 0.0, 50.0, 5.0,5.0, asynParamFloat64Array,PXI1Slot5/ai1,	NIDAQ_MX_SLOT5_AI1_AVG
