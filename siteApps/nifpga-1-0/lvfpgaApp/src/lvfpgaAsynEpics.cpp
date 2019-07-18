@@ -112,6 +112,9 @@ void lvfpgaAsynEpics::registerParamListFromFile(string filename)
 		strcpy(regmap.devicename, pch);
 
 		if(!(pch = strtok (NULL,"\t, "))) continue;
+		regmap.deviceaddress = strtoul(pch,NULL,16);
+
+		if(!(pch = strtok (NULL,"\t, "))) continue;
 		strncpy(regmap.drvlink, pch, strlen(pch)-1);	// string '\0' null termination remove
 
 		createParamNMap(regmap);
@@ -184,7 +187,9 @@ asynStatus lvfpgaAsynEpics::createParamNMap(RegMap &regmap)
 epicsInt32 lvfpgaAsynEpics::readInt32Value(const RegMap &regmap)
 {
 	uint16_t rdData = 0;
-	pLVFPGA->ReadU16(NiFpga_FPGA_1_IndicatorU16_CountRegister, &rdData);
+
+	//pLVFPGA->ReadU16(NiFpga_FPGA_1_IndicatorU16_CountRegister, &rdData);
+	pLVFPGA->ReadU16(regmap.deviceaddress, &rdData);
 
 	epicsInt32 value = rdData;
 

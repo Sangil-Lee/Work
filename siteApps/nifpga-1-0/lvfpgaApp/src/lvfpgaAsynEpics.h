@@ -64,6 +64,7 @@ private:
 		unsigned long	options;
 		asynParamType	paramtype;
 		char			devicename[64];
+		unsigned long	deviceaddress;
 		char			drvlink[64];
 		int				index;
 	};
