@@ -550,6 +550,8 @@ int lvfpgaAsynEpics::writeInt32Value(const RegMap &regmap, epicsInt32 value)
 
 	int status = 0;
 
+	pLVFPGA->WriteU16(regmap.deviceaddress, value);
+
     return  (status);
 }
 

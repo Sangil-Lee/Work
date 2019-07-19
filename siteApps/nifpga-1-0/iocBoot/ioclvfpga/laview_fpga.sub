@@ -5,6 +5,10 @@ file "db/longin.template" { pattern
 
 file "db/bi.template" { pattern
 { SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,					SCAN,		VAL } 
-#{ SCL3, LVFPGA,		ACCT,		lvfpga,	0,			1,		 DI_0,				CRIO_DI_O,				"1 second",  0	} 
+{ SCL3, LVFPGA,		ACCT,		lvfpga,	0,			1,		 DI_0,				CRIO_DI_O,				".1 second",  0	} 
 }
 
+file "db/longout.template" { pattern
+{SYS,	SUBSYS,		DEV,		PORT,	ADDR,		TIMEOUT, SIGNAL,		ALIAS,			VAL,	FLNK, PINI }
+{ SCL3, LVFPGA,		ACCT,		lvfpga,	0,			1,		 Threshold,		CRIO_THRESHOLD,	200,	"",   YES} 
+}
