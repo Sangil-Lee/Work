@@ -58,12 +58,11 @@ using namespace std;
 class ADIMITechDriver : public ADDriver
 {
 public:
-	ADIMITechDriver(const char *portName, const char*filename, const char *cameraId, int maxBuffers, size_t maxMemory,
+	ADIMITechDriver(const char *portName, const char *cameraId, int maxBuffers, size_t maxMemory,
                      int priority, int stackSize, int maxPvAPIFrames);
 
 	~ADIMITechDriver();
 
-	static void callBackImageGrab(NImageFrame *pData);
 	void UserImageGrabTask();
 
 private:
@@ -74,8 +73,6 @@ private:
 		int				index;
 	};
 
-	string fileName;
-
 	hash_map<string, RegMap> regmapfile;
 	hash_map<int,	 RegMap> regmaptable;
 	hash_map<string, RegMap>::const_iterator check_iter;
@@ -83,8 +80,7 @@ private:
 	typedef	vector<unsigned long> vecCode;
 	hash_map<string, vecCode> vecCodeMap;
 
-	char *mCamStrID;
-
+	char *mCamID;
 
 
 	//Member Functions.

@@ -7,7 +7,6 @@ DIRS += configure
 DIRS += $(wildcard *Sup)
 DIRS += $(wildcard *App)
 DIRS += $(wildcard *Top)
-DIRS += $(wildcard Neptune*)
 DIRS += $(wildcard iocBoot)
 
 # The build order is controlled by these dependency rules:

@@ -7,14 +7,18 @@ include $(TOP)/configure/CONFIG
 DBD += ADIMITechDriver.dbd
 
 LIBRARY_IOC += ADIMITechEpicsSupport 
-USR_CPPFLAGS += -std=c++11 -ggdb -Wno-format -Wno-reorder
+USR_CPPFLAGS += -std=c++11 -ggdb -Wno-format
 
+USR_INCLUDES  += -I$(RAON_SITELIBS)/include
 USR_DBDFLAGS  += -I$(RAON_SITELIBS)/dbd
 
 #ADIMITechEpicsSupport_HEADERS += NeptuneAPI.h
 ADIMITechEpicsSupport_SRCS += ADIMITechDriver.cpp
-ADIMITechEpicsSupport_LIBS += NeptuneAPI 
+ADIMITechEpicsSupport_LIBS += NeptuneAPI debugPrint
 ADIMITechEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
+INC += NeptuneAPI.h
+
+debugPrint_DIR += $(RAON_SITELIBS)/lib/$(T_A)
 
 include $(ADCORE)/ADApp/commonDriverMakefile
 
@@ -30,6 +34,7 @@ USR_CXXFLAGS += -fPIC
 
 # ADIMITech.dbd will be made up from these files:
 ADIMITech_DBD += base.dbd
+ADIMITech_DBD += debug.dbd
 
 # Include dbd files from all support applications:
 #ADIMITech_DBD += xxx.dbd
@@ -49,7 +54,7 @@ ADIMITech_SRCS_vxWorks += -nil-
 #ADIMITech_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
-ADIMITech_LIBS += NeptuneAPI 
+ADIMITech_LIBS += NeptuneAPI debugPrint
 ADIMITech_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 include $(ADCORE)/ADApp/commonDriverMakefile

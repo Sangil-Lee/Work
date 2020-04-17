@@ -8,96 +8,127 @@
 #include <unistd.h>
 #include <memory>
 
-#include "ADIMITechDriver.h"
 #include "debugPrint.h"
+#include "ADIMITechDriver.h"
 
 
 static int ADIMITechDebug = 2;
 epicsExportAddress(int, ADIMITechDebug);
 
 static void userImageGrabTask(void *drvPvt);
-//static void callBackImageGrab(NImageFrame *pData);
 
-namespace DataFrame
-{
-	class DataBuffer
-	{
-		public:
-			DataBuffer():mpFrameBuf(0),mframesize(0)
-				{};
 
-			~DataBuffer()
-			{
-				if(mpFrameBuf)
-					delete [] mpFrameBuf;
+class NeptuneFrame {
 
-			};
+public:
+	NeptuneFrame(const char* camID);
+	~NeptuneFrame();
 
-			int SetFrameSize(unsigned int framesize)
-			{
-				if(mpFrameBuf) return(-1);
+	NErr OpenCamera();
+	NErr StartImageGrab();
+	NErr StopImageGrab();
 
-				mpFrameBuf = new unsigned char[framesize];
-				mframesize = framesize;
+	NErr GetFrameSize(int &width, int &height);
 
-				return(0);
-			};
+	static void cbGetImageFrame(NImageFrame *pData);
+private:
 
-			int FrameCopy(NImageFrame *pImage, size_t imgsize)
-			{
-				memcpy(mpFrameBuf, pImage, imgsize);
-			};
+	char*  mCamID;
+	NCamHandle  _camHandle;
 
-			unsigned int GetFrameSize() {return mframesize;};
-			unsigned char* GetFrameBuffer() {return mpFrameBuf;};
+	void cameraList();
 
-		private:
-			unsigned char*	mpFrameBuf;
-			unsigned int mframesize;
-			NImageFrame *mpImage;
-
-			int mWidth;
-			int mHeight;
-
-	};
 };
 
-shared_ptr<DataFrame::DataBuffer> mpDataFrame;
+
+NeptuneFrame::NeptuneFrame(const char* camID):mCamID(0),_camHandle(0)
+{
+	mCamID = epicsStrDup(camID);
+	cameraList();
+};
+
+NeptuneFrame::~NeptuneFrame()
+{
+	if(_camHandle)
+	{
+		NeptuneCloseCamera(_camHandle);
+		_camHandle = 0;
+	};
+
+};
+
+NErr NeptuneFrame::OpenCamera()
+{
+	return (NeptuneOpenCamera(mCamID,  &_camHandle));
+}
+
+NErr NeptuneFrame::GetFrameSize(int &width, int &height)
+{
+	NSizeInfo sInfo;
+	NErr status = NeptuneGetSizeInfo(_camHandle, &sInfo);
+
+	width = sInfo.width;
+	height = sInfo.height;
+
+	return status;
+}
+
+void NeptuneFrame::cbGetImageFrame(NImageFrame *pData)
+{
+	//bla..bla..
+
+}
+
+void NeptuneFrame::cameraList()
+{
+	int nNum = 0;
+    NeptuneNumberOfCameras(&nNum);
+    for(int i = 0 ; i < nNum ; i++)
+    {
+        char strID[64] = {0,};
+        NeptuneGetDisplayName(i, strID);
+		epicsPrintf("Camera List(%d): (%s) \n",i, strID);
+    };
+};
 
 
-ADIMITechDriver::ADIMITechDriver(const char *portName, const char*filename, const char *cameraId, int maxBuffers, size_t maxMemory,
+NErr NeptuneFrame::StartImageGrab()
+{
+	NErr status = NeptuneStartAcquisition(_camHandle, cbGetImageFrame);
+	debug(DEBUG_INFO, "Error status:%d\n, status");
+	return(status);
+}
+
+NErr NeptuneFrame::StopImageGrab()
+{
+	NErr status = NeptuneStopAcquisition(_camHandle);
+	debug(DEBUG_INFO, "Error status:%d\n, status");
+	return(status);
+}
+
+shared_ptr<NeptuneFrame> mpShrNeptune;
+
+
+ADIMITechDriver::ADIMITechDriver(const char *portName, const char *cameraId, int maxBuffers, size_t maxMemory,
                      int priority, int stackSize, int maxPvAPIFrames)
     : ADDriver(portName, 1, 500, maxBuffers, maxMemory, 0, 0, /* No interfaces beyond those set in ADDriver.cpp */
-               ASYN_CANBLOCK, 0, /* ASYN_CANBLOCK=1, ASYN_MULTIDEVICE=0, autoConnect=1 */ priority, stackSize),mCamStrID(0),fileName(filename)
+               ASYN_CANBLOCK, 0, /* ASYN_CANBLOCK=1, ASYN_MULTIDEVICE=0, autoConnect=1 */ priority, stackSize),mCamID(0)
 {
 
-	mCamStrID = epicsStrDup(cameraId);
-
-	mpDataFrame = make_shared<DataFrame::DataBuffer>();
-
-	registerParamListFromFile(fileName);
-
-	if(ADIMITechDebug) {
-		int camNum = 0;
-		NeptuneNumberOfCameras(&camNum);
-
-		for(int i = 0; i < camNum; i++)
-		{
-			char camStrID[64] = {0};
-			NeptuneGetDisplayName(i, camStrID);
-			debug(DEBUG_INFO,"CamStrID List:(%s)\n", camStrID);
-		};
-
-	};
+	mCamID = epicsStrDup(cameraId);
 
 	asynStatus status = (asynStatus)(epicsThreadCreate("IMITechUserImageGrabTask",
 					epicsThreadPriorityMedium, epicsThreadGetStackSize(epicsThreadStackMedium),
 					(EPICSTHREADFUNC)::userImageGrabTask, this) == NULL);
 
+	mpShrNeptune = make_shared<NeptuneFrame>(cameraId);
+
 	if (status) {
+		//printf("%s:%s: epicsThreadCreate failure\n", "ADIMITechDriver", "UserImageGrabTask");
 		debug(DEBUG_INFO,"%s:%s: epicsThreadCreate failure\n", "ADIMITechDriver", "UserImageGrabTask");
 		return;
 	};
+
 }
 
 ADIMITechDriver::~ADIMITechDriver()
@@ -109,66 +140,57 @@ void ADIMITechDriver::UserImageGrabTask()
 	NErr status = eNeptuneSuccess;
 	NCamHandle  _camHandle;
 
-	status = NeptuneOpenCamera(mCamStrID,  &_camHandle);
+	//status = NeptuneOpenCamera(mCamID,  &_camHandle);
+
+	status = mpShrNeptune->OpenCamera();
+
 
     if(status != eNeptuneSuccess) {
-		debug(DEBUG_INFO, "Error OpenCamera Error:%s \n", mCamStrID);
+        debug(DEBUG_INFO,"Error OpenCamera Error : %d\n", status);
         return;
     };
 
+#if 0
     // get size info
     NSizeInfo sinfo;
     NeptuneGetSizeInfo(_camHandle, &sinfo);
     int m_iWidth = sinfo.width;
     int m_iHeight = sinfo.height;
+#else
+	int width = 0, height = 0;
+	status = mpShrNeptune->GetFrameSize(width, height);
+#endif
+
 
     // get pixelformat list
     int npixels = 0;
     NeptuneGetNumAvailablePixelFormats(_camHandle, &npixels);
 
-	char strTmp[128] = {0};
+#if 0
+    for(int i = 0 ; i < npixels ; i++)
+    {
+        NeptuneGetAvailablePixelFormatsIdxToStr(m_cam, i, strTmp);
+        ui->cmbPixelFormat->addItem(strTmp);
+    }
 
-#if 1
-    for(int i = 0 ; i < npixels ; i++) {
-        NeptuneGetAvailablePixelFormatsIdxToStr(_camHandle, i, strTmp);
+    NeptuneGetPixelFormatStr(m_cam, strTmp);
+    for(int i = 0 ; i < ui->cmbPixelFormat->count() ; i++)
+    {
+        str = ui->cmbPixelFormat->itemText(i);
+        if(strcmp(str.toLatin1().data(), strTmp) == 0) {
+            ui->cmbPixelFormat->setCurrentIndex(i);
+            break;
+        }
     };
+#else
 
-    NeptuneGetPixelFormatStr(_camHandle, strTmp);
-	//setParam
+#endif
 
-	//gain
-	int value = 0;
-	bool bAuto = false;
-
-	NeptuneGetGain(_camHandle, &value, &bAuto);
-	//setParam
-
-	//shutter
-	unsigned int shutterVal = 0;
-	NeptuneGetShutter(_camHandle, &shutterVal, &bAuto);
-
-	//setParam
-
-	//trigger
-	NeptuneGetTriggerEnable(_camHandle, &bAuto);
-	//setParam
-
-	NeptuneGetTriggerSourceStr(_camHandle, strTmp);
-	//setParam
-
-
-	NeptuneGetTriggerParameter(_camHandle, &value);
-
-	//getParam
-
-	NeptuneSetBayerConversion(_camHandle, eNeptuneBayerNearest);
-	NeptuneSetBayerConversion(_camHandle, eNeptuneBayerNone);
 
 	while(true)
 	{
-		NeptuneStartAcquisition(_camHandle, ADIMITechDriver::callBackImageGrab);
+
 	};
-#endif
 
 
 	if(_camHandle != NULL) NeptuneCloseCamera(_camHandle);
@@ -179,15 +201,9 @@ void ADIMITechDriver::UserImageGrabTask()
 void userImageGrabTask(void *drvPvt)
 {
 	ADIMITechDriver *pDrv = (ADIMITechDriver *)drvPvt;
+
 	pDrv->UserImageGrabTask();
 }
-
-void ADIMITechDriver::callBackImageGrab(NImageFrame *pData)
-{
-
-
-}
-
 
 void ADIMITechDriver::registerParamListFromFile(string &filename)
 {
@@ -278,38 +294,35 @@ asynStatus ADIMITechDriver::createParamNMap(RegMap &regmap)
 	return (status);
 }
 
-extern "C" int ImiTechConfig(const char *portName, /* Port name */
-							 const char *filename, /*Register file name*/
-                             const char *cameraId, /*IMC-7050G-28029679(Model&Serial), Camera name of IMITech 7050G model  . */
-                               int maxBuffers, size_t maxMemory, int priority, int stackSize, int maxPvAPIFrames)
+extern "C" int ImiTechConfig(char *portName, /* Port name */
+                               const char *cameraId,   /* Unique ID #, or IP address or IP name of this camera. */
+                               int maxBuffers, size_t maxMemory,
+                               int priority, int stackSize, int maxPvAPIFrames)
 {
-    new ADIMITechDriver(portName, filename, cameraId, maxBuffers, maxMemory, priority, stackSize, maxPvAPIFrames);
+    new ADIMITechDriver(portName, cameraId, maxBuffers, maxMemory, priority, stackSize, maxPvAPIFrames);
     return(asynSuccess);
 }   
 
 /* Code for iocsh registration */
 static const iocshArg ImiTechConfigArg0 = {"Port name", iocshArgString};
-static const iocshArg ImiTechConfigArg1 = {"Regiter file name", iocshArgString};
-static const iocshArg ImiTechConfigArg2 = {"Camera Id (unique ID, IP address, or IP name", iocshArgString};
-static const iocshArg ImiTechConfigArg3 = {"maxBuffers", iocshArgInt};
-static const iocshArg ImiTechConfigArg4 = {"maxMemory", iocshArgInt};
-static const iocshArg ImiTechConfigArg5 = {"priority", iocshArgInt};
-static const iocshArg ImiTechConfigArg6 = {"stackSize", iocshArgInt};
-static const iocshArg ImiTechConfigArg7 = {"maxPvAPIFrames", iocshArgInt};
+static const iocshArg ImiTechConfigArg1 = {"Camera Id (unique ID, IP address, or IP name", iocshArgString};
+static const iocshArg ImiTechConfigArg2 = {"maxBuffers", iocshArgInt};
+static const iocshArg ImiTechConfigArg3 = {"maxMemory", iocshArgInt};
+static const iocshArg ImiTechConfigArg4 = {"priority", iocshArgInt};
+static const iocshArg ImiTechConfigArg5 = {"stackSize", iocshArgInt};
+static const iocshArg ImiTechConfigArg6 = {"maxPvAPIFrames", iocshArgInt};
 static const iocshArg * const ImiTechConfigArgs[] = {&ImiTechConfigArg0,
                                                        &ImiTechConfigArg1,
                                                        &ImiTechConfigArg2,
                                                        &ImiTechConfigArg3,
                                                        &ImiTechConfigArg4,
                                                        &ImiTechConfigArg5,
-                                                       &ImiTechConfigArg6,
-                                                       &ImiTechConfigArg7};
-
-static const iocshFuncDef configImiTech = {"ImiTechConfig", 8, ImiTechConfigArgs};
+                                                       &ImiTechConfigArg6};
+static const iocshFuncDef configImiTech = {"ImiTechConfig", 7, ImiTechConfigArgs};
 static void configImiTechCallFunc(const iocshArgBuf *args)
 {
-    ImiTechConfig(args[0].sval, args[1].sval, args[2].sval, args[3].ival, 
-                    args[4].ival, args[5].ival, args[6].ival, args[7].ival);
+    ImiTechConfig(args[0].sval, args[1].sval, args[2].ival, 
+                    args[3].ival, args[4].ival, args[5].ival, args[6].ival);
 }
 
 
