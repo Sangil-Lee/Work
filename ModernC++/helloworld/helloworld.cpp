@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <functional>
 
 using namespace std;
 
@@ -168,4 +169,79 @@ int main()
     foo f;
     f.amazing();
     cout << "f.i = " << f.i << endl;
+
+
+//Capture Scope
+    int ii = 8;
+    {
+        int jj = 2;
+        auto f = [=]{cout << ii /jj << endl;};
+        f();
+    }
+
+    auto f1 = [ii]() { 
+        int jj = 2;
+        auto m = [=] {cout << ii/jj << endl;};
+        m();
+    };
+    f1();
+
+#if 0
+    // Compile error, for variable scope
+    int aa = 8;
+    auto f2 = []() {
+        int bb = 2;
+        auto m = []() {cout << aa / bb << endl;};
+        m();
+    };
+    f2();
+#else
+
+    int aa = 8;
+    auto f2 = [aa]() mutable {
+        int bb = 2;
+        auto m2 = [&, bb]() mutable { aa /= bb;};
+        m2();
+        cout << "inner ->" << aa << endl;
+    };
+
+    f2();
+    cout << "outer ->" << aa << endl;
+#endif
+
+    typedef int (*f_type)(int);
+    f_type ff = [](int i) -> int {return i +20;};
+
+    cout << ff(8) << endl;
+
+    std::function <int(std::string const &)> fc;
+
+    fc = [](std::string const &s) -> int { cout << s << endl; return s.size();};
+
+    int size = fc("http://itguru.tstory.com");
+    cout << size << endl;
+
+    std::function<int(int)> f3;
+    std::function<int(int)> f4 = [&](int i) -> int {
+        cout << i << " ";
+        if (i>5) {
+            return f3(i-2);
+        }
+    };
+
+    f3 = [&](int i) -> int {
+       cout << i << " "; 
+       return f4(++i);
+    };
+    f3(10);
+    cout << endl;
+
+    std::function<int(int)> fact;
+    fact =[&fact](int n)->int {
+        if(n == 0)
+            return 1;
+        else return (n * fact(n-1));
+    };
+
+    cout << "Factorial: " << fact(10) << endl;
 }
