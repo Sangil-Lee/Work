@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ctrluser/GitHub/libserial/examples/serial_port_read_write.cpp
+libserial/SerialPort.h
+-
+cstdlib
+-
+fstream
+-
+iostream
+-
+unistd.h
+-
+
+src/libserial/SerialPort.h
+libserial/SerialPortConstants.h
+-
+ios
+-
+memory
+-
+
+src/libserial/SerialPortConstants.h
+limits
+-
+stdexcept
+-
+string
+-
+termios.h
+-
+vector
+-
+

@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib -shared -Wl,-soname,libserial.so.1 -o ../lib/libserial.so.1.0.0 CMakeFiles/libserial_shared.dir/SerialPort.cpp.o CMakeFiles/libserial_shared.dir/SerialStream.cpp.o CMakeFiles/libserial_shared.dir/SerialStreamBuf.cpp.o -pthread 
