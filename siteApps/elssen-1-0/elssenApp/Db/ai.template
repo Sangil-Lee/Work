@@ -1,12 +1,9 @@
-# ai record template for register inputs
-record(ai, "$(Prefix):$(Pvname)") {
-    field(EGU, "$(EGU)")
-    field(HIHI,"$(HIHI)")
-    field(HIGH,"$(HIGH)")
-    field(LOW," $(LOW)")
-    field(LOLO,"$(LOLO)")
-    field(SCAN,"$(SCAN)")
-    field(PREC, "4")
-    field(MDEL,"0")
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+   field(PINI, "YES")
+   field(DTYP, "asynFloat64")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+   field(PREC, "5")
+   field(SCAN, "$(SCAN)")
+   field(VAL, "$(VAL)")
 }
-

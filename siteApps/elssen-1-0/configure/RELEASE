@@ -34,6 +34,8 @@ EPICS_BASE = /home/ctrluser/epics/7.0.3/base
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
 #RULES = $(MODULES)/build-rules
+ASYN=${EPICS_SYNAPPS}/asyn
+SNCSEQ=${EPICS_SYNAPPS}/seq-2-2-6
 
 # These lines allow developers to override these RELEASE settings
 # without having to modify this file directly.
