@@ -42,6 +42,13 @@ elssen_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
 #elssen_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+# Link QSRV (pvAccess Server) if available
+ifdef EPICS_QSRV_MAJOR_VERSION
+    elssen_LIBS += qsrv
+    elssen_LIBS += $(EPICS_BASE_PVA_CORE_LIBS)
+    elssen_DBD += PVAServerRegister.dbd
+    elssen_DBD += qsrv.dbd
+endif
 
 # Finally link to the EPICS Base libraries
 elssen_LIBS += serialAsynEpicsSupport
