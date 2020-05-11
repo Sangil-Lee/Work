@@ -1,0 +1,65 @@
+record(ao, "$(SYS):QWROGAUSS:SR") {
+  field(DTYP, "Raw Soft Channel")
+  field(FLNK, "$(SYS):CALCQWRO:SR")
+  field(DRVH, "8484")
+  field(DRVL, "-140")
+  field(HOPR, "8484")
+  field(LOPR, "-140")
+}
+
+record(calc, "$(SYS):CALCQWRO:SR") {
+  field(SCAN, "Passive")
+#(Gaus*0.0001)(Tesla)/0.027(meter)
+  field(CALC, "A/270.0")
+  field(INPA, "$(SYS):QWROGAUSS:SR CPP")
+  field(FLNK, "$(SYS):SUBFIELD2:SR")
+}
+
+record(sub, "$(SYS):SUBFIELD2:SR") {
+  field(SCAN, "Passive")
+  field(INAM, "FieldMapCurrentQWROInit")
+  field(SNAM, "FieldMapCurrentQWROProc")
+  field(INPA, "$(SYS):CALCQWRO:SR")
+  field(FLNK, "$(SYS):QWROHI:SR")
+}
+
+record(ai, "$(SYS):QWROHI:SR") {
+  field(SCAN, "Passive")
+  field(DTYP, "Soft Channel")
+  field(LINR, "fieldCnvQWROLDHI")
+  field(INP, "$(SYS):SUBFIELD2:SR")
+}
+
+
+record(ao, "$(SYS):QWRNGAUSS:SR") {
+  field(DTYP, "Raw Soft Channel")
+  field(FLNK, "$(SYS):CALCQWRN:SR")
+  field(DRVH, "8913")
+  field(DRVL, "25")
+  field(HOPR, "8913")
+  field(LOPR, "25")
+}
+
+record(calc, "$(SYS):CALCQWRN:SR") {
+  field(SCAN, "Passive")
+#(Gaus*0.0001)(Tesla)/0.027(meter)
+  field(CALC, "A/270.0")
+  field(INPA, "$(SYS):QWRNGAUSS:SR CPP")
+  field(FLNK, "$(SYS):SUBFIELD3:SR")
+}
+
+record(sub, "$(SYS):SUBFIELD3:SR") {
+  field(SCAN, "Passive")
+  field(INAM, "FieldMapCurrentQWRNInit")
+  field(SNAM, "FieldMapCurrentQWRNProc")
+  field(INPA, "$(SYS):CALCQWRN:SR")
+  field(FLNK, "$(SYS):QWRNHI:SR")
+}
+
+
+record(ai, "$(SYS):QWRNHI:SR") {
+  field(SCAN, "Passive")
+  field(DTYP, "Soft Channel")
+  field(LINR, "fieldCnvQWRNEWHI")
+  field(INP, "$(SYS):SUBFIELD3:SR")
+}

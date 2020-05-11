@@ -1,0 +1,39 @@
+program sncFieldMap
+option +r;
+option -c;
+
+%% #include <epicsThread.h>
+
+double field;
+/*assign field to "{SYS}-{SUBSYS}:{DEV}:{FIELD_PV}";*/
+assign field to "{SYS}:{FIELD_PV}";
+monitor field;
+
+evflag ef_field;
+sync field ef_field;
+
+double current;
+/*assign current to "{SYS}-{SUBSYS}:{DEV}:{CURRENT_PV}";*/
+/*MEBT-QM3:Danfysik:SETCURRENT*/
+assign current to "{PREFIX}:{DEV}:{CURRENT_PV}";
+monitor current;
+
+
+ss fieldMapScan 
+{
+	state init{
+		when(TRUE){
+			current = field;
+			pvPut(current);
+		}state fieldMap
+	}
+
+	state fieldMap
+	{
+		when(efTestAndClear(ef_field))
+		{
+			current = field;
+			pvPut(current);
+		}state fieldMap
+	}
+}
