@@ -17,25 +17,65 @@ int main(int argc, char *argv[])
 
     TessBaseAPI *api = new TessBaseAPI();
 
-    if(api->Init(NULL, "eng"))
+    //if(api->Init(NULL, "eng"))
+    if(api->Init(nullptr, "eng"))
     {
         cerr << "Could Not Initialize tesseract" << endl;
         exit(-1);
     };
 
-    Pix *image = pixRead("/home/ctrluser/image/test.png");
+    Pix *image = pixRead("./test.png");
     api->SetImage(image);
 
     outText = api->GetUTF8Text();
 
-    cout <<"OCR Out Text: " << outText << endl;
-    FILE *fp = fopen("/home/ctrluser/image/test.txt", "wb");
+    cout <<"OCR Out Text: \n" << outText << endl;
+    FILE *fp = fopen("./test.txt", "wb");
     fputs(outText, fp);
     fclose(fp);
 
     api->End();
     delete [] outText;
     pixDestroy(&image);
+
+    Mat img_color;
+
+    VideoCapture cap(0);
+
+    if(!cap.isOpened())
+    {
+       cerr << "Camera Open Error!!" << endl;
+       return(-1);
+    };
+
+    Size size = Size(static_cast<int>(cap.get(CAP_PROP_FRAME_WIDTH)), static_cast<int>(cap.get(CAP_PROP_FRAME_HEIGHT)));
+
+    VideoWriter writer;
+    double fps = 30.0;
+
+    writer.open("output.avi", VideoWriter::fourcc('M','J', 'P','G'), fps, size,true);
+
+    if(!writer.isOpened())
+    {
+        cerr << "Save Error!!" << endl;
+        return(-1);
+    }
+
+    while(true)
+    {
+        cap.read(img_color);
+
+        if(img_color.empty())
+        {
+            cerr << "Empty Frame Captured!!" << endl;
+            break;
+        };
+
+        writer.write(img_color);
+        imshow("Color", img_color);
+
+        if(waitKey(25) >= 0) break;
+    };
 
     return 0;
     //return a.exec();

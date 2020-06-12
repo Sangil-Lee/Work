@@ -23,14 +23,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-unix:!macx: LIBS += -L$$PWD/../../../../usr/local/lib/ -ltesseract
+unix:!macx: LIBS += -L/usr/local/lib/ -ltesseract
 
-INCLUDEPATH += $$PWD/../../../../usr/local/include
-DEPENDPATH += $$PWD/../../../../usr/local/include
+INCLUDEPATH += /usr/local/include
+INCLUDEPATH += /usr/local/include/opencv4
+DEPENDPATH += /usr/local/include
 
-unix:!macx: LIBS += -L$$PWD/../../../../usr/local/lib/ -lleptonica -lz -lpng -ljpeg -ltiff
+unix:!macx: LIBS += -L/usr/local/lib/ -lleptonica -lz -lpng -ljpeg -ltiff -lgif
 
-INCLUDEPATH += $$PWD/../../../../usr/local/include
-DEPENDPATH += $$PWD/../../../../usr/local/include
+unix:!macx: PRE_TARGETDEPS += /usr/local/lib/libleptonica.a
 
-unix:!macx: PRE_TARGETDEPS += $$PWD/../../../../usr/local/lib/libleptonica.a
+unix:!macx: LIBS += -L/usr/local/lib/ -lleptonica -lz -lpng -ljpeg -ltiff -lgif -lopencv_features2d -lopencv_imgproc -lopencv_video -lopencv_features2d -lopencv_ml -lopencv_video -lopencv_features2d -lopencv_ml -lopencv_flann -lopencv_ml -lopencv_flann -lopencv_objdetect -lopencv_flann -lopencv_objdetect -lopencv_gapi -lopencv_objdetect -lopencv_gapi -lopencv_photo -lopencv_calib3d -lopencv_gapi -lopencv_photo -lopencv_calib3d -lopencv_highgui -lopencv_photo -lopencv_calib3d -lopencv_highgui -lopencv_stitching -lopencv_core -lopencv_highgui -lopencv_stitching -lopencv_core -lopencv_imgcodecs -lopencv_stitching -lopencv_core -lopencv_imgcodecs -lopencv_videoio -lopencv_dnn -lopencv_imgcodecs -lopencv_videoio -lopencv_dnn -lopencv_imgproc -lopencv_videoio -lopencv_dnn -lopencv_imgproc -lopencv_video
