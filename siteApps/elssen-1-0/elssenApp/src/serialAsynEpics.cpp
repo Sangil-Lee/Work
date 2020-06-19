@@ -22,6 +22,10 @@
 #include <random>
 #include <ctime>
 
+#if defined(WINDOWS_QT) && (WINDOWS_QT==1)
+#include "QDebug"
+#endif
+
 #include "serialAsynEpics.h"
 
 static void userProcess(void *drvPvt);
@@ -173,7 +177,7 @@ asynStatus SerailAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *
     int function = pasynUser->reason;
     asynStatus status = asynSuccess;
     epicsTimeStamp timeStamp;
-    const char *functionName = "readFlot64Array";
+    //const char *functionName = "readFlot64Array";
 
     getTimeStamp(&timeStamp);
     pasynUser->timestamp = timeStamp;
@@ -181,7 +185,7 @@ asynStatus SerailAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *
     RegMap regmap = regmaptable[function];
 
 	float	rdValue[nElements];
-	int count = 0;
+	//int count = 0;
 
 	//regmap.pNIDAQ->ReadAnalog(rdValue, &count, nElements, 2.0);
 
@@ -534,6 +538,113 @@ void SerailAsynEpics::UserProcess()
 {
 	//struct timespec vartime;
 	//long time_elapsed_nanos;
+	//silee++
+#if defined(WINDOWS_QT) && (WINDOWS_QT==1) 
+	QSerialPort qSerialPort;
+	//qSerialPort.setPortName("\\.COM5");
+	qSerialPort.setPortName(mSerialPort.c_str());
+	cout << "Port Name: " << qSerialPort.portName().toStdString() << endl;
+
+	// Set the baud rate of the serial port.
+	if (!qSerialPort.open(QIODevice::ReadWrite))
+		cout << "Fail to Open Serial Port:" << qSerialPort.portName().toStdString() << endl;
+
+	if(!qSerialPort.setBaudRate(QSerialPort::Baud115200))
+		cout << "Fail to set Baud Rate:" << qSerialPort.portName().toStdString() << endl;
+
+	// Set the number of data bits.
+	if(!qSerialPort.setDataBits(QSerialPort::Data8))
+		cout << "Fail to set Set Data Bits:" << qSerialPort.portName().toStdString() << endl;
+
+	// Turn off hardware flow control.
+	if(!qSerialPort.setFlowControl(QSerialPort::NoFlowControl))
+		cout << "Fail to set Flow Control:" << qSerialPort.portName().toStdString() << endl;
+
+	// Disable parity.
+	if(!qSerialPort.setParity(QSerialPort::NoParity))
+		cout << "Fail to set Parity Bit:" << qSerialPort.portName().toStdString() << endl;
+
+	// Set the number of stop bits.
+	if(!qSerialPort.setStopBits(QSerialPort::OneStop))
+		cout << "Fail to set Stop Bit:" << qSerialPort.portName().toStdString() << endl;
+
+	QByteArray read_buffer;
+    size_t ms_timeout = 1000 ;
+	while(true)
+	{
+		read_buffer = qSerialPort.readAll();
+		while(qSerialPort.waitForReadyRead(ms_timeout))
+		{
+			read_buffer.append(qSerialPort.readAll());
+		};
+
+		if (qSerialPort.error() == QSerialPort::ReadError)
+		{
+			cout << "Failed to read from port:" <<mSerialPort << ", Error:" << qSerialPort.errorString().toStdString() << endl;
+			continue;
+		}
+		else if (read_buffer.isEmpty())
+		{
+			//cout << "No data was currently available for reading from port: " << mSerialPort << endl;
+			continue;
+		};
+
+		if (serialDebug >= 2) qDebug() << read_buffer.toHex();
+
+		std::string strstring = read_buffer.toHex().toStdString();
+		//if (strstring.empty() == true || strstring.size() != 28 || strstring.find("eace") == std::string::npos) continue;
+		if (strstring.empty() == true || strstring.find("eace") == std::string::npos) continue;
+
+		//Elssen Algorithm
+		//serial index: 8,9,10,11
+		int midnum = stoi(strstring.substr(9, 1), 0, 16) + stoi(strstring.substr(10, 1), 0, 16);
+		stringstream strmid;
+		strmid << std::hex << midnum << flush;
+		string snum = strstring.substr(8, 1) + strmid.str() + strstring.substr(11, 1);
+		int nserial = stoi(snum, 0, 16);
+
+		float temp_a = 0.0f, temp_b = 0.0f, temp_c = 0.0f, temp_d = 0.0f;
+		temp_a = stoi(strstring.substr(12, 4), 0, 16) / 100.0;
+		temp_b = stoi(strstring.substr(16, 4), 0, 16) / 100.0;
+		temp_c = stoi(strstring.substr(20, 4), 0, 16) / 100.0;
+		temp_d = stoi(strstring.substr(24, 4), 0, 16) / 100.0;
+
+		//random number
+		srand(time(nullptr));
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<> dis(0.01, 0.02);
+		float fRvar = dis(gen);
+
+		std::time_t datetime = std::time(nullptr);
+
+		if (serialDebug >= 2)
+			printf("\n Serial: %d, TempA: %f, TempB: %f, TempC: %f, Tempd: %f, Time:%s\n", nserial, temp_a + fRvar, temp_b + fRvar, temp_c, temp_d,
+				   std::asctime(std::localtime(&datetime)));
+
+		string strserial = to_string(nserial);
+		RegMap regmap;
+		for (auto iter = regmapfile.begin(); iter != regmapfile.end(); ++iter)
+		{
+			regmap = iter->second;
+			string sdrvName(regmap.drvname);
+			if (sdrvName.find(strserial) != string::npos)
+			{
+				string pvnameA = strserial + string("_TEMP_A");
+				string pvnameB = strserial + string("_TEMP_B");
+				if ((setParamValue(pvnameA, temp_a + fRvar)) == 0)
+				{
+					callParamCallbacks();
+				};
+				if ((setParamValue(pvnameB, temp_b + fRvar)) == 0)
+				{
+					callParamCallbacks();
+				};
+			};
+		};
+	};
+    
+#else
 	SerialPort serialport;
 
 	try {
@@ -543,15 +654,6 @@ void SerailAsynEpics::UserProcess()
 	{
 		std::cerr << "The serial port did not open " << std::endl;
 	};
-
-#if 0
-	RegMap regmap;
-	int			index= 0;
-	for(auto iter : regmapfile)
-	{
-		index++;
-	};
-#endif
 
     // Set the baud rate of the serial port.
     serialport.SetBaudRate(BaudRate::BAUD_115200) ;
@@ -660,6 +762,7 @@ void SerailAsynEpics::UserProcess()
 
 		};//end while
 	};
+#endif
 }
 
 void SerailAsynEpics::getOptionBitset(OptionBit &optionbit, epicsUInt32 option, epicsUInt32 shift, epicsUInt32 mask)

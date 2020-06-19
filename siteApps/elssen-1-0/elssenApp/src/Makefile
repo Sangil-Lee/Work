@@ -8,12 +8,25 @@ DBD += serialAsynEpicsSupport.dbd
 
 LIBRARY_IOC += serialAsynEpicsSupport 
 
-#USR_CPPFLAGS += -std=c++11 -ggdb
-CXX_FLAGS += -std=gnu++14 -ggdb 
+USR_CPPFLAGS += -Wno-deprecated-declarations 
+CXX_FLAGS += -std=gnu++11 -ggdb 
 
+ifeq ($(WINDOWS_QT), YES)
+USR_CPPFLAGS += -DWINDOWS_QT=1
+USR_INCLUDES += -I$(WINDOWS_QT_DIR)/include
+USR_INCLUDES += -I$(WINDOWS_QT_DIR)/include/QtSerialPort
+USR_INCLUDES += -I$(WINDOWS_QT_DIR)/include/QtCore
+Qt5SerialPort_DIR = $(WINDOWS_QT_DIR)/lib.dll
+Qt5Core_DIR = $(WINDOWS_QT_DIR)/lib.dll
+INC += serialAsynEpics.h
+serialAsynEpicsSupport_SRCS += serialAsynEpics.cpp
+serialAsynEpicsSupport_LIBS += asyn Qt5SerialPort Qt5Core
+else
 INC += SerialPortConstants.h  SerialPort.h    SerialStreamBuf.h    SerialStream.h 	serialAsynEpics.h
 serialAsynEpicsSupport_SRCS += SerialPort.cpp  SerialStreamBuf.cpp  SerialStream.cpp serialAsynEpics.cpp
-serialAsynEpicsSupport_LIBS += asyn
+serialAsynEpicsSupport_LIBS += asyn 
+endif
+
 serialAsynEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #=============================
@@ -52,7 +65,11 @@ endif
 
 # Finally link to the EPICS Base libraries
 elssen_LIBS += serialAsynEpicsSupport
+ifeq ($(WINDOWS_QT), YES)
+elssen_LIBS += asyn Qt5SerialPort Qt5Core
+else
 elssen_LIBS += asyn
+endif
 elssen_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

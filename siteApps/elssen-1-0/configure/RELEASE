@@ -37,6 +37,19 @@ EPICS_BASE = /home/ctrluser/epics/7.0.3/base
 ASYN=${EPICS_SYNAPPS}/asyn
 SNCSEQ=${EPICS_SYNAPPS}/seq-2-2-6
 
+
+#Window Machine Installed Qt5.12.2
+#EPICS_BASE = f:/epics/7.0.3/base
+#SUPPORT=f:/epics/7.0.3/epicsLibs/synApps/support
+
+# Set RULES here if you want to use build rules from somewhere
+# other than EPICS_BASE:
+#RULES = $(MODULES)/build-rules
+#ASYN=F:/epics/7.0.3/epicsLibs/synApps/support/asyn
+#SNCSEQ=F:/epics/7.0.3/epicsLibs/synApps/support/seq-2.2.8
+#WINDOWS_QT_DIR=F:/Qt/5.12.2/mingw73_64
+
+
 # These lines allow developers to override these RELEASE settings
 # without having to modify this file directly.
 -include $(TOP)/../RELEASE.local

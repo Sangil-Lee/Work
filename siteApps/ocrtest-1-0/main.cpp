@@ -2,6 +2,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <tesseract/baseapi.h>
+//#include <tesseract/tesseract.h>
 #include <leptonica/allheaders.h>
 #include <iostream>
 
@@ -18,26 +19,37 @@ int main(int argc, char *argv[])
     TessBaseAPI *api = new TessBaseAPI();
 
     //if(api->Init(NULL, "eng"))
-    if(api->Init(nullptr, "eng"))
-    {
+    if(api->Init(nullptr, "eng")) {
         cerr << "Could Not Initialize tesseract" << endl;
         exit(-1);
     };
 
-    Pix *image = pixRead("./test.png");
+	FILE *fpng = fopen("./test.png", "rb");
+    Pix *image = pixReadStreamPng(fpng);
+	
+	api->SetVariable("user_defined_dpi", "300");
+	//api->SetVariable("tessedit_char_blacklist", "_");
+	//api->SetVariable("classify_bln_numeric_mode", "1");
+    //Pix *image = pixRead("./test.png");
     api->SetImage(image);
 
     outText = api->GetUTF8Text();
 
-    cout <<"OCR Out Text: \n" << outText << endl;
+    //cout <<"OCR Out Text: \n" << outText << endl;
+    cout <<"OCR Out Text: \n" << "\""<<outText << "\"" << endl;
+
+
     FILE *fp = fopen("./test.txt", "wb");
     fputs(outText, fp);
     fclose(fp);
+	fclose(fpng);
 
     api->End();
     delete [] outText;
     pixDestroy(&image);
 
+#if 0
+	//opencv2 test
     Mat img_color;
 
     VideoCapture cap(0);
@@ -76,6 +88,7 @@ int main(int argc, char *argv[])
 
         if(waitKey(25) >= 0) break;
     };
+#endif
 
     return 0;
     //return a.exec();
