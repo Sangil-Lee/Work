@@ -1,0 +1,130 @@
+program sncOPModeSeq
+option +r;
+
+%% #include <math.h>
+
+int steady;
+assign steady "{SYS}{SUBSYS}{DEV}{SUBDEV}Steady";
+monitor steady;
+
+
+evflag	evSysCheck;
+int syscheck[4];
+assign syscheck to {
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}InstCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}VacCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}PurgeCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}SysCheck"
+		};
+monitor syscheck;
+sync syscheck evSysCheck;
+
+ss steadystate
+{
+	state init
+	{
+		when(TRUE) 
+		{
+			//initialization
+			steady = 0;
+			pvPut(steady);
+			
+		} state systemstop
+	}
+
+	state systemstop
+	{
+		//when(delay(1.0))
+		when(syscheck[0] && syscheck[1]		
+				&& syscheck[2] && syscheck[3])
+		{
+			steady = 1;
+			pvPut(steady);
+		}state linacready
+	}
+
+	state linacready
+	{
+		when(delay(1.0))
+		{
+			steady = 2;
+			pvPut(steady);
+		}state standby4_5k
+
+		when(syscheck[0]||syscheck[1]		
+				||syscheck[2]||syscheck[3])
+		{
+			steady = 0;
+			pvPut(steady);
+		} state systemstop
+	}
+	
+	state standby4_5k
+	{
+		when(delay(1.0))
+		{
+			steady = 3;
+			pvPut(steady);
+		}state standby2k
+	}
+
+	state standby2k
+	{
+		when(delay(1.0))
+		{
+			steady = 4;
+			pvPut(steady);
+		}state normaloperation
+	}
+
+	state normaloperation
+	{
+		when(delay(1.0))
+		{
+		}state normaloperation
+	}
+}
+
+ss cooldown
+{
+	state init
+	{
+		when(TRUE)
+		{
+			//initialization
+
+		}state cooldown300to4_5k
+	}
+
+	state cooldown300to4_5k
+	{
+		//event
+		when(delay(1.0))
+		{
+		//action
+		}state cooldown300to4_5k
+	}
+}
+
+ss warmup
+{
+	state init
+	{
+		when(TRUE)
+		{
+			//initialization
+
+		}state reservoir2k
+	}
+
+	state reservoir2k
+	{
+		//event
+		when(delay(1.0))
+		{
+		//action
+		
+		}state reservoir2k
+	}
+
+}
