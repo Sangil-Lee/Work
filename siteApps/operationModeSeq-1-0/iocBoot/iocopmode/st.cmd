@@ -19,4 +19,4 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncOPModeSeq,"SYS=SCL3,SUBSYS=-CM01:,DEV=CM,SUBDEV=:"
+seq sncOPModeSeq,"SYS=SCL3,SUBSYS=-CM01:,DEV=CM,SUBDEV=:"
