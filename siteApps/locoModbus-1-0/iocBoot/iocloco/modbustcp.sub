@@ -1,0 +1,24 @@
+file "db/bi_bit.template" { pattern
+{P,					R,			PORT,    OFFSET,	ZNAM,   ONAM,     SCAN}
+{SRF1-QWR01:CM-,  InCh0,		MB_DIn,    0,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh1,		MB_DIn,    1,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh2,		MB_DIn,    2,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh3,		MB_DIn,    3,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh4,		MB_DIn,    4,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh5,		MB_DIn,    5,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh6,		MB_DIn,    6,       Open,   Close,    "I/O Intr"}
+{SRF1-QWR01:CM-,  InCh7,		MB_DIn,    7,       Open,   Close,    "I/O Intr"}
+}
+
+file "db/bo_bit.template" { pattern
+{P,					R,			PORT,    OFFSET,   ZNAM,  ONAM}
+{SRF1-QWR01:CM-,  OutCh0,		MB_DOut,    0,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh1,	    MB_DOut,    1,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh2,		MB_DOut,    2,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh3,		MB_DOut,    3,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh4,		MB_DOut,    4,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh5,	    MB_DOut,    5,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh6,		MB_DOut,    6,    Open,   Close}
+{SRF1-QWR01:CM-,  OutCh7,		MB_DOut,    7,    Open,   Close}
+}
+
