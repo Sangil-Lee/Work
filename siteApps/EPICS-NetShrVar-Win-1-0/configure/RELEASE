@@ -1,0 +1,16 @@
+## if you are not using the ISIS build system uncomment and
+## change the following lines and remove the includes below
+
+SUPPORT=F:/epics/7.0.3/epicsLibs/synApps/support
+EPICS_BASE=F:/epics/7.0.3/base
+CVI=F:/epics/7.0.3/siteApps/Ctrl_IOC/EPICS-NetShrVar-Win-1-0/CVI
+
+## optional extra local definitions here
+
+#ASYN=$(SUPPORT)/asyn
+ASYN=$(SUPPORT)/asyn
+
+-include $(TOP)/configure/RELEASE.private
+
+#include $(TOP)/../../../ISIS_CONFIG
+#-include $(TOP)/../../../ISIS_CONFIG.$(EPICS_HOST_ARCH)
