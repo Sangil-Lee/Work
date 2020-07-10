@@ -1,0 +1,149 @@
+program sncBeamMotorSeq
+
+option +r;
+
+%% #include <math.h>
+
+evflag    evReady;
+evflag    evDataInit;
+
+int seqnum;
+assign  seqnum to "{Prefix}:SeqNum";
+
+int ready_all;
+assign ready_all "{Prefix}:ReadyALL";
+monitor ready_all;
+
+sync ready_all evReady;
+
+int data_init_done;
+assign data_init_done "{Prefix}:DataInit";
+monitor data_init_done;
+sync data_init_done evDataInit;
+
+float center;
+assign center "${Prefix}:Center";
+monitor center;
+
+float width;
+assign width "${Prefix}:Width";
+monitor width;
+
+
+ss beamMotorStateSet
+{
+	state init
+	{
+		when(TRUE) {
+			seqnum = 0;
+			pvPut(seqnum);
+			efClear(evReady);
+			printf("Ready\n");
+		} state Ready
+	}
+
+	state Ready
+	{
+		//when(delay(1.0) && ready_all != 1 )
+		//when(ready_all != 1 )
+		when(efTestAndClear(evReady) && ready_all != 1)
+		{
+			seqnum = 0;
+			pvPut(seqnum);
+			printf("Move Ready\n");
+		} state Ready
+
+		when(ready_all == 1)
+		{
+			seqnum = 1;
+			pvPut(seqnum);
+			printf("Move Standby\n");
+		} state Standby
+	}
+
+	state Standby
+	{
+		when(efTestAndClear(evReady) && ready_all != 1) 
+		{
+			seqnum = 0;
+			printf("Move Ready\n");
+			pvPut(seqnum);
+		} state Ready
+
+		when(data_init_done == 1) 
+		{
+			seqnum = 2;
+			printf("Data Initialization... & Move Position\n");
+			pvPut(seqnum);
+		} state Position
+	}
+
+	state Position
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 3;
+			pvPut(seqnum);
+		} state Move1
+	}
+
+	state Move1
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 4;
+			pvPut(seqnum);
+		} state Acquistion1
+	}
+
+	state Acquistion1
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 5;
+			pvPut(seqnum);
+		} state Acquistion2
+	}
+
+	state Acquistion2
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 6;
+			pvPut(seqnum);
+		} state Writing
+	}
+
+	state Writing
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 7;
+			pvPut(seqnum);
+		} state Position
+
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 8;
+			pvPut(seqnum);
+		} state Stop
+	}
+
+	state Stop
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 9;
+			pvPut(seqnum);
+		} state Move2
+	}
+
+	state Move2
+	{
+		when(efTestAndClear(evReady)) 
+		{
+			seqnum = 10;
+			pvPut(seqnum);
+		} state Standby
+	}
+}

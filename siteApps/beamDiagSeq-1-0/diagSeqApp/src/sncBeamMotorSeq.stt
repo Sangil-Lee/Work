@@ -1,0 +1,291 @@
+program sncBeamMotorSeq
+
+option +r;
+
+%% #include <math.h>
+
+evflag    evReady;
+evflag    evDataInit;
+evflag    evStopError;
+
+int seqnum;
+assign  seqnum to "{Prefix}:SeqNum";
+
+int ready_all;
+assign ready_all "{Prefix}:ReadyALL";
+monitor ready_all;
+
+sync ready_all evReady;
+
+int data_init;
+assign data_init "{Prefix}:DataInit";
+monitor data_init;
+
+sync data_init evDataInit;
+
+double center;
+assign center "{Prefix}:Center";
+
+double width;
+assign width "{Prefix}:Width";
+
+monitor center;
+monitor width;
+
+int count;
+assign count "{Prefix}:Count";
+monitor count;
+
+int writing_done;
+assign writing_done "{Prefix}:WritingDone";
+monitor writing_done;
+
+int stoperror[2];
+assign stoperror to {
+			"{Prefix}:Stop",
+			"{Prefix}:Error"
+		};
+monitor stoperror;
+sync stoperror evStopError;
+
+int error;
+assign error "{Prefix}:Stop";
+monitor error;
+
+int move2;
+assign move2 "{Prefix}:Move2";
+monitor move2;
+
+double motorpos;
+assign motorpos "{Prefix}:MotorPos";
+monitor motorpos;
+
+
+ss beamMotorStateSet
+{
+	state init
+	{
+		when(TRUE) {
+			seqnum = 0;
+			pvPut(seqnum);
+			printf("Ready\n");
+		} state Ready
+	}
+
+	state Ready
+	{
+		//when(delay(1.0) && ready_all != 1 )
+		//when(ready_all != 1 )
+		when(efTestAndClear(evReady) && ready_all != 1)
+		{
+			seqnum = 0;
+			pvPut(seqnum);
+			printf("Move Ready\n");
+		} state Ready
+
+		when(ready_all == 1)
+		{
+			seqnum = 1;
+			pvPut(seqnum);
+			printf("Move Standby\n");
+		} state Standby
+	}
+
+	state Standby
+	{
+		when(efTestAndClear(evReady) && ready_all != 1) 
+		{
+			seqnum = 0;
+			printf("Move Ready\n");
+			pvPut(seqnum);
+		} state Ready
+
+		when(efTestAndClear(evDataInit) && data_init == 1) 
+		{
+			seqnum = 2;
+			printf("Move Position\n");
+			pvPut(seqnum);
+		} state Position
+	}
+
+	state Position
+	{
+		when(center > 100 && width > 10 && move2 != 1)
+		{
+			seqnum = 3;
+			printf("Move Move1\n");
+			pvPut(seqnum);
+		} state Move1
+
+		//silee
+		when(move2 == 1)
+		{
+			//goto motor po
+			printf("Goto Motor Position\n");
+			motorpos = 30;
+			count = 0;
+			pvPut(count);
+			pvPut(motorpos);
+		}state Move2
+	}
+
+	state Move1
+	{
+		when(delay(1.0)) 
+		{
+			printf("Moving...\n");
+			count++;
+			pvPut(count);
+			seqnum = 4;
+			pvPut(seqnum);
+		} state Move1
+
+		when(stoperror[0]==1 || stoperror[1] == 1)
+		{
+			count = 0;
+			pvPut(count);
+			printf("Move Stop\n");
+		} state Stop
+
+		when(count == 10) 
+		{
+			seqnum = 4;
+			printf("Move Acquisition1\n");
+			pvPut(seqnum);
+			count = 0;
+			pvPut(count);
+		} state Acquisition1
+	}
+
+	state Acquisition1
+	{
+		when(delay(1.0)) 
+		{
+			printf("Acuisition1...\n");
+			count++;
+			pvPut(count);
+			seqnum = 4;
+			pvPut(seqnum);
+		} state Acquisition1
+
+		when(stoperror[0]==1 || stoperror[1] == 1)
+		{
+			count = 0;
+			pvPut(count);
+			printf("Move Stop\n");
+		} state Stop
+
+		when(count == 10) 
+		{
+			seqnum = 5;
+			printf("Move Acquisition2\n");
+			pvPut(seqnum);
+			count = 0;
+			pvPut(count);
+		} state Acquisition2
+	}
+
+	state Acquisition2
+	{
+		when(delay(1.0)) 
+		{
+			printf("Acuisition2...\n");
+			count++;
+			pvPut(count);
+			seqnum = 5;
+			pvPut(seqnum);
+		} state Acquisition2
+		
+		when(stoperror[0]==1 || stoperror[1] == 1)
+		{
+			count = 0;
+			pvPut(count);
+			printf("Move Stop\n");
+		} state Stop
+
+		when(count == 10) 
+		{
+			seqnum = 6;
+			printf("Move Writing\n");
+			pvPut(seqnum);
+			count = 0;
+			pvPut(count);
+		} state Writing
+	}
+
+	state Writing
+	{
+		when(delay(1.0)) 
+		{
+			printf("Writing...\n");
+			seqnum = 6;
+			pvPut(seqnum);
+		} state Writing
+
+		when(writing_done == 1)
+		{
+			count = 0;
+			pvPut(count);
+			writing_done = 0;
+			pvPut(writing_done);
+		} state Position
+
+		when(stoperror[0]==1 || stoperror[1] == 1)
+		{
+			count = 0;
+			pvPut(count);
+			writing_done = 0;
+			pvPut(writing_done);
+			printf("Move Stop\n");
+			seqnum = 7;
+			pvPut(seqnum);
+		} state Stop
+	}
+
+	state Stop
+	{
+		when(move2 == 1)
+		{
+			//goto motor po
+			printf("Goto Motor Position\n");
+			motorpos = 30;
+			count = 0;
+			pvPut(count);
+			pvPut(motorpos);
+			seqnum = 8;
+			pvPut(seqnum);
+		}state Move2
+	}
+
+	state Move2
+	{
+		when(delay(1.0) && count != 10) 
+		{
+			printf("Move2 State...\n");
+			count++;
+			pvPut(count);
+			seqnum = 8;
+			pvPut(seqnum);
+		} state Move2
+
+		when(count == 10)
+		{
+			data_init = 0;
+			pvPut(data_init);
+			move2 = 0;
+			pvPut(move2);
+			printf("Move Standby\n");
+			count = 0;
+			pvPut(count);
+			width = center = 0;
+			pvPut(width);
+			pvPut(center);
+			stoperror[0] = stoperror[1] = 0;
+			pvPut(stoperror[0]);
+			pvPut(stoperror[1]);
+			seqnum = 9;
+			pvPut(seqnum);
+		}state Standby
+	}
+
+}

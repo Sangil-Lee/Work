@@ -1,0 +1,268 @@
+program sncLEDSeq
+
+option +r;
+
+
+string strbit;
+assign strbit to "{HOST}:StrBitOut";
+monitor strbit;
+
+int stop;
+assign stop to "{HOST}:Stop";
+monitor stop;
+
+float dely;
+assign dely to "{HOST}:Delay";
+monitor dely;
+
+int opmode;
+assign opmode to "{HOST}:OPMode";
+monitor opmode;
+
+
+%% #include <math.h>
+
+ss ledseq
+{
+	state init
+	{
+		when(TRUE)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+			opmode = 0;
+			pvPut(opmode,SYNC);
+		}state bluestate
+	}
+
+	state stopstate
+	{
+		when(stop == 0 && opmode == 0)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state bluestate
+	}
+
+	state bluestate
+	{
+		//when(delay(2.0))
+		when(delay(dely) && opmode == 0)
+		{
+			strcpy(strbit,"1000");
+			pvPut(strbit,SYNC);
+		}state greenstate
+
+		when(stop && opmode == 0)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state greenstate
+	{
+		//when(delay(2.0))
+		when(delay(dely) && opmode == 0)
+		{
+			strcpy(strbit,"0100");
+			pvPut(strbit,SYNC);
+		}state redstate
+
+		when(stop && opmode == 0)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state redstate
+	{
+		//when(delay(2.0))
+		when(delay(dely) && opmode == 0)
+		{
+			strcpy(strbit,"0010");
+			pvPut(strbit,SYNC);
+		}state orangestate
+
+		when(stop && opmode == 0)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state orangestate
+	{
+		//when(delay(2.0))
+		when(delay(dely) && opmode == 0)
+		{
+			strcpy(strbit,"0001");
+			pvPut(strbit,SYNC);
+		}state bluestate
+
+		when(stop && opmode == 0)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+}
+
+ss ledthreeseq
+{
+	state init
+	{
+		when(TRUE)
+		{
+		}state threeo
+	}
+
+	state stopstate
+	{
+		when(stop == 0 && opmode == 1)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state threeo 
+	}
+
+	state threeo
+	{
+		when(delay(dely) && opmode == 1)
+		{
+			strcpy(strbit,"1110");
+			pvPut(strbit,SYNC);
+		}state twooone
+
+		when(stop && opmode == 1)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state twooone
+	{
+		when(delay(dely) && opmode == 1)
+		{
+			strcpy(strbit,"1101");
+			pvPut(strbit,SYNC);
+		}state oneotwo
+
+		when(stop && opmode == 1)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state oneotwo
+	{
+		when(delay(dely) && opmode == 1)
+		{
+			strcpy(strbit,"1011");
+			pvPut(strbit,SYNC);
+		}state othree
+
+		when(stop && opmode == 1)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state othree
+	{
+		when(delay(dely) && opmode == 1)
+		{
+			strcpy(strbit,"0111");
+			pvPut(strbit,SYNC);
+		}state threeo
+
+		when(stop && opmode == 1)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+}
+
+ss ledtwoseq
+{
+	state init
+	{
+		when(TRUE)
+		{
+		}state oneoneoo
+	}
+
+	state stopstate
+	{
+		when(stop == 0 && opmode == 2)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state oneoneoo 
+	}
+
+	state oneoneoo
+	{
+		when(delay(dely) && opmode == 2)
+		{
+			strcpy(strbit,"1100");
+			pvPut(strbit,SYNC);
+		}state oneooneo
+
+		when(stop && opmode == 2)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state oneooneo
+	{
+		when(delay(dely) && opmode == 2)
+		{
+			strcpy(strbit,"1010");
+			pvPut(strbit,SYNC);
+		}state oooneone
+
+		when(stop && opmode == 2)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state oooneone
+	{
+		when(delay(dely) && opmode == 2)
+		{
+			strcpy(strbit,"0011");
+			pvPut(strbit,SYNC);
+		}state ooneoone
+
+		when(stop && opmode == 2)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+
+	state ooneoone
+	{
+		when(delay(dely) && opmode == 2)
+		{
+			strcpy(strbit,"0101");
+			pvPut(strbit,SYNC);
+		}state oneoneoo
+
+		when(stop && opmode == 2)
+		{
+			strcpy(strbit,"0");
+			pvPut(strbit,SYNC);
+		}state stopstate
+	}
+}

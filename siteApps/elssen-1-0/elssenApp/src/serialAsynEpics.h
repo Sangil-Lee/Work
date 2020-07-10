@@ -26,17 +26,24 @@ namespace __gnu_cxx {
 #include <tuple>
 #include <memory>
 
+//Windows using Qt
+#if defined(WINDOWS_QT) && (WINDOWS_QT==1) 
+#include <QSerialPort>
+#else
+//Linux
+#include "SerialPort.h"
+using namespace LibSerial;
+#endif
+
 #include "paramVal.h"
 #include "asynParamType.h"
 #include "ParamListInvalidIndex.h"
 #include "ParamValWrongType.h"
 #include "ParamValNotDefined.h"
 #include "asynPortDriver.h"
-#include "SerialPort.h"
-//
+
 
 using namespace std;
-using namespace LibSerial;
 
 extern "C" {
 }
@@ -58,8 +65,6 @@ private:
     epicsEventId eventId_;
     int system_init_ok;
 	string mSerialPort;
-
-	
 
 	//unsigned long bit test
 	typedef bitset<32> OptionBit;

@@ -24,3 +24,5 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+
+var serialDebug 2
