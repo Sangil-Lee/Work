@@ -1,0 +1,27 @@
+#!/usr/bin/expect
+
+set username [lindex $argv 0]
+set password  [lindex $argv 1]
+set hostname  [lindex $argv 2]
+
+if {[llength $argv] == 0} {
+	  send_user "Usage: scriptname username \'password\' hostname \n"
+		    exit 1
+}
+
+spawn ssh -o StrictHostKeyChecking=no $username@$hostname
+
+expect {
+	  "password:" { send "$password\r"; exp_continue }
+}
+
+expect -re "Last login:"
+
+send_user "\n# SSH is success \n"
+
+send "hostname \r\n"
+send "uptime \r\n"
+send "echo 'hello expect script' \r\n"
+send "exit \r"
+
+expect eof
