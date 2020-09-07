@@ -1,0 +1,1336 @@
+file "db/bi_macro.template" { pattern
+{SIGNAL,			ZNAM,		ONAM,			SCAN,		}
+{"SIGANL_1",		"Low",		"High",			"1 second",	}
+{"SIGANL_2",		"Low",		"High",			"1 second",	}
+{"SIGANL_3",		"Low",		"High",			"1 second",	}
+{"SIGANL_4",		"Low",		"High",			"1 second",	}
+{"SIGANL_5",		"Low",		"High",			"1 second",	}
+}
+
+###Start Address(0)############################
+file "db/aiFloat64.template" { pattern
+{SIGNAL,						PORT,		OFFSET,		DATA_TYPE,		LOPR,  HOPR,  PREC,		EGU,    SCAN		}
+{1CM-Valve:CDFeedBackCV,		SCL3DB_AIn,   0,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Valve:CDOutputCV,          SCL3DB_AIn,   2,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_2,                          SCL3DB_AIn,   4,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_3,                          SCL3DB_AIn,   6,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Valve:4KFeedBackCV,        SCL3DB_AIn,   8,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Valve:4KOutputCV,          SCL3DB_AIn,   10,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_6,                          SCL3DB_AIn,   12,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_7,                          SCL3DB_AIn,   14,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Valve:CDFeedBackCV,        SCL3DB_AIn,   16,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Valve:CDOutputCV,          SCL3DB_AIn,   18,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_10,                         SCL3DB_AIn,   20,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_11,                         SCL3DB_AIn,   22,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Valve:4KFeedBackCV,        SCL3DB_AIn,   24,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Valve:4KOutputCV,          SCL3DB_AIn,   26,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_14,                         SCL3DB_AIn,   28,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_15,                         SCL3DB_AIn,   30,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Level:4KCVCm,              SCL3DB_AIn,   32,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Level:4KCVPerc,            SCL3DB_AIn,   34,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_18,                         SCL3DB_AIn,   36,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_19,                         SCL3DB_AIn,   38,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Level:4KCVCm,              SCL3DB_AIn,   40,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Level:4KCVPerc,            SCL3DB_AIn,   42,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_22,                         SCL3DB_AIn,   44,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_23,                         SCL3DB_AIn,   46,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Press:THSVal,              SCL3DB_AIn,   48,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-Press:4KHiVal,             SCL3DB_AIn,   50,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_26,                         SCL3DB_AIn,   52,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_27,                         SCL3DB_AIn,   54,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Press:THSVal,              SCL3DB_AIn,   56,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-Press:4KHiVal,             SCL3DB_AIn,   58,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_30,                         SCL3DB_AIn,   60,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_31,                         SCL3DB_AIn,   62,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-CD:Heat:Voltage,           SCL3DB_AIn,   64,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-CD:Heat:Current,           SCL3DB_AIn,   66,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-CD:Heat:Watt,              SCL3DB_AIn,   68,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-CD:Heat:FeedBackCV,        SCL3DB_AIn,   70,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-CD:Heat:OutputCV,          SCL3DB_AIn,   72,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_37,                         SCL3DB_AIn,   74,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_38,                         SCL3DB_AIn,   76,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_39,                         SCL3DB_AIn,   78,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_44,                         SCL3DB_AIn,   80,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_43,                         SCL3DB_AIn,   82,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-4K:Heat:Voltage,           SCL3DB_AIn,   84,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-4K:Heat:Current,           SCL3DB_AIn,   86,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-4K:Heat:Watt,              SCL3DB_AIn,   88,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-4K:Heat:FeedBackCV,        SCL3DB_AIn,   90,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-4K:Heat:OutputCV,          SCL3DB_AIn,   92,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_47,                         SCL3DB_AIn,   94,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_48,                         SCL3DB_AIn,   96,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_49,                         SCL3DB_AIn,   98,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_50,                         SCL3DB_AIn,   100,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_51,                         SCL3DB_AIn,   102,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-CD:Heat:Voltage,           SCL3DB_AIn,   104,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-CD:Heat:Current,           SCL3DB_AIn,   106,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-CD:Heat:Watt,              SCL3DB_AIn,   108,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-CD:Heat:FeedBackCV,        SCL3DB_AIn,   110,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-CD:Heat:OutputCV,          SCL3DB_AIn,   112,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_57,                         SCL3DB_AIn,   114,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_58,                         SCL3DB_AIn,   116,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_59,                         SCL3DB_AIn,   118,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_60,                         SCL3DB_AIn,   120,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_61,                         SCL3DB_AIn,   122,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-4K:Heat:Voltage,           SCL3DB_AIn,   124,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-4K:Heat:Current,           SCL3DB_AIn,   126,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-4K:Heat:Watt,              SCL3DB_AIn,   128,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-4K:HeatFeed:BackCV,        SCL3DB_AIn,   130,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-4K:Heat:OutputCV,          SCL3DB_AIn,   132,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_67,                         SCL3DB_AIn,   134,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_68,                         SCL3DB_AIn,   136,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_69,                         SCL3DB_AIn,   138,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_70,                         SCL3DB_AIn,   140,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_71,                         SCL3DB_AIn,   142,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{1CM-WS-ION:Feedback,           SCL3DB_AIn,   144,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{2CM-WS-ION:Feedback,           SCL3DB_AIn,   146,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_74,                         SCL3DB_AIn,   148,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_75,                         SCL3DB_AIn,   150,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:1,                   SCL3DB_AIn,   152,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:2,                   SCL3DB_AIn,   154,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:3,                   SCL3DB_AIn,   156,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:4,                   SCL3DB_AIn,   158,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:5,                   SCL3DB_AIn,   160,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:6,                   SCL3DB_AIn,   162,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:7,                   SCL3DB_AIn,   164,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Press:8,                   SCL3DB_AIn,   166,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_84,                         SCL3DB_AIn,   168,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_85,                         SCL3DB_AIn,   170,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_86,                         SCL3DB_AIn,   172,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_87,                         SCL3DB_AIn,   174,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_88,                         SCL3DB_AIn,   176,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_89,                         SCL3DB_AIn,   178,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_90,                         SCL3DB_AIn,   180,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_91,                         SCL3DB_AIn,   182,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:1FeedBackCV,         SCL3DB_AIn,   184,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:1OutputCV,           SCL3DB_AIn,   186,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_94,                         SCL3DB_AIn,   188,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_95,                         SCL3DB_AIn,   190,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:2FeedBackCV,         SCL3DB_AIn,   192,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:2OutputCV,           SCL3DB_AIn,   194,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_98,                         SCL3DB_AIn,   196,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_99,                         SCL3DB_AIn,   198,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:3FeedBackCV,         SCL3DB_AIn,   200,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:3OutputCV,           SCL3DB_AIn,   202,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_102,                        SCL3DB_AIn,   204,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_103,                        SCL3DB_AIn,   206,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:4FeedBackCV,         SCL3DB_AIn,   208,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:4OutputCV,           SCL3DB_AIn,   210,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_106,                        SCL3DB_AIn,   212,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_107,                        SCL3DB_AIn,   214,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:5FeedBackCV,         SCL3DB_AIn,   216,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:5OutputCV,           SCL3DB_AIn,   218,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_110,                        SCL3DB_AIn,   220,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_111,                        SCL3DB_AIn,   222,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:6FeedBackCV,         SCL3DB_AIn,   224,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:6OutputCV,           SCL3DB_AIn,   226,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_114,                        SCL3DB_AIn,   228,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_115,                        SCL3DB_AIn,   230,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:7FeedBackCV,         SCL3DB_AIn,   232,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:7OutputCV,           SCL3DB_AIn,   234,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_118,                        SCL3DB_AIn,   236,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_119,                        SCL3DB_AIn,   238,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:8FeedBackCV,         SCL3DB_AIn,   240,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{CDS-Valve:8OutputCV,           SCL3DB_AIn,   242,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_122,                        SCL3DB_AIn,   244,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_123,                        SCL3DB_AIn,   246,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_124,                        SCL3DB_AIn,   248,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch1,                     SCL3DB_AIn,   250,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch2,                     SCL3DB_AIn,   252,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch3,                     SCL3DB_AIn,   254,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch4,                     SCL3DB_AIn,   256,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch5,                     SCL3DB_AIn,   258,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch6,                     SCL3DB_AIn,   260,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch7,                     SCL3DB_AIn,   262,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp1_ch8,                     SCL3DB_AIn,   264,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch1,                     SCL3DB_AIn,   266,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch2,                     SCL3DB_AIn,   268,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch3,                     SCL3DB_AIn,   270,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch4,                     SCL3DB_AIn,   272,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch5,                     SCL3DB_AIn,   274,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch6,                     SCL3DB_AIn,   276,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch7,                     SCL3DB_AIn,   278,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp2_ch8,                     SCL3DB_AIn,   280,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch1,                     SCL3DB_AIn,   282,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch2,                     SCL3DB_AIn,   284,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch3,                     SCL3DB_AIn,   286,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch4,                     SCL3DB_AIn,   288,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch5,                     SCL3DB_AIn,   290,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch6,                     SCL3DB_AIn,   292,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch7,                     SCL3DB_AIn,   294,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp3_ch8,                     SCL3DB_AIn,   296,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch1,                     SCL3DB_AIn,   298,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch2,                     SCL3DB_AIn,   300,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch3,                     SCL3DB_AIn,   302,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch4,                     SCL3DB_AIn,   304,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch5,                     SCL3DB_AIn,   306,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch6,                     SCL3DB_AIn,   308,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch7,                     SCL3DB_AIn,   310,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp4_ch8,                     SCL3DB_AIn,   312,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch1,                     SCL3DB_AIn,   314,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch2,                     SCL3DB_AIn,   316,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch3,                     SCL3DB_AIn,   318,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch4,                     SCL3DB_AIn,   320,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch5,                     SCL3DB_AIn,   322,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch6,                     SCL3DB_AIn,   324,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch7,                     SCL3DB_AIn,   326,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{Temp5_ch8,                     SCL3DB_AIn,   328,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_165,                        SCL3DB_AIn,   330,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_166,                        SCL3DB_AIn,   332,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_167,                        SCL3DB_AIn,   334,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_168,                        SCL3DB_AIn,   336,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_169,                        SCL3DB_AIn,   338,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_170,                        SCL3DB_AIn,   340,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_171,                        SCL3DB_AIn,   342,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_172,                        SCL3DB_AIn,   344,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_173,                        SCL3DB_AIn,   346,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+{AI_174,                        SCL3DB_AIn,   348,		FLOAT32_BE,		-1e6,  1e6,   2,        "K",    "1 second"	}
+}
+
+
+###Start Address(700Bit, 175(32bit))############################
+file "db/aoFloat64.template" { pattern,
+{SIGNAL,						PORT,			OFFSET,	DATA_TYPE,		LOPR,  HOPR,  PREC,		EGU }
+{1CM-Valve:CDSetPoint,			SCL3DB_AOut,	  0,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:CDSetManualRamp,		SCL3DB_AOut,      2,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_2,			                SCL3DB_AOut,      4,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_3,			                SCL3DB_AOut,      6,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_4,			                SCL3DB_AOut,      8,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_5,			                SCL3DB_AOut,     10,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_6,			                SCL3DB_AOut,     12,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_7,			                SCL3DB_AOut,     14,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_8,			                SCL3DB_AOut,     16,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_9,			                SCL3DB_AOut,     18,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_10,			                SCL3DB_AOut,     20,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_11,			                SCL3DB_AOut,     22,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KPGain,			    SCL3DB_AOut,     24,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KIGain,			    SCL3DB_AOut,     26,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KDGain,			    SCL3DB_AOut,     28,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KSetManual,			SCL3DB_AOut,     30,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KSetPoint,			SCL3DB_AOut,     32,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KSetDeadband,		SCL3DB_AOut,     34,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KSetManualRamp,		SCL3DB_AOut,     36,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Valve:4KCycleTime,			SCL3DB_AOut,     38,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_20,			                SCL3DB_AOut,     40,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_21,			                SCL3DB_AOut,     42,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_22,			                SCL3DB_AOut,     44,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_23,			                SCL3DB_AOut,     46,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_24,			                SCL3DB_AOut,     48,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_25,			                SCL3DB_AOut,     50,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_26,			                SCL3DB_AOut,     52,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_27,			                SCL3DB_AOut,     54,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:CDSetPoint,			SCL3DB_AOut,     56,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:CDSetManualRamp,		SCL3DB_AOut,     58,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_30,			                SCL3DB_AOut,     60,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_31,			                SCL3DB_AOut,     62,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_32,			                SCL3DB_AOut,     64,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_33,			                SCL3DB_AOut,     66,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_34,			                SCL3DB_AOut,     68,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_35,			                SCL3DB_AOut,     70,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_36,			                SCL3DB_AOut,     72,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_37,			                SCL3DB_AOut,     74,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_38,			                SCL3DB_AOut,     76,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_39,			                SCL3DB_AOut,     78,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KPGain,			    SCL3DB_AOut,     80,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KIGain,			    SCL3DB_AOut,     82,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KDGain,			    SCL3DB_AOut,     84,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KSetManual,			SCL3DB_AOut,     86,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KSetPoint,			SCL3DB_AOut,     88,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KSetDeadband,		SCL3DB_AOut,     90,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KSetManualRamp,		SCL3DB_AOut,     92,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Valve:4KCycleTime,			SCL3DB_AOut,     94,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_48,			                SCL3DB_AOut,     96,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_49,			                SCL3DB_AOut,     98,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_50,			                SCL3DB_AOut,    100,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_51,			                SCL3DB_AOut,    102,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_52,			                SCL3DB_AOut,    104,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_53,			                SCL3DB_AOut,    106,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_54,			                SCL3DB_AOut,    108,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_55,			                SCL3DB_AOut,    110,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Level:4KSetHiHi,			SCL3DB_AOut,    112,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Level:4KSetLoLo,			SCL3DB_AOut,    114,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_58,			                SCL3DB_AOut,    116,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_59,			                SCL3DB_AOut,    118,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Level:4KSetHiHi,			SCL3DB_AOut,    120,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Level:4KSetLoLo,			SCL3DB_AOut,    122,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_62,			                SCL3DB_AOut,    124,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_63,			                SCL3DB_AOut,    126,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Press:THSHiSetHiHi,		SCL3DB_AOut,    128,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Press:THSHiSetLoLo,		SCL3DB_AOut,    130,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_66,			                SCL3DB_AOut,    132,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_67,			                SCL3DB_AOut,    134,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Press:4KHiSetHiHi,			SCL3DB_AOut,    136,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Press:4KHiSetLoLo,			SCL3DB_AOut,    138,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_70,			                SCL3DB_AOut,    140,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_71,			                SCL3DB_AOut,    142,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Press:THSHiSetHiHi,		SCL3DB_AOut,    144,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Press:THSHiSetLoLo,		SCL3DB_AOut,    146,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_74,			                SCL3DB_AOut,    148,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_75,			                SCL3DB_AOut,    150,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Press:4KHiSetHiHi,			SCL3DB_AOut,    152,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Press:4KHiSetLoLo,			SCL3DB_AOut,    154,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_76,			                SCL3DB_AOut,    156,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_77,			                SCL3DB_AOut,    158,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Sol:4KSetOpenPress,		SCL3DB_AOut,    160,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Sol:4KSetClosePress,		SCL3DB_AOut,    162,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_80,			                SCL3DB_AOut,    164,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_81,			                SCL3DB_AOut,    166,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Sol:4KSetOpenPress,		SCL3DB_AOut,    168,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Sol:4KSetClosePress,		SCL3DB_AOut,    170,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_84,			                SCL3DB_AOut,    172,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_85,			                SCL3DB_AOut,    174,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDPGain,			    SCL3DB_AOut,    176,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDIGain,			    SCL3DB_AOut,    178,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDDGain,			    SCL3DB_AOut,    180,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetManual,			SCL3DB_AOut,    182,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetPoint,			SCL3DB_AOut,    184,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetDeadband,		SCL3DB_AOut,    186,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetManualRamp,		SCL3DB_AOut,    188,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDCycleTime,			SCL3DB_AOut,    190,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDStepTime,			SCL3DB_AOut,    192,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetWatt,			SCL3DB_AOut,    194,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:CDSetTemp,			SCL3DB_AOut,    196,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_97,			                SCL3DB_AOut,    198,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_98,			                SCL3DB_AOut,    200,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_99,			                SCL3DB_AOut,    202,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_100,			            SCL3DB_AOut,    204,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_101,			            SCL3DB_AOut,    206,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_102,			            SCL3DB_AOut,    208,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_103,			            SCL3DB_AOut,    210,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_104,			            SCL3DB_AOut,    212,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KPGain,			    SCL3DB_AOut,    214,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KIGain,			    SCL3DB_AOut,    216,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KDGain,			    SCL3DB_AOut,    218,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetManual,			SCL3DB_AOut,    220,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetPoint,			SCL3DB_AOut,    222,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetDeadband,		SCL3DB_AOut,    224,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetManualRamp,		SCL3DB_AOut,    226,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KCycleTime,			SCL3DB_AOut,    228,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KStepTime,			SCL3DB_AOut,    230,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetWatt,			SCL3DB_AOut,    232,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{1CM-Heat:4KSetTemp,			SCL3DB_AOut,    234,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_116,			            SCL3DB_AOut,    236,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_117,			            SCL3DB_AOut,    238,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_118,			            SCL3DB_AOut,    240,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_119,			            SCL3DB_AOut,    242,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_120,			            SCL3DB_AOut,    244,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_121,			            SCL3DB_AOut,    246,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_122,			            SCL3DB_AOut,    248,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_123,			            SCL3DB_AOut,    250,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDPGain,			    SCL3DB_AOut,    252,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDIGain,			    SCL3DB_AOut,    254,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDDGain,			    SCL3DB_AOut,    256,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetManual,			SCL3DB_AOut,    258,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetPoint,			SCL3DB_AOut,    260,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetDeadband,		SCL3DB_AOut,    262,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetManualRamp,		SCL3DB_AOut,    264,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDCycleTime,			SCL3DB_AOut,    266,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDStepTime,			SCL3DB_AOut,    268,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetWatt,			SCL3DB_AOut,    270,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:CDSetTemp,			SCL3DB_AOut,    272,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_135,			            SCL3DB_AOut,    274,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_136,			            SCL3DB_AOut,    276,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_137,			            SCL3DB_AOut,    278,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_138,			            SCL3DB_AOut,    280,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_139,			            SCL3DB_AOut,    282,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_140,			            SCL3DB_AOut,    284,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_141,			            SCL3DB_AOut,    286,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_142,			            SCL3DB_AOut,    288,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KPGain,			    SCL3DB_AOut,    290,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KIGain,			    SCL3DB_AOut,    292,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KDGain,			    SCL3DB_AOut,    294,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetManual,			SCL3DB_AOut,    296,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetPoint,			SCL3DB_AOut,    298,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetDeadband,		SCL3DB_AOut,    300,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetManualRamp,		SCL3DB_AOut,    302,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KCycleTime,			SCL3DB_AOut,    304,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KStepTime,			SCL3DB_AOut,    306,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetWatt,			SCL3DB_AOut,    308,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{2CM-Heat:4KSetTemp,			SCL3DB_AOut,    310,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_154,			            SCL3DB_AOut,    312,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_155,			            SCL3DB_AOut,    314,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_156,			            SCL3DB_AOut,    316,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_157,			            SCL3DB_AOut,    318,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_158,			            SCL3DB_AOut,    320,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_159,			            SCL3DB_AOut,    322,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_150,			            SCL3DB_AOut,    324,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_161,			            SCL3DB_AOut,    326,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1PGain,			    SCL3DB_AOut,    328,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1IGain,			    SCL3DB_AOut,    330,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1DGain,			    SCL3DB_AOut,    332,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1SetManual,			SCL3DB_AOut,    334,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1SetPoint,			SCL3DB_AOut,    336,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1SetDeadband,		SCL3DB_AOut,    338,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1SetManualRamp,		SCL3DB_AOut,    340,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:1CycleTime,			SCL3DB_AOut,    342,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_170,			            SCL3DB_AOut,    344,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_171,			            SCL3DB_AOut,    346,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_172,			            SCL3DB_AOut,    348,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_173,			            SCL3DB_AOut,    350,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_174,			            SCL3DB_AOut,    352,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_175,			            SCL3DB_AOut,    354,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_176,			            SCL3DB_AOut,    356,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_177,			            SCL3DB_AOut,    358,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2PGain,			    SCL3DB_AOut,    360,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2IGain,			    SCL3DB_AOut,    362,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2DGain,			    SCL3DB_AOut,    364,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2SetManual,			SCL3DB_AOut,    366,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2SetPoint,			SCL3DB_AOut,    368,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2SetDeadband,		SCL3DB_AOut,    370,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2SetManualRamp,		SCL3DB_AOut,    372,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:2CycleTime,			SCL3DB_AOut,    374,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_186,			            SCL3DB_AOut,    376,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_187,			            SCL3DB_AOut,    378,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_188,			            SCL3DB_AOut,    380,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_189,			            SCL3DB_AOut,    382,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_190,			            SCL3DB_AOut,    384,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_191,			            SCL3DB_AOut,    386,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_192,			            SCL3DB_AOut,    388,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_193,			            SCL3DB_AOut,    390,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3PGain,			    SCL3DB_AOut,    392,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3IGain,			    SCL3DB_AOut,    394,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3DGain,			    SCL3DB_AOut,    396,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3SetManual,			SCL3DB_AOut,    398,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3SetPoint,			SCL3DB_AOut,    400,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3SetDeadband,		SCL3DB_AOut,    402,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3SetManualRamp,		SCL3DB_AOut,    404,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:3CycleTime,			SCL3DB_AOut,    406,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_202,			            SCL3DB_AOut,    408,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_203,			            SCL3DB_AOut,    410,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_204,			            SCL3DB_AOut,    412,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_205,			            SCL3DB_AOut,    414,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_206,			            SCL3DB_AOut,    416,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_207,			            SCL3DB_AOut,    418,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_208,			            SCL3DB_AOut,    420,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_209,			            SCL3DB_AOut,    422,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4PGain,			    SCL3DB_AOut,    424,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4IGain,			    SCL3DB_AOut,    426,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4DGain,			    SCL3DB_AOut,    428,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4SetManual,			SCL3DB_AOut,    430,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4SetPoint,			SCL3DB_AOut,    432,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4SetDeadband,		SCL3DB_AOut,    434,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4SetManualRamp,		SCL3DB_AOut,    436,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:4CycleTime,			SCL3DB_AOut,    438,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_218,			            SCL3DB_AOut,    440,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_219,			            SCL3DB_AOut,    442,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_220,			            SCL3DB_AOut,    444,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_221,			            SCL3DB_AOut,    446,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_222,			            SCL3DB_AOut,    448,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_223,			            SCL3DB_AOut,    450,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_224,			            SCL3DB_AOut,    452,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_225,			            SCL3DB_AOut,    454,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5PGain,			    SCL3DB_AOut,    456,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5IGain,			    SCL3DB_AOut,    458,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5DGain,			    SCL3DB_AOut,    460,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5SetManual,			SCL3DB_AOut,    462,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5SetPoint,			SCL3DB_AOut,    464,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5SetDeadband,		SCL3DB_AOut,    466,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5SetManualRamp,		SCL3DB_AOut,    468,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:5CycleTime,			SCL3DB_AOut,    470,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_234,			            SCL3DB_AOut,    472,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_235,			            SCL3DB_AOut,    474,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_236,			            SCL3DB_AOut,    476,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_237,			            SCL3DB_AOut,    478,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_238,			            SCL3DB_AOut,    480,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_239,			            SCL3DB_AOut,    482,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_240,			            SCL3DB_AOut,    484,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_241,			            SCL3DB_AOut,    486,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6PGain,			    SCL3DB_AOut,    488,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6IGain,			    SCL3DB_AOut,    490,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6DGain,			    SCL3DB_AOut,    492,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6SetManual,			SCL3DB_AOut,    494,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6SetPoint,			SCL3DB_AOut,    496,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6SetDeadband,		SCL3DB_AOut,    498,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6SetManualRamp,		SCL3DB_AOut,    500,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:6CycleTime,			SCL3DB_AOut,    502,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_250,			            SCL3DB_AOut,    504,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_251,			            SCL3DB_AOut,    506,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_252,			            SCL3DB_AOut,    508,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_253,			            SCL3DB_AOut,    510,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_254,			            SCL3DB_AOut,    512,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_255,			            SCL3DB_AOut,    514,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_256,			            SCL3DB_AOut,    516,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_257,			            SCL3DB_AOut,    518,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7PGain,			    SCL3DB_AOut,    520,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7IGain,			    SCL3DB_AOut,    522,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7DGain,			    SCL3DB_AOut,    524,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7SetManual,			SCL3DB_AOut,    526,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7SetPoint,			SCL3DB_AOut,    528,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7SetDeadband,		SCL3DB_AOut,    530,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7SetManualRamp,		SCL3DB_AOut,    532,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:7CycleTime,			SCL3DB_AOut,    534,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_266,			            SCL3DB_AOut,    536,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_267,			            SCL3DB_AOut,    538,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_268,			            SCL3DB_AOut,    540,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_269,			            SCL3DB_AOut,    542,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_270,			            SCL3DB_AOut,    544,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_271,			            SCL3DB_AOut,    546,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_272,			            SCL3DB_AOut,    548,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_273,			            SCL3DB_AOut,    550,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8PGain,			    SCL3DB_AOut,    552,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8IGain,			    SCL3DB_AOut,    554,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8DGain,			    SCL3DB_AOut,    556,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8SetManual,			SCL3DB_AOut,    558,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8SetPoint,			SCL3DB_AOut,    560,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8SetDeadband,		SCL3DB_AOut,    562,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8SetManualRamp,		SCL3DB_AOut,    564,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Valve:8CycleTime,			SCL3DB_AOut,    566,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_282,			            SCL3DB_AOut,    568,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_283,			            SCL3DB_AOut,    570,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_284,			            SCL3DB_AOut,    572,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_285,			            SCL3DB_AOut,    574,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_286,			            SCL3DB_AOut,    576,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_287,			            SCL3DB_AOut,    578,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_288,			            SCL3DB_AOut,    580,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_289,			            SCL3DB_AOut,    582,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:1SetHiHi,			SCL3DB_AOut,    584,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:1SetLoLo,			SCL3DB_AOut,    586,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_292,			            SCL3DB_AOut,    588,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_293,			            SCL3DB_AOut,    590,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:2SetHiHi,			SCL3DB_AOut,    592,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:2SetLoLo,			SCL3DB_AOut,    594,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_296,			            SCL3DB_AOut,    596,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_297,			            SCL3DB_AOut,    598,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:3SetHiHi,			SCL3DB_AOut,    600,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:3SetLoLo,			SCL3DB_AOut,    602,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_300,			            SCL3DB_AOut,    604,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_301,			            SCL3DB_AOut,    606,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:4SetHiHi,			SCL3DB_AOut,    608,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:4SetLoLo,			SCL3DB_AOut,    610,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_304,			            SCL3DB_AOut,    612,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_305,			            SCL3DB_AOut,    614,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:5SetHiHi,			SCL3DB_AOut,    616,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:5SetLoLo,			SCL3DB_AOut,    618,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_308,			            SCL3DB_AOut,    620,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_309,			            SCL3DB_AOut,    622,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:6SetHiHi,			SCL3DB_AOut,    624,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:6SetLoLo,			SCL3DB_AOut,    626,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_402,			            SCL3DB_AOut,    628,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_403,			            SCL3DB_AOut,    630,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:7SetHiHi,			SCL3DB_AOut,    632,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:7SetLoLo,			SCL3DB_AOut,    634,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_406,			            SCL3DB_AOut,    636,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_407,			            SCL3DB_AOut,    638,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:8SetHiHi,			SCL3DB_AOut,    640,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{CDS-Press:8SetLoLo,			SCL3DB_AOut,    642,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_410,			            SCL3DB_AOut,    644,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_411,			            SCL3DB_AOut,    646,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+{AO_412,						SCL3DB_AOut,	648,	FLOAT32_BE,     -1e6,  1e6,   2,        "K" }
+}
+
+
+###Start Address(2000Bit, 500(32bit))############################
+file "db/bi_word.template" { pattern
+{SIGNAL,					   PORT,		OFFSET,		MASK,	 ZNAM,   ONAM,		SCAN}
+{M-Valve:CDAutoStatus,		   SCL3DB_DIn,	0,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Valve:CDManualStatus,     SCL3DB_DIn,	0,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-Valve:CDErrorStatus,      SCL3DB_DIn,	0,          0x0400,   Low,   High,      "I/O Intr"}
+{DI_3,                         SCL3DB_DIn,	0,          0x0800,   Low,   High,      "I/O Intr"}
+{DI_4,                         SCL3DB_DIn,	0,          0x1000,   Low,   High,      "I/O Intr"}
+{DI_5,                         SCL3DB_DIn,	0,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_6,                         SCL3DB_DIn,	0,          0x4000,   Low,   High,      "I/O Intr"}
+{1CM-PLC:CommStatus,           SCL3DB_DIn,	0,          0x8000,   Low,   High,      "I/O Intr"}
+{1CM-Valve:4KAutoStatus,       SCL3DB_DIn,	0,          0x0001,   Low,   High,      "I/O Intr"}
+{1CM-Valve:4KManualStatus,     SCL3DB_DIn,	0,          0x0002,   Low,   High,      "I/O Intr"}
+{1CM-Valve:4KErrorStatus,      SCL3DB_DIn,	0,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_11,                        SCL3DB_DIn,	0,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_12,                        SCL3DB_DIn,	0,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_13,                        SCL3DB_DIn,	0,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_14,                        SCL3DB_DIn,	0,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_15,                        SCL3DB_DIn,	0,          0x0080,   Low,   High,      "I/O Intr"}
+{2CM-Valve:CDAutoStatus,       SCL3DB_DIn,	1,			0x0100,   Low,   High,      "I/O Intr"}
+{2CM-Valve:CDManualStatus,     SCL3DB_DIn,	1,          0x0200,   Low,   High,      "I/O Intr"}
+{2CM-Valve:CDErrorStatus,      SCL3DB_DIn,	1,          0x0400,   Low,   High,      "I/O Intr"}
+{DI_19,                        SCL3DB_DIn,	1,          0x0800,   Low,   High,      "I/O Intr"}
+{DI_21,                        SCL3DB_DIn,	1,          0x1000,   Low,   High,      "I/O Intr"}
+{DI_21,                        SCL3DB_DIn,	1,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_22,                        SCL3DB_DIn,	1,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_23,                        SCL3DB_DIn,	1,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Valve:4KAutoStatus,       SCL3DB_DIn,	1,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Valve:4KManualStatus,     SCL3DB_DIn,	1,          0x0002,   Low,   High,      "I/O Intr"}
+{2CM-Valve:4KErrorStatus,      SCL3DB_DIn,	1,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_27,                        SCL3DB_DIn,	1,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_28,                        SCL3DB_DIn,	1,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_29,                        SCL3DB_DIn,	1,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_31,                        SCL3DB_DIn,	1,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_31,                        SCL3DB_DIn,	1,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-Level:4KAlarmHiHi,        SCL3DB_DIn,	2,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Level:4KAlarmLoLo,        SCL3DB_DIn,	2,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-Level:4KAlarmSystem,      SCL3DB_DIn,	2,          0x0400,   Low,   High,      "I/O Intr"}
+{DI_35,                        SCL3DB_DIn,	2,          0x0800,   Low,   High,      "I/O Intr"}
+{DI_36,                        SCL3DB_DIn,	2,          0x1000,   Low,   High,      "I/O Intr"}
+{DI_37,                        SCL3DB_DIn,	2,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_38,                        SCL3DB_DIn,	2,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_39,                        SCL3DB_DIn,	2,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Level:4KAlarmHiHi,        SCL3DB_DIn,	2,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Level:4KAlarmLoLo,        SCL3DB_DIn,	2,          0x0002,   Low,   High,      "I/O Intr"}
+{2CM-Level:4KAlarmSystem,      SCL3DB_DIn,	2,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_43,                        SCL3DB_DIn,	2,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_44,                        SCL3DB_DIn,	2,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_45,                        SCL3DB_DIn,	2,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_46,                        SCL3DB_DIn,	2,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_47,                        SCL3DB_DIn,	2,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-Press:THSHiAlarmHiHi,     SCL3DB_DIn,	3,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Press:THSHiAlarmLoLo,     SCL3DB_DIn,	3,          0x0200,   Low,   High,      "I/O Intr"}
+{DI_53,                        SCL3DB_DIn,	3,          0x0400,   Low,   High,      "I/O Intr"}
+{DI_51,                        SCL3DB_DIn,	3,          0x0800,   Low,   High,      "I/O Intr"}
+{1CM-Press:4KHiAlarmHiHi,      SCL3DB_DIn,	3,          0x1000,   Low,   High,      "I/O Intr"}
+{1CM-Press:4KHiAlarmLoLo,      SCL3DB_DIn,	3,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_54,                        SCL3DB_DIn,	3,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_55,                        SCL3DB_DIn,	3,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Press:THSHiAlarmHiHi,     SCL3DB_DIn,	3,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Press:THSHiAlarmLoLo,     SCL3DB_DIn,	3,          0x0002,   Low,   High,      "I/O Intr"}
+{DI_58,                        SCL3DB_DIn,	3,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_59,                        SCL3DB_DIn,	3,          0x0008,   Low,   High,      "I/O Intr"}
+{2CM-Press:4KHiAlarmHiHi,      SCL3DB_DIn,	3,          0x0010,   Low,   High,      "I/O Intr"}
+{2CM-Press:4KHiAlarmLoLo,      SCL3DB_DIn,	3,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_62,                        SCL3DB_DIn,	3,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_63,                        SCL3DB_DIn,	3,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontOpenStatus, SCL3DB_DIn,	4,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontCloseStatus,SCL3DB_DIn,	4,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontOpenLamp,   SCL3DB_DIn,	4,          0x0400,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontCloseLamp,  SCL3DB_DIn,	4,          0x0800,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontOpenError,  SCL3DB_DIn,	4,          0x1000,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamFrontCloseError, SCL3DB_DIn,	4,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_74,                        SCL3DB_DIn,	4,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_71,                        SCL3DB_DIn,	4,          0x8000,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearOpenStatus,  SCL3DB_DIn,	4,          0x0001,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearCloseStatus, SCL3DB_DIn,	4,          0x0002,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearOpenLamp,    SCL3DB_DIn,	4,          0x0004,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearCloseLamp,   SCL3DB_DIn,	4,          0x0008,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearOpenError,   SCL3DB_DIn,	4,          0x0010,   Low,   High,      "I/O Intr"}
+{1CM-Gate:BeamRearCloseError,  SCL3DB_DIn,	4,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_78,                        SCL3DB_DIn,	4,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_79,                        SCL3DB_DIn,	4,          0x0080,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontOpenStatus, SCL3DB_DIn,	5,			0x0100,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontCloseStatus,SCL3DB_DIn,	5,          0x0200,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontOpenLamp,   SCL3DB_DIn,	5,          0x0400,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontCloseLamp,  SCL3DB_DIn,	5,          0x0800,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontOpenError,  SCL3DB_DIn,	5,          0x1000,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamFrontCloseError, SCL3DB_DIn,	5,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_86,                        SCL3DB_DIn,	5,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_87,                        SCL3DB_DIn,	5,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearOpenStatus,  SCL3DB_DIn,	5,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearCloseStatus, SCL3DB_DIn,	5,          0x0002,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearOpenLamp,    SCL3DB_DIn,	5,          0x0004,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearCloseLamp,   SCL3DB_DIn,	5,          0x0008,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearOpenError,   SCL3DB_DIn,	5,          0x0010,   Low,   High,      "I/O Intr"}
+{2CM-Gate:BeamRearCloseError,  SCL3DB_DIn,	5,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_94,                        SCL3DB_DIn,	5,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_95,                        SCL3DB_DIn,	5,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamOpenStatus,      SCL3DB_DIn,	6,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamCloseStatus,     SCL3DB_DIn,	6,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamOpenLamp,        SCL3DB_DIn,	6,          0x0400,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamCloseLamp,       SCL3DB_DIn,	6,          0x0800,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamOpenError,       SCL3DB_DIn,	6,          0x1000,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamCloseError,      SCL3DB_DIn,	6,          0x2000,   Low,   High,      "I/O Intr"}
+{1CM-Gate:ChamInterlockAlarm,  SCL3DB_DIn,	6,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_103,                       SCL3DB_DIn,	6,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamOpenStatus,      SCL3DB_DIn,	6,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamCloseStatus,     SCL3DB_DIn,	6,          0x0002,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamOpenLamp,        SCL3DB_DIn,	6,          0x0004,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamCloseLamp,       SCL3DB_DIn,	6,          0x0008,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamOpenError,       SCL3DB_DIn,	6,          0x0010,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamCloseError,      SCL3DB_DIn,	6,          0x0020,   Low,   High,      "I/O Intr"}
+{2CM-Gate:ChamInterlockAlarm,  SCL3DB_DIn,	6,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_111,                       SCL3DB_DIn,	6,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-Sol:4KOpenLamp,           SCL3DB_DIn,	7,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-Sol:4KCloseLamp,          SCL3DB_DIn,	7,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-Sol:4KOpenAlarm,          SCL3DB_DIn,	7,          0x0400,   Low,   High,      "I/O Intr"}
+{DI_115,                       SCL3DB_DIn,	7,          0x0800,   Low,   High,      "I/O Intr"}
+{DI_116,                       SCL3DB_DIn,	7,          0x1000,   Low,   High,      "I/O Intr"}
+{DI_117,                       SCL3DB_DIn,	7,          0x2000,   Low,   High,      "I/O Intr"}
+{DI_118,                       SCL3DB_DIn,	7,          0x4000,   Low,   High,      "I/O Intr"}
+{DI_119,                       SCL3DB_DIn,	7,          0x8000,   Low,   High,      "I/O Intr"}
+{2CM-Sol:4KOpenLamp,           SCL3DB_DIn,	7,          0x0001,   Low,   High,      "I/O Intr"}
+{2CM-Sol:4KCloseLamp,          SCL3DB_DIn,	7,          0x0002,   Low,   High,      "I/O Intr"}
+{2CM-Sol:4KOpenAlarm,          SCL3DB_DIn,	7,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_123,                       SCL3DB_DIn,	7,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_124,                       SCL3DB_DIn,	7,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_125,                       SCL3DB_DIn,	7,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_126,                       SCL3DB_DIn,	7,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_127,                       SCL3DB_DIn,	7,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:CCStatus,         SCL3DB_DIn,	8,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:AlarmStatus,      SCL3DB_DIn,	8,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:OutOnStatus,      SCL3DB_DIn,	8,          0x0400,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:PwrOnStatus,      SCL3DB_DIn,	8,          0x0800,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:PwrOnLamp,        SCL3DB_DIn,	8,          0x1000,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:PwrInterlockOn,   SCL3DB_DIn,	8,          0x2000,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:AutoStatus,       SCL3DB_DIn,	8,          0x4000,   Low,   High,      "I/O Intr"}
+{1CM-CD-Heat:ManualStatus,     SCL3DB_DIn,	8,          0x8000,   Low,   High,      "I/O Intr"}
+{DI_136,                       SCL3DB_DIn,	8,          0x0001,   Low,   High,      "I/O Intr"}
+{DI_137,                       SCL3DB_DIn,	8,          0x0002,   Low,   High,      "I/O Intr"}
+{DI_138,                       SCL3DB_DIn,	8,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_139,                       SCL3DB_DIn,	8,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_148,                       SCL3DB_DIn,	8,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_141,                       SCL3DB_DIn,	8,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_142,                       SCL3DB_DIn,	8,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_143,                       SCL3DB_DIn,	8,          0x0080,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:CCStatus,         SCL3DB_DIn,	9,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:AlarmStatus,      SCL3DB_DIn,	9,          0x0200,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:OutOnStatus,      SCL3DB_DIn,	9,          0x0400,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:PwrOnStatus,      SCL3DB_DIn,	9,          0x0800,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:PwrOnLamp,        SCL3DB_DIn,	9,          0x1000,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:PwrInterlockOn,   SCL3DB_DIn,	9,          0x2000,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:AutoStatus,       SCL3DB_DIn,	9,          0x4000,   Low,   High,      "I/O Intr"}
+{1CM-4K-Heat:ManualStatus,     SCL3DB_DIn,	9,          0x8000,   Low,   High,      "I/O Intr"}
+{DI_152,                       SCL3DB_DIn,	9,          0x0001,   Low,   High,      "I/O Intr"}
+{DI_153,                       SCL3DB_DIn,	9,          0x0002,   Low,   High,      "I/O Intr"}
+{DI_154,                       SCL3DB_DIn,	9,          0x0004,   Low,   High,      "I/O Intr"}
+{DI_155,                       SCL3DB_DIn,	9,          0x0008,   Low,   High,      "I/O Intr"}
+{DI_156,                       SCL3DB_DIn,	9,          0x0010,   Low,   High,      "I/O Intr"}
+{DI_157,                       SCL3DB_DIn,	9,          0x0020,   Low,   High,      "I/O Intr"}
+{DI_158,                       SCL3DB_DIn,	9,          0x0040,   Low,   High,      "I/O Intr"}
+{DI_159,                       SCL3DB_DIn,	9,          0x0080,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:CCStatus,         SCL3DB_DIn,	10,			0x0100,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:AlarmStatus,      SCL3DB_DIn,	10,         0x0200,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:OutOnStatus,      SCL3DB_DIn,	10,         0x0400,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:PwrOnStatus,      SCL3DB_DIn,	10,         0x0800,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:PwrOnLamp,        SCL3DB_DIn,	10,         0x1000,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:PwrInterlockOn,   SCL3DB_DIn,	10,         0x2000,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:AutoStatus,       SCL3DB_DIn,	10,         0x4000,   Low,   High,      "I/O Intr"}
+{2CM-CD-Heat:ManualStatus,     SCL3DB_DIn,	10,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_168,                       SCL3DB_DIn,	10,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_169,                       SCL3DB_DIn,	10,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_170,                       SCL3DB_DIn,	10,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_171,                       SCL3DB_DIn,	10,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_172,                       SCL3DB_DIn,	10,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_173,                       SCL3DB_DIn,	10,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_174,                       SCL3DB_DIn,	10,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_175,                       SCL3DB_DIn,	10,         0x0080,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:CCStatus,         SCL3DB_DIn,	11,			0x0100,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:AlarmStatus,      SCL3DB_DIn,	11,         0x0200,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:OutOnStatus,      SCL3DB_DIn,	11,         0x0400,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:PwrOnStatus,      SCL3DB_DIn,	11,         0x0800,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:PwrOnLamp,        SCL3DB_DIn,	11,         0x1000,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:PwrInterlockOn,   SCL3DB_DIn,	11,         0x2000,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:AutoStatus,       SCL3DB_DIn,	11,         0x4000,   Low,   High,      "I/O Intr"}
+{2CM-4K-Heat:ManualStatus,     SCL3DB_DIn,	11,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_184,                       SCL3DB_DIn,	11,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_185,                       SCL3DB_DIn,	11,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_186,                       SCL3DB_DIn,	11,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_187,                       SCL3DB_DIn,	11,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_188,                       SCL3DB_DIn,	11,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_189,                       SCL3DB_DIn,	11,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_190,                       SCL3DB_DIn,	11,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_191,                       SCL3DB_DIn,	11,         0x0080,   Low,   High,      "I/O Intr"}
+{1CM-ION:H/VEnableStatus,      SCL3DB_DIn,	12,			0x0100,   Low,   High,      "I/O Intr"}
+{1CM-ION:CurrentSetStatus,     SCL3DB_DIn,	12,         0x0200,   Low,   High,      "I/O Intr"}
+{1CM-ION:VoltageSetStatus,     SCL3DB_DIn,	12,         0x0400,   Low,   High,      "I/O Intr"}
+{1CM-ION:RunLamp,              SCL3DB_DIn,	12,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_196,                       SCL3DB_DIn,	12,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_197,                       SCL3DB_DIn,	12,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_198,                       SCL3DB_DIn,	12,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_199,                       SCL3DB_DIn,	12,         0x8000,   Low,   High,      "I/O Intr"}
+{2CM-ION:H/VEnableStatus,      SCL3DB_DIn,	12,         0x0001,   Low,   High,      "I/O Intr"}
+{2CM-ION:CurrentSetStatus,     SCL3DB_DIn,	12,         0x0002,   Low,   High,      "I/O Intr"}
+{2CM-ION:VoltageSetStatus,     SCL3DB_DIn,	12,         0x0004,   Low,   High,      "I/O Intr"}
+{2CM-ION:RunLamp,              SCL3DB_DIn,	12,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_204,                       SCL3DB_DIn,	12,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_205,                       SCL3DB_DIn,	12,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_206,                       SCL3DB_DIn,	12,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_207,                       SCL3DB_DIn,	12,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1OpenStatus,          SCL3DB_DIn,	13,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1CloseStatus,         SCL3DB_DIn,	13,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1OpenLamp,            SCL3DB_DIn,	13,         0x0400,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1CloseLamp,           SCL3DB_DIn,	13,         0x0800,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1OpenError,           SCL3DB_DIn,	13,         0x1000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:1CloseError,          SCL3DB_DIn,	13,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_214,                       SCL3DB_DIn,	13,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_215,                       SCL3DB_DIn,	13,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2OpenStatus,          SCL3DB_DIn,	13,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2CloseStatus,         SCL3DB_DIn,	13,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2OpenLamp,            SCL3DB_DIn,	13,         0x0004,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2CloseLamp,           SCL3DB_DIn,	13,         0x0008,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2OpenError,           SCL3DB_DIn,	13,         0x0010,   Low,   High,      "I/O Intr"}
+{CDS-Sol:2CloseError,          SCL3DB_DIn,	13,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_222,                       SCL3DB_DIn,	13,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_223,                       SCL3DB_DIn,	13,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3OpenStatus,          SCL3DB_DIn,	14,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3CloseStatus,         SCL3DB_DIn,	14,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3OpenLamp,            SCL3DB_DIn,	14,         0x0400,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3CloseLamp,           SCL3DB_DIn,	14,         0x0800,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3OpenError,           SCL3DB_DIn,	14,         0x1000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:3CloseError,          SCL3DB_DIn,	14,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_230,                       SCL3DB_DIn,	14,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_231,                       SCL3DB_DIn,	14,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4OpenStatus,          SCL3DB_DIn,	14,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4CloseStatus,         SCL3DB_DIn,	14,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4OpenLamp,            SCL3DB_DIn,	14,         0x0004,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4CloseLamp,           SCL3DB_DIn,	14,         0x0008,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4OpenError,           SCL3DB_DIn,	14,         0x0010,   Low,   High,      "I/O Intr"}
+{CDS-Sol:4CloseError,          SCL3DB_DIn,	14,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_238,                       SCL3DB_DIn,	14,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_239,                       SCL3DB_DIn,	14,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5OpenStatus,          SCL3DB_DIn,	15,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5CloseStatus,         SCL3DB_DIn,	15,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5OpenLamp,            SCL3DB_DIn,	15,         0x0400,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5CloseLamp,           SCL3DB_DIn,	15,         0x0800,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5OpenError,           SCL3DB_DIn,	15,         0x1000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:5CloseError,          SCL3DB_DIn,	15,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_246,                       SCL3DB_DIn,	15,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_247,                       SCL3DB_DIn,	15,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6OpenStatus,          SCL3DB_DIn,	15,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6CloseStatus,         SCL3DB_DIn,	15,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6OpenLamp,            SCL3DB_DIn,	15,         0x0004,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6CloseLamp,           SCL3DB_DIn,	15,         0x0008,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6OpenError,           SCL3DB_DIn,	15,         0x0010,   Low,   High,      "I/O Intr"}
+{CDS-Sol:6CloseError,          SCL3DB_DIn,	15,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_254,                       SCL3DB_DIn,	15,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_255,                       SCL3DB_DIn,	15,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Valve:1AutoStatus,        SCL3DB_DIn,	16,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Valve:1ManualStatus,      SCL3DB_DIn,	16,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Valve:1ErrorStatus,       SCL3DB_DIn,	16,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_259,                       SCL3DB_DIn,	16,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_260,                       SCL3DB_DIn,	16,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_261,                       SCL3DB_DIn,	16,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_262,                       SCL3DB_DIn,	16,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_263,                       SCL3DB_DIn,	16,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Valve:2AutoStatus,        SCL3DB_DIn,	16,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Valve:2ManualStatus,      SCL3DB_DIn,	16,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Valve:2ErrorStatus,       SCL3DB_DIn,	16,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_267,                       SCL3DB_DIn,	16,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_268,                       SCL3DB_DIn,	16,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_269,                       SCL3DB_DIn,	16,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_270,                       SCL3DB_DIn,	16,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_271,                       SCL3DB_DIn,	16,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Valve:3AutoStatus,        SCL3DB_DIn,	17,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Valve:3ManualStatus,      SCL3DB_DIn,	17,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Valve:3ErrorStatus,       SCL3DB_DIn,	17,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_275,                       SCL3DB_DIn,	17,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_276,                       SCL3DB_DIn,	17,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_277,                       SCL3DB_DIn,	17,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_278,                       SCL3DB_DIn,	17,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_279,                       SCL3DB_DIn,	17,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Valve:4AutoStatus,        SCL3DB_DIn,	17,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Valve:4ManualStatus,      SCL3DB_DIn,	17,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Valve:4ErrorStatus,       SCL3DB_DIn,	17,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_283,                       SCL3DB_DIn,	17,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_284,                       SCL3DB_DIn,	17,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_285,                       SCL3DB_DIn,	17,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_286,                       SCL3DB_DIn,	17,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_287,                       SCL3DB_DIn,	17,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Valve:5AutoStatus,        SCL3DB_DIn,	18,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Valve:5ManualStatus,      SCL3DB_DIn,	18,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Valve:5ErrorStatus,       SCL3DB_DIn,	18,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_291,                       SCL3DB_DIn,	18,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_292,                       SCL3DB_DIn,	18,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_293,                       SCL3DB_DIn,	18,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_294,                       SCL3DB_DIn,	18,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_295,                       SCL3DB_DIn,	18,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Valve:6AutoStatus,        SCL3DB_DIn,	18,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Valve:6ManualStatus,      SCL3DB_DIn,	18,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Valve:6ErrorStatus,       SCL3DB_DIn,	18,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_299,                       SCL3DB_DIn,	18,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_300,                       SCL3DB_DIn,	18,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_301,                       SCL3DB_DIn,	18,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_302,                       SCL3DB_DIn,	18,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_303,                       SCL3DB_DIn,	18,         0x0080,   Low,   High,      "I/O Intr"}
+{CDS-Valve:7AutoStatus,        SCL3DB_DIn,	19,			0x0100,   Low,   High,      "I/O Intr"}
+{CDS-Valve:7ManualStatus,      SCL3DB_DIn,	19,         0x0200,   Low,   High,      "I/O Intr"}
+{CDS-Valve:7ErrorStatus,       SCL3DB_DIn,	19,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_307,                       SCL3DB_DIn,	19,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_308,                       SCL3DB_DIn,	19,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_309,                       SCL3DB_DIn,	19,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_319,                       SCL3DB_DIn,	19,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_311,                       SCL3DB_DIn,	19,         0x8000,   Low,   High,      "I/O Intr"}
+{CDS-Valve:8AutoStatus,        SCL3DB_DIn,	19,         0x0001,   Low,   High,      "I/O Intr"}
+{CDS-Valve:8ManualStatus,      SCL3DB_DIn,	19,         0x0002,   Low,   High,      "I/O Intr"}
+{CDS-Valve:8ErrorStatus,       SCL3DB_DIn,	19,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_315,                       SCL3DB_DIn,	19,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_316,                       SCL3DB_DIn,	19,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_317,                       SCL3DB_DIn,	19,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_318,                       SCL3DB_DIn,	19,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_319,                       SCL3DB_DIn,	19,         0x0080,   Low,   High,      "I/O Intr"}
+{1VC-DRY:StartStatus,          SCL3DB_DIn,	20,			0x0100,   Low,   High,      "I/O Intr"}
+{1VC-DRY:WarnStatus,           SCL3DB_DIn,	20,         0x0200,   Low,   High,      "I/O Intr"}
+{1VC-DRY:AlarmStatus,          SCL3DB_DIn,	20,         0x0400,   Low,   High,      "I/O Intr"}
+{1VC-DRY:RemoteStatus,         SCL3DB_DIn,	20,         0x0800,   Low,   High,      "I/O Intr"}
+{1VC-DRY:RunLamp,              SCL3DB_DIn,	20,         0x1000,   Low,   High,      "I/O Intr"}
+{1VC-DRY:StopLamp,             SCL3DB_DIn,	20,         0x2000,   Low,   High,      "I/O Intr"}
+{1VC-DRY:ErrorLamp,            SCL3DB_DIn,	20,         0x4000,   Low,   High,      "I/O Intr"}
+{1VC-DRY:ErrorStatus,          SCL3DB_DIn,	20,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_328,                       SCL3DB_DIn,	20,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_329,                       SCL3DB_DIn,	20,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_330,                       SCL3DB_DIn,	20,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_331,                       SCL3DB_DIn,	20,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_332,                       SCL3DB_DIn,	20,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_333,                       SCL3DB_DIn,	20,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_334,                       SCL3DB_DIn,	20,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_335,                       SCL3DB_DIn,	20,         0x0080,   Low,   High,      "I/O Intr"}
+{2VC-DRY:StartStatus,          SCL3DB_DIn,	21,			0x0100,   Low,   High,      "I/O Intr"}
+{2VC-DRY:WarnStatus,           SCL3DB_DIn,	21,         0x0200,   Low,   High,      "I/O Intr"}
+{2VC-DRY:AlarmStatus,          SCL3DB_DIn,	21,         0x0400,   Low,   High,      "I/O Intr"}
+{2VC-DRY:RemoteStatus,         SCL3DB_DIn,	21,         0x0800,   Low,   High,      "I/O Intr"}
+{2VC-DRY:RunLamp,              SCL3DB_DIn,	21,         0x1000,   Low,   High,      "I/O Intr"}
+{2VC-DRY:StopLamp,             SCL3DB_DIn,	21,         0x2000,   Low,   High,      "I/O Intr"}
+{2VC-DRY:ErrorLamp,            SCL3DB_DIn,	21,         0x4000,   Low,   High,      "I/O Intr"}
+{2VC-DRY:ErrorStatus,          SCL3DB_DIn,	21,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_344,                       SCL3DB_DIn,	21,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_345,                       SCL3DB_DIn,	21,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_346,                       SCL3DB_DIn,	21,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_347,                       SCL3DB_DIn,	21,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_348,                       SCL3DB_DIn,	21,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_349,                       SCL3DB_DIn,	21,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_350,                       SCL3DB_DIn,	21,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_351,                       SCL3DB_DIn,	21,         0x0080,   Low,   High,      "I/O Intr"}
+{1VC-TMP:ACCDuringStatus,      SCL3DB_DIn,	22,			0x0100,   Low,   High,      "I/O Intr"}
+{1VC-TMP:NormalStatus,         SCL3DB_DIn,	22,         0x0200,   Low,   High,      "I/O Intr"}
+{1VC-TMP:FailStatus,           SCL3DB_DIn,	22,         0x0400,   Low,   High,      "I/O Intr"}
+{1VC-TMP:RemoteStatus,         SCL3DB_DIn,	22,         0x0800,   Low,   High,      "I/O Intr"}
+{1VC-TMP:RunLamp,              SCL3DB_DIn,	22,         0x1000,   Low,   High,      "I/O Intr"}
+{1VC-TMP:StopLamp,             SCL3DB_DIn,	22,         0x2000,   Low,   High,      "I/O Intr"}
+{1VC-TMP:ErrorLamp,            SCL3DB_DIn,	22,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_359,                       SCL3DB_DIn,	22,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_360,                       SCL3DB_DIn,	22,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_361,                       SCL3DB_DIn,	22,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_362,                       SCL3DB_DIn,	22,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_363,                       SCL3DB_DIn,	22,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_364,                       SCL3DB_DIn,	22,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_365,                       SCL3DB_DIn,	22,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_366,                       SCL3DB_DIn,	22,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_367,                       SCL3DB_DIn,	22,         0x0080,   Low,   High,      "I/O Intr"}
+{2VC-TMP:ACCDuringStatus,      SCL3DB_DIn,	23,			0x0100,   Low,   High,      "I/O Intr"}
+{2VC-TMP:NormalStatus,         SCL3DB_DIn,	23,         0x0200,   Low,   High,      "I/O Intr"}
+{2VC-TMP:FailStatus,           SCL3DB_DIn,	23,         0x0400,   Low,   High,      "I/O Intr"}
+{2VC-TMP:RemoteStatus,         SCL3DB_DIn,	23,         0x0800,   Low,   High,      "I/O Intr"}
+{2VC-TMP:RunLamp,              SCL3DB_DIn,	23,         0x1000,   Low,   High,      "I/O Intr"}
+{2VC-TMP:StopLamp,             SCL3DB_DIn,	23,         0x2000,   Low,   High,      "I/O Intr"}
+{2VC-TMP:ErrorLamp,            SCL3DB_DIn,	23,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_375,                       SCL3DB_DIn,	23,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_376,                       SCL3DB_DIn,	23,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_377,                       SCL3DB_DIn,	23,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_378,                       SCL3DB_DIn,	23,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_379,                       SCL3DB_DIn,	23,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_380,                       SCL3DB_DIn,	23,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_381,                       SCL3DB_DIn,	23,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_382,                       SCL3DB_DIn,	23,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_383,                       SCL3DB_DIn,	23,         0x0080,   Low,   High,      "I/O Intr"}
+{1VC-Gate:OpenStatus,          SCL3DB_DIn,	24,			0x0100,   Low,   High,      "I/O Intr"}
+{1VC-Gate:CloseStatus,         SCL3DB_DIn,	24,         0x0200,   Low,   High,      "I/O Intr"}
+{1VC-Gate:OpenLamp,            SCL3DB_DIn,	24,         0x0400,   Low,   High,      "I/O Intr"}
+{1VC-Gate:CloseLamp,           SCL3DB_DIn,	24,         0x0800,   Low,   High,      "I/O Intr"}
+{1VC-Gate:OpenError,           SCL3DB_DIn,	24,         0x1000,   Low,   High,      "I/O Intr"}
+{1VC-Gate:CloseError,          SCL3DB_DIn,	24,         0x2000,   Low,   High,      "I/O Intr"}
+{1VC-Gate:InterlockAlarm,      SCL3DB_DIn,	24,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_391,                       SCL3DB_DIn,	24,         0x8000,   Low,   High,      "I/O Intr"}
+{1VC-Angle:OpenStatus,         SCL3DB_DIn,	24,         0x0001,   Low,   High,      "I/O Intr"}
+{1VC-Angle:CloseStatus,        SCL3DB_DIn,	24,         0x0002,   Low,   High,      "I/O Intr"}
+{1VC-Angle:OpenLamp,           SCL3DB_DIn,	24,         0x0004,   Low,   High,      "I/O Intr"}
+{1VC-Angle:CloseLamp,          SCL3DB_DIn,	24,         0x0008,   Low,   High,      "I/O Intr"}
+{1VC-Angle:OpenError,          SCL3DB_DIn,	24,         0x0010,   Low,   High,      "I/O Intr"}
+{1VC-Angle:CloseError,         SCL3DB_DIn,	24,         0x0020,   Low,   High,      "I/O Intr"}
+{1VC-Angle:InterlockAlarm,     SCL3DB_DIn,	24,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_399,                       SCL3DB_DIn,	24,         0x0080,   Low,   High,      "I/O Intr"}
+{2VC-Gate:OpenStatus,          SCL3DB_DIn,	25,			0x0100,   Low,   High,      "I/O Intr"}
+{2VC-Gate:CloseStatus,         SCL3DB_DIn,	25,         0x0200,   Low,   High,      "I/O Intr"}
+{2VC-Gate:OpenLamp,            SCL3DB_DIn,	25,         0x0400,   Low,   High,      "I/O Intr"}
+{2VC-Gate:CloseLamp,           SCL3DB_DIn,	25,         0x0800,   Low,   High,      "I/O Intr"}
+{2VC-Gate:OpenError,           SCL3DB_DIn,	25,         0x1000,   Low,   High,      "I/O Intr"}
+{2VC-Gate:CloseError,          SCL3DB_DIn,	25,         0x2000,   Low,   High,      "I/O Intr"}
+{2VC-Gate:InterlockAlarm,      SCL3DB_DIn,	25,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_407,                       SCL3DB_DIn,	25,         0x8000,   Low,   High,      "I/O Intr"}
+{2VC-Angle:OpenStatus,         SCL3DB_DIn,	25,         0x0001,   Low,   High,      "I/O Intr"}
+{2VC-Angle:CloseStatus,        SCL3DB_DIn,	25,         0x0002,   Low,   High,      "I/O Intr"}
+{2VC-Angle:OpenLamp,           SCL3DB_DIn,	25,         0x0004,   Low,   High,      "I/O Intr"}
+{2VC-Angle:CloseLamp,          SCL3DB_DIn,	25,         0x0008,   Low,   High,      "I/O Intr"}
+{2VC-Angle:OpenError,          SCL3DB_DIn,	25,         0x0010,   Low,   High,      "I/O Intr"}
+{2VC-Angle:CloseError,         SCL3DB_DIn,	25,         0x0020,   Low,   High,      "I/O Intr"}
+{2VC-Angle:InterlockAlarm,     SCL3DB_DIn,	25,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_415,                       SCL3DB_DIn,	25,         0x0080,   Low,   High,      "I/O Intr"}
+{DI_416,                       SCL3DB_DIn,	26,			0x0100,   Low,   High,      "I/O Intr"}
+{DI_417,                       SCL3DB_DIn,	26,         0x0200,   Low,   High,      "I/O Intr"}
+{DI_418,                       SCL3DB_DIn,	26,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_419,                       SCL3DB_DIn,	26,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_420,                       SCL3DB_DIn,	26,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_421,                       SCL3DB_DIn,	26,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_422,                       SCL3DB_DIn,	26,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_423,                       SCL3DB_DIn,	26,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_424,                       SCL3DB_DIn,	26,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_425,                       SCL3DB_DIn,	26,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_426,                       SCL3DB_DIn,	26,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_427,                       SCL3DB_DIn,	26,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_428,                       SCL3DB_DIn,	26,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_429,                       SCL3DB_DIn,	26,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_430,                       SCL3DB_DIn,	26,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_431,                       SCL3DB_DIn,	26,         0x0080,   Low,   High,      "I/O Intr"}
+{DI_432,                       SCL3DB_DIn,	27,			0x0100,   Low,   High,      "I/O Intr"}
+{DI_433,                       SCL3DB_DIn,	27,         0x0200,   Low,   High,      "I/O Intr"}
+{DI_434,                       SCL3DB_DIn,	27,         0x0400,   Low,   High,      "I/O Intr"}
+{DI_435,                       SCL3DB_DIn,	27,         0x0800,   Low,   High,      "I/O Intr"}
+{DI_436,                       SCL3DB_DIn,	27,         0x1000,   Low,   High,      "I/O Intr"}
+{DI_437,                       SCL3DB_DIn,	27,         0x2000,   Low,   High,      "I/O Intr"}
+{DI_438,                       SCL3DB_DIn,	27,         0x4000,   Low,   High,      "I/O Intr"}
+{DI_439,                       SCL3DB_DIn,	27,         0x8000,   Low,   High,      "I/O Intr"}
+{DI_440,                       SCL3DB_DIn,	27,         0x0001,   Low,   High,      "I/O Intr"}
+{DI_441,                       SCL3DB_DIn,	27,         0x0002,   Low,   High,      "I/O Intr"}
+{DI_442,                       SCL3DB_DIn,	27,         0x0004,   Low,   High,      "I/O Intr"}
+{DI_443,                       SCL3DB_DIn,	27,         0x0008,   Low,   High,      "I/O Intr"}
+{DI_444,                       SCL3DB_DIn,	27,         0x0010,   Low,   High,      "I/O Intr"}
+{DI_445,                       SCL3DB_DIn,	27,         0x0020,   Low,   High,      "I/O Intr"}
+{DI_446,                       SCL3DB_DIn,	27,         0x0040,   Low,   High,      "I/O Intr"}
+{DI_447,                       SCL3DB_DIn,	27,         0x0080,   Low,   High,      "I/O Intr"}
+}
+
+file "db/bo_word.template" { pattern
+{SIGNAL,				PORT,		OFFSET,		MASK,	 ZNAM,   ONAM	}
+4KManualSelect,			MB_DOut,    0,     0x0100,   Low,   High}
+4KDeadbandEnable,		MB_DOut,    0,     0x0200,   Low,   High}
+4KErrorReset,			MB_DOut,    0,     0x0400,   Low,   High}
+2KManualSelect,			MB_DOut,    0,     0x0800,   Low,   High}
+2KDeadbandEnable,		MB_DOut,    0,     0x1000,   Low,   High}
+
+
+{1CM-Valve:CDManualSelect,		SCL3DB_DOut,	0,
+{1CM-Valve:CDDeadbandEnable,    SCL3DB_DOut,	0,
+{1CM-Valve:CDErrorReset,        SCL3DB_DOut,	0,
+{DO_3,                          SCL3DB_DOut,	0,
+{DO_4,                          SCL3DB_DOut,	0,
+{DO_5,                          SCL3DB_DOut,	0,
+{DO_6,                          SCL3DB_DOut,	0,
+{DO_7,                          SCL3DB_DOut,	0,
+{1CM-Valve:4KManualSelect,      SCL3DB_DOut,	0,
+{1CM-Valve:4KDeadbandEnable,    SCL3DB_DOut,	0,
+{1CM-Valve:4KErrorReset,        SCL3DB_DOut,	0,
+{DO_11,                         SCL3DB_DOut,	0,
+{DO_12,                         SCL3DB_DOut,	0,
+{DO_13,                         SCL3DB_DOut,	0,
+{DO_14,                         SCL3DB_DOut,	0,
+{DO_15,                         SCL3DB_DOut,	0,
+{2CM-Valve:CDManualSelect,      SCL3DB_DOut,	1,
+{2CM-Valve:CDDeadbandEnable,    SCL3DB_DOut,	1,
+{2CM-Valve:CDErrorReset,        SCL3DB_DOut,	1,
+{DO_19,                         SCL3DB_DOut,	1,
+{DO_20,                         SCL3DB_DOut,	1,
+{DO_21,                         SCL3DB_DOut,	1,
+{DO_22,                         SCL3DB_DOut,	1,
+{DO_23,                         SCL3DB_DOut,	1,
+{2CM-Valve:4KManualSelect,      SCL3DB_DOut,	1,
+{2CM-Valve:4KDeadbandEnable,    SCL3DB_DOut,	1,
+{2CM-Valve:4KErrorReset,        SCL3DB_DOut,	1,
+{DO_27,                         SCL3DB_DOut,	1,
+{DO_28,                         SCL3DB_DOut,	1,
+{DO_29,                         SCL3DB_DOut,	1,
+{DO_30,                         SCL3DB_DOut,	1,
+{DO_31,                         SCL3DB_DOut,	1,
+{1CM-Sol:4KManualSelect,        SCL3DB_DOut,	2,
+{1CM-Sol:4KManualOpen,          SCL3DB_DOut,	2,
+{1CM-Sol:4KOpenAlarmReset,      SCL3DB_DOut,	2,
+{DO_35,                         SCL3DB_DOut,	2,
+{DO_36,                         SCL3DB_DOut,	2,
+{DO_37,                         SCL3DB_DOut,	2,
+{DO_38,                         SCL3DB_DOut,	2,
+{DO_39,                         SCL3DB_DOut,	2,
+{2CM-Sol:4KManualSelect,        SCL3DB_DOut,	2,
+{2CM-Sol:4KManualOpen,          SCL3DB_DOut,	2,
+{2CM-Sol:4KOpenAlarmReset,      SCL3DB_DOut,	2,
+{DO_43,                         SCL3DB_DOut,	2,
+{DO_44,                         SCL3DB_DOut,	2,
+{DO_45,                         SCL3DB_DOut,	2,
+{DO_46,                         SCL3DB_DOut,	2,
+{DO_47,                         SCL3DB_DOut,	2,
+{1CM-Gate:BeamFrontManualOpen,  SCL3DB_DOut,	3,
+{1CM-Gate:BeamRearManualOpen,   SCL3DB_DOut,	3,
+{1CM-Gate:BeamFrontManualSelect,SCL3DB_DOut,	3,
+{1CM-Gate:BeamRearManualSelect, SCL3DB_DOut,	3,
+{2CM-Gate:BeamFrontManualOpen,  SCL3DB_DOut,	3,
+{2CM-Gate:BeamRearManualOpen,   SCL3DB_DOut,	3,
+{2CM-Gate:BeamFrontManualSelect,SCL3DB_DOut,	3,
+{2CM-Gate:BeamRearManualSelect, SCL3DB_DOut,	3,
+{1CM-Gate:ChamManualOpen,       SCL3DB_DOut,	3,
+{1CM-Gate:ChamManualClose,      SCL3DB_DOut,	3,
+{1CM-Gate:ChamAlarmReset,       SCL3DB_DOut,	3,
+{1CM-Gate:ChamManualSelect,     SCL3DB_DOut,	3,
+{DO_60,                         SCL3DB_DOut,	3,
+{DO_61,                         SCL3DB_DOut,	3,
+{DO_62,                         SCL3DB_DOut,	3,
+{DO_63,                         SCL3DB_DOut,	3,
+{2CM-Gate:ChamManualOpen,       SCL3DB_DOut,	4,
+{2CM-Gate:ChamManualClose,      SCL3DB_DOut,	4,
+{2CM-Gate:ChamAlarmReset,       SCL3DB_DOut,	4,
+{2CM-Gate:ChamManualSelect,     SCL3DB_DOut,	4,
+{DO_68,                         SCL3DB_DOut,	4,
+{DO_69,                         SCL3DB_DOut,	4,
+{All_Inetlock_Off,              SCL3DB_DOut,	4,
+{All_AlarmReset,                SCL3DB_DOut,	4,
+{1CM-Level:4kAlarmReset,        SCL3DB_DOut,	4,
+{2CM-Level:4kAlarmReset,        SCL3DB_DOut,	4,
+{DO_74,                         SCL3DB_DOut,	4,
+{DO_75,                         SCL3DB_DOut,	4,
+{DO_76,                         SCL3DB_DOut,	4,
+{DO_77,                         SCL3DB_DOut,	4,
+{DO_78,                         SCL3DB_DOut,	4,
+{DO_79,                         SCL3DB_DOut,	4,
+{1CM-Press:THSHiAlarmReset,     SCL3DB_DOut,	0,
+{1CM-Press:4KHiAlarmReset,      SCL3DB_DOut,	0,
+{2CM-Press:THSHiAlarmReset,     SCL3DB_DOut,	0,
+{2CM-Press:4KLowAlarmReset,     SCL3DB_DOut,	0,
+{DO_84,                         SCL3DB_DOut,	0,
+{DO_85,                         SCL3DB_DOut,	0,
+{DO_86,                         SCL3DB_DOut,	0,
+{DO_87,                         SCL3DB_DOut,	0,
+{1CM-Heat:CDManualSelect,       SCL3DB_DOut,	0,
+{1CM-Heat:CDDeadbandEnable,     SCL3DB_DOut,	0,
+{1CM-Heat:CDErrorReset,         SCL3DB_DOut,	0,
+{1CM-Heat:CDOutOn,              SCL3DB_DOut,	0,
+{1CM-Heat:CDOutOff,             SCL3DB_DOut,	0,
+{DO_93,                         SCL3DB_DOut,	0,
+{DO_94,                         SCL3DB_DOut,	0,
+{DO_95,                         SCL3DB_DOut,	0,
+{1CM-Heat:4KManualSelect,       SCL3DB_DOut,	0,
+{1CM-Heat:4KDeadbandEnable,     SCL3DB_DOut,	0,
+{1CM-Heat:4KErrorReset,         SCL3DB_DOut,	0,
+{1CM-Heat:4KOutOn,              SCL3DB_DOut,	0,
+{1CM-Heat:4KOutOff,             SCL3DB_DOut,	0,
+{DO_101,                        SCL3DB_DOut,	0,
+{DO_102,                        SCL3DB_DOut,	0,
+{DO_103,                        SCL3DB_DOut,	0,
+{2CM-Heat:CDManualSelect,       SCL3DB_DOut,	0,
+{2CM-Heat:CDDeadbandEnable,     SCL3DB_DOut,	0,
+{2CM-Heat:CDErrorReset,         SCL3DB_DOut,	0,
+{2CM-Heat:CDOutOn,              SCL3DB_DOut,	0,
+{2CM-Heat:CDOutOff,             SCL3DB_DOut,	0,
+{DO_109,                        SCL3DB_DOut,	0,
+{DO_110,                        SCL3DB_DOut,	0,
+{DO_111,                        SCL3DB_DOut,	0,
+{2CM-Heat:4KManualSelect,       SCL3DB_DOut,	0,
+{2CM-Heat:4KDeadbandEnable,     SCL3DB_DOut,	0,
+{2CM-Heat:4KErrorReset,         SCL3DB_DOut,	0,
+{2CM-Heat:4KOutOn,              SCL3DB_DOut,	0,
+{2CM-Heat:4KOutOff,             SCL3DB_DOut,	0,
+{DO_117,                        SCL3DB_DOut,	0,
+{DO_118,                        SCL3DB_DOut,	0,
+{DO_119,                        SCL3DB_DOut,	0,
+{1CM-ION:Start,                 SCL3DB_DOut,	0,
+{1CM-ION:Stop,                  SCL3DB_DOut,	0,
+{1CM-ION:H/VEnable,             SCL3DB_DOut,	0,
+{1CM-ION:H/VDisable,            SCL3DB_DOut,	0,
+{1CM-ION:Reset,                 SCL3DB_DOut,	0,
+{DO_125,                        SCL3DB_DOut,	0,
+{DO_126,                        SCL3DB_DOut,	0,
+{DO_127,                        SCL3DB_DOut,	0,
+{2CM-ION:Start,                 SCL3DB_DOut,	0,
+{2CM-ION:Stop,                  SCL3DB_DOut,	0,
+{2CM-ION:H/VEnable,             SCL3DB_DOut,	0,
+{2CM-ION:H/VDisable,            SCL3DB_DOut,	0,
+{2CM-ION:Reset,                 SCL3DB_DOut,	0,
+{DO_133,                        SCL3DB_DOut,	0,
+{DO_134,                        SCL3DB_DOut,	0,
+{DO_135,                        SCL3DB_DOut,	0,
+{CDS-Sol:1ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:1ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:1ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:1AlarmReset,           SCL3DB_DOut,	0,
+{DO_140,                        SCL3DB_DOut,	0,
+{DO_141,                        SCL3DB_DOut,	0,
+{DO_142,                        SCL3DB_DOut,	0,
+{DO_143,                        SCL3DB_DOut,	0,
+{CDS-Sol:2ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:2ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:2ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:2AlarmReset,           SCL3DB_DOut,	0,
+{DO_148,                        SCL3DB_DOut,	0,
+{DO_149,                        SCL3DB_DOut,	0,
+{DO_150,                        SCL3DB_DOut,	0,
+{DO_151,                        SCL3DB_DOut,	0,
+{CDS-Sol:3ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:3ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:3ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:3AlarmReset,           SCL3DB_DOut,	0,
+{DO_156,                        SCL3DB_DOut,	0,
+{DO_157,                        SCL3DB_DOut,	0,
+{DO_158,                        SCL3DB_DOut,	0,
+{DO_159,                        SCL3DB_DOut,	0,
+{CDS-Sol:4ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:4ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:4ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:4AlarmReset,           SCL3DB_DOut,	0,
+{DO_164,                        SCL3DB_DOut,	0,
+{DO_165,                        SCL3DB_DOut,	0,
+{DO_166,                        SCL3DB_DOut,	0,
+{DO_167,                        SCL3DB_DOut,	0,
+{CDS-Sol:5ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:5ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:5ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:5AlarmReset,           SCL3DB_DOut,	0,
+{DO_172,                        SCL3DB_DOut,	0,
+{DO_173,                        SCL3DB_DOut,	0,
+{DO_174,                        SCL3DB_DOut,	0,
+{DO_175,                        SCL3DB_DOut,	0,
+{CDS-Sol:6ManualSelect,         SCL3DB_DOut,	0,
+{CDS-Sol:6ManualOpen,           SCL3DB_DOut,	0,
+{CDS-Sol:6ManualClose,          SCL3DB_DOut,	0,
+{CDS-Sol:6AlarmReset,           SCL3DB_DOut,	0,
+{DO_180,                        SCL3DB_DOut,	0,
+{DO_181,                        SCL3DB_DOut,	0,
+{DO_182,                        SCL3DB_DOut,	0,
+{DO_183,                        SCL3DB_DOut,	0,
+{CDS-Valve:1ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:1DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:1ErrorReset,         SCL3DB_DOut,	0,
+{DO_186,                        SCL3DB_DOut,	0,
+{DO_187,                        SCL3DB_DOut,	0,
+{DO_188,                        SCL3DB_DOut,	0,
+{DO_189,                        SCL3DB_DOut,	0,
+{DO_190,                        SCL3DB_DOut,	0,
+{CDS-Valve:2ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:2DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:2ErrorReset,         SCL3DB_DOut,	0,
+{DO_194,                        SCL3DB_DOut,	0,
+{DO_195,                        SCL3DB_DOut,	0,
+{DO_196,                        SCL3DB_DOut,	0,
+{DO_197,                        SCL3DB_DOut,	0,
+{DO_198,                        SCL3DB_DOut,	0,
+{CDS-Valve:3ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:3DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:3ErrorReset,         SCL3DB_DOut,	0,
+{DO_202,                        SCL3DB_DOut,	0,
+{DO_203,                        SCL3DB_DOut,	0,
+{DO_204,                        SCL3DB_DOut,	0,
+{DO_205,                        SCL3DB_DOut,	0,
+{DO_206,                        SCL3DB_DOut,	0,
+{CDS-Valve:4ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:4DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:4ErrorReset,         SCL3DB_DOut,	0,
+{DO_210,                        SCL3DB_DOut,	0,
+{DO_211,                        SCL3DB_DOut,	0,
+{DO_212,                        SCL3DB_DOut,	0,
+{DO_213,                        SCL3DB_DOut,	0,
+{DO_214,                        SCL3DB_DOut,	0,
+{CDS-Valve:5ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:5DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:5ErrorReset,         SCL3DB_DOut,	0,
+{DO_218,                        SCL3DB_DOut,	0,
+{DO_219,                        SCL3DB_DOut,	0,
+{DO_220,                        SCL3DB_DOut,	0,
+{DO_221,                        SCL3DB_DOut,	0,
+{DO_222,                        SCL3DB_DOut,	0,
+{CDS-Valve:6ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:6DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:6ErrorReset,         SCL3DB_DOut,	0,
+{DO_226,                        SCL3DB_DOut,	0,
+{DO_227,                        SCL3DB_DOut,	0,
+{DO_228,                        SCL3DB_DOut,	0,
+{DO_229,                        SCL3DB_DOut,	0,
+{DO_230,                        SCL3DB_DOut,	0,
+{CDS-Valve:7ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:7DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:7ErrorReset,         SCL3DB_DOut,	0,
+{DO_234,                        SCL3DB_DOut,	0,
+{DO_235,                        SCL3DB_DOut,	0,
+{DO_236,                        SCL3DB_DOut,	0,
+{DO_237,                        SCL3DB_DOut,	0,
+{DO_238,                        SCL3DB_DOut,	0,
+{CDS-Valve:8ManualSelect,       SCL3DB_DOut,	0,
+{CDS-Valve:8DeadbandEnable,     SCL3DB_DOut,	0,
+{CDS-Valve:8ErrorReset,         SCL3DB_DOut,	0,
+{DO_242,                        SCL3DB_DOut,	0,
+{DO_243,                        SCL3DB_DOut,	0,
+{DO_244,                        SCL3DB_DOut,	0,
+{DO_245,                        SCL3DB_DOut,	0,
+{DO_246,                        SCL3DB_DOut,	0,
+{CDS-Press:1AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:2AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:3AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:4AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:5AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:6AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:7AlarmReset,         SCL3DB_DOut,	0,
+{CDS-Press:8AlarmReset,         SCL3DB_DOut,	0,
+{DO_255,                        SCL3DB_DOut,	0,
+{DO_256,                        SCL3DB_DOut,	0,
+{DO_257,                        SCL3DB_DOut,	0,
+{DO_258,                        SCL3DB_DOut,	0,
+{DO_259,                        SCL3DB_DOut,	0,
+{DO_260,                        SCL3DB_DOut,	0,
+{DO_261,                        SCL3DB_DOut,	0,
+{DO_262,                        SCL3DB_DOut,	0,
+{1VC-DRY:ManualRun,             SCL3DB_DOut,	0,
+{1VC-DRY:ManualStop,            SCL3DB_DOut,	0,
+{1VC-DRY:ErrorReset,            SCL3DB_DOut,	0,
+{1VC-DRY:ManualSelect,          SCL3DB_DOut,	0,
+{DO_266,                        SCL3DB_DOut,	0,
+{DO_267,                        SCL3DB_DOut,	0,
+{DO_268,                        SCL3DB_DOut,	0,
+{DO_269,                        SCL3DB_DOut,	0,
+{2VC-DRY:ManualRun,             SCL3DB_DOut,	0,
+{2VC-DRY:ManualStop,            SCL3DB_DOut,	0,
+{2VC-DRY:ErrorReset,            SCL3DB_DOut,	0,
+{2VC-DRY:ManualSelect,          SCL3DB_DOut,	0,
+{DO_274,                        SCL3DB_DOut,	0,
+{DO_275,                        SCL3DB_DOut,	0,
+{DO_276,                        SCL3DB_DOut,	0,
+{DO_277,                        SCL3DB_DOut,	0,
+{1VC-TMP:ManualRun,             SCL3DB_DOut,	0,
+{1VC-TMP:ManualStop,            SCL3DB_DOut,	0,
+{1VC-TMP:ProtectOn,             SCL3DB_DOut,	0,
+{1VC-TMP:ProtectOff,            SCL3DB_DOut,	0,
+{1VC-TMP:ManualSelect,          SCL3DB_DOut,	0,
+{DO_283,                        SCL3DB_DOut,	0,
+{DO_284,                        SCL3DB_DOut,	0,
+{DO_285,                        SCL3DB_DOut,	0,
+{2VC-TMP:ManualRun,             SCL3DB_DOut,	0,
+{2VC-TMP:ManualStop,            SCL3DB_DOut,	0,
+{2VC-TMP:ProtectOn,             SCL3DB_DOut,	0,
+{2VC-TMP:ProtectOff,            SCL3DB_DOut,	0,
+{2VC-TMP:ManualSelect,          SCL3DB_DOut,	0,
+{DO_291,                        SCL3DB_DOut,	0,
+{DO_292,                        SCL3DB_DOut,	0,
+{DO_293,                        SCL3DB_DOut,	0,
+{1VC-Gate:ManualOpen,           SCL3DB_DOut,	0,
+{1VC-Gate:ManualClose,          SCL3DB_DOut,	0,
+{1VC-Gate:AlarmReset,           SCL3DB_DOut,	0,
+{1VC-Gate:ManualSelect,         SCL3DB_DOut,	0,
+{DO_298,                        SCL3DB_DOut,	0,
+{DO_299,                        SCL3DB_DOut,	0,
+{DO_300,                        SCL3DB_DOut,	0,
+{DO_301,                        SCL3DB_DOut,	0,
+{1VC-Angle:ManualOpen,          SCL3DB_DOut,	0,
+{1VC-Angle:ManualClose,         SCL3DB_DOut,	0,
+{1VC-Angle:AlarmReset,          SCL3DB_DOut,	0,
+{1VC-Angle:ManualSelect,        SCL3DB_DOut,	0,
+{DO_306,                        SCL3DB_DOut,	0,
+{DO_307,                        SCL3DB_DOut,	0,
+{DO_308,                        SCL3DB_DOut,	0,
+{DO_309,                        SCL3DB_DOut,	0,
+{2VC-Gate:ManualOpen,           SCL3DB_DOut,	0,
+{2VC-Gate:ManualClose,          SCL3DB_DOut,	0,
+{2VC-Gate:AlarmReset,           SCL3DB_DOut,	0,
+{2VC-Gate:ManualSelect,         SCL3DB_DOut,	0,
+{DO_314,                        SCL3DB_DOut,	0,
+{DO_315,                        SCL3DB_DOut,	0,
+{DO_316,                        SCL3DB_DOut,	0,
+{DO_317,                        SCL3DB_DOut,	0,
+{2VC-Angle:ManualOpen,          SCL3DB_DOut,	0,
+{2VC-Angle:ManualClose,         SCL3DB_DOut,	0,
+{2VC-Angle:AlarmReset,          SCL3DB_DOut,	0,
+{2VC-Angle:ManualSelect,        SCL3DB_DOut,	0,
+{DO_322,                        SCL3DB_DOut,	0,
+{DO_323,                        SCL3DB_DOut,	0,
+{DO_324,                        SCL3DB_DOut,	0,
+{DO_325,                        SCL3DB_DOut,	0,
+{DO_326,                        SCL3DB_DOut,	0,
+{DO_327,                        SCL3DB_DOut,	0,
+{DO_328,                        SCL3DB_DOut,	0,
+{DO_329,                        SCL3DB_DOut,	0,
+{DO_330,                        SCL3DB_DOut,	0,
+{DO_331,                        SCL3DB_DOut,	0,
+{DO_332,                        SCL3DB_DOut,	0,
+{DO_333,                        SCL3DB_DOut,	0,
+{DO_334,                        SCL3DB_DOut,	0,
+{DO_335,                        SCL3DB_DOut,	0,
+{DO_336,                        SCL3DB_DOut,	0,
+{DO_337,                        SCL3DB_DOut,	0,
+{DO_338,                        SCL3DB_DOut,	0,
+{DO_339,                        SCL3DB_DOut,	0,
+{DO_340,                        SCL3DB_DOut,	0,
+{DO_341,                        SCL3DB_DOut,	0,
+{DO_342,                        SCL3DB_DOut,	0,
+{DO_343,                        SCL3DB_DOut,	0,
+{DO_344,                        SCL3DB_DOut,	0,
+{DO_345,                        SCL3DB_DOut,	0,
+{DO_346,                        SCL3DB_DOut,	0,
+{DO_347,                        SCL3DB_DOut,	0,
+{DO_348,                        SCL3DB_DOut,	0,
+{DO_349,                        SCL3DB_DOut,	0,
+

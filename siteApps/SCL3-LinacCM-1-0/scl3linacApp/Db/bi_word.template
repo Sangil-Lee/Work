@@ -1,0 +1,8 @@
+# bi record template for register inputs
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
+    field(DTYP,"asynUInt32Digital")
+    field(INP,"@asynMask($(PORT) $(OFFSET) $(MASK))")
+    field(SCAN,"$(SCAN)")
+    field(ZNAM,"$(ZNAM)")
+    field(ONAM,"$(ONAM)")
+}
