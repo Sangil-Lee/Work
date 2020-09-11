@@ -1,0 +1,28 @@
+===========================VIM Tips===============================
+
+
+Add , at end line
+:<>s/\n/,\r/g
+
+Remove , at end line
+:<>s/,\n/\r/g
+
+Empty line remove(space+TAB) 
+:%g/^\s*$/d
+:%g/^[ ^I]*$/d
+
+Remove white space at end line
+:<>s/\s\+$//g
+:<>s/[ ^I]*$//g
+
+Remove white space at the middle of sentence
+:<>s/\s//g
+:<>s/[ ^I]//g
+
+
+Replace Nth word at the line
+:%s/\(\zsPATTERN.\{-}\)\{N}/REPLACE/
+
+Replace second '_' to ',' at line
+:%s/\(\zs_.\{-}\)\{2}/,/g
+

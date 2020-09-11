@@ -1,0 +1,19 @@
+
+1. 
+$>sudo aptitude install uim uim-byeoru
+i   uim                                                             - Universal Input Method - main binary package                              
+i   uim-byeoru                                                      - Universal Input Method - byeoru hangul input support metapackage          
+
+2. 
+// Right Alt key mapping to Hangul
+	$ xmodmap -e 'remove mod1 = Alt_R'
+	$ xmodmap -e 'keycode 108 = Hangul'
+
+// Right Ctrl key mapping to Hangul_Hanja
+	$ xmodmap -e 'remove control = Control_R'
+	$ xmodmap -e 'keycode 105 = Hangul_Hanja'
+
+// save keymap
+	$ xmodmap -pke > ~/.Xmodmap
+
+3. uim execution & byeoru key configuration

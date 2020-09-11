@@ -1,0 +1,438 @@
+ctrluser@sidesk:~$ sudo aptitude install linuxbrew-wrapper
+The following NEW packages will be installed:
+  libruby2.5{a} linuxbrew-wrapper rake{a} ruby{a} ruby-did-you-mean{a} ruby-minitest{a} 
+  ruby-net-telnet{a} ruby-power-assert{a} ruby-test-unit{a} ruby-xmlrpc{a} ruby2.5{a} 
+  rubygems-integration{a} zip{a} 
+0 packages upgraded, 13 newly installed, 0 to remove and 4 not upgraded.
+Need to get 4,358 kB of archives. After unpacking 17.2 MB will be used.
+Do you want to continue? [Y/n/?] Y
+Get: 1 http://deb.debian.org/debian buster/main amd64 rubygems-integration all 1.11 [4,994 B]
+Get: 2 http://deb.debian.org/debian buster/main amd64 ruby2.5 amd64 2.5.5-3+deb10u1 [400 kB]
+Get: 3 http://deb.debian.org/debian buster/main amd64 ruby amd64 1:2.5.1 [11.3 kB]
+Get: 4 http://deb.debian.org/debian buster/main amd64 rake all 12.3.1-3 [66.9 kB]
+Get: 5 http://deb.debian.org/debian buster/main amd64 ruby-did-you-mean all 1.2.1-1 [14.4 kB]
+Get: 6 http://deb.debian.org/debian buster/main amd64 ruby-minitest all 5.11.3-1 [54.8 kB]
+Get: 7 http://deb.debian.org/debian buster/main amd64 ruby-net-telnet all 0.1.1-2 [12.5 kB]
+Get: 8 http://deb.debian.org/debian buster/main amd64 ruby-power-assert all 1.1.1-1 [10.9 kB]
+Get: 9 http://deb.debian.org/debian buster/main amd64 ruby-test-unit all 3.2.8-1 [72.4 kB]
+Get: 10 http://deb.debian.org/debian buster/main amd64 ruby-xmlrpc all 0.3.0-2 [23.7 kB]
+Get: 11 http://deb.debian.org/debian buster/main amd64 libruby2.5 amd64 2.5.5-3+deb10u1 [3,438 kB]
+Get: 12 http://deb.debian.org/debian buster/contrib amd64 linuxbrew-wrapper all 20180923-1 [14.6 kB]
+Get: 13 http://deb.debian.org/debian buster/main amd64 zip amd64 3.0-11+b1 [234 kB]                 
+Fetched 4,358 kB in 12s (373 kB/s)                                                                  
+Selecting previously unselected package rubygems-integration.
+(Reading database ... 130025 files and directories currently installed.)
+Preparing to unpack .../00-rubygems-integration_1.11_all.deb ...
+Unpacking rubygems-integration (1.11) ...
+Selecting previously unselected package ruby2.5.
+Preparing to unpack .../01-ruby2.5_2.5.5-3+deb10u1_amd64.deb ...
+Unpacking ruby2.5 (2.5.5-3+deb10u1) ...
+Selecting previously unselected package ruby.
+Preparing to unpack .../02-ruby_1%3a2.5.1_amd64.deb ...
+Unpacking ruby (1:2.5.1) ...
+Selecting previously unselected package rake.
+Preparing to unpack .../03-rake_12.3.1-3_all.deb ...
+Unpacking rake (12.3.1-3) ...
+Selecting previously unselected package ruby-did-you-mean.
+Preparing to unpack .../04-ruby-did-you-mean_1.2.1-1_all.deb ...
+Unpacking ruby-did-you-mean (1.2.1-1) ...
+Selecting previously unselected package ruby-minitest.
+Preparing to unpack .../05-ruby-minitest_5.11.3-1_all.deb ...
+Unpacking ruby-minitest (5.11.3-1) ...
+Selecting previously unselected package ruby-net-telnet.
+Preparing to unpack .../06-ruby-net-telnet_0.1.1-2_all.deb ...
+Unpacking ruby-net-telnet (0.1.1-2) ...
+Selecting previously unselected package ruby-power-assert.
+Preparing to unpack .../07-ruby-power-assert_1.1.1-1_all.deb ...
+Unpacking ruby-power-assert (1.1.1-1) ...
+Selecting previously unselected package ruby-test-unit.
+Preparing to unpack .../08-ruby-test-unit_3.2.8-1_all.deb ...
+Unpacking ruby-test-unit (3.2.8-1) ...
+Selecting previously unselected package ruby-xmlrpc.
+Preparing to unpack .../09-ruby-xmlrpc_0.3.0-2_all.deb ...
+Unpacking ruby-xmlrpc (0.3.0-2) ...
+Selecting previously unselected package libruby2.5:amd64.
+Preparing to unpack .../10-libruby2.5_2.5.5-3+deb10u1_amd64.deb ...
+Unpacking libruby2.5:amd64 (2.5.5-3+deb10u1) ...
+Selecting previously unselected package linuxbrew-wrapper.
+Preparing to unpack .../11-linuxbrew-wrapper_20180923-1_all.deb ...
+Unpacking linuxbrew-wrapper (20180923-1) ...
+Selecting previously unselected package zip.
+Preparing to unpack .../12-zip_3.0-11+b1_amd64.deb ...
+Unpacking zip (3.0-11+b1) ...
+Setting up ruby-power-assert (1.1.1-1) ...
+Setting up rubygems-integration (1.11) ...
+Setting up ruby-minitest (5.11.3-1) ...
+Setting up zip (3.0-11+b1) ...
+Setting up ruby-test-unit (3.2.8-1) ...
+Setting up ruby-net-telnet (0.1.1-2) ...
+Setting up ruby-did-you-mean (1.2.1-1) ...
+Setting up ruby-xmlrpc (0.3.0-2) ...
+Setting up ruby2.5 (2.5.5-3+deb10u1) ...
+Setting up ruby (1:2.5.1) ...
+Setting up rake (12.3.1-3) ...
+Setting up linuxbrew-wrapper (20180923-1) ...
+Setting up libruby2.5:amd64 (2.5.5-3+deb10u1) ...
+Processing triggers for libc-bin (2.28-10) ...
+Processing triggers for man-db (2.8.5-2) ...
+                                         
+ctrluser@sidesk:~$ brew
+==> This script will install:
+/home/linuxbrew/.linuxbrew/bin/brew
+/home/linuxbrew/.linuxbrew/share/doc/homebrew
+/home/linuxbrew/.linuxbrew/share/man/man1/brew.1
+/home/linuxbrew/.linuxbrew/share/zsh/site-functions/_brew
+/home/linuxbrew/.linuxbrew/etc/bash_completion.d/brew
+/home/ctrluser/.cache/Homebrew/
+/home/linuxbrew/.linuxbrew/Homebrew
+==> The following new directories will be created:
+/home/linuxbrew/.linuxbrew/bin
+/home/linuxbrew/.linuxbrew/etc
+/home/linuxbrew/.linuxbrew/include
+/home/linuxbrew/.linuxbrew/lib
+/home/linuxbrew/.linuxbrew/sbin
+/home/linuxbrew/.linuxbrew/share
+/home/linuxbrew/.linuxbrew/var
+/home/linuxbrew/.linuxbrew/opt
+/home/linuxbrew/.linuxbrew/share/zsh
+/home/linuxbrew/.linuxbrew/share/zsh/site-functions
+/home/linuxbrew/.linuxbrew/Cellar
+/home/linuxbrew/.linuxbrew/Caskroom
+/home/linuxbrew/.linuxbrew/Homebrew
+/home/linuxbrew/.linuxbrew/Frameworks
+
+Press RETURN to continue or any other key to abort
+ctrluser@sidesk:~$ brew install s-search
+==> This script will install:
+/home/linuxbrew/.linuxbrew/bin/brew
+/home/linuxbrew/.linuxbrew/share/doc/homebrew
+/home/linuxbrew/.linuxbrew/share/man/man1/brew.1
+/home/linuxbrew/.linuxbrew/share/zsh/site-functions/_brew
+/home/linuxbrew/.linuxbrew/etc/bash_completion.d/brew
+/home/ctrluser/.cache/Homebrew/
+/home/linuxbrew/.linuxbrew/Homebrew
+==> The following new directories will be created:
+/home/linuxbrew/.linuxbrew/bin
+/home/linuxbrew/.linuxbrew/etc
+/home/linuxbrew/.linuxbrew/include
+/home/linuxbrew/.linuxbrew/lib
+/home/linuxbrew/.linuxbrew/sbin
+/home/linuxbrew/.linuxbrew/share
+/home/linuxbrew/.linuxbrew/var
+/home/linuxbrew/.linuxbrew/opt
+/home/linuxbrew/.linuxbrew/share/zsh
+/home/linuxbrew/.linuxbrew/share/zsh/site-functions
+/home/linuxbrew/.linuxbrew/Cellar
+/home/linuxbrew/.linuxbrew/Caskroom
+/home/linuxbrew/.linuxbrew/Homebrew
+/home/linuxbrew/.linuxbrew/Frameworks
+
+Press RETURN to continue or any other key to abort
+==> /usr/bin/sudo /bin/mkdir -p /home/linuxbrew/.linuxbrew
+==> /usr/bin/sudo /bin/chown ctrluser:ctrluser /home/linuxbrew/.linuxbrew
+==> /usr/bin/sudo /bin/mkdir -p /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/etc /home/linuxbrew/.linuxbrew/include /home/linuxbrew/.linuxbrew/lib /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/share /home/linuxbrew/.linuxbrew/var /home/linuxbrew/.linuxbrew/opt /home/linuxbrew/.linuxbrew/share/zsh /home/linuxbrew/.linuxbrew/share/zsh/site-functions /home/linuxbrew/.linuxbrew/Cellar /home/linuxbrew/.linuxbrew/Caskroom /home/linuxbrew/.linuxbrew/Homebrew /home/linuxbrew/.linuxbrew/Frameworks
+==> /usr/bin/sudo /bin/chmod g+rwx /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/etc /home/linuxbrew/.linuxbrew/include /home/linuxbrew/.linuxbrew/lib /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/share /home/linuxbrew/.linuxbrew/var /home/linuxbrew/.linuxbrew/opt /home/linuxbrew/.linuxbrew/share/zsh /home/linuxbrew/.linuxbrew/share/zsh/site-functions /home/linuxbrew/.linuxbrew/Cellar /home/linuxbrew/.linuxbrew/Caskroom /home/linuxbrew/.linuxbrew/Homebrew /home/linuxbrew/.linuxbrew/Frameworks
+==> /usr/bin/sudo /bin/chmod 755 /home/linuxbrew/.linuxbrew/share/zsh /home/linuxbrew/.linuxbrew/share/zsh/site-functions
+==> /usr/bin/sudo /bin/chown ctrluser /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/etc /home/linuxbrew/.linuxbrew/include /home/linuxbrew/.linuxbrew/lib /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/share /home/linuxbrew/.linuxbrew/var /home/linuxbrew/.linuxbrew/opt /home/linuxbrew/.linuxbrew/share/zsh /home/linuxbrew/.linuxbrew/share/zsh/site-functions /home/linuxbrew/.linuxbrew/Cellar /home/linuxbrew/.linuxbrew/Caskroom /home/linuxbrew/.linuxbrew/Homebrew /home/linuxbrew/.linuxbrew/Frameworks
+==> /usr/bin/sudo /bin/chgrp ctrluser /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/etc /home/linuxbrew/.linuxbrew/include /home/linuxbrew/.linuxbrew/lib /home/linuxbrew/.linuxbrew/sbin /home/linuxbrew/.linuxbrew/share /home/linuxbrew/.linuxbrew/var /home/linuxbrew/.linuxbrew/opt /home/linuxbrew/.linuxbrew/share/zsh /home/linuxbrew/.linuxbrew/share/zsh/site-functions /home/linuxbrew/.linuxbrew/Cellar /home/linuxbrew/.linuxbrew/Caskroom /home/linuxbrew/.linuxbrew/Homebrew /home/linuxbrew/.linuxbrew/Frameworks
+==> /usr/bin/sudo /bin/mkdir -p /home/ctrluser/.cache/Homebrew
+==> /usr/bin/sudo /bin/chmod g+rwx /home/ctrluser/.cache/Homebrew
+==> /usr/bin/sudo /bin/chown ctrluser /home/ctrluser/.cache/Homebrew
+==> /usr/bin/sudo /bin/chgrp ctrluser /home/ctrluser/.cache/Homebrew
+==> Downloading and installing Linuxbrew...
+remote: Enumerating objects: 127970, done.
+
+remote: Total 127970 (delta 0), reused 0 (delta 0), pack-reused 127970
+Receiving objects: 100% (127970/127970), 29.72 MiB | 7.17 MiB/s, done.
+Resolving deltas: 100% (93659/93659), done.
+From https://github.com/Linuxbrew/brew
+ * [new branch]      master     -> origin/master
+ * [new tag]         1.0.0      -> 1.0.0
+ * [new tag]         1.0.1      -> 1.0.1
+ * [new tag]         1.0.2      -> 1.0.2
+ * [new tag]         1.0.3      -> 1.0.3
+ * [new tag]         1.0.4      -> 1.0.4
+ * [new tag]         1.0.5      -> 1.0.5
+ * [new tag]         1.0.6      -> 1.0.6
+ * [new tag]         1.0.7      -> 1.0.7
+ * [new tag]         1.0.8      -> 1.0.8
+ * [new tag]         1.0.9      -> 1.0.9
+ * [new tag]         1.1.0      -> 1.1.0
+ * [new tag]         1.1.0.1    -> 1.1.0.1
+ * [new tag]         1.1.1      -> 1.1.1
+ * [new tag]         1.1.10     -> 1.1.10
+ * [new tag]         1.1.11     -> 1.1.11
+ * [new tag]         1.1.12     -> 1.1.12
+ * [new tag]         1.1.13     -> 1.1.13
+ * [new tag]         1.1.2      -> 1.1.2
+ * [new tag]         1.1.2.1    -> 1.1.2.1
+ * [new tag]         1.1.3      -> 1.1.3
+ * [new tag]         1.1.4      -> 1.1.4
+ * [new tag]         1.1.5      -> 1.1.5
+ * [new tag]         1.1.6      -> 1.1.6
+ * [new tag]         1.1.7      -> 1.1.7
+ * [new tag]         1.1.8      -> 1.1.8
+ * [new tag]         1.1.9      -> 1.1.9
+ * [new tag]         1.2.0      -> 1.2.0
+ * [new tag]         1.2.1      -> 1.2.1
+ * [new tag]         1.2.2      -> 1.2.2
+ * [new tag]         1.2.3      -> 1.2.3
+ * [new tag]         1.2.4      -> 1.2.4
+ * [new tag]         1.2.5      -> 1.2.5
+ * [new tag]         1.2.6      -> 1.2.6
+ * [new tag]         1.2.7      -> 1.2.7
+ * [new tag]         1.2.8      -> 1.2.8
+ * [new tag]         1.3.0      -> 1.3.0
+ * [new tag]         1.3.1      -> 1.3.1
+ * [new tag]         1.3.2      -> 1.3.2
+ * [new tag]         1.3.3      -> 1.3.3
+ * [new tag]         1.3.4      -> 1.3.4
+ * [new tag]         1.3.5      -> 1.3.5
+ * [new tag]         1.3.6      -> 1.3.6
+ * [new tag]         1.3.7      -> 1.3.7
+ * [new tag]         1.3.8      -> 1.3.8
+ * [new tag]         1.3.9      -> 1.3.9
+ * [new tag]         1.4.0      -> 1.4.0
+ * [new tag]         1.4.1      -> 1.4.1
+ * [new tag]         1.4.2      -> 1.4.2
+ * [new tag]         1.4.3      -> 1.4.3
+ * [new tag]         1.5.0      -> 1.5.0
+ * [new tag]         1.5.1      -> 1.5.1
+ * [new tag]         1.5.10     -> 1.5.10
+ * [new tag]         1.5.11     -> 1.5.11
+ * [new tag]         1.5.12     -> 1.5.12
+ * [new tag]         1.5.13     -> 1.5.13
+ * [new tag]         1.5.14     -> 1.5.14
+ * [new tag]         1.5.2      -> 1.5.2
+ * [new tag]         1.5.3      -> 1.5.3
+ * [new tag]         1.5.4      -> 1.5.4
+ * [new tag]         1.5.5      -> 1.5.5
+ * [new tag]         1.5.6      -> 1.5.6
+ * [new tag]         1.5.7      -> 1.5.7
+ * [new tag]         1.5.8      -> 1.5.8
+ * [new tag]         1.5.9      -> 1.5.9
+ * [new tag]         1.6.0      -> 1.6.0
+ * [new tag]         1.6.1      -> 1.6.1
+ * [new tag]         1.6.10     -> 1.6.10
+ * [new tag]         1.6.11     -> 1.6.11
+ * [new tag]         1.6.12     -> 1.6.12
+ * [new tag]         1.6.13     -> 1.6.13
+ * [new tag]         1.6.14     -> 1.6.14
+ * [new tag]         1.6.15     -> 1.6.15
+ * [new tag]         1.6.16     -> 1.6.16
+ * [new tag]         1.6.17     -> 1.6.17
+ * [new tag]         1.6.2      -> 1.6.2
+ * [new tag]         1.6.3      -> 1.6.3
+ * [new tag]         1.6.4      -> 1.6.4
+ * [new tag]         1.6.5      -> 1.6.5
+ * [new tag]         1.6.6      -> 1.6.6
+ * [new tag]         1.6.7      -> 1.6.7
+ * [new tag]         1.6.8      -> 1.6.8
+ * [new tag]         1.6.9      -> 1.6.9
+ * [new tag]         1.7.0      -> 1.7.0
+ * [new tag]         1.7.1      -> 1.7.1
+ * [new tag]         1.7.2      -> 1.7.2
+ * [new tag]         1.7.3      -> 1.7.3
+ * [new tag]         1.7.4      -> 1.7.4
+ * [new tag]         1.7.5      -> 1.7.5
+ * [new tag]         1.7.6      -> 1.7.6
+ * [new tag]         1.7.7      -> 1.7.7
+ * [new tag]         1.8.0      -> 1.8.0
+ * [new tag]         1.8.1      -> 1.8.1
+ * [new tag]         1.8.2      -> 1.8.2
+ * [new tag]         1.8.3      -> 1.8.3
+ * [new tag]         1.8.4      -> 1.8.4
+ * [new tag]         1.8.5      -> 1.8.5
+ * [new tag]         1.8.6      -> 1.8.6
+ * [new tag]         1.9.0      -> 1.9.0
+ * [new tag]         1.9.1      -> 1.9.1
+ * [new tag]         1.9.2      -> 1.9.2
+ * [new tag]         1.9.3      -> 1.9.3
+ * [new tag]         1.9.4      -> 1.9.4
+HEAD is now at 93389fde6 README.md: Linuxbrew has been merged into Homebrew (#942)
+==> Migrating from Linuxbrew/brew to Homebrew/brew
+  Linuxbrew/brew has been merged into Homebrew/brew!
+  Linuxbrew/brew will no longer be updated.
+  Your git remote has been changed from
+     https://github.com/Linuxbrew/brew
+  to https://github.com/Homebrew/brew
+  See the blog post at https://brew.sh/2019/02/02/homebrew-2.0.0/
+
+==> Downloading https://linuxbrew.bintray.com/bottles-portable-ruby/portable-ruby-2.6.3.x86_64_linux.bottle.tar.gz
+############################################################################################# 100.0%
+==> Pouring portable-ruby-2.6.3.x86_64_linux.bottle.tar.gz
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+==> Tapping homebrew/core
+Cloning into '/home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core'...
+remote: Enumerating objects: 665, done.
+remote: Counting objects: 100% (665/665), done.
+remote: Compressing objects: 100% (361/361), done.
+remote: Total 842094 (delta 432), reused 481 (delta 304), pack-reused 841429
+Receiving objects: 100% (842094/842094), 307.52 MiB | 5.14 MiB/s, done.
+Resolving deltas: 100% (573253/573253), done.
+Tapped 2 commands and 4995 formulae (5,261 files, 339.3MB).
+Already up-to-date.
+==> Installation successful!
+
+==> Homebrew has enabled anonymous aggregate formulae and cask analytics.
+Read the analytics documentation (and how to opt-out) here:
+  https://docs.brew.sh/Analytics.html
+
+==> Homebrew is run entirely by unpaid volunteers. Please consider donating:
+  https://github.com/Homebrew/brew#donations
+==> Next steps:
+- Install the Linuxbrew dependencies if you have sudo access:
+  Debian, Ubuntu, etc.
+    sudo apt-get install build-essential
+  Fedora, Red Hat, CentOS, etc.
+    sudo yum groupinstall 'Development Tools'
+  See http://linuxbrew.sh/#dependencies for more information.
+- Add Linuxbrew to your ~/.profile by running
+    echo 'export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"' >>~/.profile
+    echo 'export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"' >>~/.profile
+    echo 'export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"' >>~/.profile
+- Add Linuxbrew to your PATH
+    PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+- We recommend that you install GCC by running:
+    brew install gcc
+- After modifying your shell profile, you may need to restart your session
+  (logout and then log back in) if the brew command isn't found.
+- Run `brew help` to get started
+- Further documentation: 
+    https://docs.brew.sh
+Warning: /home/linuxbrew/.linuxbrew/bin is not in your PATH.
+/usr/bin/brew: 78: exec: /home/ctrluser/.linuxbrew/bin/brew: not found
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ brew install s-search
+==> Installing dependencies for s-search: patchelf
+==> Installing s-search dependency: patchelf
+==> Downloading https://linuxbrew.bintray.com/bottles/patchelf-0.10.x86_64_linux.bottle.tar.gz
+==> Downloading from https://akamai.bintray.com/98/988b224305ff3fecadf9bbf5fbe1b18061077be6c896935b2
+######################################################################## 100.0%
+==> Pouring patchelf-0.10.x86_64_linux.bottle.tar.gz
+🍺  /home/linuxbrew/.linuxbrew/Cellar/patchelf/0.10: 8 files, 921.5KB
+==> Installing s-search
+==> Downloading https://linuxbrew.bintray.com/bottles/s-search-0.5.14.x86_64_linux.bottle.tar.gz
+==> Downloading from https://akamai.bintray.com/57/570e25b19ec8da17b9d4691fa7ac311499cc8d8bcac2ad797
+######################################################################## 100.0%
+==> Pouring s-search-0.5.14.x86_64_linux.bottle.tar.gz
+🍺  /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14: 5 files, 11MB
+==> `brew cleanup` has not been run in 30 days, running now...
+ctrluser@sidesk:~$ s
+bash: s: command not found
+ctrluser@sidesk:~$ which s
+ctrluser@sidesk:~$ brew install s-search
+Warning: s-search 0.5.14 is already installed and up-to-date
+To reinstall 0.5.14, run `brew reinstall s-search`
+ctrluser@sidesk:~$ brew reinstall s-search
+==> Reinstalling s-search 
+==> Downloading https://linuxbrew.bintray.com/bottles/s-search-0.5.14.x86_64_linux.bottle.tar.gz
+Already downloaded: /home/ctrluser/.cache/Homebrew/downloads/87f38094295e1e25ee233b893d22d252c59f8c938a6415d7e0843c69a0fcaa47--s-search-0.5.14.x86_64_linux.bottle.tar.gz
+==> Pouring s-search-0.5.14.x86_64_linux.bottle.tar.gz
+🍺  /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14: 5 files, 11MB
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ ls
+Desktop                        GitHub             ProtocolBuffer   Templates
+Documents                      go                 Public           Test
+Downloads                      IJEPICS_debug.txt  Qt5.12.2         tmp
+epics                          ImageJ             Qt5.12.2.tar.gz  Videos
+EPICS_AD_Viewer.properties     install_epics      qtepics
+EPICS_NTNDA_Viewer.properties  Music              qtepics.tar.gz
+epics_R13.14.12.5              Pictures           Qwt
+ctrluser@sidesk:~$ ls /home/
+ctrluser/  linuxbrew/ 
+ctrluser@sidesk:~$ cd /home/linuxbrew/
+ctrluser@sidesk:/home/linuxbrew$ ls
+ctrluser@sidesk:/home/linuxbrew$ cd .linuxbrew/
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew$ ls
+bin  Caskroom  Cellar  etc  Frameworks  Homebrew  include  lib  opt  sbin  share  var
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew$ cd Cellar/
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar$ ls
+patchelf  s-search
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar$ cd s-search/
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search$ ls
+0.5.14
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search$ cd 0.5.14/
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14$ ls
+bin  INSTALL_RECEIPT.json  LICENSE  README.md
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14$ cd bin
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin$ ls
+s
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin$ ./s
+Web search from the terminal.
+
+Usage:
+  s <query> [flags]
+
+Flags:
+  -b, --binary string     binary to launch search URI
+  -c, --cert string       path to cert.pem for TLS
+  -h, --help              help for s
+  -k, --key string        path to key.pem for TLS
+  -l, --list-providers    list supported providers
+      --list-tags         list available tags
+  -o, --output            output only mode
+      --port int          server port (default 8080)
+  -p, --provider string   search provider (default "google")
+  -s, --server            launch web server
+  -t, --tag string        search tag
+  -v, --verbose           verbose mode
+      --version           display version
+ctrluser@sidesk:/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin$ cd
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ s
+bash: s: command not found
+ctrluser@sidesk:~$ 
+ctrluser@sidesk:~$ /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s
+Web search from the terminal.
+
+Usage:
+  s <query> [flags]
+
+Flags:
+  -b, --binary string     binary to launch search URI
+  -c, --cert string       path to cert.pem for TLS
+  -h, --help              help for s
+  -k, --key string        path to key.pem for TLS
+  -l, --list-providers    list supported providers
+      --list-tags         list available tags
+  -o, --output            output only mode
+      --port int          server port (default 8080)
+  -p, --provider string   search provider (default "google")
+  -s, --server            launch web server
+  -t, --tag string        search tag
+  -v, --verbose           verbose mode
+      --version           display version
+ctrluser@sidesk:~$ /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s -p wikipedia linux
+ctrluser@sidesk:~$ /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s -b "firefox" machine learning
+ctrluser@sidesk:~$ /home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s -p youtube "machine learning"
+ctrluser@sidesk:~$ vi .bashrc 
+ctrluser@sidesk:~$ !vi
+vi .bashrc 
+ctrluser@sidesk:~$ . .bashrc 
+ctrluser@sidesk:~$ search -p youtube "machine learning"
+ctrluser@sidesk:~$ search -b "firefox" -p youtube "machine learning"
+ctrluser@sidesk:~$ search -h
+Web search from the terminal.
+
+Usage:
+  s <query> [flags]
+
+Flags:
+  -b, --binary string     binary to launch search URI
+  -c, --cert string       path to cert.pem for TLS
+  -k, --key string        path to key.pem for TLS
+  -l, --list-providers    list supported providers
+      --list-tags         list available tags
+  -o, --output            output only mode
+      --port int          server port (default 8080)
+  -p, --provider string   search provider (default "google")
+  -s, --server            launch web server
+  -t, --tag string        search tag
+  -v, --verbose           verbose mode
+      --version           display version
+

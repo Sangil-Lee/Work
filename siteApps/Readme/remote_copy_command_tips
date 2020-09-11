@@ -1,0 +1,26 @@
+
+### Without ssh-keygen, Remote Copy and Remote Command #########################
+### With sshpass
+(base) ctrluser@sidesk:~$ sshpass -pqwer1234 scp -oStrictHostKeyChecking=no hello.txt ctrluser@10.1.181.125:~/CopyDir
+
+### Command
+sshpass -pqwer1234 ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ctrluser@10.1.181.125 "ls -al"
+
+
+
+### With expect
+#
+(base) ctrluser@sidesk:~$ expect << EOF
+spawn scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hello.txt ctrluser@10.1.181.125:~/CopyDir
+expect "password:"
+send "qwer1234\r"
+expect eof
+EOF
+
+(base) ctrluser@sidesk:~$ expect << EOF
+spawn ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null hello.txt ctrluser@10.1.181.125 "ls -al"
+expect "password:"
+send "qwer1234\r"
+expect eof
+EOF
+

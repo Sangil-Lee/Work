@@ -1,0 +1,14 @@
+
+1.install synapps_6_1.tar.gz(or latest version) using install scripts
+
+2.$>git clone --recursive https://github.com/areaDetector/areaDetector.git (areaDector collects include pvaDriver)
+3.$>git clone https://github.com/epics-modules/asyn.git	 (asyn latest modules)
+
+4.change asyn-x-x and areaDector-x-x in synapps_6_1 with 2,3
+
+5.configure/RELEASE in synapps_6_1 
+6.every files related to sub-directory/configure/RELEASE, asyn-x-x to asyn and areaDector-x-x to areaDector.
+: $>find . -name "RELEASE" | xargs sed -i "s/asyn-x-x/asyn//g"
+: $>find . -name "RELEASE" | xargs sed -i "s/areaDector-x-x/areaDector//g"
+
+#This information is not quite, but you just refer the procedure.

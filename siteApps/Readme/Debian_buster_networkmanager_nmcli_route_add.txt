@@ -1,0 +1,48 @@
+## Read for route two network interaces, eno1(192.168.68~)/enp3s0(10.1.181~)
+
+(base) ctrluser@sidesk:/etc/NetworkManager/system-connections$ nmcli con edit type ethernet con-name eno1
+
+===| nmcli interactive connection editor |===
+
+Adding a new '802-3-ethernet' connection
+
+Type 'help' or '?' for available commands.
+Type 'print' to show all the connection properties.
+Type 'describe [<setting>.<prop>]' for detailed property description.
+
+You may edit the following settings: connection, 802-3-ethernet (ethernet), 802-1x, dcb, sriov, ethtool, match, ipv4, ipv6, tc, proxy
+
+//Add Routing, 192.168.1.0/24(portal.ibs.re.kr, IRIS, ...)
+nmcli> set ipv4.route 192.168.1.0/24 10.1.181.254
+
+Error: invalid property: 'route' is ambiguous: routes, route-metric, route-table
+nmcli> set ipv4.routes 192.168.1.0/24 10.1.181.254
+nmcli> 
+nmcli> save persistent
+Saving the connection with 'autoconnect=yes'. That might result in an immediate activation of the connection.
+Do you still want to save? (yes/no) [yes] yes
+Connection 'eno1' (31dd2530-f86c-447e-a8d9-821a561af745) successfully saved.
+nmcli> quit
+(base) ctrluser@sidesk:/etc/NetworkManager/system-connections$ ls
+eno1.nmconnection  InnerConnection.nmconnection  InterConnection.nmconnection
+(base) ctrluser@sidesk:/etc/NetworkManager/system-connections$ 
+(base) ctrluser@sidesk:/etc/NetworkManager/system-connections$ sudo cat eno1.nmconnection 
+[connection]
+id=eno1
+uuid=31dd2530-f86c-447e-a8d9-821a561af745
+type=ethernet
+permissions=
+
+[ethernet]
+mac-address-blacklist=
+
+[ipv4]
+dns-search=
+method=auto
+route1=192.168.1.0/24,10.1.181.254
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method=auto
+
