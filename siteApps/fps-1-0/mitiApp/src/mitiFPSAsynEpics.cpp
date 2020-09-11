@@ -1,36 +1,71 @@
-#include <cstdlib>
-#include <cstring>
-#include <bitset>
-#include <epicsTypes.h>
-#include <epicsTime.h>
-#include <epicsThread.h>
-#include <epicsString.h>
-#include <epicsTimer.h>
-#include <epicsMutex.h>
-#include <epicsEvent.h>
-#include <registryFunction.h>
-#include <epicsExport.h>
-#include <dbCommon.h>
-#include <iocsh.h>
-
 #include "mitiFPSAsynEpics.h"
 
-mitiFPSAsynEpics::mitiFPSAsynEpics(const char *portName, const char* filename )
+/* intech define */
+
+#define def_drvname_strcmp(str) ( strcmp(regmap.drvname, str) == 0 )
+
+void asynProcess(void *drvPvt)
+{
+    mitiFPSAsynEpics *pPvt = (mitiFPSAsynEpics *)drvPvt;
+    pPvt->asynProcess();
+}
+
+mitiFPSAsynEpics::mitiFPSAsynEpics(const char *portName, const char* file )
    : asynPortDriver(portName, 
                     1,  /*maxAddr */ 
-                    150,
+                    250, /* max index */
                     asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask |asynDrvUserMask, /* Interface mask */
                     asynInt32Mask | asynFloat64Mask | asynInt16ArrayMask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
                     1, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
                     1, /* Autoconnect */
                     0, /* Default priority */
                     0 /* Default stack size*/
-										)
+				),driverName("mitiFPSAsynEpics"), devnode(12), filename(file)
 {
     asynStatus status;
-    const char *functionName = "mitiFPSAsynEpics";
-
+    // const char *functionName = "mitiFPSAsynEpics";
+	pmitiFPSDriver = new mitiFPSDriver(devnode);
 	registerParamListFromFile(filename);
+
+	eventId_ = epicsEventCreate(epicsEventEmpty);
+
+	status = (asynStatus)(
+		epicsThreadCreate(
+			"mitiFPSAsynEpicsUserTask",
+			epicsThreadPriorityMedium,
+			epicsThreadGetStackSize(epicsThreadStackMedium),
+			(EPICSTHREADFUNC)::asynProcess, this
+		) == NULL
+	);
+	if (status) {
+		return ;
+	}
+
+	// const char *functionName = "mitiFPSAsynEpics";	
+}
+
+void mitiFPSAsynEpics::asynProcess()
+{
+    double updateTime = 0;
+    int run = 1;
+
+	Board_Name_env = atoi(getenv("TARGET"));
+	pmitiFPSDriver->WriteUInt32Data(0x1B, Bram0_Idx, Board_Name_env);
+	// bram_ctrl_4200[0x0a] = temp;
+	printf("Mitigation ID : %d\n", Board_Name_env);
+
+    lock();
+    while (1) 
+	{
+        unlock();
+		
+        if(run)     
+			epicsEventWaitWithTimeout(eventId_, updateTime);	//need mutex code
+        else        
+			epicsEventWait(eventId_);
+		
+        lock();
+    }
 }
 
 void mitiFPSAsynEpics::registerParamListFromFile(string filename)
@@ -76,7 +111,7 @@ void mitiFPSAsynEpics::setIOCStartTime()
 	epicsTimeGetCurrent (&current);
 	char timebuf[20];
 	epicsTimeToStrftime(timebuf,20,"%Y/%m/%d %H:%M:%S", &current);
-	//setParamValue("IOCSTARTTIME", timebuf);
+	setParamValue("TimeStart", timebuf);
 }
 
 asynParamType mitiFPSAsynEpics::getAsynParamType(const char *paramstring)
@@ -108,6 +143,188 @@ asynParamType mitiFPSAsynEpics::getAsynParamType(const char *paramstring)
 	
 	return (paramtype);
 }
+
+/**
+ * record type	: longin 
+ * DTYP			: asynInt32
+ */
+asynStatus mitiFPSAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
+{
+    int function = pasynUser->reason;
+    int addr=0;
+    asynStatus status = asynSuccess;
+    epicsTimeStamp timeStamp; getTimeStamp(&timeStamp);
+    static const char *functionName = "readInt32";
+	const char *paramName;
+
+    status = getAddress(pasynUser, &addr); if (status != asynSuccess) return(status);
+    
+    /* We just read the current value of the parameter from the parameter library.
+     * Those values are updated whenever anything could cause them to change */
+    status = (asynStatus) getIntegerParam(addr, function, value);
+    /* Set the timestamp */
+
+    pasynUser->timestamp = timeStamp;
+	
+	RegMap regmap = regmaptable[function];
+
+	getParamName(function, &paramName);
+	// printf("writeInt32 : driverName(%s) functionName(%s) paramName(%s)\n", driverName, functionName, paramName);
+
+	*value = readInt32Value(regmap);
+
+    if (status) 
+        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
+                  "%s:%s: status=%d, function=%d, value=%d", 
+                  driverName, functionName, status, function, *value);
+    else        
+        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+              "%s:%s: function=%d, value=%d\n", 
+              driverName, functionName, function, *value);
+
+	status = (asynStatus) callParamCallbacks();
+    return(status);
+}
+
+/**
+ * record type	: longin 
+ * DTYP			: asynInt32
+ */
+epicsInt32 mitiFPSAsynEpics::readInt32Value(const RegMap &regmap)
+{
+	epicsUInt32 value = 0;
+	unsigned int get_BramAddr = regmap.address & 0xF00;
+	switch (get_BramAddr)
+	{
+		case 0x000:
+				//ChStatR
+				value = pmitiFPSDriver->ReadUInt32Data(regmap.address, Bram1_Idx);
+			break;
+		case 0x200:
+				value = pmitiFPSDriver->ReadUInt32Data(regmap.address, Bram0_Idx);
+				if(regmap.address == 0x20c){		// TempR
+					if(value < 20 || value > 37)
+					{
+						printf("Error Temp Value (%d), 0x%x \n", value,value);
+						value = OLD_TEMP;
+						return (value);
+					}
+					OLD_TEMP = value;
+				}else if(regmap.address == 0x21B){	// IDN
+					int temp = Board_Name_env;
+					pmitiFPSDriver->WriteUInt32Data(0x1B, Bram0_Idx, temp);
+					printf("Mitigation ID : %d\n", temp);
+					value = temp;
+				}else{
+					//FwVer	, LinkErr , GTH_LINK_STATUS , PMS_DATA_INTERLOCK
+				}
+			break;
+		case 0x600:
+				// not have
+				value = pmitiFPSDriver->ReadUInt32Data(regmap.address, Bram2_Idx);
+			break;
+		
+		default:
+			break;
+	}
+
+	return (value);	
+}
+
+/**
+ * 	record type	: longout
+ *  DTYP 		: asynInt32
+ */ 
+asynStatus mitiFPSAsynEpics::writeInt32(asynUser *pasynUser, epicsInt32 value)
+{
+	int function = pasynUser->reason;
+	asynStatus status = asynSuccess;
+	const char *paramName;
+	const char* functionName = "writeInt32";
+
+	int addr = 0;
+	status = getAddress(pasynUser, &addr); if (status != asynSuccess) return(status);
+
+	/* Set the parameter in the parameter library. */
+	status = (asynStatus) setIntegerParam(function, value);
+
+	/* Fetch the parameter string name for possible use in debugging */
+	getParamName(function, &paramName);
+
+	// printf("writeInt32 : name (%s)\n", paramName);
+
+	writeInt32Value(regmaptable[function]);
+
+	/* Do callbacks so higher layers see any changes */
+	status = (asynStatus) callParamCallbacks();
+
+	if (status) 
+		epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
+			"%s:%s: status=%d, function=%d, name=%s, value=%d", 
+			driverName, functionName, status, function, paramName, value);
+	else        
+		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
+			"%s:%s: function=%d, name=%s, value=%d\n", 
+			driverName, functionName, function, paramName, value);
+	return status;
+}
+
+/**
+ * 	record type	: longout
+ *  DTYP 		: asynInt32
+ */ 
+int mitiFPSAsynEpics::writeInt32Value(const RegMap &regmap)
+{
+	epicsInt32 value = 0;
+	unsigned int getValue = 0;
+	int status = 0;
+
+	if(checkParam(regmap.drvname) == -1) return(-1);
+
+	getIntegerParam(regmap.index, &value);
+	getValue = value;
+	
+	int setBram_Addr = (regmap.address & 0xF00);
+	switch (setBram_Addr)
+	{
+		case 0x000:
+				pmitiFPSDriver->WriteUInt32Data(regmap.address, Bram1_Idx, getValue);
+				//printf("0x4000 driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+			break;
+			
+		case 0x300:		// AllFileSave Btn
+				// printf("0x300 driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+			break;
+
+		case 0x200:
+				if(regmap.address == 0x208){		// OpticSwRst Btn
+					pmitiFPSDriver->WriteUInt32Data(regmap.address, Bram0_Idx, ((getValue == 1)?0xF:getValue) );
+
+				}else if(regmap.address == 0x207){	//	DEVICE_RELEASE Btn
+					pmitiFPSDriver->WriteUInt32Data(regmap.address, Bram0_Idx, getValue);
+					printf("0x4200 driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+
+				}else{
+					pmitiFPSDriver->WriteUInt32Data(regmap.address, Bram0_Idx, getValue);
+				}
+				// printf("0x4200 driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+			break;
+
+		case 0x600:
+				// Link & Node & Channel Mask
+				pmitiFPSDriver->WriteUInt32Data(regmap.address, Bram2_Idx, getValue);
+				//printf("0x4600 driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+			break;
+		
+		default:
+			printf("default driveName : %s | getValue : %x | address : 0x%x\n",regmap.drvname, getValue, regmap.address);
+			break;
+	}
+
+	return  (status);
+}
+
+
 int mitiFPSAsynEpics::setParamValue(const string drvname, const int ival)
 {
 	int check = checkParam(drvname);
@@ -143,6 +360,7 @@ asynStatus mitiFPSAsynEpics::getParamValue(const string drvname, int &value)
 {
     asynStatus status = asynSuccess;
     getIntegerParam(regmapfile[drvname].index, &value);
+	// printf(" index : %d , value  : %d status : %d\n", regmapfile[drvname].index , value, status);
 	return (status);
 }
 
@@ -159,8 +377,7 @@ asynStatus mitiFPSAsynEpics::createParamNMap(RegMap &reg)
     createParam(reg.drvname, reg.paramtype, &reg.index);
 	regmapfile[reg.drvname] = reg;
 	regmaptable[reg.index] = regmapfile[reg.drvname];
-
-	//printf("RegMap.drvname(%s),RegMap.paramtype(%d), RegMap.index(%d)\n",reg.drvname, reg.paramtype, reg.index);
+	// printf("Type : %d , Index : %03d ,  Drv Name : %s\n", reg.paramtype, reg.index, reg.drvname);
 	return (status);
 }
 
@@ -175,74 +392,10 @@ int mitiFPSAsynEpics::checkParam(const string drvname)
 	return (checkval);
 }
 
-asynStatus mitiFPSAsynEpics::readInt32(asynUser *pasynUser, epicsInt32 *value)
-{
-    int function = pasynUser->reason;
-    int addr=0;
-    asynStatus status = asynSuccess;
-    epicsTimeStamp timeStamp; getTimeStamp(&timeStamp);
-
-    static const char *functionName = "readInt32";
-    
-    /* We just read the current value of the parameter from the parameter library.
-     * Those values are updated whenever anything could cause them to change */
-    status = (asynStatus) getIntegerParam(function, value);
-    /* Set the timestamp */
-    pasynUser->timestamp = timeStamp;
-	
-	//RegMap regmap = regmaptable[function];
-	//*value = readInt32Value(regmaptable[function]);
-	readValue(regmaptable[function], *value);
-
-    if (status) 
-        epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
-                  "%s:%s: status=%d, function=%d, value=%d", 
-                  driverName, functionName, status, function, *value);
-    else        
-        asynPrint(pasynUser, ASYN_TRACEIO_DRIVER, 
-              "%s:%s: function=%d, value=%d\n", 
-              driverName, functionName, function, *value);
-	status = (asynStatus) callParamCallbacks();
-    return(status);
-}
-
-int mitiFPSAsynEpics::readValue(const RegMap &regmap, epicsInt32 &value)
-{
-	//Register address read.
-	//....
-
-	//epicsInt32	rdValue;
-	unsigned int	rdValue;
-
-	if (strcmp(regmap.drvname, "") == 0 )
-	{
-		bitset<sizeof(rdValue)> bitval(rdValue);
-		bitval = (bitval>>16);
-		bitval &= 0xffff;
-		value = bitval.to_ulong();
-	};
-
-	value = rdValue;
-
-	return (0);	
-}
-
-int mitiFPSAsynEpics::readValue(const RegMap &regmap, epicsFloat64 &value)
-{
-	//Register address read.
-	//....
-	epicsFloat64 rdValue = 0.0;
-
-
-	if (strcmp(regmap.drvname, "") == 0 )
-	{
-	} 
-
-	value = rdValue;
-
-	return (0);	
-}
-
+/**
+ * 	record type	: stringin
+ *  DTYP 		: asynOctetRead
+ */ 
 asynStatus mitiFPSAsynEpics::readOctet(asynUser *pasynUser, char *value, size_t maxChars, size_t *nActual, int *eomReason)
 {
     int function = pasynUser->reason;
@@ -278,24 +431,22 @@ asynStatus mitiFPSAsynEpics::readOctet(asynUser *pasynUser, char *value, size_t 
     return(status);
 }
 
+/**
+ * 	record type	: stringin
+ *  DTYP 		: asynOctetRead
+ */ 
 int mitiFPSAsynEpics::readValue(const RegMap &regmap, char *value)
 {
     int status = asynSuccess;
 
-	if (strcmp(regmap.drvname, "BUILD_TIME") == 0 )
-	{
-		//ptiming->ts2ip_rd(evfile, regmap.address, (unsigned int*)&rdData);
-		//BCDCode for time structure register, Sec(6bit)/Min(6bit)/Hour(5bit), Day(5bit)/Hour(4bit)/Year(5bit)
-		char timebuf[20];
-		strcpy(value, (char*)timebuf);
-	}
+	// Drv Name : TimeStart
+
 	return (status);
 }
 
 int mitiFPSAsynEpics::writeValue(const RegMap & regmap)
 {
 	int status = 0;
-
 	if( -1 == checkParam(regmap.drvname) ) return(-1);
 
 	switch(regmap.paramtype)
@@ -324,7 +475,6 @@ int mitiFPSAsynEpics::writeValue(const RegMap & regmap)
 				// special function
 				if(strcmp(regmap.drvname, "") == 0)
 				{
-					
 					return (status);
 				};
 				//normal write
@@ -363,39 +513,35 @@ int mitiFPSAsynEpics::writeValue(const RegMap & regmap)
 			break;
 	};
 
-
-
 	return (status);
 }
 
-
 extern "C" {
-/** EPICS iocsh callable function to call constructor for the testAsynPortDriver class.
-  * \param[in] portName The name of the asyn port driver to be created.
-  * \param[in] maxSizeSnapshot The maximum  number of sample in one snapshot
-  * \param[in] maxNbSnapshot The number of snapshot buffered
- */
-epicsShareFunc int mitiFPSAsynEpicsConfigure(const char *portName, const char* registerfile)
-{
-    new mitiFPSAsynEpics(portName, registerfile);
-    return(asynSuccess);
-}
+	/** EPICS iocsh callable function to call constructor for the testAsynPortDriver class.
+	 * \param[in] portName The name of the asyn port driver to be created.
+	 * \param[in] maxSizeSnapshot The maximum  number of sample in one snapshot
+	 * \param[in] maxNbSnapshot The number of snapshot buffered
+	 */
+	epicsShareFunc int mitiFPSAsynEpicsConfigure(const char *portName, const char* registerfile)
+	{
+		new mitiFPSAsynEpics(portName, registerfile);
+		return(asynSuccess);
+	}
 
+	/* EPICS iocsh shell commands */
+	static const iocshArg initArg0 = { "portName"          ,iocshArgString};
+	static const iocshArg initArg1 = { "register file name",iocshArgString};
+	static const iocshArg * const initArgs[] = { &initArg0, &initArg1 };
+	static const iocshFuncDef initFuncDef = {"mitiFPSAsynEpicsConfigure",2,initArgs};
+	static void initCallFunc(const iocshArgBuf *args)
+	{
+		mitiFPSAsynEpicsConfigure(args[0].sval, args[1].sval);
+	}
 
-/* EPICS iocsh shell commands */
-static const iocshArg initArg0 = { "portName"          ,iocshArgString};
-static const iocshArg initArg1 = { "register file name",iocshArgString};
-static const iocshArg * const initArgs[] = { &initArg0, &initArg1 };
-static const iocshFuncDef initFuncDef = {"mitiFPSAsynEpicsConfigure",2,initArgs};
-static void initCallFunc(const iocshArgBuf *args)
-{
-    mitiFPSAsynEpicsConfigure(args[0].sval, args[1].sval);
-}
+	void mitiFPSAsynEpicsRegister(void)
+	{
+		iocshRegister(&initFuncDef,initCallFunc);
+	}
 
-void mitiFPSAsynEpicsRegister(void)
-{
-    iocshRegister(&initFuncDef,initCallFunc);
-}
-
-epicsExportRegistrar(mitiFPSAsynEpicsRegister);
+	epicsExportRegistrar(mitiFPSAsynEpicsRegister);
 }//end extern "C"

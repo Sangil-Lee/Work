@@ -1,0 +1,11 @@
+record(waveform, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+   field(DTYP, "asynInt32ArrayIn")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+   field(FTVL, "LONG")
+   field(NELM, "$(NPOINTS)")
+   field(PINI, "NO")
+    # field(LOPR, "0")  caput 시 최소값
+    # field(HOPR, "10") capuy 시 최대값
+   field(SCAN, "$(SCAN)")
+}

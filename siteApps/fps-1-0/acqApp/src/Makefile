@@ -10,12 +10,13 @@ DBD += acqFPSAsynEpics.dbd
 
 LIBRARY_IOC += acqFPSAsynEpicsSupport 
 
+#USR_CXXFLAGS += -std=c++11
 USR_DBDFLAGS  += -I$(RAON_SITELIBS)/dbd
 timeStamp_DIR += $(RAON_SITELIBS)/lib/$(T_A)
 
 #timingAsynEpicsSupport_SRCS += ts2iic.c ts2ip.c ts2api.c
 #timingAsynEpicsSupport_SRCS += ts2iic.cpp ts2api.cpp ts2ip.cpp
-acqFPSAsynEpicsSupport_SRCS += acqFPSAsynEpics.cpp acqFPSDriver.cpp
+acqFPSAsynEpicsSupport_SRCS += acqFPSAsynEpics.cpp acqFPSDriver.cpp intech_function.cpp
 acqFPSAsynEpicsSupport_LIBS += asyn 
 acqFPSAsynEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
@@ -28,7 +29,7 @@ DBD += acq.dbd
 
 # acq.dbd will be made up from these files:
 acq_DBD += base.dbd
-acq_DBD += acqFPSAsynEpics.dbd
+acq_DBD += acqFPSAsynEpics.dbd timestampRecord.dbd
 
 # Include dbd files from all support applications:
 #acq_DBD += xxx.dbd

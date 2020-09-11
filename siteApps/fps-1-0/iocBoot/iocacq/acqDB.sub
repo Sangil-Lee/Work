@@ -1,0 +1,48 @@
+file "db/stringin.template" { pattern
+	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,					ALIAS,              		SCAN}
+	{ Ctrl,   	MPS,       FPS-AN66,    ACQ,         0,          1,         TimeStart,      		TimeStart,     				"1 second"}	#example real time check
+}
+
+# longin
+file "db/longin.template" { pattern
+	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      			ALIAS,              	SCAN}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			DryStat,				DryStat,       			"1 second"}	#실시간 CHANNEL DATA
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			WetStat,				WetStat,       			"1 second"}	#실시간 CHANNEL DATA
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			INTC,					INTC,       			"1 second"}	#실시간 ACQUISITION Node 온도 값
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			TempR,					TempR,       			"1 second"}	#실시간 ACQUISITION Node 온도 값
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			PMSErr,					PMSErr,    				"1 second"}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			ACCUMULATE_DRY_DATA,	ACCUMULATE_DRY_DATA,    "1 second"}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			ACCUMULATE_WET_DATA,	ACCUMULATE_WET_DATA,    "1 second"}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			FwVer,      			FwVer,       			"I/O Intr"}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			IDN,      				IDN,       				"I/O Intr"}
+	{ Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			LinkStat,				LinkStat,				"1 second"}	#실시간 ACQUISITION 통신 상태
+	{ Ctrl,   	MPS,       	FPS-AN66,   ACQ,		0,          1,			FileCheck,				FileCheck, 				"2 second"}
+	# { Ctrl,   	MPS,       	FPS-AN66,	ACQ,		0,			1,			IDN,      				IDN,       				"1 second"}
+}
+
+file "db/longout.template" { pattern
+	{ SYS,      SUBSYS,		DEV,		PORT,		ADDR,       TIMEOUT,	SIGNAL,					ALIAS,					SCAN}
+	{ Ctrl,   	MPS,       	FPS-AN66,   ACQ,		0,          1,			FileSave,				FileSave,  				""}
+	# { Ctrl,   	MPS,       	FPS-AN66,   ACQ,		0,          1,			FileCheck,				FileCheck, 				""}
+	# { Ctrl,   MPS,       	FPS-AN66,   ACQ,		0,          1,			PMSEN,					PMSEN,     				""}
+}
+file "db/acq_AllFileSave_Calc.template" { pattern
+	{ SYS,      SUBSYS,		DEV,		PORT,		ADDR,       TIMEOUT,	SIGNAL,					ALIAS,					SCAN}
+	{ Ctrl,   	MPS,       	FPS-AN66,   ACQ,		0,          1,			AllFileSave,			AllFileSave,  			"Passive"}
+}
+
+file "db/acq_PMS_Enable.template" { pattern
+	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      			ALIAS,					SCAN}
+	{ Ctrl,   	MPS,       FPS-AN66,    ACQ,         0,          1,         PMSEN,					PMSEN,     				"Passive"}
+}
+# file "db/bi.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,              SCAN}
+# }
+
+# file "db/bo.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,              SCAN}
+# }
+
+# file "db/int32array.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,				SCAN,			NPOINTS}
+# }

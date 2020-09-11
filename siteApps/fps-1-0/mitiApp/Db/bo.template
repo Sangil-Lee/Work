@@ -1,0 +1,22 @@
+# record(bo, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+# {
+# #    field(DTYP, "asynUInt32Digital")
+#    field(DTYP, "asynInt32")
+#    field(OUT,  "@asynMask($(PORT),$(ADDR),0,$(TIMEOUT))$(ALIAS)")
+#    field(PINI, "YES")
+#    field(SCAN, "$(SCAN)")
+#    field(OMSL, "supervisory")
+#    field(ZNAM, "Zero")
+#    field(ONAM, "One")
+#    field(VAL, "1")
+
+# }
+
+record(bo, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+	field(PINI, "NO")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(ZNAM, "Stop")
+    field(ONAM, "Run")
+}

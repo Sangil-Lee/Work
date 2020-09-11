@@ -1,0 +1,35 @@
+#!../../bin/linux-arm/acq
+
+## You may have to change acq to something else
+## everywhere it appears in this file
+
+< envPaths
+
+cd "${TOP}"
+
+echo "## THIS? ##"
+## Register all support components
+dbLoadDatabase "dbd/acq.dbd"
+acq_registerRecordDeviceDriver pdbbase
+
+
+acqFPSAsynEpicsConfigure("ACQ","${TOP}/iocBoot/${IOC}/ACQ.reg")
+
+## Load record instances
+#dbLoadRecords("db/xxx.db","user=ctrluserHost")
+dbLoadRecords("db/timeStamp.db","SYS=Ctrl,SUBSYS=MPS,DEV=FPS-AN11")
+dbLoadRecords("db/uint32.db")
+dbLoadRecords("db/mbbiDirectTest.vdb")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/acqDB.sub")
+dbLoadRecords("db/calc.db")
+## 2018.11.13 ##
+# dbLoadRecords("db/waveform.db")
+# dbLoadRecords("../../db/testIOC.db","PORT=RAON_FPS,ADDR=0,TIMEOUT=1,NPOINTS=1000")
+# dbLoadRecords("db/waveform.db","PORT=RAON_FPS,ADDR=0,TIMEOUT=1,NPOINTS=1000")
+# dbLoadRecords("db/waveform.db","PORT=ACQ,ADDR=0,TIMEOUT=1,NPOINTS=2000")
+
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
+## Start any sequence programs
+#seq sncxxx,"user=ctrluserHost"

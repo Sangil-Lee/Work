@@ -1,0 +1,9 @@
+# Ctrl-MPS:FPS-AN61:PMSEN
+record(longout, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+   field(DTYP, "asynInt32")
+   field(PINI, "NO")
+   field(SCAN, "$(SCAN)")
+   field(OMSL, "closed_loop")
+   field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+}

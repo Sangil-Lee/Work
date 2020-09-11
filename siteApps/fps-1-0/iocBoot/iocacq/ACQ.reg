@@ -1,0 +1,17 @@
+
+##ALIAS Name         ## ##H/W Address## ##AsynParameter Type##
+TimeStart           ,      0x00        ,       asynParamOctet
+DryStat             ,      0x01        ,       asynParamInt32
+WetStat             ,      0x02        ,       asynParamInt32
+INTC                ,      0x03        ,       asynParamInt32
+PMSErr              ,      0X06        ,       asynParamInt32
+ACCUMULATE_DRY_DATA ,      0X07        ,       asynParamInt32
+ACCUMULATE_WET_DATA ,      0X08        ,       asynParamInt32
+FwVer               ,      0x09        ,       asynParamInt32
+IDN                 ,      0x0a        ,       asynParamInt32
+LinkStat            ,      0x0b        ,       asynParamInt32
+TempR               ,      0x0c        ,       asynParamInt32
+PMSEN               ,      0x201       ,       asynParamInt32
+FileSave            ,      0x202       ,       asynParamInt32
+FileCheck           ,      0x203       ,       asynParamInt32
+AllFileSave         ,      0x204       ,       asynParamInt32

@@ -1,0 +1,43 @@
+# record(calc, "R_TEMP_VAL")
+# {   
+#    field(PINI, "YES")
+#    field(SCAN, "1 second")
+#    field(CALC, "(A * 503.975 / 4096)-273.15")
+#    field(INPA, "TEMP")
+# }
+
+# MN01 에 대한 PMSEN
+record(calc, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN_Calc_MN01")
+{   
+   field(PINI, "YES")
+   field(SCAN, "Passive")
+   field(CALC, "( (A!=0)&& (((127-B)>>0)!= 0)  )?1:0")
+   field(INPA, "Ctrl-MPS:FPS-MN01:DEVICE_RELEASE CPP")
+   field(INPB, "Ctrl-MPS:FPS-MN01:LinkMask$(LINK) CPP")
+#    field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+#    field(OUT, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+}
+
+# MN02 에 대한 PMSEN
+record(calc, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN_Calc_MN02")
+{   
+   field(PINI, "YES")
+   field(SCAN, "Passive")
+   field(CALC, "( (A!=0)&& (((127-B)>>0)!= 0)  )?1:0")
+   field(INPA, "Ctrl-MPS:FPS-MN02:DEVICE_RELEASE CPP")
+   field(INPB, "Ctrl-MPS:FPS-MN02:LinkMask$(LINK) CPP")
+#    field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+#    field(OUT, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+}
+
+# (MN01 에 대한 PMSEN) | (MN01 에 대한 PMSEN) 계산 PV
+record(calcout, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN_Calc")
+{   
+   field(PINI, "YES")
+   field(SCAN, "Passive")
+   field(CALC, "A | B")
+   field(INPA, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN_Calc_MN01 CPP")
+   field(INPB, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN_Calc_MN02 CPP")
+   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+   field(OUT, "$(SYS)-$(SUBSYS):$(DEV)$(LINK)$(NODE):PMSEN")
+}

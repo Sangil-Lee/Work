@@ -1,0 +1,48 @@
+#Ctrl:MPS:FPS-MN01:LinkEnable1
+record(longin, "$(SYS)-$(SUBSYS):$(DEV):LinkEnable$(LINK)")
+{
+   field(PINI, "YES")
+   #field(DTYP, "asynInt32")
+   #field(SCAN, "I/O Intr")
+   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+   #field(DOL, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+   #field(OMSL, "closed_loop")
+   #field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))LinkEnable$(LINK)")
+}
+
+#Ctrl:MPS:FPS-MN01:NodeEnable1
+record(longin, "$(SYS)-$(SUBSYS):$(DEV):NodeEnable$(LINK)")
+{
+   field(PINI, "YES")
+   #field(DTYP, "asynInt32")
+   #field(SCAN, "I/O Intr")
+   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+   #field(DOL, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+   #field(OMSL, "closed_loop")
+   #field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))NodeEnable$(LINK)")
+}
+
+#Ctrl:MPS:FPS-MN01:LinkMask$(LINK)
+record(calcout, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{   
+   field(PINI, "YES")
+   # field(SCAN, "$(SCAN)")
+   #field(SCAN, "1 second")
+   field(SCAN, "Passive")
+   # field(CALC, "(A==0)?0:(  (2^(B) )-1   )")
+   field(CALC, "(A==0)?127:(127-(  (2^(B) )-1   ))")
+   field(INPA, "$(SYS)-$(SUBSYS):$(DEV):LinkEnable$(LINK)")
+   field(INPB, "$(SYS)-$(SUBSYS):$(DEV):NodeEnable$(LINK)")
+   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)_Calc")
+   field(OUT,  "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)_Calc")
+}
+#Ctrl:MPS:FPS-MN01:LinkMask$(LINK)_Calc
+record(longout, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)_Calc")
+{
+   field(PINI, "YES")
+   field(DTYP, "asynInt32")
+   # field(SCAN, "I/O Intr")
+   field(SCAN, "Passive")
+   field(OMSL, "closed_loop")
+   field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(SIGNAL)_Calc")
+}

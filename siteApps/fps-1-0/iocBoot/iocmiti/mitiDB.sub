@@ -1,0 +1,203 @@
+file "db/stringin.template" { pattern
+	{ SYS,    	SUBSYS,    	DEV,         	PORT,       ADDR,       TIMEOUT,	SIGNAL,				ALIAS,              SCAN}
+	{ Ctrl,   	MPS,       	FPS-MN01,    	MITI,       0,          1,        	TimeStart,			TimeStart,			"I/O Intr"}
+	# { Ctrl,   	MPS,       	FPS-MN01,    	MITI,       0,          1,        	TimeStart,			TimeStart,			"1 second"}
+}
+
+file "db/longin.template" { pattern
+	{ SYS,		SUBSYS,     DEV,			PORT,		ADDR,		TIMEOUT,	SIGNAL,				ALIAS,				SCAN}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			ChStatR,			ChStatR,       		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			TempR,				TempR,				"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			FwVer,				FwVer,				"I/O Intr"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			IDN,				IDN,				"I/O Intr"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			LinkErr,			LinkErr,			"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,			1,			PMS_DATA_INTERLOCK,	PMS_DATA_INTERLOCK,	"1 second"}
+}
+
+file "db/longout.template" { pattern
+	{ SYS,      SUBSYS,     DEV,        	PORT,		ADDR,		TIMEOUT,	SIGNAL,				ALIAS,				SCAN}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DEVICE_RELEASE,		DEVICE_RELEASE,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			OpticSwRst,    		OpticSwRst,			""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			AllFileSave,    	AllFileSave,		""}
+}
+
+# file "db/bi.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,              SCAN}
+# }
+
+# file "db/bo.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,              SCAN}
+# }
+
+# file "db/int32array.template" { pattern
+# 	{ SYS,      SUBSYS,     DEV,        PORT,       ADDR,       TIMEOUT,	SIGNAL,      ALIAS,				SCAN,			NPOINTS}
+# }
+
+file "db/mit_GTH_Link_Status.template" { pattern
+	{ SYS ,		SUBSYS,		DEV,			PORT,		ADDR,		TIMEOUT,	SIGNAL,				SIGNAL,				SCAN      }
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		1,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		2,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		3,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		4,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		5,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		6,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		7,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		8,			1,			GTH_LINK_STATUS,	GTH_LINK_STATUS,	"1 second"}
+}
+file "db/mit_Link_Mask.template" { pattern
+	{ SYS ,		SUBSYS,		DEV,			PORT,		ADDR, 		LINK,		TIMEOUT,	SIGNAL,			ALIAS, 			SCAN      }
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			1,			1,			LinkMask1,		LinkMask1,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			2,			1,			LinkMask2,		LinkMask2,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			3,			1,			LinkMask3,		LinkMask3,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			4,			1,			LinkMask4,		LinkMask4,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			5,			1,			LinkMask5,		LinkMask5,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			6,			1,			LinkMask6,		LinkMask6,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0, 			7,			1,			LinkMask7,		LinkMask7,		"1 second"}
+	{ Ctrl,		MPS   ,		FPS-MN01,		MITI,		0,			8,			1,			LinkMask8,		LinkMask8,		"1 second"}
+}
+
+# Ch_StatR 의 값으로 통해 분할 처리함.
+file "db/mit_Ch_StatR.template" { pattern
+	{ SYS,		SUBSYS,     DEV,			PORT,		ADDR,	LINK,	TIMEOUT,	SIGNAL,			ALIAS,			SCAN}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		0,		1,			Ch01StatR,		Ch01StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		1,		1,			Ch02StatR,		Ch02StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		2,		1,			Ch03StatR,		Ch03StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		3,		1,			Ch04StatR,		Ch04StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		4,		1,			Ch05StatR,		Ch05StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		5,		1,			Ch06StatR,		Ch06StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		6,		1,			Ch07StatR,		Ch07StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		7,		1,			Ch08StatR,		Ch08StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		8,		1,			Ch09StatR,		Ch09StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		9,		1,			Ch10StatR,		Ch10StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		10,		1,			Ch11StatR,		Ch11StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		11,		1,			Ch12StatR,		Ch12StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		12,		1,			Ch13StatR,		Ch13StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		13,		1,			Ch14StatR,		Ch14StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		14,		1,			Ch15StatR,		Ch15StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		15,		1,			Ch16StatR,		Ch16StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		16,		1,			Ch17StatR,		Ch17StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		17,		1,			Ch18StatR,		Ch18StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		18,		1,			Ch19StatR,		Ch19StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		19,		1,			Ch20StatR,		Ch20StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		20,		1,			Ch21StatR,		Ch21StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		21,		1,			Ch22StatR,		Ch22StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		22,		1,			Ch23StatR,		Ch23StatR,		"1 second"}
+	{ Ctrl,		MPS,		FPS-MN01,		MITI,		0,		23,		1,			Ch24StatR,		Ch24StatR,		"1 second"}
+}
+
+file "db/mit_AN_Mask.template" { pattern
+	{ SYS,      SUBSYS,     DEV,        	PORT,		ADDR,		TIMEOUT,	SIGNAL,				ALIAS,				SCAN}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN11,		DRY_MASK_AN11,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN12,		DRY_MASK_AN12,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN13,		DRY_MASK_AN13,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN14,		DRY_MASK_AN14,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN15,		DRY_MASK_AN15,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN16,		DRY_MASK_AN16,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN17,		DRY_MASK_AN17,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN21,		DRY_MASK_AN21,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN22,		DRY_MASK_AN22,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN23,		DRY_MASK_AN23,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN24,		DRY_MASK_AN24,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN25,		DRY_MASK_AN25,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN26,		DRY_MASK_AN26,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN27,		DRY_MASK_AN27,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN31,		DRY_MASK_AN31,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN32,		DRY_MASK_AN32,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN33,		DRY_MASK_AN33,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN34,		DRY_MASK_AN34,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN35,		DRY_MASK_AN35,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN36,		DRY_MASK_AN36,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN37,		DRY_MASK_AN37,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN41,		DRY_MASK_AN41,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN42,		DRY_MASK_AN42,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN43,		DRY_MASK_AN43,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN44,		DRY_MASK_AN44,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN45,		DRY_MASK_AN45,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN46,		DRY_MASK_AN46,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN47,		DRY_MASK_AN47,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN51,		DRY_MASK_AN51,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN52,		DRY_MASK_AN52,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN53,		DRY_MASK_AN53,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN54,		DRY_MASK_AN54,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN55,		DRY_MASK_AN55,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN56,		DRY_MASK_AN56,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN57,		DRY_MASK_AN57,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN61,		DRY_MASK_AN61,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN62,		DRY_MASK_AN62,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN63,		DRY_MASK_AN63,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN64,		DRY_MASK_AN64,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN65,		DRY_MASK_AN65,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN66,		DRY_MASK_AN66,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN67,		DRY_MASK_AN67,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN71,		DRY_MASK_AN71,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN72,		DRY_MASK_AN72,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN73,		DRY_MASK_AN73,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN74,		DRY_MASK_AN74,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN75,		DRY_MASK_AN75,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN76,		DRY_MASK_AN76,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN77,		DRY_MASK_AN77,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN81,		DRY_MASK_AN81,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN82,		DRY_MASK_AN82,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN83,		DRY_MASK_AN83,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN84,		DRY_MASK_AN84,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN85,		DRY_MASK_AN85,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN86,		DRY_MASK_AN86,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			DRY_MASK_AN87,		DRY_MASK_AN87,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN11,		WET_MASK_AN11,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN12,		WET_MASK_AN12,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN13,		WET_MASK_AN13,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN14,		WET_MASK_AN14,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN15,		WET_MASK_AN15,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN16,		WET_MASK_AN16,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN17,		WET_MASK_AN17,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN21,		WET_MASK_AN21,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN22,		WET_MASK_AN22,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN23,		WET_MASK_AN23,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN24,		WET_MASK_AN24,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN25,		WET_MASK_AN25,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN26,		WET_MASK_AN26,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN27,		WET_MASK_AN27,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN31,		WET_MASK_AN31,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN32,		WET_MASK_AN32,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN33,		WET_MASK_AN33,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN34,		WET_MASK_AN34,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN35,		WET_MASK_AN35,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN36,		WET_MASK_AN36,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN37,		WET_MASK_AN37,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN41,		WET_MASK_AN41,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN42,		WET_MASK_AN42,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN43,		WET_MASK_AN43,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN44,		WET_MASK_AN44,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN45,		WET_MASK_AN45,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN46,		WET_MASK_AN46,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN47,		WET_MASK_AN47,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN51,		WET_MASK_AN51,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN52,		WET_MASK_AN52,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN53,		WET_MASK_AN53,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN54,		WET_MASK_AN54,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN55,		WET_MASK_AN55,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN56,		WET_MASK_AN56,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN57,		WET_MASK_AN57,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN61,		WET_MASK_AN61,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN62,		WET_MASK_AN62,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN63,		WET_MASK_AN63,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN64,		WET_MASK_AN64,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN65,		WET_MASK_AN65,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN66,		WET_MASK_AN66,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN67,		WET_MASK_AN67,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN71,		WET_MASK_AN71,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN72,		WET_MASK_AN72,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN73,		WET_MASK_AN73,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN74,		WET_MASK_AN74,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN75,		WET_MASK_AN75,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN76,		WET_MASK_AN76,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN77,		WET_MASK_AN77,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN81,		WET_MASK_AN81,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN82,		WET_MASK_AN82,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN83,		WET_MASK_AN83,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN84,		WET_MASK_AN84,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN85,		WET_MASK_AN85,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN86,		WET_MASK_AN86,		""}
+	{ Ctrl,		MPS,       FPS-MN01,    	MITI,		0,			1,			WET_MASK_AN87,		WET_MASK_AN87,		""}
+}

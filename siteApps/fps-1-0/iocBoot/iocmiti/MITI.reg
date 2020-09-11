@@ -1,0 +1,183 @@
+
+##ALIAS Name##             ##H/W Address##      ##AsynParameter Type## 
+TimeStart,                  0x0,                 asynParamOctet
+
+############################################################################
+## BRAM Address 0x40000000 ##
+#Ch01StatR           ,       0x000    ,          asynParamInt32
+#Ch02StatR           ,       0x001    ,          asynParamInt32
+#Ch03StatR           ,       0x002    ,          asynParamInt32
+#Ch04StatR           ,       0x003    ,          asynParamInt32
+#Ch05StatR           ,       0x004    ,          asynParamInt32
+#Ch06StatR           ,       0x005    ,          asynParamInt32
+#Ch07StatR           ,       0x006    ,          asynParamInt32
+#Ch08StatR           ,       0x007    ,          asynParamInt32
+#Ch09StatR           ,       0x008    ,          asynParamInt32
+#Ch10StatR           ,       0x009    ,          asynParamInt32
+#Ch11StatR           ,       0x00a    ,          asynParamInt32
+#Ch12StatR           ,       0x00b    ,          asynParamInt32
+#Ch13StatR           ,       0x00c    ,          asynParamInt32
+#Ch14StatR           ,       0x00d    ,          asynParamInt32
+#Ch15StatR           ,       0x00e    ,          asynParamInt32
+#Ch16StatR           ,       0x00f    ,          asynParamInt32
+#Ch17StatR           ,       0x010    ,          asynParamInt32
+#Ch18StatR           ,       0x011    ,          asynParamInt32
+#Ch19StatR           ,       0x012    ,          asynParamInt32
+#Ch20StatR           ,       0x013    ,          asynParamInt32
+#Ch21StatR           ,       0x014    ,          asynParamInt32
+#Ch22StatR           ,       0x015    ,          asynParamInt32
+#Ch23StatR           ,       0x016    ,          asynParamInt32
+#Ch24StatR           ,       0x017    ,          asynParamInt32
+ChStatR              ,       0x018    ,          asynParamInt32
+############################################################################
+
+############################################################################
+## BRAM Address 0x42000000 ##
+LinkMask1_Calc		 ,       0x200    ,          asynParamInt32
+LinkMask2_Calc		 ,       0x201    ,          asynParamInt32
+LinkMask3_Calc		 ,       0x202    ,          asynParamInt32
+LinkMask4_Calc		 ,       0x203    ,          asynParamInt32
+LinkMask5_Calc		 ,       0x204    ,          asynParamInt32
+LinkMask6_Calc		 ,       0x205    ,          asynParamInt32
+LinkMask7_Calc		 ,       0x206    ,          asynParamInt32
+DEVICE_RELEASE       ,       0x207    ,          asynParamInt32
+OpticSwRst           ,       0x208    ,          asynParamInt32
+FwVer                ,       0x209    ,          asynParamInt32
+LinkErr              ,       0x20b    ,          asynParamInt32
+TempR                ,       0x20c    ,          asynParamInt32
+GTH_LINK_STATUS      ,       0x20d    ,          asynParamInt32
+PMS_DATA_INTERLOCK   ,       0x218    ,          asynParamInt32
+LinkMask8_Calc		 ,       0x219    ,          asynParamInt32
+#CHECK_SUM_ERROR     ,       0x20a    ,          asynParamInt32
+#PMS_DATA_YEAR       ,       0x210    ,          asynParamInt32
+#PMS_DATA_DAY        ,       0x211    ,          asynParamInt32
+#PMS_DATA_HOUR       ,       0x212    ,          asynParamInt32
+#PMS_DATA_MIN        ,       0x213    ,          asynParamInt32
+#PMS_DATA_SEC        ,       0x214    ,          asynParamInt32
+#PMS_DATA_MSEC       ,       0x215    ,          asynParamInt32
+#PMS_DATA_NSEC_1     ,       0x216    ,          asynParamInt32
+#PMS_DATA_NSEC_2     ,       0x217    ,          asynParamInt32
+IDN				     ,       0x21B    ,          asynParamInt32
+############################################################################
+
+############################################################################
+## BRAM Address  ##
+AllFileSave		 	 ,       0x300    ,          asynParamInt32
+
+
+############################################################################
+
+############################################################################
+## BRAM Address 0x46000000 ##
+DRY_MASK_AN11       ,       0x600    ,           asynParamInt32
+WET_MASK_AN11       ,       0x601    ,           asynParamInt32
+DRY_MASK_AN12       ,       0x602    ,           asynParamInt32
+WET_MASK_AN12       ,       0x603    ,           asynParamInt32
+DRY_MASK_AN13       ,       0x604    ,           asynParamInt32
+WET_MASK_AN13       ,       0x605    ,           asynParamInt32
+DRY_MASK_AN14       ,       0x606    ,           asynParamInt32
+WET_MASK_AN14       ,       0x607    ,           asynParamInt32
+DRY_MASK_AN15       ,       0x608    ,           asynParamInt32
+WET_MASK_AN15       ,       0x609    ,           asynParamInt32
+DRY_MASK_AN16       ,       0x60A    ,           asynParamInt32
+WET_MASK_AN16       ,       0x60B    ,           asynParamInt32
+DRY_MASK_AN17       ,       0x60C    ,           asynParamInt32
+WET_MASK_AN17       ,       0x60D    ,           asynParamInt32
+DRY_MASK_AN21       ,       0x60E    ,           asynParamInt32
+WET_MASK_AN21       ,       0x60F    ,           asynParamInt32
+DRY_MASK_AN22       ,       0x610    ,           asynParamInt32
+WET_MASK_AN22       ,       0x611    ,           asynParamInt32
+DRY_MASK_AN23       ,       0x612    ,           asynParamInt32
+WET_MASK_AN23       ,       0x613    ,           asynParamInt32
+DRY_MASK_AN24       ,       0x614    ,           asynParamInt32
+WET_MASK_AN24       ,       0x615    ,           asynParamInt32
+DRY_MASK_AN25       ,       0x616    ,           asynParamInt32
+WET_MASK_AN25       ,       0x617    ,           asynParamInt32
+DRY_MASK_AN26       ,       0x618    ,           asynParamInt32
+WET_MASK_AN26       ,       0x619    ,           asynParamInt32
+DRY_MASK_AN27       ,       0x61A    ,           asynParamInt32
+WET_MASK_AN27       ,       0x61B    ,           asynParamInt32
+DRY_MASK_AN31       ,       0x61C    ,           asynParamInt32
+WET_MASK_AN31       ,       0x61D    ,           asynParamInt32
+DRY_MASK_AN32       ,       0x61E    ,           asynParamInt32
+WET_MASK_AN32       ,       0x61F    ,           asynParamInt32
+DRY_MASK_AN33       ,       0x620    ,           asynParamInt32
+WET_MASK_AN33       ,       0x621    ,           asynParamInt32
+DRY_MASK_AN34       ,       0x622    ,           asynParamInt32
+WET_MASK_AN34       ,       0x623    ,           asynParamInt32
+DRY_MASK_AN35       ,       0x624    ,           asynParamInt32
+WET_MASK_AN35       ,       0x625    ,           asynParamInt32
+DRY_MASK_AN36       ,       0x626    ,           asynParamInt32
+WET_MASK_AN36       ,       0x627    ,           asynParamInt32
+DRY_MASK_AN37       ,       0x628    ,           asynParamInt32
+WET_MASK_AN37       ,       0x629    ,           asynParamInt32
+DRY_MASK_AN41       ,       0x62A    ,           asynParamInt32
+WET_MASK_AN41       ,       0x62B    ,           asynParamInt32
+DRY_MASK_AN42       ,       0x62C    ,           asynParamInt32
+WET_MASK_AN42       ,       0x62D    ,           asynParamInt32
+DRY_MASK_AN43       ,       0x62E    ,           asynParamInt32
+WET_MASK_AN43       ,       0x62F    ,           asynParamInt32
+DRY_MASK_AN44       ,       0x630    ,           asynParamInt32
+WET_MASK_AN44       ,       0x631    ,           asynParamInt32
+DRY_MASK_AN45       ,       0x632    ,           asynParamInt32
+WET_MASK_AN45       ,       0x633    ,           asynParamInt32
+DRY_MASK_AN46       ,       0x634    ,           asynParamInt32
+WET_MASK_AN46       ,       0x635    ,           asynParamInt32
+DRY_MASK_AN47       ,       0x636    ,           asynParamInt32
+WET_MASK_AN47       ,       0x637    ,           asynParamInt32
+DRY_MASK_AN51       ,       0x638    ,           asynParamInt32
+WET_MASK_AN51       ,       0x639    ,           asynParamInt32
+DRY_MASK_AN52       ,       0x63A    ,           asynParamInt32
+WET_MASK_AN52       ,       0x63B    ,           asynParamInt32
+DRY_MASK_AN53       ,       0x63C    ,           asynParamInt32
+WET_MASK_AN53       ,       0x63D    ,           asynParamInt32
+DRY_MASK_AN54       ,       0x63E    ,           asynParamInt32
+WET_MASK_AN54       ,       0x63F    ,           asynParamInt32
+DRY_MASK_AN55       ,       0x640    ,           asynParamInt32
+WET_MASK_AN55       ,       0x641    ,           asynParamInt32
+DRY_MASK_AN56       ,       0x642    ,           asynParamInt32
+WET_MASK_AN56       ,       0x643    ,           asynParamInt32
+DRY_MASK_AN57       ,       0x644    ,           asynParamInt32
+WET_MASK_AN57       ,       0x645    ,           asynParamInt32
+DRY_MASK_AN61       ,       0x646    ,           asynParamInt32
+WET_MASK_AN61       ,       0x647    ,           asynParamInt32
+DRY_MASK_AN62       ,       0x648    ,           asynParamInt32
+WET_MASK_AN62       ,       0x649    ,           asynParamInt32
+DRY_MASK_AN63       ,       0x64A    ,           asynParamInt32
+WET_MASK_AN63       ,       0x64B    ,           asynParamInt32
+DRY_MASK_AN64       ,       0x64C    ,           asynParamInt32
+WET_MASK_AN64       ,       0x64D    ,           asynParamInt32
+DRY_MASK_AN65       ,       0x64E    ,           asynParamInt32
+WET_MASK_AN65       ,       0x64F    ,           asynParamInt32
+DRY_MASK_AN66       ,       0x650    ,           asynParamInt32
+WET_MASK_AN66       ,       0x651    ,           asynParamInt32
+DRY_MASK_AN67       ,       0x652    ,           asynParamInt32
+WET_MASK_AN67       ,       0x653    ,           asynParamInt32
+DRY_MASK_AN71       ,       0x654    ,           asynParamInt32
+WET_MASK_AN71       ,       0x655    ,           asynParamInt32
+DRY_MASK_AN72       ,       0x656    ,           asynParamInt32
+WET_MASK_AN72       ,       0x657    ,           asynParamInt32
+DRY_MASK_AN73       ,       0x658    ,           asynParamInt32
+WET_MASK_AN73       ,       0x659    ,           asynParamInt32
+DRY_MASK_AN74       ,       0x65A    ,           asynParamInt32
+WET_MASK_AN74       ,       0x65B    ,           asynParamInt32
+DRY_MASK_AN75       ,       0x65C    ,           asynParamInt32
+WET_MASK_AN75       ,       0x65D    ,           asynParamInt32
+DRY_MASK_AN76       ,       0x65E    ,           asynParamInt32
+WET_MASK_AN76       ,       0x65F    ,           asynParamInt32
+DRY_MASK_AN77       ,       0x660    ,           asynParamInt32
+WET_MASK_AN77       ,       0x661    ,           asynParamInt32
+DRY_MASK_AN81       ,       0x662    ,           asynParamInt32
+WET_MASK_AN81       ,       0x663    ,           asynParamInt32
+DRY_MASK_AN82       ,       0x664    ,           asynParamInt32
+WET_MASK_AN82       ,       0x665    ,           asynParamInt32
+DRY_MASK_AN83       ,       0x666    ,           asynParamInt32
+WET_MASK_AN83       ,       0x667    ,           asynParamInt32
+DRY_MASK_AN84       ,       0x668    ,           asynParamInt32
+WET_MASK_AN84       ,       0x669    ,           asynParamInt32
+DRY_MASK_AN85       ,       0x66A    ,           asynParamInt32
+WET_MASK_AN85       ,       0x66B    ,           asynParamInt32
+DRY_MASK_AN86       ,       0x66C    ,           asynParamInt32
+WET_MASK_AN86       ,       0x66D    ,           asynParamInt32
+DRY_MASK_AN87       ,       0x66E    ,           asynParamInt32
+WET_MASK_AN87       ,       0x66F    ,           asynParamInt32

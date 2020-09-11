@@ -1,0 +1,7 @@
+record(calc, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{   
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+   field(CALC, "( A>> $(LINK) )&1")
+   field(INPA, "$(SYS)-$(SUBSYS):$(DEV):ChStatR")
+}

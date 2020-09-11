@@ -1,0 +1,39 @@
+# (MN01 에 대한 FileSave) | (MN01 에 대한 FileSave) 계산 PV
+record(calc, "$(SYS)-$(SUBSYS):$(DEV):AllFileSave_MN01")
+{   
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+   field(CALC, "A")
+#    field(CALC, "A | B")
+   field(INPA, "$(SYS)-$(SUBSYS):FPS-MN01:AllFileSave CPP")
+#    field(INPB, "$(SYS)-$(SUBSYS):FPS-MN02:AllFileSave CPP")
+}
+record(calc, "$(SYS)-$(SUBSYS):$(DEV):AllFileSave_MN02")
+{   
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+   field(CALC, "A")
+   field(INPA, "$(SYS)-$(SUBSYS):FPS-MN02:AllFileSave CPP")
+}
+
+# (MN01 에 대한 FileSave) | (MN01 에 대한 FileSave) 계산 PV
+record(calcout, "$(SYS)-$(SUBSYS):$(DEV):AllFileSave_Calc")
+{   
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+   field(CALC, "A | B")
+   field(INPA, "$(SYS)-$(SUBSYS):$(DEV):AllFileSave_MN01 CPP")
+   field(INPB, "$(SYS)-$(SUBSYS):$(DEV):AllFileSave_MN02 CPP")
+
+   field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+   field(OUT,  "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+}
+
+record(longout, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+   field(DTYP, "asynInt32")
+   field(OUT,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+   field(PINI, "NO")
+   field(OMSL, "closed_loop")
+   field(SCAN, "$(SCAN)")
+}

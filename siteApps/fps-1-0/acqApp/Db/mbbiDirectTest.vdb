@@ -1,0 +1,400 @@
+
+record(mbbiDirect, mbbiDirectTest) {
+  field(FLNK, "TwoFanOut")
+  field(INP, "testCalcMax")
+  field(SCAN, "Passive")
+}
+
+record(longin, LongValue) {
+  field(PINI, "YES")
+  field(SCAN, "1 second")
+  field(FLNK, "OneFanOut")
+  field(VAL, "16711935")
+}
+
+record(fanout, OneFanOut) {
+  field(SCAN, "Passive")
+  field(LNK1, "testCalcMax")
+  field(LNK2, "testCalcShft")
+}
+
+record(mbbiDirect, mbbiDirectTest2) {
+  field(FLNK, "ThreeFanOut")
+  field(INP, "testCalcShft")
+  field(SCAN, "Passive")
+  field(SHFT, "16")
+}
+
+record(fanout, TwoFanOut) {
+  field(SCAN, "Passive")
+  field(LNK1, "TwoFanOut1")
+  field(LNK2, "TwoFanOut2")
+  field(LNK3, "TwoFanOut3")
+}
+
+record(fanout, ThreeFanOut) {
+  field(SCAN, "Passive")
+  field(LNK1, "ThreeFanOut1")
+  field(LNK2, "ThreeFanOut2")
+  field(LNK3, "ThreeFanOut3")
+}
+
+record(fanout, TwoFanOut1) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest1")
+  field(LNK2, "biTest2")
+  field(LNK3, "biTest3")
+  field(LNK4, "biTest4")
+  field(LNK5, "biTest5")
+  field(LNK6, "biTest6")
+}
+
+record(fanout, TwoFanOut2) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest7")
+  field(LNK2, "biTest8")
+  field(LNK3, "biTest9")
+  field(LNK4, "biTest10")
+  field(LNK5, "biTest11")
+  field(LNK6, "biTest12")
+}
+
+record(fanout, TwoFanOut3) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest13")
+  field(LNK2, "biTest14")
+  field(LNK3, "biTest15")
+  field(LNK4, "biTest16")
+}
+
+record(fanout, ThreeFanOut1) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest17")
+  field(LNK2, "biTest18")
+  field(LNK3, "biTest19")
+  field(LNK4, "biTest20")
+  field(LNK5, "biTest21")
+  field(LNK6, "biTest22")
+}
+
+record(fanout, ThreeFanOut2) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest23")
+  field(LNK2, "biTest24")
+  field(LNK3, "biTest25")
+  field(LNK4, "biTest26")
+  field(LNK5, "biTest27")
+  field(LNK6, "biTest28")
+}
+
+record(fanout, ThreeFanOut3) {
+  field(SCAN, "Passive")
+  field(LNK1, "biTest29")
+  field(LNK2, "biTest30")
+  field(LNK3, "biTest31")
+  field(LNK4, "biTest32")
+}
+
+record(bi, biTest1) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B0")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest2) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B1")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest3) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B2")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest4) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B3")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest5) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B4")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest6) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B5")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest7) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B6")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest8) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B7")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest9) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B8")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest10) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.B9")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest11) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BA")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest12) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BB")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest13) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BC")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest14) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BD")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest15) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BE")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest16) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest.BF")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest17) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B0")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest18) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B1")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest19) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B2")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest20) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B3")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest21) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B4")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest22) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B5")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest23) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B6")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest24) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B7")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest25) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B8")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest26) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.B9")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest27) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BA")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest28) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BB")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest29) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BC")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest30) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BD")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest31) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BE")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(bi, biTest32) {
+  field(SCAN, "Passive")
+  field(INP, "mbbiDirectTest2.BF")
+  field(PINI, "YES")
+  field(ZNAM, "0")
+  field(ONAM, "1")
+  field(OSV, "MAJOR")
+}
+
+record(calc, testCalcShft) {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "mbbiDirectTest2")
+  field(CALC, "(A>>16)&0xffff")
+  field(INPA, "LongValue")
+}
+
+record(calc, testCalcMax) {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "mbbiDirectTest")
+  field(CALC, "A&0xffff")
+  field(INPA, "LongValue")
+}

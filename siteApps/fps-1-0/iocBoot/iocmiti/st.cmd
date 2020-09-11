@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/miti
+#!../../bin/linux-arm/miti
 
 ## You may have to change miti to something else
 ## everywhere it appears in this file
@@ -11,8 +11,12 @@ cd "${TOP}"
 dbLoadDatabase "dbd/miti.dbd"
 miti_registerRecordDeviceDriver pdbbase
 
+mitiFPSAsynEpicsConfigure("MITI","${TOP}/iocBoot/${IOC}/MITI.reg")
+
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluserHost")
+dbLoadRecords("db/timeStamp.db","SYS=Ctrl,SUBSYS=MPS,DEV=FPS-MN01")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/mitiDB.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

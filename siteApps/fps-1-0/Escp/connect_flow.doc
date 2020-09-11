@@ -1,0 +1,96 @@
+
+
+EVG         MIT2        MIT         ACQ1        AC2             
+1_out    ->             EVR_i
+2_out    ->                         EVR_i           
+3_out    ->                                     EVR_i
+
+                        Link6_i <-  Mast_o
+                                    Mast_i  <-  Mast_o
+
+                                    Slave_i <-  Slave_o
+            Link6_i              <- Slave_o
+
+                        Link6_o ->  AcqID_i
+                                    AcqID_o ->  AcqID_i
+
+                                                Mast_i  -> Ext_o
+                                                Slave_i -> Evr_o
+
+
+
+
+1. BOOT.bin & image.ub  Logic
+2. EPICS
+3. IOC                      
+4. script 
+
+
+
+
+
+Setup Node Enable
+unlock
+interlock (wet 23)
+write PMS file
+save file 
+
+unlock
+write PMS file
+interlock (wet 23)
+save file
+
+unlock
+mask AN61 wet 23
+interlock (wet 23)
+write PMS file
+
+unlock
+interlock (wet 23)
+write PMS file
+
+mask AN61 wet 23
+unlock
+interlock (wet 23)
+write PMS file
+
+mask AN61 wet 23
+optic SW reset
+unlock
+interlock (wet 23)
+write PMS file
+
+
+reboot mit & acq
+masking AN61 wet 21,22,23,24
+unlock
+interlock (wet 23)
+not write PMS file
+
+unmasking AN61 wet 21,22,23,24
+unlock
+interlock (wet 23)
+not write PMS file
+
+
+masking AN61 wet 21,22,23,24
+unmasking AN61 wet 21,22,23,24
+unlock
+interlock (wet 23)
+not write PMS file
+
+
+
+
+
+
+Ctrl:MPS:FPS-MN01:WET_MASK_AN87
+
+
+
+
+reboot
+
+node Enable
+
+unlock

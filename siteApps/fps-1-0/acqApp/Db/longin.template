@@ -1,0 +1,7 @@
+record(longin, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+   field(DTYP, "asynInt32")
+   field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+}

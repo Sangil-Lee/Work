@@ -15,6 +15,7 @@ timeStamp_DIR += $(RAON_SITELIBS)/lib/$(T_A)
 
 #timingAsynEpicsSupport_SRCS += ts2iic.c ts2ip.c ts2api.c
 #timingAsynEpicsSupport_SRCS += ts2iic.cpp ts2api.cpp ts2ip.cpp
+# mitiFPSAsynEpicsSupport_SRCS += mitiFPSAsynEpics.cpp mitiFPSDriver.cpp intech_function.cpp
 mitiFPSAsynEpicsSupport_SRCS += mitiFPSAsynEpics.cpp mitiFPSDriver.cpp
 mitiFPSAsynEpicsSupport_LIBS += asyn 
 mitiFPSAsynEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -28,7 +29,7 @@ DBD += miti.dbd
 
 # miti.dbd will be made up from these files:
 miti_DBD += base.dbd
-miti_DBD += mitiFPSAsynEpics.dbd
+miti_DBD += mitiFPSAsynEpics.dbd timestampRecord.dbd
 
 # Include dbd files from all support applications:
 #miti_DBD += xxx.dbd

@@ -1,0 +1,12 @@
+# Ctrl-MPS:FPS-MN01:GTH_LINK_STATUS1
+# Ctrl-MPS:FPS-MN01:GTH_LINK_STATUS2
+# ...
+# Ctrl-MPS:FPS-MN01:GTH_LINK_STATUS8
+
+record(calc, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)$(ADDR)")
+{   
+   field(PINI, "YES")
+   field(SCAN, "$(SCAN)")
+   field(CALC, "(A>>( $(ADDR)-1 ) )&1")
+   field(INPA, "$(SYS)-$(SUBSYS):$(DEV):$(SIGNAL)")
+}
