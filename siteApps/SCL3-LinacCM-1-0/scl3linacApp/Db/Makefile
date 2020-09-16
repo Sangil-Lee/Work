@@ -7,6 +7,8 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
+DB += waveform_macro.template
+DB += ai_macro.template
 DB += bi_macro.template
 DB += bi_word.template
 DB += bo_word.template
@@ -23,6 +25,7 @@ DB += ai_average.template
 DB += ao.template
 DB += aiFloat64.template
 DB += aoFloat64.template
+DB += makewaveform.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

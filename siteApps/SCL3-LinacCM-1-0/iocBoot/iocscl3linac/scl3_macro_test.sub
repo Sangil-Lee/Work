@@ -1,9 +1,63 @@
-file "db/bi_macro.template" { pattern
-{SIGNAL,			ZNAM,		ONAM,			SCAN,		}
-{"SIGANL_1",		"Low",		"High",			"1 second",	}
-{"SIGANL_2",		"Low",		"High",			"1 second",	}
-{"SIGANL_3",		"Low",		"High",			"1 second",	}
-{"SIGANL_4",		"Low",		"High",			"1 second",	}
-{"SIGANL_5",		"Low",		"High",			"1 second",	}
+#file "db/bi_macro.template" { pattern
+#{SIGNAL,			ZNAM,		ONAM,			SCAN,		}
+#{"SIGANL_1",		"Low",		"High",			"1 second",	}
+#{"SIGANL_2",		"Low",		"High",			"1 second",	}
+#{"SIGANL_3",		"Low",		"High",			"1 second",	}
+#{"SIGANL_4",		"Low",		"High",			"1 second",	}
+#{"SIGANL_5",		"Low",		"High",			"1 second",	}
+#}
+
+file "db/ai_macro.template" { pattern
+{SIGNAL,		PREC,		SCAN		}
+{"Analog_01",	3,			"1 second"	}
+{"Analog_02",	3,			"1 second"	}
+{"Analog_03",	3,			"1 second"	}
+{"Analog_04",	3,			"1 second"	}
+{"Analog_05",	3,			"1 second"	}
+{"Analog_06",	3,			"1 second"	}
+{"Analog_07",	3,			"1 second"	}
+{"Analog_08",	3,			"1 second"	}
+{"Analog_09",	3,			"1 second"	}
+{"Analog_10",	3,			"1 second"	}
+{"Analog_11",	3,			"1 second"	}
+{"Analog_12",	3,			"1 second"	}
+{"Analog_13",	3,			"1 second"	}
+{"Analog_14",	3,			"1 second"	}
+{"Analog_15",	3,			"1 second"	}
+{"Analog_16",	3,			"1 second"	}
+{"Analog_17",	3,			"1 second"	}
+{"Analog_18",	3,			"1 second"	}
+{"Analog_19",	3,			"1 second"	}
+{"Analog_20",	3,			"1 second"	}
+{"Analog_21",	3,			"1 second"	}
+{"Analog_22",	3,			"1 second"	}
+{"Analog_23",	3,			"1 second"	}
+{"Analog_24",	3,			"1 second"	}
+{"Analog_25",	3,			"1 second"	}
+{"Analog_26",	3,			"1 second"	}
+{"Analog_27",	3,			"1 second"	}
+{"Analog_28",	3,			"1 second"	}
+{"Analog_29",	3,			"1 second"	}
+{"Analog_30",	3,			"1 second"	}
+{"Analog_31",	3,			"1 second"	}
+{"Analog_32",	3,			"1 second"	}
+{"Analog_33",	3,			"1 second"	}
+{"Analog_34",	3,			"1 second"	}
+{"Analog_35",	3,			"1 second"	}
+{"Analog_36",	3,			"1 second"	}
+{"Analog_37",	3,			"1 second"	}
+{"Analog_38",	3,			"1 second"	}
+{"Analog_39",	3,			"1 second"	}
+{"Analog_40",	3,			"1 second"	}
+{"Analog_41",	3,			"1 second"	}
+{"Analog_42",	3,			"1 second"	}
+{"Analog_43",	3,			"1 second"	}
+{"Analog_44",	3,			"1 second"	}
+}
+
+file "db/waveform_macro.template" { pattern
+{SIGNAL,		NELM	}
+{"Waveform_01",	44		}
+#{"Waveform_02",	44		}
 }
 

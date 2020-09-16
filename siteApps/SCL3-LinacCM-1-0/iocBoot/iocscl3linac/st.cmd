@@ -34,8 +34,8 @@ scl3linac_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_macro_test.sub", "SYS=${SYS},SUBSYS=${SUBSYS},DEV=${DEV1},SUBDEV=${SUBDEV1}")
-
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_macro_test.sub", "SYS=${SYS},SUBSYS=${SUBSYS},DEV=${DEV2},SUBDEV=${SUBDEV2}")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_macro_test.sub", "SYS=${SYS},SUBSYS=${SUBSYS},DEV=${DEV2},SUBDEV=${SUBDEV2}")
+dbLoadRecords("db/makewaveform.vdb","SYS=${SYS},SUBSYS=${SUBSYS},DEV=${DEV1},SUBDEV=${SUBDEV1}")
 
 
 cd "${TOP}/iocBoot/${IOC}"
@@ -43,3 +43,4 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+seq sncMakeWaveform,"SYS=${SYS},SUBSYS=${SUBSYS},DEV=${DEV1},SUBDEV=${SUBDEV1}"

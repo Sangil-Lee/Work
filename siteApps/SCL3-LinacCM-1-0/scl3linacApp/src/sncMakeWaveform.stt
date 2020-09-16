@@ -1,0 +1,66 @@
+program sncMakeWaveform
+
+option +r;
+
+float aValue[44];
+assign aValue to {"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_01","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_02","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_03","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_04","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_05","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_08","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_07",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_08","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_09","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_10","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_11","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_12","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_13","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_14",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_15","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_16","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_17","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_18","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_19","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_20","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_21",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_22","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_23","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_24","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_25","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_26","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_27","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_28",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_29","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_30","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_31","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_32","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_33","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_34","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_35",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_36","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_37","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_38","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_39","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_40","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_41","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_42",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_43","{SYS}{SUBSYS}{DEV}{SUBDEV}Analog_44"};
+monitor aValue;
+
+evflag  evWave;
+sync	aValue	evWave;
+
+
+float	waveValue[44];
+//assign	waveValue to "{SYS}{SUBSYS}{DEV}{SUBDEV}Waveform_01.FVAL";
+assign	waveValue to "{SYS}{SUBSYS}{DEV}{SUBDEV}Waveform_01";
+monitor waveValue;
+
+
+//{SYS}{SUBSYS}{DEV}{SUBDEV}Waveform_01
+//{SYS}{SUBSYS}{DEV}{SUBDEV}Waveform_02
+
+
+
+%% #include <math.h>
+
+ss makewave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evWave);
+		}state MakeWaveform
+	}
+
+	state MakeWaveform
+	{
+		when(efTestAndClear(evWave)) 
+		{
+			waveValue[0]   = aValue[0];  waveValue[1]   = aValue[1];  waveValue[2]   = aValue[2];
+			waveValue[3]   = aValue[3];  waveValue[4]   = aValue[4];  waveValue[5]   = aValue[5];
+			waveValue[6]   = aValue[6];  waveValue[7]   = aValue[7];  waveValue[8]   = aValue[8];
+			waveValue[9]   = aValue[9];  waveValue[10]  = aValue[10]; waveValue[11]  = aValue[11];
+			waveValue[12]  = aValue[12]; waveValue[13]  = aValue[13]; waveValue[14]  = aValue[14];
+			waveValue[15]  = aValue[15]; waveValue[16]  = aValue[16]; waveValue[17]  = aValue[17];
+			waveValue[18]  = aValue[18]; waveValue[19]  = aValue[19]; waveValue[20]  = aValue[20];
+			waveValue[21]  = aValue[21]; waveValue[22]  = aValue[22]; waveValue[23]  = aValue[23];
+			waveValue[24]  = aValue[24]; waveValue[25]  = aValue[25]; waveValue[26]  = aValue[26];
+			waveValue[27]  = aValue[27]; waveValue[28]  = aValue[28]; waveValue[29]  = aValue[29];
+			waveValue[30]  = aValue[30]; waveValue[31]  = aValue[31]; waveValue[32]  = aValue[32];
+			waveValue[33]  = aValue[33]; waveValue[34]  = aValue[34]; waveValue[35]  = aValue[35];
+			waveValue[36]  = aValue[36]; waveValue[37]  = aValue[37]; waveValue[38]  = aValue[38];
+			waveValue[39]  = aValue[39]; waveValue[40]  = aValue[40]; waveValue[41]  = aValue[41];
+			waveValue[42]  = aValue[42]; waveValue[43]  = aValue[43];
+
+			pvPut(waveValue, SYNC);
+		}state MakeWaveform
+	}
+}
+

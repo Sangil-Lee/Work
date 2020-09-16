@@ -12,6 +12,8 @@ PROD_IOC = scl3linac
 # scl3linac.dbd will be created and installed
 DBD += scl3linac.dbd
 
+USR_CPPFLAGS += -Wno-deprecated-declarations -Wno-maybe-uninitialized
+
 # scl3linac.dbd will be made up from these files:
 scl3linac_DBD += base.dbd
 
@@ -22,12 +24,14 @@ scl3linac_DBD += calcSupport.dbd
 scl3linac_DBD += drvAsynIPPort.dbd
 scl3linac_DBD += stream.dbd
 scl3linac_DBD += modbusSupport.dbd
+scl3linac_DBD += subMakeWaveform.dbd
 
 # Add all the support libraries needed by this IOC
 #scl3linac_LIBS += xxx
 
 # scl3linac_registerRecordDeviceDriver.cpp derives from scl3linac.dbd
 scl3linac_SRCS += scl3linac_registerRecordDeviceDriver.cpp
+scl3linac_SRCS += subMakeWaveform.cpp
 
 # Build the main IOC entry point on workstation OSs.
 scl3linac_SRCS_DEFAULT += scl3linacMain.cpp
@@ -39,8 +43,8 @@ scl3linac_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     # This builds sncExample as a component of tr1
     scl3linac_SNCFLAGS += +r
-    #scl3linac_DBD  += seqHeater.dbd
-    #scl3linac_SRCS += seqHeater.stt
+    scl3linac_DBD  += sncMakeWaveform.dbd
+    scl3linac_SRCS += sncMakeWaveform.stt
     scl3linac_LIBS += seq pv
 endif
 
