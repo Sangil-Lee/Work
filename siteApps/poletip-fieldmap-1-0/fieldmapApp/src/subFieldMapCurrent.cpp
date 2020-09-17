@@ -35,23 +35,18 @@ double getRandom(double min, double max)
 		return result;
 }
 
-class FieldMapCurrent
-{
-
+class FieldMapCurrent {
 public:
-	FieldMapCurrent(const string filename):mfilename(filename)
-	{
+	FieldMapCurrent(const string filename):mfilename(filename) {
 		printf("FieldMapCurrent Constructor\n");
 		loadData();
 	};
 
-	~FieldMapCurrent()
-	{
+	~FieldMapCurrent() {
 		printf("~FieldMapCurrent Destructor\n");
 	};
 
 	double GetClosestKey(double pvvalue);
-
 	//Variable
 private:
 	string mfilename;
@@ -63,7 +58,6 @@ private:
 	//Function
 private:
 	int loadData();
-
 };
 
 int FieldMapCurrent::loadData()
@@ -114,9 +108,11 @@ double FieldMapCurrent::GetClosestKey(double pv_value)
 		return (low->second);
 }
 
+#if 0
 static FieldMapCurrent fieldmapcurrentHWR("../../db/bptHWRHI");
 static FieldMapCurrent fieldmapcurrentQWRO("../../db/bptQWROLDHI");
 static FieldMapCurrent fieldmapcurrentQWRN("../../db/bptQWRNEWHI");
+#endif
 
 static long FieldMapCurrentInit(subRecord *psubrec)
 {

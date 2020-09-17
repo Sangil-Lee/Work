@@ -13,9 +13,11 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += Gauss2Ampere.db
 DB += Gauss2Ampere_SR.db
+DB += Spline.vdb
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptHWRHI
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptQWRNEWHI
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptQWROLDHI
+DB_INSTALLS += $(TOP)/fieldmapApp/Db/BI_Map
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

@@ -13,9 +13,12 @@ PROD_IOC = fieldmap
 DBD += fieldmap.dbd
 DBD += subFieldMapCurrent.dbd
 
+USR_CPPFLAGS += -Wno-deprecated-declarations
+
 # fieldmap.dbd will be made up from these files:
 fieldmap_DBD += base.dbd
-fieldmap_DBD += subFieldMapCurrent.dbd
+#fieldmap_DBD += subFieldMapCurrent.dbd subFieldMapWave.dbd
+fieldmap_DBD += subFieldMapWave.dbd
 
 # Include dbd files from all support applications:
 #fieldmap_DBD += xxx.dbd
@@ -25,7 +28,8 @@ fieldmap_DBD += subFieldMapCurrent.dbd
 
 # fieldmap_registerRecordDeviceDriver.cpp derives from fieldmap.dbd
 fieldmap_SRCS += fieldmap_registerRecordDeviceDriver.cpp
-fieldmap_SRCS += subFieldMapCurrent.cpp
+#fieldmap_SRCS += subFieldMapCurrent.cpp subFieldMapWave.cpp
+fieldmap_SRCS += subFieldMapWave.cpp
 
 # Build the main IOC entry point on workstation OSs.
 fieldmap_SRCS_DEFAULT += fieldmapMain.cpp
