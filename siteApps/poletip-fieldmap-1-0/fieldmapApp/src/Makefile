@@ -14,6 +14,8 @@ DBD += fieldmap.dbd
 DBD += subFieldMapCurrent.dbd
 
 USR_CPPFLAGS += -Wno-deprecated-declarations
+INCLUDES += -I/usr/include/eigen3
+
 
 # fieldmap.dbd will be made up from these files:
 fieldmap_DBD += base.dbd

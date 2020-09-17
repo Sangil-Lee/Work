@@ -84,6 +84,7 @@ int FieldMapWave::loadData()
 	int size = 0;
 	while(getline(file,line))
 		size++;
+	file.close();
 
 	printf("Size:%d\n", size);
 
@@ -212,11 +213,18 @@ void FieldMapWave::SaveSpline(const Eigen::RowVectorXd &t, const Eigen::RowVecto
 
 void FieldMapWave::ExpandingSpline(const Eigen::RowVectorXd &current, const Eigen::RowVectorXd &gradient) 
 {
+	std::ofstream spline_file("./spline.csv");
+	if (spline_file.good() != true) {
+		printf("Failed to open file for output!");
+		exit(-1);
+	};
 	for (long i = 0; i < gradient.size(); i++) {
 		m.insert(std::pair<double,double>(gradient(i), current(i)));
-
+		//spline_file << gradient(i) << "," << current(i) << std::endl;
+		spline_file << current(i) << "," << gradient(i) << std::endl;
 		printf("Gradient: %f, Current: %f\n", gradient(i), current(i));
 	};
+	spline_file.close();
 }
 
 double FieldMapWave::GetClosestKey(double pv_value)
