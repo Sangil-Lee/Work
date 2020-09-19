@@ -18,9 +18,34 @@
 #include <recSup.h>
 #include <subRecord.h>
 #include <epicsExport.h>
+#include <iocsh.h>
 
 #include <Eigen/Dense>
 #include <unsupported/Eigen/Splines>
+
+// #EPICS LIBS
+#define epicsTypesGLOBAL
+#include <epicsTypes.h>
+
+#include "epicsStdlib.h"
+#include "epicsStdio.h"
+#include "epicsString.h"
+#include "errlog.h"
+#include "ellLib.h"
+#include "epicsMutex.h"
+#include "epicsStdioRedirect.h"
+#include "dbBase.h"
+#include "dbStaticLib.h"
+#include "dbFldTypes.h"
+#include "devSup.h"
+#include "drvSup.h"
+#include "special.h"
+#include "db_field_log.h"
+#define epicsExportSharedSymbols
+#include "dbAccessDefs.h"
+#include "recGbl.h"
+#include "dbEvent.h"
+#include "callback.h"
 
 typedef Eigen::Spline<double, 1, 2> Spline1D;
 typedef Eigen::SplineFitting<Spline1D> SplineFitting1D;
@@ -30,8 +55,8 @@ using namespace std;
 //static int gb_Debug = 0;
 //epicsExportAddress(int, gb_Debug); /*iocsh export variable*/
 
-static Eigen::RowVectorXd mgradient;
-static Eigen::RowVectorXd mcurrent;
+//static Eigen::RowVectorXd mgradient;
+//static Eigen::RowVectorXd mcurrent;
 
 class FieldMapWave {
 public:
@@ -49,7 +74,8 @@ public:
 	void SaveReference(const Eigen::RowVectorXd &t, const Eigen::RowVectorXd &y); 
 	void TraverseSpline(const Spline1D &spline, const size_t size, const double t_end, Eigen::RowVectorXd &time, Eigen::RowVectorXd &y);
 	void SaveSpline(const Eigen::RowVectorXd &t, const Eigen::RowVectorXd &y); 
-	void ExpandingSpline(const Eigen::RowVectorXd &current, const Eigen::RowVectorXd &gradient);
+	void ExpandingSpline(const Eigen::RowVectorXd &current, const Eigen::RowVectorXd &gradient, const int load);
+	long ReLoadMapFile(const char* pFilepath, const int load = 0);
 
 	Eigen::RowVectorXd & GetGradient() { return mgradient; }
 	Eigen::RowVectorXd & GetCurrent() { return mcurrent; }
@@ -57,21 +83,22 @@ public:
 	//Variable
 private:
 	string mfilename;
-	ifstream dataFile;
 	//Map<Field Gradient, Current>
 	map<double, double> m;
 	string strToken;
-	//Eigen::RowVectorXd mgradient;
-	//Eigen::RowVectorXd mcurrent;
+	Eigen::RowVectorXd mgradient;
+	Eigen::RowVectorXd mcurrent;
 
 	//Function
 private:
-	int loadData();
+	int loadData(const char* filepath = 0, const int load = 1);
 };
 
-int FieldMapWave::loadData()
+int FieldMapWave::loadData(const char*filepath, const int load)
 {
 	string strToken;
+	ifstream dataFile;
+	if(filepath != 0) mfilename = string(filepath);
 	dataFile.open(mfilename.c_str());
 
 	if(dataFile.fail()) {
@@ -86,7 +113,7 @@ int FieldMapWave::loadData()
 		size++;
 	file.close();
 
-	printf("Size:%d\n", size);
+	//printf("Size:%d\n", size);
 
 	mcurrent.resize(size+1);
 	mgradient.resize(size+1);
@@ -129,8 +156,10 @@ int FieldMapWave::loadData()
 		Eigen::RowVectorXd current;
 		Eigen::RowVectorXd gradient;
 		TraverseSpline(spline, size, current_end, current, gradient);
-		ExpandingSpline(current, gradient);
+		ExpandingSpline(current, gradient, load);
 	};
+
+	dataFile.close();
 
 	return(0);
 }
@@ -211,7 +240,7 @@ void FieldMapWave::SaveSpline(const Eigen::RowVectorXd &t, const Eigen::RowVecto
 	spline_file.close();
 }
 
-void FieldMapWave::ExpandingSpline(const Eigen::RowVectorXd &current, const Eigen::RowVectorXd &gradient) 
+void FieldMapWave::ExpandingSpline(const Eigen::RowVectorXd &current, const Eigen::RowVectorXd &gradient, const int load) 
 {
 	std::ofstream spline_file("./spline.csv");
 	if (spline_file.good() != true) {
@@ -219,10 +248,12 @@ void FieldMapWave::ExpandingSpline(const Eigen::RowVectorXd &current, const Eige
 		exit(-1);
 	};
 	for (long i = 0; i < gradient.size(); i++) {
-		m.insert(std::pair<double,double>(gradient(i), current(i)));
-		//spline_file << gradient(i) << "," << current(i) << std::endl;
-		spline_file << current(i) << "," << gradient(i) << std::endl;
-		printf("Gradient: %f, Current: %f\n", gradient(i), current(i));
+		if(load) {
+			m.insert(std::pair<double,double>(gradient(i), current(i)));
+			spline_file << current(i) << "," << gradient(i) << std::endl;
+		} else {
+			printf("Gradient: %f, Current: %f\n", gradient(i), current(i));
+		};
 	};
 	spline_file.close();
 }
@@ -233,7 +264,14 @@ double FieldMapWave::GetClosestKey(double pv_value)
 	return (low->second);
 }
 
+long FieldMapWave::ReLoadMapFile(const char* pFilepath, const int load)
+{
+	long status = loadData(pFilepath, load);
+	return (status);
+}
+
 static FieldMapWave fieldmapwave("../../db/BI_Map");
+
 
 static long FieldMapWaveInit(subRecord *pRec)
 {
@@ -249,25 +287,6 @@ static long FieldMapWaveInit(subRecord *pRec)
 	const auto fit = SplineFitting1D::Interpolate(signal, 2, time);
 #endif
 
-#if 0
-	// Fit and generate a spline function
-	//const auto fit = SplineFitting1D::Interpolate(fieldmapwave.GetGradient(), 2, fieldmapwave.GetCurrent());
-	const auto fit = SplineFitting1D::Interpolate(mgradient, 2, mcurrent);
-	Spline1D spline(fit);
-
-	// Traverse spline
-	{
-		double current_end = 200.0;		//later, should be configurable 
-		//int last = mcurrent.size();
-		//double current_end = mcurrent(last);
-		size_t size = 1500;				//later, should be configurable 
-		Eigen::RowVectorXd current;
-		Eigen::RowVectorXd gradient;
-		fieldmapwave.TraverseSpline(spline, size, current_end, current, gradient);
-		//fieldmapwave.SaveSpline(t, y);
-		fieldmapwave.ExpandingSpline(current, gradient);
-	};
-#endif
 	return 0;
 }
 
@@ -280,3 +299,29 @@ static long FieldMapWaveProc(subRecord *pRec)
 
 epicsRegisterFunction(FieldMapWaveInit);
 epicsRegisterFunction(FieldMapWaveProc);
+
+long epicsShareAPI reLoadMapFile(const char *pFilepath, const int load)
+{
+	long status = fieldmapwave.ReLoadMapFile(pFilepath, load);
+    return (status);
+}
+
+epicsRegisterFunction(reLoadMapFile);
+
+static const iocshArg reLoadMapFileArg0 = { "mapfile path",iocshArgString};
+static const iocshArg reLoadMapFileArg1 = { "load(0,1)",iocshArgInt};
+
+static const iocshArg * const reLoadMapFileArgs[] = {&reLoadMapFileArg0, &reLoadMapFileArg1};
+
+static const iocshFuncDef reLoadMapFileFuncDef = {"reLoadMapFile",2,reLoadMapFileArgs};
+static void reLoadMapFileCallFunc(const iocshArgBuf *args)
+{
+    reLoadMapFile(args[0].sval, args[1].ival);
+}
+
+static void reLoadMapFileRegister(void)
+{
+	iocshRegister(&reLoadMapFileFuncDef, reLoadMapFileCallFunc);
+}
+
+epicsExportRegistrar(reLoadMapFileRegister);
