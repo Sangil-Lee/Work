@@ -17,7 +17,8 @@ fieldmap_registerRecordDeviceDriver pdbbase
 
 #dbLoadRecords("db/Gauss2Ampere.db","SYS=MEBT")
 #dbLoadRecords("db/Gauss2Ampere_SR.db","SYS=MEBT")
-dbLoadRecords("db/Spline.vdb")
+#dbLoadRecords("db/Spline.vdb")
+dbLoadRecords("db/Gauss2Ampere_Spline.db","SYS=MEBT")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

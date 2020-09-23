@@ -14,6 +14,7 @@ include $(TOP)/configure/CONFIG
 DB += Gauss2Ampere.db
 DB += Gauss2Ampere_SR.db
 DB += Spline.vdb
+DB += Gauss2Ampere_Spline.db
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptHWRHI
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptQWRNEWHI
 DB_INSTALLS += $(TOP)/fieldmapApp/Db/bptQWROLDHI
