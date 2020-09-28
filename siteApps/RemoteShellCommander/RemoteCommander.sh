@@ -1,26 +1,22 @@
 #!/bin/bash
 
-
 HOSTLIST=("IOC1" "IOC2" "IOC3" "IOC4" "IOC5" "IOC6" "IOC7" "IOC8" "IOC9" "IOC10")
-IPLIST=("192.168.68.101" "192.168.68.102" "192.168.68.103" "192.168.68.105" "192.168.68.106" "192.168.68.107" "192.168.68.108" "192.168.68.109" "192.168.68.110" "192.168.68.111")
+#IPLIST=("192.168.68.101" "192.168.68.102")
+IPLIST=()
 ACCOUNT="ctrluser"
 SSHPASSWD="sshpass -pqwer1234"
 SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 SCPCMD="scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
-#COPYLIST=("testfile.txt" "bootimage")
-COPYLIST="testfile.txt"
+COPYLIST=()
 COPYDIR="./data/"
 REMOTEDIR="~/data/"
+OPING_HOSTFILE="hostlist.txt"
+OPING_OUTFILE="reply.txt"
+COPY_OUTFILE="copy_packages.txt"
 
 CMDLIST=("sshpass" "ssh" "scp" "tmux" "screen")
 
-#for host in ${HOSTLIST[@]};do
-#	echo "${ACCOUNT}@${host}"
-#done
-#
-#for ipaddr in ${IPLIST[@]};do
-#	echo "${ACCOUNT}@${ipaddr}"
-#done
+rm -f "$OPING_OUTFILE"
 
 RemoteHostCopyAll()
 {
@@ -33,18 +29,76 @@ RemoteHostCopyAll()
 
 RemoteIPCopyAll()
 {
+	declare -i i=0
 	for ipaddr in ${IPLIST[@]};do
-		echo "${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
-		${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+		#echo "${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
+		Files=${COPYLIST[i]}
+		Files=`echo $Files | sed -r 's/[,:\t;]/ /g'`
+		echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
+		${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+		#${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+		i=$((i+1))	
 	done
 
 }
+
+Remotemkdir()
+{
+	for ipaddr in ${IPLIST[@]};do
+		echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} mkdir -p ~/Test2;"
+		${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "mkdir -p ~/Test2;"
+	done
+
+}
+
+OPing()
+{
+	oping -c 1 -f "$OPING_HOSTFILE" -O "$OPING_OUTFILE" >> "/dev/null"
+}
+
+ReadFile()
+{
+	#opingFile=$1
+	opingFile=$OPING_OUTFILE
+
+	while IFS=, read -r f1 f2 f3
+	do
+		#printf 'What: %s, IP: %s, Result: %s\n' "$f1" "$f2" "$f3"
+		result=`echo "$f3 < 0" | bc`
+		if [ "$result" == "0" ];
+		then
+			IP=`echo "$f2" | tr -d '"'`
+			printf 'Connected IP: %s\n' $IP
+			IPLIST=(${IPLIST[@]} $IP)
+		fi
+	done < "$opingFile"
+}
+
+CopyFile()
+{
+	copyFile=$COPY_OUTFILE
+
+	while IFS=: read -r line pklist
+	do
+	#echo $line $pklist
+	COPYLIST=(${COPYLIST[@]} $pklist)
+	done < "$copyFile"
+
+	#for package in ${COPYLIST[@]};do
+		#echo $package
+	#done
+}
+
+OPing
+ReadFile
 
 echo ""
 echo "Remote Commander for RAON Control system"
 echo "Enter the number"
 echo "1 : Remote Host Copy All"
 echo "2 : Remote IP Copy All"
+echo "3 : Remote mkdir All"
+echo "4 : Copy Pacakges"
 echo "0 : Exit script"
 echo ""
 echo -n "Enter the number : "
@@ -59,6 +113,15 @@ case "${answer}" in
                 echo "Copy All ... "
 				RemoteIPCopyAll
                 ;;
+        3)
+                echo "Remote mkdir All ... "
+				Remotemkdir
+				;;
+        4)
+                echo "Copy Packages ... "
+				CopyFile
+				RemoteIPCopyAll
+				;;
 		0)
 		echo "Exit the script"
 		exit 1
