@@ -5,9 +5,10 @@ HOSTLIST=("IOC1" "IOC2" "IOC3" "IOC4" "IOC5" "IOC6" "IOC7" "IOC8" "IOC9" "IOC10"
 IPLIST=()
 ACCOUNT="ctrluser"
 SSHPASSWD="sshpass -pqwer1234"
-SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
 SCPCMD="scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
 COPYLIST=()
+COPYIPLIST=()
 COPYDIR="./data/"
 REMOTEDIR="~/data/"
 OPING_HOSTFILE="hostlist.txt"
@@ -17,6 +18,7 @@ COPY_OUTFILE="copy_packages.txt"
 CMDLIST=("sshpass" "ssh" "scp" "tmux" "screen")
 
 rm -f "$OPING_OUTFILE"
+rm -f "$OPING_HOSTFILE"
 
 RemoteHostCopyAll()
 {
@@ -29,17 +31,24 @@ RemoteHostCopyAll()
 
 RemoteIPCopyAll()
 {
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
 	declare -i i=0
-	for ipaddr in ${IPLIST[@]};do
-		#echo "${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
-		Files=${COPYLIST[i]}
-		Files=`echo $Files | sed -r 's/[,:\t;]/ /g'`
-		echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
-		${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
-		#${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			echo "CopyIP($copyip) == ConnectedIP($ipaddr)"
+			#echo "${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
+			Files=`echo ${COPYLIST[i]} | sed -r 's/[,:\t;]/ /g'`
+			echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
+			${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+		done
 		i=$((i+1))	
 	done
-
+	popd >> "/dev/null"
 }
 
 Remotemkdir()
@@ -78,10 +87,14 @@ CopyFile()
 {
 	copyFile=$COPY_OUTFILE
 
+	declare -i i=0
 	while IFS=: read -r line pklist
 	do
 	#echo $line $pklist
+	COPYIPLIST=(${COPYIPLIST[@]} $line)
 	COPYLIST=(${COPYLIST[@]} $pklist)
+	echo ${COPYIPLIST[i]} >> $OPING_HOSTFILE
+	i=$((i+1))	
 	done < "$copyFile"
 
 	#for package in ${COPYLIST[@]};do
@@ -89,6 +102,28 @@ CopyFile()
 	#done
 }
 
+StartAllIOC()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			echo "CopyIP($copyip) == ConnectedIP($ipaddr)"
+			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${REMOTECOMMAND}"
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${REMOTECOMMAND}
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+
+}
+
+CopyFile
 OPing
 ReadFile
 
@@ -99,6 +134,7 @@ echo "1 : Remote Host Copy All"
 echo "2 : Remote IP Copy All"
 echo "3 : Remote mkdir All"
 echo "4 : Copy Pacakges"
+echo "5 : Start IOCs"
 echo "0 : Exit script"
 echo ""
 echo -n "Enter the number : "
@@ -119,8 +155,11 @@ case "${answer}" in
 				;;
         4)
                 echo "Copy Packages ... "
-				CopyFile
 				RemoteIPCopyAll
+				;;
+        5)
+                echo "Every IOC Start ... "
+				StartAllIOC
 				;;
 		0)
 		echo "Exit the script"
