@@ -2,6 +2,7 @@
 
 HOSTLIST=("IOC1" "IOC2" "IOC3" "IOC4" "IOC5" "IOC6" "IOC7" "IOC8" "IOC9" "IOC10")
 #IPLIST=("192.168.68.101" "192.168.68.102")
+IOCNAME=()
 IPLIST=()
 ACCOUNT="ctrluser"
 SSHPASSWD="sshpass -pqwer1234"
@@ -9,8 +10,8 @@ SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o Connec
 SCPCMD="scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
 COPYLIST=()
 COPYIPLIST=()
-COPYDIR="./data/"
-REMOTEDIR="~/data/"
+COPYDIR="./data"
+REMOTEDIR="~/data"
 OPING_HOSTFILE="hostlist.txt"
 OPING_OUTFILE="reply.txt"
 COPY_OUTFILE="copy_packages.txt"
@@ -45,6 +46,25 @@ RemoteIPCopyAll()
 			Files=`echo ${COPYLIST[i]} | sed -r 's/[,:\t;]/ /g'`
 			echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
 			${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
+#ln -s ${HOME}/data/StartIOC_${IOCNAME[i]} ${HOME}/StartIOC 
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+}
+
+RemoteLinkAll()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "ln -s ${HOME}/data/StartIOC_${IOCNAME[i]} ${HOME}/StartIOC"
 		done
 		i=$((i+1))	
 	done
@@ -88,9 +108,10 @@ CopyFile()
 	copyFile=$COPY_OUTFILE
 
 	declare -i i=0
-	while IFS=: read -r line pklist
+	while IFS=: read -r iocname line pklist
 	do
 	#echo $line $pklist
+	IOCNAME=(${IOCNAME[@]} $iocname)
 	COPYIPLIST=(${COPYIPLIST[@]} $line)
 	COPYLIST=(${COPYLIST[@]} $pklist)
 	echo ${COPYIPLIST[i]} >> $OPING_HOSTFILE
@@ -156,6 +177,7 @@ case "${answer}" in
         4)
                 echo "Copy Packages ... "
 				RemoteIPCopyAll
+				RemoteLinkAll
 				;;
         5)
                 echo "Every IOC Start ... "
