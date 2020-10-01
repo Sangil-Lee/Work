@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export EPICS_HOST_ARCH=linux-x86_64
+export EPICS_PATH=/home/ctrluser/epics/7.0.3
+export EPICS_BASE=/home/ctrluser/epics/7.0.3/base
+export EPICS_EXTENSIONS=/home/ctrluser/epics/7.0.3/extensions
+export EPICS_SYNAPPS=/home/ctrluser/epics/7.0.3/epicsLibs/synApps/support
+export RAON_SITEAPPS=/home/ctrluser/epics/7.0.3/siteApps
+export RAON_SITELIBS=/home/ctrluser/epics/7.0.3/siteLibs
+export PATH=/home/ctrluser/epics/7.0.3/base/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/extensions/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/siteApps/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/siteLibs/bin/linux-x86_64:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+export LD_LIBRARY_PATH=/home/ctrluser/epics/7.0.3/base/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/extensions/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/siteApps/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/siteLibs/lib/linux-x86_64
+
+export TARGET=/home/ctrluser/epics/7.0.3/siteApps/Ctrl_IOC/poletip-fieldmap-1-0/iocBoot/iocfieldmap
+cd ${TARGET};tmux new-session -d -s IOC ./st.cmd;tmux send-keys 'dbl>dblist' C-m;tmux detach -s IOC

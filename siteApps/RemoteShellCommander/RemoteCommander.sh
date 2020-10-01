@@ -15,7 +15,7 @@ REMOTEDIR="~/data"
 OPING_HOSTFILE="hostlist.txt"
 OPING_OUTFILE="reply.txt"
 COPY_OUTFILE="copy_packages.txt"
-
+REMOTECOMMAND="~/StartIOC"
 CMDLIST=("sshpass" "ssh" "scp" "tmux" "screen")
 
 rm -f "$OPING_OUTFILE"
@@ -46,7 +46,6 @@ RemoteIPCopyAll()
 			Files=`echo ${COPYLIST[i]} | sed -r 's/[,:\t;]/ /g'`
 			echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
 			${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}
-#ln -s ${HOME}/data/StartIOC_${IOCNAME[i]} ${HOME}/StartIOC 
 		done
 		i=$((i+1))	
 	done
@@ -64,7 +63,7 @@ RemoteLinkAll()
 			then 
 				continue 
 			fi
-			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "ln -s ${HOME}/data/StartIOC_${IOCNAME[i]} ${HOME}/StartIOC"
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "chmod +x ${HOME}/data/StartIOC_${IOCNAME[i]};ln -s ${HOME}/data/StartIOC_${IOCNAME[i]} ${HOME}/StartIOC"
 		done
 		i=$((i+1))	
 	done
@@ -134,9 +133,9 @@ StartAllIOC()
 			then 
 				continue 
 			fi
-			echo "CopyIP($copyip) == ConnectedIP($ipaddr)"
 			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${REMOTECOMMAND}"
-			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${REMOTECOMMAND}
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${REMOTECOMMAND}"
+#${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${HOME}/StartIOC"
 		done
 		i=$((i+1))	
 	done
@@ -178,6 +177,20 @@ case "${answer}" in
                 echo "Copy Packages ... "
 				RemoteIPCopyAll
 				RemoteLinkAll
+				echo "1 : Start IOCs"
+				echo "0 : Exit script"
+				echo ""
+				echo -n "Enter the number : "
+				read answer2
+				case "${answer2}" in
+				1)
+				echo "Start IOC All ... "
+				StartAllIOC
+				;;
+				0)
+				echo "Exit the script"
+				exit 1
+				esac
 				;;
         5)
                 echo "Every IOC Start ... "
