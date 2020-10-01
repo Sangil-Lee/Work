@@ -15,7 +15,8 @@ REMOTEDIR="~/data"
 OPING_HOSTFILE="hostlist.txt"
 OPING_OUTFILE="reply.txt"
 COPY_OUTFILE="copy_packages.txt"
-REMOTECOMMAND="~/StartIOC"
+STARTIOC="~/StartIOC"
+STOPIOC="tmux kill-session -t IOC"
 CMDLIST=("sshpass" "ssh" "scp" "tmux" "screen")
 
 rm -f "$OPING_OUTFILE"
@@ -133,9 +134,28 @@ StartAllIOC()
 			then 
 				continue 
 			fi
-			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${REMOTECOMMAND}"
-			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${REMOTECOMMAND}"
-#${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${HOME}/StartIOC"
+			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${STARTIOC}"
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${STARTIOC}"
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+
+}
+
+StopAllIOC()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${STOPIOC}"
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "${STOPIOC}"
 		done
 		i=$((i+1))	
 	done
@@ -155,6 +175,7 @@ echo "2 : Remote IP Copy All"
 echo "3 : Remote mkdir All"
 echo "4 : Copy Pacakges"
 echo "5 : Start IOCs"
+echo "6 : Stop IOCs"
 echo "0 : Exit script"
 echo ""
 echo -n "Enter the number : "
@@ -195,6 +216,10 @@ case "${answer}" in
         5)
                 echo "Every IOC Start ... "
 				StartAllIOC
+				;;
+        6)
+                echo "Every IOC Start ... "
+				StopAllIOC
 				;;
 		0)
 		echo "Exit the script"
