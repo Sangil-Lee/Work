@@ -8,10 +8,12 @@ ACCOUNT="ctrluser"
 SSHPASSWD="sshpass -pqwer1234"
 SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
 SCPCMD="scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
+SCPCMDR="scp -r -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
 COPYLIST=()
 COPYIPLIST=()
 COPYDIR="./data"
 REMOTEDIR="~/data"
+DEPLOYDIR="${HOME}/epics/7.0.3/siteApps/Local_IOC"
 OPING_HOSTFILE="hostlist.txt"
 OPING_OUTFILE="reply.txt"
 COPY_OUTFILE="copy_packages.txt"
@@ -162,6 +164,27 @@ StopAllIOC()
 	popd >> "/dev/null"
 
 }
+DeployIOC()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			echo "CopyIP($copyip) == ConnectedIP($ipaddr)"
+			#echo "${SSHPASSWD} ${SCPCMD} ${COPYDIR}${COPYLIST} ${ACCOUNT}@${ipaddr}:${REMOTEDIR}"
+			Files=`echo ${COPYLIST[i]} | sed -r 's/[,:\t;]/ /g'`
+			echo "${SSHPASSWD} ${SCPCMD} ${Files} ${ACCOUNT}@${ipaddr}:${DEPLOYDIR}"
+			${SSHPASSWD} ${SCPCMDR} ${Files} ${ACCOUNT}@${ipaddr}:${DEPLOYDIR}
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+}
 
 CopyFile
 OPing
@@ -174,9 +197,10 @@ echo "1 : Remote Host Copy All"
 echo "2 : Remote IP Copy All"
 echo "3 : Remote mkdir All"
 echo "4 : Copy Pacakges"
-echo "5 : Start	IOCs"
-echo "6 : Stop	IOCs"
+echo "5 : Start IOCs"
+echo "6 : Stop  IOCs"
 echo "7 : Restart IOCs"
+echo "8 : Deploy siteApps"
 echo "0 : Exit Script"
 echo ""
 echo -n "Enter the number : "
@@ -226,6 +250,10 @@ case "${answer}" in
                 echo "Every IOC Restart ... "
 				StopAllIOC
 				StartAllIOC
+				;;
+        8)
+                echo "Deploy siteApps ... "
+				DeployIOC
 				;;
 		0)
 		echo "Exit the script"

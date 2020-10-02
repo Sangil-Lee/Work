@@ -20,4 +20,4 @@ export SUBDEV1="-Valve:"
 export SUBDEV2="-Press:"
 export TARGETDIR=${RAON_SITEAPPS}/Local_IOC/SCL3-LinacCM-1-0
 export TARGET=${TARGETDIR}/iocBoot/iocscl3linac
-cd ${TARGET};tmux new-session -d -s IOC ./st.cmd;tmux send-keys 'dbl>dblist' C-m;tmux detach -s IOC
+cd ${TARGET};tmux new-session -d -s IOC ./st.cmd;tmux send-keys C-m 'dbl>dblist' C-m;tmux detach -s IOC
