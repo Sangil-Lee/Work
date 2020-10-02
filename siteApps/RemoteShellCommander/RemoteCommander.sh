@@ -174,9 +174,10 @@ echo "1 : Remote Host Copy All"
 echo "2 : Remote IP Copy All"
 echo "3 : Remote mkdir All"
 echo "4 : Copy Pacakges"
-echo "5 : Start IOCs"
-echo "6 : Stop IOCs"
-echo "0 : Exit script"
+echo "5 : Start	IOCs"
+echo "6 : Stop	IOCs"
+echo "7 : Restart IOCs"
+echo "0 : Exit Script"
 echo ""
 echo -n "Enter the number : "
 read answer
@@ -218,8 +219,13 @@ case "${answer}" in
 				StartAllIOC
 				;;
         6)
-                echo "Every IOC Start ... "
+                echo "Every IOC Stop ... "
 				StopAllIOC
+				;;
+        7)
+                echo "Every IOC Restart ... "
+				StopAllIOC
+				StartAllIOC
 				;;
 		0)
 		echo "Exit the script"
