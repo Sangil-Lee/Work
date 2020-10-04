@@ -6,23 +6,26 @@ IOCNAME=()
 IPLIST=()
 ACCOUNT="ctrluser"
 SSHPASSWD="sshpass -pqwer1234"
-SSHCMD="ssh -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
-SCPCMD="scp -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
-SCPCMDR="scp -r -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3"
+SSHCMD="ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 -oLogLevel=Error"
+SCPCMD="scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 -oLogLevel=Error"
+SCPCMDR="scp -r -oStrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 -oLogLevel=Error"
 COPYLIST=()
 COPYIPLIST=()
 COPYDIR="./data"
 REMOTEDIR="~/data"
 DEPLOYDIR="${HOME}/epics/7.0.3/siteApps/Local_IOC"
 OPING_HOSTFILE="hostlist.txt"
+CONNIP_FILE="connectedIP.txt"
 OPING_OUTFILE="reply.txt"
 COPY_OUTFILE="copy_packages.txt"
 STARTIOC="~/StartIOC"
 STOPIOC="tmux kill-session -t IOC"
+SHOWIOC="~/ShowIOC"
 CMDLIST=("sshpass" "ssh" "scp" "tmux" "screen")
 
 rm -f "$OPING_OUTFILE"
 rm -f "$OPING_HOSTFILE"
+rm -f "$CONNIP_FILE"
 
 RemoteHostCopyAll()
 {
@@ -100,6 +103,8 @@ ReadFile()
 		then
 			IP=`echo "$f2" | tr -d '"'`
 			printf 'Connected IP: %s\n' $IP
+			echo $IP >> $CONNIP_FILE
+#echo 'Connected IP:'$IP >> $CONNIP_FILE
 			IPLIST=(${IPLIST[@]} $IP)
 		fi
 	done < "$opingFile"
@@ -186,6 +191,55 @@ DeployIOC()
 	popd >> "/dev/null"
 }
 
+ShowDBListAll()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	filename=$1
+	if [ -n $filename ]; then
+			rm -f "$filename"
+	fi
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ]; then 
+				continue 
+			fi
+			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${STARTIOC}"
+#${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "cat ${HOME}/data/dblist" >& "$filename"
+#${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "cat ${HOME}/data/dblist" >& "$filename"
+			if [ -z $filename ]; then
+				${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "cat ${HOME}/data/dblist"
+			else
+				${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "cat ${HOME}/data/dblist" >> "$filename" 2>&1
+			fi
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+
+}
+
+DBListRenewal()
+{
+	pushd ${PWD} >> "/dev/null"
+	cd ${COPYDIR}
+	declare -i i=0
+	for copyip in ${COPYIPLIST[@]}; do
+		for ipaddr in ${IPLIST[@]}; do
+			if [ "$copyip" != "$ipaddr" ] 
+			then 
+				continue 
+			fi
+			echo "${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} ${STARTIOC}"
+			${SSHPASSWD} ${SSHCMD} ${ACCOUNT}@${ipaddr} "tmux send-keys -t IOC:0 C-m 'dbl>${HOME}/data/dblist' C-m;"
+		done
+		i=$((i+1))	
+	done
+	popd >> "/dev/null"
+
+}
+
 CopyFile
 OPing
 ReadFile
@@ -201,6 +255,8 @@ echo "5 : Start IOCs"
 echo "6 : Stop  IOCs"
 echo "7 : Restart IOCs"
 echo "8 : Deploy siteApps"
+echo "9 : Show DB List All"
+echo "10 : DB List Renewal"
 echo "0 : Exit Script"
 echo ""
 echo -n "Enter the number : "
@@ -254,6 +310,15 @@ case "${answer}" in
         8)
                 echo "Deploy siteApps ... "
 				DeployIOC
+				;;
+        9)
+                echo "Show All DB Lists Filename(1, filename) ... "
+				read filename
+				ShowDBListAll $filename
+				;;
+        10)
+                echo "All DB Lists Renewal ... "
+				DBListRenewal
 				;;
 		0)
 		echo "Exit the script"
