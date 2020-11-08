@@ -31,7 +31,7 @@ fieldmap_DBD += subFieldMapWave.dbd
 # fieldmap_registerRecordDeviceDriver.cpp derives from fieldmap.dbd
 fieldmap_SRCS += fieldmap_registerRecordDeviceDriver.cpp
 #fieldmap_SRCS += subFieldMapCurrent.cpp subFieldMapWave.cpp
-fieldmap_SRCS += subFieldMapWave.cpp
+fieldmap_SRCS += subFieldMapWave.cpp GaussFitter.cpp
 
 # Build the main IOC entry point on workstation OSs.
 fieldmap_SRCS_DEFAULT += fieldmapMain.cpp
