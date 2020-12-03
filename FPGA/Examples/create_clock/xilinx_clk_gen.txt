@@ -1,0 +1,6 @@
+
+// Primary Clock
+create_clock -name clk1 -period 4 [get_ports CKP1]
+
+//  Generated Clock
+create_generated_clock -name clk2 -source [get_ports CKP1] -divide_by 2 [get_pins REGA/Q]

@@ -1,0 +1,295 @@
+Chapter 8.
+Tasks and Functions
+
+ 
+
+ - Coding을 하다보면 같은 기능을 하는 블럭을 여러번 작성해주어야 하는 경우들이 발생한다. C programming에서는 그래서 Macro와 Function이 생겨났고, FORTRAN에서는 Subroutine과 Function이 있다. Verilog에서도 비슷한 기능을 하는 것이 있으니, 그것이 바로 task와 function이다.
+
+*Objectives
+ - Task와 function의 차이를 설명한다.
+ - Task를 정의하기 위해 필요한 조건을 알고 선언과 호출을 이해한다.
+ - Function을 정의하기 위해 필요한 조건을 알고 선언과 호출을 이해한다.
+
+ 
+
+8.1 Differences between Tasks and Functions
+
+ 
+
+ 
+
+ 
+
+표 8.1 Tasks and Functions
+
+
+8.2 Tasks
+
+ - task, endtask : task 선언하는 keyword
+ - 다음에 열거한 조건들 중에서 적어도 하나라도 만족한다면 task를 사용해야 한다.
+   * Delay, timing, event 제어구조가 있다
+   * output이 없거나 하나이상의 output이 있는경우
+   * input이 없는 경우
+
+ 
+
+8.2.1 Task Declaration and Invocation
+
+    Syntax]
+    // Task Declaration
+    <task>
+              ::= task <name_of_task>;
+                  <tf_declaration>*
+                  <statement_or_null>
+                   endtask      
+
+ 
+
+    <name_of_task>
+                ::=<IDENTIFIER>
+
+ 
+
+    <tf_declaration>
+                ::=<parameter_declaration>
+               ||=<input_declaration>
+               ||=<output_declaration>
+               ||=<inout_declaration>
+               ||=<reg_declaration>
+               ||=<time_declaration>
+               ||=<integer_declaration>
+               ||=<real_declaration>
+               ||=<event_declaration>
+
+ 
+
+    // Task Invocation
+    <task_enable>
+                ::=<name_of_task>;
+               ||=<name_of_task> (<ｅxpression><,<ｅxpression>>*);
+
+ 
+
+ - input, output, inout : I/O 선언 keyword.
+ - module port를 선언하는 keyword와 같은 꼴이지만 task에서는 값의 전달의 역할이다. 참고로 module port는 외부와의 신호 연결을 의미한다.
+ - task는 다른 task나 function을 호출 할 수 있다.
+
+ 
+
+8.2.2 Task Examples
+
+ 
+
+ ■ Use of input and output arguments
+
+Ex)
+    // Input and Output Arguments in Task
+    module operation;
+  
+    parameter delay = 10;
+    reg [15:0] A, B;
+    reg [15:0] AB_AND, AB_OR, AB_XOR;
+
+ 
+
+    always @(A or B)
+    begin
+                // Task 호출. argumen는 task 선언에서 명시된 순서에 의해 전달된다.
+                // output arg : AB_AND, AB_OR, AB_XOR.  input arg = A, B
+        bitwise_oper(AB_AND, AB_OR, AB_XOR, A, B);
+    end
+
+ 
+
+    // define task
+    task bitwise_oper;
+    output [15:0] ab_and, ab_or, ab_xor;
+    input [15:0] a, b;
+    begin
+        #delay ab_and = a & b;
+        ab_or = a | b;
+        ab_xor = a ^ b;
+    end
+    endtask
+ 
+    endmodule
+
+ 
+
+   * task가 호출되면서 a, b는 각각 A와 B의 값을 전달받는다.
+  ** 10의 delay시간 후에 연산결과 ab_and, ab_or, ab_xor는 각각 AB_AND, AB_OR, AB_XOR로 전달된다.
+
+ 
+
+ ■ Asymmetric Sequence Generator
+
+Ex)
+    // reg변수의 직접 연산
+    module sequence;
+
+    reg clock;
+
+    initial
+        init_sequence;
+   
+    always
+    begin
+        asymmetric_sequence;
+    end
+
+ 
+
+    // Initialization sequence
+    task init_sequence;
+    begin
+        clock = 1'b0;
+    end
+    endtask
+
+ 
+
+    // operating directly on the clock in the module
+    task asymmetric_sequence;
+    begin
+        #12 clock = 1'b0;
+        #5 clock = 1'b1;
+        #3 clock = 1'b0;
+        #10 clock = 1'b1;
+    end
+    endtask
+   
+    endmodule
+
+ 
+
+    * module에서 정의한 reg변수 clock을 task에서 직접 건드릴 수 있다.
+
+ 
+
+8.3 Functions
+
+ - function, endfunction : function을 선언하는 keyword.
+ - 다음에 열거한 조건들 중 어느 하나라도 만족한다면 function을 사용해야 한다.
+    * delay, timing, event제어가 없는 경우
+    * 단 한개의 값만을 되돌려주는 경우
+    * 적어도 한개의 input이 있는 경우
+
+ 
+
+8.3.1 Function Declaration and Invocation
+
+  Syntax]
+    // Function Declaration
+
+    <function>
+            ::= function <range_or_type>? <name_of_functions>;
+                <tf_declaration>+
+                <statement>
+                endfunction
+
+ 
+
+    <range_or_type>
+            ::= <range>
+            ||=<INTEGER>
+            ||=<REAL>
+
+ 
+
+    <name_of_function>
+            ::= <IDENTIFIER>
+
+ 
+
+    <tf_declaration>
+                ::=<parameter_declaration>
+               ||=<input_declaration>
+               ||=<reg_declaration>
+               ||=<time_declaration>
+               ||=<integer_declaration>
+               ||=<real_declaration>
+
+ 
+
+    // Function Invocation
+    <function_call>
+                ::= <name_of_function> (<ｅxpression><,<ｅxpression>>*);
+
+ 
+
+ - function이 선언될때 <name_of_function>의 이름으로 내부적으로 register가 하나 선언된다.
+ - function의 return value가 위의 레지스터를 통해 전달된다.
+ - <range_or_type>은 function의 return value에 대한 width나 type을 지정한다. 명시하지 않는 경우 width는 1이다.
+ - function은 다른 task는 호출 할 수 없으며, 오직 다른 function만 호출 가능하다.
+
+ 
+
+8.3.2 Function Examples
+
+ ■ Parity Calculation
+
+Ex)
+    // Parity Calculation
+    module parity;
+  
+    reg [31:0] addr;
+    reg parity;
+
+ 
+
+    always @(addr)
+    begin
+        parity = calc_parity(addr);                                               // 첫 번째 호출
+        $display("Parity calculated \ %b", calc_parity(addr));      // 두번째 호출
+    end
+  
+    function calc_parity;             // function 선언. calc_parity라는 변수 생성
+    input [31:0] address;
+    begin
+        calc_parity = ^address;   // 자동적으로 만들어지는 변수 calc_parity에
+
+                                                // return value를 저장
+    end
+    endfunction
+
+ 
+
+    endmodule
+
+ 
+
+ ■ Left/Right Shifter
+
+Ex)
+    //Left/Right Shifter
+    module shifter;
+
+ 
+
+    'define LEFT_SHIFT     1'b0
+    'define RIGHT_SHIFT   1'b1
+    reg [31:0] addr, left_addr, right_addr;
+    reg control;
+
+ 
+
+    always @(addr)
+    begin
+        left_addr = shift(addr, 'LEFT_SHIFT);
+        rifht_addr = shift(addr, 'RIFHT_SHIFT);
+    end
+
+ 
+
+    function [31:0] shift;      // return value: 32bit 변수
+    input [31:0] address;
+    input control;
+ 
+    begin
+        shift = (control == 'LEFT_SHIFT)? (address << 1) : <address >>1);
+    end
+    endfunction
+
+ 
+
+    endmodule
