@@ -9,19 +9,6 @@ record(ai, Test:Perc) {
   field(VAL, "0")
 }
 
-record(calcout, Test:DPress) {
-  field(SCAN, "5 second")
-  field(PINI, "YES")
-  field(CALC, "D:=ABS(B-C);(D>=E)?A+0:(D < 0.5)?100:A+5")
-  field(INPA, "Test:Perc")
-  field(INPB, "Test:PressA")
-  field(INPC, "Test:PressB")
-  field(INPE, "1.0")
-  field(OUT, "Test:Perc")
-  field(OOPT, "On Change")
-  field(DOPT, "Use CALC")
-}
-
 record(ai, Test:PressA) {
   field(VAL, "30.1")
 }
@@ -30,20 +17,39 @@ record(ai, Test:PressB) {
   field(VAL, "33")
 }
 
+#$>caput Test:CDLogic.PROC 1 
+record(calcout, Test:CDLogic) {
+  field(SCAN, "Passive") #Only for Cooldown Sequence Control Logic 
+  field(PINI, "YES")
+  field(CALC, "D:=ABS(B-C);(D>=E)?A+0:(D < F)?100:(A >=100)?100:A+G")
+  field(INPA, "Test:Perc")
+  field(INPB, "Test:PressA")
+  field(INPC, "Test:PressB")
+  field(INPE, "1.0")
+  field(INPF, "0.5")
+  field(INPG, "5")
+  field(OUT, "Test:Perc CPP")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(FLNK, "Test:Perc")
+}
+
 #! Further lines contain data used by VisualDCT
 #! View(4500,4615,1.0)
-#! Record(Test:Perc,5480,4836,0,1,"Test:Perc")
-#! Field("Test:Perc.VAL",16777215,0,"Test:Perc.VAL")
-#! Record(Test:DPress,5100,4725,0,1,"Test:DPress")
-#! Field("Test:DPress.INPA",16777215,1,"Test:DPress.INPA")
-#! Link("Test:DPress.INPA","Test:Perc.VAL")
-#! Field("Test:DPress.INPB",16777215,0,"Test:DPress.INPB")
-#! Link("Test:DPress.INPB","Test:PressA.VAL")
-#! Field("Test:DPress.INPC",16777215,0,"Test:DPress.INPC")
-#! Link("Test:DPress.INPC","Test:PressB.VAL")
-#! Field("Test:DPress.OUT",16777215,1,"Test:DPress.OUT")
-#! Link("Test:DPress.OUT","Test:Perc.VAL")
+#! Record(Test:Perc,5360,4776,0,1,"Test:Perc")
+#! Field("Test:Perc.VAL",16777215,1,"Test:Perc.VAL")
 #! Record(Test:PressA,4740,4850,0,1,"Test:PressA")
 #! Field("Test:PressA.VAL",16777215,1,"Test:PressA.VAL")
 #! Record(Test:PressB,4740,4970,0,1,"Test:PressB")
 #! Field("Test:PressB.VAL",16777215,1,"Test:PressB.VAL")
+#! Record(Test:CDLogic,5100,4711,0,1,"Test:CDLogic")
+#! Field("Test:CDLogic.INPA",16777215,1,"Test:CDLogic.INPA")
+#! Link("Test:CDLogic.INPA","Test:Perc.VAL")
+#! Field("Test:CDLogic.INPB",16777215,0,"Test:CDLogic.INPB")
+#! Link("Test:CDLogic.INPB","Test:PressA.VAL")
+#! Field("Test:CDLogic.INPC",16777215,0,"Test:CDLogic.INPC")
+#! Link("Test:CDLogic.INPC","Test:PressB.VAL")
+#! Field("Test:CDLogic.OUT",16777215,1,"Test:CDLogic.OUT")
+#! Link("Test:CDLogic.OUT","Test:Perc.VAL")
+#! Field("Test:CDLogic.FLNK",16777215,1,"Test:CDLogic.FLNK")
+#! Link("Test:CDLogic.FLNK",Test:Perc)

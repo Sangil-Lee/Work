@@ -14,6 +14,7 @@ cooldown_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadRecords("db/check_condition_press.vdb")
+dbLoadRecords("db/check_condition_heline_circulation.vdb", "SYS=SCL31, SUBSYS=CDL01, DEV=VBx02")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
 
 cd "${TOP}/iocBoot/${IOC}"

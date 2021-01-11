@@ -27,6 +27,7 @@ DB += aiFloat64.template
 DB += aoFloat64.template
 DB += aiFloat64_sim.template
 DB += check_condition_press.vdb
+DB += check_condition_heline_circulation.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
