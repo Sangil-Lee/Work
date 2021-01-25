@@ -11,14 +11,26 @@ file "db/bi_bit.template" { pattern
 }
 
 file "db/bo_bit.template" { pattern
-{P,					R,			PORT,    OFFSET,   ZNAM,  ONAM,   DOL,							OMSL,			SCAN}
-{SRF1-QWR01:CM-,  OutCh0,		MB_DOut,    0,    Open,   Close,  "${HOST}:BitMBBIDirect.B0", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh1,	    MB_DOut,    1,    Open,   Close,  "${HOST}:BitMBBIDirect.B1", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh2,		MB_DOut,    2,    Open,   Close,  "${HOST}:BitMBBIDirect.B2", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh3,		MB_DOut,    3,    Open,   Close,  "${HOST}:BitMBBIDirect.B3", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh4,		MB_DOut,    4,    Open,   Close,  "${HOST}:BitMBBIDirect.B4", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh5,	    MB_DOut,    5,    Open,   Close,  "${HOST}:BitMBBIDirect.B5", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh6,		MB_DOut,    6,    Open,   Close,  "${HOST}:BitMBBIDirect.B6", "closed_loop",	"Passive"}
-{SRF1-QWR01:CM-,  OutCh7,		MB_DOut,    7,    Open,   Close,  "${HOST}:BitMBBIDirect.B7", "closed_loop",	"Passive"}
+{P,					R,			PORT,    OFFSET,   ZNAM,  ONAM,   DOL,							OMSL,			SCAN,		FLNK	}
+{SRF1-QWR01:CM-,  OutCh0,		MB_DOut,    0,    Open,   Close,  "${HOST}:BitMBBIDirect.B0", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc0"}
+{SRF1-QWR01:CM-,  OutCh1,	    MB_DOut,    1,    Open,   Close,  "${HOST}:BitMBBIDirect.B1", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc1"}
+{SRF1-QWR01:CM-,  OutCh2,		MB_DOut,    2,    Open,   Close,  "${HOST}:BitMBBIDirect.B2", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc2"}
+{SRF1-QWR01:CM-,  OutCh3,		MB_DOut,    3,    Open,   Close,  "${HOST}:BitMBBIDirect.B3", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc3"}
+{SRF1-QWR01:CM-,  OutCh4,		MB_DOut,    4,    Open,   Close,  "${HOST}:BitMBBIDirect.B4", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc4"}
+{SRF1-QWR01:CM-,  OutCh5,	    MB_DOut,    5,    Open,   Close,  "${HOST}:BitMBBIDirect.B5", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc5"}
+{SRF1-QWR01:CM-,  OutCh6,		MB_DOut,    6,    Open,   Close,  "${HOST}:BitMBBIDirect.B6", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc6"}
+{SRF1-QWR01:CM-,  OutCh7,		MB_DOut,    7,    Open,   Close,  "${HOST}:BitMBBIDirect.B7", "closed_loop",	"Passive",	"SRF1-QWR01:CM-Calc7"}
+}
+
+file "db/calc.template" { pattern
+{P,					R,			INPA,			INPB,						CALC		}
+{SRF1-QWR01:CM-,  Calc0,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh0",		"B==1?A+1:A"}
+{SRF1-QWR01:CM-,  Calc1,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh1",		"B==1?A+2:A"}
+{SRF1-QWR01:CM-,  Calc2,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh2",		"B==1?A+3:A"}
+{SRF1-QWR01:CM-,  Calc3,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh3",		"B==1?A+4:A"}
+{SRF1-QWR01:CM-,  Calc4,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh4",		"B==1?A+1:A"}
+{SRF1-QWR01:CM-,  Calc5,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh5",		"B==1?A+1:A"}
+{SRF1-QWR01:CM-,  Calc6,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh6",		"B==1?A+1:A"}
+{SRF1-QWR01:CM-,  Calc7,		"$(P)$(R)",		"SRF1-QWR01:CM-OutCh7",		"B==1?A+1:A"}
 }
 

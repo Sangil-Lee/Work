@@ -1,0 +1,10 @@
+# longin record template for register inputs
+#field(CALC,"B==1?A+1:A")
+record(calc,"$(P)$(R)") {
+#    field(DTYP,"Raw Soft Channel")
+    field(SCAN,"Passive")
+	field(CALC,"$(CALC)")
+    field(INPA,"$(INPA)")
+    field(INPB,"$(INPB)")
+    field(VAL,"0")
+}

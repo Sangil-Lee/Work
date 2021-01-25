@@ -9,7 +9,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += aiFloat64.template  aoFloat64.template  
 DB += ai.template ao.template bi_bit.template bo_bit.template longin.template
-DB += bi_word.template  bo_word.template longout.template
+DB += bi_word.template  bo_word.template longout.template calc.template
 DB += asynRecord.template
 DB += StrBitOut.vdb
 

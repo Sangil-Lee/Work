@@ -1,21 +1,26 @@
 program sncLEDSeq
+
 option +r;
+
+
 string strbit;
 assign strbit to "{HOST}:StrBitOut";
 monitor strbit;
+
 int stop;
 assign stop to "{HOST}:Stop";
 monitor stop;
+
 float dely;
 assign dely to "{HOST}:Delay";
 monitor dely;
+
 int opmode;
 assign opmode to "{HOST}:OPMode";
 monitor opmode;
+
+
 %% #include <math.h>
-%{
-	//c-code......
-}%
 
 ss ledseq
 {
