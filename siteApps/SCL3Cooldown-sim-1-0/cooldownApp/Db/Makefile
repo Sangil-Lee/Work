@@ -28,6 +28,11 @@ DB += aoFloat64.template
 DB += aiFloat64_sim.template
 DB += check_condition_press.vdb
 DB += check_condition_heline_circulation.vdb
+DB += calcout.template
+DB += cd_ai.template
+DB += cd_ao.template
+DB += pressure_eval.vdb
+DB += PressEval.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
