@@ -1,0 +1,60 @@
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
+  field(PINI, "NO")
+  field(VAL, "0")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
+#  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc")
+#  field(CALC, "E:=ABS(C-D);F:=ABS(C-B);(B <= H && E <= G && F <= G)? 100:A+5")
+#  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc.VAL")
+#  field(INPB, "$(SYS)-$(SUBSYS):EBx01-PT7301:Press.VAL")
+#  field(INPC, "$(SYS)-$(SUBSYS):VBx02-PT7301:Press.VAL")
+#  field(INPD, "Cryo-CDL00:TBx03-PT7303:Press")
+#  field(OUT, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc.VAL")
+
+  field(SCAN, "Passive")
+  field(PINI, "NO")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve.VAL")
+  
+  field(CALC, "$(CALC)")
+  field(INPB, "$(INPB)")
+  field(INPC, "$(INPC)")
+  field(INPD, "$(INPD)")
+  field(INPG, "0.5")
+  field(INPH, "1.3")
+  field(INPI, "5")
+  field(INPJ, "100")
+  field(INPK, "$(INPK)")
+  field(INPL, "$(INPL)")
+
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

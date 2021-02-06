@@ -35,6 +35,7 @@ DB += cd_ao.template
 DB += pressure_eval.vdb
 DB += PressEval.vdb
 DB += PressEval2.vdb
+DB += calcout_ao.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
