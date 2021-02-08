@@ -36,6 +36,7 @@ DB += pressure_eval.vdb
 DB += PressEval.vdb
 DB += PressEval2.vdb
 DB += calcout_ao.template
+DB += Condition_Process_Fantout.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
