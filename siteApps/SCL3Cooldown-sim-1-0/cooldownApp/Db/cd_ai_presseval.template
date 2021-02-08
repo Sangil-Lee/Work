@@ -17,9 +17,10 @@ record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp") {
 record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval") {
   field(SCAN, "Passive")
   field(NELM, "5")
-  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);ABS(A-B)<=0.1?0:1")
+  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);ABS(A-B)<=D?0:1")
   field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp")
   field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp.NUSE")
+  field(INPD, "0.1")
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
 }

@@ -14,6 +14,7 @@ DBD += cooldown.dbd
 
 # cooldown.dbd will be made up from these files:
 cooldown_DBD += base.dbd
+cooldown_DBD += readBack.dbd
 cooldown_DBD += epidRecord.dbd  scalerRecord.dbd 
 cooldown_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
 
@@ -29,6 +30,7 @@ cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
 
 # cooldown_registerRecordDeviceDriver.cpp derives from cooldown.dbd
 cooldown_SRCS += cooldown_registerRecordDeviceDriver.cpp
+cooldown_SRCS += readBack.cpp
 
 # Build the main IOC entry point on workstation OSs.
 cooldown_SRCS_DEFAULT += cooldownMain.cpp
