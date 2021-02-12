@@ -3,15 +3,8 @@ record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
   field(VAL, "0")
 }
 
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
-#  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc")
-#  field(CALC, "E:=ABS(C-D);F:=ABS(C-B);(B <= H && E <= G && F <= G)? 100:A+5")
-#  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc.VAL")
-#  field(INPB, "$(SYS)-$(SUBSYS):EBx01-PT7301:Press.VAL")
-#  field(INPC, "$(SYS)-$(SUBSYS):VBx02-PT7301:Press.VAL")
-#  field(INPD, "Cryo-CDL00:TBx03-PT7303:Press")
-#  field(OUT, "$(SYS)-$(SUBSYS):$(DEV)-CV7301:Perc.VAL")
-
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") 
+{
   field(SCAN, "Passive")
   field(PINI, "NO")
   field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")

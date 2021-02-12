@@ -1,12 +1,3 @@
-#file "db/cd_ai.template" { pattern
-#{DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
-#{EBx01,	-PT7301:,	Press,		"YES",		"1",		"Passive"	}
-#{VBx02,	-PT7301:,	Press,		"YES",		"1.2",		"Passive"	}
-#}
-#file "db/cd_ao.template" { pattern
-#{DEV,		SUBDEV,		SIGNAL,		VAL	}
-#{VBx02,		-CV7301:,	Valve,		"0"	}
-#}
 
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 file "db/cd_ai_presseval.template" { pattern
@@ -19,9 +10,6 @@ file "db/cd_ai.template" { pattern
 {SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
 {Cryo,	-CDL00:,	TBx03,		-PT7303:,	Press,		"YES",		"2.5",		"Passive"	}
 }
-
-###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
-###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
 {DEV,		SUBDEV,			CALC,																			INPB,									INPC,									INPD,								INPK,									INPL,									}

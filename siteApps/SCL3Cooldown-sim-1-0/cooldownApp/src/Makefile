@@ -24,6 +24,7 @@ cooldown_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
 cooldown_DBD += $(ASYN)/dbd/asyn.dbd
 cooldown_DBD += $(CALC)/dbd/calc.dbd
 cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
+cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
 # Add all the support libraries needed by this IOC
 #cooldown_LIBS += xxx
@@ -41,12 +42,12 @@ cooldown_SRCS_vxWorks += -nil-
 
 ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
-    #cooldown_DBD  += 
-    #cooldown_SRCS += 
+    cooldown_DBD  += CDOperationSeq.dbd
+    cooldown_SRCS += CDOperationSeq.stt
     cooldown_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries
-cooldown_LIBS += asyn calc std sscan
+cooldown_LIBS += asyn calc std sscan iocshExt
 cooldown_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

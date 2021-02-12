@@ -37,6 +37,10 @@ DB += PressEval.vdb
 DB += PressEval2.vdb
 DB += calcout_ao.template
 DB += Condition_Process_Fantout.vdb
+DB += Remote_sinA.vdb
+DB += CDFanoutTest.vdb
+
+
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

@@ -1,0 +1,355 @@
+program CDOperationSeq
+option +r;
+
+%% #include <math.h>
+
+int steady;
+assign steady "{SYS}{SUBSYS}{DEV}{SUBDEV}StdyState";
+monitor steady;
+
+int cooldown;
+assign cooldown "{SYS}{SUBSYS}{DEV}{SUBDEV}CoolDown";
+monitor cooldown;
+
+int warmup;
+assign warmup "{SYS}{SUBSYS}{DEV}{SUBDEV}Warmup";
+monitor warmup;
+
+int cdstart;
+assign cdstart "{SYS}{SUBSYS}{DEV}{SUBDEV}CDStart";
+monitor cdstart;
+
+int wustart;
+assign wustart "{SYS}{SUBSYS}{DEV}{SUBDEV}WUStart";
+monitor wustart;
+
+int user_confirm;
+assign user_confirm "{SYS}{SUBSYS}{DEV}{SUBDEV}UserConfirm";
+monitor user_confirm;
+
+evflag	evSysCheck;
+int syscheck[5];
+assign syscheck to {
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}InstCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}VacCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}PurgeCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}ValvPosCheck",
+			"{SYS}{SUBSYS}{DEV}{SUBDEV}SysCheck"
+		};
+
+int count;
+assign count "{SYS}{SUBSYS}{DEV}{SUBDEV}Count";
+monitor count;
+
+monitor syscheck;
+sync syscheck evSysCheck;
+
+ss steadystate
+{
+	state init
+	{
+		when(TRUE) 
+		{
+			//initialization
+			steady = 1;
+			pvPut(steady, SYNC);
+			printf("Init & Move System Stop\n");
+		} state systemstop
+	}
+
+	state systemstop
+	{
+		//when(delay(1.0))
+		when(syscheck[0] && syscheck[1]		
+				&& syscheck[2] && syscheck[3] && syscheck[4])
+		{
+			steady = 2;
+			pvPut(steady, SYNC);
+			warmup = cooldown = 0;
+			pvPut(warmup, SYNC);
+			pvPut(cooldown, SYNC);
+			printf("Move Linac Ready\n");
+		}state linacready
+	}
+
+	state linacready
+	{
+		//wait for cooldown complete
+		when(cdstart == 1)
+		{
+			steady = 3;
+			pvPut(steady, SYNC);
+			wustart = 0;
+			pvPut(wustart, SYNC);
+			printf("Move Standby 4.5K\n");
+		}state standby4_5k
+
+		when(syscheck[0] == 0 || syscheck[1] == 0 ||
+			 syscheck[2] == 0 || syscheck[3] == 0 || syscheck[4] == 0)
+		{
+			steady = 0;
+			pvPut(steady, SYNC);
+			printf("Move System Stop\n");
+		} state systemstop
+	}
+	
+	state standby4_5k
+	{
+		when(delay(1.0) && wustart == 0)
+		{
+			printf("State Standby 4.5K\n");
+		} state standby4_5k
+
+		when(cooldown == 6)
+		{
+			steady = 4;
+			pvPut(steady, SYNC);
+			printf("Move Normal Operation\n");
+		}state normaloperation
+
+		when(warmup == 3)
+		{
+			steady = 2;
+			pvPut(steady, SYNC);
+			user_confirm = 0;
+			pvPut(user_confirm, SYNC);
+			printf("Move Linac Ready\n");
+		}state linacready
+	}
+
+	/*
+	state standby2k
+	{
+		when(delay(1.0))
+		{
+			printf("State Standby 2.05K\n");
+		} state standby2k
+
+		when(cooldown == 7)
+		{
+			steady = 5;
+			pvPut(steady);
+			printf("Move Normal Operation\n");
+		}state normaloperation
+	}
+	*/
+
+	state normaloperation
+	{
+		when(delay(1.0) && wustart == 0)
+		{
+			printf("State Normal Operation - Beam Ready??\n");
+		}state normaloperation
+
+		when(wustart == 1)
+		{
+			cooldown = 0;
+			pvPut(cooldown, SYNC);
+		} state standby4_5k
+	}
+}
+
+ss cooldown
+{
+	state init
+	{
+		when(TRUE)
+		{
+			//initialization
+			cooldown = 0;
+			pvPut(cooldown, SYNC);
+			count = 0;
+			pvPut(count, SYNC);
+		}state startcooldown
+	}
+
+	state startcooldown
+	{
+		when(cdstart == 1)
+		{
+			cooldown = 1;
+			pvPut(cooldown, SYNC);
+			printf("Move CoolDown 300K to 4.5K\n");
+		} state cooldown300to4_5k
+	}
+
+	state cooldown300to4_5k
+	{
+		//event
+		when(delay(1.0))
+		{
+			printf("State CoolDown 300K to 4.5K\n");
+			count++;
+			pvPut(count, SYNC);
+		//action
+		}state cooldown300to4_5k
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			cooldown = 2;
+			pvPut(cooldown, SYNC);
+			printf("Move EBx LHe Filling...\n");
+		} state ebxLHeFilling
+		
+	}
+
+	state ebxLHeFilling
+	{
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State EBx LHe Filling...\n");
+		}state ebxLHeFilling
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			cooldown = 3;
+			pvPut(cooldown, SYNC);
+			printf("Move Standby 4.5K Ex. CM \n");
+		} state cd_standby4_5k
+	}
+
+	state cd_standby4_5k
+	{
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State Standby 4.5K Ex. CM \n");
+		}state cd_standby4_5k
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			cooldown = 4;
+			pvPut(cooldown, SYNC);
+			printf("Move CoolDown 4.5K\n");
+		} state cooldown4_5k
+	}
+
+	state cooldown4_5k
+	{
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State CoolDown 4.5K.. \n");
+		}state cooldown4_5k
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			cooldown = 5;
+			pvPut(cooldown, SYNC);
+			printf("Move CM LHe Filling... \n");
+		} state cmLHeFilling
+	}
+
+	state cmLHeFilling
+	{
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State CM LHe Filling... \n");
+		}state cmLHeFilling
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			cooldown = 6;
+			pvPut(cooldown, SYNC);
+			printf("Complete CM LHe Filling. \n");
+		} state fn_cmLHeFilling
+	}
+
+	state fn_cmLHeFilling
+	{
+		when(cdstart == 0)
+		{
+			printf("Move Start CoolDown. \n");
+		}state startcooldown
+	}
+}
+
+ss warmup
+{
+	state init
+	{
+		when(TRUE)
+		{
+			//initialization
+			wustart = 0;
+			pvPut(wustart, SYNC);
+			warmup = 0;
+			pvPut(warmup, SYNC);
+		}state startwarmup
+	}
+
+	state startwarmup
+	{
+		when(wustart == 1)
+		{
+			cdstart = 0;
+			pvPut(cdstart, SYNC);
+			warmup = 1;
+			pvPut(warmup, SYNC);
+			printf("Move Warm-up 4K Reservoir.\n");
+			count = 0;
+			pvPut(count, SYNC);
+		} state reservoir4k
+	}
+
+	state reservoir4k
+	{
+		//event
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State Warm-up 4K Reservoir.\n");
+		}state reservoir4k
+
+		when(count == 10)
+		{
+			count = 0;
+			pvPut(count, SYNC);
+			warmup = 2;
+			printf("Move Warm-up 300K.\n");
+			pvPut(warmup, SYNC);
+		}state warmup300k
+	}
+
+	state warmup300k
+	{
+		when(delay(1.0))
+		{
+			count++;
+			pvPut(count, SYNC);
+			printf("State Warm-up 300K.\n");
+		}state warmup300k
+
+		when(count == 10)
+		{
+			warmup = 3;
+			pvPut(warmup, SYNC);
+			count = 0;
+			pvPut(count, SYNC);
+		}state fn_warmup300k
+	}
+	state fn_warmup300k
+	{
+		when(wustart == 0)
+		{
+			printf("Move Start Warm-up. \n");
+		} state startwarmup
+	}
+}

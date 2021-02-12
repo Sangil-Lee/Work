@@ -43,6 +43,8 @@
 #include "dbTest.h"
 
 #include <iostream>
+#include <vector>
+#include <regex>
 #include <stdexcept>
 #include <thread>
 #include <csignal>
@@ -106,9 +108,16 @@ long epicsShareAPI readBack(const char *precordTypename, const char *fields, con
         printf("No record type\n");
     }
 
+	//regex e("(.*)P2DT(.*)EH(.*)");
+	std::regex r("\\s+");
+	subfilter = std::regex_replace(subfilter, r, "(.*)");
+	std::string sfilter = "(.*)"+subfilter+"(.*)";
+	std::regex e(sfilter);
+
     while (!status) {
         status = dbFirstRecord(pdbentry);
         while (!status) {
+#if 0
 			std::string spvname = dbGetRecordName(pdbentry);
 			if( std::string::npos != spvname.find(subfilter)) 
 			{
@@ -142,6 +151,17 @@ long epicsShareAPI readBack(const char *precordTypename, const char *fields, con
 				};
 				printf("\n");
 			};
+#else
+			std::string spvname = dbGetRecordName(pdbentry);
+
+			bool match = regex_match(spvname, e);
+			if(match)
+			{
+				std::cout << spvname << std::endl;
+
+			};
+
+#endif
             status = dbNextRecord(pdbentry);
         }
         if (precordTypename)
