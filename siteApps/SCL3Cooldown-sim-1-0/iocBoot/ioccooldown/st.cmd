@@ -15,7 +15,7 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 #dbLoadRecords("db/check_condition_press.vdb")
 #dbLoadRecords("db/check_condition_heline_circulation.vdb", "SYS=SCL31, SUBSYS=CDL01, DEV=VBx02")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 
 #dbLoadRecords("db/pressure_eval.vdb", "SYS=SCL31,SUBSYS=-CDL01:, DEV=VBx02, SUBDEV=-PT7301:")
@@ -24,12 +24,13 @@ dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/presseval.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadRecords("db/Remote_sinA.vdb")
 
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 
-#dbLoadRecords("db/CDFanoutTest.vdb","SYS=SCL31, SUBSYS=-CDL01:")
+dbLoadRecords("db/CDFanoutTest.vdb","SYS=SCL31, SUBSYS=-CDL01:")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq CDOperationSeq
+#seq CDFanoutTest

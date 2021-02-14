@@ -43,7 +43,9 @@ cooldown_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
     cooldown_DBD  += CDOperationSeq.dbd
+    cooldown_DBD  += CDFanoutTest.dbd
     cooldown_SRCS += CDOperationSeq.stt
+    cooldown_SRCS += CDFanoutTest.stt
     cooldown_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries

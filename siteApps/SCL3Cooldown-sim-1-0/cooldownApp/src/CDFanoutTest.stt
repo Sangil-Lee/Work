@@ -1,4 +1,4 @@
-program CDOperationSeq
+program CDFanoutTest
 option +r;
 
 %% #include <math.h>
@@ -20,11 +20,11 @@ ss steadystate
 
 	state processing
 	{
-		when(delay(1.0))
+		when(delay(5.0))
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
-			printf("Cool Down Processing...\n");
+			printf("Cool Down Scan Processing...\n");
 		}state processing
 	}
 
