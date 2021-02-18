@@ -1,0 +1,22 @@
+program FanoutTestSeq
+option +r;
+
+%% #include <math.h>
+
+ss fanout
+{
+	state init
+	{
+		when(TRUE) 
+		{
+		} state proc_fanout
+	}
+
+	state proc_fanout
+	{
+		when(delay(1.0))
+		{
+		}state proc_fanout
+	}
+}
+

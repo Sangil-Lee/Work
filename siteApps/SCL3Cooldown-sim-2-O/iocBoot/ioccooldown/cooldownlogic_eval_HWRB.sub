@@ -1,0 +1,95 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
+{Cryo,	-CDL00:,	TBx01,		-PT7303:,	Press,		"YES",		"2.5",		"Passive"	}
+{Cryo,	-CDL00:,	TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
+} #TBx
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{SCL32,     -CDL03:,      VBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx01,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx02,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx02,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx03,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx03,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx04,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx04,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx05,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx05,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx06,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx06,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx07,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx07,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx08,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx08,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx09,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx09,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx10,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx10,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx11,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx11,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx12,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx12,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx13,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx13,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx14,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx14,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx15,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx15,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx16,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx16,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx17,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx17,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx18,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx18,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx19,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{SCL32,     -CDL03:,      VBx19,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+} #HWRB
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,        DEV,	    	SUBDEV,			CALC,																	INPB,									INPC,									    INPD,								INPK,									INPL,							        }
+{SCL32,     -CDL03:,         VBx01,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx01,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx02,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx02,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx03,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",  	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx03,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx04,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",  	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx04,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx05,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",  	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx05,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx06,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",  	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx06,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx07,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx07,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx08,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",  	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx08,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx09,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx09,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx10,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx10,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx11,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx11,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx12,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx12,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx13,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx13,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx14,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx14,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx15,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx15,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx16,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx16,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx17,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx17,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx18,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx18,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+{SCL32,     -CDL03:,         VBx19,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"}
+{SCL32,     -CDL03:,         VBx19,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval"}
+} #HWRB

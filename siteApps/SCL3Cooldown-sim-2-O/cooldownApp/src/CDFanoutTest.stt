@@ -1,0 +1,31 @@
+program CDFanoutTest
+option +r;
+
+%% #include <math.h>
+
+int proc;
+assign proc "SCL3-CoolDown:FwdLnk.PROC";
+
+ss steadystate
+{
+	state init
+	{
+		when(TRUE) 
+		{
+			//initialization
+			proc = 1;
+			pvPut(proc, SYNC);
+		} state processing
+	}
+
+	state processing
+	{
+		when(delay(5.0))
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state processing
+	}
+
+}
+

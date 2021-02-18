@@ -1,0 +1,229 @@
+record(ai, "$(SYS)$(SUBSYS)FwdLnk")
+{
+	field(SCAN, "Passive")
+	field(FLNK, "$(SYS)$(SUBSYS)Fanout1")
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1") {
+	field(SCAN, "Passive")
+	field(LNK0, "$(SYS)$(SUBSYS)Fanout1-1")
+	field(LNK1, "$(SYS)$(SUBSYS)Fanout1-2")
+	field(LNK2, "$(SYS)$(SUBSYS)Fanout1-3")
+	field(LNK3, "$(SYS)$(SUBSYS)Fanout1-4")
+	field(LNK4, "$(SYS)$(SUBSYS)Fanout1-5")
+	field(LNK5, "$(SYS)$(SUBSYS)Fanout1-6")
+	field(LNK6, "$(SYS)$(SUBSYS)Fanout1-7")
+	field(LNK7, "$(SYS)$(SUBSYS)Fanout1-8")
+	field(LNK8, "$(SYS)$(SUBSYS)Fanout1-9")
+	field(LNK9, "$(SYS)$(SUBSYS)Fanout1-10")
+#field(LNKA, "$(SYS)$(SUBSYS)Fanout1-11")
+#field(LNKB, "$(SYS)$(SUBSYS)Fanout1-12")
+#field(LNKC, "$(SYS)$(SUBSYS)Fanout1-13")
+#field(LNKD, "$(SYS)$(SUBSYS)Fanout1-14")
+#field(LNKE, "$(SYS)$(SUBSYS)Fanout1-15")
+#field(LNKF, "$(SYS)$(SUBSYS)Fanout1-16")
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-1") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL31-CDL01:VBx02-CV7301:Valve")
+	field(LNK1, "SCL31-CDL01:VBx04-CV7301:Valve")
+	field(LNK2, "SCL31-CDL01:VBx06-CV7301:Valve")
+	field(LNK3, "SCL31-CDL01:VBx08-CV7301:Valve")
+	field(LNK4, "SCL31-CDL01:VBx10-CV7301:Valve")
+	field(LNK5, "SCL31-CDL01:VBx12-CV7301:Valve")
+	field(LNK6, "SCL31-CDL01:VBx14-CV7301:Valve")
+	field(LNK7, "SCL31-CDL01:VBx16-CV7301:Valve")
+	field(LNK8, "SCL31-CDL01:VBx18-CV7301:Valve")
+	field(LNK9, "SCL31-CDL01:VBx20-CV7301:Valve")
+	field(LNKA, "SCL31-CDL01:VBx22-CV7301:Valve")
+	field(LNKB, "SCL32-CDL02:VBx01-CV7301:Valve")
+	field(LNKC, "SCL32-CDL02:VBx01-CV7201:Valve")
+	field(LNKD, "SCL32-CDL02:VBx02-CV7301:Valve")
+	field(LNKE, "SCL32-CDL02:VBx02-CV7201:Valve")
+	field(LNKF, "SCL32-CDL02:VBx03-CV7301:Valve")
+#1
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-2") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL02:VBx03-CV7201:Valve")
+	field(LNK1, "SCL32-CDL02:VBx04-CV7301:Valve")
+	field(LNK2, "SCL32-CDL02:VBx04-CV7201:Valve")
+	field(LNK3, "SCL32-CDL02:VBx05-CV7301:Valve")
+	field(LNK4, "SCL32-CDL02:VBx05-CV7201:Valve")
+	field(LNK5, "SCL32-CDL02:VBx06-CV7301:Valve")
+	field(LNK6, "SCL32-CDL02:VBx06-CV7201:Valve")
+	field(LNK7, "SCL32-CDL02:VBx07-CV7301:Valve")
+	field(LNK8, "SCL32-CDL02:VBx07-CV7201:Valve")
+	field(LNK9, "SCL32-CDL02:VBx08-CV7301:Valve")
+	field(LNKA, "SCL32-CDL02:VBx08-CV7201:Valve")
+	field(LNKB, "SCL32-CDL02:VBx09-CV7301:Valve")
+	field(LNKC, "SCL32-CDL02:VBx09-CV7201:Valve")
+	field(LNKD, "SCL32-CDL02:VBx10-CV7301:Valve")
+	field(LNKE, "SCL32-CDL02:VBx10-CV7201:Valve")
+	field(LNKF, "SCL32-CDL02:VBx11-CV7301:Valve")
+#2
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-3") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL02:VBx11-CV7201:Valve")
+	field(LNK1, "SCL32-CDL02:VBx12-CV7301:Valve")
+	field(LNK2, "SCL32-CDL02:VBx12-CV7201:Valve")
+	field(LNK3, "SCL32-CDL02:VBx13-CV7301:Valve")
+	field(LNK4, "SCL32-CDL02:VBx13-CV7201:Valve")
+	field(LNK5, "SCL32-CDL03:VBx01-CV7301:Valve")
+	field(LNK6, "SCL32-CDL03:VBx01-CV7201:Valve")
+	field(LNK7, "SCL32-CDL03:VBx02-CV7301:Valve")
+	field(LNK8, "SCL32-CDL03:VBx02-CV7201:Valve")
+	field(LNK9, "SCL32-CDL03:VBx03-CV7301:Valve")
+	field(LNKA, "SCL32-CDL03:VBx03-CV7201:Valve")
+	field(LNKB, "SCL32-CDL03:VBx04-CV7301:Valve")
+	field(LNKC, "SCL32-CDL03:VBx04-CV7201:Valve")
+	field(LNKD, "SCL32-CDL03:VBx05-CV7301:Valve")
+	field(LNKE, "SCL32-CDL03:VBx05-CV7201:Valve")
+	field(LNKF, "SCL32-CDL03:VBx06-CV7301:Valve")
+#3
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-4") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL03:VBx06-CV7201:Valve")
+	field(LNK1, "SCL32-CDL03:VBx07-CV7301:Valve")
+	field(LNK2, "SCL32-CDL03:VBx07-CV7201:Valve")
+	field(LNK3, "SCL32-CDL03:VBx08-CV7301:Valve")
+	field(LNK4, "SCL32-CDL03:VBx08-CV7201:Valve")
+	field(LNK5, "SCL32-CDL03:VBx09-CV7301:Valve")
+	field(LNK6, "SCL32-CDL03:VBx09-CV7201:Valve")
+	field(LNK7, "SCL32-CDL03:VBx10-CV7301:Valve")
+	field(LNK8, "SCL32-CDL03:VBx10-CV7201:Valve")
+	field(LNK9, "SCL32-CDL03:VBx11-CV7301:Valve")
+	field(LNKA, "SCL32-CDL03:VBx11-CV7201:Valve")
+	field(LNKB, "SCL32-CDL03:VBx12-CV7301:Valve")
+	field(LNKC, "SCL32-CDL03:VBx12-CV7201:Valve")
+	field(LNKD, "SCL32-CDL03:VBx13-CV7301:Valve")
+	field(LNKE, "SCL32-CDL03:VBx13-CV7201:Valve")
+	field(LNKF, "SCL32-CDL03:VBx14-CV7301:Valve")
+#4
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-5") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL03:VBx14-CV7201:Valve")
+	field(LNK1, "SCL32-CDL03:VBx15-CV7301:Valve")
+	field(LNK2, "SCL32-CDL03:VBx15-CV7201:Valve")
+	field(LNK3, "SCL32-CDL03:VBx16-CV7301:Valve")
+	field(LNK4, "SCL32-CDL03:VBx16-CV7201:Valve")
+	field(LNK5, "SCL32-CDL03:VBx17-CV7301:Valve")
+	field(LNK6, "SCL32-CDL03:VBx17-CV7201:Valve")
+	field(LNK7, "SCL32-CDL03:VBx18-CV7301:Valve")
+	field(LNK8, "SCL32-CDL03:VBx18-CV7201:Valve")
+	field(LNK9, "SCL32-CDL03:VBx19-CV7301:Valve")
+	field(LNKA, "SCL32-CDL03:VBx19-CV7201:Valve")
+	field(LNKB, "P2DT-CDL04:VBx01-CV7301:Valve")
+	field(LNKC, "P2DT-CDL04:VBx01-CV7201:Valve")
+	field(LNKD, "SCL31-CDL01:VBx02-CV7301:CDLogic")
+	field(LNKE, "SCL31-CDL01:VBx04-CV7301:CDLogic")
+	field(LNKF, "SCL31-CDL01:VBx06-CV7301:CDLogic")
+#5
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-6") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL31-CDL01:VBx08-CV7301:CDLogic")
+	field(LNK1, "SCL31-CDL01:VBx10-CV7301:CDLogic")
+	field(LNK2, "SCL31-CDL01:VBx12-CV7301:CDLogic")
+	field(LNK3, "SCL31-CDL01:VBx14-CV7301:CDLogic")
+	field(LNK4, "SCL31-CDL01:VBx16-CV7301:CDLogic")
+	field(LNK5, "SCL31-CDL01:VBx18-CV7301:CDLogic")
+	field(LNK6, "SCL31-CDL01:VBx20-CV7301:CDLogic")
+	field(LNK7, "SCL31-CDL01:VBx22-CV7301:CDLogic")
+	field(LNK8, "SCL32-CDL02:VBx01-CV7301:CDLogic")
+	field(LNK9, "SCL32-CDL02:VBx01-CV7201:CDLogic")
+	field(LNKA, "SCL32-CDL02:VBx02-CV7301:CDLogic")
+	field(LNKB, "SCL32-CDL02:VBx02-CV7201:CDLogic")
+	field(LNKC, "SCL32-CDL02:VBx03-CV7301:CDLogic")
+	field(LNKD, "SCL32-CDL02:VBx03-CV7201:CDLogic")
+	field(LNKE, "SCL32-CDL02:VBx04-CV7301:CDLogic")
+	field(LNKF, "SCL32-CDL02:VBx04-CV7201:CDLogic")
+#6
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-7") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL02:VBx05-CV7301:CDLogic")
+	field(LNK1, "SCL32-CDL02:VBx05-CV7201:CDLogic")
+	field(LNK2, "SCL32-CDL02:VBx06-CV7301:CDLogic")
+	field(LNK3, "SCL32-CDL02:VBx06-CV7201:CDLogic")
+	field(LNK4, "SCL32-CDL02:VBx07-CV7301:CDLogic")
+	field(LNK5, "SCL32-CDL02:VBx07-CV7201:CDLogic")
+	field(LNK6, "SCL32-CDL02:VBx08-CV7301:CDLogic")
+	field(LNK7, "SCL32-CDL02:VBx08-CV7201:CDLogic")
+	field(LNK8, "SCL32-CDL02:VBx09-CV7301:CDLogic")
+	field(LNK9, "SCL32-CDL02:VBx09-CV7201:CDLogic")
+	field(LNKA, "SCL32-CDL02:VBx10-CV7301:CDLogic")
+	field(LNKB, "SCL32-CDL02:VBx10-CV7201:CDLogic")
+	field(LNKC, "SCL32-CDL02:VBx11-CV7301:CDLogic")
+	field(LNKD, "SCL32-CDL02:VBx11-CV7201:CDLogic")
+	field(LNKE, "SCL32-CDL02:VBx12-CV7301:CDLogic")
+	field(LNKF, "SCL32-CDL02:VBx12-CV7201:CDLogic")
+#7
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-8") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL02:VBx13-CV7301:CDLogic")
+	field(LNK1, "SCL32-CDL02:VBx13-CV7201:CDLogic")
+	field(LNK2, "SCL32-CDL03:VBx01-CV7301:CDLogic")
+	field(LNK3, "SCL32-CDL03:VBx01-CV7201:CDLogic")
+	field(LNK4, "SCL32-CDL03:VBx02-CV7301:CDLogic")
+	field(LNK5, "SCL32-CDL03:VBx02-CV7201:CDLogic")
+	field(LNK6, "SCL32-CDL03:VBx03-CV7301:CDLogic")
+	field(LNK7, "SCL32-CDL03:VBx03-CV7201:CDLogic")
+	field(LNK8, "SCL32-CDL03:VBx04-CV7301:CDLogic")
+	field(LNK9, "SCL32-CDL03:VBx04-CV7201:CDLogic")
+	field(LNKA, "SCL32-CDL03:VBx05-CV7301:CDLogic")
+	field(LNKB, "SCL32-CDL03:VBx05-CV7201:CDLogic")
+	field(LNKC, "SCL32-CDL03:VBx06-CV7301:CDLogic")
+	field(LNKD, "SCL32-CDL03:VBx06-CV7201:CDLogic")
+	field(LNKE, "SCL32-CDL03:VBx07-CV7301:CDLogic")
+	field(LNKF, "SCL32-CDL03:VBx07-CV7201:CDLogic")
+#8
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-9") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL03:VBx08-CV7301:CDLogic")
+	field(LNK1, "SCL32-CDL03:VBx08-CV7201:CDLogic")
+	field(LNK2, "SCL32-CDL03:VBx09-CV7301:CDLogic")
+	field(LNK3, "SCL32-CDL03:VBx09-CV7201:CDLogic")
+	field(LNK4, "SCL32-CDL03:VBx10-CV7301:CDLogic")
+	field(LNK5, "SCL32-CDL03:VBx10-CV7201:CDLogic")
+	field(LNK6, "SCL32-CDL03:VBx11-CV7301:CDLogic")
+	field(LNK7, "SCL32-CDL03:VBx11-CV7201:CDLogic")
+	field(LNK8, "SCL32-CDL03:VBx12-CV7301:CDLogic")
+	field(LNK9, "SCL32-CDL03:VBx12-CV7201:CDLogic")
+	field(LNKA, "SCL32-CDL03:VBx13-CV7301:CDLogic")
+	field(LNKB, "SCL32-CDL03:VBx13-CV7201:CDLogic")
+	field(LNKC, "SCL32-CDL03:VBx14-CV7301:CDLogic")
+	field(LNKD, "SCL32-CDL03:VBx14-CV7201:CDLogic")
+	field(LNKE, "SCL32-CDL03:VBx15-CV7301:CDLogic")
+	field(LNKF, "SCL32-CDL03:VBx15-CV7201:CDLogic")
+#9
+}
+
+record(fanout, "$(SYS)$(SUBSYS)Fanout1-10") {
+	field(SCAN, "Passive")
+	field(LNK0, "SCL32-CDL03:VBx16-CV7301:CDLogic")
+	field(LNK1, "SCL32-CDL03:VBx16-CV7201:CDLogic")
+	field(LNK2, "SCL32-CDL03:VBx17-CV7301:CDLogic")
+	field(LNK3, "SCL32-CDL03:VBx17-CV7201:CDLogic")
+	field(LNK4, "SCL32-CDL03:VBx18-CV7301:CDLogic")
+	field(LNK5, "SCL32-CDL03:VBx18-CV7201:CDLogic")
+	field(LNK6, "SCL32-CDL03:VBx19-CV7301:CDLogic")
+	field(LNK7, "SCL32-CDL03:VBx19-CV7201:CDLogic")
+	field(LNK8, "P2DT-CDL04:VBx01-CV7301:CDLogic")
+	field(LNK9, "P2DT-CDL04:VBx01-CV7201:CDLogic")
+#10
+}

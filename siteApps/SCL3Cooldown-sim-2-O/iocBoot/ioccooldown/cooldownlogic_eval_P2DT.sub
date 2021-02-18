@@ -1,0 +1,25 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
+{Cryo,	-CDL00:,	TBx01,		-PT7303:,	Press,		"YES",		"2.5",		"Passive"	}
+{Cryo,	-CDL00:,	TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
+} #TBx
+
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{P2DT,      -CDL04:,      VBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	}
+{P2DT,      -CDL04:,      VBx01,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	}
+} #P2DT
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,        DEV,	    	SUBDEV,			CALC,																	INPB,									INPC,								    	INPD,								INPK,									INPL								     }
+{P2DT,      -CDL04:,       VBx01,		-CV7301:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",	"SCL31-CDL01:EBx01-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"Cryo-CDL00:TBx01-PT7303:Press",	"SCL31-CDL01:EBx01-PT7301:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval" }
+{P2DT,      -CDL04:,       VBx01,		-CV7201:,		"E:=ABS(C-D);F:=ABS(C-B);(K||L)?A:(B<=H&&E<=G&&F<=G)?J:(A>=J)?J:A+I",   "SCL32-CDL02:VBx01-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"Cryo-CDL00:TBx01-PT7203:Press",	"SCL32-CDL02:VBx01-PT7202:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval" }
+} #P2DT
