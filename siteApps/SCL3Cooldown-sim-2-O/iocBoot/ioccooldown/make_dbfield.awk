@@ -1,3 +1,4 @@
+
 rm -f ../../cooldownApp/Db/$2
 awk 'BEGIN \
 { i=0; print "\
@@ -22,3 +23,10 @@ NR%16==1 { print "#"int(NR/16)"\n" \
 int(NR%16)==0 { print "}\n" }
 END {print "}\n"}' \
 $1 >> ../../cooldownApp/Db/$2
+
+#string substitution ex.
+#awk '{sub(/are hello/,"are are")sub(/you hello/,"you you")}1' file
+#/foo/bar/how /SOME_TEXT_HERE/hello
+#/foo/bar/are are/SOME_OTHER_TEXT
+#/foo/bar/you you
+
