@@ -1,18 +1,18 @@
-record(ai, $(SYS)$(SUBSYS)FwdLnk) {
-	field(SCAN, "Passive") 
-	field(FLNK, "$(SYS)$(SUBSYS)Fanout1")
+record(ai, $(SYS)$(SUBSYS)FwdLnk) {		
+	field(SCAN, "Passive")		
+	field(FLNK, "$(SYS)$(SUBSYS)Fanout1")	
 }
- record(fanout, $(SYS)$(SUBSYS)Fanout1){
-	field(SCAN, "Passive")
-	field(LNK0, "$(SYS)$(SUBSYS)Fanout1-1")
-	field(LNK1,"$(SYS)$(SUBSYS)Fanout1-2")
-	field(LNK2,"$(SYS)$(SUBSYS)Fanout1-3")
-	field(LNK3,"$(SYS)$(SUBSYS)Fanout1-4")
-	field(LNK4,"$(SYS)$(SUBSYS)Fanout1-5")
+record(fanout, $(SYS)$(SUBSYS)Fanout1){		
+	field(SCAN, "Passive")		
+	field(LNK0, "$(SYS)$(SUBSYS)Fanout1-1")		
+	field(LNK1,"$(SYS)$(SUBSYS)Fanout1-2")		
+	field(LNK2,"$(SYS)$(SUBSYS)Fanout1-3")		
+	field(LNK3,"$(SYS)$(SUBSYS)Fanout1-4")		
+	field(LNK4,"$(SYS)$(SUBSYS)Fanout1-5")	
 }
 
 #0
-record(fanout,$(SYS)$(SUBSYS)Fanout1-1) {
+record(fanout,$(SYS)$(SUBSYS)Fanout1-1) {		
 	field(SCAN, "Passive")
 	field(LNK0,"SCL31-CDL01:VBx02-CV7301:CDLogic")
 	field(LNK1,"SCL31-CDL01:VBx04-CV7301:CDLogic")
@@ -33,7 +33,7 @@ record(fanout,$(SYS)$(SUBSYS)Fanout1-1) {
 }
 
 #1
-record(fanout,$(SYS)$(SUBSYS)Fanout1-2) {
+record(fanout,$(SYS)$(SUBSYS)Fanout1-2) {		
 	field(SCAN, "Passive")
 	field(LNK0,"SCL32-CDL02:VBx03-CV7201:CDLogic")
 	field(LNK1,"SCL32-CDL02:VBx04-CV7301:CDLogic")
@@ -54,7 +54,7 @@ record(fanout,$(SYS)$(SUBSYS)Fanout1-2) {
 }
 
 #2
-record(fanout,$(SYS)$(SUBSYS)Fanout1-3) {
+record(fanout,$(SYS)$(SUBSYS)Fanout1-3) {		
 	field(SCAN, "Passive")
 	field(LNK0,"SCL32-CDL02:VBx11-CV7201:CDLogic")
 	field(LNK1,"SCL32-CDL02:VBx12-CV7301:CDLogic")
@@ -75,7 +75,7 @@ record(fanout,$(SYS)$(SUBSYS)Fanout1-3) {
 }
 
 #3
-record(fanout,$(SYS)$(SUBSYS)Fanout1-4) {
+record(fanout,$(SYS)$(SUBSYS)Fanout1-4) {		
 	field(SCAN, "Passive")
 	field(LNK0,"SCL32-CDL03:VBx06-CV7201:CDLogic")
 	field(LNK1,"SCL32-CDL03:VBx07-CV7301:CDLogic")
@@ -96,7 +96,7 @@ record(fanout,$(SYS)$(SUBSYS)Fanout1-4) {
 }
 
 #4
-record(fanout,$(SYS)$(SUBSYS)Fanout1-5) {
+record(fanout,$(SYS)$(SUBSYS)Fanout1-5) {		
 	field(SCAN, "Passive")
 	field(LNK0,"SCL32-CDL03:VBx14-CV7201:CDLogic")
 	field(LNK1,"SCL32-CDL03:VBx15-CV7301:CDLogic")
