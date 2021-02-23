@@ -39,6 +39,7 @@ DB += calcout_ao.template
 DB += Condition_Process_Fantout.vdb
 DB += CDFanoutTest.vdb
 DB += fanout_db_field.vdb
+DB += TempEval.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

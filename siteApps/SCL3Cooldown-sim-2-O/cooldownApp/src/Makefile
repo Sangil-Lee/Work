@@ -25,11 +25,14 @@ cooldown_DBD += $(CALC)/dbd/calc.dbd
 cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
 cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
+cooldown_DBD += PhaseEndEval.dbd
+
 # Add all the support libraries needed by this IOC
 #cooldown_LIBS += xxx
 
 # cooldown_registerRecordDeviceDriver.cpp derives from cooldown.dbd
 cooldown_SRCS += cooldown_registerRecordDeviceDriver.cpp
+cooldown_SRCS += PhaseEndEval.cpp
 
 # Build the main IOC entry point on workstation OSs.
 cooldown_SRCS_DEFAULT += cooldownMain.cpp

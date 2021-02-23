@@ -17,12 +17,14 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/check_condition_heline_circulation.vdb", "SYS=SCL31, SUBSYS=CDL01, DEV=VBx02")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic.sub", "SYS=SCL31, SUBSYS=-CDL01:, DEV=VBx02, SUBDEV=-CV7301:")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_QWR.sub", "SYS=SCL31, SUBSYS=-CDL01:")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRA.sub", "SYS=SCL31, SUBSYS=-CDL01:")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRB.sub", "SYS=SCL31, SUBSYS=-CDL01:")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_P2DT.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_QWR.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRA.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRB.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_P2DT.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadRecords("db/CDFanoutTest.vdb","SYS=SCL3, SUBSYS=-CoolDown:")
-dbLoadRecords("db/fanout_db_field.vdb","SYS=SCL3, SUBSYS=-CoolDown:")
+#dbLoadRecords("db/fanout_db_field.vdb","SYS=SCL3, SUBSYS=-CoolDown:")
+
+dbLoadRecords("db/TempEval.vdb")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
