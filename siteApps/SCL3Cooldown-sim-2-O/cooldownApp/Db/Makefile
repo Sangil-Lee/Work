@@ -41,6 +41,7 @@ DB += CDFanoutTest.vdb
 DB += fanout_db_field.vdb
 DB += TempEval.vdb
 DB += testwaveform.vdb
+DB += TestCountPV.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

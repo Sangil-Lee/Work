@@ -45,10 +45,14 @@ ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
     cooldown_DBD  += CDOperationSeq.dbd
     cooldown_DBD  += CDFanoutTest.dbd
+    cooldown_DBD  += CDFanoutLogic.dbd
     cooldown_DBD  += sncMakeTempWaveform.dbd
+
     cooldown_SRCS += CDOperationSeq.stt
     cooldown_SRCS += CDFanoutTest.stt
+    cooldown_SRCS += CDFanoutLogic.stt
     cooldown_SRCS += sncMakeTempWaveform.stt
+
     cooldown_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries
