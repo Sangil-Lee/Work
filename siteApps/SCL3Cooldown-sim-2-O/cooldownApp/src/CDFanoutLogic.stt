@@ -78,6 +78,10 @@ float cdFOVal;
 assign cdFOVal to "SCL3:Cooldown:FanoutValue";
 monitor cdFOVal;
 
+float cdDelay;
+assign cdDelay to "SCL3:Cooldown:ScanTime";
+monitor cdDelay;
+
 float	valvewave[77];
 assign	valvewave to "SCL3:Cooldown:ValveTot";
 monitor valvewave;
@@ -86,7 +90,7 @@ ss ss_cdfanout
 {
 	state CDFanout
 	{
-		when(delay(5.0)) 
+		when(delay(cdDelay)) 
 		{
 			if(cdFOVal == 100) {
 				cdFOVal = 0;
@@ -95,9 +99,13 @@ ss ss_cdfanout
 			} else {
 				cdFOVal = valveVal[index];
 			};
+
 			pvPut(cdFOVal, SYNC);
-			logicProc[index] = proc;
-			pvPut(logicProc[index], SYNC);
+			if(index < 77)
+			{
+				logicProc[index] = proc;
+				pvPut(logicProc[index], SYNC);
+			};
 		}state CDFanout
 	}
 }
@@ -116,9 +124,9 @@ ss ss_valvewave
 	{
 		when(efTestAndClear(evFanout)) 
 		{
-			int index = 0;
-			%%for(index = 0; index < 77;index++)
-				valvewave[index] = valveVal[index];
+			int idx = 0;
+			%%for(idx = 0; idx < 77;idx++)
+				valvewave[idx] = valveVal[idx];
 
 			pvPut(valvewave, SYNC);
 		}state MakeValveWave
