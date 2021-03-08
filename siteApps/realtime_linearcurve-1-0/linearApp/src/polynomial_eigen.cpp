@@ -39,21 +39,40 @@ double polynomial_calc(VectorXd coeffs, double xval)
 
 int main()
 {
-
+#if 0
   VectorXd xvals(5);
   VectorXd yvals(5);
   // x waypoint coordinates
   xvals << 1.4, 2.6, 3.2, 5.8, 3.7;
-
   // y waypoint coordinates
   yvals << 7.2, 8.3, 9.5, 11.4, 8.4;
+#endif
+
+  int degree, N;
+  cout.precision(4);                        //set precision
+  cout.setf(ios::fixed);
+  cout<<"\nEnter the no. of data pairs to be entered:\n";        //To find the size of arrays that will store x,y, and z values
+  cin>>N;
+
+  VectorXd xvals(N), yvals(N);
+  //double x[N],y[N];
+  cout<<"\nEnter the x-axis values:\n";                //Input x-values
+  for (int i=0;i<N;i++)
+	  cin>>xvals[i];
+
+  cout<<"\nEnter the y-axis values:\n";                //Input y-values
+  for (int i=0;i<N;i++)
+	  cin>>yvals[i];
+
+  cout<<"\nWhat degree of Polynomial do you want to use for the fit?\n";
+    cin>>degree;                                // n is the degree of Polynomial 
  
 
   // TODO: use `polyfit` to fit a third order polynomial to the (x, y)
   //auto coeffs = polyfit(xvals,yvals,3); 
   //
   // polynomial coefficients.
-  auto coeffs = polynomial(xvals, yvals, 2); 
+  auto coeffs = polynomial(xvals, yvals, degree); 
 
   cout << "Coeff: " << coeffs << endl;
   cout << endl;
@@ -64,5 +83,6 @@ int main()
 	  double val = polynomial_calc(coeffs, xvals(i));
 	  printf("Y-Val[%d](%f) - Poly_Y-Val[%d](%f) = %f\n", i, i, yvals(i), val,  yvals(i) - val);
   };
+
   return 0;
 }
