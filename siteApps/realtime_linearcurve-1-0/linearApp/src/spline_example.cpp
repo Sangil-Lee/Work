@@ -72,6 +72,8 @@ void traverse_spline(const Spline1D &spline,
     time(idx) = t;
     y(idx) = spline(t).coeff(0);
     t += dt;
+
+	printf("Time: %f, Signal: %f, t(%f) \n", time(idx), y(idx), t);
     idx++;
   }
 
@@ -108,13 +110,13 @@ int main() {
 
   // Traverse spline
   {
-    size_t size = 1000;
+    size_t size = 1500;
     Eigen::RowVectorXd t;
     Eigen::RowVectorXd y;
     traverse_spline(spline, size, t_end, t, y);
     save_spline(t, y);
   }
-  OCTAVE_SCRIPT("plot_spline_example.m ./points.csv ./spline.csv");
+  //OCTAVE_SCRIPT("plot_spline_example.m ./points.csv ./spline.csv");
 
   return 0;
 }

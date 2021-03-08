@@ -13,6 +13,7 @@ linear_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
+dbLoadRecords("db/test.vdb")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
