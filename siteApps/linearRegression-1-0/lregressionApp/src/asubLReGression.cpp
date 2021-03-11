@@ -75,9 +75,12 @@ static long ProcLReGression(aSubRecord *pRec)
 
 	double *aval_deg = (double*)pRec->a;
 	DBADDR *pdbTempWave = (DBADDR*)(&pRec->inpb)->value.pv_link.pvt;
+	waveformRecord *pTempWave = (waveformRecord *)pdbTempWave->precord;
 
-	//waveformRecord *pTempWave = (waveformRecord *)pdbTempWave->precord;
+	//printf("Wave NORD:%d, NELM:%d \n", pTempWave->nord, pdbTempWave->no_elements );
+	//if(pTempWave->nord != pdbTempWave->no_elements ) return(-1);
 	
+	//double *pTempWaveVal = (double*)pdbTempWave->pfield;
 	double *pTempWaveVal = (double*)pRec->b;
 	long nelm = pdbTempWave->no_elements;
 
@@ -85,22 +88,27 @@ static long ProcLReGression(aSubRecord *pRec)
 	waveformRecord *pLRWave = (waveformRecord *)pdbLRDBAddr->precord;
 	double *pLRWaveVal = (double*)pRec->valb;
 
-
 	VectorXd xvals(nelm), yvals(nelm);
+	double dval;
 	for (int i=0;i<nelm;i++) 
 	{
 		xvals(i) = i;
-		yvals(i) = pTempWaveVal[i];
+		dval = pTempWaveVal[i];
+		yvals(i) = dval;
+
+		printf("X(%d):%f, Y(%d):%f\n", i, xvals(i), i, yvals(i));
 	};
 
 	auto coeffs = polynomial(xvals, yvals, aval_deg[0]); 
 
 	cout << "Poly-Coeff: " << coeffs << endl << endl;
 
+#if 0
 	for(int i = 0; i < yvals.size(); i++)
 	{
 		pLRWaveVal[i] = polynomial_calc(coeffs, xvals(i));
 	};
+#endif
 
 	dbProcess((dbCommon*)pLRWave);
 	return(status);

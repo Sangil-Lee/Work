@@ -12,6 +12,8 @@ PROD_IOC = lregression
 # lregression.dbd will be created and installed
 DBD += lregression.dbd
 
+INCLUDES += -I/usr/local/include/eigen3
+
 # lregression.dbd will be made up from these files:
 lregression_DBD += base.dbd
 lregression_DBD += epidRecord.dbd  scalerRecord.dbd 
