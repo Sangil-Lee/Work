@@ -336,7 +336,21 @@ float	waveValue[962];
 assign	waveValue to "SCL3:Cooldown:TempWave";
 monitor waveValue;
 
+float   maxval;
+assign	maxval to "SCL3:Cooldown:RandMaxVal";
+monitor maxval;
+
 %% #include <math.h>
+%% #include <stdio.h>
+%% #include <stdlib.h>
+%% #include <time.h>
+
+%{
+float genRandom (float maxval)
+{
+	return (((float)rand()/(float)(RAND_MAX)) * maxval);
+}
+}%
 
 ss makewave
 {
@@ -358,6 +372,30 @@ ss makewave
 
 			pvPut(waveValue, SYNC);
 		}state MakeWaveform
+	}
+}
+
+ss random
+{
+	state init
+	{
+		when(TRUE)
+		{
+			%%srand((unsigned int)time(NULL));
+		}state randomGen
+	}
+
+	state randomGen
+	{
+		when(delay(5.0)) 
+		{
+			int index = 0;
+			%%for(index = 0; index < 962;index++)
+			{
+				aValue[index] = genRandom(maxval)+index;
+				pvPut(aValue[index], SYNC);
+			}
+		}state randomGen
 	}
 }
 

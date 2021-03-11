@@ -30,7 +30,7 @@
 
 using namespace std;
 using namespace Eigen;
-//static int lregressDebug = 0;
+static int lregressDebug = 0;
 //
 VectorXd polynomial(VectorXd xvals, VectorXd yvals, int order)
 {
@@ -79,14 +79,16 @@ static long ProcLReGression(aSubRecord *pRec)
 
 	//printf("Wave NORD:%d, NELM:%d \n", pTempWave->nord, pdbTempWave->no_elements );
 	//if(pTempWave->nord != pdbTempWave->no_elements ) return(-1);
-	
 	//double *pTempWaveVal = (double*)pdbTempWave->pfield;
+	
 	double *pTempWaveVal = (double*)pRec->b;
 	long nelm = pdbTempWave->no_elements;
 
+#if 1
 	DBADDR *pdbLRDBAddr = (DBADDR*)(&pRec->outa)->value.pv_link.pvt;
 	waveformRecord *pLRWave = (waveformRecord *)pdbLRDBAddr->precord;
-	double *pLRWaveVal = (double*)pRec->valb;
+	double *pLRWaveVal = (double*)pRec->vala;
+#endif
 
 	VectorXd xvals(nelm), yvals(nelm);
 	double dval;
@@ -96,14 +98,16 @@ static long ProcLReGression(aSubRecord *pRec)
 		dval = pTempWaveVal[i];
 		yvals(i) = dval;
 
-		printf("X(%d):%f, Y(%d):%f\n", i, xvals(i), i, yvals(i));
+		if(lregressDebug)
+			printf("X(%d):%f, Y(%d):%f\n", i, xvals(i), i, yvals(i));
 	};
 
 	auto coeffs = polynomial(xvals, yvals, aval_deg[0]); 
 
-	cout << "Poly-Coeff: " << coeffs << endl << endl;
+	if(lregressDebug)
+		cout << "Poly-Coeff: " << coeffs << endl << endl;
 
-#if 0
+#if 1
 	for(int i = 0; i < yvals.size(); i++)
 	{
 		pLRWaveVal[i] = polynomial_calc(coeffs, xvals(i));
@@ -200,3 +204,4 @@ static long ProcLReGression(aSubRecord *pRec)
 /* Register these symbols for use by IOC code: */
 epicsRegisterFunction(InitLReGression);
 epicsRegisterFunction(ProcLReGression);
+epicsExportAddress(int, lregressDebug);
