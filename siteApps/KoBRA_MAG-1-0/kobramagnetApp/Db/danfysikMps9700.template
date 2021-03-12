@@ -17,17 +17,17 @@
 # External Reset
 # Switch PLC module ON before resetting local interlocks
 #
-record(seq, "$(DEVICE):EXTRST")
-{
-    field(DESC, "External Reset")
-    field(SELM, "All")
-    field(DOL1, "1") field(LNK1, "$(DEVICE):RESET PP")
-    field(DOL2, "1") field(LNK2, "$(DEVICE):On PP")
-    field(DOL3, "0") field(LNK3, "$(DEVICE):On PP")    field(DLY3,"0.5")
-    field(DOL4, "0") field(LNK4, "$(DEVICE):RESET PP") field(DLY4,"0.5")
-    field(DOL5, "1") field(LNK5, "$(DEVICE):Rst PP")
-    field(DOL6, "0") field(LNK6, "$(DEVICE):Rst PP")   field(DLY6,"0.5")
-}
+#record(seq, "$(DEVICE):EXTRST")
+#{
+#    field(DESC, "External Reset")
+#    field(SELM, "All")
+#    field(DOL1, "1") field(LNK1, "$(DEVICE):RESET PP")
+#    field(DOL2, "1") field(LNK2, "$(DEVICE):On PP")
+#    field(DOL3, "0") field(LNK3, "$(DEVICE):On PP")    field(DLY3,"0.5")
+#    field(DOL4, "0") field(LNK4, "$(DEVICE):RESET PP") field(DLY4,"0.5")
+#    field(DOL5, "1") field(LNK5, "$(DEVICE):Rst PP")
+#    field(DOL6, "0") field(LNK6, "$(DEVICE):Rst PP")   field(DLY6,"0.5")
+#}
 ################################################################################
 # Command Line
 #
@@ -85,7 +85,16 @@ record(bo, "$(DEVICE):OnOff")
     field(ZNAM, "Off")
     field(ONAM, "On")
 }
-record(bo, "$(DEVICE):RESET")
+record(bi, "$(DEVICE):OnOffStat")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto rdpower $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+#record(bo, "$(DEVICE):RESET")
+record(bo, "$(DEVICE):Reset")
 {
     field(DESC, "Reset")
     field(DTYP, "stream")
