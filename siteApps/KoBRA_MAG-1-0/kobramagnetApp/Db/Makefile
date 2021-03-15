@@ -12,7 +12,8 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 
 DB += danfysikMps9700.template
-DB += danfysik.substitutions
+DB += danfysikMps9700_scpi.template
+DB += danfysik.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

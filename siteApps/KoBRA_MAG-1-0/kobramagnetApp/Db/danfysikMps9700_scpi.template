@@ -1,0 +1,365 @@
+# danfysikMps9100up.template
+# Template database for a Danfysik System 9100 power supply
+# Version performs explicit polarity shifting using PO command for unipolar supply
+# Pete Owens - 2/8/2016
+#
+# substitutions:
+# DEVICE  - ${SYS}${SUBSYS}${DEV}${SUBDEV}
+# port    - serial port on IOC (steam device code ie /ty/0/1 => ty_0_1)
+# inom    - nominal current (A) - set to 1000 if power supply output Amps
+# imax    - maximum output current (A)
+# imin    - minimum output current (A) (default = 0 for unipolar supply)
+# ilim    - warning limit current (A) - do mot set alarms below this value
+# vnom    - nominal voltage (V) - set to 10 if power supply outputs Amps
+# vmax    - maximum voltage (V)
+# vmin    - minimum voltage (V) (default = 0 for unipolar supply)
+################################################################################
+# External Reset
+# Switch PLC module ON before resetting local interlocks
+#
+#record(seq, "$(DEVICE):EXTRST")
+#{
+#    field(DESC, "External Reset")
+#    field(SELM, "All")
+#    field(DOL1, "1") field(LNK1, "$(DEVICE):RESET PP")
+#    field(DOL2, "1") field(LNK2, "$(DEVICE):On PP")
+#    field(DOL3, "0") field(LNK3, "$(DEVICE):On PP")    field(DLY3,"0.5")
+#    field(DOL4, "0") field(LNK4, "$(DEVICE):RESET PP") field(DLY4,"0.5")
+#    field(DOL5, "1") field(LNK5, "$(DEVICE):Rst PP")
+#    field(DOL6, "0") field(LNK6, "$(DEVICE):Rst PP")   field(DLY6,"0.5")
+#}
+################################################################################
+# Command Line
+#
+#record(bi, "$(DEVICE):CMDLINE")
+record(bi, "$(DEVICE):RemoteCMD")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(INP, "@danfysikMps9700.proto getcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(SCAN, "1 second")
+}
+#record(bo, "$(DEVICE):SETCMDLINE")
+record(bo, "$(DEVICE):SetRemoteCMD")
+{
+    field(DESC, "Command Line")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto setcmd $(port) 0")
+    field(ZNAM, "Local")
+    field(ONAM, "Remote")
+    field(DOL, "1")
+    field(PINI, "YES")
+}
+################################################################################
+# Polarity
+#
+#record(bi, "$(DEVICE):POL")
+record(bi, "$(DEVICE):PolarStat")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(INP, "@danfysikMps9700.proto getpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+    field(SCAN, "1 second")
+}
+#record(bo, "$(DEVICE):SETPOL")
+record(bo, "$(DEVICE):PolarSwitch")
+{
+    field(DESC, "Polarity")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto setpol $(port) 0")
+    field(ZNAM, "+")
+    field(ONAM, "-")
+}
+################################################################################
+# Main Power
+#
+record(bo, "$(DEVICE):OnOff")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto power $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+record(bi, "$(DEVICE):OnOffStat")
+{
+    field(DESC, "Main Power")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto rdpower $(port) 0")
+    field(ZNAM, "Off")
+    field(ONAM, "On")
+}
+#record(bo, "$(DEVICE):RESET")
+record(bo, "$(DEVICE):Reset")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@danfysikMps9700.proto reset $(port) 0")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reset")
+}
+################################################################################
+## Pole-tip Field (Gauss)
+record(ao, "$(DEVICE):GAUSS") 
+{
+  field(DTYP, "Raw Soft Channel")
+  field(FLNK, "$(DEVICE):CALC")
+  field(DRVH, "9260")
+  field(DRVL, "0")
+  field(HOPR, "9260")
+  field(LOPR, "0")
+  field(EGU,  "Gauss")
+}
+
+record(calc, "$(DEVICE):CALCFC") 
+{
+  field(SCAN, "Passive")
+	#(Gaus*0.0001)(Tesla)/0.027(meter)
+  field(CALC, "A/270.0")
+  field(INPA, "$(DEVICE):GAUSS CPP")
+  field(FLNK, "$(DEVICE):SUBFIELD")
+	field(EGU,  "T/m")
+}
+
+record(sub, "$(DEVICE):SUBFIELD") {
+  field(SCAN, "Passive")
+  field(INAM, "FieldMapCurrentInit")
+  field(SNAM, "FieldMapCurrentProc")
+  field(INPA, "$(DEVICE):CALCFC")
+  field(FLNK, "$(DEVICE):SetCurrent")
+}
+
+## Set Current
+#record(ao, "$(DEVICE):SETCURRENT")
+record(ao, "$(DEVICE):SetCurrent")
+{
+    field(DESC, "Set Output Current")
+    field(SCAN, "Passive")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(DRVL, "$(imin=0)")
+    field(DRVH, "$(imax)")
+    field(INP,  "$(DEVICE):SUBFIELD")
+    field(FLNK, "$(DEVICE):CALIOUT")
+}
+record(calcout, "$(DEVICE):CALIOUT")
+{
+    field(DESC, "Set Output Current")
+    field(CALC, "ABS(A)")
+    field(INPA, "$(DEVICE):SetCurrent")
+    field(OUT,  "$(DEVICE):OUTIOUT PP")
+}
+record(ao, "$(DEVICE):OUTIOUT")
+{
+    field(DESC, "Set Output Current")
+    field(DTYP, "stream")
+    field(OUT,  "@danfysikMps9700.proto wrdac(0) $(port) 0")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.001")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "0")
+    field(HOPR, "$(inom)")
+    field(DRVL, "0")
+    field(DRVH, "$(imax)")
+}
+## End Set Current
+########################################################################
+## Read Current Output
+#record(ai, "$(DEVICE):GETCURRENT")
+record(ai, "$(DEVICE):CurrentRB")
+{
+    field(DESC, "Output Current")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9700.proto adc(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(EGU,  "A")
+    field(PREC, "0")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+########################################################################
+## Read Voltage Output
+#record(ai, "$(DEVICE):GETVOLTAGE")
+record(ai, "$(DEVICE):VoltRB")
+{
+    field(DESC, "Unipolar Voltage Output")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9700.proto adc(2) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.01")
+    field(EGU,  "V")
+    field(PREC, "1")
+    field(LOPR, "0")
+    field(HOPR, "$(vnom)")
+    field(LOW,  "-0.2")
+    field(HIGH, "$(vmax)")
+    field(LOLO, "-1")
+    field(HIHI, "$(vmax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+########################################################################
+## Read Back Set Current
+#record(ai, "$(DEVICE):SETCURRENTRB")
+record(ai, "$(DEVICE):SetCurrentRB")
+{
+    field(DESC, "Set Current Read Back")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9700.proto rddac(0) $(port) 0")
+    field(SCAN, "1 second")
+    field(LINR, "LINEAR")
+    field(ESLO, "0.001")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(LOPR, "-$(inom)")
+    field(HOPR, "$(inom)")
+    field(LOW,  "$(imin=0)")
+    field(HIGH, "$(imax)")
+    field(LOLO, "$(imin=0)")
+    field(HIHI, "$(imax)")
+    field(LSV,  "MINOR")
+    field(HSV,  "MINOR")
+    field(LLSV, "MAJOR")
+    field(HHSV, "MAJOR")
+}
+################################################################################
+# First Status
+#
+record(ai, "$(DEVICE):FSTA")
+{
+    field(DESC, "First Status")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9700.proto first $(port) 0")
+    field(SCAN, "1 second")
+    field(FLNK, "$(DEVICE):CALFSTA1")
+    field(PREC, "0")
+}
+record(calcout, "$(DEVICE):CALFSTA1")
+{
+    field(DESC, "Status bits 1-8")
+    field(OUT,  "$(DEVICE):FSTA1 PP MS")
+    field(CALC, "(A>>B)&C")
+    field(INPA, "$(DEVICE):FSTA MS")
+    field(INPB, "16")
+    field(INPC, "255")
+    field(FLNK, "$(DEVICE):CALFSTA2")
+}
+record(mbbiDirect, "$(DEVICE):FSTA1")
+{
+    field(DESC, "Status")
+    field(NOBT, "8")
+}
+record(calcout, "$(DEVICE):CALFSTA2")
+{
+    field(DESC, "Status bits 9-24")
+    field(OUT,  "$(DEVICE):FSTA2 PP MS")
+    field(CALC, "A&B")
+    field(INPA, "$(DEVICE):FSTA MS")
+    field(INPB, "65535")
+}
+record(mbbiDirect, "$(DEVICE):FSTA2")
+{
+    field(DESC, "Status")
+}
+################################################################################
+record(stringin, "$(DEVICE):INFO")
+{
+    field(DESC, "User Information")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps9700.proto print $(port) 0")
+    field(SCAN, "10 second")
+}
+################################################################################
+# calculate limits
+#
+record(calcout, "$(DEVICE):CALHLIM")
+{
+    field(DESC, "upper limit")
+    field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
+    field(OUT,  "$(DEVICE):READI.HIGH")
+    field(INPA, "$(DEVICE):SetCurrent")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "1000")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(DEVICE):CALHHLIM")
+{
+    field(DESC, "upper limit")
+    field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
+    field(OUT,  "$(DEVICE):READI.HIHI")
+    field(INPA, "$(DEVICE):SetCurrent")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "100")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(DEVICE):CALLLIM")
+{
+    field(DESC, "lower limit")
+    field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
+    field(OUT,  "$(DEVICE):READI.LOW")
+    field(INPA, "$(DEVICE):SetCurrent")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "1000")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(calcout, "$(DEVICE):CALLLLIM")
+{
+    field(DESC, "lower limit")
+    field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
+    field(OUT,  "$(DEVICE):READI.LOLO")
+    field(INPA, "$(DEVICE):SetCurrent")
+    field(INPB, "$(imax)")
+    field(INPC, "$(ilim)")
+    field(INPD, "100")
+    field(SCAN, "1 second")
+    field(PHAS, "2")
+}
+record(seq, "$(DEVICE):DISLIMS")
+{
+    field(DESC, "disable limits")
+    field(SELM, "All")
+    field(DOL1, "-10")
+    field(DOL2, "-10")
+    field(DOL3, "$(imax)")
+    field(DOL4, "$(imax)")
+    field(LNK1, "$(DEVICE):READI.LOLO")
+    field(LNK2, "$(DEVICE):READI.LOW")
+    field(LNK3, "$(DEVICE):READI.HIGH")
+    field(LNK4, "$(DEVICE):READI.HIHI")
+}
+record(calc, "$(DEVICE):ALM")
+{
+    field(DESC, "Alarm Sum")
+    field(CALC, "A+B+C+D")
+    field(INPA, "$(DEVICE):RILK MS")
+    field(INPB, "$(DEVICE):READI MS")
+    field(INPC, "$(DEVICE):V MS")
+    field(INPD, "$(DEVICE):DT MS")
+    field(SCAN, "1 second")
+    field(PHAS, "3")
+}
+################################################################################

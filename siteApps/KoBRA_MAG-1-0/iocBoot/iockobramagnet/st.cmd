@@ -5,6 +5,14 @@
 
 < envPaths
 
+############[KOBRA Magnet SW1-SW2}###########
+epicsEnvSet("SYS",		"KOBRA")
+epicsEnvSet("SUBSYS",	"-MAG:")
+epicsEnvSet("DEV",		"SW1")
+epicsEnvSet("DEV2",		"SW2")
+epicsEnvSet("SUBDEV",	"-PS:")
+######################################### 
+
 cd "${TOP}"
 
 epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
@@ -18,6 +26,10 @@ kobramagnet_registerRecordDeviceDriver pdbbase
 
 #drvAsynIPPortConfigure("SYS9700", "192.168.0.??:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
 
+#drvAsynIPPortConfigure("SW1", "192.168.0.??:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
+#drvAsynIPPortConfigure("SW2", "192.168.0.??:4002", 0, 0, 0)
+#drvAsynIPPortConfigure("Q1", "192.168.0.??:4002", 0, 0, 0)
+
 #asynOctetSetInputEos   "SYS9700", 0, "\n\r"
 #asynOctetSetOutputEos  "SYS9700", 0, "\r"
 
@@ -26,7 +38,11 @@ kobramagnet_registerRecordDeviceDriver pdbbase
 #asynOctetSetOutputEos("SYS9700", 0, "\r\n")
 
 ## Load record instances
-#dbLoadTemplate("db/danfysik.substitutions", "DEVICE=${SYS}${SUBSYS}${DEV}{SUBDEV}")
+#dbLoadTemplate("db/danfysik.sub", "DEVICE=${SYS}${SUBSYS}${DEV}${SUBDEV},  port=SW1")
+#dbLoadTemplate("db/danfysik.sub", "DEVICE=${SYS}${SUBSYS}${DEV2}${SUBDEV}, port=SW2")
+#or
+dbLoadTemplate("db/danfysik_scpi.sub", "DEVICE=${SYS}${SUBSYS}${DEV}${SUBDEV},  port=SW1")
+dbLoadTemplate("db/danfysik_scpi.sub", "DEVICE=${SYS}${SUBSYS}${DEV2}${SUBDEV}, port=SW2")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
