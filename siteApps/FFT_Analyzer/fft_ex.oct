@@ -1,0 +1,53 @@
+
+dt=0.01;
+t=0:dt:10-dt;
+y=6*sin(2*pi*5*t);
+plot(t,y);
+
+Y=fft(y);
+p=abs(Y);
+plot(p);
+n=length(p)
+
+p=p(1:n/2);
+plot(p);
+p=p/(n/2);
+f=(1:n/2)/(dt*n);
+plot(f,p);
+
+y2=3*sin(2*pi*10*t);
+y3=2*sin(2*pi*20*t);
+y=y+y2+y3;
+plot(t,y);
+
+Y=fft(y);
+p=abs(Y);
+p=p(1:n/2);
+plot(p);
+
+p=p/(0.5*n);
+f=1:0.5*n;
+f=f/(dt*n);
+plot(f,p);
+xlabel('Frequency (Hz)');
+ylabel('Magnitude (m/s^2)');
+
+
+#Read CSV data
+acc=load('acc_phone.csv');
+n=400;
+t=acc(1:n, 1);
+a=acc(1:n, 2);
+plot(t,a);
+A=fft(a);
+p=abs(A);
+p=p(1:n/2);
+p(1)=0;
+plot(p);
+p=p/(n/2);
+f=1:n/2;
+f=f/t(n-1)*1000;
+xlabel('Frequency (Hz)');
+ylabel('Acceleration (m/s^2)');
+plot(f,p);
+
