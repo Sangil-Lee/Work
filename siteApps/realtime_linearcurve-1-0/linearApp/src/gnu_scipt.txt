@@ -1,0 +1,5 @@
+set key off
+set grid
+set output "figure.png"
+set xlabel "Frequency [Hz]"
+plot [-1:34] [-10:500] "xrec.txt" with impulses, "xrec.txt" with points pt 4
