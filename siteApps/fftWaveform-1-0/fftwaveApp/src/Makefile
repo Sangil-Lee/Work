@@ -5,6 +5,8 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
+INCLUDES += -I/usr/local/include/eigen3
+
 #=============================
 # Build the IOC application
 
@@ -16,6 +18,7 @@ DBD += fftwave.dbd
 fftwave_DBD += base.dbd
 fftwave_DBD += epidRecord.dbd  scalerRecord.dbd 
 fftwave_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
+fftwave_DBD += asubSin2FFT.dbd 
 
 # Include dbd files from all support applications:
 #fftwave_DBD += xxx.dbd
@@ -30,6 +33,7 @@ fftwave_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
 # fftwave_registerRecordDeviceDriver.cpp derives from fftwave.dbd
 fftwave_SRCS += fftwave_registerRecordDeviceDriver.cpp
+fftwave_SRCS += asubSin2FFT.cpp
 
 # Build the main IOC entry point on workstation OSs.
 fftwave_SRCS_DEFAULT += fftwaveMain.cpp
