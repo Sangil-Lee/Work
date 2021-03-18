@@ -68,19 +68,19 @@ static long ProcSin2FFT(aSubRecord *pRec)
 	double const Ts  = 1./Fs; // [s] 
 
 	Eigen::VectorXd time(nelm);
-	Eigen::VectorXcd f_values(nelm);
+	Eigen::VectorXcd fvalues(nelm);
 	Eigen::VectorXd freq(nelm);
 
 	for(int i = 0; i < nelm; ++i){
 		time(i) = i * Ts;
-		f_values(i) = sinval[i];
-		f_values(i) = f_values(i)/(0.5*nelm);
+		fvalues(i) = sinval[i];
+		fvalues(i) = fvalues(i)/(0.5*nelm);
 		freq(i) = Fs * i / double(nelm);
 	}
 
 	Eigen::FFT<double> fft;
-	Eigen::VectorXcd f_freq(nelm);
-	fft.fwd(f_freq, f_values);
+	Eigen::VectorXcd ffreq(nelm);
+	fft.fwd(ffreq, fvalues);
 
 	if(sin2fftDebug)
 	{
@@ -89,7 +89,7 @@ static long ProcSin2FFT(aSubRecord *pRec)
 		{
 			std::ofstream fftres("fft_result.txt");
 			for(int i = 0; i < nelm; ++i){
-				fftres << freq(i) << " " << std::abs(f_freq(i)) << "\n"; 
+				fftres << freq(i) << " " << std::abs(ffreq(i)) << "\n"; 
 			}
 			fftres.close();
 			first++;
@@ -97,10 +97,10 @@ static long ProcSin2FFT(aSubRecord *pRec)
 	};
 
 #if 1
-	for(int i = 0; i < f_freq.size(); i++)
+	for(int i = 0; i < ffreq.size(); i++)
 	{
 		pFFTFreqWaveVal[i] = freq(i);
-		pFFTWaveVal[i] = std::abs(f_freq(i));
+		pFFTWaveVal[i] = std::abs(ffreq(i));
 	};
 #endif
 
