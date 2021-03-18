@@ -37,6 +37,7 @@ record(calc, "$(SYS):$(DEV):SinB") {
   field(INPB, "4")
   field(INPC, "3")
   field(PREC, "4")
+  field(FLNK, "$(SYS):$(DEV):SinABC")
 }
 
 record(calc, "$(SYS):$(DEV):SinC") {
@@ -46,6 +47,7 @@ record(calc, "$(SYS):$(DEV):SinC") {
   field(INPB, "6")
   field(INPC, "4")
   field(PREC, "4")
+  field(FLNK, "$(SYS):$(DEV):SinABC")
 }
 
 record(calcout, "$(SYS):$(DEV):SinABC") {
@@ -66,27 +68,6 @@ record(compress, "$(SYS):$(DEV):SinComp") {
   field(NSAM, "1000")
   field(INP, "$(SYS):$(DEV):SinABC")
   field(PREC, "4")
-  field(FLNK, "$(SYS):$(DEV):Sin2FFT")
-}
-
-
-record(aSub, "$(SYS):$(DEV):Sin2FFT") {
-  field(INAM, "InitSin2FFT")
-  field(SNAM, "ProcSin2FFT")
-  field(INPA, "$(SYS):$(DEV):SinComp")
-  field(NOA, "1000")
-  field(OUTA, "$(SYS):$(DEV):SinFFTWave")
-  field(OUTB, "$(SYS):$(DEV):SinFFTFreqWave")
-  field(NOVA, "1000")
-  field(NOVB, "1000")
-}
-
-record(waveform, "$(SYS):$(DEV):SinFFTWave") {
-  field(NELM, "1000")
-}
-
-record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
-  field(NELM, "1000")
 }
 
 #! Further lines contain data used by VisualDCT
@@ -110,14 +91,18 @@ record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
 #! Field("$(SYS):$(DEV):SinA.FLNK",16777215,1,"$(SYS):$(DEV):SinA.FLNK")
 #! Link("$(SYS):$(DEV):SinA.FLNK","$(SYS):$(DEV):SinABC")
 #! Field("$(SYS):$(DEV):SinA.VAL",16777215,1,"$(SYS):$(DEV):SinA.VAL")
-#! Record("$(SYS):$(DEV):SinB",2640,2380,0,0,"$(SYS):$(DEV):SinB")
+#! Record("$(SYS):$(DEV):SinB",2640,2366,0,0,"$(SYS):$(DEV):SinB")
 #! Field("$(SYS):$(DEV):SinB.INPA",16777215,0,"$(SYS):$(DEV):SinB.INPA")
 #! Link("$(SYS):$(DEV):SinB.INPA","$(SYS):$(DEV):Phase.VAL")
 #! Field("$(SYS):$(DEV):SinB.VAL",16777215,1,"$(SYS):$(DEV):SinB.VAL")
-#! Record("$(SYS):$(DEV):SinC",2640,2640,0,0,"$(SYS):$(DEV):SinC")
+#! Field("$(SYS):$(DEV):SinB.FLNK",16777215,1,"$(SYS):$(DEV):SinB.FLNK")
+#! Link("$(SYS):$(DEV):SinB.FLNK","$(SYS):$(DEV):SinABC")
+#! Record("$(SYS):$(DEV):SinC",2640,2626,0,0,"$(SYS):$(DEV):SinC")
 #! Field("$(SYS):$(DEV):SinC.INPA",16777215,0,"$(SYS):$(DEV):SinC.INPA")
 #! Link("$(SYS):$(DEV):SinC.INPA","$(SYS):$(DEV):Phase.VAL")
 #! Field("$(SYS):$(DEV):SinC.VAL",16777215,1,"$(SYS):$(DEV):SinC.VAL")
+#! Field("$(SYS):$(DEV):SinC.FLNK",16777215,1,"$(SYS):$(DEV):SinC.FLNK")
+#! Link("$(SYS):$(DEV):SinC.FLNK","$(SYS):$(DEV):SinABC")
 #! Record("$(SYS):$(DEV):SinABC",2940,2259,0,0,"$(SYS):$(DEV):SinABC")
 #! Field("$(SYS):$(DEV):SinABC.INPA",16777215,0,"$(SYS):$(DEV):SinABC.INPA")
 #! Link("$(SYS):$(DEV):SinABC.INPA","$(SYS):$(DEV):SinA.VAL")
@@ -128,20 +113,6 @@ record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
 #! Field("$(SYS):$(DEV):SinABC.VAL",16777215,1,"$(SYS):$(DEV):SinABC.VAL")
 #! Field("$(SYS):$(DEV):SinABC.FLNK",16777215,1,"$(SYS):$(DEV):SinABC.FLNK")
 #! Link("$(SYS):$(DEV):SinABC.FLNK","$(SYS):$(DEV):SinComp")
-#! Record("$(SYS):$(DEV):SinComp",3240,2300,0,0,"$(SYS):$(DEV):SinComp")
+#! Record("$(SYS):$(DEV):SinComp",3240,2314,0,0,"$(SYS):$(DEV):SinComp")
 #! Field("$(SYS):$(DEV):SinComp.INP",16777215,0,"$(SYS):$(DEV):SinComp.INP")
 #! Link("$(SYS):$(DEV):SinComp.INP","$(SYS):$(DEV):SinABC.VAL")
-#! Field("$(SYS):$(DEV):SinComp.FLNK",16777215,1,"$(SYS):$(DEV):SinComp.FLNK")
-#! Link("$(SYS):$(DEV):SinComp.FLNK","$(SYS):$(DEV):Sin2FFT")
-#! Field("$(SYS):$(DEV):SinComp.VAL",16777215,1,"$(SYS):$(DEV):SinComp.VAL")
-#! Record("$(SYS):$(DEV):Sin2FFT",3520,2352,0,0,"$(SYS):$(DEV):Sin2FFT")
-#! Field("$(SYS):$(DEV):Sin2FFT.INPA",16777215,0,"$(SYS):$(DEV):Sin2FFT.INPA")
-#! Link("$(SYS):$(DEV):Sin2FFT.INPA","$(SYS):$(DEV):SinComp.VAL")
-#! Field("$(SYS):$(DEV):Sin2FFT.OUTA",16777215,1,"$(SYS):$(DEV):Sin2FFT.OUTA")
-#! Link("$(SYS):$(DEV):Sin2FFT.OUTA","$(SYS):$(DEV):SinFFTWave.VAL")
-#! Field("$(SYS):$(DEV):Sin2FFT.OUTB",16777215,1,"$(SYS):$(DEV):Sin2FFT.OUTB")
-#! Link("$(SYS):$(DEV):Sin2FFT.OUTB","$(SYS):$(DEV):SinFFTFreqWave.VAL")
-#! Record("$(SYS):$(DEV):SinFFTWave",3760,2470,0,1,"$(SYS):$(DEV):SinFFTWave")
-#! Field("$(SYS):$(DEV):SinFFTWave.VAL",16777215,1,"$(SYS):$(DEV):SinFFTWave.VAL")
-#! Record("$(SYS):$(DEV):SinFFTFreqWave",3760,2590,0,1,"$(SYS):$(DEV):SinFFTFreqWave")
-#! Field("$(SYS):$(DEV):SinFFTFreqWave.VAL",16777215,1,"$(SYS):$(DEV):SinFFTFreqWave.VAL")

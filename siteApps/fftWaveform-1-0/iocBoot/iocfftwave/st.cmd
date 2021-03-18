@@ -14,7 +14,8 @@ fftwave_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 
-dbLoadRecords("db/fftwave.vdb","SYS=SCL3, DEV=Cooldown")
+#dbLoadRecords("db/fftwave.vdb","SYS=SCL3, DEV=Cooldown")
+dbLoadRecords("db/fftwaveFull.vdb","SYS=SCL3, DEV=Cooldown")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

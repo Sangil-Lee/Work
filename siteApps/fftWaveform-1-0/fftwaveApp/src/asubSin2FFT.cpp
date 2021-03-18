@@ -33,44 +33,14 @@
 using namespace std;
 using namespace Eigen;
 static int sin2fftDebug = 0;
+
 //
-VectorXd polynomial(VectorXd xvals, VectorXd yvals, int order)
-{
-	assert(xvals.size() == yvals.size());
-	assert(order >= 1 && order <= xvals.size()-1 );
-
-	MatrixXd A(xvals.size(), order + 1);
-
-	for(int i = 0; i < xvals.size(); i++) {
-		A(i, 0) = 1.0;
-	};
-
-	for(int j = 0; j < xvals.size(); j++) {
-		for(int i = 0; i < order; i++) {
-			A(j, i+1) = A(j,i)*xvals(j);
-		};
-	};
-
-	auto Q = A.householderQr();
-	auto coeff = Q.solve(yvals);
-
-	return coeff;
-}
-
-double polynomial_calc(VectorXd coeffs, double xval)
-{
-	double result = 0.0;
-	for(int i = 0; i < coeffs.size(); i++)
-		result += coeffs(i) * pow(xval, i);
-
-	return result;
-}
-
 static long InitSin2FFT(aSubRecord *pRec)
 {
     return(0);
 }
 
+//
 static long ProcSin2FFT(aSubRecord *pRec)
 {
 	long status = 0;
@@ -97,7 +67,7 @@ static long ProcSin2FFT(aSubRecord *pRec)
 	double const Fs  = 2*100; // Nyquist [Hz]
 	double const Ts  = 1./Fs; // [s] 
 
-	Eigen::VectorXcd time(nelm);
+	Eigen::VectorXd time(nelm);
 	Eigen::VectorXcd f_values(nelm);
 	Eigen::VectorXd freq(nelm);
 
@@ -117,11 +87,11 @@ static long ProcSin2FFT(aSubRecord *pRec)
 		static int first = 1;
 		if(first)
 		{
-			std::ofstream xrec("xrec.txt");
+			std::ofstream fftres("fft_result.txt");
 			for(int i = 0; i < nelm; ++i){
-				xrec << freq(i) << " " << std::abs(f_freq(i)) << "\n"; 
+				fftres << freq(i) << " " << std::abs(f_freq(i)) << "\n"; 
 			}
-			xrec.close();
+			fftres.close();
 			first++;
 		};
 	};
@@ -139,51 +109,65 @@ static long ProcSin2FFT(aSubRecord *pRec)
 	return(status);
 
 #if 0 
-	//exmaple
-	unsigned const N = 1000;  // Sample Count
-	double const Fs  = 2*100; // Nyquist [Hz]
-	double const Ts  = 1./Fs; // [s] 
+unsigned const N = 10000;  // Sample Count
+//double const Fs  = 32;    //  [Hz]
+double const Fs  = 2*100;    // Nyquist [Hz]
+double const Ts  = 1./Fs; // [s] 
 
 
-	const double f0  = 5;     // [Hz]
-	const double f1  = 10;     // [Hz]
-	const double f2  = 50;     // [Hz]
+const double f0  = 5;     // [Hz]
+const double f1  = 10;     // [Hz]
+const double f2  = 50;     // [Hz]
+const double f3  = 60;     // [Hz]
 
-	using namespace std;
+using namespace std;
 
-	std::complex<double> f(std::complex<double> const & t){
-		//return (std::sin(2*M_PI*f0*t));
-		//
-		//Add Amplitude
-		//return (std::sin(2*M_PI*f0*t)*3.0);
-		//
-		//Add Other wave
-		return 3.0*sin(2*M_PI*f0*t) + 5.0*sin(2*M_PI*f1*t) + 4.0*cos(2*M_PI*f2*t);
-	}
+//std::complex<double> f(std::complex<double> const & t){
+double f(double const & t){
+    //return (std::sin(2*M_PI*f0*t));
+	//
+	//Add Amplitude
+    //return (std::sin(2*M_PI*f0*t)*3.0);
+	//
+	//Add Other wave
+    //return 2.0*cos(2*M_PI*2*t) + 3.0*sin(2*M_PI*4*t) + 4.0*sin(2*M_PI*6*t);
+    return 3.0*sin(2*M_PI*f0*t) + 5.0*sin(2*M_PI*f1*t) + 4.0*cos(2*M_PI*f2*t) + 2.0*cos(2*M_PI*f3*t);
+}
 
-	int main(){
-		std::ofstream xrec("xrec.txt");
+int main(){
+    std::ofstream xrec("xrec.txt");
+    std::ofstream sin("sin.txt");
 
-		Eigen::VectorXcd time(N);
-		Eigen::VectorXcd f_values(N);
-		Eigen::VectorXd freq(N);
+    //Eigen::VectorXcd time(N);
+    Eigen::VectorXd time(N);
+    //Eigen::VectorXcd f_values(N);
+    Eigen::VectorXd f_values(N);
+    Eigen::VectorXd freq(N);
 
-		for(int u = 0; u < N; ++u){
-			time(u) = u * Ts;
-			//f_values(u) = f(time(u)); // Y_Val need real scale
-			f_values(u) = f(time(u)); // Count
-			f_values(u) = f_values(u)/(0.5*N);
-			freq(u) = Fs * u / double(N);
-		}
+    for(int u = 0; u < N; ++u){
+        time(u) = u * Ts;
+        //f_values(u) = f(time(u)); // Y_Val need real scale
+        f_values(u) = f(time(u)); // Count
+        //sin << u << " " << f_values(u).real() << "\n"; 
+        sin << u << " " << f_values(u) << "\n"; 
+        f_values(u) = f_values(u)/(0.5*N);
+        freq(u) = Fs * u / double(N);
+    }
 
-		Eigen::FFT<double> fft;
-		Eigen::VectorXcd f_freq(N);
-		fft.fwd(f_freq, f_values);
+    Eigen::FFT<double> fft;
+    Eigen::VectorXcd f_freq(N);
+    fft.fwd(f_freq, f_values);
 
-		for(int u = 0; u < N; ++u){
-			xrec << freq(u) << " " << std::abs(f_freq(u)) << "\n"; 
-		}
-	}
+    //for(int u = 0; u < N; ++u){
+	//Remove Nyquist Freq.
+    //for(int u = 0; u < N/2; ++u){
+    for(int u = 0; u < N; ++u){
+        xrec << freq(u) << " " << std::abs(f_freq(u)) << "\n"; 
+    }
+
+	xrec.close();
+	sin.close();
+}
 #endif
 
 //GNU Plot Script

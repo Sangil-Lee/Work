@@ -69,7 +69,6 @@ record(compress, "$(SYS):$(DEV):SinComp") {
   field(FLNK, "$(SYS):$(DEV):Sin2FFT")
 }
 
-
 record(aSub, "$(SYS):$(DEV):Sin2FFT") {
   field(INAM, "InitSin2FFT")
   field(SNAM, "ProcSin2FFT")
@@ -83,10 +82,14 @@ record(aSub, "$(SYS):$(DEV):Sin2FFT") {
 
 record(waveform, "$(SYS):$(DEV):SinFFTWave") {
   field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
 }
 
 record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
   field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
 }
 
 #! Further lines contain data used by VisualDCT
@@ -141,7 +144,7 @@ record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
 #! Link("$(SYS):$(DEV):Sin2FFT.OUTA","$(SYS):$(DEV):SinFFTWave.VAL")
 #! Field("$(SYS):$(DEV):Sin2FFT.OUTB",16777215,1,"$(SYS):$(DEV):Sin2FFT.OUTB")
 #! Link("$(SYS):$(DEV):Sin2FFT.OUTB","$(SYS):$(DEV):SinFFTFreqWave.VAL")
-#! Record("$(SYS):$(DEV):SinFFTWave",3760,2470,0,1,"$(SYS):$(DEV):SinFFTWave")
+#! Record("$(SYS):$(DEV):SinFFTWave",3760,2442,0,1,"$(SYS):$(DEV):SinFFTWave")
 #! Field("$(SYS):$(DEV):SinFFTWave.VAL",16777215,1,"$(SYS):$(DEV):SinFFTWave.VAL")
-#! Record("$(SYS):$(DEV):SinFFTFreqWave",3760,2590,0,1,"$(SYS):$(DEV):SinFFTFreqWave")
+#! Record("$(SYS):$(DEV):SinFFTFreqWave",3760,2562,0,1,"$(SYS):$(DEV):SinFFTFreqWave")
 #! Field("$(SYS):$(DEV):SinFFTFreqWave.VAL",16777215,1,"$(SYS):$(DEV):SinFFTFreqWave.VAL")

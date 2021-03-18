@@ -6,6 +6,7 @@ include $(TOP)/configure/CONFIG
 #=============================
 
 INCLUDES += -I/usr/local/include/eigen3
+USR_CXXFLAGS += -Wno-deprecated-declarations -Wno-unused-variable
 
 #=============================
 # Build the IOC application
