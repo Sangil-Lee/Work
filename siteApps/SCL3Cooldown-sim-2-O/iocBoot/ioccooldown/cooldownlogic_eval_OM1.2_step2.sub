@@ -1,0 +1,20 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{SCL31,     -CDL01:,       EBx01,	    -LT7401:,	  Level,		"YES",		"50",		"Passive"	} #QWR
+}
+
+#file "db/cd_ai_presseval.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+#{Cryo,      -CDL00:,       TBx01,	    -PT7203:,	  Press,		"YES",		"2.2",		"Passive"	} #TBx
+#}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,               INPB,                               INPG,   INPJ  }							
+{SLC31,     -CDL01:,         EBx01,     -EH7401:,       "(B<G)?A:J",        "SCL31-CDL01:EBx01-LT7401:Level",   50,     10    }  
+}

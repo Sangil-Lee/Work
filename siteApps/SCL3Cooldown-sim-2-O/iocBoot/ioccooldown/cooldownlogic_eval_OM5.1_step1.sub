@@ -1,0 +1,109 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+#file "db/cd_ai.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	    PINI,		VAL,		SCAN        }
+#{SCL31,     -CDL01:,       EBx01,       -LT7401:,     Level,		"YES",		"10",		"Passive"	} #EBx
+#}
+
+#file "db/cd_ai_presseval.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+#{SCL32,     -BL02:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+#}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,       DEV,		SUBDEV,		  CALC,	      INPJ    }							
+{SCL31,     -CDL01:,      EBx01,    -CV7401:,     "J",        5      } #1QWR
+{SCL31,     -BL01:,       CM01,		-CV8401:,     "J",        5      } #2QWR
+{SCL31,     -BL01:,       CM02,		-CV8401:,     "J",        5      } #3QWR
+{SCL31,     -BL01:,       CM03,		-CV8401:,     "J",        5      } #4QWR
+{SCL31,     -BL01:,       CM04,		-CV8401:,     "J",        5      } #5QWR
+{SCL31,     -BL01:,       CM05,		-CV8401:,     "J",        5      } #6QWR
+{SCL31,     -BL01:,       CM06,		-CV8401:,     "J",        5      } #7QWR
+{SCL31,     -BL01:,       CM07,		-CV8401:,     "J",        5      } #8QWR
+{SCL31,     -BL01:,       CM08,		-CV8401:,     "J",        5      } #9QWR
+{SCL31,     -BL01:,       CM09,		-CV8401:,     "J",        5      } #10QWR
+{SCL31,     -BL01:,       CM10,		-CV8401:,     "J",        5      } #11QWR
+{SCL31,     -BL01:,       CM11,		-CV8401:,     "J",        5      } #12QWR
+{SCL31,     -BL01:,       CM12,		-CV8401:,     "J",        5      } #13QWR
+{SCL31,     -BL01:,       CM13,		-CV8401:,     "J",        5      } #14QWR
+{SCL31,     -BL01:,       CM14,		-CV8401:,     "J",        5      } #15QWR
+{SCL31,     -BL01:,       CM15,		-CV8401:,     "J",        5      } #16QWR
+{SCL31,     -BL01:,       CM16,		-CV8401:,     "J",        5      } #17QWR
+{SCL31,     -BL01:,       CM17,		-CV8401:,     "J",        5      } #18QWR
+{SCL31,     -BL01:,       CM18,		-CV8401:,     "J",        5      } #19QWR
+{SCL31,     -BL01:,       CM19,		-CV8401:,     "J",        5      } #20QWR
+{SCL31,     -BL01:,       CM20,		-CV8401:,     "J",        5      } #21QWR
+{SCL31,     -BL01:,       CM21,		-CV8401:,     "J",        5      } #22QWR
+{SCL31,     -BL01:,       CM22,		-CV8401:,     "J",        5      } #23QWR
+
+{SCL32,     -BL02:,       CM01,		-CV8401:,     "J",        5      } #24HWRA
+{SCL32,     -BL02:,       CM01,		-CV8402:,     "J",        5      } #25HWRA
+{SCL32,     -BL02:,       CM02,		-CV8401:,     "J",        5      } #26HWRA
+{SCL32,     -BL02:,       CM02,		-CV8402:,     "J",        5      } #27HWRA
+{SCL32,     -BL02:,       CM03,		-CV8401:,     "J",        5      } #28HWRA
+{SCL32,     -BL02:,       CM03,		-CV8402:,     "J",        5      } #29HWRA
+{SCL32,     -BL02:,       CM04,		-CV8401:,     "J",        5      } #30HWRA
+{SCL32,     -BL02:,       CM04,		-CV8402:,     "J",        5      } #31HWRA
+{SCL32,     -BL02:,       CM05,		-CV8401:,     "J",        5      } #32HWRA
+{SCL32,     -BL02:,       CM05,		-CV8402:,     "J",        5      } #33HWRA
+{SCL32,     -BL02:,       CM06,		-CV8401:,     "J",        5      } #34HWRA
+{SCL32,     -BL02:,       CM06,		-CV8402:,     "J",        5      } #35HWRA
+{SCL32,     -BL02:,       CM07,		-CV8401:,     "J",        5      } #36HWRA
+{SCL32,     -BL02:,       CM07,		-CV8402:,     "J",        5      } #37HWRA
+{SCL32,     -BL02:,       CM08,		-CV8401:,     "J",        5      } #38HWRA
+{SCL32,     -BL02:,       CM08,		-CV8402:,     "J",        5      } #39HWRA
+{SCL32,     -BL02:,       CM09,		-CV8401:,     "J",        5      } #40HWRA
+{SCL32,     -BL02:,       CM09,		-CV8402:,     "J",        5      } #41HWRA
+{SCL32,     -BL02:,       CM10,		-CV8401:,     "J",        5      } #42HWRA
+{SCL32,     -BL02:,       CM10,		-CV8402:,     "J",        5      } #43HWRA
+{SCL32,     -BL02:,       CM11,		-CV8401:,     "J",        5      } #44HWRA
+{SCL32,     -BL02:,       CM11,		-CV8402:,     "J",        5      } #45HWRA
+{SCL32,     -BL02:,       CM12,		-CV8401:,     "J",        5      } #46HWRA
+{SCL32,     -BL02:,       CM12,		-CV8402:,     "J",        5      } #47HWRA
+{SCL32,     -BL02:,       CM13,		-CV8401:,     "J",        5      } #48HWRA
+{SCL32,     -BL02:,       CM13,		-CV8402:,     "J",        5      } #49HWRA
+{SCL32,     -BL03:,       CM01,		-CV8401:,     "J",        5      } #50HWRB
+{SCL32,     -BL03:,       CM01,		-CV8402:,     "J",        5      } #51HWRB
+{SCL32,     -BL03:,       CM02,		-CV8401:,     "J",        5      } #52HWRB
+{SCL32,     -BL03:,       CM02,		-CV8402:,     "J",        5      } #53HWRB
+{SCL32,     -BL03:,       CM03,		-CV8401:,     "J",        5      } #54HWRB
+{SCL32,     -BL03:,       CM03,		-CV8402:,     "J",        5      } #55HWRB
+{SCL32,     -BL03:,       CM04,		-CV8401:,     "J",        5      } #56HWRB
+{SCL32,     -BL03:,       CM04,		-CV8402:,     "J",        5      } #57HWRB
+{SCL32,     -BL03:,       CM05,		-CV8401:,     "J",        5      } #58HWRB
+{SCL32,     -BL03:,       CM05,		-CV8402:,     "J",        5      } #59HWRB
+{SCL32,     -BL03:,       CM06,		-CV8401:,     "J",        5      } #60HWRB
+{SCL32,     -BL03:,       CM06,		-CV8402:,     "J",        5      } #61HWRB
+{SCL32,     -BL03:,       CM07,		-CV8401:,     "J",        5      } #62HWRB
+{SCL32,     -BL03:,       CM07,		-CV8402:,     "J",        5      } #63HWRB
+{SCL32,     -BL03:,       CM08,		-CV8401:,     "J",        5      } #64HWRB
+{SCL32,     -BL03:,       CM08,		-CV8402:,     "J",        5      } #65HWRB
+{SCL32,     -BL03:,       CM09,		-CV8401:,     "J",        5      } #66HWRB
+{SCL32,     -BL03:,       CM09,		-CV8402:,     "J",        5      } #67HWRB
+{SCL32,     -BL03:,       CM10,		-CV8401:,     "J",        5      } #68HWRB
+{SCL32,     -BL03:,       CM10,		-CV8402:,     "J",        5      } #69HWRB
+{SCL32,     -BL03:,       CM11,		-CV8401:,     "J",        5      } #70HWRB
+{SCL32,     -BL03:,       CM11,		-CV8402:,     "J",        5      } #71HWRB
+{SCL32,     -BL03:,       CM12,		-CV8401:,     "J",        5      } #72HWRB
+{SCL32,     -BL03:,       CM12,		-CV8402:,     "J",        5      } #73HWRB
+{SCL32,     -BL03:,       CM13,		-CV8401:,     "J",        5      } #74HWRB
+{SCL32,     -BL03:,       CM13,		-CV8402:,     "J",        5      } #75HWRB
+{SCL32,     -BL03:,       CM14,		-CV8401:,     "J",        5      } #76HWRB
+{SCL32,     -BL03:,       CM14,		-CV8402:,     "J",        5      } #77HWRB
+{SCL32,     -BL03:,       CM15,		-CV8401:,     "J",        5      } #78HWRB
+{SCL32,     -BL03:,       CM15,		-CV8402:,     "J",        5      } #79HWRB
+{SCL32,     -BL03:,       CM16,		-CV8401:,     "J",        5      } #80HWRB
+{SCL32,     -BL03:,       CM16,		-CV8402:,     "J",        5      } #81HWRB
+{SCL32,     -BL03:,       CM17,		-CV8401:,     "J",        5      } #82HWRB
+{SCL32,     -BL03:,       CM17,		-CV8402:,     "J",        5      } #83HWRB
+{SCL32,     -BL03:,       CM18,		-CV8401:,     "J",        5      } #84HWRB
+{SCL32,     -BL03:,       CM18,		-CV8402:,     "J",        5      } #85HWRB
+{SCL32,     -BL03:,       CM19,		-CV8401:,     "J",        5      } #86HWRB
+{SCL32,     -BL03:,       CM19,		-CV8402:,     "J",        5      } #87HWRB
+{P2DT,      -BL04:,       CM01,		-CV8401:,     "J",        5      } #88P2DT 
+{P2DT,      -BL04:,       CM01,		-CV8402:,     "J",        5      } #89P2DT 
+}

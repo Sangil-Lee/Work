@@ -1,0 +1,20 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+#file "db/cd_ai.template" { pattern
+#{SYS,	   SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
+#{Cryo,	   -CDL00:,	    TBx01,		-PT7303:,	Press,		"YES",		"2.5",		"Passive"	}
+#{Cryo,	   -CDL00:,	    TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
+#} #TBx 
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{SCL31,     -CDL01:,      EBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
+}
+
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,						      INPB,									    INPK,							     	     INPI,   INPJ }
+{SCL31,     -CDL01:,         EBx01,		-CV7401:,		"K?A:(B>H)?(A-I):(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval",	 1,      5    }  #1EBx
+{SCL31,     -CDL01:,         EBx01,		-CV7402:,		"K?A:(B>H)?(A-I):(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval",	 5,      50   }  #2EBx
+}

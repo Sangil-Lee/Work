@@ -1,0 +1,127 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,		SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{SCL31,     -BL01:,       CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR  
+{SCL31,     -BL01:,       CM02,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR   
+{SCL31,     -BL01:,       CM03,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR   
+{SCL31,     -BL01:,       CM04,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM05,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM06,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM07,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM08,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM09,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM10,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM11,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM12,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM13,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM14,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM15,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM16,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM17,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM18,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM19,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM20,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM21,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM22,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+
+{SCL31,     -BL01:,       CM01,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR  
+{SCL31,     -BL01:,       CM02,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR  
+{SCL31,     -BL01:,       CM03,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR  
+{SCL31,     -BL01:,       CM04,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM05,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM06,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM07,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM08,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM09,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM10,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM11,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM12,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM13,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM14,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM15,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM16,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM17,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM18,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM19,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM20,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM21,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM22,		-LT8401:,     Level,		"YES",		"50",		"Passive"	} #QWR
+}
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,   	SUBSYS,     DEV,        SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+{SCL31,     -CDL01:,    VBx02,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR   
+{SCL31,     -CDL01:,    VBx04,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx06,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx08,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx10,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx12,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx14,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx16,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx18,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx20,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx22,		-PT7401:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,     DEV,    SUBDEV,     CALC,                                                   INPB,                               INPC,                             INPH,       INPK,                                   INPJ    }							
+{SCL31,     -BL01:,     CM01,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx02-PT7401:Press",   "SCL31-BL01:CM01-LT8401:Level",   "50",       "SCL31-CDL01:VBx02-PT7401:PressEval",   0       } #1#1QWR
+{SCL31,     -BL01:,     CM02,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx02-PT7401:Press",   "SCL31-BL01:CM02-LT8401:Level",   "50",       "SCL31-CDL01:VBx02-PT7401:PressEval",   0       } #1#1QWR
+{SCL31,     -BL01:,     CM01,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx02-PT7401:Press",   "SCL31-BL01:CM01-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx02-PT7401:PressEval",   50      } #1#2QWR
+{SCL31,     -BL01:,     CM02,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx02-PT7401:Press",   "SCL31-BL01:CM02-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx02-PT7401:PressEval",   50      } #1#2QWR
+
+{SCL31,     -BL01:,     CM03,   CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx04-PT7401:Press",   "SCL31-BL01:CM03-LT8401:Level",   "50",       "SCL31-CDL01:VBx04-PT7401:PressEval",   0       } #2#1QWR
+{SCL31,     -BL01:,     CM04,   CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx04-PT7401:Press",   "SCL31-BL01:CM04-LT8401:Level",   "50",       "SCL31-CDL01:VBx04-PT7401:PressEval",   0       } #2#1QWR
+{SCL31,     -BL01:,     CM03,   CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx04-PT7401:Press",   "SCL31-BL01:CM03-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx04-PT7401:PressEval",   50      } #2#2QWR
+{SCL31,     -BL01:,     CM04,   CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx04-PT7401:Press",   "SCL31-BL01:CM04-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx04-PT7401:PressEval",   50      } #2#2QWR
+
+{SCL31,     -BL01:,     CM05,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx06-PT7401:Press",   "SCL31-BL01:CM05-LT8401:Level",   "50",       "SCL31-CDL01:VBx06-PT7401:PressEval",   0       } #3#1QWR
+{SCL31,     -BL01:,     CM06,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx06-PT7401:Press",   "SCL31-BL01:CM06-LT8401:Level",   "50",       "SCL31-CDL01:VBx06-PT7401:PressEval",   0       } #3#1QWR
+{SCL31,     -BL01:,     CM05,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx06-PT7401:Press",   "SCL31-BL01:CM05-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx06-PT7401:PressEval",   50      } #3#2QWR
+{SCL31,     -BL01:,     CM06,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx06-PT7401:Press",   "SCL31-BL01:CM06-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx06-PT7401:PressEval",   50      } #3#2QWR
+
+{SCL31,     -BL01:,     CM07,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx08-PT7401:Press",   "SCL31-BL01:CM07-LT8401:Level",   "50",       "SCL31-CDL01:VBx08-PT7401:PressEval",   0       } #4#1QWR
+{SCL31,     -BL01:,     CM08,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx08-PT7401:Press",   "SCL31-BL01:CM08-LT8401:Level",   "50",       "SCL31-CDL01:VBx08-PT7401:PressEval",   0       } #4#1QWR
+{SCL31,     -BL01:,     CM07,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx08-PT7401:Press",   "SCL31-BL01:CM07-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx08-PT7401:PressEval",   50      } #4#2QWR
+{SCL31,     -BL01:,     CM08,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx08-PT7401:Press",   "SCL31-BL01:CM08-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx08-PT7401:PressEval",   50      } #4#2QWR
+
+{SCL31,     -BL01:,     CM09,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx10-PT7401:Press",   "SCL31-BL01:CM09-LT8401:Level",   "50",       "SCL31-CDL01:VBx10-PT7401:PressEval",   0       } #5#1QWR
+{SCL31,     -BL01:,     CM10,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx10-PT7401:Press",   "SCL31-BL01:CM10-LT8401:Level",   "50",       "SCL31-CDL01:VBx10-PT7401:PressEval",   0       } #5#1QWR
+{SCL31,     -BL01:,     CM09,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx10-PT7401:Press",   "SCL31-BL01:CM09-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx10-PT7401:PressEval",   50      } #5#2QWR
+{SCL31,     -BL01:,     CM10,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx10-PT7401:Press",   "SCL31-BL01:CM10-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx10-PT7401:PressEval",   50      } #5#2QWR
+
+{SCL31,     -BL01:,     CM11,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx12-PT7401:Press",   "SCL31-BL01:CM11-LT8401:Level",   "50",       "SCL31-CDL01:VBx12-PT7401:PressEval",   0       } #6#1QWR
+{SCL31,     -BL01:,     CM12,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx12-PT7401:Press",   "SCL31-BL01:CM12-LT8401:Level",   "50",       "SCL31-CDL01:VBx12-PT7401:PressEval",   0       } #6#1QWR
+{SCL31,     -BL01:,     CM11,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx12-PT7401:Press",   "SCL31-BL01:CM11-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx12-PT7401:PressEval",   50      } #6#2QWR
+{SCL31,     -BL01:,     CM12,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx12-PT7401:Press",   "SCL31-BL01:CM12-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx12-PT7401:PressEval",   50      } #6#2QWR
+
+{SCL31,     -BL01:,     CM13,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx14-PT7401:Press",   "SCL31-BL01:CM13-LT8401:Level",   "50",       "SCL31-CDL01:VBx14-PT7401:PressEval",   0       } #7#1QWR
+{SCL31,     -BL01:,     CM14,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx14-PT7401:Press",   "SCL31-BL01:CM14-LT8401:Level",   "50",       "SCL31-CDL01:VBx14-PT7401:PressEval",   0       } #7#1QWR
+{SCL31,     -BL01:,     CM13,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx14-PT7401:Press",   "SCL31-BL01:CM13-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx14-PT7401:PressEval",   50      } #7#2QWR
+{SCL31,     -BL01:,     CM14,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx14-PT7401:Press",   "SCL31-BL01:CM14-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx14-PT7401:PressEval",   50      } #7#2QWR
+
+{SCL31,     -BL01:,     CM15,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx16-PT7401:Press",   "SCL31-BL01:CM15-LT8401:Level",   "50",       "SCL31-CDL01:VBx16-PT7401:PressEval",   0       } #8#1QWR
+{SCL31,     -BL01:,     CM16,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx16-PT7401:Press",   "SCL31-BL01:CM16-LT8401:Level",   "50",       "SCL31-CDL01:VBx16-PT7401:PressEval",   0       } #8#1QWR
+{SCL31,     -BL01:,     CM15,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx16-PT7401:Press",   "SCL31-BL01:CM15-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx16-PT7401:PressEval",   50      } #8#2QWR
+{SCL31,     -BL01:,     CM16,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx16-PT7401:Press",   "SCL31-BL01:CM16-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx16-PT7401:PressEval",   50      } #8#2QWR
+
+{SCL31,     -BL01:,     CM17,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx18-PT7401:Press",   "SCL31-BL01:CM17-LT8401:Level",   "50",       "SCL31-CDL01:VBx18-PT7401:PressEval",   0       } #9#1QWR
+{SCL31,     -BL01:,     CM18,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx18-PT7401:Press",   "SCL31-BL01:CM18-LT8401:Level",   "50",       "SCL31-CDL01:VBx18-PT7401:PressEval",   0       } #9#1QWR
+{SCL31,     -BL01:,     CM17,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx18-PT7401:Press",   "SCL31-BL01:CM17-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx18-PT7401:PressEval",   50      } #9#2QWR
+{SCL31,     -BL01:,     CM18,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx18-PT7401:Press",   "SCL31-BL01:CM18-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx18-PT7401:PressEval",   50      } #9#2QWR
+
+{SCL31,     -BL01:,     CM19,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx20-PT7401:Press",   "SCL31-BL01:CM19-LT8401:Level",   "50",       "SCL31-CDL01:VBx20-PT7401:PressEval",   0       } #10#1QWR
+{SCL31,     -BL01:,     CM20,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx20-PT7401:Press",   "SCL31-BL01:CM20-LT8401:Level",   "50",       "SCL31-CDL01:VBx20-PT7401:PressEval",   0       } #10#1QWR
+{SCL31,     -BL01:,     CM19,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx20-PT7401:Press",   "SCL31-BL01:CM19-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx20-PT7401:PressEval",   50      } #10#2QWR
+{SCL31,     -BL01:,     CM20,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx20-PT7401:Press",   "SCL31-BL01:CM20-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx20-PT7401:PressEval",   50      } #10#2QWR
+
+{SCL31,     -BL01:,     CM21,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx22-PT7401:Press",   "SCL31-BL01:CM21-LT8401:Level",   "50",       "SCL31-CDL01:VBx22-PT7401:PressEval",   0       } #11#1QWR
+{SCL31,     -BL01:,     CM22,   -CV8402:,   "(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-CDL01:VBx22-PT7401:Press",   "SCL31-BL01:CM22-LT8401:Level",   "50",       "SCL31-CDL01:VBx22-PT7401:PressEval",   0       } #11#1QWR
+{SCL31,     -BL01:,     CM21,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx22-PT7401:Press",   "SCL31-BL01:CM21-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx22-PT7401:PressEval",   50      } #11#2QWR
+{SCL31,     -BL01:,     CM22,   -CV8401:,   "(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-CDL01:VBx22-PT7401:Press",   "SCL31-BL01:CM22-PT8301:Press",   "1.3",      "SCL31-CDL01:VBx22-PT7401:PressEval",   50      } #11#2QWR
+}

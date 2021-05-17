@@ -1,0 +1,188 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SCL31,     -CDL01:,    VBx02,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx02,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx04,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx04,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx06,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx06,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx08,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx08,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx10,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx10,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx12,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx12,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx14,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx14,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx16,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx16,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx18,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx18,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx20,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx20,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx22,      -FT7501:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx22,      -FT7502:,       Flow,       "YES",      "2.2",		"Passive"	} #QWR
+
+{SCL32,     -CDL02:,    VBx01,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx02,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx03,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx04,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx05,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx06,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx07,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx08,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx09,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx10,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx11,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx12,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx13,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+  
+{SCL32,     -CDL03:,    VBx01,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx02,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx03,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx04,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx05,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx06,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx07,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx08,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx09,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx10,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx11,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx12,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx13,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx14,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx15,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx16,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx17,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx18,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx19,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+  
+{P2DT,      -CDL04:,    VBx01,      -FT7501:,       Flow,		"YES",		"2.2",		"Passive"	} #P2DT
+} #TBx
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,       SUBSYS,     DEV,        SUBDEV,         SIGNAL,		PINI,		VAL,		SCAN		}
+
+{SCL31,     -CDL01:,    VBx02,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx02,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx04,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx04,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx06,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx06,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx08,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx08,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx10,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx10,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx12,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx12,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx14,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx14,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx16,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx16,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx18,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx18,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx20,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx20,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx22,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,    VBx22,      -PT7502:,       Press,		"YES",		"2.2",		"Passive"	} #QWR
+
+{SCL32,     -CDL02:,    VBx01,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx02,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx03,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx04,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx05,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx06,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx07,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx08,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx09,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx10,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx11,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx12,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,    VBx13,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRA
+  
+{SCL32,     -CDL03:,    VBx01,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx02,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx03,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx04,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx05,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx06,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx07,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx08,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx09,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx10,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx11,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx12,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx13,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx14,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx15,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx16,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx17,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx18,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,    VBx19,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #HWRB
+  
+{P2DT,      -CDL04:,    VBx01,      -PT7501:,       Press,		"YES",		"2.2",		"Passive"	} #P2DT
+}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,       SUBSYS,     DEV,        SUBDEV,     CALC,                                           INPB,                                     INPC,                                    INPK,                                         INPG   }		
+{SCL31,     -CDL01:,    VBx02,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx02,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx04,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx04,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx06,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx06,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx08,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx08,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx10,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx10,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx12,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx12,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx14,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx14,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx16,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx16,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx18,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx18,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx20,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx20,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx22,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #QWR
+{SCL31,     -CDL01:,    VBx22,      -CV7502:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",     0.5    } #QWR    
+{SCL32,     -CDL02:,    VBx01,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx02,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx03,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx04,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx05,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx06,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx07,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx08,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx09,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx10,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx11,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx12,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL02:,    VBx13,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRA
+{SCL32,     -CDL03:,    VBx01,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx02,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx03,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx04,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx05,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx06,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx07,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx08,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx09,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx10,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx11,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx12,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx13,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx14,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx15,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx16,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx17,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx18,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{SCL32,     -CDL03:,    VBx19,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #HWRB
+{P2DT,      -CDL04:,    VBx01,      -CV7501:,   "K?A:(A<=G-0.1)?(A+I):(A>=G+0.1)?(A-I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT7501:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT7501:PressEval",     0.5    } #P2DT
+}

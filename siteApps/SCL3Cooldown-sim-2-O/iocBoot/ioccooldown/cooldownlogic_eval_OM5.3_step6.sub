@@ -1,0 +1,84 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+#file "db/cd_ai.template" { pattern
+{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	PINI,		VAL,		SCAN        }
+{SCL32,     -BL02:,        CM01,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM02,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM03,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM04,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM05,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM06,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM07,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM08,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM09,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM10,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM11,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM12,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM13,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL03:,        CM01,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM02,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM03,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM04,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM05,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM06,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM07,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM08,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM09,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM10,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM11,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM12,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM13,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM14,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM15,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM16,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM17,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM18,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM19,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #HWRB
+{P2DT,      -BL04:,        CM01,		-TT8202:,     Temp,		"YES",		"10",		"Passive"	} #P2DT
+}
+
+#file "db/cd_ai_presseval.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+#{SCL32,     -BL02:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+#}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,		  CALC,	         INPB,						      INPK,                                 INPJ    }							
+{SCL32,     -CDL02:,        VBx01,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM01-TT8202:Temp",	  "SCL32-BL02:CM01-TT8202:TempEval",	0       } #1HWRA
+{SCL32,     -CDL02:,        VBx02,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM02-TT8202:Temp",	  "SCL32-BL02:CM02-TT8202:TempEval",	0       } #2HWRA
+{SCL32,     -CDL02:,        VBx03,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM03-TT8202:Temp",	  "SCL32-BL02:CM03-TT8202:TempEval",	0       } #3HWRA
+{SCL32,     -CDL02:,        VBx04,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM04-TT8202:Temp",	  "SCL32-BL02:CM04-TT8202:TempEval",	0       } #4HWRA
+{SCL32,     -CDL02:,        VBx05,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM05-TT8202:Temp",	  "SCL32-BL02:CM05-TT8202:TempEval",	0       } #5HWRA
+{SCL32,     -CDL02:,        VBx06,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM06-TT8202:Temp",	  "SCL32-BL02:CM06-TT8202:TempEval",	0       } #6HWRA
+{SCL32,     -CDL02:,        VBx07,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM07-TT8202:Temp",	  "SCL32-BL02:CM07-TT8202:TempEval",	0       } #7HWRA
+{SCL32,     -CDL02:,        VBx08,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM08-TT8202:Temp",	  "SCL32-BL02:CM08-TT8202:TempEval",	0       } #8HWRA
+{SCL32,     -CDL02:,        VBx09,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM09-TT8202:Temp",	  "SCL32-BL02:CM09-TT8202:TempEval",	0       } #9HWRA
+{SCL32,     -CDL02:,        VBx10,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM10-TT8202:Temp",	  "SCL32-BL02:CM10-TT8202:TempEval",	0       } #10HWRA
+{SCL32,     -CDL02:,        VBx11,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM11-TT8202:Temp",	  "SCL32-BL02:CM11-TT8202:TempEval",	0       } #11HWRA
+{SCL32,     -CDL02:,        VBx12,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM12-TT8202:Temp",	  "SCL32-BL02:CM12-TT8202:TempEval",	0       } #12HWRA
+{SCL32,     -CDL02:,        VBx13,		-EH8201:,     "K?A:J",       "SCL32-BL02:CM13-TT8202:Temp",	  "SCL32-BL02:CM13-TT8202:TempEval",	0       } #13HWRA
+{SCL32,     -CDL03:,        VBx01,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM01-TT8202:Temp",	  "SCL32-BL03:CM01-TT8202:TempEval",	0       } #14HWRB
+{SCL32,     -CDL03:,        VBx02,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM02-TT8202:Temp",	  "SCL32-BL03:CM02-TT8202:TempEval",	0       } #15HWRB
+{SCL32,     -CDL03:,        VBx03,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM03-TT8202:Temp",	  "SCL32-BL03:CM03-TT8202:TempEval",	0       } #16HWRB
+{SCL32,     -CDL03:,        VBx04,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM04-TT8202:Temp",	  "SCL32-BL03:CM04-TT8202:TempEval",	0       } #17HWRB
+{SCL32,     -CDL03:,        VBx05,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM05-TT8202:Temp",	  "SCL32-BL03:CM05-TT8202:TempEval",	0       } #18HWRB
+{SCL32,     -CDL03:,        VBx06,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM06-TT8202:Temp",	  "SCL32-BL03:CM06-TT8202:TempEval",	0       } #19HWRB
+{SCL32,     -CDL03:,        VBx07,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM07-TT8202:Temp",	  "SCL32-BL03:CM07-TT8202:TempEval",	0       } #20HWRB
+{SCL32,     -CDL03:,        VBx08,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM08-TT8202:Temp",	  "SCL32-BL03:CM08-TT8202:TempEval",	0       } #21HWRB
+{SCL32,     -CDL03:,        VBx09,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM09-TT8202:Temp",	  "SCL32-BL03:CM09-TT8202:TempEval",	0       } #22HWRB
+{SCL32,     -CDL03:,        VBx10,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM10-TT8202:Temp",	  "SCL32-BL03:CM10-TT8202:TempEval",	0       } #23HWRB
+{SCL32,     -CDL03:,        VBx11,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM11-TT8202:Temp",	  "SCL32-BL03:CM11-TT8202:TempEval",	0       } #24HWRB
+{SCL32,     -CDL03:,        VBx12,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM12-TT8202:Temp",	  "SCL32-BL03:CM12-TT8202:TempEval",	0       } #25HWRB
+{SCL32,     -CDL03:,        VBx13,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM13-TT8202:Temp",	  "SCL32-BL03:CM13-TT8202:TempEval",	0       } #26HWRB
+{SCL32,     -CDL03:,        VBx14,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM14-TT8202:Temp",	  "SCL32-BL03:CM14-TT8202:TempEval",	0       } #27HWRB
+{SCL32,     -CDL03:,        VBx15,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM15-TT8202:Temp",	  "SCL32-BL03:CM15-TT8202:TempEval",	0       } #28HWRB
+{SCL32,     -CDL03:,        VBx16,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM16-TT8202:Temp",	  "SCL32-BL03:CM16-TT8202:TempEval",	0       } #29HWRB
+{SCL32,     -CDL03:,        VBx17,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM17-TT8202:Temp",	  "SCL32-BL03:CM17-TT8202:TempEval",	0       } #30HWRB
+{SCL32,     -CDL03:,        VBx18,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM18-TT8202:Temp",	  "SCL32-BL03:CM18-TT8202:TempEval",	0       } #31HWRB
+{SCL32,     -CDL03:,        VBx19,		-EH8201:,     "K?A:J",       "SCL32-BL03:CM19-TT8202:Temp",	  "SCL32-BL03:CM19-TT8202:TempEval",	0       } #32HWRB
+{P2DT,      -CDL04:,        VBx01,		-EH8201:,     "K?A:J",       "P2DT-BL04:CM01-TT8202:Temp",	  "P2DT-BL04:CM01-TT8202:TempEval",	    0       } #33P2DT 
+}

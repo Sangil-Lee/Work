@@ -1,0 +1,49 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	    PINI,		VAL,		SCAN        }
+{SCL31,     -BL01:,        CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM02,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,       VBx02,		-PT7301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -CDL01:,       VBx02,		-PT7503:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
+}
+
+#file "db/cd_ai_presseval.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+#{SCL32,     -BL02:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+#}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,       DEV,		    SUBDEV,		  CALC,	                                          INPB,                                INPJ   }							
+{SCL31,     -CDL01:,      VBx02,        -CV7401:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+{SCL31,     -CDL01:,      VBx02,        -CV7301:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+{SCL31,     -CDL01:,      VBx02,        -CV7501:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+{SCL31,     -CDL01:,      VBx02,        -CV7502:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+{SCL31,     -CDL01:,      VBx02,        -XV7501:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+{SCL31,     -CDL01:,      VBx02,        -XV7301:,     "J",                                            "SCL31-CDL01:VBx02-PT7301:Press",    0      } #1QWR
+
+{SCL31,     -BL01:,       CM01,         -CV8401:,     "(B>H&&A>=I)?(A-I):(B>H)?0:(A>=J)?J:(A+I)",     "SCL31-BL01:CM01-PT8301:Press",      100    } #1QWR
+{SCL31,     -BL01:,       CM01,         -CV8402:,     "(B>H&&A>=I)?(A-I):(B>H)?0:(A>=J)?J:(A+I)",     "SCL31-BL01:CM01-PT8301:Press",      100    } #1QWR
+{SCL31,     -BL01:,       CM02,         -CV8401:,     "(B>H&&A>=I)?(A-I):(B>H)?0:(A>=J)?J:(A+I)",     "SCL31-BL01:CM02-PT8301:Press",      100    } #1QWR
+{SCL31,     -BL01:,       CM02,         -CV8402:,     "(B>H&&A>=I)?(A-I):(B>H)?0:(A>=J)?J:(A+I)",     "SCL31-BL01:CM02-PT8301:Press",      100    } #1QWR
+
+{Cryo,      -CDL00:,      TBx01,        -XV7303:,     "J",                                            "Cryo-CDL00:TBx01-PT7301:Press",     100    } #TBx
+}
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,       DEV,		    SUBDEV,		  CALC,	                                          INPB,                                INPC,                                 INPH,    INPJ   }	
+{SCL31,     -CDL01:,      VBx02,        -XV7502:,     "(C>=H)?0:J",                                   "SCL31-CDL01:VBx02-PT7503:Press",    "SCL31-CDL01:VBx02-PT7301:Press",     1.8,     100    } #QWR
+{SCL31,     -CDL01:,      VBx02,        -XV7301:,     "(C>=H)?J:(B>=C)?0:J",                          "SCL31-CDL01:VBx02-PT7503:Press",    "SCL31-CDL01:VBx02-PT7301:Press",     1.8,     100    } #QWR
+}
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,       DEV,		    SUBDEV,		  CALC,	                                          INPB,                                INPH,      INPJ   }			
+{SCL31,     -BL01:,       CM01,         -EH8401:,     "(B>H)?A:J",                                    "SCL31-BL01:CM01-PT8301:Press",      1.3,       10     }
+{SCL31,     -BL01:,       CM01,         -EH8402:,     "(B>H)?A:J",                                    "SCL31-BL01:CM01-PT8301:Press",      1.3,       10     }
+{SCL31,     -BL01:,       CM02,         -EH8401:,     "(B>H)?A:J",                                    "SCL31-BL01:CM01-PT8301:Press",      1.3,       10     }
+{SCL31,     -BL01:,       CM02,         -EH8402:,     "(B>H)?A:J",                                    "SCL31-BL01:CM01-PT8301:Press",      1.3,       10     }
+}

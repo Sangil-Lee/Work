@@ -36,6 +36,7 @@ DB += pressure_eval.vdb
 DB += PressEval.vdb
 DB += PressEval2.vdb
 DB += calcout_ao.template
+DB += calcout_OM0_3_ao.template
 DB += Condition_Process_Fantout.vdb
 DB += CDFanoutTest.vdb
 DB += fanout_db_field.vdb

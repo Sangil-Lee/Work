@@ -1,0 +1,199 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+#file "db/cd_ai.template" { pattern
+{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	    PINI,		VAL,		SCAN        }
+{SCL31,     -CDL01:,       EBx01,       -LT7401:,     Level,		"YES",		"10",		"Passive"	} #EBx
+{SCL31,     -BL01:,        CM01,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM02,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM03,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM04,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM05,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM06,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM07,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM08,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM09,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM10,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM11,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM12,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM13,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM14,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM15,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM16,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM17,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM18,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM19,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM20,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM21,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,        CM22,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #QWR
+{SCL32,     -BL02:,        CM01,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM02,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM03,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM04,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM05,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM06,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM07,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM08,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM09,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM10,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM11,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM12,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM13,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL03:,        CM01,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM02,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM03,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM04,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM05,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM06,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM07,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM08,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM09,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM10,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM11,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM12,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM13,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM14,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM15,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM16,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM17,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM18,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM19,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{P2DT,      -BL04:,        CM01,		-LT8401:,     Level,		"YES",		"10",		"Passive"	} #P2DT
+
+{SCL32,     -BL02:,        CM01,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM02,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM03,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM04,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM05,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM06,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM07,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM08,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM09,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM10,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM11,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM12,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL02:,        CM13,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRA
+{SCL32,     -BL03:,        CM01,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM02,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM03,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM04,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM05,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM06,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM07,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM08,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM09,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM10,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM11,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM12,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM13,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM14,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM15,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM16,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM17,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM18,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{SCL32,     -BL03:,        CM19,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #HWRB
+{P2DT,      -BL04:,        CM01,		-LT8201:,     Level,		"YES",		"10",		"Passive"	} #P2DT
+
+}
+
+#file "db/cd_ai_presseval.template" { pattern
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+#{SCL32,     -BL02:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+#}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,       DEV,		SUBDEV,		  CALC,	          INPC,						          INPH,    INPJ    }							
+{SCL31,     -CDL01:,      EBx01,    -EH7401:,     "(C<H)?0:J",    "SCL31-CDL01:EBx01-LT7401:Level",   5,       10      } #1QWR
+{SCL31,     -BL01:,       CM01,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM01-LT8401:Level",	  5,       10      } #2QWR
+{SCL31,     -BL01:,       CM02,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM02-LT8401:Level",	  5,       10      } #3QWR
+{SCL31,     -BL01:,       CM03,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM03-LT8401:Level",	  5,       10      } #4QWR
+{SCL31,     -BL01:,       CM04,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM04-LT8401:Level",	  5,       10      } #5QWR
+{SCL31,     -BL01:,       CM05,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM05-LT8401:Level",	  5,       10      } #6QWR
+{SCL31,     -BL01:,       CM06,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM06-LT8401:Level",	  5,       10      } #7QWR
+{SCL31,     -BL01:,       CM07,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM07-LT8401:Level",	  5,       10      } #8QWR
+{SCL31,     -BL01:,       CM08,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM08-LT8401:Level",	  5,       10      } #9QWR
+{SCL31,     -BL01:,       CM09,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM09-LT8401:Level",	  5,       10      } #10QWR
+{SCL31,     -BL01:,       CM10,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM10-LT8401:Level",	  5,       10      } #11QWR
+{SCL31,     -BL01:,       CM11,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM11-LT8401:Level",	  5,       10      } #12QWR
+{SCL31,     -BL01:,       CM12,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM12-LT8401:Level",	  5,       10      } #13QWR
+{SCL31,     -BL01:,       CM13,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM13-LT8401:Level",	  5,       10      } #14QWR
+{SCL31,     -BL01:,       CM14,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM01-LT8401:Level",	  5,       10      } #15QWR
+{SCL31,     -BL01:,       CM15,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM02-LT8401:Level",	  5,       10      } #16QWR
+{SCL31,     -BL01:,       CM16,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM03-LT8401:Level",	  5,       10      } #17QWR
+{SCL31,     -BL01:,       CM17,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM04-LT8401:Level",	  5,       10      } #18QWR
+{SCL31,     -BL01:,       CM18,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM05-LT8401:Level",	  5,       10      } #19QWR
+{SCL31,     -BL01:,       CM19,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM06-LT8401:Level",	  5,       10      } #20QWR
+{SCL31,     -BL01:,       CM20,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM07-LT8401:Level",	  5,       10      } #21QWR
+{SCL31,     -BL01:,       CM21,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM08-LT8401:Level",	  5,       10      } #22QWR
+{SCL31,     -BL01:,       CM22,		-EH8401:,     "(C<H)?0:J",    "SCL31-BL01:CM09-LT8401:Level",	  5,       10      } #23QWR
+
+{SCL32,     -BL02:,       CM01,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM01-LT8401:Level",	  5,       10      } #24HWRA
+{SCL32,     -BL02:,       CM01,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM01-LT8201:Level",	  5,       10      } #25HWRA
+{SCL32,     -BL02:,       CM02,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM02-LT8401:Level",	  5,       10      } #26HWRA
+{SCL32,     -BL02:,       CM02,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM02-LT8201:Level",	  5,       10      } #27HWRA
+{SCL32,     -BL02:,       CM03,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM03-LT8401:Level",	  5,       10      } #28HWRA
+{SCL32,     -BL02:,       CM03,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM03-LT8201:Level",	  5,       10      } #29HWRA
+{SCL32,     -BL02:,       CM04,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM04-LT8401:Level",	  5,       10      } #30HWRA
+{SCL32,     -BL02:,       CM04,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM04-LT8201:Level",	  5,       10      } #31HWRA
+{SCL32,     -BL02:,       CM05,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM05-LT8401:Level",	  5,       10      } #32HWRA
+{SCL32,     -BL02:,       CM05,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM05-LT8201:Level",	  5,       10      } #33HWRA
+{SCL32,     -BL02:,       CM06,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM06-LT8401:Level",	  5,       10      } #34HWRA
+{SCL32,     -BL02:,       CM06,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM06-LT8201:Level",	  5,       10      } #35HWRA
+{SCL32,     -BL02:,       CM07,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM07-LT8401:Level",	  5,       10      } #36HWRA
+{SCL32,     -BL02:,       CM07,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM07-LT8201:Level",	  5,       10      } #37HWRA
+{SCL32,     -BL02:,       CM08,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM08-LT8401:Level",	  5,       10      } #38HWRA
+{SCL32,     -BL02:,       CM08,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM08-LT8201:Level",	  5,       10      } #39HWRA
+{SCL32,     -BL02:,       CM09,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM09-LT8401:Level",	  5,       10      } #40HWRA
+{SCL32,     -BL02:,       CM09,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM09-LT8201:Level",	  5,       10      } #41HWRA
+{SCL32,     -BL02:,       CM10,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM10-LT8401:Level",	  5,       10      } #42HWRA
+{SCL32,     -BL02:,       CM10,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM10-LT8201:Level",	  5,       10      } #43HWRA
+{SCL32,     -BL02:,       CM11,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM11-LT8401:Level",	  5,       10      } #44HWRA
+{SCL32,     -BL02:,       CM11,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM11-LT8201:Level",	  5,       10      } #45HWRA
+{SCL32,     -BL02:,       CM12,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM12-LT8401:Level",	  5,       10      } #46HWRA
+{SCL32,     -BL02:,       CM12,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM12-LT8201:Level",	  5,       10      } #47HWRA
+{SCL32,     -BL02:,       CM13,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL02:CM13-LT8401:Level",	  5,       10      } #48HWRA
+{SCL32,     -BL02:,       CM13,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL02:CM13-LT8201:Level",	  5,       10      } #49HWRA
+{SCL32,     -BL03:,       CM01,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM01-LT8401:Level",	  5,       10      } #50HWRB
+{SCL32,     -BL03:,       CM01,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM01-LT8201:Level",	  5,       10      } #51HWRB
+{SCL32,     -BL03:,       CM02,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM02-LT8401:Level",	  5,       10      } #52HWRB
+{SCL32,     -BL03:,       CM02,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM02-LT8201:Level",	  5,       10      } #53HWRB
+{SCL32,     -BL03:,       CM03,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM03-LT8401:Level",	  5,       10      } #54HWRB
+{SCL32,     -BL03:,       CM03,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM03-LT8201:Level",	  5,       10      } #55HWRB
+{SCL32,     -BL03:,       CM04,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM04-LT8401:Level",	  5,       10      } #56HWRB
+{SCL32,     -BL03:,       CM04,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM04-LT8201:Level",	  5,       10      } #57HWRB
+{SCL32,     -BL03:,       CM05,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM05-LT8401:Level",	  5,       10      } #58HWRB
+{SCL32,     -BL03:,       CM05,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM05-LT8201:Level",	  5,       10      } #59HWRB
+{SCL32,     -BL03:,       CM06,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM06-LT8401:Level",	  5,       10      } #60HWRB
+{SCL32,     -BL03:,       CM06,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM06-LT8201:Level",	  5,       10      } #61HWRB
+{SCL32,     -BL03:,       CM07,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM07-LT8401:Level",	  5,       10      } #62HWRB
+{SCL32,     -BL03:,       CM07,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM07-LT8201:Level",	  5,       10      } #63HWRB
+{SCL32,     -BL03:,       CM08,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM08-LT8401:Level",	  5,       10      } #64HWRB
+{SCL32,     -BL03:,       CM08,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM08-LT8201:Level",	  5,       10      } #65HWRB
+{SCL32,     -BL03:,       CM09,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM09-LT8401:Level",	  5,       10      } #66HWRB
+{SCL32,     -BL03:,       CM09,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM09-LT8201:Level",	  5,       10      } #67HWRB
+{SCL32,     -BL03:,       CM10,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM10-LT8401:Level",	  5,       10      } #68HWRB
+{SCL32,     -BL03:,       CM10,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM10-LT8201:Level",	  5,       10      } #69HWRB
+{SCL32,     -BL03:,       CM11,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM11-LT8401:Level",	  5,       10      } #70HWRB
+{SCL32,     -BL03:,       CM11,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM11-LT8201:Level",	  5,       10      } #71HWRB
+{SCL32,     -BL03:,       CM12,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM12-LT8401:Level",	  5,       10      } #72HWRB
+{SCL32,     -BL03:,       CM12,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM12-LT8201:Level",	  5,       10      } #73HWRB
+{SCL32,     -BL03:,       CM13,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM13-LT8401:Level",	  5,       10      } #74HWRB
+{SCL32,     -BL03:,       CM13,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM13-LT8201:Level",	  5,       10      } #75HWRB
+{SCL32,     -BL03:,       CM14,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM14-LT8401:Level",	  5,       10      } #76HWRB
+{SCL32,     -BL03:,       CM14,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM14-LT8201:Level",	  5,       10      } #77HWRB
+{SCL32,     -BL03:,       CM15,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM15-LT8401:Level",	  5,       10      } #78HWRB
+{SCL32,     -BL03:,       CM15,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM15-LT8201:Level",	  5,       10      } #79HWRB
+{SCL32,     -BL03:,       CM16,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM16-LT8401:Level",	  5,       10      } #80HWRB
+{SCL32,     -BL03:,       CM16,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM16-LT8201:Level",	  5,       10      } #81HWRB
+{SCL32,     -BL03:,       CM17,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM17-LT8401:Level",	  5,       10      } #82HWRB
+{SCL32,     -BL03:,       CM17,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM17-LT8201:Level",	  5,       10      } #83HWRB
+{SCL32,     -BL03:,       CM18,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM18-LT8401:Level",	  5,       10      } #84HWRB
+{SCL32,     -BL03:,       CM18,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM18-LT8201:Level",	  5,       10      } #85HWRB
+{SCL32,     -BL03:,       CM19,		-EH8401:,     "(C<H)?0:J",    "SCL32-BL03:CM19-LT8401:Level",	  5,       10      } #86HWRB
+{SCL32,     -BL03:,       CM19,		-EH8201:,     "(C<H)?0:J",    "SCL32-BL03:CM19-LT8201:Level",	  5,       10      } #87HWRB
+{P2DT,      -BL04:,       CM01,		-EH8401:,     "(C<H)?0:J",    "P2DT-BL04:CM01-LT8401:Level",	  5,       10      } #88P2DT 
+{P2DT,      -BL04:,       CM01,		-EH8201:,     "(C<H)?0:J",    "P2DT-BL04:CM01-LT8201:Level",	  5,       10      } #89P2DT 
+}

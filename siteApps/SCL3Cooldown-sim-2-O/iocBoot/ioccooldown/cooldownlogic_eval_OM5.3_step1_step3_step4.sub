@@ -1,0 +1,121 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+#file "db/cd_ai.template" { pattern
+#{SYS,	    SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,     PINI,		    VAL,	    SCAN		}
+#{SCL31,    -CDL01:,      VBx02,        -TT7301:,     Temp,		  "YES",		"10",		"Passive"	} #QWR
+#}
+
+file "db/cd_ai_presseval.template" { pattern
+{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
+{SCL32,     -BL02:,        CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM02,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM03,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM04,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM05,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM06,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM07,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM08,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM09,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM10,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM11,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM12,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL02:,        CM13,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM02,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM03,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM04,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM05,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM06,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM07,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM08,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM09,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM10,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM11,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM12,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM13,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM14,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM15,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM16,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM17,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM18,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{SCL32,     -BL03:,        CM19,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+{P2DT,      -BL04:,        CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
+}
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,		  CALC,	        INPB,						        INPK,  							       INPJ    }							
+{SCL32,     -BL02:,         CM01,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM01-PT8301:Press",		"SCL32-BL02:CM01-PT8301:PressEval",	   0       } #1HWRA
+{SCL32,     -BL02:,         CM02,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM02-PT8301:Press",		"SCL32-BL02:CM02-PT8301:PressEval",	   0       } #2HWRA
+{SCL32,     -BL02:,         CM03,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM03-PT8301:Press",		"SCL32-BL02:CM03-PT8301:PressEval",	   0       } #3HWRA
+{SCL32,     -BL02:,         CM04,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM04-PT8301:Press",		"SCL32-BL02:CM04-PT8301:PressEval",	   0       } #4HWRA
+{SCL32,     -BL02:,         CM05,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM05-PT8301:Press",		"SCL32-BL02:CM05-PT8301:PressEval",	   0       } #5HWRA
+{SCL32,     -BL02:,         CM06,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM06-PT8301:Press",		"SCL32-BL02:CM06-PT8301:PressEval",	   0       } #6HWRA
+{SCL32,     -BL02:,         CM07,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM07-PT8301:Press",		"SCL32-BL02:CM07-PT8301:PressEval",	   0       } #7HWRA
+{SCL32,     -BL02:,         CM08,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM08-PT8301:Press",		"SCL32-BL02:CM08-PT8301:PressEval",	   0       } #8HWRA
+{SCL32,     -BL02:,         CM09,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM09-PT8301:Press",		"SCL32-BL02:CM09-PT8301:PressEval",	   0       } #9HWRA
+{SCL32,     -BL02:,         CM10,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM10-PT8301:Press",		"SCL32-BL02:CM10-PT8301:PressEval",	   0       } #10HWRA
+{SCL32,     -BL02:,         CM11,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM11-PT8301:Press",		"SCL32-BL02:CM11-PT8301:PressEval",	   0       } #11HWRA
+{SCL32,     -BL02:,         CM12,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM12-PT8301:Press",		"SCL32-BL02:CM12-PT8301:PressEval",	   0       } #12HWRA
+{SCL32,     -BL02:,         CM13,		-CV8402:,     "K?A:J",		"SCL32-BL02:CM13-PT8301:Press",		"SCL32-BL02:CM13-PT8301:PressEval",	   0       } #13HWRA
+{SCL32,     -BL03:,         CM01,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM01-PT8301:Press",		"SCL32-BL03:CM01-PT8301:PressEval",	   0       } #14HWRB
+{SCL32,     -BL03:,         CM02,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM02-PT8301:Press",		"SCL32-BL03:CM02-PT8301:PressEval",	   0       } #15HWRB
+{SCL32,     -BL03:,         CM03,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM03-PT8301:Press",		"SCL32-BL03:CM03-PT8301:PressEval",	   0       } #16HWRB
+{SCL32,     -BL03:,         CM04,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM04-PT8301:Press",		"SCL32-BL03:CM04-PT8301:PressEval",	   0       } #17HWRB
+{SCL32,     -BL03:,         CM05,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM05-PT8301:Press",		"SCL32-BL03:CM05-PT8301:PressEval",	   0       } #18HWRB
+{SCL32,     -BL03:,         CM06,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM06-PT8301:Press",		"SCL32-BL03:CM06-PT8301:PressEval",	   0       } #19HWRB
+{SCL32,     -BL03:,         CM07,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM07-PT8301:Press",		"SCL32-BL03:CM07-PT8301:PressEval",	   0       } #20HWRB
+{SCL32,     -BL03:,         CM08,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM08-PT8301:Press",		"SCL32-BL03:CM08-PT8301:PressEval",	   0       } #21HWRB
+{SCL32,     -BL03:,         CM09,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM09-PT8301:Press",		"SCL32-BL03:CM09-PT8301:PressEval",	   0       } #22HWRB
+{SCL32,     -BL03:,         CM10,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM10-PT8301:Press",		"SCL32-BL03:CM10-PT8301:PressEval",	   0       } #23HWRB
+{SCL32,     -BL03:,         CM11,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM11-PT8301:Press",		"SCL32-BL03:CM11-PT8301:PressEval",	   0       } #24HWRB
+{SCL32,     -BL03:,         CM12,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM12-PT8301:Press",		"SCL32-BL03:CM12-PT8301:PressEval",	   0       } #25HWRB
+{SCL32,     -BL03:,         CM13,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM13-PT8301:Press",		"SCL32-BL03:CM13-PT8301:PressEval",	   0       } #26HWRB
+{SCL32,     -BL03:,         CM14,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM14-PT8301:Press",		"SCL32-BL03:CM14-PT8301:PressEval",	   0       } #27HWRB
+{SCL32,     -BL03:,         CM15,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM15-PT8301:Press",		"SCL32-BL03:CM15-PT8301:PressEval",	   0       } #28HWRB
+{SCL32,     -BL03:,         CM16,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM16-PT8301:Press",		"SCL32-BL03:CM16-PT8301:PressEval",	   0       } #29HWRB
+{SCL32,     -BL03:,         CM17,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM17-PT8301:Press",		"SCL32-BL03:CM17-PT8301:PressEval",	   0       } #30HWRB
+{SCL32,     -BL03:,         CM18,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM18-PT8301:Press",		"SCL32-BL03:CM18-PT8301:PressEval",	   0       } #31HWRB
+{SCL32,     -BL03:,         CM19,		-CV8402:,     "K?A:J",		"SCL32-BL03:CM19-PT8301:Press",		"SCL32-BL03:CM19-PT8301:PressEval",	   0       } #32HWRB
+{P2DT,      -BL04:,         CM01,		-CV8402:,     "K?A:J",		"P2DT-BL04:CM01-PT8301:Press",		"P2DT-BL04:CM01-PT8301:PressEval",     0       } #33P2DT
+
+{Cryo,      -CDL00:,        TBx01,		-CV7201:,	  "J",          "Cryo-CDL00:TBx01-PT7202:Press",    "Cryo-CDL00:TBx01-PT7202:PressEval",   0       } #1TBx
+{Cryo,      -CDL00:,        TBx01,		-XV7201:,	  "J",          "Cryo-CDL00:TBx01-PT7301:Press",    "Cryo-CDL00:TBx01-PT7301:PressEval",   0       } #2TBx
+
+{SCL32,     -BL02:,         CM01,		-EH8201:,     "J",		    "SCL32-BL02:CM01-PT8301:Press",		"SCL32-BL02:CM01-PT8301:PressEval",	   10      } #1HWRA
+{SCL32,     -BL02:,         CM02,		-EH8201:,     "J",		    "SCL32-BL02:CM02-PT8301:Press",		"SCL32-BL02:CM02-PT8301:PressEval",	   10      } #2HWRA
+{SCL32,     -BL02:,         CM03,		-EH8201:,     "J",		    "SCL32-BL02:CM03-PT8301:Press",		"SCL32-BL02:CM03-PT8301:PressEval",	   10      } #3HWRA
+{SCL32,     -BL02:,         CM04,		-EH8201:,     "J",		    "SCL32-BL02:CM04-PT8301:Press",		"SCL32-BL02:CM04-PT8301:PressEval",	   10      } #4HWRA
+{SCL32,     -BL02:,         CM05,		-EH8201:,     "J",		    "SCL32-BL02:CM05-PT8301:Press",		"SCL32-BL02:CM05-PT8301:PressEval",	   10      } #5HWRA
+{SCL32,     -BL02:,         CM06,		-EH8201:,     "J",		    "SCL32-BL02:CM06-PT8301:Press",		"SCL32-BL02:CM06-PT8301:PressEval",	   10      } #6HWRA
+{SCL32,     -BL02:,         CM07,		-EH8201:,     "J",		    "SCL32-BL02:CM07-PT8301:Press",		"SCL32-BL02:CM07-PT8301:PressEval",	   10      } #7HWRA
+{SCL32,     -BL02:,         CM08,		-EH8201:,     "J",		    "SCL32-BL02:CM08-PT8301:Press",		"SCL32-BL02:CM08-PT8301:PressEval",	   10      } #8HWRA
+{SCL32,     -BL02:,         CM09,		-EH8201:,     "J",		    "SCL32-BL02:CM09-PT8301:Press",		"SCL32-BL02:CM09-PT8301:PressEval",	   10      } #9HWRA
+{SCL32,     -BL02:,         CM10,		-EH8201:,     "J",		    "SCL32-BL02:CM10-PT8301:Press",		"SCL32-BL02:CM10-PT8301:PressEval",	   10      } #10HWRA
+{SCL32,     -BL02:,         CM11,		-EH8201:,     "J",		    "SCL32-BL02:CM11-PT8301:Press",		"SCL32-BL02:CM11-PT8301:PressEval",	   10      } #11HWRA
+{SCL32,     -BL02:,         CM12,		-EH8201:,     "J",		    "SCL32-BL02:CM12-PT8301:Press",		"SCL32-BL02:CM12-PT8301:PressEval",	   10      } #12HWRA
+{SCL32,     -BL02:,         CM13,		-EH8201:,     "J",		    "SCL32-BL02:CM13-PT8301:Press",		"SCL32-BL02:CM13-PT8301:PressEval",	   10      } #13HWRA
+{SCL32,     -BL03:,         CM01,		-EH8201:,     "J",		    "SCL32-BL03:CM01-PT8301:Press",		"SCL32-BL03:CM01-PT8301:PressEval",	   10      } #14HWRB
+{SCL32,     -BL03:,         CM02,		-EH8201:,     "J",		    "SCL32-BL03:CM02-PT8301:Press",		"SCL32-BL03:CM02-PT8301:PressEval",	   10      } #15HWRB
+{SCL32,     -BL03:,         CM03,		-EH8201:,     "J",		    "SCL32-BL03:CM03-PT8301:Press",		"SCL32-BL03:CM03-PT8301:PressEval",	   10      } #16HWRB
+{SCL32,     -BL03:,         CM04,		-EH8201:,     "J",		    "SCL32-BL03:CM04-PT8301:Press",		"SCL32-BL03:CM04-PT8301:PressEval",	   10      } #17HWRB
+{SCL32,     -BL03:,         CM05,		-EH8201:,     "J",		    "SCL32-BL03:CM05-PT8301:Press",		"SCL32-BL03:CM05-PT8301:PressEval",	   10      } #18HWRB
+{SCL32,     -BL03:,         CM06,		-EH8201:,     "J",		    "SCL32-BL03:CM06-PT8301:Press",		"SCL32-BL03:CM06-PT8301:PressEval",	   10      } #19HWRB
+{SCL32,     -BL03:,         CM07,		-EH8201:,     "J",		    "SCL32-BL03:CM07-PT8301:Press",		"SCL32-BL03:CM07-PT8301:PressEval",	   10      } #20HWRB
+{SCL32,     -BL03:,         CM08,		-EH8201:,     "J",		    "SCL32-BL03:CM08-PT8301:Press",		"SCL32-BL03:CM08-PT8301:PressEval",	   10      } #21HWRB
+{SCL32,     -BL03:,         CM09,		-EH8201:,     "J",		    "SCL32-BL03:CM09-PT8301:Press",		"SCL32-BL03:CM09-PT8301:PressEval",	   10      } #22HWRB
+{SCL32,     -BL03:,         CM10,		-EH8201:,     "J",		    "SCL32-BL03:CM10-PT8301:Press",		"SCL32-BL03:CM10-PT8301:PressEval",	   10      } #23HWRB
+{SCL32,     -BL03:,         CM11,		-EH8201:,     "J",		    "SCL32-BL03:CM11-PT8301:Press",		"SCL32-BL03:CM11-PT8301:PressEval",	   10      } #24HWRB
+{SCL32,     -BL03:,         CM12,		-EH8201:,     "J",		    "SCL32-BL03:CM12-PT8301:Press",		"SCL32-BL03:CM12-PT8301:PressEval",	   10      } #25HWRB
+{SCL32,     -BL03:,         CM13,		-EH8201:,     "J",		    "SCL32-BL03:CM13-PT8301:Press",		"SCL32-BL03:CM13-PT8301:PressEval",	   10      } #26HWRB
+{SCL32,     -BL03:,         CM14,		-EH8201:,     "J",		    "SCL32-BL03:CM14-PT8301:Press",		"SCL32-BL03:CM14-PT8301:PressEval",	   10      } #27HWRB
+{SCL32,     -BL03:,         CM15,		-EH8201:,     "J",		    "SCL32-BL03:CM15-PT8301:Press",		"SCL32-BL03:CM15-PT8301:PressEval",	   10      } #28HWRB
+{SCL32,     -BL03:,         CM16,		-EH8201:,     "J",		    "SCL32-BL03:CM16-PT8301:Press",		"SCL32-BL03:CM16-PT8301:PressEval",	   10      } #29HWRB
+{SCL32,     -BL03:,         CM17,		-EH8201:,     "J",		    "SCL32-BL03:CM17-PT8301:Press",		"SCL32-BL03:CM17-PT8301:PressEval",	   10      } #30HWRB
+{SCL32,     -BL03:,         CM18,		-EH8201:,     "J",		    "SCL32-BL03:CM18-PT8301:Press",		"SCL32-BL03:CM18-PT8301:PressEval",	   10      } #31HWRB
+{SCL32,     -BL03:,         CM19,		-EH8201:,     "J",		    "SCL32-BL03:CM19-PT8301:Press",		"SCL32-BL03:CM19-PT8301:PressEval",	   10      } #32HWRB
+{P2DT,      -BL04:,         CM01,		-EH8201:,     "J",		    "P2DT-BL04:CM01-PT8301:Press",		"P2DT-BL04:CM01-PT8301:PressEval",     10      } #33P2DT
+}
