@@ -1,0 +1,51 @@
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
+  field(PINI, "NO")
+  field(VAL, "0")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
+
+  field(SCAN, "Passive")
+  field(PINI, "NO")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve.PROC CPP")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve.VAL CPP")
+  
+  field(CALC, "$(CALC)")
+  field(INPB, "$(INPB)")
+  field(INPC, "$(INPC)")
+  field(INPG, "0.5")
+  field(INPH, "1.3")
+  field(INPI, "5")
+  field(INPJ, "100")
+  field(INPK, "$(INPK)")
+  field(INPL, "$(INPL)")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+
+################################################### ###################################################
+Cryo-CDL00:TBx01-XV7502 -> Cryo-CDL00:TBx01-XV7501 -> 
+Cryo-CDL00:TBx01-CV7505(100%) -> Cryo-CDL00:TBx01-CV7502(100%) -> Cryo-CDL00:TBx01-CV7503(100%) -> 
+Cryo-CDL00:TBx01-CV7501(100%) -> Cryo-CDL00:EBx01-CV7501(5%)
+################################################### ###################################################
+## Cryo-CDL00:TBx01-XV7502 ##
+ - Target: Cryo-CDL00:TBx01-XV7502:Valve
+ - CDLogic: Cryo-CDL00:TBx01-XV7502:CDLogic
+	- CALC = (K||L)?A:J"
+	- A: Cryo-CDL00:TBx01-XV7502:Valve
+	- K: Cryo-CDL00:TBx01-PT7504:PressEval, PT7504:Press Latest 5 Values, Difference of Min/Max, 0:Stable, 1:Unstable
+	- L: Cryo-CDL00:TBx01-PT7505:PressEval, PT7505:Press Latest 5 Values, Difference of Min/Max, 0:Stable, 1:Unstable
+Test Procedure:
+	1.camonitor Cryo-CDL00:TBx01-XV7502:Valve, (0 or 1) 0: Close(Init), 1: Open 
+	2.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	3.Confirm Cryo-CDL00:TBx01-XV7502:Valve(0, Close)
+	4.caput Cryo-CDL00:TBx01-PT7504:Press 1.5 
+	5.Check Cryo-CDL00:TBx01-PT7504:PressComp, Cryo-CDL00:TBx01-PT7504:PressEval(1,While(PressComp.C==5, NUSE))
+	6.caput Cryo-CDL00:TBx01-PT7505:Press 1.5 
+	7.Check Cryo-CDL00:TBx01-PT7505:PressComp, Cryo-CDL00:TBx01-PT7505:PressEval(1,While(PressComp.C==5, NUSE))
+	8.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	9.Confirm Cryo-CDL00:TBx01-XV7502:Valve(0, Close)
+	10.caput Cryo-CDL00:TBx01-PT7504:Press 1.5 (4 times)
+	11.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	12.Confirm Cryo-CDL00:TBx01-XV7502:Valve(0, Close)
+	13.caput Cryo-CDL00:TBx01-PT7504:Press 1.5 (4 times)
+	14.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	15.Confirm Cryo-CDL00:TBx01-XV7502:Valve(1, Open)
+	16.caput Cryo-CDL00:TBx01-PT7504:Press 2.3
+	17.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	18.Confirm Cryo-CDL00:TBx01-XV7502:Valve(0, Close)
+	19.Finished
+
+(XV7502): Same
+
+###################################################
+
+###################################################
+## Cryo-CDL00:TBx01-CV7505 ##
+ - Target: Cryo-CDL00:TBx01-CV7505:Valve
+ - CDLogic: Cryo-CDL00:TBx01-CV7505:CDLogic
+	- CALC = F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I
+	- A: Cryo-CDL00:TBx01-CV7505:Valve
+	- B: Cryo-CDL00:TBx01-PT7581:Press
+	- C: Cryo-CDL00:TBx01-PT7505:Press
+	- G: 0.5
+	- H: 1.3(Not need)
+	- I: 5
+	- J: 100
+	- K: Cryo-CDL00:TBx01-PT7581:PressEval, PT7581:Press Latest 5 Values, Difference of Min/Max, 0:Stable, 1:Unstable
+	- L: Cryo-CDL00:TBx01-PT7505:PressEval, PT7505:Press Latest 5 Values, Difference of Min/Max, 0:Stable, 1:Unstable
+
+Test Procedure:
+	1.camonitor Cryo-CDL00:TBx01-CV7505:Valve, 0: Close(Init), 100%: Open 
+	2.caput Cryo-CDL00:TBx01-CV7505:CDLogic.PROC 1
+	3.Confirm Cryo-CDL00:TBx01-CV7505:Valve(0, Close)
+
+	//Check Stable Pressure -> Stay Current Value(Init Value)
+	4.caput Cryo-CDL00:TBx01-PT7581:Press 2.5 
+	5.Check Cryo-CDL00:TBx01-PT7581:PressComp, Cryo-CDL00:TBx01-PT7581:PressEval(1,While(PressComp.C==5, NUSE))
+	6.caput Cryo-CDL00:TBx01-PT7505:Press 1.5 
+	7.Check Cryo-CDL00:TBx01-PT7505:PressComp, Cryo-CDL00:TBx01-PT7505:PressEval(1,While(PressComp.C==5, NUSE))
+	8.caput Cryo-CDL00:TBx01-CV7505:CDLogic.PROC 1
+	9.Confirm Cryo-CDL00:TBx01-CV7505:Valve(0, Close)
+
+	10.caput Cryo-CDL00:TBx01-PT7581:Press 2.5 (4 times)
+	11.caput Cryo-CDL00:TBx01-CV7505:CDLogic.PROC 1
+	12.Confirm Cryo-CDL00:TBx01-CV7505:Valve(0, Close)
+	13.caput Cryo-CDL00:TBx01-PT7505:Press 1.5 (4 times)
+	14.caput Cryo-CDL00:TBx01-CV7505:CDLogic.PROC 1
+	15.Confirm Cryo-CDL00:TBx01-CV7505:Valve increment value(+5)
+	16.caput Cryo-CDL00:TBx01-CV7505:CDLogic.PROC 1
+	17.Confirm Cryo-CDL00:TBx01-CV7505:Valve increment value(+5)
+
+	//Check Incremental Value(+5), F(=ABS(C-B)) > G(0.5)
+	18.caput Cryo-CDL00:TBx01-PT7581:Press 2.3
+	19.caput Cryo-CDL00:TBx01-PT7505:Press 1.3
+	20.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	//Repeat Stay Current Value
+
+	//Check Open 100% F(=ABS(C-B)) <= G(0.5)
+	21.caput Cryo-CDL00:TBx01-PT7581:Press 1.8 4times
+	22.caput Cryo-CDL00:TBx01-PT7505:Press 1.3 4times
+	23.caput Cryo-CDL00:TBx01-XV7502:CDLogic.PROC 1
+	24.Confirm Cryo-CDL00:TBx01-CV7505:Valve(100)
+	25.Finished
+
+TBx01-CV7505/TBx01-CV7502/TBx01-CV7503/TBx01-CV7501/EBx01-CV7501(5%):Same
+
+###################################################
+  
+
