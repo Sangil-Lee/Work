@@ -31,7 +31,6 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/fanout_db_field.vdb","SYS=SCL3, SUBSYS=-CoolDown:")
 #dbLoadRecords("db/TempEval.vdb")
 
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0_3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
