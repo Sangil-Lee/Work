@@ -31,9 +31,12 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/fanout_db_field.vdb","SYS=SCL3, SUBSYS=-CoolDown:")
 #dbLoadRecords("db/TempEval.vdb")
 
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+##Tested##
+#dbLoadRecords("db/OM031AdditionalPV.vdb")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+
+##Should be Tested##
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
@@ -42,6 +45,54 @@ dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_6.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_7.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step1_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.4_step3-6_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.2_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.2_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step6.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.4_step7.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_HWR_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_HWR_step2_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_HWR_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_HWR_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_QWR_step1_step2_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_QWR_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM1.5_QWR_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM2.1_step1_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.1_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.1_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.3_step1_step3_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.3_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM5.3_step6.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.1_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.1_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.1_step3.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.1_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.2_HWR.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_EM5.2_QWR.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRA.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_HWRB.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_P2DT.sub", "SYS=SCL31, SUBSYS=-CDL01:")
@@ -54,3 +105,6 @@ iocInit
 #seq CDFanoutTest
 #seq sncMakeTempWaveform
 #seq CDFanoutLogic
+
+#seq CDOM031Logic
+#seq CDOM032Logic

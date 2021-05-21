@@ -1,0 +1,117 @@
+program CDOM032Logic
+option +r;
+
+%% #include <math.h>
+
+int om032logicProc[107];
+assign om032logicProc to {
+"Cryo-CDL00:TBx01-XV7301:CDLogic.PROC", "Cryo-CDL00:TBx01-XV7201:CDLogic.PROC", "Cryo-CDL00:TBx01-XV7401:CDLogic.PROC",
+"Cryo-CDL00:TBx01-CV7301:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7201:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7401:CDLogic.PROC",
+"Cryo-CDL00:TBx01-CV7302:CDLogic.PROC", "SCL32-CDL02:VBx01-XV7301:CDLogic.PROC", "Cryo-CDL00:TBx01-XV7302:CDLogic.PROC",
+"SCL32-CDL02:VBx01-CV7302:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7303:CDLogic.PROC" 
+};
+monitor om032logicProc;
+
+float valveVal[107];
+assign valveVal to {
+"Cryo-CDL00:TBx01-XV7301:Valve", "Cryo-CDL00:TBx01-XV7201:Valve", "Cryo-CDL00:TBx01-XV7401:Valve",
+"Cryo-CDL00:TBx01-CV7301:Valve", "Cryo-CDL00:TBx01-CV7201:Valve", "Cryo-CDL00:TBx01-CV7401:Valve",
+"Cryo-CDL00:TBx01-CV7302:Valve", "SCL32-CDL02:VBx01-XV7301:Valve", "Cryo-CDL00:TBx01-XV7302:Valve",
+"SCL32-CDL02:VBx01-CV7302:Valve", "Cryo-CDL00:TBx01-CV7303:Valve"
+};
+
+monitor valveVal;
+
+evflag  evFanout;
+sync	valveVal	evFanout;
+
+int index = 0;
+assign index to "SCL3:CD-OM032:IndexPV";
+monitor index;
+
+int proc = 1;
+
+float om032Val;
+assign om032Val to "SCL3:CD-OM032:Value";
+monitor om032Val;
+
+float cdDelay;
+assign cdDelay to "SCL3:CD-OM032:ScanTime";
+monitor cdDelay;
+
+float	valvewave[107];
+assign	valvewave to "SCL3:CD-OM032:ValveWave";
+monitor valvewave;
+
+
+ss ssCDOM032
+{
+	state CDOM032
+	{
+		when(delay(cdDelay)) 
+		{
+			if(index == 0  || index == 1  || index == 8  || index == 10 ||
+			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
+			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
+			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
+			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
+			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
+			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
+			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
+			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
+			   index == 102|| index == 105)
+			{
+				if(om032Val == 1) {
+					om032Val = 0;
+					index++;
+					pvPut(index, SYNC);
+				} else {
+					om032Val = valveVal[index];
+				};
+			}
+			else
+			{
+				if(om032Val == 100) {
+					om032Val = 0;
+					index++;
+					pvPut(index, SYNC);
+				} else {
+					om032Val = valveVal[index];
+				};
+			};
+
+
+			pvPut(om032Val, SYNC);
+			if(index < 107)
+			{
+				om032logicProc[index] = proc;
+				pvPut(om032logicProc[index], SYNC);
+			};
+		}state CDOM032
+	}
+	
+}
+
+ss ssOM032ValveWave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evFanout);
+		}state MakeOM032ValveWave
+	}
+
+	state MakeOM032ValveWave
+	{
+		when(efTestAndClear(evFanout)) 
+		{
+			int idx = 0;
+			%%for(idx = 0; idx < 107;idx++)
+				valvewave[idx] = valveVal[idx];
+
+			pvPut(valvewave, SYNC);
+		}state MakeOM032ValveWave
+	}
+}
+
