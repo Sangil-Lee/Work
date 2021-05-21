@@ -17,8 +17,8 @@ kobramagnet_registerRecordDeviceDriver pdbbase
 #drvAsynIPPortConfigure("SYS9700", "192.168.131.124:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
 
 ######KoBRA Magnet Power Supply######
-drvAsynIPPortConfigure("SW1", "192.168.131.124:4001", 0, 0, 0)
-drvAsynIPPortConfigure("SW2", "192.168.131.124:4002", 0, 0, 0)
+drvAsynIPPortConfigure("Q13", "192.168.131.125:4007", 0, 0, 0)
+drvAsynIPPortConfigure("Q14", "192.168.131.125:4008", 0, 0, 0)
 
 #drvAsynIPPortConfigure("Q1", "192.168.0.??:4002", 0, 0, 0)
 
@@ -34,11 +34,13 @@ drvAsynIPPortConfigure("SW2", "192.168.131.124:4002", 0, 0, 0)
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW1.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW2.sub", "DEVICE=KOBRA-MAG:SW2-PS:,  port=SW2")
 
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:SW2-PS:,  port=SW2")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q13-PS:,  port=Q13")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q14-PS:,  port=Q14")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+#seq sncAutoScan,"DEVICE=KOBRA-MAG:Q13-PS:"
+#seq sncAutoScan,"DEVICE=KOBRA-MAG:Q14-PS:"

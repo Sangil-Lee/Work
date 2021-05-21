@@ -22,6 +22,7 @@ kobramagnet_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
 kobramagnet_DBD += $(ASYN)/dbd/asyn.dbd
 kobramagnet_DBD += $(CALC)/dbd/calc.dbd
 kobramagnet_DBD += $(CALC)/dbd/calcSupport.dbd
+kobramagnet_DBD += $(STREAM)/stream.dbd
 
 # Include dbd files from all support applications:
 #kobramagnet_DBD += xxx.dbd
@@ -53,7 +54,7 @@ ifneq ($(SNCSEQ),)
     kobramagnet_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries
-kobramagnet_LIBS += asyn calc std sscan
+kobramagnet_LIBS += asyn calc std sscan stream
 kobramagnet_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

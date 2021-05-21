@@ -1,0 +1,33 @@
+#!../../bin/linux-arm/kobramagnet
+#- You may have to change kobramagnet to something else
+#- everywhere it appears in this file
+
+< envPaths
+
+cd "${TOP}"
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
+
+## Register all support components
+dbLoadDatabase "dbd/kobramagnet.dbd"
+kobramagnet_registerRecordDeviceDriver pdbbase
+
+######Danfysik System 9700 Example######
+## MOXA, Port Configuration="115200, Data=8bit, Stopbit=1bit, No Parity bit, No Flow Control"
+#drvAsynIPPortConfigure("SYS9700", "192.168.131.124:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
+
+######KoBRA Magnet Power Supply######
+drvAsynIPPortConfigure("H1", "192.168.131.125:4010", 0, 0, 0)
+drvAsynIPPortConfigure("H2", "192.168.131.125:4011", 0, 0, 0)
+
+## Load record instances
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:H1-PS:,  port=H1")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:H2-PS:,  port=H2")
+
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
+## Start any sequence programs
+#seq sncxxx,"user=ctrluser"
+#seq sncAutoScan,"DEVICE=KOBRA-MAG:H1-PS:"
+#seq sncAutoScan,"DEVICE=KOBRA-MAG:H2-PS:"
