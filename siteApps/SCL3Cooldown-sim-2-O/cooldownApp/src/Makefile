@@ -49,12 +49,24 @@ ifneq ($(SNCSEQ),)
     cooldown_DBD  += sncMakeTempWaveform.dbd
     cooldown_DBD  += CDOM031.dbd
     cooldown_DBD  += CDOM032.dbd
+    cooldown_DBD  += CDOM033.dbd
+    cooldown_DBD  += CDOM034.dbd
+    cooldown_DBD  += CDOM035.dbd
+    cooldown_DBD  += CDOM036.dbd
+    cooldown_DBD  += CDOM037.dbd
+    cooldown_DBD  += CDOM038.dbd
 
     cooldown_SRCS += CDOperationSeq.stt
     cooldown_SRCS += CDFanoutTest.stt
     cooldown_SRCS += CDFanoutLogic.stt
     cooldown_SRCS += CDOM031.stt
     cooldown_SRCS += CDOM032.stt
+    cooldown_SRCS += CDOM033.stt
+    cooldown_SRCS += CDOM034.stt
+    cooldown_SRCS += CDOM035.stt
+    cooldown_SRCS += CDOM036.stt
+    cooldown_SRCS += CDOM037.stt
+    cooldown_SRCS += CDOM038.stt
     cooldown_SRCS += sncMakeTempWaveform.stt
 
     cooldown_LIBS += seq pv

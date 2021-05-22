@@ -46,6 +46,13 @@ DB += TempEval.vdb
 DB += testwaveform.vdb
 DB += TestCountPV.vdb
 DB += OM031AdditionalPV.vdb
+DB += OM032AdditionalPV.vdb
+DB += OM033AdditionalPV.vdb
+DB += OM034AdditionalPV.vdb
+DB += OM035AdditionalPV.vdb
+DB += OM036AdditionalPV.vdb
+DB += OM037AdditionalPV.vdb
+DB += OM038AdditionalPV.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

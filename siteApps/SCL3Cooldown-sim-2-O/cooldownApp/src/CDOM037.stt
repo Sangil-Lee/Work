@@ -1,0 +1,111 @@
+program CDOM037Logic
+option +r;
+
+%% #include <math.h>
+
+int om037LogicProc[1];
+assign om037LogicProc to {
+":CDLogic.PROC"
+};
+monitor om037LogicProc;
+
+float valveVal[1];
+assign valveVal to {
+":Valve"
+};
+
+monitor valveVal;
+
+evflag  evFanout;
+sync	valveVal	evFanout;
+
+int index = 0;
+assign index to "SCL3:CD-OM037:IndexPV";
+monitor index;
+
+int proc = 1;
+
+float om037Val;
+assign om037Val to "SCL3:CD-OM037:Value";
+monitor om037Val;
+
+float cdDelay;
+assign cdDelay to "SCL3:CD-OM037:ScanTime";
+monitor cdDelay;
+
+float	valvewave[1];
+assign	valvewave to "SCL3:CD-OM037:ValveWave";
+monitor valvewave;
+
+
+ss ssCDOM037
+{
+	state CDOM037
+	{
+		when(delay(cdDelay)) 
+		{
+			if(index == 0  || index == 1  || index == 8  || index == 10 ||
+			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
+			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
+			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
+			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
+			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
+			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
+			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
+			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
+			   index == 102|| index == 105)
+			{
+				if(om037Val == 1) {
+					om037Val = 0;
+					index++;
+					pvPut(index, SYNC);
+				} else {
+					om037Val = valveVal[index];
+				};
+			}
+			else
+			{
+				if(om037Val == 100) {
+					om037Val = 0;
+					index++;
+					pvPut(index, SYNC);
+				} else {
+					om037Val = valveVal[index];
+				};
+			};
+
+
+			pvPut(om037Val, SYNC);
+			if(index < 107)
+			{
+				om037LogicProc[index] = proc;
+				pvPut(om037LogicProc[index], SYNC);
+			};
+		}state CDOM037
+	}
+	
+}
+
+ss ssOM037ValveWave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evFanout);
+		}state MakeOM037ValveWave
+	}
+
+	state MakeOM037ValveWave
+	{
+		when(efTestAndClear(evFanout)) 
+		{
+			int idx = 0;
+			%%for(idx = 0; idx < 107;idx++)
+				valvewave[idx] = valveVal[idx];
+
+			pvPut(valvewave, SYNC);
+		}state MakeOM037ValveWave
+	}
+}
+
