@@ -12,6 +12,12 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
 dbLoadDatabase "dbd/kobramagnet.dbd"
 kobramagnet_registerRecordDeviceDriver pdbbase
 
+######Danfysik System 8700 Example######
+## Ethernet
+#drvAsynIPPortConfigure("8700", "?.?.?.?:13000", 0, 0, 0)	#To Danfysik 8700
+##  or
+#drvAsynIPPortConfigure("8700", "?.?.?.?:200", 0, 0, 0)	#To Danfysik 8700
+
 ######Danfysik System 9700 Example######
 ## MOXA, Port Configuration="115200, Data=8bit, Stopbit=1bit, No Parity bit, No Flow Control"
 #drvAsynIPPortConfigure("SYS9700", "192.168.131.124:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
@@ -30,6 +36,9 @@ drvAsynIPPortConfigure("SW2", "192.168.131.124:4002", 0, 0, 0)
 #asynOctetSetOutputEos("SYS9700", 0, "\r\n")
 
 ## Load record instances
+# Danfysik 8700 DB
+#dbLoadTemplate("db/danfysikMps8700_scpi.template", "DEVICE=KOBRA-MAG:D1-PS:,  port=8700")
+
 ##dbLoadTemplate("db/danfysik_SW1.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW1.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW2.sub", "DEVICE=KOBRA-MAG:SW2-PS:,  port=SW2")

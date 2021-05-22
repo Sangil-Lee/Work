@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 
 #DB += danfysikMps9700.template
 DB += danfysikUnit.template
+DB += danfysikMps8700_scpi.template
 #DB += danfysikMps9700_scpi.template
 #DB += danfysik.sub
 #DB += danfysik_SW1.sub
