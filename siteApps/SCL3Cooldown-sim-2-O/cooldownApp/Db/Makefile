@@ -50,9 +50,48 @@ DB += OM032AdditionalPV.vdb
 DB += OM033AdditionalPV.vdb
 DB += OM034AdditionalPV.vdb
 DB += OM035AdditionalPV.vdb
-DB += OM036AdditionalPV.vdb
+DB += OM036-1AdditionalPV.vdb
+DB += OM036-2AdditionalPV.vdb
+DB += OM036-3AdditionalPV.vdb
+DB += OM036-4AdditionalPV.vdb
+DB += OM036-5AdditionalPV.vdb
+DB += OM036-6AdditionalPV.vdb
+DB += OM036-7AdditionalPV.vdb
 DB += OM037AdditionalPV.vdb
 DB += OM038AdditionalPV.vdb
+DB += OM041_2AdditionalPV.vdb
+DB += OM043-1AdditionalPV.vdb
+DB += OM043-2AdditionalPV.vdb
+DB += OM043-3AdditionalPV.vdb
+DB += OM043-4AdditionalPV.vdb
+DB += OM043-5AdditionalPV.vdb
+DB += OM043-6AdditionalPV.vdb
+DB += OM044AdditionalPV.vdb
+DB += OM121AdditionalPV.vdb
+DB += OM122AdditionalPV.vdb
+DB += OM141AdditionalPV.vdb
+DB += OM142AdditionalPV.vdb
+DB += OM143AdditionalPV.vdb
+DB += OM144AdditionalPV.vdb
+DB += OM145AdditionalPV.vdb
+DB += OM146AdditionalPV.vdb
+DB += OM147AdditionalPV.vdb
+DB += OM15QWR_1_2_3AdditionalPV.vdb
+DB += OM15QWR4AdditionalPV.vdb
+DB += OM15QWR5AdditionalPV.vdb
+DB += OM15HWR_1AdditionalPV.vdb
+DB += OM15HWR_2_3AdditionalPV.vdb
+DB += OM15HWR_4AdditionalPV.vdb
+DB += OM15HWR_5AdditionalPV.vdb
+DB += OM21AdditionalPV.vdb
+DB += OM511AdditionalPV.vdb
+DB += OM512AdditionalPV.vdb
+DB += OM52AdditionalPV.vdb
+DB += OM53_1_3_4AdditionalPV.vdb
+DB += OM535AdditionalPV.vdb
+DB += OM536AdditionalPV.vdb
+
+
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

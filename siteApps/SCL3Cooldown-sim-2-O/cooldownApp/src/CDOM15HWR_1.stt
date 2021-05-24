@@ -1,17 +1,17 @@
-program CDOM035Logic
+program CDOM15HWR1Logic
 option +r;
 
 %% #include <math.h>
 
-int om035LogicProc[2];
-assign om035LogicProc to {
-"Cryo-CDL00:TBx01-CV7302:CDLogic.PROC", "SCL32-CDL02:VBx01-CV7302:CDLogic.PROC"
+int om15HWR1LogicProc[1];
+assign om15HWR1LogicProc to {
+":CDLogic.PROC"
 };
-monitor om035LogicProc;
+monitor om15HWR1LogicProc;
 
-float valveVal[2];
+float valveVal[1];
 assign valveVal to {
-"Cryo-CDL00:TBx01-CV7302:Valve", "SCL32-CDL02:VBx01-CV7302:Valve"
+":Valve"
 };
 
 monitor valveVal;
@@ -20,27 +20,27 @@ evflag  evFanout;
 sync	valveVal	evFanout;
 
 int index = 0;
-assign index to "SCL3:CD-OM035:IndexPV";
+assign index to "SCL3:CD-OM15HWR1:IndexPV";
 monitor index;
 
 int proc = 1;
 
-float om035Val;
-assign om035Val to "SCL3:CD-OM035:Value";
-monitor om035Val;
+float om15HWR1Val;
+assign om15HWR1Val to "SCL3:CD-OM15HWR1:Value";
+monitor om15HWR1Val;
 
 float cdDelay;
-assign cdDelay to "SCL3:CD-OM035:ScanTime";
+assign cdDelay to "SCL3:CD-OM15HWR1:ScanTime";
 monitor cdDelay;
 
 float	valvewave[1];
-assign	valvewave to "SCL3:CD-OM035:ValveWave";
+assign	valvewave to "SCL3:CD-OM15HWR1:ValveWave";
 monitor valvewave;
 
 
-ss ssCDOM035
+ss ssCDOM15HWR1
 {
-	state CDOM035
+	state CDOM15HWR1
 	{
 		when(delay(cdDelay)) 
 		{
@@ -55,48 +55,48 @@ ss ssCDOM035
 			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
 			   index == 102|| index == 105)
 			{
-				if(om035Val == 1) {
-					om035Val = 0;
+				if(om15HWR1Val == 1) {
+					om15HWR1Val = 0;
 					index++;
 					pvPut(index, SYNC);
 				} else {
-					om035Val = valveVal[index];
+					om15HWR1Val = valveVal[index];
 				};
 			}
 			else
 			{
-				if(om035Val == 100) {
-					om035Val = 0;
+				if(om15HWR1Val == 100) {
+					om15HWR1Val = 0;
 					index++;
 					pvPut(index, SYNC);
 				} else {
-					om035Val = valveVal[index];
+					om15HWR1Val = valveVal[index];
 				};
 			};
 
 
-			pvPut(om035Val, SYNC);
+			pvPut(om15HWR1Val, SYNC);
 			if(index < 107)
 			{
-				om035LogicProc[index] = proc;
-				pvPut(om035LogicProc[index], SYNC);
+				om15HWR1LogicProc[index] = proc;
+				pvPut(om15HWR1LogicProc[index], SYNC);
 			};
-		}state CDOM035
+		}state CDOM15HWR1
 	}
 	
 }
 
-ss ssOM035ValveWave
+ss ssOM15HWR1ValveWave
 {
 	state init
 	{
 		when(TRUE)
 		{
 			efClear(evFanout);
-		}state MakeOM035ValveWave
+		}state MakeOM15HWR1ValveWave
 	}
 
-	state MakeOM035ValveWave
+	state MakeOM15HWR1ValveWave
 	{
 		when(efTestAndClear(evFanout)) 
 		{
@@ -105,7 +105,7 @@ ss ssOM035ValveWave
 				valvewave[idx] = valveVal[idx];
 
 			pvPut(valvewave, SYNC);
-		}state MakeOM035ValveWave
+		}state MakeOM15HWR1ValveWave
 	}
 }
 
