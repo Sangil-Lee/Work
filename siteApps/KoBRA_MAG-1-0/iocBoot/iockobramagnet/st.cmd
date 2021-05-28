@@ -12,42 +12,26 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
 dbLoadDatabase "dbd/kobramagnet.dbd"
 kobramagnet_registerRecordDeviceDriver pdbbase
 
-######Danfysik System 8700 Example######
-## Ethernet
-#drvAsynIPPortConfigure("8700", "?.?.?.?:13000", 0, 0, 0)	#To Danfysik 8700
-##  or
-#drvAsynIPPortConfigure("8700", "?.?.?.?:200", 0, 0, 0)	#To Danfysik 8700
-
 ######Danfysik System 9700 Example######
 ## MOXA, Port Configuration="115200, Data=8bit, Stopbit=1bit, No Parity bit, No Flow Control"
 #drvAsynIPPortConfigure("SYS9700", "192.168.131.124:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
 
 ######KoBRA Magnet Power Supply######
-drvAsynIPPortConfigure("SW1", "192.168.131.124:4001", 0, 0, 0)
-drvAsynIPPortConfigure("SW2", "192.168.131.124:4002", 0, 0, 0)
-
-#drvAsynIPPortConfigure("Q1", "192.168.0.??:4002", 0, 0, 0)
-
-#asynOctetSetInputEos   "SW1", 0, "\n\r"
-#asynOctetSetOutputEos  "SW1", 0, "\r"
-
-# "\r\n" is only valid for the simulator
-# , because we want to use Telnet connection also.
-#asynOctetSetOutputEos("SYS9700", 0, "\r\n")
+drvAsynIPPortConfigure ("Q9", "192.168.131.125:4003", 0, 0, 0)
+drvAsynIPPortConfigure("Q10", "192.168.131.125:4004", 0, 0, 0)
 
 ## Load record instances
-# Danfysik 8700 DB
-#dbLoadTemplate("db/danfysikMps8700_scpi.template", "DEVICE=KOBRA-MAG:D1-PS:,  port=8700")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q9-PS:,  port=Q9")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q10-PS:,  port=Q10")
 
-##dbLoadTemplate("db/danfysik_SW1.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW1.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW2.sub", "DEVICE=KOBRA-MAG:SW2-PS:,  port=SW2")
-
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:SW1-PS:,  port=SW1")
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:SW2-PS:,  port=SW2")
+dbLoadRecords("db/dbAutoRampup.db", "DEVICE=KOBRA-MAG:Q9-PS")
+dbLoadRecords("db/dbAutoRampup.db", "DEVICE=KOBRA-MAG:Q10-PS")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+
+seq sncAutoRampup,"DEVICE=KOBRA-MAG:Q9-PS,  TARGET=KOBRA-MAG:Q9-PS:SetCurrent"
+seq sncAutoRampup,"DEVICE=KOBRA-MAG:Q10-PS, TARGET=KOBRA-MAG:Q10-PS:SetCurrent"

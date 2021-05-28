@@ -41,15 +41,8 @@ kobramagnet_SRCS_vxWorks += -nil-
 #kobramagnet_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
     kobramagnet_SNCFLAGS += +r
-    #kobramagnet_DBD  += CDOperationSeq.dbd
-    #kobramagnet_DBD  += CDFanoutTest.dbd
-    #kobramagnet_DBD  += CDFanoutLogic.dbd
-    #kobramagnet_DBD  += sncMakeTempWaveform.dbd
-
-    #kobramagnet_SRCS += CDOperationSeq.stt
-    #kobramagnet_SRCS += CDFanoutTest.stt
-    #kobramagnet_SRCS += CDFanoutLogic.stt
-    #kobramagnet_SRCS += sncMakeTempWaveform.stt
+    kobramagnet_DBD  += sncAutoRampup.dbd
+    kobramagnet_SRCS += sncAutoRampup.stt
 
     kobramagnet_LIBS += seq pv
 endif
