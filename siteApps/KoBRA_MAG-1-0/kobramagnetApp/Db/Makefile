@@ -18,7 +18,7 @@ DB += danfysikMps9700.template
 #DB += danfysik_SW1.sub
 #DB += danfysik_SW2.sub
 DB += dbAutoRampup.db
-DB += dbParameters.vdb
+DB += MGField2Cur.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
