@@ -88,7 +88,8 @@ record(bi, "$(DEVICE):OnOffStat")
 {
     field(DESC, "Main Power")
     field(DTYP, "stream")
-    field(OUT, "@danfysikMps9700.proto rdpower $(port) 0")
+    field(SCAN, "1 second")
+    field(INP, "@danfysikMps9700.proto rdpower $(port) 0")
     field(ZNAM, "Off")
     field(ONAM, "On")
 }
@@ -144,7 +145,7 @@ record(ao, "$(DEVICE):SetCurrent")
     field(HOPR, "$(inom)")
     field(DRVL, "$(imin=0)")
     field(DRVH, "$(imax)")
-    field(INP,  "$(DEVICE):SUBFIELD")
+    #field(OUP,  "$(DEVICE):SUBFIELD")
     field(FLNK, "$(DEVICE):CALIOUT")
 }
 record(calcout, "$(DEVICE):CALIOUT")
@@ -172,14 +173,15 @@ record(ao, "$(DEVICE):OUTIOUT")
 ########################################################################
 ## Read Current Output
 #record(ai, "$(DEVICE):GETCURRENT")
-record(ai, "$(DEVICE):CurrentRB")
+record(ai, "$(DEVICE):RCurrentRB")
 {
     field(DESC, "Output Current")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps9700.proto adc(0) $(port) 0")
+    #field(INP,  "@danfysikMps9700.proto adc(0) $(port) 0")
+    field(INP,  "@danfysikMps9700.proto rdcurr $(port) 0")
     field(SCAN, "1 second")
     field(EGU,  "A")
-    field(PREC, "0")
+    field(PREC, "3")
     field(LOPR, "-$(inom)")
     field(HOPR, "$(inom)")
     field(LOW,  "$(imin=0)")
@@ -190,11 +192,22 @@ record(ai, "$(DEVICE):CurrentRB")
     field(HSV,  "MINOR")
     field(LLSV, "MAJOR")
     field(HHSV, "MAJOR")
+    field(FLNK, "$(DEVICE):CurrentRB")
+
+}
+record(calc, "$(DEVICE):CurrentRB")
+{
+    field(DESC, "Output Current")
+    field(SCAN, "Passive")
+    field(EGU,  "A")
+    field(PREC, "3")
+    field(INPA, "$(DEVICE):RCurrentRB")
+    field(CALC, "A/100")
 }
 ########################################################################
 ## Read Voltage Output
 #record(ai, "$(DEVICE):GETVOLTAGE")
-record(ai, "$(DEVICE):VoltRB")
+record(ai, "$(DEVICE):RVoltRB")
 {
     field(DESC, "Unipolar Voltage Output")
     field(DTYP, "stream")
@@ -214,6 +227,16 @@ record(ai, "$(DEVICE):VoltRB")
     field(HSV,  "MINOR")
     field(LLSV, "MAJOR")
     field(HHSV, "MAJOR")
+    field(FLNK, "$(DEVICE):VoltRB")
+}
+record(calc, "$(DEVICE):VoltRB")
+{
+    field(DESC, "Output Voltage")
+    field(SCAN, "Passive")
+    field(EGU,  "V")
+    field(PREC, "3")
+    field(INPA, "$(DEVICE):RVoltRB")
+    field(CALC, "A/10")
 }
 ########################################################################
 ## Read Back Set Current
