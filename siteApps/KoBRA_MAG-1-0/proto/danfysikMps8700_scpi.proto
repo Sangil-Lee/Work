@@ -1,8 +1,11 @@
 #
 #
 
-OutTerminator = CR;
-InTerminator  = LF CR;
+#8700 IP(192.168.131.20), PORT(13000)
+
+#OutTerminator = CR LF;
+#InTerminator  = CR LF;
+Terminator = CR LF;
 ReplyTimeout  = 1000;
 ReadTimeout   = 100;
 WriteTimeout  = 100;
@@ -24,12 +27,3 @@ status	    { out "STAT?";			in "%d";			}
 reg1	    { out "STAT:OPER:REG1?";in "%d";			}
 reg2	    { out "STAT:OPER:REG2?";in "%d";			}
 reg3	    { out "STAT:OPER:REG3?";in "%d";			}
-
-#setvolt		{ out "VOLT %03d";						}
-#setvoltRB	{ out "VOLT?";			in "%f"				}
-#first  { out "S1FIRSTH";    in "%x";			}
-#reset  { out "RS";								}
-#setpol { out "PO %{+|-}";						}
-#getpol { out "PO";          in "%{+|-}";		}
-# just for debugging - actually 2 lines
-#print  { out "PRINT";       in "%39c" ;			}

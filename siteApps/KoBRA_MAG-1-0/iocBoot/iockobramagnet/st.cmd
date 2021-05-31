@@ -20,12 +20,19 @@ kobramagnet_registerRecordDeviceDriver pdbbase
 drvAsynIPPortConfigure ("Q9", "192.168.131.125:4003", 0, 0, 0)
 drvAsynIPPortConfigure("Q10", "192.168.131.125:4004", 0, 0, 0)
 
+## According to KoBRA Maganet Type
 ## Load record instances
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q9-PS:,  port=Q9")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q9-PS:,   port=Q9")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:Q10-PS:,  port=Q10")
 
+## According to KoBRA Maganet Type
 dbLoadRecords("db/dbAutoRampup.db", "DEVICE=KOBRA-MAG:Q9-PS")
 dbLoadRecords("db/dbAutoRampup.db", "DEVICE=KOBRA-MAG:Q10-PS")
+
+## According to KoBRA Maganet Type
+dbLoadRecords("db/MGField2Cur_Q9.vdb",   "DEVICE=KOBRA-MAG:Q9-PS")
+dbLoadRecords("db/MGField2Cur_Q10P.vdb", "DEVICE=KOBRA-MAG:Q10-PS")
+
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

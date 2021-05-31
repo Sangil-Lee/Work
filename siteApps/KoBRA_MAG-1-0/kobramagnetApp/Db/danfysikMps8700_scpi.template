@@ -19,28 +19,6 @@ record(bo, "$(DEVICE):SetRemoteCMD")
     field(PINI, "YES")
 }
 ################################################################################
-# Polarity
-#
-#record(bi, "$(DEVICE):POL")
-record(bi, "$(DEVICE):PolarStat")
-{
-    field(DESC, "Polarity")
-    field(DTYP, "stream")
-    field(INP, "@danfysikMps8700_scpi.proto getpol $(port) 0")
-    field(ZNAM, "+")
-    field(ONAM, "-")
-    field(SCAN, "1 second")
-}
-#record(bo, "$(DEVICE):SETPOL")
-record(bo, "$(DEVICE):PolarSwitch")
-{
-    field(DESC, "Polarity")
-    field(DTYP, "stream")
-    field(OUT, "@danfysikMps8700_scpi.proto setpol $(port) 0")
-    field(ZNAM, "+")
-    field(ONAM, "-")
-}
-################################################################################
 # Main Power
 #
 record(bo, "$(DEVICE):OnOff")
@@ -100,7 +78,6 @@ record(sub, "$(DEVICE):SUBFIELD") {
 }
 
 ## Set Current
-#record(ao, "$(DEVICE):SETCURRENT")
 record(ao, "$(DEVICE):SetCurrent")
 {
     field(DESC, "Set Output Current")
