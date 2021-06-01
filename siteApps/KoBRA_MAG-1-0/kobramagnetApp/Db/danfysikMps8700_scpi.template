@@ -7,7 +7,7 @@ record(bi, "$(DEVICE):RemoteCMD")
     field(ONAM, "Remote")
     field(SCAN, "1 second")
 }
-#record(bo, "$(DEVICE):SETCMDLINE")
+
 record(bo, "$(DEVICE):SetRemoteCMD")
 {
     field(DESC, "Command Line")
@@ -37,46 +37,15 @@ record(bi, "$(DEVICE):OnOffStat")
     field(ZNAM, "Off")
     field(ONAM, "On")
 }
-#record(bo, "$(DEVICE):RESET")
-record(bo, "$(DEVICE):Reset")
-{
-    field(DESC, "Reset")
-    field(DTYP, "stream")
-    field(OUT, "@danfysikMps8700_scpi.proto reset $(port) 0")
-    field(ZNAM, "Reset")
-    field(ONAM, "Reset")
-}
+#record(bo, "$(DEVICE):Reset")
+#{
+#    field(DESC, "Reset")
+#    field(DTYP, "stream")
+#    field(OUT, "@danfysikMps8700_scpi.proto reset $(port) 0")
+#    field(ZNAM, "Reset")
+#    field(ONAM, "Reset")
+#}
 ################################################################################
-## Pole-tip Field (Gauss)
-record(ao, "$(DEVICE):GAUSS") 
-{
-  field(DTYP, "Raw Soft Channel")
-  field(FLNK, "$(DEVICE):CALC")
-  field(DRVH, "9260")
-  field(DRVL, "0")
-  field(HOPR, "9260")
-  field(LOPR, "0")
-  field(EGU,  "Gauss")
-}
-
-record(calc, "$(DEVICE):CALCFC") 
-{
-  field(SCAN, "Passive")
-	#(Gaus*0.0001)(Tesla)/0.027(meter)
-  field(CALC, "A/270.0")
-  field(INPA, "$(DEVICE):GAUSS CPP")
-  field(FLNK, "$(DEVICE):SUBFIELD")
-	field(EGU,  "T/m")
-}
-
-record(sub, "$(DEVICE):SUBFIELD") {
-  field(SCAN, "Passive")
-  field(INAM, "FieldMapCurrentInit")
-  field(SNAM, "FieldMapCurrentProc")
-  field(INPA, "$(DEVICE):CALCFC")
-  field(FLNK, "$(DEVICE):SetCurrent")
-}
-
 ## Set Current
 record(ao, "$(DEVICE):SetCurrent")
 {
@@ -88,7 +57,6 @@ record(ao, "$(DEVICE):SetCurrent")
     field(HOPR, "$(inom)")
     field(DRVL, "$(imin=0)")
     field(DRVH, "$(imax)")
-    field(INP,  "$(DEVICE):SUBFIELD")
     field(FLNK, "$(DEVICE):CALIOUT")
 }
 record(calcout, "$(DEVICE):CALIOUT")
@@ -102,7 +70,7 @@ record(ao, "$(DEVICE):OUTIOUT")
 {
     field(DESC, "Set Output Current")
     field(DTYP, "stream")
-    field(OUT,  "@danfysikMps8700_scpi.proto wrdac(0) $(port) 0")
+    field(OUT,  "@danfysikMps8700_scpi.proto setcurr $(port) 0")
     field(LINR, "LINEAR")
     field(ESLO, "0.001")
     field(EGU,  "A")
@@ -115,12 +83,11 @@ record(ao, "$(DEVICE):OUTIOUT")
 ## End Set Current
 ########################################################################
 ## Read Current Output
-#record(ai, "$(DEVICE):GETCURRENT")
 record(ai, "$(DEVICE):CurrentRB")
 {
     field(DESC, "Output Current")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps8700_scpi.proto adc(0) $(port) 0")
+    field(INP,  "@danfysikMps8700_scpi.proto getcurr $(port) 0")
     field(SCAN, "1 second")
     field(EGU,  "A")
     field(PREC, "0")
@@ -137,12 +104,11 @@ record(ai, "$(DEVICE):CurrentRB")
 }
 ########################################################################
 ## Read Voltage Output
-#record(ai, "$(DEVICE):GETVOLTAGE")
 record(ai, "$(DEVICE):VoltRB")
 {
     field(DESC, "Unipolar Voltage Output")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps8700_scpi.proto adc(2) $(port) 0")
+    field(INP,  "@danfysikMps8700_scpi.proto getvolt $(port) 0")
     field(SCAN, "1 second")
     field(LINR, "LINEAR")
     field(ESLO, "0.01")
@@ -161,12 +127,11 @@ record(ai, "$(DEVICE):VoltRB")
 }
 ########################################################################
 ## Read Back Set Current
-#record(ai, "$(DEVICE):SETCURRENTRB")
 record(ai, "$(DEVICE):SetCurrentRB")
 {
     field(DESC, "Set Current Read Back")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps8700_scpi.proto rddac(0) $(port) 0")
+    field(INP,  "@danfysikMps8700_scpi.proto setcurrRB $(port) 0")
     field(SCAN, "1 second")
     field(LINR, "LINEAR")
     field(ESLO, "0.001")
@@ -184,50 +149,28 @@ record(ai, "$(DEVICE):SetCurrentRB")
     field(HHSV, "MAJOR")
 }
 ################################################################################
-# First Status
+# 
 #
-record(ai, "$(DEVICE):FSTA")
-{
-    field(DESC, "First Status")
-    field(DTYP, "stream")
-    field(INP,  "@danfysikMps8700_scpi.proto first $(port) 0")
-    field(SCAN, "1 second")
-    field(FLNK, "$(DEVICE):CALFSTA1")
-    field(PREC, "0")
-}
-record(calcout, "$(DEVICE):CALFSTA1")
-{
-    field(DESC, "Status bits 1-8")
-    field(OUT,  "$(DEVICE):FSTA1 PP MS")
-    field(CALC, "(A>>B)&C")
-    field(INPA, "$(DEVICE):FSTA MS")
-    field(INPB, "16")
-    field(INPC, "255")
-    field(FLNK, "$(DEVICE):CALFSTA2")
-}
-record(mbbiDirect, "$(DEVICE):FSTA1")
-{
-    field(DESC, "Status")
-    field(NOBT, "8")
-}
-record(calcout, "$(DEVICE):CALFSTA2")
-{
-    field(DESC, "Status bits 9-24")
-    field(OUT,  "$(DEVICE):FSTA2 PP MS")
-    field(CALC, "A&B")
-    field(INPA, "$(DEVICE):FSTA MS")
-    field(INPB, "65535")
-}
-record(mbbiDirect, "$(DEVICE):FSTA2")
-{
-    field(DESC, "Status")
-}
 ################################################################################
-record(stringin, "$(DEVICE):INFO")
+record(longin, "$(DEVICE):Reg1")
 {
-    field(DESC, "User Information")
+    field(DESC, "Register Information")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps8700_scpi.proto print $(port) 0")
+    field(INP,  "@danfysikMps8700_scpi.proto reg1 $(port) 0")
+    field(SCAN, "10 second")
+}
+record(longin, "$(DEVICE):Reg2")
+{
+    field(DESC, "Register Information2")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps8700_scpi.proto reg2 $(port) 0")
+    field(SCAN, "10 second")
+}
+record(longin, "$(DEVICE):Reg3")
+{
+    field(DESC, "Register Information3")
+    field(DTYP, "stream")
+    field(INP,  "@danfysikMps8700_scpi.proto reg3 $(port) 0")
     field(SCAN, "10 second")
 }
 ################################################################################

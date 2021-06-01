@@ -1,0 +1,29 @@
+#!../../bin/linux-arm/kobramagnet
+#- You may have to change kobramagnet to something else
+#- everywhere it appears in this file
+
+< envPaths
+
+cd "${TOP}"
+
+epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
+
+## Register all support components
+dbLoadDatabase "dbd/kobramagnet.dbd"
+kobramagnet_registerRecordDeviceDriver pdbbase
+
+######KoBRA Magnet Power Supply, Danfysik 8700, Dipole######
+drvAsynIPPortConfigure("D1", "192.168.131.20:13000", 0, 0, 0)
+
+# "\r\n" is only valid for the simulator
+# , because we want to use Telnet connection also.
+#asynOctetSetOutputEos("SYS9700", 0, "\r\n")
+
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/danfysik_SW.sub", "DEVICE=KOBRA-MAG:D1-PS:,  port=D1")
+dbLoadTemplate("db/danfysikMps8700_scpi.template", "DEVICE=KOBRA-MAG:D1-PS:,  port=D1")
+
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
+## Start any sequence programs
+#seq sncAutoRampup,"DEVICE=KOBRA-MAG:Q13-PS, TARGET=KOBRA-MAG:D1-PS:SetCurrent"

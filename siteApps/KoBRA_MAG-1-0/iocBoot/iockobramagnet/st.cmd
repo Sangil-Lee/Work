@@ -13,7 +13,7 @@ dbLoadDatabase "dbd/kobramagnet.dbd"
 kobramagnet_registerRecordDeviceDriver pdbbase
 
 ######Danfysik System 9700 Example######
-## MOXA, Port Configuration="115200, Data=8bit, Stopbit=1bit, No Parity bit, No Flow Control"
+## MOXA, Port Configuration="RFC2217, 115200, Data=8bit, Stopbit=1bit, No Parity bit, No Flow Control"
 #drvAsynIPPortConfigure("SYS9700", "192.168.131.124:4001", 0, 0, 0)	#MOXA port to Danfysik9700 MPS
 
 ######KoBRA Magnet Power Supply######
