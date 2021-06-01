@@ -1,0 +1,55 @@
+record(ai, "$(DEVICE):InitVal") {
+  field(DESC, "Initial Value for Auto Rampup")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "0")
+  field(FLNK, "$(DEVICE):StepInc")
+}
+
+record(ai, "$(DEVICE):FinVal") {
+  field(DESC, "Final Value for Auto Rampup")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "-100")
+  field(FLNK, "$(DEVICE):StepInc")
+}
+
+record(longin, "$(DEVICE):StepCnt") {
+  field(DESC, "Step Count for Auto Rampup")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "20")
+  field(FLNK, "$(DEVICE):StepInc")
+}
+
+record(calc, "$(DEVICE):StepInc") {
+  field(DESC, "Step Increment for Auto Rampup")
+  field(PINI, "YES")
+  #field(CALC, "(abs(A)+abs(B))/C")
+  field(CALC, "(B-A)/C")
+  field(INPA, "$(DEVICE):InitVal")
+  field(INPB, "$(DEVICE):FinVal")
+  field(INPC, "$(DEVICE):StepCnt")
+}
+
+record(bi, "$(DEVICE):RampUpMod") {
+  field(DESC, "Auto Rampup Mode")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(ZNAM, "StoppedRampup")
+  field(ONAM, "Ramping up")
+}
+
+record(ai, "$(DEVICE):StepDly") {
+  field(DESC, "Step Delay for Auto Scan")
+  field(PINI, "YES")
+  field(VAL, "3")
+}
+
+record(ai, "$(DEVICE):SetCurrent") {
+  field(DESC, "Magnet Set Current")
+  field(PINI, "YES")
+  field(DTYP, "Soft Channel")
+  field(VAL, "0")
+}
+

@@ -1,0 +1,95 @@
+##
+record(ai, "$(DEVICE):FieldCurr") {
+  field(INP, "$(DEVICE):FieldSel")
+}
+
+record(calcout, "$(DEVICE):MGField2PCurr") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(CALC, "K?0:B*A+C*A^3+D*A^5+E*A^7+F*A^9+G")
+  field(INPA, "$(DEVICE):MGFieldP")
+#field(INPB, "293.280082874274")
+#field(INPC, "-0.870370052725318")
+#field(INPD, "9.16636067499575")
+#field(INPE, "-10.8702541604829")
+#field(INPF, "5.52234542737697")
+#field(INPG, "-1.56461887437624")
+  field(INPB, "$(PINPB)")
+  field(INPC, "$(PINPC)")
+  field(INPD, "$(PINPD)")
+  field(INPE, "$(PINPE)")
+  field(INPF, "$(PINPF)")
+  field(INPG, "$(PINPG)")
+  field(INPK, "$(DEVICE):RampUpMod")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(FLNK, "$(DEVICE):FieldSel")
+}
+
+record(sel, "$(DEVICE):FieldSel") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "$(DEVICE):FieldCurr")
+  field(SELM, "Specified")
+  field(NVL, "$(DEVICE):MGPol")
+#field(INPA, "$(DEVICE):MGField2PCurr")
+#field(INPB, "$(DEVICE):MGField2NCurr")
+  field(INPA, "$(PCURR)")
+  field(INPB, "$(NCURR)")
+  field(EGU, "A")
+}
+
+record(bi, "$(DEVICE):MGPol") {
+  field(PINI, "YES")
+  field(FLNK, "$(DEVICE):FieldSel")
+  field(VAL, "0")
+  field(ZNAM, "+")
+  field(ONAM, "-")
+}
+
+record(calcout, "$(DEVICE):MGField2NCurr") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "0")
+  field(CALC, "K?0:B*A+C*A^3+D*A^5+E*A^7+F*A^9+G")
+  field(INPA, "$(DEVICE):MGFieldN")
+#field(INPB, "293.243987951075 ")
+#field(INPC, "-0.885764184067694 ")
+#field(INPD, "9.23751200631248")
+#field(INPE, "-10.9925955134135")
+#field(INPF, "5.55875294906502")
+#field(INPG, "1.56496576978661 ")
+  field(INPB, "$(NINPB)")
+  field(INPC, "$(NINPC)")
+  field(INPD, "$(NINPD)")
+  field(INPE, "$(NINPE)")
+  field(INPF, "$(NINPF)")
+  field(INPG, "$(NINPG)")
+  field(INPK, "$(DEVICE):RampUpMod")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(FLNK, "$(DEVICE):FieldSel")
+}
+
+record(ao, "$(DEVICE):MGFieldP") {
+  field(PINI, "YES")
+  field(FLNK, "$(DEVICE):MGField2PCurr")
+  field(VAL, "0")
+  field(EGU, "T")
+#field(DRVH, "1.38")
+#field(DRVL, "-1.38")
+  field(DRVH, "$(PDRVH)")
+  field(DRVL, "$(PDRVL)")
+}
+
+record(ao, "$(DEVICE):MGFieldN") {
+  field(PINI, "YES")
+  field(FLNK, "$(DEVICE):MGField2NCurr")
+  field(VAL, "0")
+  field(EGU, "T")
+#field(DRVH, "1.38")
+#field(DRVL, "-1.38")
+  field(DRVH, "$(NDRVH)")
+  field(DRVL, "$(NDRVL)")
+}

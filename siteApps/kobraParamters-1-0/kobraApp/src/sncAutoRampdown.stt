@@ -1,0 +1,93 @@
+program sncAutoRampdown
+option +r;
+//option -c;
+
+%% #include <epicsThread.h>
+
+double hiset;
+assign hiset to "{DEVICE}:FinVal";
+monitor hiset;
+
+double loset;
+assign loset to "{DEVICE}:InitVal";
+monitor loset;
+
+double increment;
+assign increment to "{DEVICE}:StepInc";
+monitor increment;
+
+/*
+* Target PV for auto scannig.
+* Gauss, Current or Voltage
+*/
+double rampup;
+assign rampup to "{TARGET}";
+monitor rampup;
+
+int scan;
+assign scan to "{DEVICE}:RampUpMod";
+monitor scan;
+
+double dly;
+assign dly to "{DEVICE}:StepDly";
+monitor dly;
+
+double calcFieldCurr;
+assign calcFieldCurr to "{DEVICE}:FieldCurr";
+monitor calcFieldCurr;
+
+evflag	evFieldCurr;
+sync	calcFieldCurr evFieldCurr;
+
+
+ss autoRampup 
+{
+	state init{
+		when(TRUE){
+			scan = 0;
+			pvPut(scan, SYNC);
+			printf("Going Scan Stoped\n");
+		}state stopRampup
+	}
+
+	state stopRampup
+	{
+		/*when(scan==1 && rampup <= hiset && rampup >= loset)*/
+		when(scan==1)
+		{
+			rampup = loset;
+			printf("Going Ramp-Up...\n");
+			pvPut(rampup, SYNC);
+
+		}state targetRampup
+	}
+
+	state targetRampup
+	{
+		when(scan==0 || rampup <= hiset || rampup > loset)
+		{
+			scan = 0;
+			pvPut(scan, SYNC);
+			printf("Stoped Rampup\n");
+		}state stopRampup
+
+		when(delay(dly) && scan==1 && rampup >= hiset && rampup <= loset)
+		{
+			rampup += increment;
+			pvPut(rampup, SYNC);
+		}state targetRampup
+	}
+}
+
+ss ssFieldCurr2SetCurrent 
+{
+	state syncFieldCurrent
+	{
+		when(efTestAndClear(evFieldCurr) && scan==0)
+		{
+			rampup = calcFieldCurr;
+			pvPut(rampup, SYNC);
+		}state syncFieldCurrent
+	}
+
+}
