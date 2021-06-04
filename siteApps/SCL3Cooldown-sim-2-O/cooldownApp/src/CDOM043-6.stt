@@ -3,21 +3,49 @@ option +r;
 
 %% #include <math.h>
 
-int om0436LogicProc[1];
+int om0436LogicProc[44];
 assign om0436LogicProc to {
-":CDLogic.PROC"
+"P2DT-CDL04:VBx01-CV7301:CDLogic.PROC",  "SCL32-CDL03:VBx19-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx18-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx17-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx16-CV7301:CDLogic.PROC",
+"SCL32-CDL03:VBx15-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx14-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx13-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx12-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx11-CV7301:CDLogic.PROC",
+"SCL32-CDL03:VBx10-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx09-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx08-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx07-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx06-CV7301:CDLogic.PROC",
+"SCL32-CDL03:VBx05-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx04-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx03-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx02-CV7301:CDLogic.PROC", "SCL32-CDL03:VBx01-CV7301:CDLogic.PROC",
+"SCL32-CDL02:VBx13-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx12-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx11-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx10-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx09-CV7301:CDLogic.PROC",
+"SCL32-CDL02:VBx08-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx07-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx06-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx05-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx04-CV7301:CDLogic.PROC",
+"SCL32-CDL02:VBx03-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx02-CV7301:CDLogic.PROC", "SCL32-CDL02:VBx01-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx22-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx20-CV7301:CDLogic.PROC",
+"SCL31-CDL01:VBx18-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx16-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx14-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx12-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx10-CV7301:CDLogic.PROC",
+"SCL31-CDL01:VBx08-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx06-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx04-CV7301:CDLogic.PROC", "SCL31-CDL01:VBx02-CV7301:CDLogic.PROC"
 };
 monitor om0436LogicProc;
 
-float valveVal[1];
-assign valveVal to {
-":Valve"
+int vlpLogicProc[2];
+assign vlpLogicProc to {
+"Cryo-CDL00:TBx01-CV7201:CDLogic.PROC", "Cryo-CDL00:TBx01-XV7201:CDLogic.PROC"
 };
+monitor vlpLogicProc;
 
+float valveVal[44];
+assign valveVal to {
+"P2DT-CDL04:VBx01-CV7301:Valve",  "SCL32-CDL03:VBx19-CV7301:Valve", "SCL32-CDL03:VBx18-CV7301:Valve", "SCL32-CDL03:VBx17-CV7301:Valve", "SCL32-CDL03:VBx16-CV7301:Valve",
+"SCL32-CDL03:VBx15-CV7301:Valve", "SCL32-CDL03:VBx14-CV7301:Valve", "SCL32-CDL03:VBx13-CV7301:Valve", "SCL32-CDL03:VBx12-CV7301:Valve", "SCL32-CDL03:VBx11-CV7301:Valve",
+"SCL32-CDL03:VBx10-CV7301:Valve", "SCL32-CDL03:VBx09-CV7301:Valve", "SCL32-CDL03:VBx08-CV7301:Valve", "SCL32-CDL03:VBx07-CV7301:Valve", "SCL32-CDL03:VBx06-CV7301:Valve",
+"SCL32-CDL03:VBx05-CV7301:Valve", "SCL32-CDL03:VBx04-CV7301:Valve", "SCL32-CDL03:VBx03-CV7301:Valve", "SCL32-CDL03:VBx02-CV7301:Valve", "SCL32-CDL03:VBx01-CV7301:Valve",
+"SCL32-CDL02:VBx13-CV7301:Valve", "SCL32-CDL02:VBx12-CV7301:Valve", "SCL32-CDL02:VBx11-CV7301:Valve", "SCL32-CDL02:VBx10-CV7301:Valve", "SCL32-CDL02:VBx09-CV7301:Valve",
+"SCL32-CDL02:VBx08-CV7301:Valve", "SCL32-CDL02:VBx07-CV7301:Valve", "SCL32-CDL02:VBx06-CV7301:Valve", "SCL32-CDL02:VBx05-CV7301:Valve", "SCL32-CDL02:VBx04-CV7301:Valve",
+"SCL32-CDL02:VBx03-CV7301:Valve", "SCL32-CDL02:VBx02-CV7301:Valve", "SCL32-CDL02:VBx01-CV7301:Valve", "SCL31-CDL01:VBx22-CV7301:Valve", "SCL31-CDL01:VBx20-CV7301:Valve",
+"SCL31-CDL01:VBx18-CV7301:Valve", "SCL31-CDL01:VBx16-CV7301:Valve", "SCL31-CDL01:VBx14-CV7301:Valve", "SCL31-CDL01:VBx12-CV7301:Valve", "SCL31-CDL01:VBx10-CV7301:Valve",
+"SCL31-CDL01:VBx08-CV7301:Valve", "SCL31-CDL01:VBx06-CV7301:Valve", "SCL31-CDL01:VBx04-CV7301:Valve", "SCL31-CDL01:VBx02-CV7301:Valve"
+};
 monitor valveVal;
 
 evflag  evFanout;
 sync	valveVal	evFanout;
+
+
+float vlpvalveVal[2];
+assign vlpvalveVal to {
+"Cryo-CDL00:TBx01-CV7201:Valve", "Cryo-CDL00:TBx01-XV7201:Valve"
+};
+monitor vlpvalveVal;
 
 int index = 0;
 assign index to "SCL3:CD-OM0436:IndexPV";
@@ -33,55 +61,106 @@ float cdDelay;
 assign cdDelay to "SCL3:CD-OM0436:ScanTime";
 monitor cdDelay;
 
-float	valvewave[1];
+float	valvewave[44];
 assign	valvewave to "SCL3:CD-OM0436:ValveWave";
 monitor valvewave;
 
+evflag	efNext;
 
 ss ssCDOM0436
 {
+	state init
+	{
+		when(TRUE)
+		{
+			index = 1;
+			pvPut(index, SYNC);
+			cdDelay = 10.0;
+			pvPut(cdDelay, SYNC);
+		}state CDOM0436
+	}
+
 	state CDOM0436
 	{
 		when(delay(cdDelay)) 
 		{
-			if(index == 0  || index == 1  || index == 8  || index == 10 ||
-			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
-			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
-			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
-			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
-			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
-			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
-			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
-			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
-			   index == 102|| index == 105)
-			{
-				if(om0436Val == 1) {
-					om0436Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om0436Val = valveVal[index];
-				};
-			}
-			else
-			{
-				if(om0436Val == 100) {
-					om0436Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om0436Val = valveVal[index];
-				};
+			int idx = 0;
+			float value = 0.0;
+			int count = 0;
+			int until = 0;
+
+			idx = (index*5)-5;
+
+			if(index == 9) {
+				until = idx+4;
+			} else {
+				until = idx+5;
 			};
 
-
-			pvPut(om0436Val, SYNC);
-			if(index < 107)
+			for(; idx < until;idx++)
 			{
-				om0436LogicProc[index] = proc;
-				pvPut(om0436LogicProc[index], SYNC);
+				om0436LogicProc[idx] = proc;
+				pvPut(om0436LogicProc[idx], SYNC);
+				value = valveVal[idx];
+				if((int)value == 0) count++;
 			};
+
+			if(index == 9) {
+				if(count == 4) efSet(efNext);
+			} else {
+				if(count == 5) efSet(efNext);
+			};
+
 		}state CDOM0436
+
+		when(efTestAndClear(efNext) && index < 10)
+		{
+			index++;
+			pvPut(index, SYNC);
+		}state CDOM0436
+
+		when(efTestAndClear(efNext) && index >= 10)
+		{
+		}state VLPClose
+
+	}
+
+	state VLPClose
+	{
+		float xv7201 = 0.0;
+		float value = 0.0;
+		when(delay(cdDelay)) 
+		{
+			vlpLogicProc[0] = proc;
+			pvPut(vlpLogicProc[0], SYNC);
+
+			value = vlpvalveVal[0];
+
+			if((int)value == 0)
+			{
+				vlpLogicProc[1] = proc;
+				pvPut(vlpLogicProc[1], SYNC);
+
+				xv7201 = vlpvalveVal[1];
+				if((int)xv7201 == 0) efSet(efNext);
+			};
+		} state VLPClose
+
+		when(efTestAndClear(efNext))
+		{
+
+		}state PhaseEndCond
+
+	}
+
+	//PhaseEndCond 
+	state PhaseEndCond
+	{
+		when(delay(cdDelay)) 
+		{
+
+		} state PhaseEndCond
+
 	}
 	
 }
@@ -101,7 +180,7 @@ ss ssOM0436ValveWave
 		when(efTestAndClear(evFanout)) 
 		{
 			int idx = 0;
-			%%for(idx = 0; idx < 107;idx++)
+			for(idx = 0; idx < 44;idx++)
 				valvewave[idx] = valveVal[idx];
 
 			pvPut(valvewave, SYNC);

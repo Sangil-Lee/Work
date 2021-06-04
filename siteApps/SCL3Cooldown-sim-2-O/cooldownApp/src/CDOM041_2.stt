@@ -3,15 +3,15 @@ option +r;
 
 %% #include <math.h>
 
-int om041_2LogicProc[1];
+int om041_2LogicProc[2];
 assign om041_2LogicProc to {
-":CDLogic.PROC"
+"SCL31-CDL01:EBx01-CV7501:CDLogic.PROC", "SCL31-CDL01:EBx01-CV7402:CDLogic.PROC"
 };
 monitor om041_2LogicProc;
 
-float valveVal[1];
+float valveVal[2];
 assign valveVal to {
-":Valve"
+"SCL31-CDL01:EBx01-CV7501:Valve", "SCL31-CDL01:EBx01-CV7402:Valve"
 };
 
 monitor valveVal;
@@ -33,7 +33,7 @@ float cdDelay;
 assign cdDelay to "SCL3:CD-OM041_2:ScanTime";
 monitor cdDelay;
 
-float	valvewave[1];
+float	valvewave[2];
 assign	valvewave to "SCL3:CD-OM041_2:ValveWave";
 monitor valvewave;
 
@@ -44,18 +44,9 @@ ss ssCDOM041_2
 	{
 		when(delay(cdDelay)) 
 		{
-			if(index == 0  || index == 1  || index == 8  || index == 10 ||
-			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
-			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
-			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
-			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
-			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
-			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
-			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
-			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
-			   index == 102|| index == 105)
+			if(index == 0)
 			{
-				if(om041_2Val == 1) {
+				if(om041_2Val == 20) {
 					om041_2Val = 0;
 					index++;
 					pvPut(index, SYNC);
@@ -74,9 +65,8 @@ ss ssCDOM041_2
 				};
 			};
 
-
 			pvPut(om041_2Val, SYNC);
-			if(index < 107)
+			if(index < 2)
 			{
 				om041_2LogicProc[index] = proc;
 				pvPut(om041_2LogicProc[index], SYNC);
@@ -101,7 +91,7 @@ ss ssOM041_2ValveWave
 		when(efTestAndClear(evFanout)) 
 		{
 			int idx = 0;
-			%%for(idx = 0; idx < 107;idx++)
+			%%for(idx = 0; idx < 2;idx++)
 				valvewave[idx] = valveVal[idx];
 
 			pvPut(valvewave, SYNC);
