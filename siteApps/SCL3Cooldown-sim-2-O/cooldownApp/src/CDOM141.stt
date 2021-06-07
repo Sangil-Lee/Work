@@ -369,6 +369,10 @@ monitor valveVal;
 evflag  evFanout;
 sync	valveVal	evFanout;
 
+int cycle = 0;
+assign cycle to "SCL3:CD-OM1415:Cycle";
+monitor cycle;
+
 int index = 0;
 assign index to "SCL3:CD-OM141:IndexPV";
 monitor index;
@@ -388,55 +392,183 @@ assign	valvewave to "SCL3:CD-OM141:ValveWave";
 monitor valvewave;
 
 
-ss ssCDOM141
+ss ssCDOM14
 {
+	//XV7301/XV7201 Regulation
 	state CDOM141
 	{
 		when(delay(cdDelay)) 
 		{
-			if(index == 0  || index == 1  || index == 8  || index == 10 ||
-			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
-			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
-			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
-			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
-			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
-			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
-			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
-			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
-			   index == 102|| index == 105)
-			{
-				if(om141Val == 1) {
-					om141Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om141Val = valveVal[index];
-				};
-			}
-			else
-			{
-				if(om141Val == 100) {
-					om141Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om141Val = valveVal[index];
-				};
-			};
-
-
-			pvPut(om141Val, SYNC);
-			if(index < 107)
-			{
-				om141LogicProc[index] = proc;
-				pvPut(om141LogicProc[index], SYNC);
-			};
 		}state CDOM141
 	}
-	
+
+	//CV7401 Regulation
+	state CDOM142
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM142
+	}
+
+	//CV8401 Regulation
+	state CDOM143
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM143
+	}
+
+	//CV8402 5% Regulation
+	state CDOM144
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM144
+	}
+
+	//CV7401 100% Regulation
+	state CDOM145
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM145
+	}
+
+	//QWR CV8402 5% Regulation
+	state CDOM146
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM146
+	}
+
+	//HWR/P2DT CV8403 Regulation
+	state CDOM147
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM147
+	}
+
+	//QWR Phase End, 4.2K Reservior LT8401:Level >= 50%
+	state CDOM148
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM148
+	}
+
+	//HWR/P2DT Phase End, 2K Reservior LT8201:Level >= 50%
+	state CDOM149
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM149
+	}
 }
 
-ss ssOM141ValveWave
+ss ssCDOM15
+{
+	//QWR, CM01/CM02-CV8402(-5%) / CM01/CM02-CV8401(+5%) Regulation
+	state CDOM151
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM151
+	}
+
+	//QWR, CDL01:VBxxx-CV7301(+1%, to 5%) Regulation
+	state CDOM152
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM152
+	}
+
+	//QWR, CDL01:VBxxx-XV7301(100 -> 0%),  CV7301(5% -> 50%) Regulation
+	state CDOM153
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM153
+	}
+
+	//QWR,CV8401(100 -> 0%), LT8401 >= 70 % +- 5%
+	state CDOM154
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM154
+	}
+
+	//QWR,CV7301(Auto Regulate), 4.5K Reservior Pressure > 1.3bara
+	state CDOM155
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM155
+	}
+
+	//QWR,Phase End
+	state CDOM156
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM156
+	}
+
+	//HWR/P2DT,
+	state CDOM157
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM157
+	}
+
+	//HWR/P2DT,
+	state CDOM158
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM158
+	}
+
+	//HWR/P2DT,
+	state CDOM159
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM159
+	}
+
+	//HWR/P2DT,
+	state CDOM1510
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM1510
+	}
+
+	//HWR/P2DT,
+	state CDOM1511
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM1511
+	}
+
+	//HWR,	Phase End
+	state CDOM1512
+	{
+		when(delay(cdDelay)) 
+		{
+		}state CDOM1512
+	}
+
+
+}
+
+ss ssOM14ValveWave
 {
 	state init
 	{
