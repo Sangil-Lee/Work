@@ -40,8 +40,8 @@ valveEval_SRCS_vxWorks += -nil-
 #valveEval_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
     valveEval_SNCFLAGS += +r
-    #valveEval_DBD  += CDOperationSeq.dbd
-    #valveEval_SRCS += CDOperationSeq.stt
+    valveEval_DBD  += CDOM031.dbd
+    valveEval_SRCS += CDOM031.stt
     valveEval_LIBS += seq pv
 endif
 
