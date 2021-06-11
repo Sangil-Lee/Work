@@ -32,11 +32,11 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/TempEval.vdb")
 
 ##Tested##
-#dbLoadRecords("db/OM031AdditionalPV.vdb")
-#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+dbLoadRecords("db/OM031AdditionalPV.vdb")
+dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 
 ##Should be Tested##
-dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step2.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step4.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step5.sub", "SYS=SCL31, SUBSYS=-CDL01:")
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step6_1.sub", "SYS=SCL31, SUBSYS=-CDL01:")

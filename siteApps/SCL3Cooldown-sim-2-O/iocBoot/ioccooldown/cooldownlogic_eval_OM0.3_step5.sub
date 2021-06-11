@@ -15,6 +15,6 @@ file "db/cd_ai.template" { pattern
 
 file "db/calcout_ao.template" { pattern
 {SYS,	 SUBSYS,     DEV,	   SUBDEV,		CALC,						                      INPB,									INPC,							     INPD,                                 INPG,   INPH,   INPI,   INPJ }
-{Cryo,   -CDL00:,    TBx01,    -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "SCL32-CDL02:VBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",     0.01,   1,      5,      100  }  #1TBx
-{SCL32,  -CDL02:,    VBx01,	   -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "Cryo-CDL00:TBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",	   0.01,   1,      5,      100  }  #1HWRA
+{Cryo,   -CDL00:,    TBx01,    -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "SCL32-CDL02:VBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",     0.01,   1,      5,      100    }  #1TBx
+{SCL32,  -CDL02:,    VBx01,	   -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "Cryo-CDL00:TBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",	   0.01,   1,      5,      100   }  #1HWRA
 }
