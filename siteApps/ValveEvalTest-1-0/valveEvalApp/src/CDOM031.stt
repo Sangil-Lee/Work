@@ -109,6 +109,10 @@ assign  valveval to "";
 
 evflag	efNext;
 
+evflag	efCDOM031_1;
+evflag	efCDOM031_5;
+evflag	efCDOM031_100;
+
 ss ssCDOM031
 {
 	state init
@@ -116,12 +120,13 @@ ss ssCDOM031
 		when(TRUE)
 		{
 			//efSet(efNext);
+			efSet(efCDOM031_1);
 		}state CDOM031_Init
 	}
 	state CDOM031_Init
 	{
 		//when(delay(cdDelay)&&efTest(efNext))
-		when(delay(cdDelay))
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100))
 		{
 			sprintf(logicname, "%s:CDLogic.PROC", valveName[index]);
 			printf("%s\n", logicname);
@@ -134,19 +139,49 @@ ss ssCDOM031
 			pvAssign(proc, logicname);
 			pvMonitor(proc);
 
-		}state CDOM031_Proc
+		}state CDOM031_Proc_100
+
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_1))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", valveName[index]);
+			printf("%s\n", logicname);
+			sprintf(valvename, "%s:Valve", valveName[index]);
+			printf("%s\n", valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+		}state CDOM031_Proc_1
+
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_5))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", valveName[index]);
+			printf("%s\n", logicname);
+			sprintf(valvename, "%s:Valve", valveName[index]);
+			printf("%s\n", valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+		}state CDOM031_Proc_5
 	}
 
-	state CDOM031_Proc
+	state CDOM031_Proc_100
 	{
 		when(delay(cdDelay) && valveval < 100)
 		{
-			printf("CDOM031_Proc\n");
+			printf("CDOM031_Proc_100\n");
 			proc = 1;
 			pvPut(proc, SYNC);
-		}state CDOM031_Proc
+		}state CDOM031_Proc_100
 
-		when(delay(cdDelay)&& valveval == 100)
+		when(delay(cdDelay) && valveval == 100 && index != 6)
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -155,6 +190,75 @@ ss ssCDOM031
 
 			index++;
 			pvPut(index, SYNC);
+
+
+			if(strstr(valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+		}state CDOM031_Init
+	}
+
+	state CDOM031_Proc_1
+	{
+		when(delay(cdDelay) && valveval < 1)
+		{
+			printf("CDOM031_Proc_1\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CDOM031_Proc_1
+
+		when(delay(cdDelay)&& valveval == 1)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			if(strstr(valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+
+		}state CDOM031_Init
+	}
+
+	state CDOM031_Proc_5
+	{
+		when(delay(cdDelay) && valveval < 5)
+		{
+			printf("CDOM031_Proc_5\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CDOM031_Proc_5
+
+		when(delay(cdDelay)&& valveval == 5)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			if(strstr(valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+
 		}state CDOM031_Init
 	}
 	
