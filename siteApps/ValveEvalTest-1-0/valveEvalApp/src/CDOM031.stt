@@ -3,45 +3,7 @@ option +r;
 
 %% #include <math.h>
 
-//char om03logicProc[107][60] = {
-//"Cryo-CDL00:TBx01-XV7502:CDLogic.PROC", "Cryo-CDL00:TBx01-XV7501:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7505:CDLogic.PROC", 
-//"Cryo-CDL00:TBx01-CV7502:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7503:CDLogic.PROC", "Cryo-CDL00:TBx01-CV7501:CDLogic.PROC", 
-//"SCL31-CDL01:EBx01-CV7501:CDLogic.PROC", "P2DT-CDL04:VBx01-CV7501:CDLogic.PROC", "P2DT-CDL04:VBx01-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx19-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx19-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx18-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx18-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx17-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx17-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx16-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx16-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx15-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx15-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx14-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx14-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx13-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx13-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx12-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx12-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx11-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx11-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx10-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx10-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx09-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx09-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx08-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx08-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx07-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx07-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx06-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx06-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx05-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx05-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx04-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx04-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx03-CV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx03-XV7501:CDLogic.PROC", "SCL32-CDL03:VBx02-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx02-XV7501:CDLogic.PROC",
-//"SCL32-CDL03:VBx01-CV7501:CDLogic.PROC", "SCL32-CDL03:VBx01-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx13-CV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx13-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx12-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx12-XV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx11-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx11-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx10-CV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx10-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx09-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx09-XV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx08-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx08-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx07-CV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx07-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx06-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx06-XV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx05-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx05-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx04-CV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx04-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx03-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx03-XV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx02-CV7501:CDLogic.PROC", "SCL32-CDL02:VBx02-XV7501:CDLogic.PROC", "SCL32-CDL02:VBx01-CV7501:CDLogic.PROC",
-//"SCL32-CDL02:VBx01-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx22-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx22-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx22-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx20-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx20-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx20-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx18-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx18-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx18-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx16-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx16-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx16-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx14-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx14-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx14-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx12-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx12-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx12-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx10-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx10-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx10-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx08-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx08-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx08-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx06-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx06-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx06-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx04-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx04-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx04-XV7501:CDLogic.PROC", "SCL31-CDL01:VBx02-CV7501:CDLogic.PROC", "SCL31-CDL01:VBx02-CV7502:CDLogic.PROC",
-//"SCL31-CDL01:VBx02-XV7501:CDLogic.PROC", "SCL31-CDL01:EBx01-CV7502:CDLogic.PROC"
-//};
-
+int stopindex = 107;
 char valveName[107][60] = {
 "Cryo-CDL00:TBx01-XV7502", "Cryo-CDL00:TBx01-XV7501", "Cryo-CDL00:TBx01-CV7505", 
 "Cryo-CDL00:TBx01-CV7502", "Cryo-CDL00:TBx01-CV7503", "Cryo-CDL00:TBx01-CV7501", 
@@ -81,6 +43,16 @@ char valveName[107][60] = {
 "SCL31-CDL01:VBx02-XV7501", "SCL31-CDL01:EBx01-CV7502"
 };
 
+string steppv;
+assign steppv to "SCL3:CD-OM031:StepPV";
+monitor steppv;
+
+int start = 0;
+assign start to "SCL3:CD-OM031:Start";
+monitor start;
+evflag	efStop;
+sync start efStop;
+
 int index = 0;
 assign index to "SCL3:CD-OM031:IndexPV";
 monitor index;
@@ -115,17 +87,18 @@ evflag	efCDOM031_100;
 
 ss ssCDOM031
 {
-	state init
+	state stopCDOM131
 	{
-		when(TRUE)
+		when(efTestAndClear(efStop) && start == 1)
 		{
-			//efSet(efNext);
+			index = 0;
+			pvPut(index, SYNC);
 			efSet(efCDOM031_1);
 		}state CDOM031_Init
 	}
+
 	state CDOM031_Init
 	{
-		//when(delay(cdDelay)&&efTest(efNext))
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100))
 		{
 			sprintf(logicname, "%s:CDLogic.PROC", valveName[index]);
@@ -133,11 +106,17 @@ ss ssCDOM031
 			sprintf(valvename, "%s:Valve", valveName[index]);
 			printf("%s\n", valvename);
 
-			pvAssign(valveval, valvename);
-			pvMonitor(valveval);
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
 
-			pvAssign(proc, logicname);
-			pvMonitor(proc);
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
 
 		}state CDOM031_Proc_100
 
@@ -148,11 +127,17 @@ ss ssCDOM031
 			sprintf(valvename, "%s:Valve", valveName[index]);
 			printf("%s\n", valvename);
 
-			pvAssign(valveval, valvename);
-			pvMonitor(valveval);
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
 
-			pvAssign(proc, logicname);
-			pvMonitor(proc);
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
 
 		}state CDOM031_Proc_1
 
@@ -163,25 +148,30 @@ ss ssCDOM031
 			sprintf(valvename, "%s:Valve", valveName[index]);
 			printf("%s\n", valvename);
 
-			pvAssign(valveval, valvename);
-			pvMonitor(valveval);
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
 
-			pvAssign(proc, logicname);
-			pvMonitor(proc);
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
 
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
 		}state CDOM031_Proc_5
 	}
 
 	state CDOM031_Proc_100
 	{
-		when(delay(cdDelay) && valveval < 100)
+		when(delay(cdDelay) && valveval < 100 && index < stopindex)
 		{
 			printf("CDOM031_Proc_100\n");
 			proc = 1;
 			pvPut(proc, SYNC);
 		}state CDOM031_Proc_100
 
-		when(delay(cdDelay) && valveval == 100 && index != 6)
+		when(delay(cdDelay) && valveval == 100 && index != 6 && index < stopindex)
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -200,18 +190,29 @@ ss ssCDOM031
 				efSet(efCDOM031_100);
 			};
 		}state CDOM031_Init
+
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "CDOM031 Completed");
+			pvPut(steppv, SYNC);
+
+			efSet(efStop);
+			start = 0;
+			pvPut(start, SYNC);
+
+		}state stopCDOM131
 	}
 
 	state CDOM031_Proc_1
 	{
-		when(delay(cdDelay) && valveval < 1)
+		when(delay(cdDelay) && valveval < 1 && index < stopindex)
 		{
 			printf("CDOM031_Proc_1\n");
 			proc = 1;
 			pvPut(proc, SYNC);
 		}state CDOM031_Proc_1
 
-		when(delay(cdDelay)&& valveval == 1)
+		when(delay(cdDelay)&& valveval == 1 && index < stopindex)
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -230,18 +231,29 @@ ss ssCDOM031
 			};
 
 		}state CDOM031_Init
+
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "CDOM031 Completed");
+			pvPut(steppv, SYNC);
+
+			efSet(efStop);
+			start = 0;
+			pvPut(start, SYNC);
+
+		}state stopCDOM131
 	}
 
 	state CDOM031_Proc_5
 	{
-		when(delay(cdDelay) && valveval < 5)
+		when(delay(cdDelay) && valveval < 5 && index < stopindex)
 		{
 			printf("CDOM031_Proc_5\n");
 			proc = 1;
 			pvPut(proc, SYNC);
 		}state CDOM031_Proc_5
 
-		when(delay(cdDelay)&& valveval == 5)
+		when(delay(cdDelay) && valveval == 5 && index < stopindex)
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -260,6 +272,17 @@ ss ssCDOM031
 			};
 
 		}state CDOM031_Init
+
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "CDOM031 Completed");
+			pvPut(steppv, SYNC);
+
+			pvPut(start, SYNC);
+			efSet(efStop);
+			start = 0;
+
+		}state stopCDOM131
 	}
 	
 }
