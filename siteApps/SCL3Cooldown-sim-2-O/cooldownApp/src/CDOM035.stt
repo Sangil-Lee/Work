@@ -3,15 +3,15 @@ option +r;
 
 %% #include <math.h>
 
-int om035LogicProc[1];
+int om035LogicProc[2];
 assign om035LogicProc to {
-":CDLogic.PROC"
+"Cryo-CDL00:TBx01-CV7302:CDLogic.PROC", "SCL32-CDL02:VBx01-CV7302:CDLogic.PROC"
 };
 monitor om035LogicProc;
 
-float valveVal[1];
+float valveVal[2];
 assign valveVal to {
-":Valve"
+"Cryo-CDL00:TBx01-CV7302:Valve", "SCL32-CDL02:VBx01-CV7302:Valve"
 };
 
 monitor valveVal;
@@ -44,42 +44,11 @@ ss ssCDOM035
 	{
 		when(delay(cdDelay)) 
 		{
-			if(index == 0  || index == 1  || index == 8  || index == 10 ||
-			   index == 12 || index == 14 || index == 16 || index == 18 || index == 20 || 
-			   index == 22 || index == 24 || index == 26 || index == 28 || index == 30 || 
-			   index == 32 || index == 34 || index == 36 || index == 38 || index == 40 || 
-			   index == 42 || index == 44 || index == 46 || index == 48 || index == 50 || 
-			   index == 52 || index == 54 || index == 56 || index == 58 || index == 60 || 
-			   index == 62 || index == 64 || index == 66 || index == 68 || index == 70 || 
-			   index == 72 || index == 75 || index == 78 || index == 81 || index == 84 || 
-			   index == 87 || index == 90 || index == 93 || index == 96 || index == 99 || 
-			   index == 102|| index == 105)
+			int idx = 0;
+			for(idx = 0; idx < 2; idx++)
 			{
-				if(om035Val == 1) {
-					om035Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om035Val = valveVal[index];
-				};
-			}
-			else
-			{
-				if(om035Val == 100) {
-					om035Val = 0;
-					index++;
-					pvPut(index, SYNC);
-				} else {
-					om035Val = valveVal[index];
-				};
-			};
-
-
-			pvPut(om035Val, SYNC);
-			if(index < 107)
-			{
-				om035LogicProc[index] = proc;
-				pvPut(om035LogicProc[index], SYNC);
+				om035LogicProc[idx] = proc;
+				pvPut(om035LogicProc[idx], SYNC);
 			};
 		}state CDOM035
 	}
@@ -101,7 +70,7 @@ ss ssOM035ValveWave
 		when(efTestAndClear(evFanout)) 
 		{
 			int idx = 0;
-			%%for(idx = 0; idx < 107;idx++)
+			for(idx = 0; idx < 2;idx++)
 				valvewave[idx] = valveVal[idx];
 
 			pvPut(valvewave, SYNC);
