@@ -1,0 +1,332 @@
+program CDOM1Cycle
+option +r;
+
+%% #include <math.h>
+
+//QWR Cycle(0<Cycle<12), HWR Cycle( 12=<Cycle<44), P2DT(Cycle == 44)
+//QWR Cycle(OM1.4), 77
+//Cycle to 11, Index to 7
+//int XV7401_7201[11][7];
+char xv7401_7201[44][60];
+assign xv7401_7201 to {
+//QWR1(Cycle1)																																																																										
+"SCL31-CDL01:VBx02-XV7301",
+//QWR2(Cycle2)			 ",
+"SCL31-CDL01:VBx04-XV7301",
+//QWR3(Cycle3)			 ",
+"SCL31-CDL01:VBx06-XV7301",
+//QWR4(Cycle4)			 ",
+"SCL31-CDL01:VBx08-XV7301",
+//QWR5(Cycle5)			 ",
+"SCL31-CDL01:VBx10-XV7301",
+//QWR6(Cycle6)			 ",
+"SCL31-CDL01:VBx12-XV7301",
+//QWR7(Cycle7)			 ",
+"SCL31-CDL01:VBx14-XV7301",
+//QWR8(Cycle8)			 ",
+"SCL31-CDL01:VBx16-XV7301",
+//QWR9(Cycle9)			 ",
+"SCL31-CDL01:VBx18-XV7301",
+//QWR10(Cycle10)		 ",
+"SCL31-CDL01:VBx20-XV7301",
+//QWR11(Cycle11)		 ",
+"SCL31-CDL01:VBx22-XV7301",
+//HWRA1(Cycle 12)		 ",
+"SCL32-CDL02:VBx01-XV7201",
+//HWRA2(Cycle 13)		 ",
+"SCL32-CDL02:VBx02-XV7201",
+//HWRA3(Cycle 14)		 ",
+"SCL32-CDL02:VBx03-XV7201",
+//HWRA4(Cycle 15)		 ",
+"SCL32-CDL02:VBx04-XV7201",
+//HWRA5(Cycle 16)		 ",
+"SCL32-CDL02:VBx05-XV7201",
+//HWRA6(Cycle 17)		 ",
+"SCL32-CDL02:VBx06-XV7201",
+//HWRA7(Cycle 18)		 ",
+"SCL32-CDL02:VBx07-XV7201",
+//HWRA8(Cycle 19)		 ",
+"SCL32-CDL02:VBx08-XV7201",
+//HWRA9(Cycle 20)		 ",
+"SCL32-CDL02:VBx09-XV7201",
+//HWRA10(Cycle 21)		 ",
+"SCL32-CDL02:VBx10-XV7201",
+//HWRA11(Cycle 22)		 ",
+"SCL32-CDL02:VBx11-XV7201",
+//HWRA12(Cycle 23)		 ",
+"SCL32-CDL02:VBx12-XV7201",
+//HWRA13(Cycle 24)		 ",
+"SCL32-CDL02:VBx13-XV7201",
+//HWRB1(Cycle 25)		 ",
+"SCL32-CDL03:VBx01-XV7201",
+//HWRB2(Cycle 26)		 ",
+"SCL32-CDL03:VBx02-XV7201",
+//HWRB3(Cycle 27)		 ",
+"SCL32-CDL03:VBx03-XV7201",
+//HWRB4(Cycle 28)		 ",
+"SCL32-CDL03:VBx04-XV7201",
+//HWRB5(Cycle 29)		 ",
+"SCL32-CDL03:VBx05-XV7201",
+//HWRB6(Cycle 30)		 ",
+"SCL32-CDL03:VBx06-XV7201",
+//HWRB7(Cycle 31)		 ",
+"SCL32-CDL03:VBx07-XV7201",
+//HWRB8(Cycle 32)		 ",
+"SCL32-CDL03:VBx08-XV7201",
+//HWRB9(Cycle 33)		 ",
+"SCL32-CDL03:VBx09-XV7201",
+//HWRB10(Cycle 34)		 ",
+"SCL32-CDL03:VBx10-XV7201",
+//HWRB11(Cycle 35)		 ",
+"SCL32-CDL03:VBx11-XV7201",
+//HWRB12(Cycle 36)		 ",
+"SCL32-CDL03:VBx12-XV7201",
+//HWRB13(Cycle 37)		 ",
+"SCL32-CDL03:VBx13-XV7201",
+//HWRB14(Cycle 38)		 ",
+"SCL32-CDL03:VBx14-XV7201",
+//HWRB15(Cycle 39)		 ",
+"SCL32-CDL03:VBx15-XV7201",
+//HWRB16(Cycle 40)		 ",
+"SCL32-CDL03:VBx16-XV7201",
+//HWRB17(Cycle 41)		 ",
+"SCL32-CDL03:VBx17-XV7201",
+//HWRB18(Cycle 42)		 ",
+"SCL32-CDL03:VBx18-XV7201",
+//HWRB19(Cycle 43)		 ",
+"SCL32-CDL03:VBx19-XV7201",
+//P2DT(Cycle 44)																																																																										
+"P2DT-CDL04:VBx01-XV7201"
+};
+
+
+//HWR/P2DT Cycle(OM1.4), 33*6=198
+//Cycle to 33, Index to 6
+//int CV7401[33][6];
+char cv7401[44][60];
+assign cv7401 to {
+//QWR1(Cycle1)																																																																										
+"SCL31-CDL01:VBx02-CV7401",
+//QWR2(Cycle2)			   
+"SCL31-CDL01:VBx04-CV7401",
+//QWR3(Cycle3)			   
+"SCL31-CDL01:VBx06-CV7401",
+//QWR4(Cycle4)			   
+"SCL31-CDL01:VBx08-CV7401",
+//QWR5(Cycle5)			   
+"SCL31-CDL01:VBx10-CV7401",
+//QWR6(Cycle6)			   
+"SCL31-CDL01:VBx12-CV7401",
+//QWR7(Cycle7)			   
+"SCL31-CDL01:VBx14-CV7401",
+//QWR8(Cycle8)			   
+"SCL31-CDL01:VBx16-CV7401",
+//QWR9(Cycle9)			   
+"SCL31-CDL01:VBx18-CV7401",
+//QWR10(Cycle10)		   
+"SCL31-CDL01:VBx20-CV7401",
+//QWR11(Cycle11)		   
+"SCL31-CDL01:VBx22-CV7401",
+//HWRA1(Cycle 12)		   
+"SCL32-CDL02:VBx01-CV7401",
+//HWRA2(Cycle 13)		   
+"SCL32-CDL02:VBx02-CV7401",
+//HWRA3(Cycle 14)		   
+"SCL32-CDL02:VBx03-CV7401",
+//HWRA4(Cycle 15)		   
+"SCL32-CDL02:VBx04-CV7401",
+//HWRA5(Cycle 16)		   
+"SCL32-CDL02:VBx05-CV7401",
+//HWRA6(Cycle 17)		   
+"SCL32-CDL02:VBx06-CV7401",
+//HWRA7(Cycle 18)		   
+"SCL32-CDL02:VBx07-CV7401",
+//HWRA8(Cycle 19)		   
+"SCL32-CDL02:VBx08-CV7401",
+//HWRA9(Cycle 20)		   
+"SCL32-CDL02:VBx09-CV7401",
+//HWRA10(Cycle 21)		   
+"SCL32-CDL02:VBx10-CV7401",
+//HWRA11(Cycle 22)		   
+"SCL32-CDL02:VBx11-CV7401",
+//HWRA12(Cycle 23)		   
+"SCL32-CDL02:VBx12-CV7401",
+//HWRA13(Cycle 24)		   
+"SCL32-CDL02:VBx13-CV7401",
+//HWRB1(Cycle 25)		   
+"SCL32-CDL03:VBx01-CV7401",
+//HWRB2(Cycle 26)		   
+"SCL32-CDL03:VBx02-CV7401",
+//HWRB3(Cycle 27)		   
+"SCL32-CDL03:VBx03-CV7401",
+//HWRB4(Cycle 28)		   
+"SCL32-CDL03:VBx04-CV7401",
+//HWRB5(Cycle 29)		   
+"SCL32-CDL03:VBx05-CV7401",
+//HWRB6(Cycle 30)		   
+"SCL32-CDL03:VBx06-CV7401",
+//HWRB7(Cycle 31)		   
+"SCL32-CDL03:VBx07-CV7401",
+//HWRB8(Cycle 32)		   
+"SCL32-CDL03:VBx08-CV7401",
+//HWRB9(Cycle 33)		   
+"SCL32-CDL03:VBx09-CV7401",
+//HWRB10(Cycle 34)		   
+"SCL32-CDL03:VBx10-CV7401",
+//HWRB11(Cycle 35)		   
+"SCL32-CDL03:VBx11-CV7401",
+//HWRB12(Cycle 36)		   
+"SCL32-CDL03:VBx12-CV7401",
+//HWRB13(Cycle 37)		   
+"SCL32-CDL03:VBx13-CV7401",
+//HWRB14(Cycle 38)		   
+"SCL32-CDL03:VBx14-CV7401",
+//HWRB15(Cycle 39)		   
+"SCL32-CDL03:VBx15-CV7401",
+//HWRB16(Cycle 40)		   
+"SCL32-CDL03:VBx16-CV7401",
+//HWRB17(Cycle 41)		   
+"SCL32-CDL03:VBx17-CV7401",
+//HWRB18(Cycle 42)		   
+"SCL32-CDL03:VBx18-CV7401",
+//HWRB19(Cycle 43)		   
+"SCL32-CDL03:VBx19-CV7401",
+//P2DT(Cycle 44)						
+"P2DT-CDL04:VBx01-CV7401" 
+};
+
+int cycle = 0;
+assign cycle to "SCL3:CD-OM1415:Cycle";
+monitor cycle;
+
+int index = 0;
+assign index to "SCL3:CD-OM1415:IndexPV";
+monitor index;
+
+float om1415Val;
+assign om1415Val to "SCL3:CD-OM1415:Value";
+monitor om1415Val;
+
+float cdDelay;
+assign cdDelay to "SCL3:CD-OM1415:ScanTime";
+monitor cdDelay;
+
+float	valvewave[1];
+assign	valvewave to "SCL3:CD-OM1415:ValveWave";
+monitor valvewave;
+
+int first = 0;
+
+evflag	efNext;
+evflag	efFanout;
+
+char	logicname[60];
+int proc = 1;
+assign proc to "";
+
+char	valvename[60];
+float	valveval;
+assign  valveval to "";
+
+ss ssCDOM14
+{
+	state init
+	{
+		when(TRUE)
+		{
+			cycle = 0;
+			index = 0;
+			pvPut(cycle, SYNC);
+			pvPut(index, SYNC);
+			efClear(efNext);
+		}state XV7401_7201
+	}
+
+	//XV7301/XV7201 Regulation
+	//QWR
+	state XV7401_7201
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", xv7401_7201[cycle]);
+			printf("%s\n", logicname);
+			sprintf(valvename, "%s:Valve", xv7401_7201[cycle]);
+			printf("%s\n", valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			first = 1;
+		}state XV7401_7201
+
+		when(delay(cdDelay) && valveval < 1 && efTestAndClear(efNext))
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state XV7401_7201
+
+		when(delay(cdDelay) && valveval == 1 && efTestAndClear(efNext))
+		{
+			first = 0;
+		}state CV7401
+	}
+
+	//CV7401 Regulation
+	state CV7401
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", cv7401[cycle]);
+			printf("%s\n", logicname);
+			sprintf(valvename, "%s:Valve", cv7401[cycle]);
+			printf("%s\n", valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			first = 1;
+		}state CV7401
+
+		when(delay(cdDelay) && valveval < 100)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CV7401
+
+		when(delay(cdDelay) && valveval >= 100)
+		{
+			first = 0;
+		}state CV7401
+	}
+
+}
+
+ss ssOM14ValveWave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(efFanout);
+		}state MakeOM141ValveWave
+	}
+
+	state MakeOM141ValveWave
+	{
+		when(efTestAndClear(efFanout)) 
+		{
+			int idx = 0;
+			for(idx = 0; idx < 77;idx++)
+				//valvewave[idx] = om14QWRValve[idx];
+
+			pvPut(valvewave, SYNC);
+		}state MakeOM141ValveWave
+	}
+}
+
