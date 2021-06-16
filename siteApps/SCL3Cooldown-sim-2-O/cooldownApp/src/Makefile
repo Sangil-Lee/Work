@@ -70,6 +70,7 @@ ifneq ($(SNCSEQ),)
     cooldown_DBD  += CDOM044.dbd
     cooldown_DBD  += CDOM121.dbd
     cooldown_DBD  += CDOM122.dbd
+    cooldown_DBD  += CDOM1Cycle.dbd
     cooldown_DBD  += CDOMCompile.dbd
     #cooldown_DBD  += CDOM141.dbd
     #cooldown_DBD  += CDOM142.dbd
@@ -121,6 +122,7 @@ ifneq ($(SNCSEQ),)
     cooldown_SRCS += CDOM121.stt
     cooldown_SRCS += CDOM122.stt
     cooldown_SRCS += CDOMCompile.stt
+    cooldown_SRCS += CDOM1Cycle.stt
 
     #cooldown_SRCS += CDOM141.stt
     #cooldown_SRCS += CDOM142.stt
