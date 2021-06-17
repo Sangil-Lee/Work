@@ -42,8 +42,10 @@ ifneq ($(SNCSEQ),)
     valveEval_SNCFLAGS += +r
     valveEval_DBD  += CDOM031.dbd
     valveEval_DBD  += CDOM1Cycle.dbd
+    valveEval_DBD  += CDOMAutoRegulate.dbd
     valveEval_SRCS += CDOM031.stt
     valveEval_SRCS += CDOM1Cycle.stt
+    valveEval_SRCS += CDOMAutoRegulate.stt
     valveEval_LIBS += seq pv
 endif
 

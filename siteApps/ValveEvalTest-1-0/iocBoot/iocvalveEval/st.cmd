@@ -22,4 +22,5 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-seq CDOM031Logic
+#seq CDOM031Logic
+seq CDOMAutoRegulate
