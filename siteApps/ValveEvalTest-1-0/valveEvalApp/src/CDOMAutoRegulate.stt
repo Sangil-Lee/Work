@@ -137,8 +137,10 @@ char cv8403[33][60] = {
 };
 
 char cv8403_auto[2][60] = {
-"SCL31-BL01:CM01-CV8402",
-"SCL31-BL01:CM02-CV8402"
+//"SCL31-BL01:CM01-CV8402",
+//"SCL31-BL01:CM02-CV8402"
+"SCL32-CDL03:VBx19-CV7501",
+"SCL32-CDL03:VBx18-CV7502"
 };
 
 int cycle = 0;
@@ -281,6 +283,10 @@ ss ssCDOM14
 			first = 0;
 			printf("Transition CV8401.\n");
 			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+
+			valvename[0] = '\0';
+			logicname[0] = '\0';
 		}state CV8403_Auto
 	}
 
@@ -335,6 +341,11 @@ ss ssCDOM14
 		{
 			first = 0;
 			printf("CV8403_Auto Completed...\n");
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(valve_eval);
+			pvStopMonitor(valve_eval_proc);
+			pvStopMonitor(logic_start_val);
 		}state CV8403_Auto
 	}
 }

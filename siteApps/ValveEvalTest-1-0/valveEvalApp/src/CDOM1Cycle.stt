@@ -8,92 +8,72 @@ option +r;
 //Cycle to 11, Index to 7
 //int XV7301_7201[11][7];
 char xv7301_7201[44][60] = {
-////QWR1(Cycle1)				QWR2(Cycle2)				QWR3(Cycle3)				QWR4(Cycle4)		
-//"SCL31-CDL01:VBx02-XV7301", "SCL31-CDL01:VBx04-XV7301", "SCL31-CDL01:VBx06-XV7301", "SCL31-CDL01:VBx08-XV7301",
-////QWR5(Cycle5)				QWR6(Cycle6)				QWR7(Cycle7)				QWR8(Cycle8)		
-//"SCL31-CDL01:VBx10-XV7301", "SCL31-CDL01:VBx12-XV7301", "SCL31-CDL01:VBx14-XV7301", "SCL31-CDL01:VBx16-XV7301",
-////QWR9(Cycle9)				QWR10(Cycle10)				QWR11(Cycle11)				HWRA1(Cycle 12)
-//"SCL31-CDL01:VBx18-XV7301", "SCL31-CDL01:VBx20-XV7301", "SCL31-CDL01:VBx22-XV7301", "SCL32-CDL02:VBx01-XV7201",
-////HWRA2(Cycle 13)			HWRA3(Cycle 14)				HWRA4(Cycle 15)				HWRA5(Cycle 16)
-//"SCL32-CDL02:VBx02-XV7201", "SCL32-CDL02:VBx03-XV7201", "SCL32-CDL02:VBx04-XV7201", "SCL32-CDL02:VBx05-XV7201",
-////HWRA6(Cycle 17)			HWRA7(Cycle 18)				HWRA8(Cycle 19)				HWRA9(Cycle 20)
-//"SCL32-CDL02:VBx06-XV7201", "SCL32-CDL02:VBx07-XV7201", "SCL32-CDL02:VBx08-XV7201", "SCL32-CDL02:VBx09-XV7201",
-////HWRA10(Cycle 21)			HWRA11(Cycle 22)			HWRA12(Cycle 23)			HWRA13(Cycle 24)
-//"SCL32-CDL02:VBx10-XV7201", "SCL32-CDL02:VBx11-XV7201", "SCL32-CDL02:VBx12-XV7201", "SCL32-CDL02:VBx13-XV7201",
-////HWRB1(Cycle 25)			HWRB2(Cycle 26)				HWRB3(Cycle 27)				HWRB4(Cycle 28)
-//"SCL32-CDL03:VBx01-XV7201", "SCL32-CDL03:VBx02-XV7201", "SCL32-CDL03:VBx03-XV7201", "SCL32-CDL03:VBx04-XV7201",
-////HWRB5(Cycle 29)			HWRB6(Cycle 30)				HWRB7(Cycle 31)				HWRB8(Cycle 32)
-//"SCL32-CDL03:VBx05-XV7201", "SCL32-CDL03:VBx06-XV7201", "SCL32-CDL03:VBx07-XV7201", "SCL32-CDL03:VBx08-XV7201",
-////HWRB9(Cycle 33)			HWRB10(Cycle 34)			HWRB11(Cycle 35)			HWRB12(Cycle 36)
-//"SCL32-CDL03:VBx09-XV7201", "SCL32-CDL03:VBx10-XV7201", "SCL32-CDL03:VBx11-XV7201", "SCL32-CDL03:VBx12-XV7201",
-////HWRB13(Cycle 37)			HWRB14(Cycle 38)			HWRB15(Cycle 39)			HWRB16(Cycle 40)
-//"SCL32-CDL03:VBx13-XV7201", "SCL32-CDL03:VBx14-XV7201", "SCL32-CDL03:VBx15-XV7201", "SCL32-CDL03:VBx16-XV7201",
-////HWRB17(Cycle 41)			HWRB18(Cycle 42)			HWRB19(Cycle 43)			P2DT(Cycle 44)
-//"SCL32-CDL03:VBx17-XV7201", "SCL32-CDL03:VBx18-XV7201", "SCL32-CDL03:VBx19-XV7201", "P2DT-CDL04:VBx01-XV7201"
-"Cryo-CDL00:TBx01-XV7502"
+//QWR1(Cycle 1-11)
+"SCL31-CDL01:VBx02-XV7301", "SCL31-CDL01:VBx04-XV7301", "SCL31-CDL01:VBx06-XV7301", "SCL31-CDL01:VBx08-XV7301",
+"SCL31-CDL01:VBx10-XV7301", "SCL31-CDL01:VBx12-XV7301", "SCL31-CDL01:VBx14-XV7301", "SCL31-CDL01:VBx16-XV7301",
+"SCL31-CDL01:VBx18-XV7301", "SCL31-CDL01:VBx20-XV7301", "SCL31-CDL01:VBx22-XV7301", 
+
+//HWRA1(Cycle 12)		  
+"SCL32-CDL02:VBx01-XV7201", "SCL32-CDL02:VBx02-XV7201", "SCL32-CDL02:VBx03-XV7201", "SCL32-CDL02:VBx04-XV7201", 
+"SCL32-CDL02:VBx05-XV7201", "SCL32-CDL02:VBx06-XV7201", "SCL32-CDL02:VBx07-XV7201", "SCL32-CDL02:VBx08-XV7201", 
+"SCL32-CDL02:VBx09-XV7201", "SCL32-CDL02:VBx10-XV7201", "SCL32-CDL02:VBx11-XV7201", "SCL32-CDL02:VBx12-XV7201", 
+"SCL32-CDL02:VBx13-XV7201",
+
+//HWRB1(Cycle25-44)
+"SCL32-CDL03:VBx01-XV7201", "SCL32-CDL03:VBx02-XV7201", "SCL32-CDL03:VBx03-XV7201", "SCL32-CDL03:VBx04-XV7201",
+"SCL32-CDL03:VBx05-XV7201", "SCL32-CDL03:VBx06-XV7201", "SCL32-CDL03:VBx07-XV7201", "SCL32-CDL03:VBx08-XV7201",
+"SCL32-CDL03:VBx09-XV7201", "SCL32-CDL03:VBx10-XV7201", "SCL32-CDL03:VBx11-XV7201", "SCL32-CDL03:VBx12-XV7201",
+"SCL32-CDL03:VBx13-XV7201", "SCL32-CDL03:VBx14-XV7201", "SCL32-CDL03:VBx15-XV7201", "SCL32-CDL03:VBx16-XV7201",
+"SCL32-CDL03:VBx17-XV7201", "SCL32-CDL03:VBx18-XV7201", "SCL32-CDL03:VBx19-XV7201", "P2DT-CDL04:VBx01-XV7201"
 };
 
 
 //HWR/P2DT Cycle(OM1.4), 33*6=198
 //Cycle to 33, Index to 6
 char cv7401[44][60] = {
-////QWR1(Cycle1)				QWR2(Cycle2)				QWR3(Cycle3)				QWR4(Cycle4)	
-//"SCL31-CDL01:VBx02-CV7401", "SCL31-CDL01:VBx04-CV7401", "SCL31-CDL01:VBx06-CV7401", "SCL31-CDL01:VBx08-CV7401",
-////QWR5(Cycle5)				QWR6(Cycle6)				QWR7(Cycle7)				QWR8(Cycle8)			  
-//"SCL31-CDL01:VBx10-CV7401", "SCL31-CDL01:VBx12-CV7401", "SCL31-CDL01:VBx14-CV7401", "SCL31-CDL01:VBx16-CV7401",
-////QWR9(Cycle9)				QWR10(Cycle10)				QWR11(Cycle11)				HWRA1(Cycle 12)		  
-//"SCL31-CDL01:VBx18-CV7401", "SCL31-CDL01:VBx20-CV7401", "SCL31-CDL01:VBx22-CV7401", "SCL32-CDL02:VBx01-CV7401",
-////HWRA2(Cycle 13)			HWRA3(Cycle 14)				HWRA4(Cycle 15)				HWRA5(Cycle 16)		   
-//"SCL32-CDL02:VBx02-CV7401", "SCL32-CDL02:VBx03-CV7401", "SCL32-CDL02:VBx04-CV7401", "SCL32-CDL02:VBx05-CV7401",
-////HWRA6(Cycle 17)			HWRA7(Cycle 18)				HWRA8(Cycle 19)				HWRA9(Cycle 20)		   
-//"SCL32-CDL02:VBx06-CV7401", "SCL32-CDL02:VBx07-CV7401", "SCL32-CDL02:VBx08-CV7401", "SCL32-CDL02:VBx09-CV7401",
-////HWRA10(Cycle 21)			HWRA11(Cycle 22)			HWRA12(Cycle 23)			HWRA13(Cycle 24)		   
-//"SCL32-CDL02:VBx10-CV7401", "SCL32-CDL02:VBx11-CV7401", "SCL32-CDL02:VBx12-CV7401", "SCL32-CDL02:VBx13-CV7401",
-////HWRB1(Cycle 25)			HWRB2(Cycle 26)				HWRB3(Cycle 27)				HWRB4(Cycle 28)		   
-//"SCL32-CDL03:VBx01-CV7401", "SCL32-CDL03:VBx02-CV7401", "SCL32-CDL03:VBx03-CV7401", "SCL32-CDL03:VBx04-CV7401",
-////HWRB5(Cycle 29)			HWRB6(Cycle 30)				HWRB7(Cycle 31)				HWRB8(Cycle 32)		   
-//"SCL32-CDL03:VBx05-CV7401", "SCL32-CDL03:VBx06-CV7401", "SCL32-CDL03:VBx07-CV7401", "SCL32-CDL03:VBx08-CV7401",
-////HWRB9(Cycle 33)			HWRB10(Cycle 34)			HWRB11(Cycle 35)			HWRB12(Cycle 36)		   
-//"SCL32-CDL03:VBx09-CV7401", "SCL32-CDL03:VBx10-CV7401", "SCL32-CDL03:VBx11-CV7401", "SCL32-CDL03:VBx12-CV7401",
-////HWRB13(Cycle 37)			HWRB14(Cycle 38)			HWRB15(Cycle 39)			HWRB16(Cycle 40)		   
-//"SCL32-CDL03:VBx13-CV7401", "SCL32-CDL03:VBx14-CV7401", "SCL32-CDL03:VBx15-CV7401", "SCL32-CDL03:VBx16-CV7401",
-////HWRB17(Cycle 41)			HWRB18(Cycle 42)			HWRB19(Cycle 43)			P2DT(Cycle 44)						
-//"SCL32-CDL03:VBx17-CV7401", "SCL32-CDL03:VBx18-CV7401", "SCL32-CDL03:VBx19-CV7401", "P2DT-CDL04:VBx01-CV7401" 
-"Cryo-CDL00:TBx01-CV7505"
+//QWR1(Cycle 1-11)
+"SCL31-CDL01:VBx02-CV7401", "SCL31-CDL01:VBx04-CV7401", "SCL31-CDL01:VBx06-CV7401", "SCL31-CDL01:VBx08-CV7401",
+"SCL31-CDL01:VBx10-CV7401", "SCL31-CDL01:VBx12-CV7401", "SCL31-CDL01:VBx14-CV7401", "SCL31-CDL01:VBx16-CV7401",
+"SCL31-CDL01:VBx18-CV7401", "SCL31-CDL01:VBx20-CV7401", "SCL31-CDL01:VBx22-CV7401", 
+
+//HWRA1(Cycle 12)		  
+"SCL32-CDL02:VBx01-CV7401", "SCL32-CDL02:VBx02-CV7401", "SCL32-CDL02:VBx03-CV7401", "SCL32-CDL02:VBx04-CV7401", 
+"SCL32-CDL02:VBx05-CV7401", "SCL32-CDL02:VBx06-CV7401", "SCL32-CDL02:VBx07-CV7401", "SCL32-CDL02:VBx08-CV7401", 
+"SCL32-CDL02:VBx09-CV7401", "SCL32-CDL02:VBx10-CV7401", "SCL32-CDL02:VBx11-CV7401", "SCL32-CDL02:VBx12-CV7401", 
+"SCL32-CDL02:VBx13-CV7401",
+
+//HWRB1(Cycle25-44)
+"SCL32-CDL03:VBx01-CV7401", "SCL32-CDL03:VBx02-CV7401", "SCL32-CDL03:VBx03-CV7401", "SCL32-CDL03:VBx04-CV7401",
+"SCL32-CDL03:VBx05-CV7401", "SCL32-CDL03:VBx06-CV7401", "SCL32-CDL03:VBx07-CV7401", "SCL32-CDL03:VBx08-CV7401",
+"SCL32-CDL03:VBx09-CV7401", "SCL32-CDL03:VBx10-CV7401", "SCL32-CDL03:VBx11-CV7401", "SCL32-CDL03:VBx12-CV7401",
+"SCL32-CDL03:VBx13-CV7401", "SCL32-CDL03:VBx14-CV7401", "SCL32-CDL03:VBx15-CV7401", "SCL32-CDL03:VBx16-CV7401",
+"SCL32-CDL03:VBx17-CV7401", "SCL32-CDL03:VBx18-CV7401", "SCL32-CDL03:VBx19-CV7401", "P2DT-CDL04:VBx01-CV7401" 
 };
 
 char cv8401[44][60] = {
-////QWR1(Cycle1)				QWR2(Cycle2)				QWR3(Cycle3)				QWR4(Cycle4)	
-//"SCL31-BL01:CM01-CV8401",	"SCL31-BL01:CM03-CV8401",	"SCL31-BL01:CM05-CV8401",	"SCL31-BL01:CM07-CV8401",
-////QWR5(Cycle5)				QWR6(Cycle6)				QWR7(Cycle7)				QWR8(Cycle8)	
-//"SCL31-BL01:CM09-CV8401",	"SCL31-BL01:CM11-CV8401",	"SCL31-BL01:CM13-CV8401",	"SCL31-BL01:CM15-CV8401",	
-////QWR9(Cycle9)				QWR10(Cycle10)				QWR11(Cycle11)				HWRA1(Cycle12)	
-//"SCL31-BL01:CM17-CV8401",	"SCL31-BL01:CM19-CV8401",	"SCL31-BL01:CM21-CV8401",	"SCL32-BL02:CM01-CV8401",	
-////HWRA2(Cycle 13)			HWRA3(Cycle 14)				HWRA4(Cycle 15)				HWRA5(Cycle 16)		   
-//"SCL32-BL02:CM02-CV8401",	"SCL32-BL02:CM03-CV8401",	"SCL32-BL02:CM04-CV8401",	"SCL32-BL02:CM05-CV8401",	
-////HWRA6(Cycle 17)			HWRA7(Cycle 18)				HWRA8(Cycle 19)				HWRA9(Cycle 20)		   
-//"SCL32-BL02:CM06-CV8401",	"SCL32-BL02:CM07-CV8401",	"SCL32-BL02:CM08-CV8401",	"SCL32-BL02:CM09-CV8401",	
-////HWRA10(Cycle 21)			HWRA11(Cycle 22)			HWRA12(Cycle 23)			HWRA13(Cycle 24)		   
-//"SCL32-BL02:CM10-CV8401",	"SCL32-BL02:CM11-CV8401",	"SCL32-BL02:CM12-CV8401",	"SCL32-BL02:CM13-CV8401",	
-////HWRB1(Cycle 25)			HWRB2(Cycle 26)				HWRB3(Cycle 27)				HWRB4(Cycle 28)		   
-//"SCL32-BL03:CM01-CV8401",	"SCL32-BL03:CM02-CV8401",	"SCL32-BL03:CM03-CV8401",	"SCL32-BL03:CM04-CV8401",	
-////HWRB5(Cycle 29)			HWRB6(Cycle 30)				HWRB7(Cycle 31)				HWRB8(Cycle 32)		   
-//"SCL32-BL03:CM05-CV8401",	"SCL32-BL03:CM06-CV8401",	"SCL32-BL03:CM07-CV8401",	"SCL32-BL03:CM08-CV8401",	
-////HWRB9(Cycle 33)			HWRB10(Cycle 34)			HWRB11(Cycle 35)			HWRB12(Cycle 36)		   
-//"SCL32-BL03:CM09-CV8401",	"SCL32-BL03:CM10-CV8401",	"SCL32-BL03:CM11-CV8401",	"SCL32-BL03:CM12-CV8401",	
-////HWRB13(Cycle 37)			HWRB14(Cycle 38)			HWRB15(Cycle 39)			HWRB16(Cycle 40)		   
-//"SCL32-BL03:CM13-CV8401",	"SCL32-BL03:CM14-CV8401",	"SCL32-BL03:CM15-CV8401",	"SCL32-BL03:CM16-CV8401",	
-////HWRB17(Cycle 41)			HWRB18(Cycle 42)			HWRB19(Cycle 43)			P2DT(Cycle 44)						
-//"SCL32-BL03:CM17-CV8401",	"SCL32-BL03:CM18-CV8401",	"SCL32-BL03:CM19-CV8401",	"P2DT-BL04:CM01-CV8401" 
-"Cryo-CDL00:TBx01-CV7502"
+//QWR1(Cycle 1-11)
+"SCL31-BL01:CM01-CV8401",	"SCL31-BL01:CM03-CV8401",	"SCL31-BL01:CM05-CV8401",	"SCL31-BL01:CM07-CV8401",
+"SCL31-BL01:CM09-CV8401",	"SCL31-BL01:CM11-CV8401",	"SCL31-BL01:CM13-CV8401",	"SCL31-BL01:CM15-CV8401",	
+"SCL31-BL01:CM17-CV8401",	"SCL31-BL01:CM19-CV8401",	"SCL31-BL01:CM21-CV8401",	
+
+//HWRA1(Cycle12-24)
+"SCL32-BL02:CM01-CV8401",	"SCL32-BL02:CM02-CV8401",	"SCL32-BL02:CM03-CV8401",	"SCL32-BL02:CM04-CV8401",	
+"SCL32-BL02:CM05-CV8401",	"SCL32-BL02:CM06-CV8401",	"SCL32-BL02:CM07-CV8401",	"SCL32-BL02:CM08-CV8401",	
+"SCL32-BL02:CM09-CV8401",	"SCL32-BL02:CM10-CV8401",	"SCL32-BL02:CM11-CV8401",	"SCL32-BL02:CM12-CV8401",	
+"SCL32-BL02:CM13-CV8401",	
+
+//HWRB1(Cycle25-44)
+"SCL32-BL03:CM01-CV8401",	"SCL32-BL03:CM02-CV8401",	"SCL32-BL03:CM03-CV8401",	"SCL32-BL03:CM04-CV8401",	
+"SCL32-BL03:CM05-CV8401",	"SCL32-BL03:CM06-CV8401",	"SCL32-BL03:CM07-CV8401",	"SCL32-BL03:CM08-CV8401",	
+"SCL32-BL03:CM09-CV8401",	"SCL32-BL03:CM10-CV8401",	"SCL32-BL03:CM11-CV8401",	"SCL32-BL03:CM12-CV8401",	
+"SCL32-BL03:CM13-CV8401",	"SCL32-BL03:CM14-CV8401",	"SCL32-BL03:CM15-CV8401",	"SCL32-BL03:CM16-CV8401",	
+"SCL32-BL03:CM17-CV8401",	"SCL32-BL03:CM18-CV8401",	"SCL32-BL03:CM19-CV8401",	"P2DT-BL04:CM01-CV8401" 
 };
 
 char cv8401_1[11][60] = {
-//QWR1(Cycle1)				QWR2(Cycle2)				QWR3(Cycle3)				QWR4(Cycle4)	
+//QWR1(Cycle 1-11)
 "SCL31-BL01:CM02-CV8401",	"SCL31-BL01:CM04-CV8401",	"SCL31-BL01:CM06-CV8401",	"SCL31-BL01:CM08-CV8401",	
-//QWR5(Cycle5)				QWR6(Cycle6)				QWR7(Cycle7)				QWR8(Cycle8)	
 "SCL31-BL01:CM10-CV8401",	"SCL31-BL01:CM12-CV8401",	"SCL31-BL01:CM14-CV8401",	"SCL31-BL01:CM16-CV8401",	
-//QWR9(Cycle9)				QWR10(Cycle10)				QWR11(Cycle11)			
 "SCL31-BL01:CM18-CV8401",	"SCL31-BL01:CM20-CV8401",	"SCL31-BL01:CM22-CV8401"	
 };
 
@@ -102,11 +82,13 @@ char cv8402[44][60] = {
 "SCL31-BL01:CM01-CV8402",	"SCL31-BL01:CM03-CV8402",	"SCL31-BL01:CM05-CV8402",	"SCL31-BL01:CM07-CV8402",	
 "SCL31-BL01:CM09-CV8402",	"SCL31-BL01:CM11-CV8402",	"SCL31-BL01:CM13-CV8402",	"SCL31-BL01:CM15-CV8402",	
 "SCL31-BL01:CM17-CV8402",	"SCL31-BL01:CM19-CV8402",	"SCL31-BL01:CM21-CV8402",
+
 //HWRA1(Cycle12-24)
 "SCL32-BL02:CM01-CV8402",	"SCL32-BL02:CM02-CV8402",	"SCL32-BL02:CM03-CV8402",	"SCL32-BL02:CM04-CV8402",	
 "SCL32-BL02:CM05-CV8402",	"SCL32-BL02:CM06-CV8402",	"SCL32-BL02:CM07-CV8402",	"SCL32-BL02:CM08-CV8402",	
 "SCL32-BL02:CM09-CV8402",	"SCL32-BL02:CM10-CV8402",	"SCL32-BL02:CM11-CV8402",	"SCL32-BL02:CM12-CV8402",	
 "SCL32-BL02:CM13-CV8402",	
+
 //HWRB1(Cycle25-44)
 "SCL32-BL03:CM01-CV8402",	"SCL32-BL03:CM02-CV8402",	"SCL32-BL03:CM03-CV8402",	"SCL32-BL03:CM04-CV8402",	
 "SCL32-BL03:CM05-CV8402",	"SCL32-BL03:CM06-CV8402",	"SCL32-BL03:CM07-CV8402",	"SCL32-BL03:CM08-CV8402",	
@@ -136,6 +118,77 @@ char cv8403[33][60] = {
 "SCL32-BL03:CM17-CV8403",	"SCL32-BL03:CM18-CV8403",	"SCL32-BL03:CM19-CV8403",	"P2DT-BL04:CM01-CV8403"
 };
 
+char phaseend[44][60] = {
+//QWR1(Cycle 1-11)
+"SCL31-BL01:CM01-LT8401",	"SCL31-BL01:CM03-LT8401",	"SCL31-BL01:CM05-LT8401",	"SCL31-BL01:CM07-LT8401",	
+"SCL31-BL01:CM09-LT8401",	"SCL31-BL01:CM11-LT8401",	"SCL31-BL01:CM13-LT8401",	"SCL31-BL01:CM15-LT8401",	
+"SCL31-BL01:CM17-LT8401",	"SCL31-BL01:CM19-LT8401",	"SCL31-BL01:CM21-LT8401",	
+
+//HWRA1(Cycle12-24)
+"SCL32-BL02:CM01-LT8201",	"SCL32-BL02:CM02-LT8201",	"SCL32-BL02:CM03-LT8201",	"SCL32-BL02:CM04-LT8201",	
+"SCL32-BL02:CM05-LT8201",	"SCL32-BL02:CM06-LT8201",	"SCL32-BL02:CM07-LT8201",	"SCL32-BL02:CM08-LT8201",	
+"SCL32-BL02:CM09-LT8201",	"SCL32-BL02:CM10-LT8201",	"SCL32-BL02:CM11-LT8201",	"SCL32-BL02:CM12-LT8201",	
+"SCL32-BL02:CM13-LT8201",	
+
+//HWRB1(Cycle25-44)
+"SCL32-BL03:CM01-LT8201",	"SCL32-BL03:CM02-LT8201",	"SCL32-BL03:CM03-LT8201",	"SCL32-BL03:CM04-LT8201",	
+"SCL32-BL03:CM05-LT8201",	"SCL32-BL03:CM06-LT8201",	"SCL32-BL03:CM07-LT8201",	"SCL32-BL03:CM08-LT8201",	
+"SCL32-BL03:CM09-LT8201",	"SCL32-BL03:CM10-LT8201",	"SCL32-BL03:CM11-LT8201",	"SCL32-BL03:CM12-LT8201",	
+"SCL32-BL03:CM13-LT8201",	"SCL32-BL03:CM14-LT8201",	"SCL32-BL03:CM15-LT8201",	"SCL32-BL03:CM16-LT8201",	
+"SCL32-BL03:CM17-LT8201",	"SCL32-BL03:CM18-LT8201",	"SCL32-BL03:CM19-LT8201",	"P2DT-BL04:CM01-LT8201"	
+};
+
+char phaseend_1[11][60] = {
+//QWR1(Cycle 1-11)
+"SCL31-BL01:CM02-LT8401",	"SCL31-BL01:CM04-LT8401",	"SCL31-BL01:CM06-LT8401",	"SCL31-BL01:CM08-LT8401",	
+"SCL31-BL01:CM10-LT8401",	"SCL31-BL01:CM12-LT8401",	"SCL31-BL01:CM14-LT8401",	"SCL31-BL01:CM16-LT8401",	
+"SCL31-BL01:CM18-LT8401",	"SCL31-BL01:CM20-LT8401",	"SCL31-BL01:CM22-LT8401"	
+};
+
+//CDMO15 QWR
+char om15_cv8402[11][60] = {
+"SCL31-BL01:CM01-CV8402",	"SCL31-BL01:CM03-CV8402",	"SCL31-BL01:CM05-CV8402",	"SCL31-BL01:CM07-CV8402",	
+"SCL31-BL01:CM09-CV8402",	"SCL31-BL01:CM11-CV8402",	"SCL31-BL01:CM13-CV8402",	"SCL31-BL01:CM15-CV8402",	
+"SCL31-BL01:CM17-CV8402",	"SCL31-BL01:CM19-CV8402",	"SCL31-BL01:CM21-CV8402"	
+};
+
+char om15_cv8402_1[11][60] = {
+"SCL31-BL01:CM02-CV8402",	"SCL31-BL01:CM04-CV8402",	"SCL31-BL01:CM06-CV8402",	"SCL31-BL01:CM08-CV8402",	
+"SCL31-BL01:CM10-CV8402",	"SCL31-BL01:CM12-CV8402",	"SCL31-BL01:CM14-CV8402",	"SCL31-BL01:CM16-CV8402",	
+"SCL31-BL01:CM18-CV8402",	"SCL31-BL01:CM20-CV8402",	"SCL31-BL01:CM22-CV8402"	
+};
+
+char om15_cv8401[11][60] = {
+"SCL31-BL01:CM01-CV8401",	"SCL31-BL01:CM03-CV8401",	"SCL31-BL01:CM05-CV8401",	"SCL31-BL01:CM07-CV8401",	
+"SCL31-BL01:CM09-CV8401",	"SCL31-BL01:CM11-CV8401",	"SCL31-BL01:CM13-CV8401",	"SCL31-BL01:CM15-CV8401",	
+"SCL31-BL01:CM17-CV8401",	"SCL31-BL01:CM19-CV8401",	"SCL31-BL01:CM21-CV8401"	
+};
+
+char om15_cv8401_1[11][60] = {
+"SCL31-BL01:CM02-CV8401",	"SCL31-BL01:CM04-CV8401",	"SCL31-BL01:CM06-CV8401",	"SCL31-BL01:CM08-CV8401",	
+"SCL31-BL01:CM10-CV8401",	"SCL31-BL01:CM12-CV8401",	"SCL31-BL01:CM14-CV8401",	"SCL31-BL01:CM16-CV8401",	
+"SCL31-BL01:CM18-CV8401",	"SCL31-BL01:CM20-CV8401",	"SCL31-BL01:CM22-CV8401"	
+};
+
+char om15_cv7301[11][60] = {
+"SCL31-CDL01:VBx02-CV7301",	"SCL31-CDL01:VBx04-CV7301",	"SCL31-CDL01:VBx06-CV7301",	"SCL31-CDL01:VBx08-CV7301",	
+"SCL31-CDL01:VBx10-CV7301",	"SCL31-CDL01:VBx12-CV7301",	"SCL31-CDL01:VBx14-CV7301",	"SCL31-CDL01:VBx16-CV7301",	
+"SCL31-CDL01:VBx18-CV7301",	"SCL31-CDL01:VBx20-CV7301",	"SCL31-CDL01:VBx22-CV7301"	
+};
+
+char om15_phaseend[11][60] = {
+"SCL31-BL01:CM01-LT8401",	"SCL31-BL01:CM03-LT8401",	"SCL31-BL01:CM05-LT8401",	"SCL31-BL01:CM07-LT8401",	
+"SCL31-BL01:CM09-LT8401",	"SCL31-BL01:CM11-LT8401",	"SCL31-BL01:CM13-LT8401",	"SCL31-BL01:CM15-LT8401",	
+"SCL31-BL01:CM17-LT8401",	"SCL31-BL01:CM19-LT8401",	"SCL31-BL01:CM21-LT8401"	
+};
+
+char om15_phaseend_1[11][60] = {
+"SCL31-BL01:CM02-LT8401",	"SCL31-BL01:CM04-LT8401",	"SCL31-BL01:CM06-LT8401",	"SCL31-BL01:CM08-LT8401",	
+"SCL31-BL01:CM10-LT8401",	"SCL31-BL01:CM12-LT8401",	"SCL31-BL01:CM14-LT8401",	"SCL31-BL01:CM16-LT8401",	
+"SCL31-BL01:CM18-LT8401",	"SCL31-BL01:CM20-LT8401",	"SCL31-BL01:CM22-LT8401"	
+};
+
+
 int cycle = 0;
 //assign cycle to "SCL3:CD-OM1415:Cycle";
 assign cycle to "SCL3:CD-OM031:Cycle";
@@ -160,30 +213,61 @@ monitor cdDelay;
 ////assign	valvewave to "SCL3:CD-OM1415:ValveWave";
 //monitor valvewave;
 
-int first = 0;
-
-evflag	efNext;
-evflag	efFanout;
-
+//Valve Control
 char	logicname[60];
-int proc = 1;
-assign proc to "";
+char	logicname_1[60];
+int		proc = 1;
+int		proc_1 = 1;
+assign	proc to "";
+assign	proc_1 to "";
 
 char	valvename[60];
+char	valvename_1[60];
 float	valveval;
+float	valveval_1;
 assign  valveval to "";
+assign  valveval_1 to "";
 
 char	valve_evalname[60];
+char	logic_valve_evalname[60];
+char	valve_evalname_1[60];
+char	logic_valve_evalname_1[60];
+char	logic_start[60];
+char	logic_start_1[60];
 int		valve_eval;
+int		valve_eval_1;
+int		valve_eval_proc;
+int		valve_eval_proc_1;
+int		logic_start_val;
+int		logic_start_val_1;
 assign  valve_eval to "";
+assign  valve_eval_1 to "";
+assign  valve_eval_proc to "";
+assign  valve_eval_proc_1 to "";
+assign  logic_start_val to "";
+assign  logic_start_val_1 to "";
 
-char	logicname_1[60];
-int proc_1 = 1;
-assign proc_1 to "";
+//PID Control
+char	pidname[60];
+char	pidname_1[60];
+char	pidname_2[60];
+char	levelname[60];
+char	levelname_1[60];
+int		pid_val;	
+int		pid_val_1;	
+int		pid_val_2;	
+int		level_val;  
+int		level_val_1;
+assign	pid_val to "";	
+assign	pid_val_1 to "";	
+assign	pid_val_2 to "";	
+assign	level_val to "";  
+assign	level_val_1 to "";
 
-char	valvename_1[60];
-float	valveval_1;
-assign  valveval_1 to "";
+int first = 0;
+evflag	efCDOM14;
+evflag	efCDOM15QWR;
+evflag	efCDOM15HWR;
 
 ss ssCDOM14
 {
@@ -195,8 +279,14 @@ ss ssCDOM14
 			index = 0;
 			pvPut(cycle, SYNC);
 			pvPut(index, SYNC);
-			efClear(efNext);
 		}state XV7301_7201
+	}
+
+	state Stop
+	{
+		when(efTestAndClear(efCDOM14)) 
+		{
+		} state XV7301_7201
 	}
 
 	//XV7301/XV7201 Regulation
@@ -390,11 +480,17 @@ ss ssCDOM14
 			printf("CV7401_100 Processing...\n");
 		}state CV7401_100
 
-		when(delay(cdDelay) && valveval >= 100)
+		when(delay(cdDelay) && valveval >= 100 && cycle < 12)
 		{
 			first = 0;
-			printf("Transition CV8401.\n");
+			printf("Transition CV8402_5_Regulate.\n");
 		}state CV8402_5_regulate
+
+		when(delay(cdDelay) && valveval >= 100 && cycle >= 12)
+		{
+			first = 0;
+			printf("Transition CV8403_Regulate.\n");
+		}state CV8403_regulate
 	}
 
 	state CV8402_5_regulate
@@ -409,6 +505,9 @@ ss ssCDOM14
 			sprintf(valve_evalname, "%s:ValveEval", cv8402[cycle]);
 			printf("%s\n", valve_evalname);
 
+			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", cv8402[cycle]);
+			sprintf(logic_start, "%s:Start", cv8402[cycle]);
+
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
 
@@ -418,21 +517,39 @@ ss ssCDOM14
 			pvAssign(valve_eval, valve_evalname);
 			pvMonitor(valve_eval);
 
+			pvAssign(valve_eval_proc, logic_valve_evalname);
+			pvMonitor(valve_eval_proc);
+
+			pvAssign(logic_start_val, logic_start);
+			pvMonitor(logic_start_val);
+
 			first = 1;
 		}state CV8402_5_regulate
 
-		when(delay(cdDelay) && valveval < 1)
+		when(delay(cdDelay) && valve_eval >= 1)
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
+
+			valve_eval_proc = 1;
+			pvPut(valve_eval_proc, SYNC);
+
+			logic_start_val = 1;
+			pvPut(logic_start_val, SYNC);
+
 			printf("CV8402_5_regulate Processing...\n");
 		}state CV8402_5_regulate
 
-		when(delay(cdDelay) && valveval >= 1)
+		when(delay(cdDelay) && valve_eval == 0)
 		{
 			first = 0;
-			printf("Transition CV8401.\n");
-		}state CV8403_regulate
+			printf("Transition PhaseEnd 14.\n");
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(valve_eval);
+			pvStopMonitor(valve_eval_proc);
+			pvStopMonitor(logic_start_val);
+		}state PhaseEnd14
 	}
 
 	state CV8403_regulate
@@ -447,6 +564,9 @@ ss ssCDOM14
 			sprintf(valve_evalname, "%s:ValveEval", cv8403[cycle]);
 			printf("%s\n", valve_evalname);
 
+			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", cv8403[cycle]);
+			sprintf(logic_start, "%s:Start", cv8403[cycle]);
+
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
 
@@ -456,6 +576,12 @@ ss ssCDOM14
 			pvAssign(valve_eval, valve_evalname);
 			pvMonitor(valve_eval);
 
+			pvAssign(valve_eval_proc, logic_valve_evalname);
+			pvMonitor(valve_eval_proc);
+
+			pvAssign(logic_start_val, logic_start);
+			pvMonitor(logic_start_val);
+
 			first = 1;
 		}state CV8403_regulate
 
@@ -463,17 +589,446 @@ ss ssCDOM14
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
-			printf("CV8402_5_regulate Processing...\n");
+
+			valve_eval_proc = 1;
+			pvPut(valve_eval_proc, SYNC);
+
+			logic_start_val = 1;
+			pvPut(logic_start_val, SYNC);
+			printf("CV8403 Regulate Processing...\n");
 		}state CV8403_regulate
 
 		when(delay(cdDelay) && valveval >= 1)
 		{
 			first = 0;
-			printf("Transition CV8401.\n");
-		}state CV8403_regulate
+			printf("Transition PhaseEnd 14.\n");
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(valve_eval);
+			pvStopMonitor(valve_eval_proc);
+			pvStopMonitor(logic_start_val);
+		}state PhaseEnd14
 	}
 
+	state PhaseEnd14
+	{
+		when(first == 0)
+		{
+			sprintf(valvename, "%s:Level", cv7401[cycle]);
+			printf("%s\n", valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			first = 1;
+		}state PhaseEnd14
+
+		when(delay(cdDelay) && valveval < 50)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			printf("PhaseEnd 14 Processing...\n");
+		}state PhaseEnd14
+
+		when(delay(cdDelay) && valveval >= 50)
+		{
+			first = 0;
+			printf("Transition CV8401.\n");
+			pvStopMonitor(valveval);
+
+			efSet(efCDOM15QWR);
+
+		}state Stop
+	}
 }
+
+ss ssCDOM15QWR
+{
+	state init
+	{
+		when(TRUE)
+		{
+		} state CV8402
+	}
+
+	state Stop
+	{
+		when(delay(cdDelay) && efTestAndClear(efCDOM15QWR))
+		{
+		} state CV8402
+	}
+
+	state CV8402
+	{
+		when(first == 0)
+		{
+			sprintf(logicname,   "%s:CDLogic.PROC", om15_cv8402[cycle]);
+			sprintf(logicname_1, "%s:CDLogic.PROC", om15_cv8402_1[cycle]);
+			printf("%s, %s\n", logicname, logicname_1);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+			pvAssign(proc_1, logicname_1);
+			pvMonitor(proc_1);
+
+			sprintf(valvename,   "%s:Valve",        om15_cv8402[cycle]);
+			sprintf(valvename_1, "%s:Valve",        om15_cv8402_1[cycle]);
+			printf("%s, %s\n", valvename, valvename_1);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+			pvAssign(valveval_1, valvename_1);
+			pvMonitor(valveval_1);
+
+			sprintf(valve_evalname,   "%s:ValveEval", om15_cv8402[cycle]);
+			sprintf(valve_evalname_1, "%s:ValveEval", om15_cv8402_1[cycle]);
+			printf("%s, %s\n", valve_evalname, valve_evalname_1);
+
+			pvAssign(valve_eval, valve_evalname);
+			pvMonitor(valve_eval);
+			pvAssign(valve_eval_1, valve_evalname_1);
+			pvMonitor(valve_eval_1);
+
+			sprintf(logic_valve_evalname,   "%s:ValveEval.PROC", om15_cv8402[cycle]);
+			sprintf(logic_valve_evalname_1, "%s:ValveEval.PROC", om15_cv8402_1[cycle]);
+
+			pvAssign(valve_eval_proc, logic_valve_evalname);
+			pvMonitor(valve_eval_proc);
+			pvAssign(valve_eval_proc_1, logic_valve_evalname_1);
+			pvMonitor(valve_eval_proc_1);
+
+			sprintf(logic_start,            "%s:Start",          om15_cv8402[cycle]);
+			sprintf(logic_start_1,          "%s:Start",          om15_cv8402_1[cycle]);
+
+			pvAssign(logic_start_val, logic_start);
+			pvMonitor(logic_start_val);
+			pvAssign(logic_start_val_1, logic_start_1);
+			pvMonitor(logic_start_val_1);
+
+			first = 1;
+		}state CV8402
+
+		when(delay(cdDelay) && valve_eval >= 1 && valve_eval_1 >= 1)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			proc_1 = 1;
+			pvPut(proc, SYNC);
+
+			valve_eval_proc = 1;
+			pvPut(valve_eval_proc, SYNC);
+			valve_eval_proc_1 = 1;
+			pvPut(valve_eval_proc_1, SYNC);
+
+			logic_start_val = 1;
+			pvPut(logic_start_val, SYNC);
+			logic_start_val_1 = 1;
+			pvPut(logic_start_val_1, SYNC);
+
+			printf("OM15 CV8402 Processing...\n");
+		}state CV8402
+
+		when(delay(cdDelay) && valve_eval == 0 && valve_eval_1 == 0)
+		{
+			first = 0;
+			printf("OM15 Transition CV8401.\n");
+			pvStopMonitor(proc);
+			pvStopMonitor(valveval);
+			pvStopMonitor(valve_eval);
+			pvStopMonitor(valve_eval_proc);
+			pvStopMonitor(logic_start_val);
+
+			pvStopMonitor(proc_1);
+			pvStopMonitor(valveval_1);
+			pvStopMonitor(valve_eval_1);
+			pvStopMonitor(valve_eval_proc_1);
+			pvStopMonitor(logic_start_val_1);
+		}state CV8401
+	}
+	
+	state CV8401
+	{
+		when(first == 0)
+		{
+			sprintf(logicname,   "%s:CDLogic.PROC", om15_cv8402[cycle]);
+			sprintf(logicname_1, "%s:CDLogic.PROC", om15_cv8402_1[cycle]);
+			printf("%s, %s\n", logicname, logicname_1);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+			pvAssign(proc_1, logicname_1);
+			pvMonitor(proc_1);
+
+			sprintf(valvename,   "%s:Valve",        om15_cv8402[cycle]);
+			sprintf(valvename_1, "%s:Valve",        om15_cv8402_1[cycle]);
+			printf("%s, %s\n", valvename, valvename_1);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+			pvAssign(valveval_1, valvename_1);
+			pvMonitor(valveval_1);
+
+			sprintf(valve_evalname,   "%s:ValveEval", om15_cv8402[cycle]);
+			sprintf(valve_evalname_1, "%s:ValveEval", om15_cv8402_1[cycle]);
+			printf("%s, %s\n", valve_evalname, valve_evalname_1);
+
+			pvAssign(valve_eval, valve_evalname);
+			pvMonitor(valve_eval);
+			pvAssign(valve_eval_1, valve_evalname_1);
+			pvMonitor(valve_eval_1);
+
+			sprintf(logic_valve_evalname,   "%s:ValveEval.PROC", om15_cv8402[cycle]);
+			sprintf(logic_valve_evalname_1, "%s:ValveEval.PROC", om15_cv8402_1[cycle]);
+
+			pvAssign(valve_eval_proc, logic_valve_evalname);
+			pvMonitor(valve_eval_proc);
+			pvAssign(valve_eval_proc_1, logic_valve_evalname_1);
+			pvMonitor(valve_eval_proc_1);
+
+			sprintf(logic_start,            "%s:Start",          om15_cv8402[cycle]);
+			sprintf(logic_start_1,          "%s:Start",          om15_cv8402_1[cycle]);
+
+			pvAssign(logic_start_val, logic_start);
+			pvMonitor(logic_start_val);
+			pvAssign(logic_start_val_1, logic_start_1);
+			pvMonitor(logic_start_val_1);
+
+			first = 1;
+		}state CV8401
+
+		when(delay(cdDelay) && valve_eval >= 1)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			proc_1 = 1;
+			pvPut(proc, SYNC);
+
+			valve_eval_proc = 1;
+			pvPut(valve_eval_proc, SYNC);
+			valve_eval_proc_1 = 1;
+			pvPut(valve_eval_proc_1, SYNC);
+
+			logic_start_val = 1;
+			pvPut(logic_start_val, SYNC);
+			logic_start_val_1 = 1;
+			pvPut(logic_start_val_1, SYNC);
+
+			printf("OM15 CV8401 Processing...\n");
+		}state CV8401
+
+		when(delay(cdDelay) && valve_eval == 0)
+		{
+			first = 0;
+			printf("OM15 Transition CV7301.\n");
+			pvStopMonitor(proc);
+			pvStopMonitor(valveval);
+			pvStopMonitor(valve_eval);
+			pvStopMonitor(valve_eval_proc);
+			pvStopMonitor(logic_start_val);
+
+			pvStopMonitor(proc_1);
+			pvStopMonitor(valveval_1);
+			pvStopMonitor(valve_eval_1);
+			pvStopMonitor(valve_eval_proc_1);
+			pvStopMonitor(logic_start_val_1);
+		}state CV7301_5
+	}
+
+	state CV7301_5
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om15_cv7301[cycle]);
+			sprintf(valvename, "%s:Valve", om15_cv7301[cycle]);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valveval, valvename);
+			pvAssign(proc, logicname);
+
+			pvMonitor(valveval);
+			pvMonitor(proc);
+
+			first = 1;
+		}state CV7301_5
+
+		when(delay(cdDelay) && valveval < 5)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			printf("OM15 CV7301_5 Processing...\n");
+		}state CV7301_5
+
+		when(delay(cdDelay) && valveval >= 5)
+		{
+			first = 0;
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			printf("OM15 Transition XV7301.\n");
+		}state XV7301
+	}
+
+	state XV7301
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om15_cv7301[cycle]);
+			sprintf(valvename, "%s:Valve",		  om15_cv7301[cycle]);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valveval, valvename);
+			pvAssign(proc, logicname);
+			pvMonitor(valveval);
+			pvMonitor(proc);
+
+			first = 1;
+		}state XV7301
+
+		when(delay(cdDelay) && valveval < 1 )
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			printf("OM15 XV7301 Processing...\n");
+		}state XV7301
+
+		when(delay(cdDelay) && valveval == 1 )
+		{
+			first = 0;
+
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+
+			valvename[0] = '\0';
+			logicname[0] = '\0';
+
+			printf("OM15 Transition CV7301.\n");
+		}state CV7301_100
+	}
+
+	state CV7301_100
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", xv7301_7201[cycle]);
+			sprintf(valvename, "%s:Valve",		  xv7301_7201[cycle]);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valveval, valvename);
+			pvAssign(proc, logicname);
+
+			pvMonitor(valveval);
+			pvMonitor(proc);
+
+			first = 1;
+		}state CV7301_100
+
+		when(delay(cdDelay) && valveval < 50)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+			printf("OM15 CV7301_5 Processing...\n");
+		}state CV7301_100
+
+		when(delay(cdDelay) && valveval >= 50)
+		{
+			first = 0;
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			printf("OM15 Transition XV7301.\n");
+		}state PhaseEndQWR
+	}
+
+	state PhaseEndQWR
+	{
+		when(first == 0)
+		{
+			//PLC PID Control PV
+			//om15_cv8401;
+			//om15_cv8401_1;
+			//om15_cv7301;
+			sprintf(pidname,   "%s:PID", om15_cv8401[cycle]);
+			sprintf(pidname_1, "%s:PID", om15_cv8401_1[cycle]);
+			sprintf(pidname_2, "%s:PID", om15_cv7301[cycle]);
+			printf("%s, %s, %s\n", pidname, pidname_1, pidname_2);
+
+			pvAssign(pid_val,   pidname);
+			pvAssign(pid_val_1, pidname_1);
+			pvAssign(pid_val_2, pidname_2);
+			pvMonitor(pid_val);
+			pvMonitor(pid_val_1);
+			pvMonitor(pid_val_2);
+				
+			//Level >= 70%
+			//om15_phaseend;
+			//om15_phaseend_1;
+			sprintf(levelname,   "%s:Level", om15_phaseend[cycle]);
+			sprintf(levelname_1, "%s:Level", om15_phaseend_1[cycle]);
+			printf("%s, %s\n", levelname, levelname_1);
+
+			pvAssign(level_val,   levelname);
+			pvAssign(level_val_1, levelname_1);
+			pvMonitor(level_val);
+			pvMonitor(level_val_1);
+
+			first = 1;
+		}state PhaseEndQWR
+
+		when(delay(cdDelay) && level_val < 70 && level_val_1 < 70)
+		{
+			printf("OM15 Phase End(QWR) Processing...\n");
+		}state PhaseEndQWR
+
+		when(delay(cdDelay) && level_val >= 70 && level_val_1 >= 70)
+		{
+			printf("OM15 Phase End(QWR) Processing...\n");
+			//PLC PID Control
+			pid_val = pid_val_1 = pid_val_2 = 1;
+			pvPut(pid_val, SYNC); pvPut(pid_val_1, SYNC); pvPut(pid_val_2, SYNC);
+			cycle++;
+			pvPut(cycle, SYNC);
+		}state Stop
+	}
+}
+
+//ss ssCDOM15HWRP2DT
+//{
+//	state init
+//	{
+//		when(TRUE)
+//		{
+//		} state CV8402_8401
+//	}
+//
+//	state Stop
+//	{
+//		when(delay(cdDelay) && efTestAndClear(efCDOM15HWR))
+//		{
+//		} state CV8402_8401
+//	}
+//
+//	state CV8402_8401
+//	{
+//		when(delay(cdDelay))
+//		{
+//
+//		} state CV8402_8401
+//	}
+//
+//
+//	state PhaseEnd15
+//	{
+//		when(first == 0)
+//		{
+//		}state PhaseEnd15
+//
+//		when(delay(cdDelay) && valveval < 50)
+//		{
+//		}state PhaseEnd15
+//
+//		when(delay(cdDelay) && valveval >= 50)
+//		{
+//		}state Stop
+//	}
+//}
 
 //ss ssOM14ValveWave
 //{
