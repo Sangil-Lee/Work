@@ -40,10 +40,16 @@ valveEval_SRCS_vxWorks += -nil-
 #valveEval_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
     valveEval_SNCFLAGS += +r
-    valveEval_DBD  += CDOM031.dbd
+	#
+    #valveEval_DBD  += CDOM031.dbd
+	#Cooldown_03.dbd instead of CDOM031~038
+    valveEval_DBD  += Cooldown_03.dbd
     valveEval_DBD  += CDOM1Cycle.dbd
     valveEval_DBD  += CDOMAutoRegulate.dbd
-    valveEval_SRCS += CDOM031.stt
+
+    #valveEval_SRCS += CDOM031.stt
+	#Cooldown_03.stt instead of CDOM031~038
+    valveEval_SRCS += Cooldown_03.stt
     valveEval_SRCS += CDOM1Cycle.stt
     valveEval_SRCS += CDOMAutoRegulate.stt
     valveEval_LIBS += seq pv
