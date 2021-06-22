@@ -1,0 +1,437 @@
+program CDOM04Logic
+option +r;
+
+%% #include <math.h>
+
+
+// Thermal Shield Line Mass Flow Rate Regulation
+// OM041 valve list
+int stopindex = 2;
+char om041_valveName[2][60] = {
+"SCL31-CDL01:EBx01-CV7501",	"SCL31-CDL01:EBx01-CV7402"
+};
+
+// EBx Cold Helium Line Opening Increase
+// OM043_1 valve list
+ // 266=44 + 66 + 22 + 33 + 55 + 44 + 2;
+int stopindex_1_2 = 44;	
+char om043_1_valveName[44][60] = {
+"P2DT-CDL04:VBx01-CV7401",	"SCL32-CDL03:VBx19-CV7401",	"SCL32-CDL03:VBx18-CV7401",	"SCL32-CDL03:VBx17-CV7401",	"SCL32-CDL03:VBx16-CV7401",	
+"SCL32-CDL03:VBx15-CV7401",	"SCL32-CDL03:VBx14-CV7401",	"SCL32-CDL03:VBx13-CV7401",	"SCL32-CDL03:VBx12-CV7401",	"SCL32-CDL03:VBx11-CV7401",	
+"SCL32-CDL03:VBx10-CV7401",	"SCL32-CDL03:VBx09-CV7401",	"SCL32-CDL03:VBx08-CV7401",	"SCL32-CDL03:VBx07-CV7401",	"SCL32-CDL03:VBx06-CV7401",	
+"SCL32-CDL03:VBx05-CV7401",	"SCL32-CDL03:VBx04-CV7401",	"SCL32-CDL03:VBx03-CV7401",	"SCL32-CDL03:VBx02-CV7401",	"SCL32-CDL03:VBx01-CV7401",	
+"SCL32-CDL02:VBx13-CV7401",	"SCL32-CDL02:VBx12-CV7401",	"SCL32-CDL02:VBx11-CV7401",	"SCL32-CDL02:VBx10-CV7401",	"SCL32-CDL02:VBx09-CV7401",	
+"SCL32-CDL02:VBx08-CV7401",	"SCL32-CDL02:VBx07-CV7401",	"SCL32-CDL02:VBx06-CV7401",	"SCL32-CDL02:VBx05-CV7401",	"SCL32-CDL02:VBx04-CV7401",	
+"SCL32-CDL02:VBx03-CV7401",	"SCL32-CDL02:VBx02-CV7401",	"SCL32-CDL02:VBx01-CV7401",	"SCL31-CDL01:VBx22-CV7401",	"SCL31-CDL01:VBx20-CV7401",	
+"SCL31-CDL01:VBx18-CV7401",	"SCL31-CDL01:VBx16-CV7401",	"SCL31-CDL01:VBx14-CV7401",	"SCL31-CDL01:VBx12-CV7401",	"SCL31-CDL01:VBx10-CV7401",	
+"SCL31-CDL01:VBx08-CV7401",	"SCL31-CDL01:VBx06-CV7401",	"SCL31-CDL01:VBx04-CV7401",	"SCL31-CDL01:VBx02-CV7401"
+};
+
+// EBx Cold Helium Line Opening Increase
+// OM043_2 valve list
+int stopindex_3 = 66;
+char om043_2_valveName[66][60] = {
+"P2DT-BL04:CM01-CV8403",	"SCL32-BL03:CM19-CV8403",	"SCL32-BL03:CM18-CV8403",	"SCL32-BL03:CM17-CV8403",	"SCL32-BL03:CM16-CV8403",
+"SCL32-BL03:CM15-CV8403",	"SCL32-BL03:CM14-CV8403",	"SCL32-BL03:CM13-CV8403",	"SCL32-BL03:CM12-CV8403",	"SCL32-BL03:CM11-CV8403",
+"SCL32-BL03:CM10-CV8403",	"SCL32-BL03:CM09-CV8403",	"SCL32-BL03:CM08-CV8403",	"SCL32-BL03:CM07-CV8403",	"SCL32-BL03:CM06-CV8403",
+"SCL32-BL03:CM05-CV8403",	"SCL32-BL03:CM04-CV8403",	"SCL32-BL03:CM03-CV8403",	"SCL32-BL03:CM02-CV8403",	"SCL32-BL03:CM01-CV8403",
+"SCL32-BL02:CM13-CV8403",	"SCL32-BL02:CM12-CV8403",	"SCL32-BL02:CM11-CV8403",	"SCL32-BL02:CM10-CV8403",	"SCL32-BL02:CM09-CV8403",
+"SCL32-BL02:CM08-CV8403",	"SCL32-BL02:CM07-CV8403",	"SCL32-BL02:CM06-CV8403",	"SCL32-BL02:CM05-CV8403",	"SCL32-BL02:CM04-CV8403",
+"SCL32-BL02:CM03-CV8403",	"SCL32-BL02:CM02-CV8403",	"SCL32-BL02:CM01-CV8403",	
+"P2DT-BL04:CM01-CV8402", 	"SCL32-BL03:CM19-CV8402",	"SCL32-BL03:CM18-CV8402",	"SCL32-BL03:CM17-CV8402",	"SCL32-BL03:CM16-CV8402",
+"SCL32-BL03:CM15-CV8402",	"SCL32-BL03:CM14-CV8402",	"SCL32-BL03:CM13-CV8402",	"SCL32-BL03:CM12-CV8402",	"SCL32-BL03:CM11-CV8402",
+"SCL32-BL03:CM10-CV8402",	"SCL32-BL03:CM09-CV8402",	"SCL32-BL03:CM08-CV8402",	"SCL32-BL03:CM07-CV8402",	"SCL32-BL03:CM06-CV8402",
+"SCL32-BL03:CM05-CV8402",	"SCL32-BL03:CM04-CV8402",	"SCL32-BL03:CM03-CV8402",	"SCL32-BL03:CM02-CV8402",	"SCL32-BL03:CM01-CV8402",
+"SCL32-BL02:CM13-CV8402",	"SCL32-BL02:CM12-CV8402",	"SCL32-BL02:CM11-CV8402",	"SCL32-BL02:CM10-CV8402",	"SCL32-BL02:CM09-CV8402",
+"SCL32-BL02:CM08-CV8402",	"SCL32-BL02:CM07-CV8402",	"SCL32-BL02:CM06-CV8402",	"SCL32-BL02:CM05-CV8402",	"SCL32-BL02:CM04-CV8402",
+"SCL32-BL02:CM03-CV8402",	"SCL32-BL02:CM02-CV8402",	"SCL32-BL02:CM01-CV8402"
+};
+
+// OM043_3 valve list
+int stopindex_4 = 22;
+char om043_3_valveName[22][60] = {
+"SCL31-BL01:CM22-CV8402",	"SCL31-BL01:CM21-CV8402",	"SCL31-BL01:CM20-CV8402",	"SCL31-BL01:CM19-CV8402",	"SCL31-BL01:CM18-CV8402", 
+"SCL31-BL01:CM17-CV8402",	"SCL31-BL01:CM16-CV8402",	"SCL31-BL01:CM15-CV8402",	"SCL31-BL01:CM14-CV8402",	"SCL31-BL01:CM13-CV8402", 
+"SCL31-BL01:CM12-CV8402",	"SCL31-BL01:CM11-CV8402",	"SCL31-BL01:CM10-CV8402",	"SCL31-BL01:CM09-CV8402",	"SCL31-BL01:CM08-CV8402", 
+"SCL31-BL01:CM07-CV8402",	"SCL31-BL01:CM06-CV8402",	"SCL31-BL01:CM05-CV8402",	"SCL31-BL01:CM04-CV8402",	"SCL31-BL01:CM03-CV8402", 
+"SCL31-BL01:CM02-CV8402",	"SCL31-BL01:CM01-CV8402"
+};
+
+// OM043_4 valve list
+int stopindex_5 = 33;
+char om043_4_valveName[33][60] = {
+"P2DT-CDL04:VBx01-CV7201",  "SCL32-CDL03:VBx19-CV7201", "SCL32-CDL03:VBx18-CV7201", "SCL32-CDL03:VBx17-CV7201", "SCL32-CDL03:VBx16-CV7201",
+"SCL32-CDL03:VBx15-CV7201", "SCL32-CDL03:VBx14-CV7201", "SCL32-CDL03:VBx13-CV7201", "SCL32-CDL03:VBx12-CV7201", "SCL32-CDL03:VBx11-CV7201",
+"SCL32-CDL03:VBx10-CV7201", "SCL32-CDL03:VBx09-CV7201", "SCL32-CDL03:VBx08-CV7201", "SCL32-CDL03:VBx07-CV7201", "SCL32-CDL03:VBx06-CV7201",
+"SCL32-CDL03:VBx05-CV7201", "SCL32-CDL03:VBx04-CV7201", "SCL32-CDL03:VBx03-CV7201", "SCL32-CDL03:VBx02-CV7201", "SCL32-CDL03:VBx01-CV7201",
+"SCL32-CDL02:VBx13-CV7201", "SCL32-CDL02:VBx12-CV7201", "SCL32-CDL02:VBx11-CV7201", "SCL32-CDL02:VBx10-CV7201", "SCL32-CDL02:VBx09-CV7201",
+"SCL32-CDL02:VBx08-CV7201", "SCL32-CDL02:VBx07-CV7201", "SCL32-CDL02:VBx06-CV7201", "SCL32-CDL02:VBx05-CV7201", "SCL32-CDL02:VBx04-CV7201",
+"SCL32-CDL02:VBx03-CV7201", "SCL32-CDL02:VBx02-CV7201", "SCL32-CDL02:VBx01-CV7201"
+};
+
+// OM043_5 valve list
+int stopindex_6 = 55;
+char om043_5_valveName[55][60] = {
+"P2DT-BL04:CM01-CV8401",	"SCL32-BL03:CM19-CV8401",	"SCL32-BL03:CM18-CV8401",	"SCL32-BL03:CM17-CV8401",	"SCL32-BL03:CM16-CV8401",
+"SCL32-BL03:CM15-CV8401",	"SCL32-BL03:CM14-CV8401",	"SCL32-BL03:CM13-CV8401",	"SCL32-BL03:CM12-CV8401",	"SCL32-BL03:CM11-CV8401",
+"SCL32-BL03:CM10-CV8401",	"SCL32-BL03:CM09-CV8401",	"SCL32-BL03:CM08-CV8401",	"SCL32-BL03:CM07-CV8401",	"SCL32-BL03:CM06-CV8401",
+"SCL32-BL03:CM05-CV8401",	"SCL32-BL03:CM04-CV8401",	"SCL32-BL03:CM03-CV8401",	"SCL32-BL03:CM02-CV8401",	"SCL32-BL03:CM01-CV8401",
+"SCL32-BL02:CM13-CV8401",	"SCL32-BL02:CM12-CV8401",	"SCL32-BL02:CM11-CV8401",	"SCL32-BL02:CM10-CV8401",	"SCL32-BL02:CM09-CV8401",
+"SCL32-BL02:CM08-CV8401",	"SCL32-BL02:CM07-CV8401",	"SCL32-BL02:CM06-CV8401",	"SCL32-BL02:CM05-CV8401",	"SCL32-BL02:CM04-CV8401",
+"SCL32-BL02:CM03-CV8401",	"SCL32-BL02:CM02-CV8401",	"SCL32-BL02:CM01-CV8401",	"SCL31-BL01:CM22-CV8401",	"SCL31-BL01:CM21-CV8401",
+"SCL31-BL01:CM20-CV8401",	"SCL31-BL01:CM19-CV8401",	"SCL31-BL01:CM18-CV8401",	"SCL31-BL01:CM17-CV8401",	"SCL31-BL01:CM16-CV8401",
+"SCL31-BL01:CM15-CV8401",	"SCL31-BL01:CM14-CV8401",	"SCL31-BL01:CM13-CV8401",	"SCL31-BL01:CM12-CV8401",	"SCL31-BL01:CM11-CV8401",
+"SCL31-BL01:CM10-CV8401",	"SCL31-BL01:CM09-CV8401",	"SCL31-BL01:CM08-CV8401",	"SCL31-BL01:CM07-CV8401",	"SCL31-BL01:CM06-CV8401",
+"SCL31-BL01:CM05-CV8401",	"SCL31-BL01:CM04-CV8401",	"SCL31-BL01:CM03-CV8401",	"SCL31-BL01:CM02-CV8401",	"SCL31-BL01:CM01-CV8401"
+};
+
+// OM043_6 valve list
+int stopindex_7 = 44;
+char om043_6_valveName[44][60] = {
+"P2DT-CDL04:VBx01-CV7301",	"SCL32-CDL03:VBx19-CV7301",	"SCL32-CDL03:VBx18-CV7301",	"SCL32-CDL03:VBx17-CV7301",	"SCL32-CDL03:VBx16-CV7301",
+"SCL32-CDL03:VBx15-CV7301",	"SCL32-CDL03:VBx14-CV7301",	"SCL32-CDL03:VBx13-CV7301",	"SCL32-CDL03:VBx12-CV7301",	"SCL32-CDL03:VBx11-CV7301",
+"SCL32-CDL03:VBx10-CV7301",	"SCL32-CDL03:VBx09-CV7301",	"SCL32-CDL03:VBx08-CV7301",	"SCL32-CDL03:VBx07-CV7301",	"SCL32-CDL03:VBx06-CV7301",
+"SCL32-CDL03:VBx05-CV7301",	"SCL32-CDL03:VBx04-CV7301",	"SCL32-CDL03:VBx03-CV7301",	"SCL32-CDL03:VBx02-CV7301",	"SCL32-CDL03:VBx01-CV7301",
+"SCL32-CDL02:VBx13-CV7301",	"SCL32-CDL02:VBx12-CV7301",	"SCL32-CDL02:VBx11-CV7301",	"SCL32-CDL02:VBx10-CV7301",	"SCL32-CDL02:VBx09-CV7301",
+"SCL32-CDL02:VBx08-CV7301",	"SCL32-CDL02:VBx07-CV7301",	"SCL32-CDL02:VBx06-CV7301",	"SCL32-CDL02:VBx05-CV7301",	"SCL32-CDL02:VBx04-CV7301",
+"SCL32-CDL02:VBx03-CV7301",	"SCL32-CDL02:VBx02-CV7301",	"SCL32-CDL02:VBx01-CV7301",	"SCL31-CDL01:VBx22-CV7301",	"SCL31-CDL01:VBx20-CV7301",
+"SCL31-CDL01:VBx18-CV7301",	"SCL31-CDL01:VBx16-CV7301",	"SCL31-CDL01:VBx14-CV7301",	"SCL31-CDL01:VBx12-CV7301",	"SCL31-CDL01:VBx10-CV7301",
+"SCL31-CDL01:VBx08-CV7301",	"SCL31-CDL01:VBx06-CV7301",	"SCL31-CDL01:VBx04-CV7301",	"SCL31-CDL01:VBx02-CV7301"
+};
+
+// OM043_7 valve list
+int stopindex_8 = 2;
+char om043_7_valveName[2][60] = {
+"Cryo-CDL00:TBx01-CV7201", "Cryo-CDL00:TBx01-XV7201"
+};
+
+string steppv;
+assign steppv to "SCL3:CoolDown:StepPV";
+monitor steppv;
+
+int ss_start = 0;
+assign ss_start to "SCL3:CoolDown:Start";
+monitor ss_start;
+evflag	efStop;
+sync ss_start efStop;
+
+int index = 0;
+assign index to "SCL3:CoolDown:IndexPV";
+monitor index;
+
+float cdDelay;
+assign cdDelay to "SCL3:CoolDown:ScanTime";
+monitor cdDelay;
+
+int presz_start = 0;
+assign presz_start to "SCL3:CoolDown:PrezStart";
+monitor presz_start;
+
+float	valvewave[107];
+assign	valvewave to "SCL3:CoolDown:ValveWave";
+monitor valvewave;
+
+char	logicname[60];
+int		logic_proc[5];
+assign	logic_proc to {"", "", "", "", ""};
+
+char	valvename[60];
+float	valve_val[5];
+assign  valve_val to {"", "", "", "", ""};
+
+int first = 0;
+evflag	efCDOM041_0;
+evflag	efCDOM041_20;
+evflag	efCDOM041_100;
+
+ss ssCDOM041
+{
+	state init 
+	{
+		when(TRUE)
+		{
+			index = 0;
+			stopindex = 2;
+			stopindex_1_2 = 266;
+			pvPut(index, SYNC);
+			efSet(efCDOM041_20);
+		}state EBxCV7501_7402
+
+	}
+	state stopCDOM041
+	{
+		when(efTestAndClear(efStop) && ss_start == 1)
+		{
+			index = 0;
+			stopindex = 2;
+			stopindex_1_2 = 266;
+			pvPut(index, SYNC);
+			efSet(efCDOM041_20);
+		}state EBxCV7501_7402
+	}
+
+	state EBxCV7501_7402
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om041_valveName[index]);
+			sprintf(valvename, "%s:Valve", om041_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+
+			first = 1;
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+
+				pvAssign(valve_val[0], valvename);
+				pvMonitor(valve_val[0]);
+
+				pvAssign(logic_proc[0], logicname);
+				pvMonitor(logic_proc[0]);
+			};
+
+		}state EBxCV7501_7402
+
+		when(delay(cdDelay) && valve_val[0] < 20  && index == 0)
+		{
+			logic_proc[0] = 1;
+			pvPut(logic_proc[0], SYNC);
+			printf("EBx CV7501 Processing...\n");
+
+		}state EBxCV7501_7402
+
+		when(delay(cdDelay) && valve_val[0] >= 20  && index == 0)
+		{
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state EBxCV7501_7402
+
+		when(delay(cdDelay) && valve_val[0] < 100  && index == 1)
+		{
+			logic_proc[0] = 1;
+			pvPut(logic_proc[0], SYNC);
+			printf("EBx CV7402 Processing...\n");
+
+		}state EBxCV7501_7402
+
+		when(delay(cdDelay) && valve_val[0] >= 100  && index == 1)
+		{
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			stopindex = 9;
+		}state CV7401
+	}
+
+	state CV7401
+	{
+		when(first == 0 && index < stopindex)
+		{
+			int i = index*5;
+			for(; i < i+5; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_1_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_1_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		}state CV7401
+
+		when(first == 0 && index == stopindex)
+		{
+			int i = index*5;
+			for(; i < i+4; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_1_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_1_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		}state CV7401
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV7401
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i%5]);
+				pvStopMonitor(valve_val[i%5]);
+				pvAssign(valve_val[i%5], "");
+				pvAssign(logic_proc[i%5], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV7401
+
+		when(delay(cdDelay) && index == stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0)
+
+		{
+			int i = 0;
+			for(; i < 4; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV7401
+
+		when(delay(cdDelay) && index == 9 && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0)
+
+		{
+			int i = 0;
+			for(; i < 4; i++)
+			{
+				pvStopMonitor(logic_proc[i%5]);
+				pvStopMonitor(valve_val[i%5]);
+				pvAssign(valve_val[i%5], "");
+				pvAssign(logic_proc[i%5], "");
+			};
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			//66 (5*13+1), index = 13, modular = 1 => stopindex = 14
+			stopindex = 14;
+		}state CV8403_02
+	}
+
+	state CV8403_02
+	{
+		when(first == 0 && index < stopindex)
+		{
+			int i = index*5;
+			for(; i < i+5; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_2_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_2_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		}state CV8403_02
+
+		when(first == 0 && index == stopindex)
+		{
+			int i = index*5;
+			for(; i < i+1; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_2_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_2_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		}state CV8403_02
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV8403_02
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i%5]);
+				pvStopMonitor(valve_val[i%5]);
+				pvAssign(valve_val[i%5], "");
+				pvAssign(logic_proc[i%5], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV8403_02
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] > 0 )
+
+		{
+			logic_proc[0] = 1;
+			pvPut(logic_proc[0], SYNC);
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV8403_02
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] == 0 )
+
+		{
+			pvStopMonitor(logic_proc[0]);
+			pvStopMonitor(valve_val[0]);
+			pvAssign(valve_val[0], "");
+			pvAssign(logic_proc[0], "");
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			//22 (5*4 + 2), index = 4, modular = 2 => stopindex = 5
+			stopindex = 5;
+		}state CV8402_QWR
+	}
+
+	state CV8402_QWR
+	{
+		when()
+		{
+		} state CV8402_QWR
+	}
+}
+
