@@ -158,6 +158,7 @@ ss ssCDOM041
 		}state EBxCV7501_7402
 
 	}
+
 	state stopCDOM041
 	{
 		when(efTestAndClear(efStop) && ss_start == 1)
@@ -232,7 +233,8 @@ ss ssCDOM041
 		when(first == 0 && index < stopindex)
 		{
 			int i = index*5;
-			for(; i < i+5; i++)
+			int five = i + 5;
+			for(; i < five ; i++)
 			{
 				sprintf(logicname, "%s:CDLogic.PROC",	om043_1_valveName[i]);
 				sprintf(valvename, "%s:Valve",			om043_1_valveName[i]);
@@ -249,7 +251,8 @@ ss ssCDOM041
 		when(first == 0 && index == stopindex)
 		{
 			int i = index*5;
-			for(; i < i+4; i++)
+			int four = i + 4;
+			for(; i < four; i++)
 			{
 				sprintf(logicname, "%s:CDLogic.PROC",	om043_1_valveName[i]);
 				sprintf(valvename, "%s:Valve",			om043_1_valveName[i]);
@@ -337,7 +340,8 @@ ss ssCDOM041
 		when(first == 0 && index < stopindex)
 		{
 			int i = index*5;
-			for(; i < i+5; i++)
+			int five = i + 5;
+			for(; i < five; i++)
 			{
 				sprintf(logicname, "%s:CDLogic.PROC",	om043_2_valveName[i]);
 				sprintf(valvename, "%s:Valve",			om043_2_valveName[i]);
@@ -354,7 +358,8 @@ ss ssCDOM041
 		when(first == 0 && index == stopindex)
 		{
 			int i = index*5;
-			for(; i < i+1; i++)
+			int one = i+1;
+			for(; i < one; i++)
 			{
 				sprintf(logicname, "%s:CDLogic.PROC",	om043_2_valveName[i]);
 				sprintf(valvename, "%s:Valve",			om043_2_valveName[i]);
@@ -429,9 +434,466 @@ ss ssCDOM041
 
 	state CV8402_QWR
 	{
-		when()
+		when(first == 0 && index < stopindex)
 		{
+			int i = index*5;
+			int five = i + 5;
+			for(; i < five; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_3_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_3_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
 		} state CV8402_QWR
+
+		when(first == 0 && index == stopindex)
+		{
+			int i = index*5;
+			int two = i+2;
+			for(; i < two; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_3_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_3_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV8402_QWR
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV8402_QWR
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i%5]);
+				pvStopMonitor(valve_val[i%5]);
+				pvAssign(valve_val[i%5], "");
+				pvAssign(logic_proc[i%5], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV8402_QWR
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] > 0 && valve_val[1] > 0 )
+
+		{
+			logic_proc[0] = logic_proc[1] = 1;
+			pvPut(logic_proc[0], SYNC);
+			pvPut(logic_proc[1], SYNC);
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV8403_02
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] == 0 && valve_val[1] == 0 )
+
+		{
+			pvStopMonitor(logic_proc[0]);
+			pvStopMonitor(valve_val[0]);
+			pvAssign(valve_val[0], "");
+			pvAssign(logic_proc[0], "");
+
+			pvStopMonitor(logic_proc[1]);
+			pvStopMonitor(valve_val[1]);
+			pvAssign(valve_val[1], "");
+			pvAssign(logic_proc[1], "");
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			//22 (5*4 + 2), index = 4, modular = 2 => stopindex = 5
+			stopindex = 7;
+		}state CV8402_QWR
+	}
+
+	state CV7201
+	{
+		when(first == 0 && index < stopindex)
+		{
+			int i = index*5;
+			int five = i + 5;
+			for(; i < five; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_4_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_4_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV7201
+
+		when(first == 0 && index == stopindex)
+		{
+			int i = index*5;
+			int three = i+3;
+			for(; i < three; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_4_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_4_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV7201
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV7201
+
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV7201
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 )
+
+		{
+			int i = 0;
+			for(; i < 3; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+		}state CV7201
+
+		when(delay(cdDelay) && index == stopindex && valve_val[0] == 0 && valve_val[1] == 0  && valve_val[2] == 0 )
+
+		{
+			int i = 0;
+			for(; i < 3; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			stopindex = 11;
+		}state CV8401
+	}
+
+	state CV8401
+	{
+		when(first == 0 && index <= stopindex)
+		{
+			int i = index*5;
+			int five = i + 5;
+			for(; i < five; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_5_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_5_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV8401
+
+		when(delay(cdDelay) && index <= stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV8401
+
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV8401
+
+		when(delay(cdDelay) && index == stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			stopindex = 9;
+		}state CV7301
+	}
+
+	state CV7301
+	{
+		when(first == 0 && index < stopindex)
+		{
+			int i = index*5;
+			int five = i + 5;
+			for(; i < five; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_6_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_6_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV7301
+
+		when(first == 0 && index == stopindex)
+		{
+			int i = index*5;
+			int four = i + 4;
+			for(; i < four; i++)
+			{
+				sprintf(logicname, "%s:CDLogic.PROC",	om043_6_valveName[i]);
+				sprintf(valvename, "%s:Valve",			om043_6_valveName[i]);
+				printf("%s, %s\n", logicname, valvename);
+
+				pvAssign(logic_proc[i%5], logicname);
+				pvMonitor(logic_proc[i%5]);
+				pvAssign(valve_val[i%5], valvename);
+				pvMonitor(valve_val[i%5]);
+			};
+			first = 1;
+		} state CV7301
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0 && valve_val[4] > 0)
+
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+
+		}state CV7301
+
+		when(delay(cdDelay) && index < stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0 && valve_val[4] == 0)
+		{
+			int i = 0;
+			for(; i < 5; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state CV7301
+
+		when(delay(cdDelay) && index == stopindex && 
+				valve_val[0] > 0 && valve_val[1] > 0 && valve_val[2] > 0 && valve_val[3] > 0)
+
+		{
+			int i = 0;
+			for(; i < 4; i++)
+			{
+				logic_proc[i] = 1;
+				pvPut(logic_proc[i], SYNC);
+			};
+			printf("EBx CV7501 Processing...\n");
+		}state CV7301
+
+		when(delay(cdDelay) && index == stopindex && 
+				valve_val[0] == 0 && valve_val[1] == 0 && valve_val[2] == 0 && valve_val[3] == 0)
+
+		{
+			int i = 0;
+			for(; i < 4; i++)
+			{
+				pvStopMonitor(logic_proc[i]);
+				pvStopMonitor(valve_val[i]);
+				pvAssign(valve_val[i], "");
+				pvAssign(logic_proc[i], "");
+			};
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+			stopindex = 1;
+		}state TBx_CV7201
+	}
+
+	state TBx_CV7201
+	{
+		when(first == 0)
+		{
+
+			sprintf(logicname, "%s:CDLogic.PROC",	om043_7_valveName[0]);
+			sprintf(valvename, "%s:Valve",			om043_7_valveName[0]);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(logic_proc[0], logicname);
+			pvMonitor(logic_proc[0]);
+			pvAssign(valve_val[0], valvename);
+			pvMonitor(valve_val[0]);
+			first = 1;
+		} state TBx_CV7201
+
+		when(delay(cdDelay) && valve_val[0] > 0 )
+
+		{
+			logic_proc[0] = 1;
+			pvPut(logic_proc[0], SYNC);
+			printf("EBx CV7501 Processing...\n");
+
+		} state TBx_CV7201
+
+		when(delay(cdDelay) && valve_val[0] == 0 )
+		{
+			pvStopMonitor(logic_proc[0]);
+			pvStopMonitor(valve_val[0]);
+			pvAssign(valve_val[0], "");
+			pvAssign(logic_proc[0], "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state TBx_XV7201
+	}
+
+	state TBx_XV7201
+	{
+		when(first == 0)
+		{
+
+			sprintf(logicname, "%s:CDLogic.PROC",	om043_7_valveName[1]);
+			sprintf(valvename, "%s:Valve",			om043_7_valveName[1]);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(logic_proc[0], logicname);
+			pvMonitor(logic_proc[0]);
+			pvAssign(valve_val[0], valvename);
+			pvMonitor(valve_val[0]);
+			first = 1;
+		} state TBx_XV7201
+
+		when(delay(cdDelay) && valve_val[0] > 0 )
+
+		{
+			logic_proc[0] = 1;
+			pvPut(logic_proc[0], SYNC);
+			printf("EBx CV7501 Processing...\n");
+
+		} state TBx_XV7201
+
+		when(delay(cdDelay) && valve_val[0] == 0 )
+		{
+			pvStopMonitor(logic_proc[0]);
+			pvStopMonitor(valve_val[0]);
+			pvAssign(valve_val[0], "");
+			pvAssign(logic_proc[0], "");
+
+			index = 0;
+			pvPut(index, SYNC);
+
+			first = 0;
+		}state stopCDOM041
 	}
 }
 
