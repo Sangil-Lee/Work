@@ -46,6 +46,7 @@ ifneq ($(SNCSEQ),)
     valveEval_DBD  += Cooldown_03.dbd
     #valveEval_DBD  += Cooldown_04.dbd
     valveEval_DBD  += Cooldown_04_2.dbd
+    valveEval_DBD  += Cooldown_12.dbd
     valveEval_DBD  += CDOM1Cycle.dbd
     valveEval_DBD  += CDOMAutoRegulate.dbd
 
@@ -54,6 +55,7 @@ ifneq ($(SNCSEQ),)
     valveEval_SRCS += Cooldown_03.stt
     #valveEval_SRCS += Cooldown_04.stt
     valveEval_SRCS += Cooldown_04_2.stt
+    valveEval_SRCS += Cooldown_12.stt
     valveEval_SRCS += CDOM1Cycle.stt
     valveEval_SRCS += CDOMAutoRegulate.stt
     valveEval_LIBS += seq pv

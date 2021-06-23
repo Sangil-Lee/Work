@@ -101,9 +101,7 @@ char om043_6_valveName[44][60] = {
 
 // OM043_7 valve list
 int stopindex_8 = 2;
-char om043_7_valveName[2][60] = {
-"Cryo-CDL00:TBx01-CV7201", "Cryo-CDL00:TBx01-XV7201"
-};
+char om043_7_valveName[2][40] = { "Cryo-CDL00:TBx01-CV7201", "Cryo-CDL00:TBx01-XV7201" };
 
 string steppv;
 assign steppv to "SCL3:CoolDown:StepPV";
@@ -146,19 +144,6 @@ evflag	efCDOM041_100;
 
 ss ssCDOM041
 {
-	state init 
-	{
-		when(TRUE)
-		{
-			index = 0;
-			stopindex = 2;
-			stopindex_1_2 = 266;
-			pvPut(index, SYNC);
-			efSet(efCDOM041_20);
-		}state EBxCV7501_7402
-
-	}
-
 	state stopCDOM041
 	{
 		when(efTestAndClear(efStop) && ss_start == 1)
@@ -511,7 +496,7 @@ ss ssCDOM041
 			pvPut(logic_proc[1], SYNC);
 			printf("EBx CV7501 Processing...\n");
 
-		}state CV8403_02
+		}state CV8402_QWR
 
 		when(delay(cdDelay) && index == stopindex && valve_val[0] == 0 && valve_val[1] == 0 )
 
@@ -532,7 +517,7 @@ ss ssCDOM041
 			first = 0;
 			//22 (5*4 + 2), index = 4, modular = 2 => stopindex = 5
 			stopindex = 7;
-		}state CV8402_QWR
+		}state CV7201
 	}
 
 	state CV7201
@@ -861,7 +846,6 @@ ss ssCDOM041
 	{
 		when(first == 0)
 		{
-
 			sprintf(logicname, "%s:CDLogic.PROC",	om043_7_valveName[1]);
 			sprintf(valvename, "%s:Valve",			om043_7_valveName[1]);
 			printf("%s, %s\n", logicname, valvename);
@@ -893,6 +877,7 @@ ss ssCDOM041
 			pvPut(index, SYNC);
 
 			first = 0;
+			efSet(efStop);
 		}state stopCDOM041
 	}
 }
