@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += aiFloat64_sim.template
+DB += phaseEndCond.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
