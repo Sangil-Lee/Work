@@ -6,33 +6,39 @@
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd") {
   field(SCAN, "Passive")
-  field(NELM, "${NELM}")
-  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon")
-  field(INBB, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon")
-  field(INCC, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon")
+  field(CALC, "(A==0)?0:(B>=C && D && E && F)?1:0;B:=B+1")
+  field(INPA, "0")
+  field(INPB, "0")
+  field(INPC, "${COUNT}")
+  field(INPD, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon")
+  field(INPE, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon")
+  field(INPF, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon") {
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
-  field(INPA, "Cryo-CDL00:TBx01-PT7503:Press")
-  field(INPB, "Cryo-CDL00:TBx01-PT7502:Press")
-  field(INPC, "Cryo-CDL00:TBx01-PT7403:Press")
-  field(INPD, "SCL31-CDL01:EBx01-PT7301:Press")
-  field(INPE, "SCL32-CDL02:VBx01-PT7202:Press")
-  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF")
+  field(INPA, "Cryo-CDL00:TBx01-PT7503:PressEval.VAL")
+  field(INPB, "Cryo-CDL00:TBx01-PT7502:PressEval.VAL")
+  field(INPC, "Cryo-CDL00:TBx01-PT7403:PressEval.VAL")
+  field(INPD, "SCL31-CDL01:EBx01-PT7301:PressEval.VAL")
+  field(INPE, "SCL32-CDL02:VBx01-PT7202:PressEval.VAL")
+  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF.VAL")
+  field(CALC, "F:=AVG(AA);(A&&B&&C&&D&&E&&F)?1:0")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon") {
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
-  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF")
+  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF.VAL")
+  field(CALC, "A:=AVG(AA); (A < 1)?0:1")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon") {
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
-  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF")
+  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF.VAL")
+  field(CALC, "A:=AVG(AA); (A < 1)?0:1")
 }
 
 record(ai, "${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon") {
@@ -41,82 +47,83 @@ record(ai, "${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon") {
 record(ai, "${SYS}${SUBSYS}${DEV}${SUBDEV}MFRMon") {
 }
 
-record(ai, SCL31-CDL01:EBx01-PT7301:Press) {
-}
-
-record(ai, Cryo-CDL00:TBx01-PT7403:Press) {
-}
-
-record(ai, Cryo-CDL00:TBx01-PT7502:Press) {
-}
-
-record(ai, Cryo-CDL00:TBx01-PT7503:Press) {
-}
-
-record(ai, SCL32-CDL02:VBx01-PT7202:Press) {
-}
-
-record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF") {
+record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF") {
   field(NELM, "${NELM}")
   field(FTVL, "DOUBLE")
 }
 
-record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF") {
+record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF") {
   field(NELM, "${NELM}")
-  field(FTVL, "DOUBLE")
+  field(FTVL, "UCHAR")
 }
 
-record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF") {
+record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF") {
   field(NELM, "${NELM}")
-  field(FTVL, "DOUBLE")
+  field(FTVL, "UCHAR")
+}
+
+record(calcout, Cryo-CDL00:TBx01-PT7503:PressEval) {
+}
+
+record(calcout, Cryo-CDL00:TBx01-PT7502:PressEval) {
+}
+
+record(calcout, Cryo-CDL00:TBx01-PT7403:PressEval) {
+}
+
+record(calcout, SCL31-CDL01:EBx01-PT7301:PressEval) {
+}
+
+record(calcout, SCL32-CDL02:VBx01-PT7202:PressEval) {
 }
 
 #! Further lines contain data used by VisualDCT
-#! View(4208,4583,1.0)
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd",5160,4694,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INAA")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INBB",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INBB")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INBB","${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INCC",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INCC")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INCC","${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon",4880,4712,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon")
+#! View(6236,6472,1.4)
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd",5200,4652,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPC",16777215,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPC")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPD",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPD")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPD","${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPE",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPE")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPE","${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPF",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPF")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PhaseEnd.INPF","${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon",4880,4698,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPA",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPA")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPA","Cryo-CDL00:TBx01-PT7503:Press.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPA","Cryo-CDL00:TBx01-PT7503:PressEval.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPB",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPB")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPB","Cryo-CDL00:TBx01-PT7502:Press.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPB","Cryo-CDL00:TBx01-PT7502:PressEval.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPC",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPC")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPC","Cryo-CDL00:TBx01-PT7403:Press.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPC","Cryo-CDL00:TBx01-PT7403:PressEval.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPD",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPD")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPD","SCL31-CDL01:EBx01-PT7301:Press.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPD","SCL31-CDL01:EBx01-PT7301:PressEval.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPE",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPE")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPE","SCL32-CDL02:VBx01-PT7202:Press.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INPE","SCL32-CDL02:VBx01-PT7202:PressEval.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INAA")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon",5160,5122,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon",5171,5028,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.INAA")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon",5160,5262,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon",5160,5248,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.INAA")
-#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon",5400,4883,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}MFRMon",5400,4963,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}MFRMon")
-#! Record(SCL31-CDL01:EBx01-PT7301:Press,4620,5003,0,1,"SCL31-CDL01:EBx01-PT7301:Press")
-#! Field("SCL31-CDL01:EBx01-PT7301:Press.VAL",16777215,0,"SCL31-CDL01:EBx01-PT7301:Press.VAL")
-#! Record(Cryo-CDL00:TBx01-PT7403:Press,4620,4883,0,1,"Cryo-CDL00:TBx01-PT7403:Press")
-#! Field("Cryo-CDL00:TBx01-PT7403:Press.VAL",16777215,0,"Cryo-CDL00:TBx01-PT7403:Press.VAL")
-#! Record(Cryo-CDL00:TBx01-PT7502:Press,4620,4763,0,1,"Cryo-CDL00:TBx01-PT7502:Press")
-#! Field("Cryo-CDL00:TBx01-PT7502:Press.VAL",16777215,0,"Cryo-CDL00:TBx01-PT7502:Press.VAL")
-#! Record(Cryo-CDL00:TBx01-PT7503:Press,4620,4643,0,1,"Cryo-CDL00:TBx01-PT7503:Press")
-#! Field("Cryo-CDL00:TBx01-PT7503:Press.VAL",16777215,0,"Cryo-CDL00:TBx01-PT7503:Press.VAL")
-#! Record(SCL32-CDL02:VBx01-PT7202:Press,4620,5123,0,1,"SCL32-CDL02:VBx01-PT7202:Press")
-#! Field("SCL32-CDL02:VBx01-PT7202:Press.VAL",16777215,0,"SCL32-CDL02:VBx01-PT7202:Press.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF",4620,5216,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressWF.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF",4900,5136,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempWF.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF",4900,5296,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF")
-#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuWF.VAL")
+#! Link("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon.INAA","${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon",5404,4879,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}MFRMon",5404,4959,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}MFRMon")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF",4573,5207,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF",4902,5075,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF.VAL")
+#! Record("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF",4900,5295,0,1,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF")
+#! Field("${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF.VAL",16777215,0,"${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF.VAL")
+#! Record(Cryo-CDL00:TBx01-PT7503:PressEval,4543,4680,0,1,"Cryo-CDL00:TBx01-PT7503:PressEval")
+#! Field("Cryo-CDL00:TBx01-PT7503:PressEval.VAL",16777215,1,"Cryo-CDL00:TBx01-PT7503:PressEval.VAL")
+#! Record(Cryo-CDL00:TBx01-PT7502:PressEval,4533,4778,0,1,"Cryo-CDL00:TBx01-PT7502:PressEval")
+#! Field("Cryo-CDL00:TBx01-PT7502:PressEval.VAL",16777215,1,"Cryo-CDL00:TBx01-PT7502:PressEval.VAL")
+#! Record(Cryo-CDL00:TBx01-PT7403:PressEval,4550,4883,0,1,"Cryo-CDL00:TBx01-PT7403:PressEval")
+#! Field("Cryo-CDL00:TBx01-PT7403:PressEval.VAL",16777215,1,"Cryo-CDL00:TBx01-PT7403:PressEval.VAL")
+#! Record(SCL31-CDL01:EBx01-PT7301:PressEval,4536,4989,0,1,"SCL31-CDL01:EBx01-PT7301:PressEval")
+#! Field("SCL31-CDL01:EBx01-PT7301:PressEval.VAL",16777215,1,"SCL31-CDL01:EBx01-PT7301:PressEval.VAL")
+#! Record(SCL32-CDL02:VBx01-PT7202:PressEval,4543,5097,0,1,"SCL32-CDL02:VBx01-PT7202:PressEval")
+#! Field("SCL32-CDL02:VBx01-PT7202:PressEval.VAL",16777215,1,"SCL32-CDL02:VBx01-PT7202:PressEval.VAL")
