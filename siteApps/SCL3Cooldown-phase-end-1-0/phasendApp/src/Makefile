@@ -42,9 +42,11 @@ ifneq ($(SNCSEQ),)
     phasend_SNCFLAGS += +r
     #phasend_DBD  += CDOperationSeq.dbd
     #phasend_DBD  += sncMakeTempWaveform.dbd
+    phasend_DBD += sncTempWF.dbd
 
     #phasend_SRCS += CDOperationSeq.stt
     #phasend_SRCS += sncMakeTempWaveform.stt
+    phasend_SRCS += sncTempWF.stt
 
     phasend_LIBS += seq pv
 endif

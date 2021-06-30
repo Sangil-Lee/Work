@@ -24,21 +24,21 @@ record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressMon") {
   field(INPD, "SCL31-CDL01:EBx01-PT7301:PressEval.VAL")
   field(INPE, "SCL32-CDL02:VBx01-PT7202:PressEval.VAL")
   field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}PressEvalWF.VAL")
-  field(CALC, "F:=AVG(AA);(A&&B&&C&&D&&E&&F)?1:0")
+  field(CALC, "F:=AMIN(AA);(A&&B&&C&&D&&E&&F)?1:0")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempMon") {
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
   field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}TempEvalWF.VAL")
-  field(CALC, "A:=AVG(AA); (A < 1)?0:1")
+  field(CALC, "A:=AMIN(AA); (A < 1)?0:1")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuMon") {
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
   field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}VacuEvalWF.VAL")
-  field(CALC, "A:=AVG(AA); (A < 1)?0:1")
+  field(CALC, "A:=AMIN(AA); (A < 1)?0:1")
 }
 
 record(ai, "${SYS}${SUBSYS}${DEV}${SUBDEV}PurityMon") {

@@ -9,6 +9,9 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += aiFloat64_sim.template
 DB += phaseEndCond.vdb
+DB += sncTempWF.vdb
+DB += sncTempWF.template
+DB += sncTempWF.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
