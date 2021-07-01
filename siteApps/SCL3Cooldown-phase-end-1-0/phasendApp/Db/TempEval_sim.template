@@ -1,0 +1,22 @@
+# ai record template for register inputs
+record(ai, "$(SIGNAL)") {
+    field(PINI,"YES")
+    field(HOPR,"$(HOPR)")
+    field(LOPR,"$(LOPR)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
+    field(SCAN,"$(SCAN)")
+    field(FLNK,"$(SIGNAL)Eval")
+    field(VAL, "282")
+}
+
+record(calcout, "$(SIGNAL)Eval") {
+    field(PINI,"YES")
+    field(SCAN,"Passive")
+    field(VAL, "0")
+    field(INPA, "$(SIGNAL)")
+    field(INPB, "285")
+    field(INPC, "10")
+    field(CALC, "(A<(B-C)||A>(B+C))?0:1")
+}
+

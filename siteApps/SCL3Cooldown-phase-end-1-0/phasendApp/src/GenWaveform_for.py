@@ -22,6 +22,10 @@ f = open(filename, 'r')
 for line in f:
     pvlist.append(line.rstrip('\n'))
 
+dtype = "double"
+if(datatype == "DOUBLE" or datatype=="FLOAT" ): dtype = "double"
+elif(datatype == "SHORT" or datatype=="USHORT" ): dtype = "int"
+elif(datatype == "CHAR" or datatype=="UCHAR" ): dtype = "unsigned char"
 #print(pvlist)
 #print(len(pvlist))
 
@@ -47,7 +51,8 @@ sub = open("../Db/"+seqfilename+subExt, "w")
 sncText = "program " + seqfilename + "\n\noption +r; \n\n"
 seq.write(sncText)
 
-sncText = "double wfList["+ str(listlength)+ "];\n"
+#sncText = "double wfList["+ str(listlength)+ "];\n"
+sncText = dtype + " wfList["+ str(listlength)+ "];\n"
 seq.write(sncText)
 
 sncText = "assign wfList to {\n"
@@ -66,7 +71,8 @@ for line in range(listlength):
 sncText = "\n};\nmonitor wfList;\nevflag evWave;\nsync wfList evWave;\n\n"
 seq.write(sncText)
 
-sncText = "double wfValue["+ str(listlength)+ "];\n"
+#sncText = "double wfValue["+ str(listlength)+ "];\n"
+sncText = dtype + " wfValue["+ str(listlength)+ "];\n"
 seq.write(sncText)
 
 sncText = "assign wfValue to \""+wfname+"\";\n"
@@ -75,7 +81,8 @@ seq.write(sncText)
 sncText = "monitor wfValue;\nevflag evWaveIdx;\nsync wfValue evWaveIdx;\n\n"
 seq.write(sncText)
 
-sncText = "double idxValue["+ str(listlength)+ "];\n"
+#sncText = "double idxValue["+ str(listlength)+ "];\n"
+sncText = dtype + " idxValue["+ str(listlength)+ "];\n"
 seq.write(sncText)
 
 sncText = "assign idxValue to {\n"
@@ -109,7 +116,7 @@ seq.write(sncText)
 sncText = "\t\twhen(TRUE)\n\t\t{\n"
 seq.write(sncText)
 
-sncText = "\t\t\tefClear(evWave);\n\t\t}state MakeWaveform\n\t}\n"
+sncText = "\t\t\tefSet(evWave);\n\t\t}state MakeWaveform\n\t}\n"
 seq.write(sncText)
 
 sncText = "\tstate MakeWaveform\n\t{\n"
@@ -160,7 +167,7 @@ seq.write(sncText)
 sncText = "\t\twhen(TRUE)\n\t\t{\n"
 seq.write(sncText)
 
-sncText = "\t\t\tefClear(evWaveIdx);\n\t\t}state MakeWaveform_Idx\n\t}\n"
+sncText = "\t\t\tefSet(evWaveIdx);\n\t\t}state MakeWaveform_Idx\n\t}\n"
 seq.write(sncText)
 
 sncText = "\tstate MakeWaveform_Idx\n\t{\n"
@@ -216,10 +223,10 @@ vdb.write(sncText)
 sncText = "\tfield(PREC, \"3\")\n"
 vdb.write(sncText)
 
-#sncText = "\tfield(FTVL, \"DOUBLE\")\n}\n"
 sncText = "\tfield(FTVL, \""+datatype+"\")\n}\n"
 vdb.write(sncText)
 vdb.close()
+
 ###################################################
 
 ########### Template File Generation ###################
