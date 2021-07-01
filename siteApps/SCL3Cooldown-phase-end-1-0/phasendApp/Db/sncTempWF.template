@@ -1,6 +1,7 @@
-record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
-	alias("$(ALIAS)")
+	field(OUT, "$(OUT) CPP")
+	field(FLNK, "$(OUT)")
 	field(DTYP, "Soft Channel")
 	field(PREC, "3")
 	field(VAL, "0")

@@ -1,14 +1,21 @@
 import sys
 
-if len(sys.argv) != 4:
-    raise SystemExit('Usage:'+str(sys.argv[0])+' PVList WaveforPVName Datatype(DOUBLE, UCHAR, USHORT, ...)')
+argc = len(sys.argv)
+if argc < 4 or argc > 5:
+    print('Usage:'+str(sys.argv[0])+' PVList WaveforPVName Datatype(DOUBLE, UCHAR, USHORT, ...) OUTLINK')
+    raise SystemExit('EX)'+str(sys.argv[0])+' Temp.txt SCL3:Cooldown:DataWF DOUBLE (and OUTLINK)')
 
 #Usage:$>python GenWaveform.py Temp.txt SCL3:Cooldown:DataWF
 filename = str(sys.argv[1])
 wfname   = str(sys.argv[2])
 datatype = str(sys.argv[3])
-print('Argument List', filename)
-print('Argument Count', len(sys.argv));
+
+if(argc == 5): outlink = str(sys.argv[4])
+#print('Argument List', filename)
+#print('Argument Count', len(sys.argv));
+genout = 0
+
+if (argc == 5 and outlink == "OUTLINK"): genout = 1
 
 pvlist = []
 f = open(filename, 'r')
@@ -29,7 +36,6 @@ vdbExt = ".vdb"
 templExt = ".template"
 subExt = ".sub"
 
-print(seqfilename)
 
 seq   = open(seqfilename+seqExt, "w")
 dbd   = open(seqfilename+dbdExt, "w")
@@ -41,10 +47,10 @@ sub = open("../Db/"+seqfilename+subExt, "w")
 sncText = "program " + seqfilename + "\n\noption +r; \n\n"
 seq.write(sncText)
 
-sncText = "double wflist["+ str(listlength)+ "];\n"
+sncText = "double wfList["+ str(listlength)+ "];\n"
 seq.write(sncText)
 
-sncText = "assign wflist to {\n"
+sncText = "assign wfList to {\n"
 seq.write(sncText)
 
 index = 1
@@ -57,7 +63,7 @@ for line in range(listlength):
         sncText="\""+pvlist[line]+"\""
     seq.write(sncText)
     index += 1
-sncText = "\n};\nmonitor wflist;\nevflag evWave;\nsync wflist evWave;\n\n"
+sncText = "\n};\nmonitor wfList;\nevflag evWave;\nsync wfList evWave;\n\n"
 seq.write(sncText)
 
 sncText = "double wfValue["+ str(listlength)+ "];\n"
@@ -112,19 +118,28 @@ seq.write(sncText)
 sncText = "\t\twhen(efTestAndClear(evWave))\n\t\t{\n"
 seq.write(sncText)
 
-index = 1
-for line in range(len(pvlist)):
-    strline = str(line)
-    if(line==0):
-        sncText="\t\t\twfValue["+strline+"] = wflist["+strline+"];"
-    elif(index%5==0):
-        sncText="\twfValue["+strline+"] = wflist["+strline+"];\n"
-    elif(index%5==1):
-        sncText="\t\t\twfValue["+strline+"] = wflist["+strline+"];"
-    else:
-        sncText="\twfValue["+strline+"] = wflist["+strline+"];"
-    seq.write(sncText)
-    index += 1
+sncText = "\t\t\tint index = 0;\n"
+seq.write(sncText)
+
+sncText = "\t\t\tfor(;index < "+str(listlength)+ ";index++)\n"
+seq.write(sncText)
+
+sncText = "\t\t\t\twfValue[index]=wfList[index];\n"
+seq.write(sncText)
+
+#index = 1
+#for line in range(len(pvlist)):
+#    strline = str(line)
+#    if(line==0):
+#        sncText="\t\t\twfValue["+strline+"] = wfList["+strline+"];"
+#    elif(index%5==0):
+#        sncText="\twfValue["+strline+"] = wfList["+strline+"];\n"
+#    elif(index%5==1):
+#        sncText="\t\t\twfValue["+strline+"] = wfList["+strline+"];"
+#    else:
+#        sncText="\twfValue["+strline+"] = wfList["+strline+"];"
+#    seq.write(sncText)
+#    index += 1
 
 sncText = "\n\t\t\tpvPut (wfValue, SYNC);\n"
 seq.write(sncText)
@@ -154,15 +169,27 @@ seq.write(sncText)
 sncText = "\t\twhen(efTestAndClear(evWaveIdx))\n\t\t{\n"
 seq.write(sncText)
 
-index = 1
-for line in range(len(pvlist)):
-    strline = str(line)
-    sncText="\t\t\tidxValue["+strline+"] = wfValue["+strline+"];"
-    seq.write(sncText)
-    sncText = "\tpvPut(idxValue["+ strline +"], SYNC);\n"
-    seq.write(sncText)
-    index += 1
+sncText = "\t\t\tint index = 0;\n"
+seq.write(sncText)
 
+sncText = "\t\t\tfor(;index < "+str(listlength)+ ";index++)\n\t\t\t{"
+seq.write(sncText)
+
+sncText = "\n\t\t\t\tidxValue[index]=wfValue[index];\n"
+seq.write(sncText)
+
+sncText = "\t\t\t\tpvPut(idxValue[index], SYNC);\n\t\t\t}"
+seq.write(sncText)
+
+#index = 1
+#for line in range(len(pvlist)):
+#    strline = str(line)
+#    sncText="\t\t\tidxValue["+strline+"] = wfValue["+strline+"];"
+#    seq.write(sncText)
+#    sncText = "\tpvPut(idxValue["+ strline +"], SYNC);\n"
+#    seq.write(sncText)
+#    index += 1
+#
 sncText = "\n\t\t}state MakeWaveform_Idx\n\t}\n"
 seq.write(sncText)
 
@@ -199,8 +226,11 @@ vdb.close()
 sncText = "record(ao, \"$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)\")\n{\n"
 templ.write(sncText)
 
-sncText = "\tfield(OUT, \"$(OUT)\")\n"
-templ.write(sncText)
+if(genout == 1):
+    sncText = "\tfield(OUT, \"$(OUT) CPP\")\n"
+    templ.write(sncText)
+    sncText = "\tfield(FLNK, \"$(OUT)\")\n"
+    templ.write(sncText)
 
 sncText = "\tfield(DTYP, \"Soft Channel\")\n"
 templ.write(sncText)
@@ -218,15 +248,24 @@ strtemplfile = seqfilename+templExt
 sncText = "file \"db/"+strtemplfile+"\"{ pattern \n"
 sub.write(sncText)
 
-sncText = "{SIGNAL,\t\t\t SCAN,\t\tOUT}\n"
-sub.write(sncText)
+if(genout ==1):
+    sncText = "{SIGNAL,\t\t\t SCAN,\t\tOUT}\n"
+    sub.write(sncText)
+else:
+    sncText = "{SIGNAL,\t\t\t SCAN}\n"
+    sub.write(sncText)
 
 for line in range(len(pvlist)):
     strline = str(line)
-    sncText="{Index_"+strline+",\t\t\t \"Passive\",\t \"\"}\n"
-    sub.write(sncText)
+    if(genout == 1):
+        sncText="{Index_"+strline+",\t\t\t \"Passive\",\t \"\"}\n"
+    else:
+        sncText="{Index_"+strline+",\t\t\t \"Passive\"}\n"
 
+    sub.write(sncText)
 sncText="}\n"
 sub.write(sncText)
 sub.close()
 ###################################################
+
+print("Successfully Generated File: " + seqfilename+seqExt)

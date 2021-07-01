@@ -10,6 +10,7 @@ include $(TOP)/configure/CONFIG
 DB += aiFloat64_sim.template
 DB += phaseEndCond.vdb
 DB += sncTempWF.vdb
+DB += aiOutLinkTest.vdb
 DB += sncTempWF.template
 DB += sncTempWF.sub
 
