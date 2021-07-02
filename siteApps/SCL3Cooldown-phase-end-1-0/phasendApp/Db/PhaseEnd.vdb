@@ -19,3 +19,9 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd"){
    field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon")
    field(PINI, "YES") 
  }
+  
+ record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StepDly") { 
+   field(SCAN, "Passive") 
+   field(VAL, "5") 
+   field(PINI, "YES") 
+ }

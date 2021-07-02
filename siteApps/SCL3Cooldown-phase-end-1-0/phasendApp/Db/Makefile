@@ -18,9 +18,10 @@ DB += sncTempEvalWF.template
 DB += sncTempEvalWF.sub
 DB += TempEval_sim.template
 DB += scl3_seq_simulate_temp.sub
+DB += PhaseEnd.vdb
 #DB += scl3_seq_simulate_press.sub
 #DB += scl3_seq_simulate.sub
-DB += phaseEndCond_TempMon.vdb
+#DB += phaseEndCond_TempMon.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

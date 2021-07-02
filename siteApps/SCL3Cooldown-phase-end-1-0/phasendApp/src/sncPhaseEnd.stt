@@ -8,7 +8,8 @@ monitor phaseendVal;
 //evflag  evphaseend;
 //sync phaseendVal evphaseend;
 int proc=1;
-assign proc to "";
+assign proc to "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd.PROC"; 
+monitor proc;
 
 float stepdlyVal; 
 assign stepdlyVal to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
@@ -21,8 +22,8 @@ ss makePhaseEnd
         when(TRUE) 
         { 
             //efSet(evphaseend); 
-            pvAssign(proc, "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly.PROC"); 
-            pvMonitor(proc); 
+            //pvAssign(proc, "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd.PROC"); 
+            //pvMonitor(proc); 
         }state ProcPhaseEnd 
     } 
     state ProcPhaseEnd 
@@ -37,6 +38,7 @@ ss makePhaseEnd
         when(delay(stepdlyVal)&&phaseendVal==1) 
         { 
            //Finish PhaseEnd
+           printf("Finished PhaseEnd\n"); 
         }state ProcPhaseEnd 
     } 
 } 
