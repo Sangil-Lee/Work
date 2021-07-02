@@ -1,3 +1,5 @@
+#!/usr/local/bin/python3.8
+
 import sys
 
 ####Python3 Literal String using f'
@@ -14,8 +16,10 @@ dbdExt = ".dbd"
 pvname = filename
 vdbfile = filename + vdbExt
 seqfile = filename + seqExt
+dbdfile = filename + dbdExt
 vdb   = open("../Db/"+ vdbfile, "w")
 seq   = open("snc"+seqfile, "w")
+dbd   = open("snc"+dbdfile, "w")
 
 list_0=[pvname,       "Passive", "(A==0)?0:(B>=C&&E)?1:0"]
 list_1=[pvname+"Cnt", "Passive", "(B==0||C==0)?0:A+1"]
@@ -23,6 +27,7 @@ list_1=[pvname+"Cnt", "Passive", "(B==0||C==0)?0:A+1"]
 nl = '\n'
 open = '{'
 close = '}'
+
 ########### Waveform DB File Generation ###################
 ## PhaseEnd record(acalcout, calc)
 #Text = f'record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd"){open}{nl} \
@@ -53,29 +58,46 @@ vdb.close()
 ###################################################
 condAnd = '&&'
 seq_list = ["snc"+pvname,"ev"+pvname.lower(),pvname.lower()+"Val"]
+pv_list = ["StepDly"]
+prefix = "{SYS}{SUBSYS}{DEV}{SUBDEV}"
 ########### Sequence(.stt) Generation ###################
 Text = f'program  {seq_list[0]} {nl}\
-{nl}{nl}\
-option +r {nl}\
-{nl}{nl}\
+{nl}\
+option +r; {nl}\
+{nl}\
 int {seq_list[2]}; {nl}\
-assign {seq_list[2]} to "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_0[0]}";{nl}{nl}\
+assign {seq_list[2]} to "{prefix}{list_0[0]}";{nl}\
 monitor {seq_list[2]}; {nl}\
-evflag  {seq_list[1]};{nl}\
-sync {seq_list[2]} {seq_list[1]};{nl}{nl}\
+//evflag  {seq_list[1]};{nl}\
+//sync {seq_list[2]} {seq_list[1]};{nl}\
+int proc=1;{nl}\
+assign proc to "";{nl}\
+{nl}\
+float {pv_list[0].lower()}Val; {nl}\
+assign {pv_list[0].lower()}Val to "{prefix}{pv_list[0]}";{nl}\
+monitor {pv_list[0].lower()}Val; {nl}{nl}\
 ss make{pvname} {nl}\
 {open} {nl}\
     state init {nl}\
     {open} {nl}\
         when(TRUE) {nl}\
         {open} {nl}\
-            efSet({seq_list[1]}); {nl}\
+            //efSet({seq_list[1]}); {nl}\
+            pvAssign(proc, "{prefix}{pv_list[0]}.PROC"); {nl}\
+            pvMonitor(proc); {nl}\
         {close}state Proc{pvname} {nl}\
     {close} {nl}\
     state Proc{pvname} {nl}\
     {open} {nl}\
-        when(delay(){condAnd}efTestAndClear({seq_list[1]})) {nl}\
+        //when(delay({pv_list[0].lower()}Val){condAnd}efTestAndClear({seq_list[1]})) {nl}\
+        when(delay({pv_list[0].lower()}Val){condAnd}{seq_list[2]}==0) {nl}\
         {open} {nl}\
+           proc = 1;{nl}\
+           pvPut(proc,SYNC);{nl}\
+        {close}state Proc{pvname} {nl}{nl}\
+        when(delay({pv_list[0].lower()}Val){condAnd}{seq_list[2]}==1) {nl}\
+        {open} {nl}\
+           //Finish PhaseEnd{nl}\
         {close}state Proc{pvname} {nl}\
     {close} {nl}\
 {close} {nl}\
@@ -83,5 +105,11 @@ ss make{pvname} {nl}\
 seq.write(Text)
 seq.close()
 ###################################################
+########### Sequence DBD(.dbd) Generation ###################
 
-print("Successfully Generated File: " )
+Text = f'registrar(snc{pvname}Registrar)'
+dbd.write(Text)
+dbd.close()
+###################################################
+
+print("Successfully Generated File:", "snc"+seqfile )

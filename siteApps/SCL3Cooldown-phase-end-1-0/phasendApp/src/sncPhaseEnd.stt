@@ -1,15 +1,18 @@
 program  sncPhaseEnd 
 
-
-option +r 
-
+option +r; 
 
 int phaseendVal; 
-assign phaseendVal to "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd";
-
+assign phaseendVal to "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd";
 monitor phaseendVal; 
-evflag  evphaseend;
-sync phaseendVal evphaseend;
+//evflag  evphaseend;
+//sync phaseendVal evphaseend;
+int proc=1;
+assign proc to "";
+
+float stepdlyVal; 
+assign stepdlyVal to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
+monitor stepdlyVal; 
 
 ss makePhaseEnd 
 { 
@@ -17,13 +20,23 @@ ss makePhaseEnd
     { 
         when(TRUE) 
         { 
-            efSet(evphaseend); 
+            //efSet(evphaseend); 
+            pvAssign(proc, "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly.PROC"); 
+            pvMonitor(proc); 
         }state ProcPhaseEnd 
     } 
     state ProcPhaseEnd 
     { 
-        when(delay()&&efTestAndClear(evphaseend)) 
+        //when(delay(stepdlyVal)&&efTestAndClear(evphaseend)) 
+        when(delay(stepdlyVal)&&phaseendVal==0) 
         { 
+           proc = 1;
+           pvPut(proc,SYNC);
+        }state ProcPhaseEnd 
+
+        when(delay(stepdlyVal)&&phaseendVal==1) 
+        { 
+           //Finish PhaseEnd
         }state ProcPhaseEnd 
     } 
 } 
