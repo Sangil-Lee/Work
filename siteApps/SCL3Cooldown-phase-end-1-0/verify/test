@@ -1,0 +1,26 @@
+##python GenWaveform_for.py TempEval.txt SCL3:Cooldown:TempEvalWF UCHAR
+
+caput SCL3:Cooldown:PhaseEnd.A 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL31-CDL01:EBx01-TT7502:Temp 270
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caget SCL3:Cooldown:PhaseEndCnt
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caget SCL3:Cooldown:PhaseEndCnt
+caget SCL3:Cooldown:PhaseEndCnt
+caget SCL3:Cooldown:PhaseEnd.B
+caget SCL3:Cooldown:PhaseEndCnt
+caget SCL3:Cooldown:PhaseEnd.B
+caput SCL3:Cooldown:PhaseEnd.PROC 1
+caget SCL3:Cooldown:PhaseEnd.B
+

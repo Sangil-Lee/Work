@@ -4,4 +4,12 @@ record(waveform, "SCL3:Cooldown:TempEvalWF")
 	field(NELM, "962")
 	field(PREC, "3")
 	field(FTVL, "UCHAR")
+	field(FLNK, "SCL3:Cooldown:TempEvalWFMon")
+}
+record(acalcout, "SCL3:Cooldown:TempEvalWFMon")
+{
+	field(NELM, "962")
+	field(SCAN, "Passive")
+	field(INAA, "SCL3:Cooldown:TempEvalWF.VAL")
+	field(CALC, "A:=AMIN(AA);(A<1)?0:1")
 }

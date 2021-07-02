@@ -1,0 +1,29 @@
+program  sncPhaseEnd 
+
+
+option +r 
+
+
+int phaseendVal; 
+assign phaseendVal to "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd";
+
+monitor phaseendVal; 
+evflag  evphaseend;
+sync phaseendVal evphaseend;
+
+ss makePhaseEnd 
+{ 
+    state init 
+    { 
+        when(TRUE) 
+        { 
+            efSet(evphaseend); 
+        }state ProcPhaseEnd 
+    } 
+    state ProcPhaseEnd 
+    { 
+        when(delay()&&efTestAndClear(evphaseend)) 
+        { 
+        }state ProcPhaseEnd 
+    } 
+} 

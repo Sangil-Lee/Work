@@ -212,8 +212,10 @@ dbd.close()
 ###################################################
 
 ########### Waveform DB File Generation ###################
+## waveform record
 sncText = "record(waveform, \""+wfname+"\")\n{\n"
 vdb.write(sncText)
+
 sncText = "\tfield(DTYP, \"Soft Channel\")\n"
 vdb.write(sncText)
 
@@ -223,10 +225,30 @@ vdb.write(sncText)
 sncText = "\tfield(PREC, \"3\")\n"
 vdb.write(sncText)
 
-sncText = "\tfield(FTVL, \""+datatype+"\")\n}\n"
+sncText = "\tfield(FTVL, \""+datatype+"\")\n"
 vdb.write(sncText)
-vdb.close()
 
+sncText = "\tfield(FLNK, \""+wfname+"Mon\")\n}\n"
+vdb.write(sncText)
+## close record
+
+## acalcout record
+sncText = "record(acalcout, \""+wfname+"Mon\")\n{\n"
+vdb.write(sncText)
+
+sncText = "\tfield(NELM, \""+str(listlength)+"\")\n"
+vdb.write(sncText)
+
+sncText = "\tfield(SCAN, \"Passive\")\n"
+vdb.write(sncText)
+
+sncText = "\tfield(INAA, \""+wfname+".VAL\")\n"
+vdb.write(sncText)
+
+sncText = "\tfield(CALC, \"A:=AMIN(AA);(A<1)?0:1\")\n}\n"
+vdb.write(sncText)
+
+vdb.close()
 ###################################################
 
 ########### Template File Generation ###################

@@ -15,10 +15,11 @@ phasend_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadRecords("db/aiOutLinkTest.vdb")
 #dbLoadRecords("db/sncTempWF.vdb")
-#dbLoadTemplate("db/sncTempWF.sub","SYS=SCL3,SUBSYS=:, DEV=WFTest, SUBDEV=:")
+#dbLoadTemplate("db/sncTempWF.sub","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:")
 
 dbLoadRecords("db/sncTempEvalWF.vdb")
-dbLoadTemplate("db/sncTempEvalWF.sub","SYS=SCL3,SUBSYS=:, DEV=WFTest, SUBDEV=:")
+dbLoadTemplate("db/sncTempEvalWF.sub","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:")
+dbLoadRecords("db/phaseEndCond_TempMon.vdb","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:, COUNT=5")
 
 dbLoadTemplate("db/scl3_seq_simulate_temp.sub")
 #dbLoadTemplate("db/scl3_seq_simulate_press.sub")
@@ -30,6 +31,6 @@ cd "${TOP}/iocBoot/${IOC}"
 iocInit
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-#seq sncTempWF,"SYS=SCL3,SUBSYS=:, DEV=WFTest, SUBDEV=:"
-seq sncTempEvalWF,"SYS=SCL3,SUBSYS=:, DEV=WFTest, SUBDEV=:"
+#seq sncTempWF,"SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:"
+seq sncTempEvalWF,"SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:"
 
