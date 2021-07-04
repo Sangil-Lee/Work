@@ -1,0 +1,40 @@
+record(longing, "$(SYS)-$(SUBSYS):$(DEV):error")
+{
+  field(DESC, "Check the system error status")
+  field(DTYP, "stream")
+  field(INP, "@scpi.proto getSystemError $(P)")
+  field(SCAN, "2 second")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):Iget")
+{
+  field(DESC, "Check the output current setting")
+  field(DTYP, "stream")
+  field(INP, "@scpi.proto getSourceCurrent $(P)")
+  field(SCAN, "2 second")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):Vget")
+{
+  field(DESC, "Check the output voltage setting")
+  field(DTYP, "stream")
+  field(INP, "@scpi.proto getSourceVoltage $(P)")
+  field(SCAN, "2 second")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):Imon")
+{
+  field(DESC, "Measure the actual output current")
+  field(DTYP, "stream")
+  field(INP, "@sgi.proto getMeasureCurrent $(P)")
+  field(SCAN, "1 second")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV):Vmon")
+{
+  field(DESC, "Measure the actual output voltage")
+  field(DTYP, "stream")
+  field(INP, "@sgi.proto getMeasureVoltage $(P)")
+  field(SCAN, "1 second")
+}
+

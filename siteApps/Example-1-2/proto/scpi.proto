@@ -1,0 +1,31 @@
+Terminator = CR;
+
+# Returns the system error code
+getSystemError {
+	out "SYST:ERR?";
+	in "%d";
+}
+
+# Returns the output current in amps or in milliamps.(setting value)
+getSourceCurrent {
+        out "SOUR:CURR?";
+        in "%f";
+}
+
+# Returns the output voltage of the supply in volts or in millivolts.(setting value)
+getSourceVoltage {
+        out "SOUR:VOLT?";
+        in "%f";
+}
+
+# Returns the floating point value of the output current in amps or in milliamps.(monitoring value)
+getMeasureCurrent {
+        out "MEAS:CURR?";
+        in "%f";
+}
+
+# Returns the floating poing value of the output voltage in volts or in milliamps.(monitoring value)
+getMeasureVoltage {
+        out "MEAS:VOLT?";
+        in "%f";
+}

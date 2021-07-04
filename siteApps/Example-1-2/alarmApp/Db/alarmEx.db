@@ -1,0 +1,108 @@
+record(bi, "CTRL-Ex:bi${n}")
+{
+  field(DESC, "bi Example")
+  field(INP, "0")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(OSV, "MAJOR")
+  field(PINI, "YES")
+}
+
+record(ai, "CTRL-Ex:ai${n}")
+{
+  field(DESC, "ai Example")
+  field(INP, "${n}")
+  field(LOLO, "1")
+  field(LOW, "2")
+  field(HIGH, "5")
+  field(HIHI, "9")
+  field(LOPR, "0")
+  field(HOPR, "10")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
+  field(HSV, "MINOR")
+  field(HHSV, "MAJOR")
+  field(PREC, "1")
+  field(PINI, "YES")
+}
+
+record(calc, "CTRL-Ex:calc1")
+{
+  field(DESC, "calc Example")
+  field(SCAN, "1 second")
+  field(INPA, "CTRL-Ex:ai1")
+  field(INPB, "CTRL-Ex:ai2")
+  field(INPC, "CTRL-Ex:ai3")
+  field(INPD, "CTRL-Ex:ai4")
+  field(INPE, "CTRL-Ex:ai5")
+  field(INPF, "CTRL-Ex:ai6")
+  field(INPG, "CTRL-Ex:ai7")
+  field(INPH, "CTRL-Ex:ai8")
+  field(INPI, "CTRL-Ex:ai9")
+  field(INPJ, "CTRL-Ex:ai10")
+  field(CALC, "A+B+C+D+E+F+G+H+I+J")
+  field(LOLO, "5")
+  field(LOW, "10")
+  field(HIGH, "50")
+  field(HIHI, "80")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
+  field(HSV, "MINOR")
+  field(HHSV, "MAJOR")
+}
+
+record(calc, "CTRL-Ex:calc2")
+{
+  field(DESC, "calc Example")
+  field(SCAN, "1 second")
+  field(CALC, "RNDM")
+  field(LOLO, "0.001")
+  field(LOW, "0.01")
+  field(HIGH, "0.9")
+  field(HIHI, "0.95")
+  field(LLSV, "MAJOR")
+  field(LSV, "MINOR")
+  field(HSV, "MINOR")
+  field(HHSV, "MAJOR")
+}
+
+record(calc, "CTRL-Ex:calcRadian")
+{
+  field(DESC, "Calculate radian angle")
+  field(SCAN, ".1 second")
+  field(INPA, "CTRL-Ex:calc1")
+  field(CALC, "(A>3.141592*2)?0:A+0.05")
+  field(PREC, "4")
+  field(FLNK, "CTRL-Ex:calcSine")
+}
+
+record(calc, "CTRL-Ex:calcSine")
+{
+  field(DESC, "Calculate sine wave")
+  field(INPA, "CTRL-Ex:calcRadian")
+  field(CALC, "sin(A)")
+  field(FLNK, "CTRL-Ex:compress")
+}
+
+record(compress, "CTRL-Ex:compress")
+{
+  field(DESC, "compress Example")
+  field(INP, "CTRL-Ex:calcSine")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "10000")
+}
+
+record(calc, "RFQ_Vac:Pump2:Pressure")
+{
+    field(DESC, "Demo Record")
+    field(SCAN, "2 second")
+    field(INPA, "RFQ_Vac:Pump2:Pressure")
+    field(CALC, "A<10?A+1:0")
+    field(HIGH, "5")
+    field(HIHI, "9")
+    field(HSV , "MINOR")
+    field(HHSV, "MAJOR")
+    field(LOPR, "0")
+    field(HOPR, "10")
+    field(PREC, "1")
+}
