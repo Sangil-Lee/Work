@@ -4,31 +4,37 @@
 #! DBDEND
 
 
+
 record(ai, "$(SYS):RawValue") {
   field(PINI, "YES")
-  field(FLNK, "$(SYS):FilterValue")
+  field(FLNK, "$(SYS):FilterOValue")
   field(VAL, "0")
+  field(SCAN, "1 second")
 }
 
 
-record(calc, "$(SYS):FilterValue") {
+record(calcout, "$(SYS):FilterOValue") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(CALC, "(ABS(A-B)>C)?A:B")
-  field(INPA, "$(SYS):FilterValue.VAL")
+  field(INPA, "$(SYS):FilterOValue")
   field(INPB, "$(SYS):RawValue")
   field(INPC, "150")
+  field(OUT, "$(SYS):RawValue PP")
+  field(DOPT, "Use CALC")
 }
 
 #! Further lines contain data used by VisualDCT
 #! View(2000,2115,1.0)
-#! Record("$(SYS):RawValue",2140,2202,0,1,"$(SYS):RawValue")
+#! Record("$(SYS):RawValue",2120,2148,0,1,"$(SYS):RawValue")
 #! Field("$(SYS):RawValue.FLNK",16777215,1,"$(SYS):RawValue.FLNK")
-#! Link("$(SYS):RawValue.FLNK","$(SYS):FilterValue")
+#! Link("$(SYS):RawValue.FLNK","$(SYS):FilterOValue")
 #! Field("$(SYS):RawValue.VAL",16777215,1,"$(SYS):RawValue.VAL")
-#! Record("$(SYS):FilterValue",2520,2180,0,0,"$(SYS):FilterValue")
-#! Field("$(SYS):FilterValue.INPA",16777215,0,"$(SYS):FilterValue.INPA")
-#! Link("$(SYS):FilterValue.INPA","$(SYS):FilterValue.VAL")
-#! Field("$(SYS):FilterValue.VAL",16777215,0,"$(SYS):FilterValue.VAL")
-#! Field("$(SYS):FilterValue.INPB",16777215,0,"$(SYS):FilterValue.INPB")
-#! Link("$(SYS):FilterValue.INPB","$(SYS):RawValue.VAL")
+#! Record("$(SYS):FilterOValue",2520,2252,0,0,"$(SYS):FilterOValue")
+#! Field("$(SYS):FilterOValue.VAL",16777215,0,"$(SYS):FilterOValue.VAL")
+#! Field("$(SYS):FilterOValue.INPA",16777215,0,"$(SYS):FilterOValue.INPA")
+#! Link("$(SYS):FilterOValue.INPA","$(SYS):FilterOValue.VAL")
+#! Field("$(SYS):FilterOValue.INPB",16777215,0,"$(SYS):FilterOValue.INPB")
+#! Link("$(SYS):FilterOValue.INPB","$(SYS):RawValue.VAL")
+#! Field("$(SYS):FilterOValue.OUT",16777215,0,"$(SYS):FilterOValue.OUT")
+#! Link("$(SYS):FilterOValue.OUT","$(SYS):RawValue.VAL")
