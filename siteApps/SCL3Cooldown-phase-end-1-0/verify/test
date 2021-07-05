@@ -1,6 +1,6 @@
 ##python GenWaveform_for.py TempEval.txt SCL3:Cooldown:TempEvalWF UCHAR
 
-camonitor SCL3:Cooldown:TempEvalWF SCL3:Cooldown:PhaseEnd PhaseEndCnt
+camonitor SCL3:Cooldown:TempEvalWF SCL3:Cooldown:PhaseEnd SCL3:Cooldown:PhaseEndCnt
 
 caput SCL3:Cooldown:PhaseEnd.A 1
 caput SCL3:Cooldown:PhaseEnd.PROC 1 or sncPhaseEnd Sequencer

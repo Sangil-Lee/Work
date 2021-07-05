@@ -9,7 +9,8 @@ record(ai, "$(SIGNAL)") {
 record(compress, "$(SIGNAL)Comp") {
   field(SCAN, "Passive")
   field(ALG, "Circular Buffer")
-  field(NSAM, "5")
+#field(NSAM, "5")
+  field(NSAM, "2")
   field(FLNK, "$(SIGNAL)Eval")
   field(INP, "$(SIGNAL)")
 }
@@ -17,7 +18,9 @@ record(compress, "$(SIGNAL)Comp") {
 record(acalcout, "$(SIGNAL)Eval") {
   field(SCAN, "Passive")
   field(NELM, "5")
-  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<5?1:ABS(A-B)<D?0:1")
+#field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<5?1:ABS(A-B)<D?0:1")
+#field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<5?0:ABS(A-B)<D?1:0")
+  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<2?0:ABS(A-B)<D?1:0")
   field(INAA, "$(SIGNAL)Comp")
   field(INPC, "$(SIGNAL)Comp.NUSE")
   field(INPD, "0.11")

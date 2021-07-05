@@ -23,8 +23,8 @@ seq   = open("snc"+seqfile, "w")
 dbd   = open("snc"+dbdfile, "w")
 
 ###################################################
-list_0=[pvname,       "Passive", "(A==0)?0:(B>=C&&E)?1:0"]
-list_1=[pvname+"Cnt", "Passive", "(B==0||C==0)?0:A+1"]
+list_0=[pvname,       "Passive", "(A==0)?0:(B>=C&&E&&F)?1:0"]
+list_1=[pvname+"Cnt", "Passive", "(B==0||C==0||D==0)?0:A+1"]
 condAnd = '&&'
 seq_list = ["snc"+pvname,"ev"+pvname.lower(),pvname.lower()+"Val"]
 pv_list = ["StepDly"]
@@ -46,6 +46,7 @@ Text = f'record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_0[0]}"){open}{nl}
   field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
   field(INPC, "$(COUNT)") {nl} \
   field(INPE, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon.VAL") {nl} \
+  field(INPF, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PressEvalWFMon.VAL") {nl} \
   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
   field(PINI, "YES") {nl} \
 {close} {nl} \
@@ -57,6 +58,7 @@ record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {open} {nl} \
   field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
   field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_0[0]}.A") {nl} \
   field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon"){nl} \
+  field(INPD, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PressEvalWFMon"){nl} \
   field(PINI, "YES") {nl} \
 {close}{nl} \
  {nl} \

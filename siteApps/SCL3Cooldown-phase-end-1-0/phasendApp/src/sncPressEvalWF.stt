@@ -283,6 +283,9 @@ ss makesncPressEvalWF
 		}state MakeWaveform
 	}
 }
+
+%{
+#if 0
 ss makesncPressEvalWFtoIdxValue
 {
 	state init
@@ -305,3 +308,5 @@ ss makesncPressEvalWFtoIdxValue
 		}state MakeWaveform_Idx
 	}
 }
+#endif
+}%
