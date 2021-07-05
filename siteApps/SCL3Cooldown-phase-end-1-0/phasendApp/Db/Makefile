@@ -16,8 +16,17 @@ DB += sncTempWF.sub
 DB += sncTempEvalWF.vdb
 DB += sncTempEvalWF.template
 DB += sncTempEvalWF.sub
+
+DB += sncPressEvalWF.vdb
+DB += sncPressEvalWF.template
+DB += sncPressEvalWF.sub
+
 DB += TempEval_sim.template
 DB += scl3_seq_simulate_temp.sub
+DB += PressEval_sim.template
+DB += scl3_seq_simulate_press.sub
+
+
 DB += PhaseEnd.vdb
 #DB += scl3_seq_simulate_press.sub
 #DB += scl3_seq_simulate.sub

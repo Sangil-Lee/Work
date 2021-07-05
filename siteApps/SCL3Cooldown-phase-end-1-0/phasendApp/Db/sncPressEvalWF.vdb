@@ -1,0 +1,15 @@
+record(waveform, "SCL3:Cooldown:PressEvalWF")
+{
+	field(DTYP, "Soft Channel")
+	field(NELM, "599")
+	field(PREC, "3")
+	field(FTVL, "UCHAR")
+	field(FLNK, "SCL3:Cooldown:PressEvalWFMon")
+}
+record(acalcout, "SCL3:Cooldown:PressEvalWFMon")
+{
+	field(NELM, "599")
+	field(SCAN, "Passive")
+	field(INAA, "SCL3:Cooldown:PressEvalWF.VAL")
+	field(CALC, "A:=AMIN(AA);(A<1)?0:1")
+}

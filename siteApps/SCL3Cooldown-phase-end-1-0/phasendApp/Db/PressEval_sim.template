@@ -1,19 +1,26 @@
 # ai record template for register inputs
 record(ai, "$(SIGNAL)") {
-    field(PINI,"YES")
-    field(HOPR,"$(HOPR)")
-    field(LOPR,"$(LOPR)")
-    field(PREC,"$(PREC)")
-    field(EGU,"$(EGU)")
-    field(SCAN,"$(SCAN)")
-    field(VAL, "282")
-    #field(HIHI,"5.5")
-    #field(HIGH,"5")
-    #field(LOW,"2.5")
-    #field(LOLO,"2")
-    #field(HHSV,"MAJOR")
-    #field(HSV,"MINOR")
-    #field(LSV,"MINOR")
-    #field(LLSV,"MAJOR")
+  field(FLNK, "$(SIGNAL)Comp")
+  field(SCAN, "$(SCAN)")
+  field(PINI, "YES")
+  field(VAL, "2.5")
 }
 
+record(compress, "$(SIGNAL)Comp") {
+  field(SCAN, "Passive")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "5")
+  field(FLNK, "$(SIGNAL)Eval")
+  field(INP, "$(SIGNAL)")
+}
+
+record(acalcout, "$(SIGNAL)Eval") {
+  field(SCAN, "Passive")
+  field(NELM, "5")
+  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<5?1:ABS(A-B)<D?0:1")
+  field(INAA, "$(SIGNAL)Comp")
+  field(INPC, "$(SIGNAL)Comp.NUSE")
+  field(INPD, "0.11")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
