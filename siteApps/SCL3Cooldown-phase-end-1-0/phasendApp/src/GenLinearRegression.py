@@ -1,14 +1,17 @@
+#!/usr/local/bin/python3.8
 import sys
 
 argc = len(sys.argv)
 if argc < 4 or argc > 5:
-    print('Usage:'+str(sys.argv[0])+' PVList WaveforPVName Datatype(DOUBLE, UCHAR, USHORT, ...) OUTLINK')
-    raise SystemExit('EX)'+str(sys.argv[0])+' (TempEval.txt or PressEval.txt) SCL3:Cooldown:(TempEvalWF or PressEvalWF) DOUBLE (and OUTLINK)')
+    print('Usage:'+str(sys.argv[0])+' PVList WaveformPVName Datatype(DOUBLE, UCHAR, USHORT, ...) OUTLINK')
+    raise SystemExit('EX)'+str(sys.argv[0])+' (Temp.txt or Press.txt) (TempEvalWF or PressEvalWF) DOUBLE (and OUTLINK)')
 
-#Usage:$>python GenWaveform.py Temp.txt SCL3:Cooldown:DataWF
+prefix = "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)"
+#Usage:$>python GenLinearRegression.py Temp.txt TempWF DOUBLE
 filename = str(sys.argv[1])
 wfname   = str(sys.argv[2])
 datatype = str(sys.argv[3])
+wf_fullname = prefix + wfname
 
 if(argc == 5): outlink = str(sys.argv[4])
 #print('Argument List', filename)
@@ -80,7 +83,7 @@ seq.write(sncText)
 sncText = dtype + " wfValue["+ str(listlength)+ "];\n"
 seq.write(sncText)
 
-sncText = "assign wfValue to \""+wfname+"\";\n"
+sncText = "assign wfValue to \"{SYS}{SUBSYS}{DEV}{SUBDEV}"+wfname+"\";\n"
 seq.write(sncText)
 
 sncText = "monitor wfValue;\nevflag evWaveIdx;\nsync wfValue evWaveIdx;\n\n"
@@ -195,7 +198,7 @@ dbd.close()
 
 ########### Waveform DB File Generation ###################
 ## waveform record
-sncText = "record(waveform, \""+wfname+"\")\n{\n"
+sncText = "record(waveform, \""+wf_fullname+"\")\n{\n"
 vdb.write(sncText)
 
 sncText = "\tfield(DTYP, \"Soft Channel\")\n"
@@ -210,12 +213,12 @@ vdb.write(sncText)
 sncText = "\tfield(FTVL, \""+datatype+"\")\n"
 vdb.write(sncText)
 
-sncText = "\tfield(FLNK, \""+wfname+"Mon\")\n}\n"
+sncText = "\tfield(FLNK, \""+wf_fullname+"Mon\")\n}\n"
 vdb.write(sncText)
 ## close record
 
 ## acalcout record
-sncText = "record(acalcout, \""+wfname+"Mon\")\n{\n"
+sncText = "record(acalcout, \""+wf_fullname+"Mon\")\n{\n"
 vdb.write(sncText)
 
 sncText = "\tfield(NELM, \""+str(listlength)+"\")\n"
@@ -224,7 +227,7 @@ vdb.write(sncText)
 sncText = "\tfield(SCAN, \"Passive\")\n"
 vdb.write(sncText)
 
-sncText = "\tfield(INAA, \""+wfname+".VAL\")\n"
+sncText = "\tfield(INAA, \""+wf_fullname+".VAL\")\n"
 vdb.write(sncText)
 
 sncText = "\tfield(CALC, \"A:=AMIN(AA);(A<1)?0:1\")\n}\n"
@@ -341,11 +344,11 @@ double polynomial_calc(VectorXd coeffs, double xval){nl}\
 cpp.write(Text)
 
 Text=f'{nl}\
-static long InitLReGression(aSubRecord *pRec){nl}\
+static long Init{lregfilename}(aSubRecord *pRec){nl}\
 {open}{nl}\
     return(0);{nl}\
 {close};{nl}\
-static long ProcLReGression(aSubRecord *pRec){nl}\
+static long Proc{lregfilename}(aSubRecord *pRec){nl}\
 {open}{nl}\
     long status = 0;{nl}\
 {nl}\
@@ -394,60 +397,62 @@ static long ProcLReGression(aSubRecord *pRec){nl}\
     return(status);{nl}\
 {close};{nl}\
 {nl}\
-epicsRegisterFunction(InitLReGression);{nl}\
-epicsRegisterFunction(ProcLReGression);{nl}\
+epicsRegisterFunction(Init{lregfilename});{nl}\
+epicsRegisterFunction(Proc{lregfilename});{nl}\
 epicsExportAddress(int, lregressDebug);{nl}\
 '
 cpp.write(Text)
 cpp.close()
 
 Text = f'\
-function(InitLReGression){nl}\
-function(ProcLReGression){nl}\
+function(Init{lregfilename}){nl}\
+function(Proc{lregfilename}){nl}\
 variable(lregressDebug){nl}\
 '
 cppdbd.write(Text)
 cppdbd.close()
 
+nelm = str(listlength)
+
 Text=f'{nl}\
-record(waveform, SCL3:Cooldown:TempWave) {open}{nl}\
+record(waveform, {prefix}{wfname}) {open}{nl}\
   field(SCAN, "Passive"){open}{nl}\
-  field(NELM, "962"){open}{nl}\
-  field(FTVL, "DOUBLE"){open}{nl}\
+  field(NELM, "{nelm}"){open}{nl}\
+  field(FTVL, "{datatype}"){open}{nl}\
   field(PINI, "YES"){open}{nl}\
-  field(FLNK, "SCL3:Cooldown:LRegression"){open}{nl}\
+  field(FLNK, "{prefix}LReg{wfname}"){open}{nl}\
 {close}{nl}\
-record(aSub, SCL3:Cooldown:LRegression) {open}{nl}\
+record(aSub, {prefix}LReg{wfname}) {open}{nl}\
 #field(SCAN, "1 second"){open}{nl}\
   field(SCAN, "Passive"){open}{nl}\
   field(PINI, "YES"){open}{nl}\
-  field(INAM, "InitLReGression"){open}{nl}\
-  field(SNAM, "ProcLReGression"){open}{nl}\
+  field(INAM, "Init{lregfilename}"){open}{nl}\
+  field(SNAM, "Proc{lregfilename}"){open}{nl}\
   field(INPA, "1"){open}{nl}\
-  field(INPB, "SCL3:Cooldown:TempWave"){open}{nl}\
-  field(NOB, "962"){open}{nl}\
-  field(NOVA, "962"){open}{nl}\
-  field(OUTA, "SCL3:Cooldown:LRTempWave PP"){open}{nl}\
+  field(INPB, "{prefix}{wfname}"){open}{nl}\
+  field(NOB, "{nelm}"){open}{nl}\
+  field(NOVA, "{nelm}"){open}{nl}\
+  field(OUTA, "{prefix}LR{wfname} PP"){open}{nl}\
 {close}{nl}\
-record(waveform, SCL3:Cooldown:LRTempWave) {open}{nl}\
+record(waveform, {prefix}LR{wfname}) {open}{nl}\
   field(SCAN, "Passive"){open}{nl}\
-  field(NELM, "962"){open}{nl}\
-  field(FTVL, "DOUBLE"){open}{nl}\
-  field(FLNK, "SCL3:Cooldown:TempLogic"){open}{nl}\
+  field(NELM, "{nelm}"){open}{nl}\
+  field(FTVL, "{datatype}"){open}{nl}\
+  field(FLNK, "{prefix}{wfname}Logic"){open}{nl}\
 {close}{nl}\
-record(acalcout, SCL3:Cooldown:TempLogic) {open}{nl}\
-  field(INAA, "SCL3:Cooldown:LRTempWave"){open}{nl}\
-  field(INBB, "SCL3:Cooldown:TempWave"){open}{nl}\
-  field(NELM, "962"){open}{nl}\
+record(acalcout, {prefix}{wfname}Logic) {open}{nl}\
+  field(INAA, "{prefix}LR{wfname}"){open}{nl}\
+  field(INBB, "{prefix}{wfname}"){open}{nl}\
+  field(NELM, "{nelm}"){open}{nl}\
   field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){open}{nl}\
   field(OOPT, "Every Time"){open}{nl}\
   field(DOPT, "Use CALC"){open}{nl}\
 {close}{nl}\
-record(ai, SCL3:Cooldown:RandMaxVal) {open}{nl}\
+record(ai, {prefix}RandMaxVal) {open}{nl}\
   field(SCAN, "Passive"){open}{nl}\
   field(VAL, "5.0"){open}{nl}\
 {close}{nl}\
-record(ai, SCL3:Cooldown:ScanVal) {open}{nl}\
+record(ai, {prefix}ScanVal) {open}{nl}\
   field(SCAN, "Passive"){open}{nl}\
   field(VAL, "5.0"){open}{nl}\
 {close}{nl}\

@@ -203,7 +203,7 @@ evflag evWave;
 sync wfList evWave;
 
 double wfValue[962];
-assign wfValue to "SCL3:Cooldown:TempWF";
+assign wfValue to "{SYS}{SUBSYS}{DEV}{SUBDEV}TempWF";
 monitor wfValue;
 evflag evWaveIdx;
 sync wfValue evWaveIdx;

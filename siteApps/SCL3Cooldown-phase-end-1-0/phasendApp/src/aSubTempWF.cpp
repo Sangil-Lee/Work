@@ -51,11 +51,11 @@ double polynomial_calc(VectorXd coeffs, double xval)
     return result;
 }
 
-static long InitLReGression(aSubRecord *pRec)
+static long InitLRegTempWF(aSubRecord *pRec)
 {
     return(0);
 };
-static long ProcLReGression(aSubRecord *pRec)
+static long ProcLRegTempWF(aSubRecord *pRec)
 {
     long status = 0;
 
@@ -104,6 +104,6 @@ static long ProcLReGression(aSubRecord *pRec)
     return(status);
 };
 
-epicsRegisterFunction(InitLReGression);
-epicsRegisterFunction(ProcLReGression);
+epicsRegisterFunction(InitLRegTempWF);
+epicsRegisterFunction(ProcLRegTempWF);
 epicsExportAddress(int, lregressDebug);

@@ -1,15 +1,15 @@
-record(waveform, "SCL3:Cooldown:TempWF")
+record(waveform, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF")
 {
 	field(DTYP, "Soft Channel")
 	field(NELM, "962")
 	field(PREC, "3")
 	field(FTVL, "DOUBLE")
-	field(FLNK, "SCL3:Cooldown:TempWFMon")
+	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFMon")
 }
-record(acalcout, "SCL3:Cooldown:TempWFMon")
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFMon")
 {
 	field(NELM, "962")
 	field(SCAN, "Passive")
-	field(INAA, "SCL3:Cooldown:TempWF.VAL")
+	field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF.VAL")
 	field(CALC, "A:=AMIN(AA);(A<1)?0:1")
 }
