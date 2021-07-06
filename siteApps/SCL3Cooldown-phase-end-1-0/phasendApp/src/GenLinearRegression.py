@@ -35,6 +35,7 @@ f.close()
 
 seqfilename = "snc"+filename.rsplit('.', 1)[0]+"WF"
 asubfilename = "aSub"+filename.rsplit('.', 1)[0]+"WF"
+lregfilename = "LReg"+filename.rsplit('.', 1)[0]+"WF"
 seqExt = ".stt"
 dbdExt = ".dbd"
 vdbExt = ".vdb"
@@ -47,6 +48,7 @@ dbd   = open(seqfilename+dbdExt, "w")
 cpp   = open(asubfilename+cppExt, "w")
 cppdbd= open(asubfilename+dbdExt, "w")
 vdb   = open("../Db/"+seqfilename+vdbExt, "w")
+cppvdb= open("../Db/"+lregfilename+vdbExt, "w")
 templ = open("../Db/"+seqfilename+templExt, "w")
 sub = open("../Db/"+seqfilename+subExt, "w")
 
@@ -399,7 +401,6 @@ epicsExportAddress(int, lregressDebug);{nl}\
 cpp.write(Text)
 cpp.close()
 
-
 Text = f'\
 function(InitLReGression){nl}\
 function(ProcLReGression){nl}\
@@ -407,6 +408,52 @@ variable(lregressDebug){nl}\
 '
 cppdbd.write(Text)
 cppdbd.close()
+
+Text=f'{nl}\
+record(waveform, SCL3:Cooldown:TempWave) {open}{nl}\
+  field(SCAN, "Passive"){open}{nl}\
+  field(NELM, "962"){open}{nl}\
+  field(FTVL, "DOUBLE"){open}{nl}\
+  field(PINI, "YES"){open}{nl}\
+  field(FLNK, "SCL3:Cooldown:LRegression"){open}{nl}\
+{close}{nl}\
+record(aSub, SCL3:Cooldown:LRegression) {open}{nl}\
+#field(SCAN, "1 second"){open}{nl}\
+  field(SCAN, "Passive"){open}{nl}\
+  field(PINI, "YES"){open}{nl}\
+  field(INAM, "InitLReGression"){open}{nl}\
+  field(SNAM, "ProcLReGression"){open}{nl}\
+  field(INPA, "1"){open}{nl}\
+  field(INPB, "SCL3:Cooldown:TempWave"){open}{nl}\
+  field(NOB, "962"){open}{nl}\
+  field(NOVA, "962"){open}{nl}\
+  field(OUTA, "SCL3:Cooldown:LRTempWave PP"){open}{nl}\
+{close}{nl}\
+record(waveform, SCL3:Cooldown:LRTempWave) {open}{nl}\
+  field(SCAN, "Passive"){open}{nl}\
+  field(NELM, "962"){open}{nl}\
+  field(FTVL, "DOUBLE"){open}{nl}\
+  field(FLNK, "SCL3:Cooldown:TempLogic"){open}{nl}\
+{close}{nl}\
+record(acalcout, SCL3:Cooldown:TempLogic) {open}{nl}\
+  field(INAA, "SCL3:Cooldown:LRTempWave"){open}{nl}\
+  field(INBB, "SCL3:Cooldown:TempWave"){open}{nl}\
+  field(NELM, "962"){open}{nl}\
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){open}{nl}\
+  field(OOPT, "Every Time"){open}{nl}\
+  field(DOPT, "Use CALC"){open}{nl}\
+{close}{nl}\
+record(ai, SCL3:Cooldown:RandMaxVal) {open}{nl}\
+  field(SCAN, "Passive"){open}{nl}\
+  field(VAL, "5.0"){open}{nl}\
+{close}{nl}\
+record(ai, SCL3:Cooldown:ScanVal) {open}{nl}\
+  field(SCAN, "Passive"){open}{nl}\
+  field(VAL, "5.0"){open}{nl}\
+{close}{nl}\
+'
+cppvdb.write(Text);
+cppvdb.close();
 ###################################################
 
 print("Successfully Generated File: " + seqfilename+seqExt)

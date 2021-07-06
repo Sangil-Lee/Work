@@ -1,0 +1,42 @@
+
+record(waveform, SCL3:Cooldown:TempWave) {
+  field(SCAN, "Passive"){
+  field(NELM, "962"){
+  field(FTVL, "DOUBLE"){
+  field(PINI, "YES"){
+  field(FLNK, "SCL3:Cooldown:LRegression"){
+}
+record(aSub, SCL3:Cooldown:LRegression) {
+#field(SCAN, "1 second"){
+  field(SCAN, "Passive"){
+  field(PINI, "YES"){
+  field(INAM, "InitLReGression"){
+  field(SNAM, "ProcLReGression"){
+  field(INPA, "1"){
+  field(INPB, "SCL3:Cooldown:TempWave"){
+  field(NOB, "962"){
+  field(NOVA, "962"){
+  field(OUTA, "SCL3:Cooldown:LRTempWave PP"){
+}
+record(waveform, SCL3:Cooldown:LRTempWave) {
+  field(SCAN, "Passive"){
+  field(NELM, "962"){
+  field(FTVL, "DOUBLE"){
+  field(FLNK, "SCL3:Cooldown:TempLogic"){
+}
+record(acalcout, SCL3:Cooldown:TempLogic) {
+  field(INAA, "SCL3:Cooldown:LRTempWave"){
+  field(INBB, "SCL3:Cooldown:TempWave"){
+  field(NELM, "962"){
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){
+  field(OOPT, "Every Time"){
+  field(DOPT, "Use CALC"){
+}
+record(ai, SCL3:Cooldown:RandMaxVal) {
+  field(SCAN, "Passive"){
+  field(VAL, "5.0"){
+}
+record(ai, SCL3:Cooldown:ScanVal) {
+  field(SCAN, "Passive"){
+  field(VAL, "5.0"){
+}
