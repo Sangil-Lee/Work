@@ -16,8 +16,7 @@ record(calcout, "$(SIGNAL)Eval") {
     field(SCAN,"Passive")
     field(VAL, "0")
     field(INPA, "$(SIGNAL)")
-    field(INPB, "$(INPB)")
-    field(INPC, "$(INPC)")
-    field(CALC, "(A<(B-C)||A>(B+C))?0:1")
+	field(INPB, "$(INPB)")
+    field(CALC, "C:=B*0.01;A<(B-C)||A>(B+C)?0:1")
 }
 
