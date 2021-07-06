@@ -25,10 +25,12 @@ dbd   = open("snc"+dbdfile, "w")
 ###################################################
 list_0=[pvname,       "Passive", "(A==0)?0:(B>=C&&E&&F)?1:0"]
 list_1=[pvname+"Cnt", "Passive", "(B==0||C==0||D==0)?0:A+1"]
+list_2=[pvname+"FOut", list_1[0], "SCL31-CDL01:EBx01-PT7301:PressCalc", "SCL32-CDL02:VBx01-PT7202:PressCalc"]
 condAnd = '&&'
 seq_list = ["snc"+pvname,"ev"+pvname.lower(),pvname.lower()+"Val"]
 pv_list = ["StepDly"]
-prefix = "{SYS}{SUBSYS}{DEV}{SUBDEV}"
+prefix  = "{SYS}{SUBSYS}{DEV}{SUBDEV}"
+prefix1 = "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)"
 nl = '\n'
 open = '{'
 close = '}'
@@ -38,31 +40,39 @@ proc = 'proc'
 ########### Waveform DB File Generation ###################
 ## PhaseEnd record(acalcout, calc)
 #Text = f'record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd"){open}{nl} \
-Text = f'record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_0[0]}"){open}{nl} \
+Text = f'record(acalcout, "{prefix1}{list_0[0]}"){open}{nl} \
   field(SCAN, "{list_0[1]}") {nl} \
   field(CALC, "{list_0[2]}"){nl} \
   field(VAL, "0") {nl} \
   field(INPA, "0") {nl} \
-  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
+  field(INPB, "{prefix1}{list_1[0]}") {nl} \
   field(INPC, "$(COUNT)") {nl} \
-  field(INPE, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon.VAL") {nl} \
-  field(INPF, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PressEvalWFMon.VAL") {nl} \
-  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
+  field(INPE, "{prefix1}TempEvalWFMon.VAL") {nl} \
+  field(INPF, "{prefix1}PressEvalWFMon.VAL") {nl} \
+  field(FLNK, "{prefix1}{list_2[0]}") {nl} \
   field(PINI, "YES") {nl} \
 {close} {nl} \
  {nl} \
-record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {open} {nl} \
+record(fanout, "{prefix1}{list_2[0]}") {open} {nl} \
+  field(SCAN, "{list_1[1]}") {nl} \
+  field(PINI, "YES") {nl} \
+  field(FLNK, "{prefix1}{list_2[1]}") {nl} \
+  field(LNK0, "{list_2[2]}") {nl} \
+  field(LNK1, "{list_2[3]}") {nl} \
+{close}{nl} \
+ {nl} \
+record(calc, "{prefix1}{list_1[0]}") {open} {nl} \
   field(SCAN, "{list_1[1]}") {nl} \
   field(CALC, "{list_1[2]}") {nl} \
   field(VAL, "0") {nl} \
-  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_1[0]}") {nl} \
-  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){list_0[0]}.A") {nl} \
-  field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon"){nl} \
-  field(INPD, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PressEvalWFMon"){nl} \
+  field(INPA, "{prefix1}{list_1[0]}") {nl} \
+  field(INPB, "{prefix1}{list_0[0]}.A") {nl} \
+  field(INPC, "{prefix1}TempEvalWFMon"){nl} \
+  field(INPD, "{prefix1}PressEvalWFMon"){nl} \
   field(PINI, "YES") {nl} \
 {close}{nl} \
  {nl} \
-record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV){pv_list[0]}") {open} {nl} \
+record(ai, "{prefix1}{pv_list[0]}") {open} {nl} \
   field(SCAN, "{list_1[1]}") {nl} \
   field(VAL, "5") {nl} \
   field(PINI, "YES") {nl} \
@@ -117,7 +127,7 @@ ss make{pvname} {nl}\
 '
 seq.write(Text)
 seq.close()
-###################################################
+#############################################################
 ########### Sequence DBD(.dbd) Generation ###################
 
 Text = f'registrar(snc{pvname}Registrar)'

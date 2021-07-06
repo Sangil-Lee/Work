@@ -29,10 +29,12 @@ dbLoadRecords("db/PhaseEnd.vdb","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:, COUN
 
 dbLoadTemplate("db/scl3_seq_simulate_temp.sub")
 dbLoadTemplate("db/scl3_seq_simulate_press.sub")
+dbLoadTemplate("db/scl3_seq_simulate_press_others.sub")
+
 
 #dbLoadTemplate("db/scl3_seq_simulate.sub")
-
 #dbLoadTemplate("${TOP}/iocBoot/${IOC}/scl3_seq_simulate.sub")
+#dbLoadRecords("db/Test.vdb")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

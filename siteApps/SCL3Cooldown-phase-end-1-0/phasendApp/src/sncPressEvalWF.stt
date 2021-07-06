@@ -2,7 +2,7 @@ program sncPressEvalWF
 
 option +r; 
 
-unsigned char wfList[599];
+unsigned char wfList[604];
 assign wfList to {
 "SCL31-CDL01:EBx01-PT7501:PressEval","SCL31-CDL01:EBx01-PT7502:PressEval","SCL31-CDL01:EBx01-PT7503:PressEval","SCL31-CDL01:EBx01-PT7504:PressEval","SCL31-CDL01:EBx01-PT7401:PressEval",
 "SCL31-CDL01:EBx01-PT7402:PressEval","SCL31-CDL01:EBx01-PT7301:PressEval","SCL31-CDL01:EBx01-PT7302:PressEval","SCL31-CDL01:EBx01-PT7303:PressEval","SCL31-CDL01:EBx01-PT7304:PressEval",
@@ -123,19 +123,20 @@ assign wfList to {
 "SCL32-BL03:CM19-PT8202:PressEval","SCL32-BL03:CM19-PT8101:PressEval","SCL32-BL03:CM19-PT8102:PressEval","SCL32-BL03:CM19-PT8103:PressEval","P2DT-CDL04:VBx01-PT7501:PressEval",
 "P2DT-CDL04:VBx01-PT7502:PressEval","P2DT-CDL04:VBx01-PT7401:PressEval","P2DT-CDL04:VBx01-PT7301:PressEval","P2DT-CDL04:VBx01-PT7201:PressEval","P2DT-CDL04:VBx01-PT7101:PressEval",
 "P2DT-CDL04:VBx01-PT7102:PressEval","P2DT-CDL04:VBx01-PT7202:PressEval","P2DT-BL04:CM01-PT8501:PressEval","P2DT-BL04:CM01-PT8301:PressEval","P2DT-BL04:CM01-PT8201:PressEval",
-"P2DT-BL04:CM01-PT8202:PressEval","P2DT-BL04:CM01-PT8101:PressEval","P2DT-BL04:CM01-PT8102:PressEval","P2DT-BL04:CM01-PT8103:PressEval"
+"P2DT-BL04:CM01-PT8202:PressEval","P2DT-BL04:CM01-PT8101:PressEval","P2DT-BL04:CM01-PT8102:PressEval","P2DT-BL04:CM01-PT8103:PressEval","Cryo-CDL00:TBx01-PT7503:PressEval",
+"Cryo-CDL00:TBx01-PT7504:PressEval","Cryo-CDL00:TBx01-PT7403:PressEval","SCL31-CDL01:EBx01-PT7301:PressCalcEval","SCL32-CDL02:VBx01-PT7202:PressCalcEval"
 };
 monitor wfList;
 evflag evWave;
 sync wfList evWave;
 
-unsigned char wfValue[599];
+unsigned char wfValue[604];
 assign wfValue to "SCL3:Cooldown:PressEvalWF";
 monitor wfValue;
 evflag evWaveIdx;
 sync wfValue evWaveIdx;
 
-unsigned char idxValue[599];
+unsigned char idxValue[604];
 assign idxValue to {
 "{SYS}{SUBSYS}{DEV}{SUBDEV}Index_0","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_1","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_2","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_3","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_4",
 "{SYS}{SUBSYS}{DEV}{SUBDEV}Index_5","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_6","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_7","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_8","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_9",
@@ -256,7 +257,8 @@ assign idxValue to {
 "{SYS}{SUBSYS}{DEV}{SUBDEV}Index_580","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_581","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_582","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_583","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_584",
 "{SYS}{SUBSYS}{DEV}{SUBDEV}Index_585","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_586","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_587","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_588","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_589",
 "{SYS}{SUBSYS}{DEV}{SUBDEV}Index_590","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_591","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_592","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_593","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_594",
-"{SYS}{SUBSYS}{DEV}{SUBDEV}Index_595","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_596","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_597","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_598"
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Index_595","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_596","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_597","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_598","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_599",
+"{SYS}{SUBSYS}{DEV}{SUBDEV}Index_600","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_601","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_602","{SYS}{SUBSYS}{DEV}{SUBDEV}Index_603"
 };
 monitor idxValue;
 
@@ -275,7 +277,7 @@ ss makesncPressEvalWF
 		when(efTestAndClear(evWave))
 		{
 			int index = 0;
-			for(;index < 599;index++)
+			for(;index < 604;index++)
 				wfValue[index]=wfList[index];
 
 			pvPut (wfValue, SYNC);
@@ -283,9 +285,6 @@ ss makesncPressEvalWF
 		}state MakeWaveform
 	}
 }
-
-%{
-#if 0
 ss makesncPressEvalWFtoIdxValue
 {
 	state init
@@ -300,7 +299,7 @@ ss makesncPressEvalWFtoIdxValue
 		when(efTestAndClear(evWaveIdx))
 		{
 			int index = 0;
-			for(;index < 599;index++)
+			for(;index < 604;index++)
 			{
 				idxValue[index]=wfValue[index];
 				pvPut(idxValue[index], SYNC);
@@ -308,5 +307,3 @@ ss makesncPressEvalWFtoIdxValue
 		}state MakeWaveform_Idx
 	}
 }
-#endif
-}%

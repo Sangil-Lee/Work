@@ -12,6 +12,9 @@ PROD_IOC = phasend
 # phasend.dbd will be created and installed
 DBD += phasend.dbd
 
+INCLUDES += -I/usr/local/include/eigen3
+USR_CXXFLAGS += -Wno-unused-variable -Wno-deprecated-declarations
+
 # phasend.dbd will be made up from these files:
 phasend_DBD += base.dbd
 phasend_DBD += epidRecord.dbd  scalerRecord.dbd 
@@ -24,12 +27,14 @@ phasend_DBD += $(ASYN)/dbd/asyn.dbd
 phasend_DBD += $(CALC)/dbd/calc.dbd
 phasend_DBD += $(CALC)/dbd/calcSupport.dbd
 phasend_DBD += $(SITELIBS)/dbd/dblfilter.dbd
+phasend_DBD += aSubTempWF.dbd
 
 # Add all the support libraries needed by this IOC
 #phasend_LIBS += xxx
 
 # phasend_registerRecordDeviceDriver.cpp derives from phasend.dbd
 phasend_SRCS += phasend_registerRecordDeviceDriver.cpp
+phasend_SRCS += aSubTempWF.cpp
 
 # Build the main IOC entry point on workstation OSs.
 phasend_SRCS_DEFAULT += phasendMain.cpp

@@ -1,0 +1,9 @@
+###Start Address(0)############################
+file "db/PressEvalOthers_sim.template" { pattern
+{SIGNAL,								INP,								INPB,	INPC,		LOPR,  HOPR,  PREC,	EGU,    SCAN	}
+{Cryo-CDL00:TBx01-PT7503:Press,			"",									"15",	"0.1",		-1e6,	1e6,	3,	"K",	"Passive"	}
+{Cryo-CDL00:TBx01-PT7504:Press,			"",									"14.5",	"0.1",		-1e6,	1e6,	3,	"K",	"Passive"	}
+{Cryo-CDL00:TBx01-PT7403:Press,			"",									"3",	"0.1",		-1e6,	1e6,	3,	"K",	"Passive"	}
+{SCL31-CDL01:EBx01-PT7301:PressCalc,	"SCL31-CDL01:EBx01-PT7301:Press",	"1.3",	"0.1",		-1e6,	1e6,	3,	"K",	"Passive"	}
+{SCL32-CDL02:VBx01-PT7202:PressCalc,	"SCL32-CDL02:VBx01-PT7202:Press",	"1.3",	"0.1",		-1e6,	1e6,	3,	"K",	"Passive"	}
+}

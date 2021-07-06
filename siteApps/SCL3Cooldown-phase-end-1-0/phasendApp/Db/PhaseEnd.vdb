@@ -7,9 +7,17 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd"){
    field(INPC, "$(COUNT)") 
    field(INPE, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempEvalWFMon.VAL") 
    field(INPF, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PressEvalWFMon.VAL") 
-   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEndCnt") 
+   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEndFOut") 
    field(PINI, "YES") 
  } 
+  
+ record(fanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEndFOut") { 
+   field(SCAN, "Passive") 
+   field(PINI, "YES") 
+   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEndCnt") 
+   field(LNK0, "SCL31-CDL01:EBx01-PT7301:PressCalc") 
+   field(LNK1, "SCL32-CDL02:VBx01-PT7202:PressCalc") 
+ }
   
  record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEndCnt") { 
    field(SCAN, "Passive") 

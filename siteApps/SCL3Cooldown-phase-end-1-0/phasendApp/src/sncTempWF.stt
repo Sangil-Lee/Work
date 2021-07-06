@@ -203,7 +203,7 @@ evflag evWave;
 sync wfList evWave;
 
 double wfValue[962];
-assign wfValue to "SCL3:Cooldown:DataWF";
+assign wfValue to "SCL3:Cooldown:TempWF";
 monitor wfValue;
 evflag evWaveIdx;
 sync wfValue evWaveIdx;
@@ -413,7 +413,7 @@ ss makesncTempWF
 	{
 		when(TRUE)
 		{
-			efClear(evWave);
+			efSet(evWave);
 		}state MakeWaveform
 	}
 	state MakeWaveform
@@ -435,7 +435,7 @@ ss makesncTempWFtoIdxValue
 	{
 		when(TRUE)
 		{
-			efClear(evWaveIdx);
+			efSet(evWaveIdx);
 		}state MakeWaveform_Idx
 	}
 	state MakeWaveform_Idx

@@ -34,15 +34,18 @@ listlength =len(pvlist);
 f.close()
 
 seqfilename = "snc"+filename.rsplit('.', 1)[0]+"WF"
+asubfilename = "aSub"+filename.rsplit('.', 1)[0]+"WF"
 seqExt = ".stt"
 dbdExt = ".dbd"
 vdbExt = ".vdb"
 templExt = ".template"
 subExt = ".sub"
-
+cppExt = ".cpp"
 
 seq   = open(seqfilename+seqExt, "w")
 dbd   = open(seqfilename+dbdExt, "w")
+cpp   = open(asubfilename+cppExt, "w")
+cppdbd= open(asubfilename+dbdExt, "w")
 vdb   = open("../Db/"+seqfilename+vdbExt, "w")
 templ = open("../Db/"+seqfilename+templExt, "w")
 sub = open("../Db/"+seqfilename+subExt, "w")
@@ -134,20 +137,6 @@ seq.write(sncText)
 sncText = "\t\t\t\twfValue[index]=wfList[index];\n"
 seq.write(sncText)
 
-#index = 1
-#for line in range(len(pvlist)):
-#    strline = str(line)
-#    if(line==0):
-#        sncText="\t\t\twfValue["+strline+"] = wfList["+strline+"];"
-#    elif(index%5==0):
-#        sncText="\twfValue["+strline+"] = wfList["+strline+"];\n"
-#    elif(index%5==1):
-#        sncText="\t\t\twfValue["+strline+"] = wfList["+strline+"];"
-#    else:
-#        sncText="\twfValue["+strline+"] = wfList["+strline+"];"
-#    seq.write(sncText)
-#    index += 1
-
 sncText = "\n\t\t\tpvPut (wfValue, SYNC);\n"
 seq.write(sncText)
 
@@ -188,15 +177,6 @@ seq.write(sncText)
 sncText = "\t\t\t\tpvPut(idxValue[index], SYNC);\n\t\t\t}"
 seq.write(sncText)
 
-#index = 1
-#for line in range(len(pvlist)):
-#    strline = str(line)
-#    sncText="\t\t\tidxValue["+strline+"] = wfValue["+strline+"];"
-#    seq.write(sncText)
-#    sncText = "\tpvPut(idxValue["+ strline +"], SYNC);\n"
-#    seq.write(sncText)
-#    index += 1
-#
 sncText = "\n\t\t}state MakeWaveform_Idx\n\t}\n"
 seq.write(sncText)
 
@@ -295,6 +275,138 @@ for line in range(len(pvlist)):
 sncText="}\n"
 sub.write(sncText)
 sub.close()
+###################################################
+nl = '\n'
+open = '{'
+close = '}'
+########### asubRecord CPP File Generation ###################
+Text=f'{nl}\
+#include <iostream>{nl}\
+#include <dbAccess.h>{nl}\
+#include <registryFunction.h>{nl}\
+#include <waveformRecord.h>{nl}\
+#include <aSubRecord.h>{nl}\
+#include <epicsExport.h>{nl}\
+#include <Eigen/Dense>{nl}\
+using namespace std;{nl}\
+using namespace Eigen;{nl}\
+static int lregressDebug = 0;{nl}\
+{nl}\
+VectorXd Polynomial(VectorXd xvals, VectorXd yvals, int order){nl}\
+{open}{nl}\
+    assert(xvals.size() == yvals.size());{nl}\
+    assert(order >= 1 && order <= xvals.size()-1 );{nl}\
+{nl}\
+    MatrixXd A(xvals.size(), order + 1);{nl}\
+{nl}\
+    for(int i = 0; i < xvals.size(); i++) {open}{nl}\
+        A(i, 0) = 1.0;{nl}\
+    {close};{nl}\
+    if(lregressDebug == 1) {nl}\
+      cout << "A-Mat(unit): " <<  A << endl;{nl}\
+{nl}\
+    for(int j = 0; j < xvals.size(); j++) {open}{nl}\
+        for(int i = 0; i < order; i++) {open}{nl}\
+            A(j, i+1) = A(j,i)*xvals(j);{nl}\
+        {close};{nl}\
+    {close};{nl}\
+{nl}\
+    if(lregressDebug == 1){nl}\
+      cout << "A-Mat: " <<  A << endl;{nl}\
+{nl}\
+    auto Q = A.householderQr();{nl}\
+{nl}\
+//  if(lregressDebug == 1){nl}\
+//      cout << "Q: " <<  A << endl;{nl}\
+{nl}\
+    auto coeff = Q.solve(yvals);{nl}\
+{nl}\
+    return coeff;{nl}\
+{close}{nl}\
+'
+cpp.write(Text)
+
+Text=f'{nl}\
+double polynomial_calc(VectorXd coeffs, double xval){nl}\
+{open}{nl}\
+    double result = 0.0;{nl}\
+    for(int i = 0; i < coeffs.size(); i++){nl}\
+        result += coeffs(i) * pow(xval, i);{nl}\
+{nl}\
+    return result;{nl}\
+{close}{nl}\
+'
+cpp.write(Text)
+
+Text=f'{nl}\
+static long InitLReGression(aSubRecord *pRec){nl}\
+{open}{nl}\
+    return(0);{nl}\
+{close};{nl}\
+static long ProcLReGression(aSubRecord *pRec){nl}\
+{open}{nl}\
+    long status = 0;{nl}\
+{nl}\
+    double *aval_deg = (double*)pRec->a;{nl}\
+    DBADDR *pdbTempWave = (DBADDR*)(&pRec->inpb)->value.pv_link.pvt;{nl}\
+    waveformRecord *pTempWave = (waveformRecord *)pdbTempWave->precord;{nl}\
+{nl}\
+    //printf("Wave NORD:%d, NELM:%d \\n", pTempWave->nord, pdbTempWave->no_elements );{nl}\
+    //if(pTempWave->nord != pdbTempWave->no_elements ) return(-1);{nl}\
+    //double *pTempWaveVal = (double*)pdbTempWave->pfield;{nl}\
+{nl}\
+    double *pTempWaveVal = (double*)pRec->b;{nl}\
+    long nelm = pdbTempWave->no_elements;{nl}\
+{nl}\
+#if 1{nl}\
+    DBADDR *pdbLRDBAddr = (DBADDR*)(&pRec->outa)->value.pv_link.pvt;{nl}\
+    waveformRecord *pLRWave = (waveformRecord *)pdbLRDBAddr->precord;{nl}\
+    double *pLRWaveVal = (double*)pRec->vala;{nl}\
+#endif{nl}\
+{nl}\
+    VectorXd xvals(nelm), yvals(nelm);{nl}\
+    double dval;{nl}\
+    for (int i=0;i<nelm;i++){nl}\
+    {open}{nl}\
+        xvals(i) = i;{nl}\
+        dval = pTempWaveVal[i];{nl}\
+        yvals(i) = dval;{nl}\
+{nl}\
+        if(lregressDebug == 2){nl}\
+            printf("X(%d):%f, Y(%d):%f\\n", i, xvals(i), i, yvals(i));{nl}\
+    {close};{nl}\
+{nl}\
+    auto coeffs = Polynomial(xvals, yvals, aval_deg[0]);{nl}\
+{nl}\
+    if(lregressDebug == 2){nl}\
+        cout << "Poly-Coeff: " << coeffs << endl << endl;{nl}\
+{nl}\
+#if 1{nl}\
+    for(int i = 0; i < yvals.size(); i++){nl}\
+    {open}{nl}\
+        pLRWaveVal[i] = polynomial_calc(coeffs, xvals(i));{nl}\
+    {close};{nl}\
+#endif{nl}\
+{nl}\
+    dbProcess((dbCommon*)pLRWave);{nl}\
+    return(status);{nl}\
+{close};{nl}\
+{nl}\
+epicsRegisterFunction(InitLReGression);{nl}\
+epicsRegisterFunction(ProcLReGression);{nl}\
+epicsExportAddress(int, lregressDebug);{nl}\
+'
+cpp.write(Text)
+cpp.close()
+
+
+Text = f'\
+function(InitLReGression){nl}\
+function(ProcLReGression){nl}\
+variable(lregressDebug){nl}\
+'
+cppdbd.write(Text)
+cppdbd.close()
 ###################################################
 
 print("Successfully Generated File: " + seqfilename+seqExt)

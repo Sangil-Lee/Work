@@ -25,12 +25,16 @@ DB += TempEval_sim.template
 DB += scl3_seq_simulate_temp.sub
 DB += PressEval_sim.template
 DB += scl3_seq_simulate_press.sub
-
+DB += PressEvalOthers_sim.template
+DB += scl3_seq_simulate_press_others.sub
 
 DB += PhaseEnd.vdb
+
 #DB += scl3_seq_simulate_press.sub
 #DB += scl3_seq_simulate.sub
 #DB += phaseEndCond_TempMon.vdb
+
+#DB += Test.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

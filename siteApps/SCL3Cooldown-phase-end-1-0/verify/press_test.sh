@@ -1196,3 +1196,15 @@ caput P2DT-BL04:CM01-PT8202:Press 1.5
 caput P2DT-BL04:CM01-PT8101:Press 1.5
 caput P2DT-BL04:CM01-PT8102:Press 1.5
 caput P2DT-BL04:CM01-PT8103:Press 1.5
+
+echo "Press Others Test"
+caput Cryo-CDL00:TBx01-PT7503:Press 15
+caput Cryo-CDL00:TBx01-PT7504:Press 14.5
+caput Cryo-CDL00:TBx01-PT7403:Press 3 
+
+echo "Press Stablization Test, Real 5times"
+caput SCL31-CDL01:EBx01-PT7301:Press 1.3
+caput SCL31-CDL01:EBx01-PT7301:Press 1.3
+
+caput SCL32-CDL02:VBx01-PT7202:Press 1.3
+caput SCL32-CDL02:VBx01-PT7202:Press 1.3
