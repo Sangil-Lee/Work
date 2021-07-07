@@ -15,7 +15,7 @@ phasend_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadRecords("db/aiOutLinkTest.vdb")
 #dbLoadRecords("db/sncTempWF.vdb")
-#dbLoadTemplate("db/sncTempWF.sub","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:")
+dbLoadRecords("db/LRsncTempWF.vdb","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=:")
 
 dbLoadRecords("db/sncTempEvalWF.vdb")
 dbLoadTemplate("db/sncTempEvalWF.sub","SYS=SCL3,SUBSYS=:, DEV=Cooldown, SUBDEV=-Temp:")

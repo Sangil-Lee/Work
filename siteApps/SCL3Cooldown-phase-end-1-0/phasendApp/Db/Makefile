@@ -11,24 +11,28 @@ DB += aiFloat64_sim.template
 DB += phaseEndCond.vdb
 DB += aiOutLinkTest.vdb
 DB += sncTempWF.vdb
+DB += LRsncTempWF.vdb
+DB += sncTempEvalWF.vdb
+DB += sncPressEvalWF.vdb
+DB += PhaseEnd.vdb
+
 DB += sncTempWF.template
 DB += sncTempWF.sub
-DB += sncTempEvalWF.vdb
+
 DB += sncTempEvalWF.template
 DB += sncTempEvalWF.sub
 
-DB += sncPressEvalWF.vdb
 DB += sncPressEvalWF.template
 DB += sncPressEvalWF.sub
 
 DB += TempEval_sim.template
 DB += scl3_seq_simulate_temp.sub
+
 DB += PressEval_sim.template
 DB += scl3_seq_simulate_press.sub
+
 DB += PressEvalOthers_sim.template
 DB += scl3_seq_simulate_press_others.sub
-
-DB += PhaseEnd.vdb
 
 #DB += scl3_seq_simulate_press.sub
 #DB += scl3_seq_simulate.sub

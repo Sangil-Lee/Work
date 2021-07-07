@@ -1,0 +1,59 @@
+
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFInit") {
+
+ field(SCAN, "1 second")
+ field(NELM, "962")
+ #field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF.VAL")
+ field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF PP")
+ #field(CALC, "A:=1;UNTIL(AA:=AA+1;A=A+1;A<962");AA)
+ field(CALC, "AA:=(IX+1)*ARNDM;AA")
+ field(PINI, "YES")
+}
+record(waveform, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF) {
+  field(SCAN, "Passive")
+  field(NELM, "962")
+  field(FTVL, "DOUBLE")
+  field(PINI, "YES")
+  field(PREC, "3")
+#field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRegTempWF")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFFOut")
+}
+record(fanout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFFOut) {
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRegTempWF")
+#field(LNK0, "TempWFMon")
+}
+record(aSub, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRegTempWF) {
+#field(SCAN, "1 second")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(INAM, "InitLRegTempWF")
+  field(SNAM, "ProcLRegTempWF")
+  field(INPA, "1")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF")
+  field(NOB, "962")
+  field(NOVA, "962")
+  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF PP")
+}
+record(waveform, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF) {
+  field(SCAN, "Passive")
+  field(NELM, "962")
+  field(FTVL, "DOUBLE")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFLogic")
+}
+record(acalcout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFLogic) {
+  field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF")
+  field(INBB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF")
+  field(NELM, "962")
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
+record(ai, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RandMaxVal) {
+  field(SCAN, "Passive")
+  field(VAL, "5.0")
+}
+record(ai, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ScanVal) {
+  field(SCAN, "Passive")
+  field(VAL, "5.0")
+}

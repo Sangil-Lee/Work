@@ -50,8 +50,8 @@ seq   = open(seqfilename+seqExt, "w")
 dbd   = open(seqfilename+dbdExt, "w")
 cpp   = open(asubfilename+cppExt, "w")
 cppdbd= open(asubfilename+dbdExt, "w")
-vdb   = open("../Db/"+seqfilename+vdbExt, "w")
-cppvdb= open("../Db/"+lregfilename+vdbExt, "w")
+vdb   = open("../Db/LR"+seqfilename+vdbExt, "w")
+#cppvdb= open("../Db/"+lregfilename+vdbExt, "w")
 templ = open("../Db/"+seqfilename+templExt, "w")
 sub = open("../Db/"+seqfilename+subExt, "w")
 
@@ -195,44 +195,72 @@ sncText = "registrar("+seqfilename+"Registrar)\n"
 dbd.write(sncText)
 dbd.close()
 ###################################################
-
+nl = '\n'
+open = '{'
+close = '}'
 ########### Waveform DB File Generation ###################
-## waveform record
-sncText = "record(waveform, \""+wf_fullname+"\")\n{\n"
-vdb.write(sncText)
-
-sncText = "\tfield(DTYP, \"Soft Channel\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(NELM, \""+str(listlength)+"\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(PREC, \"3\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(FTVL, \""+datatype+"\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(FLNK, \""+wf_fullname+"Mon\")\n}\n"
-vdb.write(sncText)
-## close record
-
-## acalcout record
-sncText = "record(acalcout, \""+wf_fullname+"Mon\")\n{\n"
-vdb.write(sncText)
-
-sncText = "\tfield(NELM, \""+str(listlength)+"\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(SCAN, \"Passive\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(INAA, \""+wf_fullname+".VAL\")\n"
-vdb.write(sncText)
-
-sncText = "\tfield(CALC, \"A:=AMIN(AA);(A<1)?0:1\")\n}\n"
-vdb.write(sncText)
-
+nelm = str(listlength)
+Text=f'{nl}\
+record(acalcout, "{prefix}{wfname}Init") {open}{nl}\
+{nl}\
+ field(SCAN, "1 second"){nl}\
+ field(NELM, "{nelm}"){nl}\
+ #field(INAA, "{prefix}{wfname}.VAL"){nl}\
+ field(OUT, "{prefix}{wfname} PP"){nl}\
+ #field(CALC, "A:=1;UNTIL(AA:=AA+1;A=A+1;A<{nelm}");AA){nl}\
+ field(CALC, "AA:=(IX+1)*ARNDM;AA"){nl}\
+ field(PINI, "YES"){nl}\
+{close}{nl}\
+record(waveform, {prefix}{wfname}) {open}{nl}\
+  field(SCAN, "Passive"){nl}\
+  field(NELM, "{nelm}"){nl}\
+  field(FTVL, "{datatype}"){nl}\
+  field(PINI, "YES"){nl}\
+  field(PREC, "3"){nl}\
+#field(FLNK, "{prefix}LReg{wfname}"){nl}\
+  field(FLNK, "{prefix}{wfname}FOut"){nl}\
+{close}{nl}\
+record(fanout, {prefix}{wfname}FOut) {open}{nl}\
+  field(SCAN, "Passive"){nl}\
+  field(FLNK, "{prefix}LReg{wfname}"){nl}\
+#field(LNK0, "{wfname}Mon"){nl}\
+{close}{nl}\
+record(aSub, {prefix}LReg{wfname}) {open}{nl}\
+#field(SCAN, "1 second"){nl}\
+  field(SCAN, "Passive"){nl}\
+  field(PINI, "YES"){nl}\
+  field(INAM, "Init{lregfilename}"){nl}\
+  field(SNAM, "Proc{lregfilename}"){nl}\
+  field(INPA, "1"){nl}\
+  field(INPB, "{prefix}{wfname}"){nl}\
+  field(NOB, "{nelm}"){nl}\
+  field(NOVA, "{nelm}"){nl}\
+  field(OUTA, "{prefix}LR{wfname} PP"){nl}\
+{close}{nl}\
+record(waveform, {prefix}LR{wfname}) {open}{nl}\
+  field(SCAN, "Passive"){nl}\
+  field(NELM, "{nelm}"){nl}\
+  field(FTVL, "{datatype}"){nl}\
+  field(FLNK, "{prefix}{wfname}Logic"){nl}\
+{close}{nl}\
+record(acalcout, {prefix}{wfname}Logic) {open}{nl}\
+  field(INAA, "{prefix}LR{wfname}"){nl}\
+  field(INBB, "{prefix}{wfname}"){nl}\
+  field(NELM, "{nelm}"){nl}\
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){nl}\
+  field(OOPT, "Every Time"){nl}\
+  field(DOPT, "Use CALC"){nl}\
+{close}{nl}\
+record(ai, {prefix}RandMaxVal) {open}{nl}\
+  field(SCAN, "Passive"){nl}\
+  field(VAL, "5.0"){nl}\
+{close}{nl}\
+record(ai, {prefix}ScanVal) {open}{nl}\
+  field(SCAN, "Passive"){nl}\
+  field(VAL, "5.0"){nl}\
+{close}{nl}\
+'
+vdb.write(Text)
 vdb.close()
 ###################################################
 
@@ -281,9 +309,6 @@ sncText="}\n"
 sub.write(sncText)
 sub.close()
 ###################################################
-nl = '\n'
-open = '{'
-close = '}'
 ########### asubRecord CPP File Generation ###################
 Text=f'{nl}\
 #include <iostream>{nl}\
@@ -412,53 +437,7 @@ variable(lregressDebug){nl}\
 cppdbd.write(Text)
 cppdbd.close()
 
-nelm = str(listlength)
-
-Text=f'{nl}\
-record(waveform, {prefix}{wfname}) {open}{nl}\
-  field(SCAN, "Passive"){open}{nl}\
-  field(NELM, "{nelm}"){open}{nl}\
-  field(FTVL, "{datatype}"){open}{nl}\
-  field(PINI, "YES"){open}{nl}\
-  field(FLNK, "{prefix}LReg{wfname}"){open}{nl}\
-{close}{nl}\
-record(aSub, {prefix}LReg{wfname}) {open}{nl}\
-#field(SCAN, "1 second"){open}{nl}\
-  field(SCAN, "Passive"){open}{nl}\
-  field(PINI, "YES"){open}{nl}\
-  field(INAM, "Init{lregfilename}"){open}{nl}\
-  field(SNAM, "Proc{lregfilename}"){open}{nl}\
-  field(INPA, "1"){open}{nl}\
-  field(INPB, "{prefix}{wfname}"){open}{nl}\
-  field(NOB, "{nelm}"){open}{nl}\
-  field(NOVA, "{nelm}"){open}{nl}\
-  field(OUTA, "{prefix}LR{wfname} PP"){open}{nl}\
-{close}{nl}\
-record(waveform, {prefix}LR{wfname}) {open}{nl}\
-  field(SCAN, "Passive"){open}{nl}\
-  field(NELM, "{nelm}"){open}{nl}\
-  field(FTVL, "{datatype}"){open}{nl}\
-  field(FLNK, "{prefix}{wfname}Logic"){open}{nl}\
-{close}{nl}\
-record(acalcout, {prefix}{wfname}Logic) {open}{nl}\
-  field(INAA, "{prefix}LR{wfname}"){open}{nl}\
-  field(INBB, "{prefix}{wfname}"){open}{nl}\
-  field(NELM, "{nelm}"){open}{nl}\
-  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){open}{nl}\
-  field(OOPT, "Every Time"){open}{nl}\
-  field(DOPT, "Use CALC"){open}{nl}\
-{close}{nl}\
-record(ai, {prefix}RandMaxVal) {open}{nl}\
-  field(SCAN, "Passive"){open}{nl}\
-  field(VAL, "5.0"){open}{nl}\
-{close}{nl}\
-record(ai, {prefix}ScanVal) {open}{nl}\
-  field(SCAN, "Passive"){open}{nl}\
-  field(VAL, "5.0"){open}{nl}\
-{close}{nl}\
-'
-cppvdb.write(Text);
-cppvdb.close();
 ###################################################
-
-print("Successfully Generated File: " + seqfilename+seqExt)
+print("Successfully Generated File: " + seqfilename+seqExt +
+","+seqfilename+dbdExt +"," +asubfilename+cppExt+ ","+asubfilename+dbdExt + 
+","+"../Db/"+seqfilename+vdbExt + ","+"../Db/LR"+seqfilename+templExt+","+"../Db/"+seqfilename+subExt)

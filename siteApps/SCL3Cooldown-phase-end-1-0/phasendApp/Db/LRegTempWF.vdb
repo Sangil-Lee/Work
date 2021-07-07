@@ -13,20 +13,20 @@ record(aSub, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRegTempWF) {
   field(INAM, "InitLRegTempWF"){
   field(SNAM, "ProcLRegTempWF"){
   field(INPA, "1"){
-  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWave"){
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF"){
   field(NOB, "962"){
   field(NOVA, "962"){
-  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWave PP"){
+  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF PP"){
 }
-record(waveform, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWave) {
+record(waveform, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF) {
   field(SCAN, "Passive"){
   field(NELM, "962"){
   field(FTVL, "DOUBLE"){
-  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempLogic"){
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFLogic"){
 }
-record(acalcout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempLogic) {
-  field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWave"){
-  field(INBB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWave"){
+record(acalcout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWFLogic) {
+  field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)LRTempWF"){
+  field(INBB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TempWF"){
   field(NELM, "962"){
   field(CALC, "CC:=AA-BB;AMAX(ABS(CC))"){
   field(OOPT, "Every Time"){
