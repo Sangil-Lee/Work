@@ -205,10 +205,12 @@ record(acalcout, "{prefix}{wfname}Init") {open}{nl}\
 {nl}\
  field(SCAN, "1 second"){nl}\
  field(NELM, "{nelm}"){nl}\
+ field(INPB, "10"){nl}\
  #field(INAA, "{prefix}{wfname}.VAL"){nl}\
  field(OUT, "{prefix}{wfname} PP"){nl}\
  #field(CALC, "A:=1;UNTIL(AA:=AA+1;A=A+1;A<{nelm}");AA){nl}\
- field(CALC, "AA:=(IX+1)*ARNDM;AA"){nl}\
+ #field(CALC, "AA:=(IX+1)*ARNDM;AA"){nl}\
+ field(CALC, "AA:=(IX+1)+ARNDM*B;AA"){nl}\
  field(PINI, "YES"){nl}\
 {close}{nl}\
 record(waveform, {prefix}{wfname}) {open}{nl}\
