@@ -7,7 +7,7 @@ option +r;
 //QWR Cycle(OM1.4), 77
 //Cycle to 11, Index to 7
 //int XV7301_7201[11][7];
-char xv7301_7201[44][60] = {
+char om14_xv7301_7201[44][60] = {
 //QWR1(Cycle 1-11)
 "SCL31-CDL01:VBx02-XV7301", "SCL31-CDL01:VBx04-XV7301", "SCL31-CDL01:VBx06-XV7301", "SCL31-CDL01:VBx08-XV7301",
 "SCL31-CDL01:VBx10-XV7301", "SCL31-CDL01:VBx12-XV7301", "SCL31-CDL01:VBx14-XV7301", "SCL31-CDL01:VBx16-XV7301",
@@ -30,7 +30,7 @@ char xv7301_7201[44][60] = {
 
 //HWR/P2DT Cycle(OM1.4), 33*6=198
 //Cycle to 33, Index to 6
-char cv7401[44][60] = {
+char om14_cv7401[44][60] = {
 //QWR1(Cycle 1-11)
 "SCL31-CDL01:VBx02-CV7401", "SCL31-CDL01:VBx04-CV7401", "SCL31-CDL01:VBx06-CV7401", "SCL31-CDL01:VBx08-CV7401",
 "SCL31-CDL01:VBx10-CV7401", "SCL31-CDL01:VBx12-CV7401", "SCL31-CDL01:VBx14-CV7401", "SCL31-CDL01:VBx16-CV7401",
@@ -50,7 +50,7 @@ char cv7401[44][60] = {
 "SCL32-CDL03:VBx17-CV7401", "SCL32-CDL03:VBx18-CV7401", "SCL32-CDL03:VBx19-CV7401", "P2DT-CDL04:VBx01-CV7401" 
 };
 
-char cv8401[44][60] = {
+char om14_cv8401[44][60] = {
 //QWR1(Cycle 1-11)
 "SCL31-BL01:CM01-CV8401",	"SCL31-BL01:CM03-CV8401",	"SCL31-BL01:CM05-CV8401",	"SCL31-BL01:CM07-CV8401",
 "SCL31-BL01:CM09-CV8401",	"SCL31-BL01:CM11-CV8401",	"SCL31-BL01:CM13-CV8401",	"SCL31-BL01:CM15-CV8401",	
@@ -70,14 +70,14 @@ char cv8401[44][60] = {
 "SCL32-BL03:CM17-CV8401",	"SCL32-BL03:CM18-CV8401",	"SCL32-BL03:CM19-CV8401",	"P2DT-BL04:CM01-CV8401" 
 };
 
-char cv8401_1[11][60] = {
+char om14_cv8401_1[11][60] = {
 //QWR1(Cycle 1-11)
 "SCL31-BL01:CM02-CV8401",	"SCL31-BL01:CM04-CV8401",	"SCL31-BL01:CM06-CV8401",	"SCL31-BL01:CM08-CV8401",	
 "SCL31-BL01:CM10-CV8401",	"SCL31-BL01:CM12-CV8401",	"SCL31-BL01:CM14-CV8401",	"SCL31-BL01:CM16-CV8401",	
 "SCL31-BL01:CM18-CV8401",	"SCL31-BL01:CM20-CV8401",	"SCL31-BL01:CM22-CV8401"	
 };
 
-char cv8402[44][60] = {
+char om14_cv8402[44][60] = {
 //QWR1(Cycle 1-11)
 "SCL31-BL01:CM01-CV8402",	"SCL31-BL01:CM03-CV8402",	"SCL31-BL01:CM05-CV8402",	"SCL31-BL01:CM07-CV8402",	
 "SCL31-BL01:CM09-CV8402",	"SCL31-BL01:CM11-CV8402",	"SCL31-BL01:CM13-CV8402",	"SCL31-BL01:CM15-CV8402",	
@@ -104,7 +104,7 @@ char cv8402_1[11][60] = {
 "SCL31-BL01:CM18-CV8402",	"SCL31-BL01:CM20-CV8402",	"SCL31-BL01:CM22-CV8402"	
 };
 
-char cv8403[33][60] = {
+char om14_cv8403[33][60] = {
 //HWRA1(Cycle12-24)
 "SCL32-BL02:CM01-CV8403",	"SCL32-BL02:CM02-CV8403",	"SCL32-BL02:CM03-CV8403",	"SCL32-BL02:CM04-CV8403",	
 "SCL32-BL02:CM05-CV8403",	"SCL32-BL02:CM06-CV8403",	"SCL32-BL02:CM07-CV8403",	"SCL32-BL02:CM08-CV8403",	
@@ -431,9 +431,9 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", xv7301_7201[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_xv7301_7201[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", xv7301_7201[cycle]);
+			sprintf(valvename, "%s:Valve", om14_xv7301_7201[cycle]);
 			printf("%s\n", valvename);
 
 			pvAssign(valveval, valvename);
@@ -471,9 +471,9 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv7401[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv7401[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv7401[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv7401[cycle]);
 			printf("%s\n", valvename);
 
 			pvAssign(valveval, valvename);
@@ -505,14 +505,14 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv8401[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv8401[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv8401[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv8401[cycle]);
 			printf("%s\n", valvename);
 
-			//sprintf(logicname_1, "%s:CDLogic.PROC", cv8401_1[cycle]);
+			//sprintf(logicname_1, "%s:CDLogic.PROC", om14_cv8401_1[cycle]);
 			//printf("%s\n", logicname_1);
-			//sprintf(valvename_1, "%s:Valve", cv8401_1[cycle]);
+			//sprintf(valvename_1, "%s:Valve", om14_cv8401_1[cycle]);
 			//printf("%s\n", valvename_1);
 
 			pvAssign(valveval, valvename);
@@ -564,9 +564,9 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv8402[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv8402[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv8402[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv8402[cycle]);
 			printf("%s\n", valvename);
 
 			pvAssign(valveval, valvename);
@@ -596,9 +596,9 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv7401[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv7401[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv7401[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv7401[cycle]);
 			printf("%s\n", valvename);
 
 			pvAssign(valveval, valvename);
@@ -634,16 +634,16 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv8402[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv8402[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv8402[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv8402[cycle]);
 			printf("%s\n", valvename);
 
-			sprintf(valve_evalname, "%s:ValveEval", cv8402[cycle]);
+			sprintf(valve_evalname, "%s:ValveEval", om14_cv8402[cycle]);
 			printf("%s\n", valve_evalname);
 
-			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", cv8402[cycle]);
-			sprintf(logic_start, "%s:Start", cv8402[cycle]);
+			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", om14_cv8402[cycle]);
+			sprintf(logic_start, "%s:Start", om14_cv8402[cycle]);
 
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
@@ -693,16 +693,16 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", cv8403[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_cv8403[cycle]);
 			printf("%s\n", logicname);
-			sprintf(valvename, "%s:Valve", cv8403[cycle]);
+			sprintf(valvename, "%s:Valve", om14_cv8403[cycle]);
 			printf("%s\n", valvename);
 
-			sprintf(valve_evalname, "%s:ValveEval", cv8403[cycle]);
+			sprintf(valve_evalname, "%s:ValveEval", om14_cv8403[cycle]);
 			printf("%s\n", valve_evalname);
 
-			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", cv8403[cycle]);
-			sprintf(logic_start, "%s:Start", cv8403[cycle]);
+			sprintf(logic_valve_evalname, "%s:ValveEval.PROC", om14_cv8403[cycle]);
+			sprintf(logic_start, "%s:Start", om14_cv8403[cycle]);
 
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
@@ -751,7 +751,7 @@ ss ssCDOM14
 	{
 		when(first == 0)
 		{
-			sprintf(valvename, "%s:Level", cv7401[cycle]);
+			sprintf(valvename, "%s:Level", om14_cv7401[cycle]);
 			printf("%s\n", valvename);
 
 			pvAssign(valveval, valvename);
@@ -1046,8 +1046,8 @@ ss ssCDOM15QWR
 	{
 		when(first == 0)
 		{
-			sprintf(logicname, "%s:CDLogic.PROC", xv7301_7201[cycle]);
-			sprintf(valvename, "%s:Valve",		  xv7301_7201[cycle]);
+			sprintf(logicname, "%s:CDLogic.PROC", om14_xv7301_7201[cycle]);
+			sprintf(valvename, "%s:Valve",		  om14_xv7301_7201[cycle]);
 			printf("%s, %s\n", logicname, valvename);
 
 			pvAssign(valveval, valvename);
