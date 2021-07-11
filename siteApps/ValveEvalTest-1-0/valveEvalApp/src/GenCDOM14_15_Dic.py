@@ -5,7 +5,7 @@ import glob
 
 pvfiles = []
 
-for file in glob.glob1("pv","*.pv"):
+for file in glob.glob1("pv/OM14_15","*.pv"):
     glob.glob(file)
     pvfiles.append(file)
 
@@ -24,9 +24,8 @@ seqdbdfile = pyname + seqDBD
 seq    = open(seqfile, 'w')
 seqdbd = open(seqdbdfile, 'w')
 
-
 for idx, file in enumerate(pvfiles):
-    f = open('pv/'+str(file),'r')
+    f = open('pv/OM14_15/'+str(file),'r')
     filename =str(file).rsplit('.', 1)[0]
     #pvnamelist.append(filename)
     #pvnamelist[idx]=filename
