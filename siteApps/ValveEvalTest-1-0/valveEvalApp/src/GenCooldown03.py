@@ -65,9 +65,11 @@ for idx, file in enumerate(pvfiles):
     for idx, pvname in enumerate(pvlist):
         idx = idx+1
         spvname = '"'+str(pvname)
-        if(idx%5 == 0):
+        if(idx%5 == 0 and idx < idxsize):
             spvname += '",\n'
-        elif (idx != idxsize):
+        elif (idx%5 == 0 and idx == idxsize):
+            spvname += '"};\n\n'
+        elif (idx%5 !=0 and idx < idxsize):
             spvname += '",'
         else:
             spvname += '"};\n\n'
@@ -76,6 +78,12 @@ for idx, file in enumerate(pvfiles):
 ####Assign Valuet##########
 
 Text =f'{nl}\
+int stopindex = 107;{nl}\
+int stopindex_1_2 = 121;{nl}\
+int stopindex_3 = 55;{nl}\
+int stopindex_4 = 22;{nl}\
+int stopindex_5 = 33;{nl}\
+int stopindex_6_7 = 88; //33+55{nl}{nl}\
 string steppv;{nl}\
 assign steppv to "SCL3:CD-OM031:StepPV";{nl}\
 monitor steppv;{nl}\
@@ -133,6 +141,8 @@ evflag	efCDOM036_5;{nl}\
 evflag	efCDOM036_6_7;{nl}\
 evflag	efCDOM036_7;{nl}\
 '
+seq.write(Text)
+
 Text=f'{nl}\
 ss ssCDOM031{nl}\
 {open}{nl}\
@@ -151,8 +161,8 @@ ss ssCDOM031{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om031_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -171,8 +181,8 @@ ss ssCDOM031{nl}\
 		{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_1)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om031_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -191,8 +201,8 @@ ss ssCDOM031{nl}\
 		{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_5)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om031_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -229,7 +239,7 @@ ss ssCDOM031{nl}\
 			pvPut(index, SYNC);{nl}\
 			{nl}\
 			{nl}\
-			if(strstr(om031_valveName[index], "XV") != NULL ) {open}{nl}\
+			if(strstr(OM031[index], "XV") != NULL ) {open}{nl}\
 				efSet(efCDOM031_1);{nl}\
 			{close} else if(index == 6){open}{nl}\
 				efSet(efCDOM031_5);{nl}\
@@ -270,7 +280,7 @@ ss ssCDOM031{nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
 			{nl}\
-			if(strstr(om031_valveName[index], "XV") != NULL ) {open}{nl}\
+			if(strstr(OM031[index], "XV") != NULL ) {open}{nl}\
 				efSet(efCDOM031_1);{nl}\
 			{close} else if(index == 6){open}{nl}\
 				efSet(efCDOM031_5);{nl}\
@@ -312,7 +322,7 @@ ss ssCDOM031{nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
 			{nl}\
-			if(strstr(om031_valveName[index], "XV") != NULL ) {open}{nl}\
+			if(strstr(OM031[index], "XV") != NULL ) {open}{nl}\
 				efSet(efCDOM031_1);{nl}\
 			{close} else if(index == 6){open}{nl}\
 				efSet(efCDOM031_5);{nl}\
@@ -354,8 +364,8 @@ ss ssCDOM032{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_1)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om032_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om032_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM032[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM032[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -374,8 +384,8 @@ ss ssCDOM032{nl}\
 		{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_100)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om032_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om032_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM032[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM032[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -413,7 +423,7 @@ ss ssCDOM032{nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
 			{nl}\
-			if(strstr(om032_valveName[index], "XV") != NULL ) {open}{nl}\
+			if(strstr(OM032[index], "XV") != NULL ) {open}{nl}\
 				efSet(efCDOM032_1);{nl}\
 			{close} else {open}{nl}\
 				efSet(efCDOM032_100);{nl}\
@@ -453,7 +463,7 @@ ss ssCDOM032{nl}\
 			pvPut(index, SYNC);{nl}\
 			{nl}\
 			{nl}\
-			if(strstr(om032_valveName[index], "XV") != NULL ) {open}{nl}\
+			if(strstr(OM032[index], "XV") != NULL ) {open}{nl}\
 				efSet(efCDOM032_1);{nl}\
 			{close} else {open}{nl}\
 				efSet(efCDOM032_100);{nl}\
@@ -490,8 +500,8 @@ ss ssCDOM034{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM034_1)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om033_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om033_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM033[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM033[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -510,8 +520,8 @@ ss ssCDOM034{nl}\
 		{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM034_50)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om033_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om033_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM033[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM033[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -616,9 +626,9 @@ ss ssCDOM035{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM035)){nl}\
 		{open}{nl}\
-			sprintf(logicname,		"%s:CDLogic.PROC", om033_valveName[index]);{nl}\
-			sprintf(valvename,      "%s:Valve",        om033_valveName[index]);{nl}\
-			sprintf(valve_evalname, "%s:ValveEval",    om033_valveName[index]);{nl}\
+			sprintf(logicname,		"%s:CDLogic.PROC", OM033[index]);{nl}\
+			sprintf(valvename,      "%s:Valve",        OM033[index]);{nl}\
+			sprintf(valve_evalname, "%s:ValveEval",    OM033[index]);{nl}\
 			printf("%s, %s, %s\\n", logicname, valvename, valve_evalname);{nl}\
 			{nl}\
 			if(index < stopindex){nl}\
@@ -696,8 +706,8 @@ ss ssCDOM036{nl}\
 	{open}{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_1_2)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om036_1_2_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om036_1_2_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM036_1_2[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM036_1_2[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex_1_2){nl}\
@@ -716,8 +726,8 @@ ss ssCDOM036{nl}\
 		{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_3)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om036_3_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om036_3_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM036_3[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM036_3[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex_3){nl}\
@@ -736,8 +746,8 @@ ss ssCDOM036{nl}\
 		{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_4)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om036_4_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om036_4_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM036_4[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM036_4[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex_4){nl}\
@@ -756,8 +766,8 @@ ss ssCDOM036{nl}\
 		{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_5)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om036_5_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om036_5_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM036_5[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM036_5[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex_5){nl}\
@@ -776,8 +786,8 @@ ss ssCDOM036{nl}\
 		{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_6_7)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", om036_6_valveName[index]);{nl}\
-			sprintf(valvename, "%s:Valve", om036_6_valveName[index]);{nl}\
+			sprintf(logicname, "%s:CDLogic.PROC", OM036_6[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM036_6[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 			{nl}\
 			if(index < stopindex_6_7){nl}\
