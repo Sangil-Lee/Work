@@ -1,0 +1,948 @@
+program sncCooldown03
+option +r; 
+
+%%#include <math.h> 
+
+char OM036_3[55][60] = {
+"SCL31-BL01:CM01-CV8401","SCL31-BL01:CM02-CV8401","SCL31-BL01:CM03-CV8401","SCL31-BL01:CM04-CV8401","SCL31-BL01:CM05-CV8401",
+"SCL31-BL01:CM06-CV8401","SCL31-BL01:CM07-CV8401","SCL31-BL01:CM08-CV8401","SCL31-BL01:CM09-CV8401","SCL31-BL01:CM10-CV8401",
+"SCL31-BL01:CM11-CV8401","SCL31-BL01:CM12-CV8401","SCL31-BL01:CM13-CV8401","SCL31-BL01:CM14-CV8401","SCL31-BL01:CM15-CV8401",
+"SCL31-BL01:CM16-CV8401","SCL31-BL01:CM17-CV8401","SCL31-BL01:CM18-CV8401","SCL31-BL01:CM19-CV8401","SCL31-BL01:CM20-CV8401",
+"SCL31-BL01:CM21-CV8401","SCL31-BL01:CM22-CV8401","SCL32-BL02:CM01-CV8401","SCL32-BL02:CM02-CV8401","SCL32-BL02:CM03-CV8401",
+"SCL32-BL02:CM04-CV8401","SCL32-BL02:CM05-CV8401","SCL32-BL02:CM06-CV8401","SCL32-BL02:CM07-CV8401","SCL32-BL02:CM08-CV8401",
+"SCL32-BL02:CM09-CV8401","SCL32-BL02:CM10-CV8401","SCL32-BL02:CM11-CV8401","SCL32-BL02:CM12-CV8401","SCL32-BL02:CM13-CV8401",
+"SCL32-BL03:CM01-CV8401","SCL32-BL03:CM02-CV8401","SCL32-BL03:CM03-CV8401","SCL32-BL03:CM04-CV8401","SCL32-BL03:CM05-CV8401",
+"SCL32-BL03:CM06-CV8401","SCL32-BL03:CM07-CV8401","SCL32-BL03:CM08-CV8401","SCL32-BL03:CM09-CV8401","SCL32-BL03:CM10-CV8401",
+"SCL32-BL03:CM11-CV8401","SCL32-BL03:CM12-CV8401","SCL32-BL03:CM13-CV8401","SCL32-BL03:CM14-CV8401","SCL32-BL03:CM15-CV8401",
+"SCL32-BL03:CM16-CV8401","SCL32-BL03:CM17-CV8401","SCL32-BL03:CM18-CV8401","SCL32-BL03:CM19-CV8401","P2DT-BL04:CM01-CV8401",
+char OM036_7[55][60] = {
+"SCL31-BL01:CM01-CV8402","SCL31-BL01:CM02-CV8402","SCL31-BL01:CM03-CV8402","SCL31-BL01:CM04-CV8402","SCL31-BL01:CM05-CV8402",
+"SCL31-BL01:CM06-CV8402","SCL31-BL01:CM07-CV8402","SCL31-BL01:CM08-CV8402","SCL31-BL01:CM09-CV8402","SCL31-BL01:CM10-CV8402",
+"SCL31-BL01:CM11-CV8402","SCL31-BL01:CM12-CV8402","SCL31-BL01:CM13-CV8402","SCL31-BL01:CM14-CV8402","SCL31-BL01:CM15-CV8402",
+"SCL31-BL01:CM16-CV8402","SCL31-BL01:CM17-CV8402","SCL31-BL01:CM18-CV8402","SCL31-BL01:CM19-CV8402","SCL31-BL01:CM20-CV8402",
+"SCL31-BL01:CM21-CV8402","SCL31-BL01:CM22-CV8402","SCL32-BL02:CM01-CV8403","SCL32-BL02:CM02-CV8403","SCL32-BL02:CM03-CV8403",
+"SCL32-BL02:CM04-CV8403","SCL32-BL02:CM05-CV8403","SCL32-BL02:CM06-CV8403","SCL32-BL02:CM07-CV8403","SCL32-BL02:CM08-CV8403",
+"SCL32-BL02:CM09-CV8403","SCL32-BL02:CM10-CV8403","SCL32-BL02:CM11-CV8403","SCL32-BL02:CM12-CV8403","SCL32-BL02:CM13-CV8403",
+"SCL32-BL03:CM01-CV8403","SCL32-BL03:CM02-CV8403","SCL32-BL03:CM03-CV8403","SCL32-BL03:CM04-CV8403","SCL32-BL03:CM05-CV8403",
+"SCL32-BL03:CM06-CV8403","SCL32-BL03:CM07-CV8403","SCL32-BL03:CM08-CV8403","SCL32-BL03:CM09-CV8403","SCL32-BL03:CM10-CV8403",
+"SCL32-BL03:CM11-CV8403","SCL32-BL03:CM12-CV8403","SCL32-BL03:CM13-CV8403","SCL32-BL03:CM14-CV8403","SCL32-BL03:CM15-CV8403",
+"SCL32-BL03:CM16-CV8403","SCL32-BL03:CM17-CV8403","SCL32-BL03:CM18-CV8403","SCL32-BL03:CM19-CV8403","P2DT-BL04:CM01-CV8403",
+char OM033[2][60] = {
+"SCL31-CDL01:EBx01-CV7401","SCL31-CDL01:EBx01-CV7402",};char OM036_6[33][60] = {
+"SCL32-BL02:CM01-CV8403","SCL32-BL02:CM02-CV8403","SCL32-BL02:CM03-CV8403","SCL32-BL02:CM04-CV8403","SCL32-BL02:CM05-CV8403",
+"SCL32-BL02:CM06-CV8403","SCL32-BL02:CM07-CV8403","SCL32-BL02:CM08-CV8403","SCL32-BL02:CM09-CV8403","SCL32-BL02:CM10-CV8403",
+"SCL32-BL02:CM11-CV8403","SCL32-BL02:CM12-CV8403","SCL32-BL02:CM13-CV8403","SCL32-BL03:CM01-CV8403","SCL32-BL03:CM02-CV8403",
+"SCL32-BL03:CM03-CV8403","SCL32-BL03:CM04-CV8403","SCL32-BL03:CM05-CV8403","SCL32-BL03:CM06-CV8403","SCL32-BL03:CM07-CV8403",
+"SCL32-BL03:CM08-CV8403","SCL32-BL03:CM09-CV8403","SCL32-BL03:CM10-CV8403","SCL32-BL03:CM11-CV8403","SCL32-BL03:CM12-CV8403",
+"SCL32-BL03:CM13-CV8403","SCL32-BL03:CM14-CV8403","SCL32-BL03:CM15-CV8403","SCL32-BL03:CM16-CV8403","SCL32-BL03:CM17-CV8403",
+"SCL32-BL03:CM18-CV8403","SCL32-BL03:CM19-CV8403","P2DT-BL04:CM01-CV8403",};char OM035[2][60] = {
+"Cryo-CDL00:TBx01-CV7302","SCL32-CDL02:VBx01-CV7302",};char OM036_1_2[121][60] = {
+"SCL31-CDL01:VBx02-CV7301","SCL31-CDL01:VBx04-CV7301","SCL31-CDL01:VBx06-CV7301","SCL31-CDL01:VBx08-CV7301","SCL31-CDL01:VBx10-CV7301",
+"SCL31-CDL01:VBx12-CV7301","SCL31-CDL01:VBx14-CV7301","SCL31-CDL01:VBx16-CV7301","SCL31-CDL01:VBx18-CV7301","SCL31-CDL01:VBx20-CV7301",
+"SCL31-CDL01:VBx22-CV7301","SCL32-CDL02:VBx01-CV7301","SCL32-CDL02:VBx01-CV7201","SCL32-CDL02:VBx02-CV7301","SCL32-CDL02:VBx02-CV7201",
+"SCL32-CDL02:VBx03-CV7301","SCL32-CDL02:VBx03-CV7201","SCL32-CDL02:VBx04-CV7301","SCL32-CDL02:VBx04-CV7201","SCL32-CDL02:VBx05-CV7301",
+"SCL32-CDL02:VBx05-CV7201","SCL32-CDL02:VBx06-CV7301","SCL32-CDL02:VBx06-CV7201","SCL32-CDL02:VBx07-CV7301","SCL32-CDL02:VBx07-CV7201",
+"SCL32-CDL02:VBx08-CV7301","SCL32-CDL02:VBx08-CV7201","SCL32-CDL02:VBx09-CV7301","SCL32-CDL02:VBx09-CV7201","SCL32-CDL02:VBx10-CV7301",
+"SCL32-CDL02:VBx10-CV7201","SCL32-CDL02:VBx11-CV7301","SCL32-CDL02:VBx11-CV7201","SCL32-CDL02:VBx12-CV7301","SCL32-CDL02:VBx12-CV7201",
+"SCL32-CDL02:VBx13-CV7301","SCL32-CDL02:VBx13-CV7201","SCL32-CDL03:VBx01-CV7301","SCL32-CDL03:VBx01-CV7201","SCL32-CDL03:VBx02-CV7301",
+"SCL32-CDL03:VBx02-CV7201","SCL32-CDL03:VBx03-CV7301","SCL32-CDL03:VBx03-CV7201","SCL32-CDL03:VBx04-CV7301","SCL32-CDL03:VBx04-CV7201",
+"SCL32-CDL03:VBx05-CV7301","SCL32-CDL03:VBx05-CV7201","SCL32-CDL03:VBx06-CV7301","SCL32-CDL03:VBx06-CV7201","SCL32-CDL03:VBx07-CV7301",
+"SCL32-CDL03:VBx07-CV7201","SCL32-CDL03:VBx08-CV7301","SCL32-CDL03:VBx08-CV7201","SCL32-CDL03:VBx09-CV7301","SCL32-CDL03:VBx09-CV7201",
+"SCL32-CDL03:VBx10-CV7301","SCL32-CDL03:VBx10-CV7201","SCL32-CDL03:VBx11-CV7301","SCL32-CDL03:VBx11-CV7201","SCL32-CDL03:VBx12-CV7301",
+"SCL32-CDL03:VBx12-CV7201","SCL32-CDL03:VBx13-CV7301","SCL32-CDL03:VBx13-CV7201","SCL32-CDL03:VBx14-CV7301","SCL32-CDL03:VBx14-CV7201",
+"SCL32-CDL03:VBx15-CV7301","SCL32-CDL03:VBx15-CV7201","SCL32-CDL03:VBx16-CV7301","SCL32-CDL03:VBx16-CV7201","SCL32-CDL03:VBx17-CV7301",
+"SCL32-CDL03:VBx17-CV7201","SCL32-CDL03:VBx18-CV7301","SCL32-CDL03:VBx18-CV7201","SCL32-CDL03:VBx19-CV7301","SCL32-CDL03:VBx19-CV7201",
+"P2DT-CDL04:VBx01-CV7301","P2DT-CDL04:VBx01-CV7201","SCL31-CDL01:VBx02-CV7401","SCL31-CDL01:VBx04-CV7401","SCL31-CDL01:VBx06-CV7401",
+"SCL31-CDL01:VBx08-CV7401","SCL31-CDL01:VBx10-CV7401","SCL31-CDL01:VBx12-CV7401","SCL31-CDL01:VBx14-CV7401","SCL31-CDL01:VBx16-CV7401",
+"SCL31-CDL01:VBx18-CV7401","SCL31-CDL01:VBx20-CV7401","SCL31-CDL01:VBx22-CV7401","SCL32-CDL02:VBx01-CV7401","SCL32-CDL02:VBx02-CV7401",
+"SCL32-CDL02:VBx03-CV7401","SCL32-CDL02:VBx04-CV7401","SCL32-CDL02:VBx05-CV7401","SCL32-CDL02:VBx06-CV7401","SCL32-CDL02:VBx07-CV7401",
+"SCL32-CDL02:VBx08-CV7401","SCL32-CDL02:VBx09-CV7401","SCL32-CDL02:VBx10-CV7401","SCL32-CDL02:VBx11-CV7401","SCL32-CDL02:VBx12-CV7401",
+"SCL32-CDL02:VBx13-CV7401","SCL32-CDL03:VBx01-CV7401","SCL32-CDL03:VBx02-CV7401","SCL32-CDL03:VBx03-CV7401","SCL32-CDL03:VBx04-CV7401",
+"SCL32-CDL03:VBx05-CV7401","SCL32-CDL03:VBx06-CV7401","SCL32-CDL03:VBx07-CV7401","SCL32-CDL03:VBx08-CV7401","SCL32-CDL03:VBx09-CV7401",
+"SCL32-CDL03:VBx10-CV7401","SCL32-CDL03:VBx11-CV7401","SCL32-CDL03:VBx12-CV7401","SCL32-CDL03:VBx13-CV7401","SCL32-CDL03:VBx14-CV7401",
+"SCL32-CDL03:VBx15-CV7401","SCL32-CDL03:VBx16-CV7401","SCL32-CDL03:VBx17-CV7401","SCL32-CDL03:VBx18-CV7401","SCL32-CDL03:VBx19-CV7401",
+"P2DT-CDL04:VBx01-CV7401",};char OM036_5[33][60] = {
+"SCL32-BL02:CM01-CV8402","SCL32-BL02:CM02-CV8402","SCL32-BL02:CM03-CV8402","SCL32-BL02:CM04-CV8402","SCL32-BL02:CM05-CV8402",
+"SCL32-BL02:CM06-CV8402","SCL32-BL02:CM07-CV8402","SCL32-BL02:CM08-CV8402","SCL32-BL02:CM09-CV8402","SCL32-BL02:CM10-CV8402",
+"SCL32-BL02:CM11-CV8402","SCL32-BL02:CM12-CV8402","SCL32-BL02:CM13-CV8402","SCL32-BL03:CM01-CV8402","SCL32-BL03:CM02-CV8402",
+"SCL32-BL03:CM03-CV8402","SCL32-BL03:CM04-CV8402","SCL32-BL03:CM05-CV8402","SCL32-BL03:CM06-CV8402","SCL32-BL03:CM07-CV8402",
+"SCL32-BL03:CM08-CV8402","SCL32-BL03:CM09-CV8402","SCL32-BL03:CM10-CV8402","SCL32-BL03:CM11-CV8402","SCL32-BL03:CM12-CV8402",
+"SCL32-BL03:CM13-CV8402","SCL32-BL03:CM14-CV8402","SCL32-BL03:CM15-CV8402","SCL32-BL03:CM16-CV8402","SCL32-BL03:CM17-CV8402",
+"SCL32-BL03:CM18-CV8402","SCL32-BL03:CM19-CV8402","P2DT-BL04:CM01-CV8402",};char OM031[107][60] = {
+"Cryo-CDL00:TBx01-XV7502","Cryo-CDL00:TBx01-XV7501","Cryo-CDL00:TBx01-CV7505","Cryo-CDL00:TBx01-CV7502","Cryo-CDL00:TBx01-CV7503",
+"Cryo-CDL00:TBx01-CV7501","SCL31-CDL01:EBx01-CV7501","P2DT-CDL04:VBx01-CV7501","P2DT-CDL04:VBx01-XV7501","SCL32-CDL03:VBx19-CV7501",
+"SCL32-CDL03:VBx19-XV7501","SCL32-CDL03:VBx18-CV7501","SCL32-CDL03:VBx18-XV7501","SCL32-CDL03:VBx17-CV7501","SCL32-CDL03:VBx17-XV7501",
+"SCL32-CDL03:VBx16-CV7501","SCL32-CDL03:VBx16-XV7501","SCL32-CDL03:VBx15-CV7501","SCL32-CDL03:VBx15-XV7501","SCL32-CDL03:VBx14-CV7501",
+"SCL32-CDL03:VBx14-XV7501","SCL32-CDL03:VBx13-CV7501","SCL32-CDL03:VBx13-XV7501","SCL32-CDL03:VBx12-CV7501","SCL32-CDL03:VBx12-XV7501",
+"SCL32-CDL03:VBx11-CV7501","SCL32-CDL03:VBx11-XV7501","SCL32-CDL03:VBx10-CV7501","SCL32-CDL03:VBx10-XV7501","SCL32-CDL03:VBx09-CV7501",
+"SCL32-CDL03:VBx09-XV7501","SCL32-CDL03:VBx08-CV7501","SCL32-CDL03:VBx08-XV7501","SCL32-CDL03:VBx07-CV7501","SCL32-CDL03:VBx07-XV7501",
+"SCL32-CDL03:VBx06-CV7501","SCL32-CDL03:VBx06-XV7501","SCL32-CDL03:VBx05-CV7501","SCL32-CDL03:VBx05-XV7501","SCL32-CDL03:VBx04-CV7501",
+"SCL32-CDL03:VBx04-XV7501","SCL32-CDL03:VBx03-CV7501","SCL32-CDL03:VBx03-XV7501","SCL32-CDL03:VBx02-CV7501","SCL32-CDL03:VBx02-XV7501",
+"SCL32-CDL03:VBx01-CV7501","SCL32-CDL03:VBx01-XV7501","SCL32-CDL02:VBx13-CV7501","SCL32-CDL02:VBx13-XV7501","SCL32-CDL02:VBx12-CV7501",
+"SCL32-CDL02:VBx12-XV7501","SCL32-CDL02:VBx11-CV7501","SCL32-CDL02:VBx11-XV7501","SCL32-CDL02:VBx10-CV7501","SCL32-CDL02:VBx10-XV7501",
+"SCL32-CDL02:VBx09-CV7501","SCL32-CDL02:VBx09-XV7501","SCL32-CDL02:VBx08-CV7501","SCL32-CDL02:VBx08-XV7501","SCL32-CDL02:VBx07-CV7501",
+"SCL32-CDL02:VBx07-XV7501","SCL32-CDL02:VBx06-CV7501","SCL32-CDL02:VBx06-XV7501","SCL32-CDL02:VBx05-CV7501","SCL32-CDL02:VBx05-XV7501",
+"SCL32-CDL02:VBx04-CV7501","SCL32-CDL02:VBx04-XV7501","SCL32-CDL02:VBx03-CV7501","SCL32-CDL02:VBx03-XV7501","SCL32-CDL02:VBx02-CV7501",
+"SCL32-CDL02:VBx02-XV7501","SCL32-CDL02:VBx01-CV7501","SCL32-CDL02:VBx01-XV7501","SCL31-CDL01:VBx22-CV7501","SCL31-CDL01:VBx22-CV7502",
+"SCL31-CDL01:VBx22-XV7501","SCL31-CDL01:VBx20-CV7501","SCL31-CDL01:VBx20-CV7502","SCL31-CDL01:VBx20-XV7501","SCL31-CDL01:VBx18-CV7501",
+"SCL31-CDL01:VBx18-CV7502","SCL31-CDL01:VBx18-XV7501","SCL31-CDL01:VBx16-CV7501","SCL31-CDL01:VBx16-CV7502","SCL31-CDL01:VBx16-XV7501",
+"SCL31-CDL01:VBx14-CV7501","SCL31-CDL01:VBx14-CV7502","SCL31-CDL01:VBx14-XV7501","SCL31-CDL01:VBx12-CV7501","SCL31-CDL01:VBx12-CV7502",
+"SCL31-CDL01:VBx12-XV7501","SCL31-CDL01:VBx10-CV7501","SCL31-CDL01:VBx10-CV7502","SCL31-CDL01:VBx10-XV7501","SCL31-CDL01:VBx08-CV7501",
+"SCL31-CDL01:VBx08-CV7502","SCL31-CDL01:VBx08-XV7501","SCL31-CDL01:VBx06-CV7501","SCL31-CDL01:VBx06-CV7502","SCL31-CDL01:VBx06-XV7501",
+"SCL31-CDL01:VBx04-CV7501","SCL31-CDL01:VBx04-CV7502","SCL31-CDL01:VBx04-XV7501","SCL31-CDL01:VBx02-CV7501","SCL31-CDL01:VBx02-CV7502",
+"SCL31-CDL01:VBx02-XV7501","SCL31-CDL01:EBx01-CV7502",};char OM036_4[22][60] = {
+"SCL31-BL01:CM01-CV8402","SCL31-BL01:CM02-CV8402","SCL31-BL01:CM03-CV8402","SCL31-BL01:CM04-CV8402","SCL31-BL01:CM05-CV8402",
+"SCL31-BL01:CM06-CV8402","SCL31-BL01:CM07-CV8402","SCL31-BL01:CM08-CV8402","SCL31-BL01:CM09-CV8402","SCL31-BL01:CM10-CV8402",
+"SCL31-BL01:CM11-CV8402","SCL31-BL01:CM12-CV8402","SCL31-BL01:CM13-CV8402","SCL31-BL01:CM14-CV8402","SCL31-BL01:CM15-CV8402",
+"SCL31-BL01:CM16-CV8402","SCL31-BL01:CM17-CV8402","SCL31-BL01:CM18-CV8402","SCL31-BL01:CM19-CV8402","SCL31-BL01:CM20-CV8402",
+"SCL31-BL01:CM21-CV8402","SCL31-BL01:CM22-CV8402",};char OM036_8[55][60] = {
+"SCL31-CDL01:VBx02-CV7501","SCL31-CDL01:VBx02-CV7502","SCL31-CDL01:VBx04-CV7501","SCL31-CDL01:VBx04-CV7502","SCL31-CDL01:VBx06-CV7501",
+"SCL31-CDL01:VBx06-CV7502","SCL31-CDL01:VBx08-CV7501","SCL31-CDL01:VBx08-CV7502","SCL31-CDL01:VBx10-CV7501","SCL31-CDL01:VBx10-CV7502",
+"SCL31-CDL01:VBx12-CV7501","SCL31-CDL01:VBx12-CV7502","SCL31-CDL01:VBx14-CV7501","SCL31-CDL01:VBx14-CV7502","SCL31-CDL01:VBx16-CV7501",
+"SCL31-CDL01:VBx16-CV7502","SCL31-CDL01:VBx18-CV7501","SCL31-CDL01:VBx18-CV7502","SCL31-CDL01:VBx20-CV7501","SCL31-CDL01:VBx20-CV7502",
+"SCL31-CDL01:VBx22-CV7501","SCL31-CDL01:VBx22-CV7502","SCL32-CDL02:VBx01-CV7501","SCL32-CDL02:VBx02-CV7501","SCL32-CDL02:VBx03-CV7501",
+"SCL32-CDL02:VBx04-CV7501","SCL32-CDL02:VBx05-CV7501","SCL32-CDL02:VBx06-CV7501","SCL32-CDL02:VBx07-CV7501","SCL32-CDL02:VBx08-CV7501",
+"SCL32-CDL02:VBx09-CV7501","SCL32-CDL02:VBx10-CV7501","SCL32-CDL02:VBx11-CV7501","SCL32-CDL02:VBx12-CV7501","SCL32-CDL02:VBx13-CV7501",
+"SCL32-CDL03:VBx01-CV7501","SCL32-CDL03:VBx02-CV7501","SCL32-CDL03:VBx03-CV7501","SCL32-CDL03:VBx04-CV7501","SCL32-CDL03:VBx05-CV7501",
+"SCL32-CDL03:VBx06-CV7501","SCL32-CDL03:VBx07-CV7501","SCL32-CDL03:VBx08-CV7501","SCL32-CDL03:VBx09-CV7501","SCL32-CDL03:VBx10-CV7501",
+"SCL32-CDL03:VBx11-CV7501","SCL32-CDL03:VBx12-CV7501","SCL32-CDL03:VBx13-CV7501","SCL32-CDL03:VBx14-CV7501","SCL32-CDL03:VBx15-CV7501",
+"SCL32-CDL03:VBx16-CV7501","SCL32-CDL03:VBx17-CV7501","SCL32-CDL03:VBx18-CV7501","SCL32-CDL03:VBx19-CV7501","P2DT-CDL04:VBx01-CV7501",
+char OM032[11][60] = {
+"Cryo-CDL00:TBx01-XV7301","Cryo-CDL00:TBx01-XV7201","Cryo-CDL00:TBx01-XV7401","Cryo-CDL00:TBx01-CV7301","Cryo-CDL00:TBx01-CV7201",
+"Cryo-CDL00:TBx01-CV7401","Cryo-CDL00:TBx01-CV7302","SCL32-CDL02:VBx01-XV7301","Cryo-CDL00:TBx01-XV7302","SCL32-CDL02:VBx01-CV7302",
+"Cryo-CDL00:TBx01-CV7303",};
+ss ssCDOM031
+{
+	state stopCDOM031
+	{
+		when(efTestAndClear(efStop) && ss_start == 1)
+		{
+			index = 0;
+			stopindex = 107;
+			pvPut(index, SYNC);
+			efSet(efCDOM031_1);
+	    }state CDOM031_Init
+    }
+	
+	state CDOM031_Init
+	{
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);
+			sprintf(valvename, "%s:Valve", om031_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+             };
+			
+    }state CDOM031_Proc_100
+		
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_1))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);
+			sprintf(valvename, "%s:Valve", om031_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+            };
+			
+        }state CDOM031_Proc_1
+		
+		when(delay(cdDelay)&&efTestAndClear(efCDOM031_5))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om031_valveName[index]);
+			sprintf(valvename, "%s:Valve", om031_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+        };
+        }state CDOM031_Proc_5
+	}
+	
+	state CDOM031_Proc_100
+	{
+		when(delay(cdDelay) && valveval < 100 && index < stopindex)
+		{
+			printf("CDOM031_Proc_100\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM031_Proc_100
+		
+		when(delay(cdDelay) && valveval == 100 && index != 6 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			
+			if(strstr(om031_valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+            }state CDOM031_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM031 Done & OM032 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 2;
+			
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM031
+	}
+	
+	state CDOM031_Proc_1
+	{
+		when(delay(cdDelay) && valveval < 1 && index < stopindex)
+		{
+			printf("CDOM031_Proc_1\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM031_Proc_1
+		
+		when(delay(cdDelay)&& valveval == 1 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			if(strstr(om031_valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+			
+            }state CDOM031_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM031 Done & OM032 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 2;
+			
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM031
+	}
+	
+	state CDOM031_Proc_5
+	{
+		when(delay(cdDelay) && valveval < 5 && index < stopindex)
+		{
+			printf("CDOM031_Proc_5\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM031_Proc_5
+		
+		when(delay(cdDelay) && valveval == 5 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			if(strstr(om031_valveName[index], "XV") != NULL ) {
+				efSet(efCDOM031_1);
+			} else if(index == 6){
+				efSet(efCDOM031_5);
+			} else {
+				efSet(efCDOM031_100);
+			};
+			
+            }state CDOM031_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM031 Done & OM032 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 2;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM031
+	}
+	
+}
+
+ss ssCDOM032
+{
+	state stopCDOM032
+	{
+		when(efTestAndClear(efStop) && ss_start == 2)
+		{
+			index = 0;
+			stopindex = 11;
+			pvPut(index, SYNC);
+			efSet(efCDOM032_1);
+            }state CDOM032_Init
+	}
+	
+	state CDOM032_Init
+	{
+		when(delay(cdDelay)&&efTestAndClear(efCDOM032_1))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om032_valveName[index]);
+			sprintf(valvename, "%s:Valve", om032_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM032_Proc_1
+		
+		when(delay(cdDelay)&&efTestAndClear(efCDOM032_100))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om032_valveName[index]);
+			sprintf(valvename, "%s:Valve", om032_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM032_Proc_100
+		
+	}
+	
+	state CDOM032_Proc_1
+	{
+		when(delay(cdDelay) && valveval < 1 && index < stopindex)
+		{
+			printf("CDOM032_Proc_1\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM032_Proc_1
+		
+		when(delay(cdDelay)&& valveval == 1 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			if(strstr(om032_valveName[index], "XV") != NULL ) {
+				efSet(efCDOM032_1);
+			} else {
+				efSet(efCDOM032_100);
+			};
+			
+            }state CDOM032_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM032 Done & OM033 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 3;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM032
+	}
+	
+	state CDOM032_Proc_100
+	{
+		when(delay(cdDelay) && valveval < 100 && index < stopindex)
+		{
+			printf("CDOM032_Proc_100\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM032_Proc_100
+		
+		when(delay(cdDelay) && valveval == 100 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			
+			if(strstr(om032_valveName[index], "XV") != NULL ) {
+				efSet(efCDOM032_1);
+			} else {
+				efSet(efCDOM032_100);
+			};
+            }state CDOM032_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM032 Done & OM033 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 3;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM032
+	}
+}
+
+ss ssCDOM034
+{
+	state stopCDOM034
+	{
+		when(efTestAndClear(efStop) && ss_start == 3 && presz_start == 1)
+		{
+			index = 0;
+			stopindex = 11;
+			pvPut(index, SYNC);
+			efSet(efCDOM034_1);
+            }state CDOM034_Init
+	}
+	
+	state CDOM034_Init
+	{
+		when(delay(cdDelay)&&efTestAndClear(efCDOM034_1))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om033_valveName[index]);
+			sprintf(valvename, "%s:Valve", om033_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM034_Proc_1
+		
+		when(delay(cdDelay) && efTestAndClear(efCDOM034_50))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om033_valveName[index]);
+			sprintf(valvename, "%s:Valve", om033_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM034_Proc_50
+		
+	}
+	
+	state CDOM034_Proc_1
+	{
+		when(delay(cdDelay) && valveval < 1 && index < stopindex)
+		{
+			printf("CDOM034_Proc_1\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM034_Proc_1
+		
+		when(delay(cdDelay)&& valveval == 1 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM034_50);
+			
+            }state CDOM034_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM032 Done & OM033 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 4;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM034
+	}
+	
+	state CDOM034_Proc_50
+	{
+		when(delay(cdDelay) && valveval < 50 && index < stopindex)
+		{
+			printf("CDOM034_Proc_50\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM034_Proc_50
+		
+		when(delay(cdDelay) && valveval >= 50 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+            }state CDOM034_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM034 Done & OM035 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 4;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM034
+	}
+}
+
+ss ssCDOM035
+{
+	state stopCDOM035
+	{
+		when(efTestAndClear(efStop) && ss_start == 4)
+		{
+			index = 0;
+			stopindex = 2;
+			pvPut(index, SYNC);
+			efSet(efCDOM035);
+            }state CDOM035_Init
+	}
+	
+	state CDOM035_Init
+	{
+		when(delay(cdDelay)&&efTestAndClear(efCDOM035))
+		{
+			sprintf(logicname,		"%s:CDLogic.PROC", om033_valveName[index]);
+			sprintf(valvename,      "%s:Valve",        om033_valveName[index]);
+			sprintf(valve_evalname, "%s:ValveEval",    om033_valveName[index]);
+			printf("%s, %s, %s\n", logicname, valvename, valve_evalname);
+			
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+				
+				pvAssign(valve_eval, valve_evalname);
+				pvMonitor(valve_eval);
+			};
+			
+            }state CDOM035_Proc
+		
+	}
+	
+	state CDOM035_Proc
+	{
+		when(delay(cdDelay) && valve_eval >=1  && index < stopindex)
+		{
+			printf("CDOM035_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM035_Proc
+		
+		when(delay(cdDelay) && valve_eval == 0 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+            }state CDOM035_Init
+		
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM035 Done & OM036 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			ss_start = 5;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM035
+	}
+}
+
+ss ssCDOM036
+{
+	state stopCDOM036
+	{
+		when(efTestAndClear(efStop) && ss_start == 5)
+		{
+			index = 0;
+			stopindex_1_2 = 121;
+			stopindex_3 = 55;
+			stopindex_4 = 22;
+			stopindex_5 = 33;
+			stopindex_6_7 = 88; //33+55
+			
+			pvPut(index, SYNC);
+			efSet(efCDOM036_1_2);
+            }state CDOM036_Init
+	}
+	
+	state CDOM036_Init
+	{
+		when(delay(cdDelay) && efTestAndClear(efCDOM036_1_2))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om036_1_2_valveName[index]);
+			sprintf(valvename, "%s:Valve", om036_1_2_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex_1_2)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM036_1_2_Proc
+		
+		when(delay(cdDelay) && efTestAndClear(efCDOM036_3))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om036_3_valveName[index]);
+			sprintf(valvename, "%s:Valve", om036_3_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex_3)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM036_3_Proc
+		
+		when(delay(cdDelay) && efTestAndClear(efCDOM036_4))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om036_4_valveName[index]);
+			sprintf(valvename, "%s:Valve", om036_4_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex_4)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM036_4_Proc
+		
+		when(delay(cdDelay) && efTestAndClear(efCDOM036_5))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om036_5_valveName[index]);
+			sprintf(valvename, "%s:Valve", om036_5_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex_5)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM036_5_Proc
+		
+		when(delay(cdDelay) && efTestAndClear(efCDOM036_6_7))
+		{
+			sprintf(logicname, "%s:CDLogic.PROC", om036_6_valveName[index]);
+			sprintf(valvename, "%s:Valve", om036_6_valveName[index]);
+			printf("%s, %s\n", logicname, valvename);
+			
+			if(index < stopindex_6_7)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+				
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+				
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+			
+            }state CDOM036_6_7_Proc
+	}
+	
+	state CDOM036_1_2_Proc
+	{
+		when(delay(cdDelay) && valveval < 100 && index < stopindex_1_2)
+		{
+			printf("CDOM036_1_2_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM036_1_2_Proc
+		
+		when(delay(cdDelay) && valveval == 100 && index < stopindex_1_2)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM036_1_2);
+            }state CDOM036_Init
+		
+		when(delay(cdDelay) && index >= stopindex_1_2)
+		{
+			strcpy(steppv, "OM036_1_2 Done & OM036_3 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 6 ;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM036
+	}
+	
+	state CDOM036_3_Proc
+	{
+		when(delay(cdDelay) && valveval < 5 && index < stopindex_3)
+		{
+			printf("CDOM036_3_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM036_3_Proc
+		
+		when(delay(cdDelay) && valveval >= 5 && index < stopindex_3)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM036_3);
+            }state CDOM036_Init
+		
+		when(delay(cdDelay) && index >= stopindex_3)
+		{
+			strcpy(steppv, "OM036_3 Done & OM036_4 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 6 ;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM036
+	}
+	
+	state CDOM036_4_Proc
+	{
+		when(delay(cdDelay) && valveval < 50 && index < stopindex_4)
+		{
+			printf("CDOM036_4_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM036_4_Proc
+		
+		when(delay(cdDelay) && valveval >= 50 && index < stopindex_4)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM036_4);
+            }state CDOM036_Init
+		
+		when(delay(cdDelay) && index >= stopindex_4)
+		{
+			strcpy(steppv, "OM036_4 Done & OM036_5 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 6 ;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM036
+	}
+	
+	state CDOM036_5_Proc
+	{
+		when(delay(cdDelay) && valveval < 100 && index < stopindex_5)
+		{
+			printf("CDOM036_5_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM036_5_Proc
+		
+		when(delay(cdDelay) && valveval >= 100 && index < stopindex_5)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM036_5);
+            }state CDOM036_Init
+		
+		when(delay(cdDelay) && index >= stopindex_5)
+		{
+			strcpy(steppv, "OM036_5 Done & OM036_6_7 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 6 ;
+			pvPut(ss_start, SYNC);
+			
+            }state stopCDOM036
+	}
+	
+	state CDOM036_6_7_Proc
+	{
+		when(delay(cdDelay) && valveval < 50 && index < stopindex_6_7)
+		{
+			printf("CDOM036_6_7_Proc\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+            }state CDOM036_6_7_Proc
+		
+		when(delay(cdDelay) && valveval >= 50 && index < stopindex_6_7)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			
+			index++;
+			pvPut(index, SYNC);
+			
+			efSet(efCDOM036_6_7);
+            }state CDOM036_Init
+		
+		when(delay(cdDelay) && index >= stopindex_6_7)
+		{
+			strcpy(steppv, "OM036_6 Done & OM036_7 Start");
+			pvPut(steppv, SYNC);
+			
+			efSet(efStop);
+			
+			ss_start = 6 ;
+			pvPut(ss_start, SYNC);
+            }state stopCDOM036
+	}
+}
