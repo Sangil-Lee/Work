@@ -41,7 +41,7 @@ valveEval_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     valveEval_SNCFLAGS += +r
 	#
-    #valveEval_DBD  += CDOM031.dbd
+    valveEval_DBD  += CDOM031.dbd
 	#Cooldown_03.dbd instead of CDOM031~038
     valveEval_DBD  += Cooldown_03.dbd
     #valveEval_DBD  += Cooldown_04.dbd
@@ -55,7 +55,7 @@ ifneq ($(SNCSEQ),)
     valveEval_DBD  += sncCooldown04.dbd
     valveEval_DBD  += sncCooldown12.dbd
 
-    #valveEval_SRCS += CDOM031.stt
+    valveEval_SRCS += CDOM031.stt
 	#Cooldown_03.stt instead of CDOM031~038
     valveEval_SRCS += Cooldown_03.stt
     #valveEval_SRCS += Cooldown_04.stt
