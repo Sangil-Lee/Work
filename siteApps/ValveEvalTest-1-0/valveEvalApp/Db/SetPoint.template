@@ -1,6 +1,7 @@
 
-record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
-    field(INP, "$(INP)")    
+    field(OUT, "$(OUT)")    
+    field(FLNK, "$(FLNK)")    
     field(SCAN, "$(SCAN)")    
 }

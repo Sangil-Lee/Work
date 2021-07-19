@@ -5,7 +5,7 @@ import glob
 import re
 from pathlib import Path
 
-
+#python3.8 GenTemplateSubFile.py ao "OUTB,SCAN" "Setpt,1 second" "10,40,40" Valve.pv Example 0
 argc = len(sys.argv)
 if argc != 8:
     #print('Usage:'+str(sys.argv[0])+' recordtype "Fieldlist" "ValueList" PVfile SignalPad \
@@ -66,7 +66,7 @@ charnull = "'\\0'"
 ##############################################################
 
 sncText = f'{nl}\
-record({type}, "{prefix}$(SIGNAL)"){nl}\
+record({type}, "{prefix}{signal}"){nl}\
 {open}\
 '
 templ.write(sncText)
@@ -86,7 +86,67 @@ for field in fieldlist:
     '
     templ.write(sncText)
 
+sncText = f'{nl}\
+    field(FLNK, "{prefix}{signal}FOut"){nl}\
+    field(SCAN, "Passive"){nl}\
+    field(PINI, "YES"){nl}\
+    field(VAL, "0"){nl}\
+'
+templ.write(sncText)
 sncText ='\n}\n'
+templ.write(sncText)
+
+sncText = f'{nl}\
+record(bi, "{prefix}Start") {open}{nl}\
+	field(SCAN, "Passive"){nl}\
+	field(PINI, "YES"){nl}\
+	field(VAL, "0"){nl}\
+	field(ZNAM, "Stop"){nl}\
+	field(ONAM, "Start"){nl}\
+{close}{nl}\
+record(dfanout, "{prefix}{signal}FOut") {open}{nl}\
+    field(SCAN, "Passive"){nl}\
+    field(OUTA, "{prefix}{signal}Comp PP"){nl}\
+    field(OUTB, "{prefix}$(OUTB) CPP"){nl}\
+    field(DOL,  "{prefix}{signal}"){nl}\
+    field(OMSL, "closed_loop"){nl}\
+{close}{nl}\
+record(compress, "{prefix}{signal}Comp") {open}{nl}\
+	field(SCAN, "Passive"){nl}\
+	field(ALG,  "Circular Buffer"){nl}\
+	field(NSAM, "6"){nl}\
+	field(FLNK, "{prefix}{signal}Eval"){nl}\
+	field(INP, "{prefix}{signal}"){nl}\
+{close}{nl}\
+record(acalcout, "{prefix}{signal}Eval") {open}{nl}\
+	field(SCAN, "Passive"){nl}\
+	field(NELM, "6"){nl}\
+	field(CALC, "B:=AA[D-1,D-1];C:=AVG(AA);(A==0||B==0||D<6)?1:C==B?0:1"){nl}\
+	field(INAA, "{prefix}{signal}Comp"){nl}\
+	field(INPA, "{prefix}Start"){nl}\
+	field(INPD, "{prefix}{signal}Comp.NUSE"){nl}\
+	field(OOPT, "Every Time"){nl}\
+	field(DOPT, "Use CALC"){nl}\
+{close}{nl}\
+record(calcout, "{prefix}{signal}CDLogic") {open}{nl}\
+    field(SCAN, "Passive"){nl}\
+    field(PINI, "NO"){nl}\
+    field(INPA, "{prefix}{signal}"){nl}\
+    field(FLNK, "{prefix}{signal}.PROC CPP"){nl}\
+    field(OUT,  "{prefix}{signal}.VAL CPP"){nl}\
+    field(CALC, "$(CALC)"){nl}\
+    field(INPB, "$(INPB)"){nl}\
+    field(INPC, "$(INPC)"){nl}\
+    field(INPG, "0.5"){nl}\
+    field(INPH, "1.3"){nl}\
+    field(INPI, "$(INPI)"){nl}\
+    field(INPJ, "$(INPJ)"){nl}\
+    field(INPK, "$(INPK)"){nl}\
+    field(INPL, "$(INPL)"){nl}\
+    field(OOPT, "Every Time"){nl}\
+    field(DOPT, "Use CALC"){nl}\
+{close}{nl}\
+'
 templ.write(sncText)
 templ.close()
 ###################################################
@@ -97,12 +157,13 @@ signal = re.split('[$()]',prefix+signal)
 #sncText = '{'+signal[2]+',\t\t'
 signal = ' '.join(signal).split()
 #pvname = ','.join(str(e) for e in signal)
+print(signal)
 pvname = ''
 for e in signal:
     e = '{message: <{padcnt}}'.format(message = e+',', padcnt=int(str(paddinglist[0])))
     pvname = pvname + e
 
-print(pvname)
+#print(pvname)
 open  = '{'
 comma =','
 #sncText = f'{open} {signal[2]}{comma: <20}'
@@ -131,11 +192,12 @@ for cnt in range(int(count)):
     #sncText = f'{open}"{pvlist[cnt]}"{comma: <20}'
     pvnamelist = pvlist[cnt] 
     pvnamelist = re.split('[-:]', pvnamelist)
-
-    print(pvname)
-
+    print(pvnamelist)
+    
     pvname =''
-    for e in pvnamelist:
+    for indx, e in enumerate(pvnamelist):
+        if(signal[indx] == 'SUBSYS' or signal[indx] == 'SUBDEV'):
+            e = '-' + e + ':'
         e = '{message: <{padcnt}}'.format(message = e+',', padcnt=int(str(paddinglist[0])))
         pvname = pvname + e
 
@@ -143,13 +205,31 @@ for cnt in range(int(count)):
     #sncText = '{\"'+pvlist[cnt]+'\",'
     #sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
     sub.write(sncText)
-    for idx, value in enumerate(valuelist):
-        idx = idx+1
+    for orgidx, value in enumerate(valuelist):
+        idx = orgidx+1
         if(value == "\"\""): value = ""
         if(idx == len(valuelist)):
-            sncText = "\""+ value + "\""
+            if(fieldlist[orgidx].find('OUT') != -1 or fieldlist[orgidx] == 'FLNK'):
+                pvnamelist.pop(len(pvnamelist)-1)
+                pvname =''
+                for indx, e in enumerate(pvnamelist):
+                    if(signal[indx] == 'SUBSYS' or signal[indx] == 'SUBDEV'):
+                        e = '-' + e + ':'
+                    pvname = pvname + e
+                sncText = "\""+ pvname + value + "\""
+            else:
+                sncText = "\""+ value + "\""
         else:
-            sncText = "\"" + value+'\",'
+            if(fieldlist[orgidx].find('OUT') != -1 or fieldlist[orgidx] == 'FLNK'):
+                pvnamelist.pop(len(pvnamelist)-1)
+                pvname =''
+                for indx, e in enumerate(pvnamelist):
+                    if(signal[indx] == 'SUBSYS' or signal[indx] == 'SUBDEV'):
+                        e = '-' + e + ':'
+                    pvname = pvname + e
+                sncText = "\""+ pvname + value + "\","
+            else:
+                sncText = "\"" + value+'\",'
             sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[idx])))
         sub.write(sncText)
     sncText = '}\n'
