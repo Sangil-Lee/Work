@@ -1,0 +1,33 @@
+StepDly
+CVValue
+
+
+record(waveform, SCL3:CD-OM031:ValveWave) {
+  field(DTYP, "Soft Channel")
+  field(NELM, "107")
+  field(PREC, "3")
+  field(FTVL, "DOUBLE")
+  field(SCAN, "Passive")
+#field(FLNK, "SCL3:Cooldown:ValveTotEval")
+}
+
+record(stringin, SCL3:CD-OM031:StepPV) {
+	field(DESC, "CDOM 131")
+	field(VAL, "CDOM 131")
+}
+
+record(bi, SCL3:CD-OM031:Start) {
+	field(DESC, "OM 131 Start")
+	field(VAL, "0")
+	field(ZNAM, "OM131 Stop")
+	field(ONAM, "OM131 Start")
+}
+
+record(longin, SCL3:CD-OM031:IndexPV) {
+	field(VAL, "0")
+}
+
+record(longin, SCL3:CD-OM031:Cycle) {
+	field(VAL, "0")
+}
+

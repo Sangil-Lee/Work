@@ -1,0 +1,279 @@
+# ~/tbashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+ctrlssh()
+{
+    sshpass -pqwer1234 ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1
+}
+
+ctrlsshioc()
+{
+	if [ x$1 == x ]; then
+		echo "$>ctrlsshioc 192.168.81.85-89(MEBT)|192.168.81.81-85(LEBT)";
+		return;
+	fi
+    sshpass -prkthrrlwpdj ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1 "tmux attach -t IOC"
+}
+
+ctrlsshshowdblist()
+{
+    sshpass -pqwer1234 ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1 "cat ${HOME}/data/dblist"
+}
+
+ctrlsshfpsioc()
+{
+	if [ x$1 == x ]; then
+		echo "$>ctrlsshfpsioc 192.168.81.10(MITI)|192.168.81.41(AN41)|192.168.81.51(AN51)|192.168.81.61(AN61)";
+		return;
+	fi
+
+    sshpass -proot ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 root@$1 "tmux attach -t IOC"
+}
+
+modulessh()
+{
+	if [ x$1 == x ]; then
+		echo "$>modulessh 192.168.82.5-192.168.82.49";
+		return;
+	fi
+    sshpass -pcontrol ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1
+}
+
+modulecopy()
+{
+	if [ x$1 == x ]; then
+		echo "$>modulessh 192.168.82.5-192.168.82.49";
+		return;
+	fi
+    sshpass -pcontrol scp -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 $1 ctrluser@$2:/home/ctrluser/epics/downloads/
+}
+
+kobrassh()
+{
+	if [ x$1 == x ]; then
+		echo "$>kobrassh 192.168.131.10-192.168.131.19";
+		return;
+	fi
+    sshpass -prkthrrlwpdj ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1
+}
+
+pissh()
+{
+	if [ x$1 == x ]; then
+		echo "$>pissh 192.168.68.7";
+		return;
+	fi
+    sshpass -pqwer1234 ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1
+}
+
+ccspissh()
+{
+	if [ x$1 == x ]; then
+		echo "$>ccspissh 192.168.81.85 - 192.168.81.184";
+		return;
+	fi
+    sshpass -prkthrrlwpdj ssh -t -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oConnectTimeout=3 ctrluser@$1
+}
+
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color|*-256color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+#EPICS_APPS=/home/ctrluser/epics/R3.14.12.5/siteApps
+#EPICS_LIBS=/home/ctrluser/epics/R3.14.12.5/siteLibs
+
+#EDMPVOBJECTS=${EPICS_EXTENSIONS}/ext_pref/edm
+#EDMOBJECTS=${EPICS_EXTENSIONS}/ext_pref/edm
+EDMPVOBJECTS=${EPICS_EXTENSIONS}/src/edm
+EDMOBJECTS=${EPICS_EXTENSIONS}/src/edm
+EDMHELPFILES=${EPICS_EXTENSIONS}/src/edm/helpFiles
+EDMFILES=${EPICS_EXTENSIONS}/src/edm
+#EDMDATAFILES=./:$IOCTOP/<system1>/opi/edl:$IOCTOP/<system2>/opi/edl
+
+EPICS_APPS=/home/ctrluser/epics/7.0.3/siteApps
+EPICS_BASE=/home/ctrluser/epics/7.0.3/base
+EPICS_LIBS=/home/ctrluser/epics/7.0.3/siteLibs
+EPICS_ASYN=/home/ctrluser/epics/7.0.3/epicsLibs/synApps/support
+EPICS_EXTENSIONS=/home/ctrluser/epics/7.0.3/extensions
+export GITHOME=/home/ctrluser/GitHub/Work/siteApps
+
+export PYEPICS_LIBCA=${EPICS_BASE}/lib/${EPICS_HOST_ARCH}/libca.so
+
+
+#alias eps='source ~/epics/R3.14.12.5/setEpicsEnv.sh'
+#alias eps='source ~/epics/7.0.4.1/setEpicsEnv.sh'
+alias eps='source ~/epics/7.0.3/setEpicsEnv.sh'
+#alias eps='source ~/epics/7.0.5/setEpicsEnv.sh'
+alias cda='cd $EPICS_APPS'
+alias cdb='cd $EPICS_BASE'
+alias cdl='cd $EPICS_LIBS'
+alias cdas='cd $EPICS_ASYN'
+alias cdg='cd $GITHOME'
+alias ssh100='ssh ctrluser@192.168.68.100'
+alias sshecrctrl='ssh ctrluser@192.168.81.87'
+alias mail='firefox mail.ibs.re.kr'
+alias gmail='firefox mail.google.com'
+alias portal='google-chrome portal.ibs.re.kr'
+alias search='/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s'
+alias searchf='/home/linuxbrew/.linuxbrew/Cellar/s-search/0.5.14/bin/s -b "firefox"'
+alias vi='nvim'
+#tmux prefix = ctrl+x
+alias tmux_l='tmux ls'
+alias tmux_c='tmux new -s'
+#tmux detach = ctr+x, d
+alias tmux_a='tmux attach -t'
+alias setvi='set -o vi'
+alias unsetvi='set +o vi'
+
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+#export EPICS_CA_ADDR_LIST=192.168.68.100
+#export EPICS_CA_ADDR_LIST="192.168.83.180 192.168.68.100 192.168.68.101"
+export EPICS_CA_ADDR_LIST=""
+export EPICS_CA_AUTO_ADDR_LIST=yes
+export QWT_INCLUDE_PATH=/home/ctrluser/Qwt/qwt-6.1.3/src
+export QWTINCLUDE=/home/ctrluser/Qwt/qwt-6.1.3/src
+export PROTOBUF_LIB_DIR=/usr/local/lib
+export ACAI=${HOME}/epics/7.0.3/extensions/src/acai
+export QE_PVACCESS_SUPPORT=YES
+#export QE_ARCHAPPL_SUPPORT=YES
+
+export EPICS_HOST_ARCH=linux-x86_64
+export QE_TARGET_DIR=/home/ctrluser/qtepics/qeframework
+export QWT_ROOT=/home/ctrluser/Qwt/qwt-6.1.3
+QT_PLUGIN_PATH="${QWT_ROOT}/designer/plugins:${QE_TARGET_DIR}/lib/${EPICS_HOST_ARCH}:${QE_TARGET_DIR}/lib/${EPICS_HOST_ARCH}/designer:$QT_PLUGIN_PATH"
+export QT_PLUGIN_PATH
+
+export PATH=/home/ctrluser/Qt5.12.8/5.12.8/gcc_64/bin:/home/ctrluser/Qt5.12.8/Tools/QtCreator/bin:/home/ctrluser/epics/7.0.3/base/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/extensions/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/siteApps/bin/linux-x86_64:/home/ctrluser/epics/7.0.3/siteLibs/bin/linux-x86_64:/usr/local/bin:/usr/bin:/bin:${PATH}
+export LD_LIBRARY_PATH=/home/ctrluser/epics/7.0.3/base/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/extensions/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/siteApps/lib/linux-x86_64:/home/ctrluser/epics/7.0.3/siteLibs/lib/linux-x86_64:/home/ctrluser/epics/opi/lib:/home/ctrluser/Qwt/qwt-6.1.3/lib:/home/ctrluser/Qt5.12.8/5.12.8/gcc_64/lib:${QT_PLUGIN_PATH}:${LD_LIBRARY_PATH}
+
+export TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ctrluser/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ctrluser/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ctrluser/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ctrluser/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/bin:$PATH"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/python@3.8/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/python@3.8/include"
+export PKG_CONFIG_PATH="/home/linuxbrew/.linuxbrew/opt/python@3.8/lib/pkgconfig"
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/home/ctrluser/GitHub/eigen-git-mirror

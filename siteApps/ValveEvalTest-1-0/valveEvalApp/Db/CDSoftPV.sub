@@ -1,0 +1,21 @@
+file "db/CDAdditional_ai.template" pattern {
+{SIGNAL,                      DESC}
+{"StepDly",                   "Description"}
+{"CVValue",                   "Description"}
+}
+
+file "db/CDAdditional_wf.template" pattern {
+{SIGNAL,            DESC,               NELM,               FTVL,               SCAN}
+{"CVValveWave",     "",                 "",                 "",                 ""}
+}
+
+file "db/CDAdditional_lin.template" pattern {
+{SIGNAL,            DESC}
+{"IndexPV",         ""}
+{"Cycle",           ""}
+}
+
+file "db/CDAdditional_bi.template" pattern {
+{SIGNAL,            DESC}
+{"Start",           ""}
+}

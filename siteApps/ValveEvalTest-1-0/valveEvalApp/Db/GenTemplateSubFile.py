@@ -93,14 +93,23 @@ templ.close()
 ########### subtitution File Generation ###################
 sncText = f'file "db/{templfile}" {open} pattern{nl}'
 sub.write(sncText)
-signal = re.split('[$()]',signal)
+signal = re.split('[$()]',prefix+signal)
 #sncText = '{'+signal[2]+',\t\t'
+signal = ' '.join(signal).split()
+#pvname = ','.join(str(e) for e in signal)
+pvname = ''
+for e in signal:
+    e = '{message: <{padcnt}}'.format(message = e+',', padcnt=int(str(paddinglist[0])))
+    pvname = pvname + e
+
+print(pvname)
 open  = '{'
 comma =','
 #sncText = f'{open} {signal[2]}{comma: <20}'
 #sncText = '{'+signal[2]+','.ljust(20)
-sncText = '{'+signal[2]+','
-sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
+#sncText = '{'+signal[2]+','
+sncText = '{'+pvname
+#sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
 sub.write(sncText)
 
 for idx, field in enumerate(fieldlist):
@@ -111,15 +120,28 @@ for idx, field in enumerate(fieldlist):
         sncText = field+','
         sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[idx])))
     sub.write(sncText)
+
 sncText = '}\n'
 sub.write(sncText)
+
 
 for cnt in range(int(count)):
     #sncText = '{\"'+signal[2]+'_'+str(cnt)+'\",\t\t'
     #sncText = '{\"'+pvlist[cnt]+'\",\t\t'
     #sncText = f'{open}"{pvlist[cnt]}"{comma: <20}'
-    sncText = '{\"'+pvlist[cnt]+'\",'
-    sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
+    pvnamelist = pvlist[cnt] 
+    pvnamelist = re.split('[-:]', pvnamelist)
+
+    print(pvname)
+
+    pvname =''
+    for e in pvnamelist:
+        e = '{message: <{padcnt}}'.format(message = e+',', padcnt=int(str(paddinglist[0])))
+        pvname = pvname + e
+
+    sncText = '{'+pvname
+    #sncText = '{\"'+pvlist[cnt]+'\",'
+    #sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
     sub.write(sncText)
     for idx, value in enumerate(valuelist):
         idx = idx+1
