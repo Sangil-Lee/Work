@@ -18,8 +18,7 @@ record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
 record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveFOut") {
   field(SCAN, "Passive")
   field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveComp PP")
-#field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetPoint CPP")
-  field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
+  field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetPoint CPP")
   field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
   field(OMSL, "closed_loop")
 }

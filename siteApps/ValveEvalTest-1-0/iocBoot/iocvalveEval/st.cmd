@@ -16,6 +16,7 @@ valveEval_registerRecordDeviceDriver pdbbase
 dbLoadRecords("db/OM031AdditionalPV.vdb")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/cdom141_6.sub")
 dbLoadTemplate("${TOP}/iocBoot/${IOC}/cooldownlogic_eval_OM0.3_step1.sub", "SYS=SCL31, SUBSYS=-CDL01:")
+dbLoadRecords("db/XVSetPoint.vdb", "SYS=SCL31, SUBSYS=-Test:, DEV=XVValve, SUBDEV=-SetPt:")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

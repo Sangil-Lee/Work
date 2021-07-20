@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 #python3.8 GenTemplateSubFile.py ao "OUTB,SCAN" "Setpt,1 second" "10,40,40" Valve.pv Example 0
+#python3.8 GenTemplateSubFile.py ao "CALC,INPB,INPC,INPI,INPJ,INPK,INPL,OUTB" "\"\",\"\",\"\",\"\",\"\",\"\",,Setpt" "10,10,10,10,10,10,10,10,40" Valve.pv Example 0
 argc = len(sys.argv)
 if argc != 8:
     #print('Usage:'+str(sys.argv[0])+' recordtype "Fieldlist" "ValueList" PVfile SignalPad \
@@ -34,6 +35,12 @@ fieldlist = re.split('[,:]', fieldlist)
 valuelist = re.split('[,:]', valuelist)
 paddinglist = re.split('[,:]', paddinglist)
 
+fieldlist   = ['\"\"' if value =='' else value for value in fieldlist]
+valuelist   = ['\"\"' if value =='' else value for value in valuelist]
+paddinglist = ['10' if value =='' else value for value in paddinglist]
+
+print(fieldlist)
+
 pvfile = open(pvlistfile, 'r')
 templ  = open(templfile, "w")
 
@@ -61,39 +68,20 @@ charsize = 60
 prefix = '$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)'
 signal = '$(SIGNAL)'
 charnull = "'\\0'"
-#signalpad = sys.argv[5]
-#fieldpad  = sys.argv[6]
 ##############################################################
 
 sncText = f'{nl}\
 record({type}, "{prefix}{signal}"){nl}\
-{open}\
-'
+{open}'
 templ.write(sncText)
-
-listcnt = len(fieldlist)
-strvalue = valuelist[0]
-#print(len(valuelist), strvalue)
-
-if(strvalue == ""):
-    for cnt in range(listcnt):
-        if(cnt != 0):
-          valuelist.append("\"\"")
-
-for field in fieldlist:
-    sncText = f'{nl}\
-    field({field}, "$({field})")\
-    '
-    templ.write(sncText)
 
 sncText = f'{nl}\
     field(FLNK, "{prefix}{signal}FOut"){nl}\
     field(SCAN, "Passive"){nl}\
     field(PINI, "YES"){nl}\
-    field(VAL, "0"){nl}\
-'
+    field(VAL, "0"){nl}'
 templ.write(sncText)
-sncText ='\n}\n'
+sncText ='}\n'
 templ.write(sncText)
 
 sncText = f'{nl}\
@@ -103,21 +91,22 @@ record(bi, "{prefix}Start") {open}{nl}\
 	field(VAL, "0"){nl}\
 	field(ZNAM, "Stop"){nl}\
 	field(ONAM, "Start"){nl}\
-{close}{nl}\
+{close}{nl}{nl}\
 record(dfanout, "{prefix}{signal}FOut") {open}{nl}\
     field(SCAN, "Passive"){nl}\
     field(OUTA, "{prefix}{signal}Comp PP"){nl}\
     field(OUTB, "{prefix}$(OUTB) CPP"){nl}\
+    #field(OUTB, "{prefix}$({fieldlist[len(fieldlist)-1]}) CPP"){nl}\
     field(DOL,  "{prefix}{signal}"){nl}\
     field(OMSL, "closed_loop"){nl}\
-{close}{nl}\
+{close}{nl}{nl}\
 record(compress, "{prefix}{signal}Comp") {open}{nl}\
 	field(SCAN, "Passive"){nl}\
 	field(ALG,  "Circular Buffer"){nl}\
 	field(NSAM, "6"){nl}\
 	field(FLNK, "{prefix}{signal}Eval"){nl}\
 	field(INP, "{prefix}{signal}"){nl}\
-{close}{nl}\
+{close}{nl}{nl}\
 record(acalcout, "{prefix}{signal}Eval") {open}{nl}\
 	field(SCAN, "Passive"){nl}\
 	field(NELM, "6"){nl}\
@@ -127,29 +116,28 @@ record(acalcout, "{prefix}{signal}Eval") {open}{nl}\
 	field(INPD, "{prefix}{signal}Comp.NUSE"){nl}\
 	field(OOPT, "Every Time"){nl}\
 	field(DOPT, "Use CALC"){nl}\
-{close}{nl}\
-record(calcout, "{prefix}{signal}CDLogic") {open}{nl}\
+{close}{nl}{nl}\
+record(calcout, "{prefix}CDLogic") {open}{nl}\
     field(SCAN, "Passive"){nl}\
     field(PINI, "NO"){nl}\
     field(INPA, "{prefix}{signal}"){nl}\
     field(FLNK, "{prefix}{signal}.PROC CPP"){nl}\
     field(OUT,  "{prefix}{signal}.VAL CPP"){nl}\
-    field(CALC, "$(CALC)"){nl}\
-    field(INPB, "$(INPB)"){nl}\
-    field(INPC, "$(INPC)"){nl}\
     field(INPG, "0.5"){nl}\
     field(INPH, "1.3"){nl}\
-    field(INPI, "$(INPI)"){nl}\
-    field(INPJ, "$(INPJ)"){nl}\
-    field(INPK, "$(INPK)"){nl}\
-    field(INPL, "$(INPL)"){nl}\
     field(OOPT, "Every Time"){nl}\
-    field(DOPT, "Use CALC"){nl}\
-{close}{nl}\
-'
+    field(DOPT, "Use CALC"){nl}'
+templ.write(sncText)
+#####################CDLogic Macro Field##########################
+for idx, value in enumerate(fieldlist):
+    if(fieldlist[idx] == 'OUTB'): continue
+    sncText = f'\
+    field({fieldlist[idx]}, "$({fieldlist[idx]})"){nl}'
+    templ.write(sncText)
+sncText = f'{close}{nl}{nl}'
 templ.write(sncText)
 templ.close()
-###################################################
+##################################################################
 ########### subtitution File Generation ###################
 sncText = f'file "db/{templfile}" {open} pattern{nl}'
 sub.write(sncText)
@@ -157,7 +145,7 @@ signal = re.split('[$()]',prefix+signal)
 #sncText = '{'+signal[2]+',\t\t'
 signal = ' '.join(signal).split()
 #pvname = ','.join(str(e) for e in signal)
-print(signal)
+#print(signal)
 pvname = ''
 for e in signal:
     e = '{message: <{padcnt}}'.format(message = e+',', padcnt=int(str(paddinglist[0])))
@@ -192,7 +180,7 @@ for cnt in range(int(count)):
     #sncText = f'{open}"{pvlist[cnt]}"{comma: <20}'
     pvnamelist = pvlist[cnt] 
     pvnamelist = re.split('[-:]', pvnamelist)
-    print(pvnamelist)
+    #print(pvnamelist)
     
     pvname =''
     for indx, e in enumerate(pvnamelist):

@@ -4,6 +4,7 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
+USR_CXXFLAGS += -Wno-deprecated-declarations
 
 #=============================
 # Build the IOC application
@@ -24,6 +25,7 @@ valveEval_DBD += $(ASYN)/dbd/asyn.dbd
 valveEval_DBD += $(CALC)/dbd/calc.dbd
 valveEval_DBD += $(CALC)/dbd/calcSupport.dbd
 valveEval_DBD += $(SITELIBS)/dbd/dblfilter.dbd
+valveEval_DBD += subXVValveSetpt.dbd
 
 
 # Add all the support libraries needed by this IOC
@@ -31,6 +33,7 @@ valveEval_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
 # valveEval_registerRecordDeviceDriver.cpp derives from valveEval.dbd
 valveEval_SRCS += valveEval_registerRecordDeviceDriver.cpp
+valveEval_SRCS += subXVValveSetpt.cpp
 
 # Build the main IOC entry point on workstation OSs.
 valveEval_SRCS_DEFAULT += valveEvalMain.cpp
