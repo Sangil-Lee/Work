@@ -1,6 +1,46 @@
+#
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Start") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Stop")
+	field(ONAM, "Start")
+
+}
+
 record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
-  field(PINI, "NO")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveFOut")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
   field(VAL, "0")
+}
+
+record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveFOut") {
+  field(SCAN, "Passive")
+  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveComp PP")
+  field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Setpt CPP")
+#field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
+  field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
+  field(OMSL, "closed_loop")
+}
+
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveComp") {
+	field(SCAN, "Passive")
+	field(ALG,  "Circular Buffer")
+	field(NSAM, "6")
+	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveEval")
+	field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
+}
+
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveEval") {
+	field(SCAN, "Passive")
+	field(NELM, "6")
+	field(CALC, "B:=AA[D-1,D-1];C:=AVG(AA);(A==0||B==0||D<6)?1:C==B?0:1")
+	field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveComp")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Start")
+	field(INPD, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ValveComp.NUSE")
+	field(OOPT, "Every Time")
+	field(DOPT, "Use CALC")
 }
 
 record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
@@ -16,36 +56,12 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
   field(INPC, "$(INPC)")
   field(INPG, "0.5")
   field(INPH, "1.3")
-  field(INPI, "5")
-  field(INPJ, "100")
+  field(INPI, "$(INPI)")
+  field(INPJ, "$(INPJ)")
+#field(INPI, "5")
+#field(INPJ, "100")
   field(INPK, "$(INPK)")
   field(INPL, "$(INPL)")
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

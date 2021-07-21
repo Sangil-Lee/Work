@@ -17,7 +17,8 @@
 #include <registryFunction.h>
 #include <recSup.h>
 #include <subRecord.h>
-#include <biRecord.h>
+#include <boRecord.h>
+//#include <aiRecord.h>
 #include <epicsExport.h>
 
 //using namespace std;
@@ -30,17 +31,18 @@ static long InitXVSetPt(subRecord *psubrec)
 static long ProcXVSetPt(subRecord *psubrec)
 {
 	if(psubrec == NULL) return -1;
+
 	DBADDR *pdbAddrA =  (DBADDR *)(&psubrec->inpa)->value.pv_link.pvt;
 	DBADDR *pdbAddrB =  (DBADDR *)(&psubrec->inpb)->value.pv_link.pvt;
 
 	if(pdbAddrA == NULL || pdbAddrB == NULL) return -1;
 
-	biRecord *precordLinkA = (biRecord *)pdbAddrA->precord;
-	biRecord *precordLinkB = (biRecord *)pdbAddrB->precord;
-
+#if 1
+	boRecord *precordLinkA = (boRecord *)pdbAddrA->precord;
+	boRecord *precordLinkB = (boRecord *)pdbAddrB->precord;
 	std::string nameA = precordLinkA->name;
 	std::string nameB = precordLinkB->name;
-
+#endif
 	int *pfieldLinkA = (int*)pdbAddrA->pfield;
 	int *pfieldLinkB = (int*)pdbAddrB->pfield;
 
@@ -48,7 +50,7 @@ static long ProcXVSetPt(subRecord *psubrec)
 
 	pfieldLinkA[0] = subVal; pfieldLinkB[0] = !subVal;
 
-	printf("Name:[%s(%d), %s(%d)]\n", nameA.c_str(),pfieldLinkA[0], nameB.c_str(),pfieldLinkB[0]);
+	//printf("Name:[%s(%d), %s(%d)]\n", nameA.c_str(),pfieldLinkA[0], nameB.c_str(),pfieldLinkB[0]);
 
 	dbProcess((dbCommon*)precordLinkA);
 	dbProcess((dbCommon*)precordLinkB);

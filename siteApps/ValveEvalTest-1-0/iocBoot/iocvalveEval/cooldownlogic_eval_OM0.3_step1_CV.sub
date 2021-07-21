@@ -119,7 +119,8 @@ file "db/cd_ai_pressevalOM0.3.template" { pattern
 }
 
 
-file "db/calcout_OM0.3_ao.template" { pattern
+#file "db/calcout_OM0.3_ao.template" { pattern
+file "db/calcout_OM0.3_ao_fanout.template" { pattern
 {SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,										      INPB,									    INPC,								    INPK,							     	    INPL, 		                                INPI,   INPJ   }
 {Cryo,      -CDL00:,         TBx01,		-CV7505:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7581:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7505:Press",	"$(SYS)$(SUBSYS)$(DEV)-PT7581:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7505:PressEval",   5,      100    }  #3TBx
 {Cryo,      -CDL00:,         TBx01,		-CV7502:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7581:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7502:Press",	"$(SYS)$(SUBSYS)$(DEV)-PT7581:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7502:PressEval",   5,      100    }  #4TBx

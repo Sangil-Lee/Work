@@ -1,0 +1,19 @@
+record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Setpt") {
+  field(PINI, "YES")
+  field(INAM, "InitXVSetPt")
+  field(SNAM, "ProcXVSetPt")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen  CPP")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuClose CPP")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen") {
+  field(VAL, "0")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuClose") {
+  field(VAL, "0")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+}

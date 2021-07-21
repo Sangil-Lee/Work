@@ -1,0 +1,23 @@
+record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)XVSetpt") {
+  field(PINI, "YES")
+  field(INAM, "InitXVSetPt")
+  field(SNAM, "ProcXVSetPt")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetLogicOpen")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetLogicClose")
+}
+
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetLogicOpen") {
+  field(SCAN, "Passive")
+  field(VAL, "0")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen CPP")
+}
+
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetLogicClose") {
+  field(SCAN, "Passive")
+  field(VAL, "0")
+  field(ZNAM, "Off")
+  field(ONAM, "On")
+  field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuClose CPP")
+}

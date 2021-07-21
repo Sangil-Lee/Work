@@ -7,14 +7,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += cdom141_6.template
-DB += calcout_OM0.3_ao.template
-DB += calcout_OM0.3_ao_fanout.template
-DB += calcout_OM0.3_ao_xv.template
-DB += XVSetPoint.template
-DB += cd_ai_pressevalOM0.3.template
-DB += OM031AdditionalPV.vdb
-#DB += XVSetPoint.vdb
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
