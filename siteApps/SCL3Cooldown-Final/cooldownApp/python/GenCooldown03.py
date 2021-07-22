@@ -96,7 +96,7 @@ int ss_start = 0;{nl}\
 assign ss_start to "{prefix}Start";{nl}\
 monitor ss_start;{nl}\
 evflag	efStop;{nl}\
-sync ss_start efStop;{nl}\
+sync ss_start  to efStop;{nl}\
 {nl}\
 int index = 0;{nl}\
 assign index to "{prefix}Index";{nl}\

@@ -170,7 +170,7 @@ int ss_start = 0;
 assign ss_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}Start";
 monitor ss_start;
 evflag	efStop;
-sync ss_start efStop;
+sync ss_start  to efStop;
 
 int index = 0;
 assign index to "{SYS}{SUBSYS}{DEV}{SUBDEV}Index";
