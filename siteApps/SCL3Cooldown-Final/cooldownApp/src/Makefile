@@ -37,8 +37,10 @@ cooldown_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
     cooldown_DBD  += sncCooldown03.dbd
+    cooldown_DBD  += sncCooldown04.dbd
 
     cooldown_SRCS += sncCooldown03.stt
+    cooldown_SRCS += sncCooldown04.stt
     cooldown_LIBS += seq pv
 endif
 

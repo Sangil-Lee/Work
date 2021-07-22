@@ -96,7 +96,7 @@ int ss_start = 0;{nl}\
 assign ss_start to "{prefix}Start";{nl}\
 monitor ss_start;{nl}\
 evflag	efStop;{nl}\
-sync ss_start  to efStop;{nl}\
+sync ss_start efStop;{nl}\
 {nl}\
 int index = 0;{nl}\
 assign index to "{prefix}Index";{nl}\
@@ -157,14 +157,16 @@ ss ssCDOM031{nl}\
 {nl}\
 	state stopCDOM031{nl}\
 	{open}{nl}\
+		//when(ss_start == 1){nl}\
 		//when(efTestAndClear(efStop) && ss_start == 1){nl}\
-		when(ss_start == 1){nl}\
+		when(efTest(efStop) && ss_start == 1){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex = 107;{nl}\
 			stopindex = {len(OM031)};{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM031_1);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM031_Init{nl}\
 	{close}{nl}\
 {nl}\
@@ -362,13 +364,14 @@ ss ssCDOM032{nl}\
 {open}{nl}\
 	state stopCDOM032{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 2){nl}\
+		when(efTest(efStop) && ss_start == 2){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex = 11;{nl}\
 			stopindex = {len(OM032)};{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM032_1);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM032_Init{nl}\
 	{close}{nl}\
 {nl}\
@@ -499,13 +502,14 @@ ss ssCDOM034{nl}\
 {open}{nl}\
 	state stopCDOM034{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 3 && presz_start == 1){nl}\
+		when(efTest(efStop) && ss_start == 3 && presz_start == 1){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex = 11;{nl}\
 			stopindex = {len(OM033)};{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM034_1);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM034_Init{nl}\
 	{close}{nl}\
 {nl}\
@@ -626,13 +630,14 @@ ss ssCDOM035{nl}\
 {open}{nl}\
 	state stopCDOM035{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 4){nl}\
+		when(efTest(efStop) && ss_start == 4){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex = 2;{nl}\
 			stopindex = {len(OM035)};{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM035);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM035_Init{nl}\
 	{close}{nl}\
 {nl}\
@@ -702,7 +707,7 @@ ss ssCDOM036{nl}\
 {open}{nl}\
 	state stopCDOM036{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 5){nl}\
+		when(efTest(efStop) && ss_start == 5){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex_1_2 = 121;{nl}\
@@ -715,6 +720,7 @@ ss ssCDOM036{nl}\
 {nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM036_1_2);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM036_Init{nl}\
 	{close}{nl}\
 {nl}\

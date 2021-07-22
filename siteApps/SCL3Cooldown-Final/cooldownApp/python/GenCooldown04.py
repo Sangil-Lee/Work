@@ -20,8 +20,9 @@ seqExt = '.stt'
 seqDBD = '.dbd'
 seqfile    = pyname + seqExt
 seqdbdfile = pyname + seqDBD
-seq    = open(seqfile, 'w')
-seqdbd = open(seqdbdfile, 'w')
+
+seq    = open('../src/'+seqfile, 'w')
+seqdbd = open('../src/'+seqdbdfile, 'w')
 
 for idx, file in enumerate(pvfiles):
     f = open('pv/OM04/'+str(file),'r')
@@ -79,39 +80,36 @@ for idx, file in enumerate(pvfiles):
 ####Assign Valuet##########
 
 Text = f'{nl}\
-int stopindex = 2;{nl}\
-int stopindex_1_2 = 266;{nl}\
-int  stopindex_3 = 66;{nl}\
-int  stopindex_4 = 22;{nl}\
-int  stopindex_5 = 33;{nl}\
-int  stopindex_6 = 55;{nl}\
-int  stopindex_7 = 44;{nl}\
-int  stopindex_8 = 2;{nl}\
+int stopindex = {len(OM041)};{nl}\
+int stopindex_1_2 = {len(OM043_1)};{nl}\
+int  stopindex_3 = {len(OM043_2)};{nl}\
+int  stopindex_4 = {len(OM043_3)};{nl}\
+int  stopindex_5 = {len(OM043_4)};{nl}\
+int  stopindex_6 = {len(OM043_5)};{nl}\
+int  stopindex_7 = {len(OM043_6)};{nl}\
+int  stopindex_8 = {len(OM043_7)};{nl}\
+{nl}\
 string steppv;{nl}\
-assign steppv to "SCL3:CoolDown:StepPV";{nl}\
+assign steppv to "{prefix}StepPV";{nl}\
 monitor steppv;{nl}\
 {nl}\
 int ss_start = 0;{nl}\
-assign ss_start to "SCL3:CoolDown:Start";{nl}\
+assign ss_start to "{prefix}Start";{nl}\
 monitor ss_start;{nl}\
 evflag	efStop;{nl}\
 sync ss_start efStop;{nl}\
 {nl}\
 int index = 0;{nl}\
-assign index to "SCL3:CoolDown:IndexPV";{nl}\
+assign index to "{prefix}IndexPV";{nl}\
 monitor index;{nl}\
 {nl}\
 float cdDelay;{nl}\
-assign cdDelay to "SCL3:CoolDown:ScanTime";{nl}\
+assign cdDelay to "{prefix}StepDly";{nl}\
 monitor cdDelay;{nl}\
 {nl}\
 int presz_start = 0;{nl}\
-assign presz_start to "SCL3:CoolDown:PrezStart";{nl}\
+assign presz_start to "{prefix}PresStart";{nl}\
 monitor presz_start;{nl}\
-{nl}\
-float	valvewave[107];{nl}\
-assign	valvewave to "SCL3:CoolDown:ValveWave";{nl}\
-monitor valvewave;{nl}\
 {nl}\
 char	logicname[60];{nl}\
 int		proc = 1;{nl}\
@@ -131,15 +129,30 @@ evflag	efCDOM041_100;{nl}\
 {nl}\
 ss ssCDOM041{nl}\
 {open}{nl}\
+	state init{nl}\
+	{open}{nl}\
+		when(TRUE){nl}\
+		{open}{nl}\
+		  efSet(efStop);{nl}\
+		  printf("Started Cooldown Logic Processig...\\n");{nl}\
+		{close}state stopCDOM041{nl}\
+	{close}{nl}\
 	state stopCDOM041{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 1){nl}\
+		when(efTest(efStop) && ss_start == 1){nl}\
 		{open}{nl}\
+			stopindex = {len(OM041)};{nl}\
+			stopindex_1_2 = {len(OM043_1)};{nl}\
+			stopindex_3 = {len(OM043_2)};{nl}\
+			stopindex_4 = {len(OM043_3)};{nl}\
+			stopindex_5 = {len(OM043_4)};{nl}\
+			stopindex_6 = {len(OM043_5)};{nl}\
+			stopindex_7 = {len(OM043_6)};{nl}\
+			stopindex_8 = {len(OM043_7)};{nl}\
 			index = 0;{nl}\
-			stopindex = 2;{nl}\
-			stopindex_1_2 = 266;{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM041_20);{nl}\
+			efClear(efStop);{nl}\
 		{close}state CDOM041_Init{nl}\
 	{close}{nl}\
 {nl}\
