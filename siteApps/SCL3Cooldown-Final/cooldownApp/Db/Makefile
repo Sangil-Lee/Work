@@ -7,6 +7,16 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
+DB += PressR.template
+DB += PressR.sub
+DB += ai.template
+DB += bi.template
+DB += longin.template
+DB += stringin.template
+DB += Additional.sub
+DB += CVValve.template
+DB += XVValve.template
+DB += cooldown03.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

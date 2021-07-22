@@ -7,6 +7,8 @@ from pathlib import Path
 
 #python3.8 GenTemplateSubFile.py ao "OUTB,SCAN" "Setpt,1 second" "10,40,40" Valve.pv Example 0
 #python3.8 GenTemplateSubFile.py ao "CALC,INPB,INPC,INPI,INPJ,INPK,INPL,OUTB" "\"\",\"\",\"\",\"\",\"\",\"\",,Setpt" "10,10,10,10,10,10,10,10,40" Valve.pv Example 0
+#GenCooldown03_TemplateSubFile.py ao "CALC,INPB,INPC,INPI,INPJ,INPK,INPL,OUTB" "F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I,INPB,INPC,INPI,INPJ,INPK,INPL,Setpt" 
+#"10,10,10,10,10,10,10,10,40" pv/TestDBList/CVValve.pv cooldown03 0
 argc = len(sys.argv)
 if argc != 8:
     #print('Usage:'+str(sys.argv[0])+' recordtype "Fieldlist" "ValueList" PVfile SignalPad \
@@ -28,11 +30,12 @@ new_append = int(sys.argv[7])
 if(new_append < 0 or new_append > 1):
     raise SystemExit('Last argument 0 or 1(0:new_overwrite, 1:append)')
 
-templfile = pvlistfile.split('.',1)[0]
+dirname, filename = os.path.split(pvlistfile)
+templfile = filename.split('.',1)[0]
 templfile = templfile +'.template'
 
 fieldlist = re.split('[,:]', fieldlist)
-valuelist = re.split('[,:]', valuelist)
+valuelist = re.split('[,]', valuelist)
 paddinglist = re.split('[,:]', paddinglist)
 
 fieldlist   = ['\"\"' if value =='' else value for value in fieldlist]
@@ -42,9 +45,9 @@ paddinglist = ['10' if value =='' else value for value in paddinglist]
 print(fieldlist)
 
 pvfile = open(pvlistfile, 'r')
-templ  = open(templfile, "w")
+templ  = open('../Db/'+templfile, "w")
 
-subfile = subfile+'.sub'
+subfile = '../Db/'+subfile+'.sub'
 
 if(Path(subfile).is_file() and new_append == 1):
     sub    = open(subfile, "a")
@@ -95,8 +98,8 @@ record(bi, "{prefix}Start") {open}{nl}\
 record(dfanout, "{prefix}{signal}FOut") {open}{nl}\
     field(SCAN, "Passive"){nl}\
     field(OUTA, "{prefix}{signal}Comp PP"){nl}\
-    field(OUTB, "{prefix}$(OUTB) CPP"){nl}\
-    #field(OUTB, "{prefix}$({fieldlist[len(fieldlist)-1]}) CPP"){nl}\
+    field(OUTB, "$(OUTB) CPP"){nl}\
+    #field(OUTB, "$({fieldlist[len(fieldlist)-1]}) CPP"){nl}\
     field(DOL,  "{prefix}{signal}"){nl}\
     field(OMSL, "closed_loop"){nl}\
 {close}{nl}{nl}\

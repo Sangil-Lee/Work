@@ -20,8 +20,8 @@ seqExt = '.stt'
 seqDBD = '.dbd'
 seqfile    = pyname + seqExt
 seqdbdfile = pyname + seqDBD
-seq    = open(seqfile, 'w')
-seqdbd = open(seqdbdfile, 'w')
+seq    = open('../src/'+seqfile, 'w')
+seqdbd = open('../src/'+seqdbdfile, 'w')
 
 for idx, file in enumerate(pvfiles):
     f = open('pv/OM03/'+str(file),'r')
@@ -53,7 +53,9 @@ seqdbd.close()
 ############################.stt###############################
 ####Make PVList from PV Files##########
 Text=f'program {pyname}{nl}\
-option +r; {nl}{nl}\
+option +r; {nl}\
+option +c; {nl}\
+option -a; {nl}{nl}\
 %%#include <math.h> {nl}{nl}\
 '
 seq.write(Text)
@@ -84,32 +86,29 @@ int stopindex_1_2 = {len(OM036_1_2)};{nl}\
 int stopindex_3 = {len(OM036_3)};{nl}\
 int stopindex_4 = {len(OM036_4)};{nl}\
 int stopindex_5 = {len(OM036_5)};{nl}\
-int stopindex_6_7 = 88; //33+55{nl}{nl}\
+int stopindex_6_7 = {len(OM036_6_7)}; //33+55{nl}{nl}\
+//int stopindex_6_7 = 88; //33+55{nl}{nl}\
 string steppv;{nl}\
-assign steppv to "SCL3:CD-OM031:StepPV";{nl}\
+assign steppv to "{prefix}StepPV";{nl}\
 monitor steppv;{nl}\
 {nl}\
 int ss_start = 0;{nl}\
-assign ss_start to "SCL3:CD-OM031:Start";{nl}\
+assign ss_start to "{prefix}Start";{nl}\
 monitor ss_start;{nl}\
 evflag	efStop;{nl}\
 sync ss_start efStop;{nl}\
 {nl}\
 int index = 0;{nl}\
-assign index to "SCL3:CD-OM031:IndexPV";{nl}\
+assign index to "{prefix}Index";{nl}\
 monitor index;{nl}\
 {nl}\
 float cdDelay;{nl}\
-assign cdDelay to "SCL3:CD-OM031:ScanTime";{nl}\
+assign cdDelay to "{prefix}StepDly";{nl}\
 monitor cdDelay;{nl}\
 {nl}\
 int presz_start = 0;{nl}\
-assign presz_start to "SCL3:CoolDown:PrezStart";{nl}\
+assign presz_start to "{prefix}PresStart";{nl}\
 monitor presz_start;{nl}\
-{nl}\
-float	valvewave[107];{nl}\
-assign	valvewave to "SCL3:CD-OM031:ValveWave";{nl}\
-monitor valvewave;{nl}\
 {nl}\
 char	logicname[60];{nl}\
 int		proc = 1;{nl}\
@@ -147,9 +146,19 @@ seq.write(Text)
 Text =f'{nl}\
 ss ssCDOM031{nl}\
 {open}{nl}\
+	state init{nl}\
+	{open}{nl}\
+		when(TRUE){nl}\
+		{open}{nl}\
+		  efSet(efStop);{nl}\
+		  printf("Started Cooldown Logic Processig...\\n");{nl}\
+		{close}state stopCDOM031{nl}\
+	{close}{nl}\
+{nl}\
 	state stopCDOM031{nl}\
 	{open}{nl}\
-		when(efTestAndClear(efStop) && ss_start == 1){nl}\
+		//when(efTestAndClear(efStop) && ss_start == 1){nl}\
+		when(ss_start == 1){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
 			//stopindex = 107;{nl}\
@@ -701,7 +710,8 @@ ss ssCDOM036{nl}\
 			stopindex_3 = {len(OM036_3)};{nl}\
 			stopindex_4 = {len(OM036_4)};{nl}\
 			stopindex_5 = {len(OM036_5)};{nl}\
-			stopindex_6_7 = 88; //33+55{nl}\
+			stopindex_6_7 = {len(OM036_6_7)}; //33+55{nl}{nl}\
+			//stopindex_6_7 = 88; //33+55{nl}\
 {nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM036_1_2);{nl}\
