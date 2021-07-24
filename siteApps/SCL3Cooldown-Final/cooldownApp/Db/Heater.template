@@ -1,0 +1,36 @@
+
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut")
+    field(SCAN, "Passive")
+    field(PINI, "YES")
+    field(VAL, "0")
+}
+
+record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut") {
+    field(SCAN, "Passive")
+    field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
+    field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+    field(OMSL, "closed_loop")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
+    field(SCAN, "Passive")
+    field(PINI, "NO")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).PROC CPP")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).VAL CPP")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")
+	field(CALC, "$(CALC)")
+	field(INPB, "$(INPB)")
+	field(INPC, "$(INPC)")
+	field(INPD, "$(INPD)")
+	field(INPG, "$(INPG)")
+	field(INPH, "$(INPH)")
+	field(INPI, "$(INPI)")
+	field(INPJ, "$(INPJ)")
+	field(INPK, "$(INPK)")
+	field(INPL, "$(INPL)")
+}
+

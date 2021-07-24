@@ -1,0 +1,165 @@
+#cooldown14
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,		SUBDEV,		  SIGNAL,	PINI,       VAL,		SCAN		}
+{SCL31,     -CDL01:,      VBx02,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx04,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx06,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx08,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx10,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx12,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx14,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx16,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx18,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx20,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx22,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #QWR
+{SCL32,     -CDL02:,      VBx01,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx02,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx03,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx04,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx05,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx06,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx07,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx08,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx09,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx10,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx11,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx12,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx13,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRA
+{SCL32,     -CDL03:,      VBx01,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx02,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx03,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx04,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx05,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx06,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx07,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx08,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx09,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx10,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx11,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx12,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx13,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx14,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx15,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx16,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx17,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx18,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx19,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #HWRB
+{P2DT,      -CDL04:,      VBx01,    -TT7401:,     Temp,		"YES",		"20",		"Passive"	} #P2DT
+}
+
+#cooldown14
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,		SUBDEV,		  SIGNAL,	PINI,       VAL,		SCAN		}
+{SCL31,     -BL01:,       CM01,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR  
+{SCL31,     -BL01:,       CM02,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR   
+{SCL31,     -BL01:,       CM03,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR   
+{SCL31,     -BL01:,       CM04,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM05,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM06,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM07,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM08,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM09,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM10,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM11,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM12,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM13,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM14,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM15,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM16,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM17,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM18,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM19,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM20,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM21,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM22,		-TT8403:,     Temp,         "YES",		"10",		"Passive"	} #QWR
+}
+
+#cooldown15
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,		SUBDEV,		  SIGNAL,	PINI,       VAL,		SCAN		}
+{SCL31,     -CDL01:,      VBx02,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx04,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx06,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx08,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx10,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx12,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx14,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx16,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx18,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx20,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+{SCL31,     -CDL01:,      VBx22,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
+}
+
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,     PINI,		    VAL,	    SCAN		}
+{SCL32,     -CDL02:,      VBx01,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx02,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx03,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx04,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx05,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx06,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx07,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx08,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx09,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx10,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx11,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx12,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL02:,      VBx13,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx01,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx02,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx03,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx04,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx05,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx06,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx07,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx08,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx09,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx10,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx11,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx12,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx13,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx14,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx15,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx16,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx17,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx18,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{SCL32,     -CDL03:,      VBx19,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+{P2DT,      -CDL04:,      VBx01,        -TT7201:,     Temp,		  "YES",		"5",		"Passive"	} #HWR
+}
+
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,		  DEV,      SUBDEV,		  SIGNAL,     PINI,		    VAL,	    SCAN		}
+{SCL32,     -CDL02:,      VBx01,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx02,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx03,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx04,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx05,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx06,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx07,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx08,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx09,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx10,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx11,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx12,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL02:,      VBx13,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRA
+{SCL32,     -CDL03:,      VBx01,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx02,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx03,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx04,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx05,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx06,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx07,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx08,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx09,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx10,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx11,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx12,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx13,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx14,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx15,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx16,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx17,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx18,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{SCL32,     -CDL03:,      VBx19,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #HWRB
+{P2DT,      -CDL04:,      VBx01,    -TT7301:,     Temp,		  "YES",		"5",		"Passive"	} #P2DT
+}

@@ -15,7 +15,18 @@ cooldown_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadTemplate("db/PressR.sub")
 dbLoadTemplate("db/Additional.sub")
+dbLoadTemplate("db/FlowR.sub")
+dbLoadTemplate("db/LevelR.sub")
+dbLoadTemplate("db/TempR.sub")
 dbLoadTemplate("db/cooldown03.sub")
+dbLoadTemplate("db/cooldown04.sub")
+dbLoadTemplate("db/cooldown12.sub")
+dbLoadTemplate("db/cooldown14.sub")
+dbLoadTemplate("db/cooldown15.sub")
+dbLoadTemplate("db/cooldown21.sub")
+dbLoadTemplate("db/cooldown51.sub")
+dbLoadTemplate("db/cooldown52.sub")
+dbLoadTemplate("db/cooldown53.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

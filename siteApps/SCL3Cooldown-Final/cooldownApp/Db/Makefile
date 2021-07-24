@@ -13,10 +13,24 @@ DB += ai.template
 DB += bi.template
 DB += longin.template
 DB += stringin.template
+DB += cd_ai.template
+DB += FlowR.sub
+DB += LevelR.sub
+DB += TempR.sub
 DB += Additional.sub
 DB += CVValve.template
+DB += CVValve_OM14_step6.template
 DB += XVValve.template
+DB += Heater.template
 DB += cooldown03.sub
+DB += cooldown04.sub
+DB += cooldown12.sub
+DB += cooldown14.sub
+DB += cooldown15.sub
+DB += cooldown21.sub
+DB += cooldown51.sub
+DB += cooldown52.sub
+DB += cooldown53.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

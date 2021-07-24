@@ -1,0 +1,154 @@
+#cooldown53
+file "db/CVValve.template" { pattern
+{SYS,	    SUBSYS,     DEV,		SUBDEV,		SIGNAL, CALC,	        INPK,                                INPJ, INPB,INPC,INPG,INPI,INPD,INPL,INPH,OUTB }
+{SCL32,     -BL02:,     CM01,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM01-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #1HWRA
+{SCL32,     -BL02:,     CM02,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM02-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #2HWRA
+{SCL32,     -BL02:,     CM03,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM03-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #3HWRA
+{SCL32,     -BL02:,     CM04,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM04-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #4HWRA
+{SCL32,     -BL02:,     CM05,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM05-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #5HWRA
+{SCL32,     -BL02:,     CM06,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM06-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #6HWRA
+{SCL32,     -BL02:,     CM07,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM07-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #7HWRA
+{SCL32,     -BL02:,     CM08,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM08-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #8HWRA
+{SCL32,     -BL02:,     CM09,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM09-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #9HWRA
+{SCL32,     -BL02:,     CM10,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM10-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #10HWRA
+{SCL32,     -BL02:,     CM11,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM11-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #11HWRA
+{SCL32,     -BL02:,     CM12,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM12-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #12HWRA
+{SCL32,     -BL02:,     CM13,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL02:CM13-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #13HWRA
+{SCL32,     -BL03:,     CM01,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM01-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #14HWRB
+{SCL32,     -BL03:,     CM02,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM02-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #15HWRB
+{SCL32,     -BL03:,     CM03,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM03-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #16HWRB
+{SCL32,     -BL03:,     CM04,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM04-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #17HWRB
+{SCL32,     -BL03:,     CM05,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM05-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #18HWRB
+{SCL32,     -BL03:,     CM06,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM06-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #19HWRB
+{SCL32,     -BL03:,     CM07,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM07-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #20HWRB
+{SCL32,     -BL03:,     CM08,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM08-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #21HWRB
+{SCL32,     -BL03:,     CM09,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM09-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #22HWRB
+{SCL32,     -BL03:,     CM10,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM10-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #23HWRB
+{SCL32,     -BL03:,     CM11,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM11-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #24HWRB
+{SCL32,     -BL03:,     CM12,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM12-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #25HWRB
+{SCL32,     -BL03:,     CM13,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM13-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #26HWRB
+{SCL32,     -BL03:,     CM14,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM14-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #27HWRB
+{SCL32,     -BL03:,     CM15,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM15-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #28HWRB
+{SCL32,     -BL03:,     CM16,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM16-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #29HWRB
+{SCL32,     -BL03:,     CM17,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM17-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #30HWRB
+{SCL32,     -BL03:,     CM18,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM18-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #31HWRB
+{SCL32,     -BL03:,     CM19,		-CV8402:,   Valve,  "K?A:J",		"SCL32-BL03:CM19-PT8301:PressEval",  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #32HWRB
+{P2DT,      -BL04:,     CM01,		-CV8402:,   Valve,  "K?A:J",		"P2DT-BL04:CM01-PT8301:PressEval",   0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #33P2DT
+{Cryo,      -CDL00:,    TBx01,		-CV7201:,	Valve,  "J",            "",                                  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #1TBx
+{Cryo,      -CDL00:,    TBx01,		-XV7201:,	Valve,  "J",            "",                                  0,    "",  "",  "",  "",  "",  "",  "",  "Setpt"} #2TBx
+}
+
+file "db/Heater.template" { pattern
+{SYS,	    SUBSYS,       DEV,		SUBDEV,		  SIGNAL,       CALC,   INPK,  INPJ, INPC, INPH, INPB,INPG, INPD, INPI, INPL,OUTB   }
+{SCL32,     -BL02:,       CM01,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #1HWRA
+{SCL32,     -BL02:,       CM02,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #2HWRA
+{SCL32,     -BL02:,       CM03,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #3HWRA
+{SCL32,     -BL02:,       CM04,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #4HWRA
+{SCL32,     -BL02:,       CM05,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #5HWRA
+{SCL32,     -BL02:,       CM06,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #6HWRA
+{SCL32,     -BL02:,       CM07,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #7HWRA
+{SCL32,     -BL02:,       CM08,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #8HWRA
+{SCL32,     -BL02:,       CM09,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #9HWRA
+{SCL32,     -BL02:,       CM10,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #10HWRA
+{SCL32,     -BL02:,       CM11,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #11HWRA
+{SCL32,     -BL02:,       CM12,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #12HWRA
+{SCL32,     -BL02:,       CM13,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #13HWRA
+{SCL32,     -BL03:,       CM01,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #14HWRB
+{SCL32,     -BL03:,       CM02,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #15HWRB
+{SCL32,     -BL03:,       CM03,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #16HWRB
+{SCL32,     -BL03:,       CM04,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #17HWRB
+{SCL32,     -BL03:,       CM05,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #18HWRB
+{SCL32,     -BL03:,       CM06,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #19HWRB
+{SCL32,     -BL03:,       CM07,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #20HWRB
+{SCL32,     -BL03:,       CM08,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #21HWRB
+{SCL32,     -BL03:,       CM09,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #22HWRB
+{SCL32,     -BL03:,       CM10,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #23HWRB
+{SCL32,     -BL03:,       CM11,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #24HWRB
+{SCL32,     -BL03:,       CM12,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #25HWRB
+{SCL32,     -BL03:,       CM13,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #26HWRB
+{SCL32,     -BL03:,       CM14,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #27HWRB
+{SCL32,     -BL03:,       CM15,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #28HWRB
+{SCL32,     -BL03:,       CM16,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #29HWRB
+{SCL32,     -BL03:,       CM17,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #30HWRB
+{SCL32,     -BL03:,       CM18,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #31HWRB
+{SCL32,     -BL03:,       CM19,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #32HWRB
+{P2DT,      -BL04:,       CM01,		-EH8201:,     Heater,       "J",    "",    10,	 "",   "",   "",  "",   "",   "",   "",  "Setpt"} #33P2DT
+}
+
+file "db/CVValve.template" { pattern
+{SYS,	    SUBSYS,     DEV,		SUBDEV,		SIGNAL, CALC,                         INPC,                               INPD,                               INPH,   INPI,   INPJ, INPK,INPB,INPG,INPL,OUTB }
+{SCL32,     -CDL02:,    VBx01,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM01-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #1HWRA
+{SCL32,     -CDL02:,    VBx02,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM02-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #2HWRA
+{SCL32,     -CDL02:,    VBx03,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM03-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #3HWRA
+{SCL32,     -CDL02:,    VBx04,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM04-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #4HWRA
+{SCL32,     -CDL02:,    VBx05,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM05-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #5HWRA
+{SCL32,     -CDL02:,    VBx06,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM06-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #6HWRA
+{SCL32,     -CDL02:,    VBx07,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM07-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #7HWRA
+{SCL32,     -CDL02:,    VBx08,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM08-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #8HWRA
+{SCL32,     -CDL02:,    VBx09,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM09-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #9HWRA
+{SCL32,     -CDL02:,    VBx10,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM10-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #10HWRA
+{SCL32,     -CDL02:,    VBx11,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM11-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #11HWRA
+{SCL32,     -CDL02:,    VBx12,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM12-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #12HWRA
+{SCL32,     -CDL02:,    VBx13,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL02:CM13-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #13HWRA
+{SCL32,     -CDL03:,    VBx01,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM01-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #14HWRB
+{SCL32,     -CDL03:,    VBx02,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM02-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #15HWRB
+{SCL32,     -CDL03:,    VBx03,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM03-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #16HWRB
+{SCL32,     -CDL03:,    VBx04,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM04-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #17HWRB
+{SCL32,     -CDL03:,    VBx05,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM05-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #18HWRB
+{SCL32,     -CDL03:,    VBx06,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM06-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #19HWRB
+{SCL32,     -CDL03:,    VBx07,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM07-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #20HWRB
+{SCL32,     -CDL03:,    VBx08,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM08-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #21HWRB
+{SCL32,     -CDL03:,    VBx09,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM09-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #22HWRB
+{SCL32,     -CDL03:,    VBx10,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM10-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #23HWRB
+{SCL32,     -CDL03:,    VBx11,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM11-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #24HWRB
+{SCL32,     -CDL03:,    VBx12,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM12-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #25HWRB
+{SCL32,     -CDL03:,    VBx13,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM13-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #26HWRB
+{SCL32,     -CDL03:,    VBx14,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM14-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #27HWRB
+{SCL32,     -CDL03:,    VBx15,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM15-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #28HWRB
+{SCL32,     -CDL03:,    VBx16,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM16-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #29HWRB
+{SCL32,     -CDL03:,    VBx17,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM17-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #30HWRB
+{SCL32,     -CDL03:,    VBx18,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM18-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #31HWRB
+{SCL32,     -CDL03:,    VBx19,		-CV8402:,   Valve,	"(C<H)?A:J",                  "SCL32-BL03:CM19-PT8201:Press",     "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #32HWRB
+{P2DT,      -CDL04:,    VBx01,		-CV8402:,   Valve,	"(C<H)?A:J",                  "P2DT-BL04:CM01-PT8201:Press",      "",                                 1.3,    "",     5,    "",  "",  "",  "",  "Setpt"} #33P2DT 
+{Cryo,      -CDL00:,    TBx01,		-XV7302:,	Valve,	"(C<H)?A:J",                  "Cryo-CDL00:TBx01-PT7203:Press",    "",                                 1.3,    "",     1,    "",  "",  "",  "",  "Setpt"} #34TBx
+{Cryo,      -CDL00:,    TBx01,		-CV7303:,	Valve,	"(C<D)?A:(A>=J)?A:(A+I)",     "Cryo-CDL00:TBx01-PT7304:Press",    "Cryo-CDL00:TBx01-PT7302:Press",    "",     5,      100,  "",  "",  "",  "",  "Setpt" } #35TBx
+{SCL32,     -CDL02:,    VBx01,		-XV7301:,   Valve,	"(C<H)?A:J",                  "SCL32-CDL02:VBx01-PT7202:Press",   "",                                 1.3,	  "",     1,    "",  "",  "",  "",  "Setpt" } #36HWRA
+{SCL32,     -CDL02:,    VBx01,		-CV7302:,   Valve,	"(C<H)?A:(A>=J)?A:(A+I)",     "SCL32-CDL02:VBx01-PT7202:Press",   "",                                 1.3,    5,      100,  "",  "",  "",  "",  "Setpt" } #37HWRA
+}
+
+file "db/Heater.template" { pattern
+{SYS,	    SUBSYS,       DEV,		SUBDEV,		  SIGNAL,       CALC,	        INPB,						      INPK,                                 INPJ, INPC, INPH, INPG, INPD, INPI, INPL,OUTB   }
+{SCL32,     -CDL02:,      VBx01,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM01-TT8202:Temp",	  "SCL32-BL02:CM01-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #1HWRA
+{SCL32,     -CDL02:,      VBx02,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM02-TT8202:Temp",	  "SCL32-BL02:CM02-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #2HWRA
+{SCL32,     -CDL02:,      VBx03,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM03-TT8202:Temp",	  "SCL32-BL02:CM03-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #3HWRA
+{SCL32,     -CDL02:,      VBx04,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM04-TT8202:Temp",	  "SCL32-BL02:CM04-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #4HWRA
+{SCL32,     -CDL02:,      VBx05,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM05-TT8202:Temp",	  "SCL32-BL02:CM05-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #5HWRA
+{SCL32,     -CDL02:,      VBx06,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM06-TT8202:Temp",	  "SCL32-BL02:CM06-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #6HWRA
+{SCL32,     -CDL02:,      VBx07,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM07-TT8202:Temp",	  "SCL32-BL02:CM07-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #7HWRA
+{SCL32,     -CDL02:,      VBx08,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM08-TT8202:Temp",	  "SCL32-BL02:CM08-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #8HWRA
+{SCL32,     -CDL02:,      VBx09,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM09-TT8202:Temp",	  "SCL32-BL02:CM09-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #9HWRA
+{SCL32,     -CDL02:,      VBx10,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM10-TT8202:Temp",	  "SCL32-BL02:CM10-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #10HWRA
+{SCL32,     -CDL02:,      VBx11,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM11-TT8202:Temp",	  "SCL32-BL02:CM11-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #11HWRA
+{SCL32,     -CDL02:,      VBx12,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM12-TT8202:Temp",	  "SCL32-BL02:CM12-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #12HWRA
+{SCL32,     -CDL02:,      VBx13,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL02:CM13-TT8202:Temp",	  "SCL32-BL02:CM13-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #13HWRA
+{SCL32,     -CDL03:,      VBx01,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM01-TT8202:Temp",	  "SCL32-BL03:CM01-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #14HWRB
+{SCL32,     -CDL03:,      VBx02,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM02-TT8202:Temp",	  "SCL32-BL03:CM02-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #15HWRB
+{SCL32,     -CDL03:,      VBx03,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM03-TT8202:Temp",	  "SCL32-BL03:CM03-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #16HWRB
+{SCL32,     -CDL03:,      VBx04,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM04-TT8202:Temp",	  "SCL32-BL03:CM04-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #17HWRB
+{SCL32,     -CDL03:,      VBx05,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM05-TT8202:Temp",	  "SCL32-BL03:CM05-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #18HWRB
+{SCL32,     -CDL03:,      VBx06,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM06-TT8202:Temp",	  "SCL32-BL03:CM06-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #19HWRB
+{SCL32,     -CDL03:,      VBx07,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM07-TT8202:Temp",	  "SCL32-BL03:CM07-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #20HWRB
+{SCL32,     -CDL03:,      VBx08,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM08-TT8202:Temp",	  "SCL32-BL03:CM08-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #21HWRB
+{SCL32,     -CDL03:,      VBx09,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM09-TT8202:Temp",	  "SCL32-BL03:CM09-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #22HWRB
+{SCL32,     -CDL03:,      VBx10,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM10-TT8202:Temp",	  "SCL32-BL03:CM10-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #23HWRB
+{SCL32,     -CDL03:,      VBx11,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM11-TT8202:Temp",	  "SCL32-BL03:CM11-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #24HWRB
+{SCL32,     -CDL03:,      VBx12,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM12-TT8202:Temp",	  "SCL32-BL03:CM12-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #25HWRB
+{SCL32,     -CDL03:,      VBx13,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM13-TT8202:Temp",	  "SCL32-BL03:CM13-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #26HWRB
+{SCL32,     -CDL03:,      VBx14,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM14-TT8202:Temp",	  "SCL32-BL03:CM14-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #27HWRB
+{SCL32,     -CDL03:,      VBx15,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM15-TT8202:Temp",	  "SCL32-BL03:CM15-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #28HWRB
+{SCL32,     -CDL03:,      VBx16,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM16-TT8202:Temp",	  "SCL32-BL03:CM16-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #29HWRB
+{SCL32,     -CDL03:,      VBx17,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM17-TT8202:Temp",	  "SCL32-BL03:CM17-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #30HWRB
+{SCL32,     -CDL03:,      VBx18,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM18-TT8202:Temp",	  "SCL32-BL03:CM18-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #31HWRB
+{SCL32,     -CDL03:,      VBx19,	-EH8201:,     Heater,       "K?A:J",       "SCL32-BL03:CM19-TT8202:Temp",	  "SCL32-BL03:CM19-TT8202:TempEval",	0,    "",   "",   "",   "",   "",   "",  "Setpt" } #32HWRB
+{P2DT,      -CDL04:,      VBx01,	-EH8201:,     Heater,       "K?A:J",       "P2DT-BL04:CM01-TT8202:Temp",	  "P2DT-BL04:CM01-TT8202:TempEval",	    0,    "",   "",   "",   "",   "",   "",  "Setpt" } #33P2DT 
+}
