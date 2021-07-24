@@ -20,8 +20,8 @@ seqExt = '.stt'
 seqDBD = '.dbd'
 seqfile    = pyname + seqExt
 seqdbdfile = pyname + seqDBD
-seq    = open(seqfile, 'w')
-seqdbd = open(seqdbdfile, 'w')
+seq    = open('../src/'+seqfile, 'w')
+seqdbd = open('../src/'+seqdbdfile, 'w')
 
 for idx, file in enumerate(pvfiles):
     f = open('pv/OM12/'+str(file),'r')
@@ -86,30 +86,26 @@ char eh7401_valveName[40] = "SCL31-CDL01:EBx01-EH7401";{nl}\
 char lt7401_valveName[40] = "SCL31-CDL01:EBx01-LT7401";{nl}\
 {nl}\
 string steppv;{nl}\
-assign steppv to "SCL3:CoolDown:StepPV";{nl}\
+assign steppv to "{prefix}StepPV";{nl}\
 monitor steppv;{nl}\
 {nl}\
 int ss_start = 0;{nl}\
-assign ss_start to "SCL3:CoolDown:Start";{nl}\
+assign ss_start to "{prefix}Start";{nl}\
 monitor ss_start;{nl}\
 evflag	efStop;{nl}\
 sync ss_start efStop;{nl}\
 {nl}\
 int index = 0;{nl}\
-assign index to "SCL3:CoolDown:IndexPV";{nl}\
+assign index to "{prefix}Index";{nl}\
 monitor index;{nl}\
 {nl}\
 float cdDelay;{nl}\
-assign cdDelay to "SCL3:CoolDown:ScanTime";{nl}\
+assign cdDelay to "{prefix}ScanTime";{nl}\
 monitor cdDelay;{nl}\
 {nl}\
 int presz_start = 0;{nl}\
-assign presz_start to "SCL3:CoolDown:PrezStart";{nl}\
+assign presz_start to "{prefix}PresStart";{nl}\
 monitor presz_start;{nl}\
-{nl}\
-float	valvewave[107];{nl}\
-assign	valvewave to "SCL3:CoolDown:ValveWave";{nl}\
-monitor valvewave;{nl}\
 {nl}\
 char	logicname[60];{nl}\
 int		logic_proc = 1;{nl}\

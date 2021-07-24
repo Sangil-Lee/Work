@@ -38,9 +38,13 @@ ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
     cooldown_DBD  += sncCooldown03.dbd
     cooldown_DBD  += sncCooldown04.dbd
+    cooldown_DBD  += sncCooldown12.dbd
+    cooldown_DBD  += sncCDOM14_15_Dic.dbd
 
     cooldown_SRCS += sncCooldown03.stt
     cooldown_SRCS += sncCooldown04.stt
+    cooldown_SRCS += sncCooldown12.stt
+    cooldown_SRCS += sncCDOM14_15_Dic.stt
     cooldown_LIBS += seq pv
 endif
 

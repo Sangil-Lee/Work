@@ -21,8 +21,8 @@ seqExt = '.stt'
 seqDBD = '.dbd'
 seqfile    = pyname + seqExt
 seqdbdfile = pyname + seqDBD
-seq    = open(seqfile, 'w')
-seqdbd = open(seqdbdfile, 'w')
+seq    = open('../src/'+seqfile, 'w')
+seqdbd = open('../src/'+seqdbdfile, 'w')
 
 for idx, file in enumerate(pvfiles):
     f = open('pv/OM14_15/'+str(file),'r')
