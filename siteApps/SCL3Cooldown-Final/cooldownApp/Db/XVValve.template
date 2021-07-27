@@ -43,7 +43,7 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval") {
 	field(DOPT, "Use CALC")
 }
 
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
+record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(SCAN, "Passive")
     field(PINI, "NO")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")

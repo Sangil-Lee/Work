@@ -36,11 +36,13 @@ cooldown_SRCS_vxWorks += -nil-
 
 ifneq ($(SNCSEQ),)
     cooldown_SNCFLAGS += +r
+    cooldown_DBD  += sncSetpt_listWF.dbd
     cooldown_DBD  += sncCooldown03.dbd
     cooldown_DBD  += sncCooldown04.dbd
     cooldown_DBD  += sncCooldown12.dbd
     cooldown_DBD  += sncCDOM14_15_Dic.dbd
 
+    cooldown_SRCS += sncSetpt_listWF.stt
     cooldown_SRCS += sncCooldown03.stt
     cooldown_SRCS += sncCooldown04.stt
     cooldown_SRCS += sncCooldown12.stt

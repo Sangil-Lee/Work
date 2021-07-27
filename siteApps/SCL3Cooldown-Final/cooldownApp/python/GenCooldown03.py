@@ -129,7 +129,7 @@ evflag	efCDOM031_100;{nl}\
 evflag	efCDOM032_1;{nl}\
 evflag	efCDOM032_100;{nl}\
 {nl}\
-evflag	efCDOM034_1;{nl}\
+evflag	efCDOM034_5;{nl}\
 evflag	efCDOM034_50;{nl}\
 {nl}\
 evflag	efCDOM035;{nl}\
@@ -174,7 +174,7 @@ ss ssCDOM031{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -194,7 +194,7 @@ ss ssCDOM031{nl}\
 {nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_1)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -214,7 +214,7 @@ ss ssCDOM031{nl}\
 {nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_5)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM031[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM031[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -245,8 +245,8 @@ ss ssCDOM031{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -287,8 +287,8 @@ ss ssCDOM031{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -329,8 +329,8 @@ ss ssCDOM031{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -379,7 +379,7 @@ ss ssCDOM032{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_1)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM032[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM032", OM032[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM032[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -399,7 +399,7 @@ ss ssCDOM032{nl}\
 {nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_100)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM032[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM032", OM032[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM032[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -432,8 +432,8 @@ ss ssCDOM032{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -448,7 +448,7 @@ ss ssCDOM032{nl}\
 {nl}\
 		when(delay(cdDelay) && index >= stopindex){nl}\
 		{open}{nl}\
-			strcpy(steppv, "OM032 Done & OM033 Start");{nl}\
+			strcpy(steppv, "OM032 Done & OM034 Start");{nl}\
 			pvPut(steppv, SYNC);{nl}\
 {nl}\
 			efSet(efStop);{nl}\
@@ -471,8 +471,8 @@ ss ssCDOM032{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -487,7 +487,7 @@ ss ssCDOM032{nl}\
 {nl}\
 		when(delay(cdDelay) && index >= stopindex){nl}\
 		{open}{nl}\
-			strcpy(steppv, "OM032 Done & OM033 Start");{nl}\
+			strcpy(steppv, "OM032 Done & OM034 Start");{nl}\
 			pvPut(steppv, SYNC);{nl}\
 {nl}\
 			efSet(efStop);{nl}\
@@ -505,20 +505,19 @@ ss ssCDOM034{nl}\
 		when(efTest(efStop) && ss_start == 3 && presz_start == 1){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
-			//stopindex = 11;{nl}\
-			stopindex = {len(OM033)};{nl}\
+			stopindex = {len(OM034)};{nl}\
 			pvPut(index, SYNC);{nl}\
-			efSet(efCDOM034_1);{nl}\
+			efSet(efCDOM034_5);{nl}\
 			efClear(efStop);{nl}\
 		{close}state CDOM034_Init{nl}\
 	{close}{nl}\
 {nl}\
 	state CDOM034_Init{nl}\
 	{open}{nl}\
-		when(delay(cdDelay)&&efTestAndClear(efCDOM034_1)){nl}\
+		when(delay(cdDelay)&&efTestAndClear(efCDOM034_5)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM033[index]);{nl}\
-			sprintf(valvename, "%s:Valve", OM033[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM034", OM034[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM034[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
 			if(index < stopindex){nl}\
@@ -533,12 +532,12 @@ ss ssCDOM034{nl}\
 				pvMonitor(proc);{nl}\
 			{close};{nl}\
 {nl}\
-		{close}state CDOM034_Proc_1{nl}\
+		{close}state CDOM034_Proc_5{nl}\
 {nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM034_50)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM033[index]);{nl}\
-			sprintf(valvename, "%s:Valve", OM033[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM034", OM034[index]);{nl}\
+			sprintf(valvename, "%s:Valve", OM034[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
 			if(index < stopindex){nl}\
@@ -557,21 +556,21 @@ ss ssCDOM034{nl}\
 {nl}\
 	{close}{nl}\
 {nl}\
-	state CDOM034_Proc_1{nl}\
+	state CDOM034_Proc_5{nl}\
 	{open}{nl}\
-		when(delay(cdDelay) && valveval < 1 && index < stopindex){nl}\
+		when(delay(cdDelay) && valveval < 5 && index < stopindex){nl}\
 		{open}{nl}\
-			printf("CDOM034_Proc_1\\n");{nl}\
+			printf("CDOM034_Proc_5\\n");{nl}\
 			proc = 1;{nl}\
 			pvPut(proc, SYNC);{nl}\
-		{close}state CDOM034_Proc_1{nl}\
+		{close}state CDOM034_Proc_5{nl}\
 {nl}\
-		when(delay(cdDelay)&& valveval == 1 && index < stopindex){nl}\
+		when(delay(cdDelay)&& valveval >= 5 && index < stopindex){nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -582,7 +581,7 @@ ss ssCDOM034{nl}\
 {nl}\
 		when(delay(cdDelay) && index >= stopindex){nl}\
 		{open}{nl}\
-			strcpy(steppv, "OM032 Done & OM033 Start");{nl}\
+			strcpy(steppv, "OM032 Done & OM034 Start");{nl}\
 			pvPut(steppv, SYNC);{nl}\
 {nl}\
 			efSet(efStop);{nl}\
@@ -605,8 +604,8 @@ ss ssCDOM034{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -633,7 +632,6 @@ ss ssCDOM035{nl}\
 		when(efTest(efStop) && ss_start == 4){nl}\
 		{open}{nl}\
 			index = 0;{nl}\
-			//stopindex = 2;{nl}\
 			stopindex = {len(OM035)};{nl}\
 			pvPut(index, SYNC);{nl}\
 			efSet(efCDOM035);{nl}\
@@ -645,9 +643,9 @@ ss ssCDOM035{nl}\
 	{open}{nl}\
 		when(delay(cdDelay)&&efTestAndClear(efCDOM035)){nl}\
 		{open}{nl}\
-			sprintf(logicname,		"%s:CDLogic.PROC", OM033[index]);{nl}\
-			sprintf(valvename,      "%s:Valve",        OM033[index]);{nl}\
-			sprintf(valve_evalname, "%s:ValveEval",    OM033[index]);{nl}\
+			sprintf(logicname,		"%s:%s:CDLogic.PROC","OM035", OM035[index]);{nl}\
+			sprintf(valvename,      "%s:Valve",        	  OM035[index]);{nl}\
+			sprintf(valve_evalname, "%s:ValveEval",       OM035[index]);{nl}\
 			printf("%s, %s, %s\\n", logicname, valvename, valve_evalname);{nl}\
 {nl}\
 			if(index < stopindex){nl}\
@@ -682,8 +680,8 @@ ss ssCDOM035{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -728,7 +726,7 @@ ss ssCDOM036{nl}\
 	{open}{nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_1_2)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM036_1_2[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_1_2", OM036_1_2[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM036_1_2[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -748,7 +746,7 @@ ss ssCDOM036{nl}\
 {nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_3)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM036_3[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_3", OM036_3[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM036_3[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -768,7 +766,7 @@ ss ssCDOM036{nl}\
 {nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_4)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM036_4[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM036_4", OM036_4[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM036_4[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -788,7 +786,7 @@ ss ssCDOM036{nl}\
 {nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_5)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM036_5[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM036_5", OM036_5[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM036_5[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -808,7 +806,7 @@ ss ssCDOM036{nl}\
 {nl}\
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_6_7)){nl}\
 		{open}{nl}\
-			sprintf(logicname, "%s:CDLogic.PROC", OM036_6_7[index]);{nl}\
+			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_6_7", OM036_6_7[index]);{nl}\
 			sprintf(valvename, "%s:Valve", OM036_6_7[index]);{nl}\
 			printf("%s, %s\\n", logicname, valvename);{nl}\
 {nl}\
@@ -840,8 +838,8 @@ ss ssCDOM036{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -875,8 +873,8 @@ ss ssCDOM036{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -910,8 +908,8 @@ ss ssCDOM036{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -945,8 +943,8 @@ ss ssCDOM036{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\
@@ -980,8 +978,8 @@ ss ssCDOM036{nl}\
 		{open}{nl}\
 			pvStopMonitor(valveval);{nl}\
 			pvStopMonitor(proc);{nl}\
-			pvAssign(valveval, "");{nl}\
-			pvAssign(proc, "");{nl}\
+			//pvAssign(valveval, "");{nl}\
+			//pvAssign(proc, "");{nl}\
 {nl}\
 			index++;{nl}\
 			pvPut(index, SYNC);{nl}\

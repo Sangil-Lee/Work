@@ -1,9 +1,11 @@
+#!/usr/bin/python2.7
 
 from datetime import datetime, timedelta
 import pprint
 import time
 from influxdb import InfluxDBClient
 from copy import deepcopy
+import sys
 
 
 def get_ifdb(db, host='localhost', port=8086, user='root', passwd='root'):
@@ -52,16 +54,20 @@ def Write_DB(ifdb):
     ifdb.write_points(json_body)
 
     #result = ifdb.query('select * from %s' % tablename)
-    result = ifdb.query('select * from %s where Signal =~ /SCL31*/' % tablename)
-    pprint.pprint(result.raw)
+    #result = ifdb.query('select * from %s where Signal =~ /SCL31*/' % tablename)
+    #pprint.pprint(result.raw)
 
-def Read_DB(ifdb):
+def Read_DB(ifdb, qword):
     tablename = 'DBTable'
     fieldname = 'Signal'
 
+    filterword = qword
+
     #result = ifdb.query('select * from %s' % tablename)
-    #rs = ifdb.query('select Signal from %s where Signal =~ /SCL31 */' % tablename)
-    rs = ifdb.query('select Signal from %s' % tablename)
+    queryword = 'select Signal from {tname} where Signal =~ /{fword} */'.format(tname=tablename, fword=filterword)
+    #rs = ifdb.query('select Signal from %s where Signal =~ /%s */' % tablename % filterword)
+    rs = ifdb.query(queryword)
+    #rs = ifdb.query('select Signal from %s' % tablename)
     #rs = ifdb.query('select Signal from %s where Signal !~ /SCL31 */' % tablename)
     #result = ifdb.query('select * from %s where {fieldname} =~ /SCL31*/' % tablename)
     #pprint.pprint(rs.raw)
@@ -76,10 +82,18 @@ def Read_DB(ifdb):
         #pvname = str(pvlist).split(',')[0]
         #print(pvname)
 
-def do_insert_db():
+def Insert_db():
     mydb = get_ifdb(db='SignalDB')
-    #Write_DB(mydb)
-    #Read_DB(mydb)
+    Write_DB(mydb)
+
+def Query_db(qword):
+    mydb = get_ifdb(db='SignalDB')
+    Read_DB(mydb, qword)
 
 if __name__ == '__main__':
-    do_insert_db()
+
+    argcnt = len(sys.argv)
+    if(argcnt == 1):
+        Insert_db()
+    else:
+        Query_db((str(sys.argv[1])))
