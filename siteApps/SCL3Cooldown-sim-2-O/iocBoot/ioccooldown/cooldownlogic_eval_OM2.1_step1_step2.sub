@@ -6,7 +6,7 @@
 #{SCL31,    -CDL01:,      VBx02,        -TT7301:,     Temp,		  "YES",		"10",		"Passive"	} #QWR
 #}
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
 {Cryo,      -CDL00:,       TBx01,		-PT7202:,     Press,		"YES",		"2.2",		"Passive"	} #TBx   
 {Cryo,      -CDL00:,       TBx01,		-PT7304:,     Press,		"YES",		"2.2",		"Passive"	} #TBx
@@ -16,12 +16,11 @@ file "db/cd_ai_presseval.template" { pattern
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,         DEV,		SUBDEV,			CALC,			           INPB,						        INPK,  							        INPJ      }							
-{Cryo,      -CDL00:,        TBx01,		-XV7201:,		"J",                       "Cryo-CDL00:TBx01-PT7301:Press",     "Cryo-CDL00:TBx01-PT7301:PressEval",       100    } #1TBx
-{Cryo,      -CDL00:,        TBx01,		-CV7201:,		"K?A:(A>=J)?A:(A+I)",      "Cryo-CDL00:TBx01-PT7202:Press",     "Cryo-CDL00:TBx01-PT7202:PressEval",       100    } #2TBx
-{Cryo,      -CDL00:,        TBx01,		-CV7303:,		"K?A:J",                   "Cryo-CDL00:TBx01-PT7304:Press",     "Cryo-CDL00:TBx01-PT7304:PressEval",       0      } #3TBx
-{Cryo,      -CDL00:,        TBx01,		-XV7302:,		"J",                       "Cryo-CDL00:TBx01-PT7301:Press",     "Cryo-CDL00:TBx01-PT7301:PressEval",       0      } #4TBx
-
-{SCL32,     -CDL02:,        VBx01,		-CV7302:,		"J",                       "Cryo-CDL00:TBx01-PT7301:Press",     "Cryo-CDL00:TBx01-PT7301:PressEval",       0      } #1HWRA01
-{SCL32,     -CDL02:,        VBx01,		-XV7301:,		"J",                       "Cryo-CDL00:TBx01-PT7301:Press",     "Cryo-CDL00:TBx01-PT7301:PressEval",       0      } #2HWRA01
+{SYS,	    SUBSYS,         DEV,		SUBDEV,			CALC,			           INPK,  							        INPI,   INPJ    }							
+{Cryo,      -CDL00:,        TBx01,		-XV7201:,		"J",                       "",                                      "",     1       } #1TBx
+{Cryo,      -CDL00:,        TBx01,		-CV7201:,		"K?A:(A>=J)?A:(A+I)",      "Cryo-CDL00:TBx01-PT7202:PressEval",     5,      100     } #2TBx
+{Cryo,      -CDL00:,        TBx01,		-CV7303:,		"K?A:J",                   "Cryo-CDL00:TBx01-PT7304:PressEval",     "",     0       } #3TBx
+{Cryo,      -CDL00:,        TBx01,		-XV7302:,		"J",                       "",                                      "",     0       } #4TBx
+{SCL32,     -CDL02:,        VBx01,		-CV7302:,		"J",                       "",                                      "",     0       } #1HWRA01
+{SCL32,     -CDL02:,        VBx01,		-XV7301:,		"J",                       "",                                      "",     0       } #2HWRA01
 }

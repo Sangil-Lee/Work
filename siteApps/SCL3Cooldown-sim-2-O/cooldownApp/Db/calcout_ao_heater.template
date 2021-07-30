@@ -1,4 +1,4 @@
-record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve") {
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
   field(PINI, "NO")
   field(VAL, "0")
 }
@@ -7,9 +7,9 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
 
   field(SCAN, "Passive")
   field(PINI, "NO")
-  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve")
-  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve.PROC CPP")
-  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Valve.VAL CPP")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).PROC CPP")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).VAL CPP")
   
   field(CALC, "$(CALC)")
   field(INPB, "$(INPB)")

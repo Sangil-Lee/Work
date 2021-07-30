@@ -1,22 +1,20 @@
 
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 
-#file "db/cd_ai.template" { pattern
-#{SYS,	   SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
-#{Cryo,	   -CDL00:,	    TBx01,		-PT7303:,	Press,		"YES",		"2.5",		"Passive"	}
-#{Cryo,	   -CDL00:,	    TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
-#} #TBx 
-
-file "db/cd_ai_presseval.template" { pattern
-{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
-{SCL31,     -CDL01:,      EBx01,	    -PT7503:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
+file "db/cd_ai.template" { pattern
+{SYS,	   SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
 {SCL31,     -CDL01:,      EBx01,	    -FT7501:,	  Flow,		    "YES",		"2.2",		"Passive"	} #EBx
 {SCL31,     -CDL01:,      EBx01,	    -FT7502:,	  Flow,		    "YES",		"2.2",		"Passive"	} #EBx
+} #EBx 
+
+file "db/cd_ai_pressevalOM0.3.template" { pattern
+{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
+{SCL31,     -CDL01:,      EBx01,	    -PT7503:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
 {SCL31,     -CDL01:,      EBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
 }
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,					                                        INPB,									    INPC,                                       INPD,                                       INPH,       INPK							     	    }
-{SCL31,     -CDL01:,         EBx01,		-CV7501:,		"K?A:(C/D<=H-0.1&&A<J)?(A+I):(C/D>=H+0.1&&A>=I)?(A-I):A",       "$(SYS)$(SUBSYS)$(DEV)-PT7503:Press",		"$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",        "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",        1,          "$(SYS)$(SUBSYS)$(DEV)-PT7503:PressEval"	}  #1EBx
-{SCL31,     -CDL01:,         EBx01,		-CV7402:,		"K?A:(B>H+0.1&&A>=I)?(A-I):(B<H-0.1&&A<J)?(A+I):A",             "$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",       "$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",        "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",        1.3,        "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"	}  #2EBx
+{SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,					                                        INPB,									    INPC,                                       INPD,                                       INPH,   INPI,   INPJ,   INPK							     	    }
+{SCL31,     -CDL01:,         EBx01,		-CV7501:,		"K?A:(C/D<=H-0.1&&A<J)?(A+I):(C/D>=H+0.1&&A>=I)?(A-I):A",       "$(SYS)$(SUBSYS)$(DEV)-PT7503:Press",		"$(SYS)$(SUBSYS)$(DEV)-FT7501:Flow",        "$(SYS)$(SUBSYS)$(DEV)-FT7502:Flow",        1,      5,      100,    "$(SYS)$(SUBSYS)$(DEV)-PT7503:PressEval"	}  #1EBx
+{SCL31,     -CDL01:,         EBx01,		-CV7402:,		"K?A:(B>H+0.1&&A>=I)?(A-I):(B<H-0.1&&A<J)?(A+I):A",             "$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",       "",                                         "",                                         1.3,    5,      100,    "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval"	}  #2EBx
 }

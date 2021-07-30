@@ -6,10 +6,10 @@
 #{SCL32,     -CDL02:,       VBx01,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 #}
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
 {SCL32,     -CDL02:,       VBx01,	    -PT7202:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
-{Cryo,      -CDL00;,       TBx01,       -PT7203;,     Press,		"YES",		"2.2",		"Passive"	} #TBx
+{Cryo,      -CDL00:,       TBx01,       -PT7203:,     Press,		"YES",		"2.2",		"Passive"	} #TBx
 }
 
 ###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}

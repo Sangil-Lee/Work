@@ -7,7 +7,7 @@
 #{Cryo,	   -CDL00:,	    TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
 #} #TBx 
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
 {Cryo,      -CDL00:,      TBx01,	    -PT7201:,	  Press,		"YES",		"2.2",		"Passive"	} #TBx
 {Cryo,      -CDL00:,      TBx01,	    -PT7202:,	  Press,		"YES",		"2.2",		"Passive"	} #TBx
@@ -23,18 +23,18 @@ file "db/cd_ai_presseval.template" { pattern
 }
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,										      INPB,									    INPC,								        INPK,							     	    INPL		                             }
-{Cryo,      -CDL00:,         TBx01,	    -XV7301:,		"(K||L)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT7301:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7302:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7302:PressEval" }  #1TBx
-{Cryo,      -CDL00:,         TBx01,		-XV7201:,		"(K||L)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT7201:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7202:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7202:PressEval" }  #2TBx
-{Cryo,      -CDL00:,         TBx01,		-XV7401:,		"(K||L)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT7481:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7402:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7481:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7402:PressEval" }  #3TBx
-{Cryo,      -CDL00:,         TBx01,		-CV7301:,		"K?A:(A>=J)?J:A+I",	                              "$(SYS)$(SUBSYS)$(DEV)-PT7382:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7382:Press",       "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval" }  #4TBx                                                                                 #4TBx
-{Cryo,      -CDL00:,         TBx01,		-CV7201:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7203:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7202:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7203:PressEval" }  #5TBx
-{Cryo,      -CDL00:,         TBx01,		-CV7401:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7402:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7403:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7402:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7403:PressEval" }  #6TBx
-{Cryo,      -CDL00:,         TBx01,		-CV7302:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7382:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7303:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7303:PressEval" }  #7TBx
+{SYS,	    SUBSYS,          DEV,	    SUBDEV,			CALC,										      INPB,									    INPC,								        INPG,   INPK,							     	    INPL,                                       INPI,   INPJ    }
+{Cryo,      -CDL00:,         TBx01,	    -XV7301:,		"(K||L)?0:J",                                     "",                                       "",                                         "",     "$(SYS)$(SUBSYS)$(DEV)-PT7301:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7302:PressEval",   "",     1       }  #1TBx
+{Cryo,      -CDL00:,         TBx01,		-XV7201:,		"(K||L)?0:J",                                     "",                                       "",                                         "",     "$(SYS)$(SUBSYS)$(DEV)-PT7201:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7202:PressEval",   "",     1       }  #2TBx
+{Cryo,      -CDL00:,         TBx01,		-XV7401:,		"(K||L)?0:J",                                     "",                                       "",                                         "",     "$(SYS)$(SUBSYS)$(DEV)-PT7481:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7402:PressEval",   "",     1       }  #3TBx
+{Cryo,      -CDL00:,         TBx01,		-CV7301:,		"K?A:(A>=J)?J:A+I",	                              "",                                       "",                                         "",     "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval",   "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval",   5,      100     }  #4TBx                                                                                 #4TBx
+{Cryo,      -CDL00:,         TBx01,		-CV7201:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7202:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7203:Press",	    0.5,    "$(SYS)$(SUBSYS)$(DEV)-PT7202:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7203:PressEval",   5,      100     }  #5TBx
+{Cryo,      -CDL00:,         TBx01,		-CV7401:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7402:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7403:Press",	    0.5,    "$(SYS)$(SUBSYS)$(DEV)-PT7402:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7403:PressEval",   5,      100     }  #6TBx
+{Cryo,      -CDL00:,         TBx01,		-CV7302:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7382:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7303:Press",	    0.5,    "$(SYS)$(SUBSYS)$(DEV)-PT7382:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7303:PressEval",   5,      100     }  #7TBx
 
-{SCL32,     -CDL02:,         VBx01,     -XV7301:,       "(K||L)?A:J",                                     "Cryo-CDL00:TBx01-PT7303:Press",		    "Cryo-CDL00:TBx01-PT7203:Press",	        "Cryo-CDL00:TBx01-PT7303:PressEval",	    "Cryo-CDL00:TBx01-PT7203:PressEval"      }  #8HWRA
-{Cryo,      -CDL00:,         TBx01,		-XV7302:,		"(K||L)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT7304:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7203:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7304:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7203:PressEval" }  #9TBx
-{SCL32,     -CDL02:,         VBx01,     -CV7302:,       "F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",     "Cryo-CDL00:TBx01-PT7303:Press",		    "Cryo-CDL00:TBx01-PT7203:Press",	        "Cryo-CDL00:TBx01-PT7303:PressEval",	    "Cryo-CDL00:TBx01-PT7203:PressEval"      }  #10HWRA
-{Cryo,      -CDL00:,         TBx01,		-CV7303:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7302:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7304:Press",	    "$(SYS)$(SUBSYS)$(DEV)-PT7302:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7304:PressEval" }  #11TBx
+{SCL32,     -CDL02:,         VBx01,     -XV7301:,       "(K||L)?0:J",                                     "",                                       "",                                         "",     "Cryo-CDL00:TBx01-PT7303:PressEval",	    "Cryo-CDL00:TBx01-PT7203:PressEval",        "",     1       }  #8HWRA
+{Cryo,      -CDL00:,         TBx01,		-XV7302:,		"(K||L)?0:J",                                     "",                                       "",                                         "",     "$(SYS)$(SUBSYS)$(DEV)-PT7304:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7203:PressEval",   "",     1       }  #9TBx
+{SCL32,     -CDL02:,         VBx01,     -CV7302:,       "F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",     "Cryo-CDL00:TBx01-PT7303:Press",		    "Cryo-CDL00:TBx01-PT7203:Press",	        0.5,    "Cryo-CDL00:TBx01-PT7303:PressEval",	    "Cryo-CDL00:TBx01-PT7203:PressEval",        5,      100     }  #10HWRA
+{Cryo,      -CDL00:,         TBx01,		-CV7303:,		"F:=ABS(C-B);(K||L)?A:(F<=G)?J:(A>=J)?J:A+I",	  "$(SYS)$(SUBSYS)$(DEV)-PT7302:Press",		"$(SYS)$(SUBSYS)$(DEV)-PT7304:Press",	    0.5,    "$(SYS)$(SUBSYS)$(DEV)-PT7302:PressEval",	"$(SYS)$(SUBSYS)$(DEV)-PT7304:PressEval",   5,      100     }  #11TBx
 }
 

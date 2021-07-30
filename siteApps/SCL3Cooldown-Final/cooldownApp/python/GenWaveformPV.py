@@ -1,7 +1,8 @@
 import sys
+import re
 
 filename = str(sys.argv[1])
-dtype = str(sys.argv[2]).upper()
+dtype = str(sys.argv[2]).lower()
 
 pvlist = []
 f = open(filename, 'r')
@@ -11,6 +12,8 @@ for line in f:
 f.close()
 
 seqfilename   = "snc"+filename.rsplit('.', 1)[0]+"WF"
+templfilename = 'templ'+filename.rsplit('.', 1)[0]
+subfilename   = 'sub'+filename.rsplit('.', 1)[0]
 
 seqExt = ".stt"
 dbdExt = ".dbd"
@@ -19,8 +22,8 @@ subExt = ".sub"
 
 seq   = open('../src/'+seqfilename+seqExt, "w")
 dbd   = open('../src/'+seqfilename+dbdExt, "w")
-templ   = open('../Db/'+seqfilename+templExt, "w")
-sub   = open('../Db/'+seqfilename+subExt, "w")
+templ = open('../Db/'+templfilename+templExt, "w")
+sub   = open('../Db/'+subfilename+subExt, "w")
 
 ########### Seqencer File Generation ###################
 lenlist = len(pvlist)
@@ -79,43 +82,41 @@ seq.close()
 ##############################################################
 
 datatype = ''
-if(dtype == 'AO' or dtype == 'AI'): datatype = 'DOUBLE'
-elif(dtype == 'LONGIN' or dtype == 'LONGOUT'): datatype = 'int'
-elif(dtype == 'BI' or dtype == 'BO'): datatype = 'bool'
+fieldlist = []
+valuelist = ['\"\"', '\"\"', '\"\"', 'YES']
+if(dtype == 'ao' or dtype == 'ai'): 
+    datatype = 'DOUBLE'
+elif(dtype == 'longin' or dtype == 'longout'): datatype = 'int'
+elif(dtype == 'bi' or dtype == 'bo'): datatype = 'bool'
+
+if(dtype == 'ai' or dtype == 'bi' or dtype == 'longin'):
+    fieldlist = ['DESC', 'VAL', 'INP', 'PINI']
+else: 
+    fieldlist = ['DESC', 'VAL', 'OUT', 'PINI']
 
 sncText = f'{nl}\
-record({type}, "{prefix}{signal}"){nl}\
+record({dtype}, "{signal}"){nl}\
 {open}{nl}'
 templ.write(sncText)
 
 listcnt = len(fieldlist)
-strvalue = valuelist[0]
-#print(len(valuelist), strvalue)
-
-if(strvalue == ""):
-    for cnt in range(listcnt):
-        if(cnt != 0):
-          valuelist.append("\"\"")
-
-for field in fieldlist:
-    sncText = f'{nl}\
-    field({field}, "$({field})")\
-    '
+for idx, field in enumerate(fieldlist):
+    sncText = f'\
+    field({field}, {valuelist[idx]} ){nl}'
     templ.write(sncText)
 
-sncText ='\n}\n'
+sncText =f'{close}{nl}'
 templ.write(sncText)
 templ.close()
 ###################################################
 ########### subtitution File Generation ###################
-sncText = f'file "db/{templfile}" {open} pattern{nl}'
+sncText = f'file "db/{templfilename+templExt}" {open} pattern{nl}'
 sub.write(sncText)
 signal = re.split('[$()]',signal)
-#sncText = '{'+signal[2]+',\t\t'
 open  = '{'
 comma =','
 sncText = '{'+signal[2]+','
-sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
+sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=40)
 sub.write(sncText)
 
 for idx, field in enumerate(fieldlist):
@@ -124,14 +125,14 @@ for idx, field in enumerate(fieldlist):
         sncText = field
     else:
         sncText = field+','
-        sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[idx])))
+        sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=20)
     sub.write(sncText)
 sncText = '}\n'
 sub.write(sncText)
 
-for cnt in range(int(count)):
-    sncText = '{\"'+pvlist[cnt]+'\",'
-    sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[0])))
+for cnt in range(lenlist):
+    sncText = '{'+pvlist[cnt]+','
+    sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=40)
     sub.write(sncText)
     for idx, value in enumerate(valuelist):
         idx = idx+1
@@ -140,7 +141,7 @@ for cnt in range(int(count)):
             sncText = "\""+ value + "\""
         else:
             sncText = "\"" + value+'\",'
-            sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=int(str(paddinglist[idx])))
+            sncText = '{message: <{padcnt}}'.format(message = sncText, padcnt=20)
         sub.write(sncText)
     sncText = '}\n'
     sub.write(sncText)
@@ -149,6 +150,4 @@ sncText = '}\n'
 sub.write(sncText)
 sub.close()
 
-print('Successfully Generated File:', templfile,
-
-print("Successfully Generated File: " + seqfilename+seqExt)
+print('Successfully Generated File:', templfilename+templExt, seqfilename+seqExt)

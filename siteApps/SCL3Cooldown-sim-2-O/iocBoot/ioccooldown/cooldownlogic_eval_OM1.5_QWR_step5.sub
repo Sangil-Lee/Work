@@ -16,7 +16,7 @@ file "db/cd_ai.template" { pattern
 {SCL31,     -CDL01:,      VBx22,    -TT7301:,     Temp,     "YES",		"10",		"Passive"	} #QWR
 }
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,     DEV,     SUBDEV,        SIGNAL,   PINI,     VAL,		SCAN        }
 {SCL31,     -CDL01:,    VBx02,   -PT7301:,      Press,    "YES",    "2.2",		"Passive"	} #QWR   
 {SCL31,     -CDL01:,    VBx04,   -PT7301:,      Press,    "YES",    "2.2",		"Passive"	} #QWR
@@ -35,37 +35,27 @@ file "db/cd_ai_presseval.template" { pattern
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,     DEV,		SUBDEV,			CALC,			                  INPB,                                 INPC,                                INPH,      INPK,  							          INPJ    }							
-{SCL31,     -CDL01:,    VBx02,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx02-PT7301:Press",     "SCL31-CDL01:VBx02-TT7301:Temp",     "10",     "SCL31-CDL01:VBx02-PT7301:PressEval",       50      } #1#1QWR
-{SCL31,     -CDL01:,    VBx02,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx02-CV7301:Valve",     "SCL31-CDL01:VBx02-TT7301:Temp",     "50",     "SCL31-CDL01:VBx02-PT7301:PressEval",       0       } #1#2QWR
-
-{SCL31,     -CDL01:,    VBx04,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx04-PT7301:Press",     "SCL31-CDL01:VBx04-TT7301:Temp",     "10",     "SCL31-CDL01:VBx04-PT7301:PressEval",       50      } #2#1QWR
-{SCL31,     -CDL01:,    VBx04,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx04-CV7301:Valve",     "SCL31-CDL01:VBx04-TT7301:Temp",     "50",     "SCL31-CDL01:VBx04-PT7301:PressEval",       0       } #2#2QWR
-
-{SCL31,     -CDL01:,    VBx06,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx06-PT7301:Press",     "SCL31-CDL01:VBx06-TT7301:Temp",     "10",     "SCL31-CDL01:VBx06-PT7301:PressEval",       50      } #3#1QWR
-{SCL31,     -CDL01:,    VBx06,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx06-CV7301:Valve",     "SCL31-CDL01:VBx06-TT7301:Temp",     "50",     "SCL31-CDL01:VBx06-PT7301:PressEval",       0       } #3#2QWR
-
-{SCL31,     -CDL01:,    VBx08,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx08-PT7301:Press",     "SCL31-CDL01:VBx08-TT7301:Temp",     "10",     "SCL31-CDL01:VBx08-PT7301:PressEval",       50      } #4#1QWR
-{SCL31,     -CDL01:,    VBx08,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx08-CV7301:Valve",     "SCL31-CDL01:VBx08-TT7301:Temp",     "50",     "SCL31-CDL01:VBx08-PT7301:PressEval",       0       } #4#2QWR
-
-{SCL31,     -CDL01:,    VBx10,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx10-PT7301:Press",     "SCL31-CDL01:VBx10-TT7301:Temp",     "10",     "SCL31-CDL01:VBx10-PT7301:PressEval",       50      } #5#1QWR
-{SCL31,     -CDL01:,    VBx10,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx10-CV7301:Valve",     "SCL31-CDL01:VBx10-TT7301:Temp",     "50",     "SCL31-CDL01:VBx10-PT7301:PressEval",       0       } #5#2QWR
-
-{SCL31,     -CDL01:,    VBx12,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx12-PT7301:Press",     "SCL31-CDL01:VBx12-TT7301:Temp",     "10",     "SCL31-CDL01:VBx12-PT7301:PressEval",       50      } #6#1QWR
-{SCL31,     -CDL01:,    VBx12,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx12-CV7301:Valve",     "SCL31-CDL01:VBx12-TT7301:Temp",     "50",     "SCL31-CDL01:VBx12-PT7301:PressEval",       0       } #6#2QWR
-
-{SCL31,     -CDL01:,    VBx14,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx14-PT7301:Press",     "SCL31-CDL01:VBx14-TT7301:Temp",     "10",     "SCL31-CDL01:VBx14-PT7301:PressEval",       50      } #7#1QWR
-{SCL31,     -CDL01:,    VBx14,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx14-CV7301:Valve",     "SCL31-CDL01:VBx14-TT7301:Temp",     "50",     "SCL31-CDL01:VBx14-PT7301:PressEval",       0       } #7#2QWR
-
-{SCL31,     -CDL01:,    VBx16,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx16-PT7301:Press",     "SCL31-CDL01:VBx16-TT7301:Temp",     "10",     "SCL31-CDL01:VBx16-PT7301:PressEval",       50      } #8#1QWR
-{SCL31,     -CDL01:,    VBx16,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx16-CV7301:Valve",     "SCL31-CDL01:VBx16-TT7301:Temp",     "50",     "SCL31-CDL01:VBx16-PT7301:PressEval",       0       } #8#2QWR
-
-{SCL31,     -CDL01:,    VBx18,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx18-PT7301:Press",     "SCL31-CDL01:VBx18-TT7301:Temp",     "10",     "SCL31-CDL01:VBx18-PT7301:PressEval",       50      } #9#1QWR
-{SCL31,     -CDL01:,    VBx18,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx18-CV7301:Valve",     "SCL31-CDL01:VBx18-TT7301:Temp",     "50",     "SCL31-CDL01:VBx18-PT7301:PressEval",       0       } #9#2QWR
-
-{SCL31,     -CDL01:,    VBx20,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx20-PT7301:Press",     "SCL31-CDL01:VBx20-TT7301:Temp",     "10",     "SCL31-CDL01:VBx20-PT7301:PressEval",       50      } #10#1QWR
-{SCL31,     -CDL01:,    VBx20,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx20-CV7301:Valve",     "SCL31-CDL01:VBx20-TT7301:Temp",     "50",     "SCL31-CDL01:VBx20-PT7301:PressEval",       0       } #10#2QWR
-
-{SCL31,     -CDL01:,    VBx22,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "SCL31-CDL01:VBx22-PT7301:Press",     "SCL31-CDL01:VBx22-TT7301:Temp",     "10",     "SCL31-CDL01:VBx22-PT7301:PressEval",       50      } #11#1QWR
-{SCL31,     -CDL01:,    VBx22,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx22-CV7301:Valve",     "SCL31-CDL01:VBx22-TT7301:Temp",     "50",     "SCL31-CDL01:VBx22-PT7301:PressEval",       0       } #11#2QWR
+{SYS,	    SUBSYS,     DEV,		SUBDEV,			CALC,			                  INPB,                                 INPC,                               INPH,   INPK,                                       INPI,   INPJ    }							
+{SCL31,     -CDL01:,    VBx02,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx02-TT7301:Temp",    10,     "SCL31-CDL01:VBx02-PT7301:PressEval",       5,      50      } #1#1QWR
+{SCL31,     -CDL01:,    VBx02,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx02-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #1#2QWR
+{SCL31,     -CDL01:,    VBx04,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx04-TT7301:Temp",    10,     "SCL31-CDL01:VBx04-PT7301:PressEval",       5,      50      } #2#1QWR
+{SCL31,     -CDL01:,    VBx04,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx04-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #2#2QWR
+{SCL31,     -CDL01:,    VBx06,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx06-TT7301:Temp",    10,     "SCL31-CDL01:VBx06-PT7301:PressEval",       5,      50      } #3#1QWR
+{SCL31,     -CDL01:,    VBx06,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx06-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #3#2QWR
+{SCL31,     -CDL01:,    VBx08,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx08-TT7301:Temp",    10,     "SCL31-CDL01:VBx08-PT7301:PressEval",       5,      50      } #4#1QWR
+{SCL31,     -CDL01:,    VBx08,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx08-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #4#2QWR
+{SCL31,     -CDL01:,    VBx10,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx10-TT7301:Temp",    10,     "SCL31-CDL01:VBx10-PT7301:PressEval",       5,      50      } #5#1QWR
+{SCL31,     -CDL01:,    VBx10,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx10-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #5#2QWR
+{SCL31,     -CDL01:,    VBx12,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx12-TT7301:Temp",    10,     "SCL31-CDL01:VBx12-PT7301:PressEval",       5,      50      } #6#1QWR
+{SCL31,     -CDL01:,    VBx12,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx12-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #6#2QWR
+{SCL31,     -CDL01:,    VBx14,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx14-TT7301:Temp",    10,     "SCL31-CDL01:VBx14-PT7301:PressEval",       5,      50      } #7#1QWR
+{SCL31,     -CDL01:,    VBx14,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx14-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #7#2QWR
+{SCL31,     -CDL01:,    VBx16,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx16-TT7301:Temp",    10,     "SCL31-CDL01:VBx16-PT7301:PressEval",       5,      50      } #8#1QWR
+{SCL31,     -CDL01:,    VBx16,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx16-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #8#2QWR
+{SCL31,     -CDL01:,    VBx18,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx18-TT7301:Temp",    10,     "SCL31-CDL01:VBx18-PT7301:PressEval",       5,      50      } #9#1QWR
+{SCL31,     -CDL01:,    VBx18,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx18-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #9#2QWR
+{SCL31,     -CDL01:,    VBx20,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx20-TT7301:Temp",    10,     "SCL31-CDL01:VBx20-PT7301:PressEval",       5,      50      } #10#1QWR
+{SCL31,     -CDL01:,    VBx20,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx20-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #10#2QWR
+{SCL31,     -CDL01:,    VBx22,		-CV7301:,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx22-TT7301:Temp",    10,     "SCL31-CDL01:VBx22-PT7301:PressEval",       5,      50      } #11#1QWR
+{SCL31,     -CDL01:,    VBx22,		-XV7301:,		"(B<H)?A:J",                      "SCL31-CDL01:VBx22-CV7301:Valve",     "",                                 50,     "",                                         "",     0       } #11#2QWR
 }

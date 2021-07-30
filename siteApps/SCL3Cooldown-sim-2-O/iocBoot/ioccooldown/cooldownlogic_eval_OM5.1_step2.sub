@@ -2,7 +2,12 @@
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 
 #file "db/cd_ai.template" { pattern
-{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	    PINI,		VAL,		SCAN        }
+#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,	    PINI,		VAL,		SCAN        }
+#{SCL31,     -CDL01:,       EBx01,       -PT7301:,     Press,		"YES",		"2.2",		"Passive"	} #EBx
+#}
+
+file "db/cd_ai_pressevalOM0.3.template" { pattern
+{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
 {SCL31,     -CDL01:,       EBx01,       -PT7301:,     Press,		"YES",		"2.2",		"Passive"	} #EBx
 {SCL31,     -BL01:,        CM01,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
 {SCL31,     -BL01:,        CM02,		-PT8301:,     Press,		"YES",		"2.2",		"Passive"	} #QWR
@@ -61,71 +66,65 @@
 {P2DT,      -BL04:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #P2DT
 }
 
-#file "db/cd_ai_presseval.template" { pattern
-#{SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
-#{SCL32,     -BL02:,        CM01,		-PT8201:,     Press,		"YES",		"2.2",		"Passive"	} #HWR
-#}
-
 ###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,       DEV,		SUBDEV,		  CALC,	                                          INPB,						          INPH,    INPJ    }							
-{SCL31,     -CDL01:,      EBx01,    -CV7402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-CDL01:EBx01-PT7301:Level",   5,       10      } #1QWR
-{SCL31,     -BL01:,       CM01,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM01-PT8301:Level",	  5,       10      } #2QWR
-{SCL31,     -BL01:,       CM02,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM02-PT8301:Level",	  5,       10      } #3QWR
-{SCL31,     -BL01:,       CM03,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM03-PT8301:Level",	  5,       10      } #4QWR
-{SCL31,     -BL01:,       CM04,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM04-PT8301:Level",	  5,       10      } #5QWR
-{SCL31,     -BL01:,       CM05,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM05-PT8301:Level",	  5,       10      } #6QWR
-{SCL31,     -BL01:,       CM06,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM06-PT8301:Level",	  5,       10      } #7QWR
-{SCL31,     -BL01:,       CM07,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM07-PT8301:Level",	  5,       10      } #8QWR
-{SCL31,     -BL01:,       CM08,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM08-PT8301:Level",	  5,       10      } #9QWR
-{SCL31,     -BL01:,       CM09,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM09-PT8301:Level",	  5,       10      } #10QWR
-{SCL31,     -BL01:,       CM10,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM10-PT8301:Level",	  5,       10      } #11QWR
-{SCL31,     -BL01:,       CM11,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM11-PT8301:Level",	  5,       10      } #12QWR
-{SCL31,     -BL01:,       CM12,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM12-PT8301:Level",	  5,       10      } #13QWR
-{SCL31,     -BL01:,       CM13,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM13-PT8301:Level",	  5,       10      } #14QWR
-{SCL31,     -BL01:,       CM14,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM01-PT8301:Level",	  5,       10      } #15QWR
-{SCL31,     -BL01:,       CM15,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM02-PT8301:Level",	  5,       10      } #16QWR
-{SCL31,     -BL01:,       CM16,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM03-PT8301:Level",	  5,       10      } #17QWR
-{SCL31,     -BL01:,       CM17,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM04-PT8301:Level",	  5,       10      } #18QWR
-{SCL31,     -BL01:,       CM18,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM05-PT8301:Level",	  5,       10      } #19QWR
-{SCL31,     -BL01:,       CM19,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM06-PT8301:Level",	  5,       10      } #20QWR
-{SCL31,     -BL01:,       CM20,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM07-PT8301:Level",	  5,       10      } #21QWR
-{SCL31,     -BL01:,       CM21,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM08-PT8301:Level",	  5,       10      } #22QWR
-{SCL31,     -BL01:,       CM22,		-CV8402:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL31-BL01:CM09-PT8301:Level",	  5,       10      } #23QWR
-
-{SCL32,     -BL02:,       CM01,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM01-PT8201:Level",	  5,       10      } #24HWRA
-{SCL32,     -BL02:,       CM02,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM02-PT8201:Level",	  5,       10      } #25HWRA
-{SCL32,     -BL02:,       CM03,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM03-PT8201:Level",	  5,       10      } #26HWRA
-{SCL32,     -BL02:,       CM04,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM04-PT8201:Level",	  5,       10      } #27HWRA
-{SCL32,     -BL02:,       CM05,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM05-PT8201:Level",	  5,       10      } #28HWRA
-{SCL32,     -BL02:,       CM06,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM06-PT8201:Level",	  5,       10      } #29HWRA
-{SCL32,     -BL02:,       CM07,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM07-PT8201:Level",	  5,       10      } #30HWRA
-{SCL32,     -BL02:,       CM08,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM08-PT8201:Level",	  5,       10      } #31HWRA
-{SCL32,     -BL02:,       CM09,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM09-PT8201:Level",	  5,       10      } #32HWRA
-{SCL32,     -BL02:,       CM10,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM10-PT8201:Level",	  5,       10      } #33HWRA
-{SCL32,     -BL02:,       CM11,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM11-PT8201:Level",	  5,       10      } #34HWRA
-{SCL32,     -BL02:,       CM12,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM12-PT8201:Level",	  5,       10      } #35HWRA
-{SCL32,     -BL02:,       CM13,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL02:CM13-PT8201:Level",	  5,       10      } #36HWRA
-{SCL32,     -BL03:,       CM01,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM01-PT8201:Level",	  5,       10      } #37HWRB
-{SCL32,     -BL03:,       CM02,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM02-PT8201:Level",	  5,       10      } #38HWRB
-{SCL32,     -BL03:,       CM03,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM03-PT8201:Level",	  5,       10      } #39HWRB
-{SCL32,     -BL03:,       CM04,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM04-PT8201:Level",	  5,       10      } #40HWRB
-{SCL32,     -BL03:,       CM05,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM05-PT8201:Level",	  5,       10      } #41HWRB
-{SCL32,     -BL03:,       CM06,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM06-PT8201:Level",	  5,       10      } #42HWRB
-{SCL32,     -BL03:,       CM07,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM07-PT8201:Level",	  5,       10      } #43HWRB
-{SCL32,     -BL03:,       CM08,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM08-PT8201:Level",	  5,       10      } #44HWRB
-{SCL32,     -BL03:,       CM09,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM09-PT8201:Level",	  5,       10      } #45HWRB
-{SCL32,     -BL03:,       CM10,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM10-PT8201:Level",	  5,       10      } #46HWRB
-{SCL32,     -BL03:,       CM11,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM11-PT8201:Level",	  5,       10      } #47HWRB
-{SCL32,     -BL03:,       CM12,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM12-PT8201:Level",	  5,       10      } #48HWRB
-{SCL32,     -BL03:,       CM13,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM13-PT8201:Level",	  5,       10      } #49HWRB
-{SCL32,     -BL03:,       CM14,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM14-PT8201:Level",	  5,       10      } #50HWRB
-{SCL32,     -BL03:,       CM15,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM15-PT8201:Level",	  5,       10      } #51HWRB
-{SCL32,     -BL03:,       CM16,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM16-PT8201:Level",	  5,       10      } #52HWRB
-{SCL32,     -BL03:,       CM17,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM17-PT8201:Level",	  5,       10      } #53HWRB
-{SCL32,     -BL03:,       CM18,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM18-PT8201:Level",	  5,       10      } #54HWRB
-{SCL32,     -BL03:,       CM19,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "SCL32-BL03:CM19-PT8201:Level",	  5,       10      } #55HWRB
-{P2DT,      -BL04:,       CM01,		-CV8403:,     "K?A:(B>H)?((A<=0)?0:(A-5)):(A>=J)?J:(A+I)",    "P2DT-BL04:CM01-PT8201:Level",	  5,       10      } #56P2DT 
+{SYS,	    SUBSYS,       DEV,		SUBDEV,		  CALC,                                             INPB,                               INPK,                                     INPH,     INPI, INPJ    }							
+{SCL31,     -CDL01:,      EBx01,    -CV7402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-CDL01:EBx01-PT7301:Press",   "SCL31-CDL01:EBx01-PT7301:PressEval",     1.3,      5,    50      } #1QWR
+{SCL31,     -BL01:,       CM01,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM01-PT8301:Press",     "SCL31-BL01:CM01-PT8301:PressEval",       1.3,      5,    50      } #2QWR
+{SCL31,     -BL01:,       CM02,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM02-PT8301:Press",     "SCL31-BL01:CM02-PT8301:PressEval",       1.3,      5,    50      } #3QWR
+{SCL31,     -BL01:,       CM03,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM03-PT8301:Press",     "SCL31-BL01:CM03-PT8301:PressEval",       1.3,      5,    50      } #4QWR
+{SCL31,     -BL01:,       CM04,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM04-PT8301:Press",     "SCL31-BL01:CM04-PT8301:PressEval",       1.3,      5,    50      } #5QWR
+{SCL31,     -BL01:,       CM05,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM05-PT8301:Press",     "SCL31-BL01:CM05-PT8301:PressEval",       1.3,      5,    50      } #6QWR
+{SCL31,     -BL01:,       CM06,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM06-PT8301:Press",     "SCL31-BL01:CM06-PT8301:PressEval",       1.3,      5,    50      } #7QWR
+{SCL31,     -BL01:,       CM07,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM07-PT8301:Press",     "SCL31-BL01:CM07-PT8301:PressEval",       1.3,      5,    50      } #8QWR
+{SCL31,     -BL01:,       CM08,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM08-PT8301:Press",     "SCL31-BL01:CM08-PT8301:PressEval",       1.3,      5,    50      } #9QWR
+{SCL31,     -BL01:,       CM09,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM09-PT8301:Press",     "SCL31-BL01:CM09-PT8301:PressEval",       1.3,      5,    50      } #10QWR
+{SCL31,     -BL01:,       CM10,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM10-PT8301:Press",     "SCL31-BL01:CM10-PT8301:PressEval",       1.3,      5,    50      } #11QWR
+{SCL31,     -BL01:,       CM11,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM11-PT8301:Press",     "SCL31-BL01:CM11-PT8301:PressEval",       1.3,      5,    50      } #12QWR
+{SCL31,     -BL01:,       CM12,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM12-PT8301:Press",     "SCL31-BL01:CM12-PT8301:PressEval",       1.3,      5,    50      } #13QWR
+{SCL31,     -BL01:,       CM13,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM13-PT8301:Press",     "SCL31-BL01:CM13-PT8301:PressEval",       1.3,      5,    50      } #14QWR
+{SCL31,     -BL01:,       CM14,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM01-PT8301:Press",     "SCL31-BL01:CM01-PT8301:PressEval",       1.3,      5,    50      } #15QWR
+{SCL31,     -BL01:,       CM15,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM02-PT8301:Press",     "SCL31-BL01:CM02-PT8301:PressEval",       1.3,      5,    50      } #16QWR
+{SCL31,     -BL01:,       CM16,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM03-PT8301:Press",     "SCL31-BL01:CM03-PT8301:PressEval",       1.3,      5,    50      } #17QWR
+{SCL31,     -BL01:,       CM17,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM04-PT8301:Press",     "SCL31-BL01:CM04-PT8301:PressEval",       1.3,      5,    50      } #18QWR
+{SCL31,     -BL01:,       CM18,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM05-PT8301:Press",     "SCL31-BL01:CM05-PT8301:PressEval",       1.3,      5,    50      } #19QWR
+{SCL31,     -BL01:,       CM19,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM06-PT8301:Press",     "SCL31-BL01:CM06-PT8301:PressEval",       1.3,      5,    50      } #20QWR
+{SCL31,     -BL01:,       CM20,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM07-PT8301:Press",     "SCL31-BL01:CM07-PT8301:PressEval",       1.3,      5,    50      } #21QWR
+{SCL31,     -BL01:,       CM21,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM08-PT8301:Press",     "SCL31-BL01:CM08-PT8301:PressEval",       1.3,      5,    50      } #22QWR
+{SCL31,     -BL01:,       CM22,		-CV8402:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL31-BL01:CM09-PT8301:Press",     "SCL31-BL01:CM09-PT8301:PressEval",       1.3,      5,    50      } #23QWR
+{SCL32,     -BL02:,       CM01,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM01-PT8201:Press",     "SCL32-BL02:CM01-PT8201:PressEval",       1.3,      5,    50      } #24HWRA
+{SCL32,     -BL02:,       CM02,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM02-PT8201:Press",     "SCL32-BL02:CM02-PT8201:PressEval",       1.3,      5,    50      } #25HWRA
+{SCL32,     -BL02:,       CM03,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM03-PT8201:Press",     "SCL32-BL02:CM03-PT8201:PressEval",       1.3,      5,    50      } #26HWRA
+{SCL32,     -BL02:,       CM04,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM04-PT8201:Press",     "SCL32-BL02:CM04-PT8201:PressEval",       1.3,      5,    50      } #27HWRA
+{SCL32,     -BL02:,       CM05,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM05-PT8201:Press",     "SCL32-BL02:CM05-PT8201:PressEval",       1.3,      5,    50      } #28HWRA
+{SCL32,     -BL02:,       CM06,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM06-PT8201:Press",     "SCL32-BL02:CM06-PT8201:PressEval",       1.3,      5,    50      } #29HWRA
+{SCL32,     -BL02:,       CM07,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM07-PT8201:Press",     "SCL32-BL02:CM07-PT8201:PressEval",       1.3,      5,    50      } #30HWRA
+{SCL32,     -BL02:,       CM08,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM08-PT8201:Press",     "SCL32-BL02:CM08-PT8201:PressEval",       1.3,      5,    50      } #31HWRA
+{SCL32,     -BL02:,       CM09,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM09-PT8201:Press",     "SCL32-BL02:CM09-PT8201:PressEval",       1.3,      5,    50      } #32HWRA
+{SCL32,     -BL02:,       CM10,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM10-PT8201:Press",     "SCL32-BL02:CM10-PT8201:PressEval",       1.3,      5,    50      } #33HWRA
+{SCL32,     -BL02:,       CM11,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM11-PT8201:Press",     "SCL32-BL02:CM11-PT8201:PressEval",       1.3,      5,    50      } #34HWRA
+{SCL32,     -BL02:,       CM12,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM12-PT8201:Press",     "SCL32-BL02:CM12-PT8201:PressEval",       1.3,      5,    50      } #35HWRA
+{SCL32,     -BL02:,       CM13,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL02:CM13-PT8201:Press",     "SCL32-BL02:CM13-PT8201:PressEval",       1.3,      5,    50      } #36HWRA
+{SCL32,     -BL03:,       CM01,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM01-PT8201:Press",     "SCL32-BL03:CM01-PT8201:PressEval",       1.3,      5,    50      } #37HWRB
+{SCL32,     -BL03:,       CM02,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM02-PT8201:Press",     "SCL32-BL03:CM02-PT8201:PressEval",       1.3,      5,    50      } #38HWRB
+{SCL32,     -BL03:,       CM03,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM03-PT8201:Press",     "SCL32-BL03:CM03-PT8201:PressEval",       1.3,      5,    50      } #39HWRB
+{SCL32,     -BL03:,       CM04,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM04-PT8201:Press",     "SCL32-BL03:CM04-PT8201:PressEval",       1.3,      5,    50      } #40HWRB
+{SCL32,     -BL03:,       CM05,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM05-PT8201:Press",     "SCL32-BL03:CM05-PT8201:PressEval",       1.3,      5,    50      } #41HWRB
+{SCL32,     -BL03:,       CM06,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM06-PT8201:Press",     "SCL32-BL03:CM06-PT8201:PressEval",       1.3,      5,    50      } #42HWRB
+{SCL32,     -BL03:,       CM07,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM07-PT8201:Press",     "SCL32-BL03:CM07-PT8201:PressEval",       1.3,      5,    50      } #43HWRB
+{SCL32,     -BL03:,       CM08,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM08-PT8201:Press",     "SCL32-BL03:CM08-PT8201:PressEval",       1.3,      5,    50      } #44HWRB
+{SCL32,     -BL03:,       CM09,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM09-PT8201:Press",     "SCL32-BL03:CM09-PT8201:PressEval",       1.3,      5,    50      } #45HWRB
+{SCL32,     -BL03:,       CM10,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM10-PT8201:Press",     "SCL32-BL03:CM10-PT8201:PressEval",       1.3,      5,    50      } #46HWRB
+{SCL32,     -BL03:,       CM11,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM11-PT8201:Press",     "SCL32-BL03:CM11-PT8201:PressEval",       1.3,      5,    50      } #47HWRB
+{SCL32,     -BL03:,       CM12,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM12-PT8201:Press",     "SCL32-BL03:CM12-PT8201:PressEval",       1.3,      5,    50      } #48HWRB
+{SCL32,     -BL03:,       CM13,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM13-PT8201:Press",     "SCL32-BL03:CM13-PT8201:PressEval",       1.3,      5,    50      } #49HWRB
+{SCL32,     -BL03:,       CM14,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM14-PT8201:Press",     "SCL32-BL03:CM14-PT8201:PressEval",       1.3,      5,    50      } #50HWRB
+{SCL32,     -BL03:,       CM15,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM15-PT8201:Press",     "SCL32-BL03:CM15-PT8201:PressEval",       1.3,      5,    50      } #51HWRB
+{SCL32,     -BL03:,       CM16,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM16-PT8201:Press",     "SCL32-BL03:CM16-PT8201:PressEval",       1.3,      5,    50      } #52HWRB
+{SCL32,     -BL03:,       CM17,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM17-PT8201:Press",     "SCL32-BL03:CM17-PT8201:PressEval",       1.3,      5,    50      } #53HWRB
+{SCL32,     -BL03:,       CM18,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM18-PT8201:Press",     "SCL32-BL03:CM18-PT8201:PressEval",       1.3,      5,    50      } #54HWRB
+{SCL32,     -BL03:,       CM19,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "SCL32-BL03:CM19-PT8201:Press",     "SCL32-BL03:CM19-PT8201:PressEval",       1.3,      5,    50      } #55HWRB
+{P2DT,      -BL04:,       CM01,		-CV8403:,     "K?A:(B>H+0.1&&A>0)?(A-I):(B=<H&&A<J)?(A+I):A",   "P2DT-BL04:CM01-PT8201:Press",      "P2DT-BL04:CM01-PT8201:PressEval",        1.3,      5,    50      } #56P2DT 
 }

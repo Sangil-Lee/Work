@@ -6,7 +6,7 @@
 #{SCL31,     -CDL01:,       VBx02,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
 #}
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		   DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN        }
 {Cryo,      -CDL00:,       TBx01,	    -PT7203:,	  Press,		"YES",		"2.2",		"Passive"	} #TBx
 {Cryo,      -CDL00:,       TBx01,	    -PT7202:,	  Press,		"YES",		"2.2",		"Passive"	} #TBx
@@ -17,7 +17,7 @@ file "db/cd_ai_presseval.template" { pattern
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,			                INPB,						         INPC,						            INPK,  							       INPL,                                     INPJ  }							
-{SLC31,     -CDL01:,         EBx01,     -CV7401:,       "(K||L)?A:(A>=J)?J:(A+I)",      "Cryo-CDL00:TBx01-PT7203:Press",     "Cryo-CDL00:TBx01-PT7202:Press",       "Cryo-CDL00:TBx01-PT7203:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",      50    }  
-{SLC31,     -CDL01:,         EBx01,     -CV7402:,       "(K||L)?A:J",                   "Cryo-CDL00:TBx01-PT7201:Press",     "Cryo-CDL00:TBx01-PT7202:Press",       "Cryo-CDL00:TBx01-PT7201:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",      0     }  
+{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,			                INPB,   INPC,   INPK,  							       INPL,                                     INPI,  INPJ  }							
+{SLC31,     -CDL01:,         EBx01,     -CV7401:,       "(K||L)?A:(A>=J)?J:(A+I)",      "",     "",     "Cryo-CDL00:TBx01-PT7203:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",      5,     50    }  
+{SLC31,     -CDL01:,         EBx01,     -CV7402:,       "(K||L)?A:J",                   "",     "",     "Cryo-CDL00:TBx01-PT7201:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",      "",    0     }  
 }

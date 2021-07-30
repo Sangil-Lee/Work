@@ -2,19 +2,21 @@
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 
 file "db/cd_ai.template" { pattern
-{SYS,	   SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
-{Cryo,	   -CDL00:,	    TBx01,		-CV7302:,	Valve,		"YES",		"100",		"Passive"	}
-{SCL32,	   -CDL02:,	    VBx01,		-CV7302:,	Valve,		"YES",		"100",		"Passive"	}
-} #TBx 
+{SYS,       SUBSYS,     DEV,		SUBDEV,		SIGNAL,		PINI,		VAL,		SCAN		}
+#{Cryo,      -CDL00:,    TBx01,		-CV7302:,	Valve,		"YES",		"100",		"Passive"	} #TBx
+#{SCL32,     -CDL02:,    VBx01,		-CV7302:,	Valve,		"YES",		"100",		"Passive"	} #HWB
+{Cryo,      -CDL00:,    TBx01,      -MFR7301:,  Mfrate,     "YES",      "10",       "Passive"   } #TBx  
+{Cryo,      -CDL00:,    TBx01,      -MFR7201:,  Mfrate,     "YES",      "10",       "Passive"   } #TBx  
+} 
 
-#file "db/cd_ai_presseval.template" { pattern
+#file "db/cd_ai_pressevalOM0.3.template" { pattern
 #{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
-#{SCL31,     -CDL01:,      EBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
+#{SCL31,    -CDL01:,      EBx01,	    -PT7301:,	  Press,		"YES",		"2.2",		"Passive"	} #EBx
 #}
 
 
 file "db/calcout_ao.template" { pattern
-{SYS,	 SUBSYS,     DEV,	   SUBDEV,		CALC,						                      INPB,									INPC,							     INPD,                                 INPG,   INPH,   INPI,   INPJ }
-{Cryo,   -CDL00:,    TBx01,    -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "SCL32-CDL02:VBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",     0.01,   1,      5,      100  }  #1TBx
-{SCL32,  -CDL02:,    VBx01,	   -CV7302:,	"(C/D-H>G&&B=J)?A-I:(H-C/D>G&&A#J)?(A+I):A",	  "Cryo-CDL00:TBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MR7301:mfrate",	 "Cryo-CDL00:TBx01-MR7201:mfrate",	   0.01,   1,      5,      100  }  #1HWRA
+{SYS,	 SUBSYS,     DEV,	   SUBDEV,		CALC,                                               INPB,									INPC,							     INPD,                                 INPK,    INPL,   INPG,   INPH,   INPI,   INPJ   }
+{Cryo,   -CDL00:,    TBx01,    -CV7302:,	"((C/D-H)>G&&B=J)?(A-I):((H-C/D)>G&&A<J)?(A+I):A",  "SCL32-CDL02:VBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MFR7301:Mfrate",	 "Cryo-CDL00:TBx01-MFR7201:Mfrate",    "",      "",     0.01,   1,      5,      100    }  #1TBx
+{SCL32,  -CDL02:,    VBx01,	   -CV7302:,	"((C/D-H)>G&&B=J)?(A-I):((H-C/D)>G&&A<J)?(A+I):A",  "Cryo-CDL00:TBx01-CV7302:Valve",		"Cryo-CDL00:TBx01-MFR7301:Mfrate",	 "Cryo-CDL00:TBx01-MFR7201:Mfrate",	   "",      "",     0.01,   1,      5,      100    }  #1HWRA
 }

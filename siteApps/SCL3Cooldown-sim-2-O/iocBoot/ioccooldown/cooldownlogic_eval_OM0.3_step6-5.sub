@@ -7,9 +7,8 @@
 #{Cryo,	-CDL00:,	TBx01,		-PT7203:,	Press,		"YES",		"2.5",		"Passive"	}
 #} #TBx
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
-
 {SCL32,     -BL02:,       CM01,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM02,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM03,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
@@ -23,7 +22,6 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL02:,       CM11,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM12,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM13,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
-  
 {SCL32,     -BL03:,       CM01,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM02,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM03,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
@@ -43,9 +41,7 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL03:,       CM17,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM18,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM19,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
-  
 {P2DT,      -BL04:,       CM01,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #P2DT
-
 {SCL32,     -BL02:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM02,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM03,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
@@ -59,7 +55,6 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL02:,       CM11,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM12,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM13,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
-  
 {SCL32,     -BL03:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM02,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM03,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
@@ -79,7 +74,6 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL03:,       CM17,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM18,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM19,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
-  
 {P2DT,      -BL04:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #P2DT
 }
 
@@ -87,78 +81,71 @@ file "db/cd_ai_presseval.template" { pattern
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,			  INPB,						                   INPK			                           }							
-{SCL32,     -BL02:,          CM01,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #1HWRA
-{SCL32,     -BL02:,          CM02,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #2HWRA
-{SCL32,     -BL02:,          CM03,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #3HWRA
-{SCL32,     -BL02:,          CM04,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #4HWRA
-{SCL32,     -BL02:,          CM05,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #5HWRA
-{SCL32,     -BL02:,          CM06,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #6HWRA
-{SCL32,     -BL02:,          CM07,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #7HWRA
-{SCL32,     -BL02:,          CM08,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #8HWRA
-{SCL32,     -BL02:,          CM09,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #9HWRA
-{SCL32,     -BL02:,          CM10,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #10HWRA
-{SCL32,     -BL02:,          CM11,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #11HWRA
-{SCL32,     -BL02:,          CM12,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #12HWRA
-{SCL32,     -BL02:,          CM13,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #13HWRA
-
-{SCL32,     -BL03:,          CM01,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #14HWRB
-{SCL32,     -BL03:,          CM02,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #15HWRB
-{SCL32,     -BL03:,          CM03,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #16HWRB
-{SCL32,     -BL03:,          CM04,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #17HWRB
-{SCL32,     -BL03:,          CM05,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #18HWRB
-{SCL32,     -BL03:,          CM06,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #19HWRB
-{SCL32,     -BL03:,          CM07,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #20HWRB
-{SCL32,     -BL03:,          CM08,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #21HWRB
-{SCL32,     -BL03:,          CM09,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #22HWRB
-{SCL32,     -BL03:,          CM10,		-CV8402:,		"(B>H||K)?A:J"    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #23HWRB
-{SCL32,     -BL03:,          CM11,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #24HWRB
-{SCL32,     -BL03:,          CM12,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #25HWRB
-{SCL32,     -BL03:,          CM13,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #26HWRB
-{SCL32,     -BL03:,          CM14,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #27HWRB
-{SCL32,     -BL03:,          CM15,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #28HWRB
-{SCL32,     -BL03:,          CM16,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #29HWRB
-{SCL32,     -BL03:,          CM17,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #30HWRB
-{SCL32,     -BL03:,          CM18,		-CV8402:,		"(B>H||K)?A:J",   "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #31HWRB
-{SCL32,     -BL03:,          CM19,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #32HWRB
-
-{P2DT,      -BL04:,          CM01,		-CV8402:,		"(B>H||K)?A:J",	  "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",        "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval" } #33P2DT
-}
-
-{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,			                                  INPB,						                INPJ,   INPK			                        }		
-{SCL32,     -BL02:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #1HWRA
-{SCL32,     -BL02:,          CM02,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #2HWRA
-{SCL32,     -BL02:,          CM03,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #3HWRA
-{SCL32,     -BL02:,          CM04,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #4HWRA
-{SCL32,     -BL02:,          CM05,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #5HWRA
-{SCL32,     -BL02:,          CM06,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #6HWRA
-{SCL32,     -BL02:,          CM07,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #7HWRA
-{SCL32,     -BL02:,          CM08,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #8HWRA
-{SCL32,     -BL02:,          CM09,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #9HWRA
-{SCL32,     -BL02:,          CM10,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #10HWRA
-{SCL32,     -BL02:,          CM11,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #11HWRA
-{SCL32,     -BL02:,          CM12,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #12HWRA
-{SCL32,     -BL02:,          CM13,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #13HWRA
-
-{SCL32,     -BL03:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #14HWRB
-{SCL32,     -BL03:,          CM02,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #15HWRB
-{SCL32,     -BL03:,          CM03,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #16HWRB
-{SCL32,     -BL03:,          CM04,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #17HWRB
-{SCL32,     -BL03:,          CM05,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #18HWRB
-{SCL32,     -BL03:,          CM06,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #19HWRB
-{SCL32,     -BL03:,          CM07,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #20HWRB
-{SCL32,     -BL03:,          CM08,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #21HWRB
-{SCL32,     -BL03:,          CM09,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #22HWRB
-{SCL32,     -BL03:,          CM10,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #23HWRB
-{SCL32,     -BL03:,          CM11,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #24HWRB
-{SCL32,     -BL03:,          CM12,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #25HWRB
-{SCL32,     -BL03:,          CM13,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #26HWRB
-{SCL32,     -BL03:,          CM14,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #27HWRB
-{SCL32,     -BL03:,          CM15,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #28HWRB
-{SCL32,     -BL03:,          CM16,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #29HWRB
-{SCL32,     -BL03:,          CM17,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #30HWRB
-{SCL32,     -BL03:,          CM18,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",      "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #31HWRB
-{SCL32,     -BL03:,          CM19,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #32HWRB
-
-{P2DT,      -BL04:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",	  "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     50,     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval" } #33P2DT
+{SYS,	    SUBSYS,          DEV,		SUBDEV,			CALC,                                               INPB,                                   INPH,   INPI,   INPJ,   INPK			                           }							
+{SCL32,     -BL02:,          CM01,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #1HWRA
+{SCL32,     -BL02:,          CM02,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #2HWRA
+{SCL32,     -BL02:,          CM03,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #3HWRA
+{SCL32,     -BL02:,          CM04,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #4HWRA
+{SCL32,     -BL02:,          CM05,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #5HWRA
+{SCL32,     -BL02:,          CM06,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #6HWRA
+{SCL32,     -BL02:,          CM07,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #7HWRA
+{SCL32,     -BL02:,          CM08,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #8HWRA
+{SCL32,     -BL02:,          CM09,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #9HWRA
+{SCL32,     -BL02:,          CM10,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #10HWRA
+{SCL32,     -BL02:,          CM11,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #11HWRA
+{SCL32,     -BL02:,          CM12,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #12HWRA
+{SCL32,     -BL02:,          CM13,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #13HWRA
+{SCL32,     -BL03:,          CM01,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #14HWRB
+{SCL32,     -BL03:,          CM02,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #15HWRB
+{SCL32,     -BL03:,          CM03,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #16HWRB
+{SCL32,     -BL03:,          CM04,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #17HWRB
+{SCL32,     -BL03:,          CM05,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #18HWRB
+{SCL32,     -BL03:,          CM06,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #19HWRB
+{SCL32,     -BL03:,          CM07,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #20HWRB
+{SCL32,     -BL03:,          CM08,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #21HWRB
+{SCL32,     -BL03:,          CM09,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #22HWRB
+{SCL32,     -BL03:,          CM10,		-CV8402:,		"(B>H||K)?A:J"                                      "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #23HWRB
+{SCL32,     -BL03:,          CM11,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #24HWRB
+{SCL32,     -BL03:,          CM12,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #25HWRB
+{SCL32,     -BL03:,          CM13,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #26HWRB
+{SCL32,     -BL03:,          CM14,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #27HWRB
+{SCL32,     -BL03:,          CM15,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #28HWRB
+{SCL32,     -BL03:,          CM16,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #29HWRB
+{SCL32,     -BL03:,          CM17,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #30HWRB
+{SCL32,     -BL03:,          CM18,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #31HWRB
+{SCL32,     -BL03:,          CM19,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #32HWRB
+{P2DT,      -BL04:,          CM01,		-CV8402:,		"(B>H||K)?A:J",                                     "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",   1.3,    "",     100,    "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval" } #33P2DT
+{SCL32,     -BL02:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #1HWRA
+{SCL32,     -BL02:,          CM02,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #2HWRA
+{SCL32,     -BL02:,          CM03,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #3HWRA
+{SCL32,     -BL02:,          CM04,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #4HWRA
+{SCL32,     -BL02:,          CM05,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #5HWRA
+{SCL32,     -BL02:,          CM06,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #6HWRA
+{SCL32,     -BL02:,          CM07,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #7HWRA
+{SCL32,     -BL02:,          CM08,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #8HWRA
+{SCL32,     -BL02:,          CM09,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #9HWRA
+{SCL32,     -BL02:,          CM10,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #10HWRA
+{SCL32,     -BL02:,          CM11,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #11HWRA
+{SCL32,     -BL02:,          CM12,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #12HWRA
+{SCL32,     -BL02:,          CM13,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #13HWRA
+{SCL32,     -BL03:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #14HWRB
+{SCL32,     -BL03:,          CM02,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #15HWRB
+{SCL32,     -BL03:,          CM03,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #16HWRB
+{SCL32,     -BL03:,          CM04,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #17HWRB
+{SCL32,     -BL03:,          CM05,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #18HWRB
+{SCL32,     -BL03:,          CM06,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #19HWRB
+{SCL32,     -BL03:,          CM07,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #20HWRB
+{SCL32,     -BL03:,          CM08,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #21HWRB
+{SCL32,     -BL03:,          CM09,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #22HWRB
+{SCL32,     -BL03:,          CM10,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #23HWRB
+{SCL32,     -BL03:,          CM11,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #24HWRB
+{SCL32,     -BL03:,          CM12,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #25HWRB
+{SCL32,     -BL03:,          CM13,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #26HWRB
+{SCL32,     -BL03:,          CM14,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #27HWRB
+{SCL32,     -BL03:,          CM15,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #28HWRB
+{SCL32,     -BL03:,          CM16,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #29HWRB
+{SCL32,     -BL03:,          CM17,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #30HWRB
+{SCL32,     -BL03:,          CM18,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #31HWRB
+{SCL32,     -BL03:,          CM19,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #32HWRB
+{P2DT,      -BL04:,          CM01,		-CV8403:,		"K?A:(B>H&&A>=I)?(A-I):(B<=H&&A<J)?(A+I):A",        "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",   1.3,    5,      50,     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval" } #33P2DT
 }

@@ -2,69 +2,66 @@
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 
 file "db/cd_ai.template" { pattern
-{SCL31,     -BL01:,       CM01,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM02,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM03,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM04,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM05,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM06,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM07,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM08,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM09,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM10,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM11,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM12,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM13,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM14,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM15,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM16,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM17,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM18,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM19,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM20,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM21,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-{SCL31,     -BL01:,       CM22,	        -FT8301:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
-
-{SCL32,     -BL02:,       CM01,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM02,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM03,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM04,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM05,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM06,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM07,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM08,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM09,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM10,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM11,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM12,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-{SCL32,     -BL02:,       CM13,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
-  
-{SCL32,     -BL03:,       CM01,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM02,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM03,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM04,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM05,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM06,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM07,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM08,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM09,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM10,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM11,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM12,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM13,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM14,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM15,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM16,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM17,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM18,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM19,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
-  
-{P2DT,      -BL04:,       CM01,	        -FT8201:,	  Flow,		"YES",		"2.2",		"Passive"	} #P2DT
+{SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,   PINI,		VAL,		SCAN		}
+{SCL31,     -BL01:,       CM01,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM02,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM03,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM04,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM05,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM06,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM07,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM08,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM09,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM10,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM11,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM12,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM13,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM14,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM15,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM16,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM17,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM18,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM19,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM20,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM21,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL31,     -BL01:,       CM22,	        -FT8402:,	  Flow,     "YES",		"2.2",		"Passive"	} #QWR
+{SCL32,     -BL02:,       CM01,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM02,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM03,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM04,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM05,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM06,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM07,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM08,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM09,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM10,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM11,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM12,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL02:,       CM13,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRA
+{SCL32,     -BL03:,       CM01,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM02,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM03,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM04,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM05,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM06,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM07,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM08,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM09,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM10,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM11,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM12,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM13,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM14,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM15,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM16,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM17,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM18,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{SCL32,     -BL03:,       CM19,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #HWRB
+{P2DT,      -BL04:,       CM01,	        -FT8403:,	  Flow,		"YES",		"2.2",		"Passive"	} #P2DT
 } #TBx
 
-file "db/cd_ai_presseval.template" { pattern
+file "db/cd_ai_pressevalOM0.3.template" { pattern
 {SYS,   	SUBSYS,		  DEV,		    SUBDEV,		  SIGNAL,		PINI,		VAL,		SCAN		}
-
 {SCL31,     -BL01:,       CM01,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
 {SCL31,     -BL01:,       CM02,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
 {SCL31,     -BL01:,       CM03,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
@@ -87,7 +84,6 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL31,     -BL01:,       CM20,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
 {SCL31,     -BL01:,       CM21,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
 {SCL31,     -BL01:,       CM22,	        -PT8301:,	  Press,		"YES",		"2.2",		"Passive"	} #QWR
-
 {SCL32,     -BL02:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM02,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM03,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
@@ -101,7 +97,6 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL02:,       CM11,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM12,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
 {SCL32,     -BL02:,       CM13,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRA
-  
 {SCL32,     -BL03:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM02,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM03,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
@@ -120,8 +115,7 @@ file "db/cd_ai_presseval.template" { pattern
 {SCL32,     -BL03:,       CM16,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM17,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
 {SCL32,     -BL03:,       CM18,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
-{SCL32,     -BL03:,       CM19,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB
-  
+{SCL32,     -BL03:,       CM19,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #HWRB 
 {P2DT,      -BL04:,       CM01,	        -PT8201:,	  Press,		"YES",		"2.2",		"Passive"	} #P2DT
 }
 
@@ -129,60 +123,60 @@ file "db/cd_ai_presseval.template" { pattern
 ###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao.template" { pattern
-{SYS,       SUBSYS,     DEV,    SUBDEV,	    CALC,                                                     INPB,                                     INPC,                                    INPK,                                        INPG   }		
-{SCL31,     -BL01:,     CM01,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM02,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM03,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM04,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM05,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM06,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM07,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM08,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM09,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM10,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM11,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM12,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM13,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM14,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM15,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM16,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM17,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM18,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM19,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM20,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM21,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR
-{SCL31,     -BL01:,     CM22,   -CV8402:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8301:PressEval",     0.5    } #QWR    
-{SCL32,     -BL02:,     CM01,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM02,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM03,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM04,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM05,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM06,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM07,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM08,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM09,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM10,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM11,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM12,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL02:,     CM13,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRA
-{SCL32,     -BL03:,     CM01,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM02,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM03,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM04,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM05,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM06,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM07,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM08,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM09,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM10,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM11,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM12,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM13,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM14,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM15,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM16,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM17,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM18,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{SCL32,     -BL03:,     CM19,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #HWRB
-{P2DT,      -BL04:,     CM01,   -CV8403:,   "K?A:(B<=H&&A<=G-0.1)?(A+I):(B<=H&&A>=G+0.1)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-P8201:PressEval",     0.5    } #P2DT
+{SYS,       SUBSYS,     DEV,    SUBDEV,	    CALC,                                                               INPB,                                     INPC,                                    INPK,                                        INPG,     INPH,       INPI,     INPJ    }		
+{SCL31,     -BL01:,     CM01,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM02,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM03,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM04,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM05,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM06,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM07,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM08,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM09,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM10,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM11,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM12,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM13,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM14,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM15,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM16,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM17,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM18,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM19,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM20,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM21,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR
+{SCL31,     -BL01:,     CM22,   -CV8402:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8301:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8402:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8301:PressEval",     0.5,      1.3,        5,        100     } #QWR    
+{SCL32,     -BL02:,     CM01,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM02,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM03,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM04,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM05,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM06,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM07,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM08,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM09,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM10,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM11,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM12,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL02:,     CM13,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRA
+{SCL32,     -BL03:,     CM01,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM02,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM03,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM04,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM05,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM06,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM07,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM08,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM09,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM10,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM11,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM12,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM13,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM14,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM15,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM16,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM17,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM18,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{SCL32,     -BL03:,     CM19,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #HWRB
+{P2DT,      -BL04:,     CM01,   -CV8403:,   "K?A:(B<=H&&C<=G-0.1&&A<J)?(A+I):(B<=H&&C>=G+0.1&&A>0)?(A-I):A",    "$(SYS)$(SUBSYS)$(DEV)-PT8201:Press",     "$(SYS)$(SUBSYS)$(DEV)-FT8403:Flow",     "$(SYS)$(SUBSYS)$(DEV)-PT8201:PressEval",     0.5,      1.3,        5,        100     } #P2DT
 }
