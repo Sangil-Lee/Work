@@ -27,6 +27,7 @@ dbLoadTemplate("db/cooldown03.sub")
 #dbLoadTemplate("db/cooldown51.sub")
 #dbLoadTemplate("db/cooldown52.sub")
 #dbLoadTemplate("db/cooldown53.sub")
+dbLoadTemplate("db/subhePAK.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

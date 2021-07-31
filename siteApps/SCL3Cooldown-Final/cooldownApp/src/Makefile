@@ -1,3 +1,5 @@
+$(shell ./fortrancompile.sh)
+
 TOP=../..
 
 include $(TOP)/configure/CONFIG
@@ -12,10 +14,13 @@ PROD_IOC = cooldown
 # cooldown.dbd will be created and installed
 DBD += cooldown.dbd
 
+gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/8
+
 # cooldown.dbd will be made up from these files:
 cooldown_DBD += base.dbd
 cooldown_DBD += epidRecord.dbd  scalerRecord.dbd 
 cooldown_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
+cooldown_DBD += HePAKLogic.dbd
 
 # Include dbd files from all support applications:
 cooldown_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
@@ -29,6 +34,8 @@ cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
 # cooldown_registerRecordDeviceDriver.cpp derives from cooldown.dbd
 cooldown_SRCS += cooldown_registerRecordDeviceDriver.cpp
+cooldown_SRCS += Dnst_Viscosity.f
+cooldown_SRCS += HePAKLogic.cpp
 
 # Build the main IOC entry point on workstation OSs.
 cooldown_SRCS_DEFAULT += cooldownMain.cpp
@@ -51,7 +58,7 @@ ifneq ($(SNCSEQ),)
 endif
 
 # Finally link to the EPICS Base libraries
-cooldown_LIBS += asyn calc std sscan iocshExt
+cooldown_LIBS += asyn calc std sscan iocshExt gfortran
 cooldown_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

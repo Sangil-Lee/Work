@@ -1,8 +1,29 @@
 import sys
 import re
 
+#python3.8 GenWaveformPV.py Setpt_list.txt ai WaveValue
+argc = len(sys.argv)
+#print(argc)
+if argc != 4:
+    print('Usage:python3.8 '+str(sys.argv[0])+' PVlistFile Datatype(ai/bi/longin,ao/bo/longout) WaveformName ')
+    raise SystemExit('EX)python3.8 '+str(sys.argv[0])+' Setpt_list.txt ai WaveValue')
+
 filename = str(sys.argv[1])
 dtype = str(sys.argv[2]).lower()
+wfname = str(sys.argv[3])
+
+datatype = ''
+if(dtype == 'ao' or dtype == 'ai'): 
+    datatype = 'double'
+elif(dtype == 'longin' or dtype == 'longout'): datatype = 'int'
+elif(dtype == 'bi' or dtype == 'bo'): datatype = 'bool'
+
+fieldlist = []
+valuelist = ['\"\"', '\"\"', '\"\"', 'YES']
+if(dtype == 'ai' or dtype == 'bi' or dtype == 'longin'):
+    fieldlist = ['DESC', 'VAL', 'INP', 'PINI']
+else: 
+    fieldlist = ['DESC', 'VAL', 'OUT', 'PINI']
 
 pvlist = []
 f = open(filename, 'r')
@@ -14,18 +35,20 @@ f.close()
 seqfilename   = "snc"+filename.rsplit('.', 1)[0]+"WF"
 templfilename = 'templ'+filename.rsplit('.', 1)[0]
 subfilename   = 'sub'+filename.rsplit('.', 1)[0]
+wffilename   = 'wf'+filename.rsplit('.', 1)[0]
 
 seqExt = ".stt"
 dbdExt = ".dbd"
 templExt = ".template"
 subExt = ".sub"
+vdbExt = ".vdb"
 
 seq   = open('../src/'+seqfilename+seqExt, "w")
 dbd   = open('../src/'+seqfilename+dbdExt, "w")
 templ = open('../Db/'+templfilename+templExt, "w")
 sub   = open('../Db/'+subfilename+subExt, "w")
-
-########### Seqencer File Generation ###################
+vdb   = open('../Db/'+wffilename+vdbExt, "w")
+#########################################################
 lenlist = len(pvlist)
 nl = '\n'
 tab = '\t'
@@ -36,12 +59,27 @@ prefix = '$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)'
 signal = '$(SIGNAL)'
 charnull = "'\\0'"
 #########################################################
+########### Waveform vdb Generation ###################
+sncText = f'\
+record(waveform, "{prefix}{wfname}"){nl}\
+{open}{nl}\
+    field(DESC, "Debug Waveform") {nl}\
+    field(NELM, "{lenlist}") {nl}\
+    field(FTVL, "{datatype.upper()}") {nl}\
+{close}{nl}'
+vdb.write(sncText)
+vdb.close()
+#########################################################
+########### Seqencer DBD Generation ###################
+sncText = "registrar("+seqfilename+"Registrar)\n"
+dbd.write(sncText)
+dbd.close()
+########### Seqencer File Generation ###################
 sncText = f'program {seqfilename} {nl}{nl}\
 option +r; {nl}\
-double wfList[{lenlist}]{nl}\
+{datatype} wfList[{lenlist}];{nl}\
 assign wfList to {open}{nl}' 
 seq.write(sncText)
-
 for orgidx, pvname in enumerate(pvlist):
     idx = orgidx + 1
     if(idx%5 == 0 and idx == lenlist):
@@ -53,10 +91,15 @@ for orgidx, pvname in enumerate(pvlist):
     else:
         sncText = f'"{pvname}",'
     seq.write(sncText)
+prefix = prefix.replace('$(','{')
+prefix = prefix.replace(')','}')
 sncText = f'{close};{nl}{nl}\
 monitor wfList;{nl}\
 evflag evWave;{nl}\
 sync wfList to evWave;{nl}\
+{datatype}  wfValue[{lenlist}];{nl}\
+assign  wfValue to "{prefix}{wfname}";{nl}\
+monitor wfValue; {nl}\
 ss make{seqfilename} {nl}\
 {open}{nl}\
     state ini{nl}\
@@ -80,19 +123,6 @@ ss make{seqfilename} {nl}\
 seq.write(sncText)
 seq.close()
 ##############################################################
-
-datatype = ''
-fieldlist = []
-valuelist = ['\"\"', '\"\"', '\"\"', 'YES']
-if(dtype == 'ao' or dtype == 'ai'): 
-    datatype = 'DOUBLE'
-elif(dtype == 'longin' or dtype == 'longout'): datatype = 'int'
-elif(dtype == 'bi' or dtype == 'bo'): datatype = 'bool'
-
-if(dtype == 'ai' or dtype == 'bi' or dtype == 'longin'):
-    fieldlist = ['DESC', 'VAL', 'INP', 'PINI']
-else: 
-    fieldlist = ['DESC', 'VAL', 'OUT', 'PINI']
 
 sncText = f'{nl}\
 record({dtype}, "{signal}"){nl}\

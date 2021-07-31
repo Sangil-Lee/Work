@@ -31,6 +31,8 @@ DB += cooldown21.sub
 DB += cooldown51.sub
 DB += cooldown52.sub
 DB += cooldown53.sub
+DB += templhePAK.template
+DB += subhePAK.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

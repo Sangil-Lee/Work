@@ -1,7 +1,7 @@
 program sncSetpt_listWF 
 
 option +r; 
-double wfList[120]
+double wfList[120];
 assign wfList to {
 "Cryo-CDL00:TBx01-XV7502:Setpt","Cryo-CDL00:TBx01-XV7501:Setpt","Cryo-CDL00:TBx01-CV7505:Setpt","Cryo-CDL00:TBx01-CV7502:Setpt","Cryo-CDL00:TBx01-CV7503:Setpt",
 "Cryo-CDL00:TBx01-CV7501:Setpt","SCL31-CDL01:EBx01-CV7501:Setpt","P2DT-CDL04:VBx01-CV7501:Setpt","P2DT-CDL04:VBx01-XV7501:Setpt","SCL32-CDL03:VBx19-CV7501:Setpt",
@@ -32,6 +32,9 @@ assign wfList to {
 monitor wfList;
 evflag evWave;
 sync wfList to evWave;
+double  wfValue[120];
+assign  wfValue to "{SYS}{SUBSYS}{DEV}{SUBDEV}WaveValue";
+monitor wfValue; 
 ss makesncSetpt_listWF 
 {
     state ini
