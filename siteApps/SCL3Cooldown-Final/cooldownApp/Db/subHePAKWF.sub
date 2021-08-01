@@ -1,0 +1,64 @@
+#######QWR VFM#####
+file "db/Waveform.template" { pattern
+{SYS,           SUBSYS,        DEV,           SUBDEV,       SIGNAL,         DESC,        NELM }
+{SCL31,         -CDL01:,       EBx01,         -WF7001:,     Param,          "Desc",      14   } 
+{SCL31,         -CDL01:,       VBx02,         -WF7001:,     Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx04,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx06,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx08,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx10,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx12,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx14,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx16,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx18,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx20,		  -WF7001:,		Param,          "Desc",      14   } 
+{SCL31,			-CDL01:,	   VBx22,		  -WF7001:,		Param,          "Desc",      14   } 
+}
+
+file "db/Waveform.template" { pattern
+{SYS,           SUBSYS,        DEV,           SUBDEV,       SIGNAL,         DESC,        NELM }
+{SCL31,			-CDL01:,	   QWR,			  -WFIn7001:,	Result,         "Desc",      12   } ###Ebx~QWR Virtual In-Press Result(B), from Python Solver
+}
+
+#######HWR VFM#####
+file "db/Waveform.template" { pattern
+{SYS,           SUBSYS,        DEV,           SUBDEV,       SIGNAL,         DESC,        NELM }
+{SCL32,			-CDL02:,	   VBx01,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx02,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx03,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx04,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx05,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx06,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx07,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx08,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx09,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx10,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx11,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx12,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL02:,	   VBx13,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx01,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx02,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx03,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx04,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx05,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx06,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx07,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx08,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx09,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx10,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx11,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx12,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx13,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx14,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx15,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx16,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx17,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx18,		  -WF7001:,     Param,          "Desc",      11   } 
+{SCL32,			-CDL03:,	   VBx19,		  -WF7001:,     Param,          "Desc",      11   } 
+{P2DT,			-CDL04:,	   VBx01,		  -WF7001:,     Param,          "Desc",      11   }    
+}
+
+file "db/Waveform.template" { pattern
+{SYS,           SUBSYS,        DEV,           SUBDEV,       SIGNAL,         DESC,        NELM }
+{SCL32,			-CDL23:,	   HWR,			  -WFIn7001:,	Result,         "Desc",      33   } ###HWR~P2DT Virtual In-Press Result(B), from Python Solver
+}

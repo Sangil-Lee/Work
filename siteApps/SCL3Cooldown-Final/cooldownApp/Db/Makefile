@@ -33,6 +33,8 @@ DB += cooldown52.sub
 DB += cooldown53.sub
 DB += templhePAK.template
 DB += subhePAK.sub
+DB += Waveform.template
+DB += subHePAKWF.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
