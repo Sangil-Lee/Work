@@ -8,10 +8,6 @@ from softioc import softioc, builder
 import cothread
 import sympy as sym
 from cothread.catools import caget, caput, camonitor
-import epics
-import os
-os.environ['EPICS_CA_SERVER_PORT'] = '10064'
-os.environ['EPICS_CA_ADDR_LIST'] = '192.168.68.100:5064 192.168.68.100:10064'
 
 builder.SetDeviceName('MY-DEVICE-PREFIX')
 
@@ -24,13 +20,6 @@ ao = builder.aOut('AO', initial_value=12.45, always_update=True,
 E1Out = builder.aOut('E1Out', initial_value=8, always_update=True,
                   on_update=lambda v: E1Val.set(v))
 vfm = builder.aIn('VFM', initial_value=0.0)
-
-wf1 = epics.PV('SCL31-CDL01:EBx01-WF7501:Dens')
-
-wflist1 = wf1.get()
-print(wflist1)
-#wf2 = epics.PV('SCL31-CDL01:VBx02-WF7501:Dens')
-#WF = builder.Waveform('WFTest', initial_value = 0.0, NELM='11', FTVL='FLOAT')
 #vfm = builder.aOut('VFM', initial_value=0.0, always_update=True, on_update=lambda v: vfm.set(v))
 
 X = sym.Symbol('X')
@@ -74,10 +63,6 @@ def update():
     while True:
         ai.set(ai.get() + 1)
         vfm.set(float(resval))
-        wflist1 = wf1.get()
-        print(wflist1)
-        #wflist2 = list(wf2.get())
-        #print(wflist2)
         cothread.Sleep(1)
 
 cothread.Spawn(update)

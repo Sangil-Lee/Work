@@ -13,6 +13,7 @@ vfm_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
+dbLoadRecords("db/RefValue.vdb","SYS=SRF,SUBSYS=-TF:,DEV=Cooldown,SUBDEV=-RefValue:")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
