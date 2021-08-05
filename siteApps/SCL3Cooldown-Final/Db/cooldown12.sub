@@ -1,0 +1,14 @@
+#
+file "db/Heater.template" { pattern
+{SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,               INPB,                               INPG,   INPJ, INPC, INPD, INPH, INPI, INPK, INPL,OUTB     }
+{SLC31,     -CDL01:,         EBx01,     -EH7401:,   Heater, "(B<G)?0:J",        "SCL31-CDL01:EBx01-LT7401:Level",   50,     10,   "",   "",   "",   "",   "",   "",  "Setpt"  }  
+}
+ 
+
+
+file "db/CVValve.template" { pattern
+{SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,			                INPB,	INPC,	  INPK,  							     INPL,									 INPI,  INPJ ,	INPD,	INPH,	INPG,	OUTB}
+{SLC31,     -CDL01:,         EBx01,     -CV7401:,   Valve,	"(K||L)?A:(A>=J)?J:(A+I)",      "",     "",       "Cryo-CDL00:TBx01-PT7203:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",	 5,		50,		"",		"",		"",		"Setpt" }  
+{SLC31,     -CDL01:,         EBx01,     -CV7402:,   Valve,	"(K||L)?A:J",                   "",     "",       "Cryo-CDL00:TBx01-PT7201:PressEval",   "Cryo-CDL00:TBx01-PT7202:PressEval",	 "",	0 ,		"",		"",		"",		"Setpt" }  
+}
+

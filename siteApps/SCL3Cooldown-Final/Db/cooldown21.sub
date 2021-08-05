@@ -1,0 +1,11 @@
+#cooldown21
+file "db/CVValve.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			        INPK,  							        INPI,   INPJ,INPB,INPC,INPL,INPD,INPH,INPG,OUTB}
+{Cryo,      -CDL00:,        TBx01,		-XV7201:,	Valve,	"J",                       "",                                  "",     1    ,"", "",  "",  "",  "",  "",  "Setpt" } #1TBx
+{Cryo,      -CDL00:,        TBx01,		-CV7201:,	Valve,	"K?A:(A>=J)?A:(A+I)",      "Cryo-CDL00:TBx01-PT7202:PressEval", 5,      100  ,"", "",  "",  "",  "",  "",  "Setpt" } #2TBx
+{Cryo,      -CDL00:,        TBx01,		-CV7303:,	Valve,	"K?A:J",                   "Cryo-CDL00:TBx01-PT7304:PressEval", "",     0    ,"", "",  "",  "",  "",  "",  "Setpt" } #3TBx
+{Cryo,      -CDL00:,        TBx01,		-XV7302:,	Valve,	"J",                       "",                                  "",     0    ,"", "",  "",  "",  "",  "",  "Setpt" } #4TBx
+{SCL32,     -CDL02:,        VBx01,		-CV7302:,	Valve,	"J",                       "",                                  "",     0    ,"", "",  "",  "",  "",  "",  "Setpt" } #1HWRA01
+{SCL32,     -CDL02:,        VBx01,		-XV7301:,	Valve,	"J",                       "",                                  "",     0    ,"", "",  "",  "",  "",  "",  "Setpt" } #2HWRA01
+}
+

@@ -28,6 +28,7 @@ cooldown_DBD += $(ASYN)/dbd/asyn.dbd
 cooldown_DBD += $(CALC)/dbd/calc.dbd
 cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
 cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
+cooldown_DBD += asubWFParam.dbd
 
 # Add all the support libraries needed by this IOC
 #cooldown_LIBS += xxx
@@ -35,7 +36,7 @@ cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 # cooldown_registerRecordDeviceDriver.cpp derives from cooldown.dbd
 cooldown_SRCS += cooldown_registerRecordDeviceDriver.cpp
 cooldown_SRCS += Dnst_Viscosity.f
-cooldown_SRCS += HePAKLogic.cpp
+cooldown_SRCS += HePAKLogic.cpp asubWFParam.cpp
 
 # Build the main IOC entry point on workstation OSs.
 cooldown_SRCS_DEFAULT += cooldownMain.cpp

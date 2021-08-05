@@ -1,0 +1,208 @@
+program sncCooldown12
+option +r; 
+
+%%#include <math.h> 
+
+char OM12[51][60] = {
+"Cryo-CDL00:TBx01-TT7302","Cryo-CDL00:TBx01-TT7582","P2DT-CDL04:VBx01-TT7502","SCL32-CDL03:VBx19-TT7502","SCL32-CDL03:VBx18-TT7502",
+"SCL32-CDL03:VBx17-TT7502","SCL32-CDL03:VBx16-TT7502","SCL32-CDL03:VBx15-TT7502","SCL32-CDL03:VBx14-TT7502","SCL32-CDL03:VBx13-TT7502",
+"SCL32-CDL03:VBx12-TT7502","SCL32-CDL03:VBx11-TT7502","SCL32-CDL03:VBx10-TT7502","SCL32-CDL03:VBx09-TT7502","SCL32-CDL03:VBx08-TT7502",
+"SCL32-CDL03:VBx07-TT7502","SCL32-CDL03:VBx06-TT7502","SCL32-CDL03:VBx05-TT7502","SCL32-CDL03:VBx04-TT7502","SCL32-CDL03:VBx03-TT7502",
+"SCL32-CDL03:VBx02-TT7502","SCL32-CDL03:VBx01-TT7502","SCL32-CDL02:VBx13-TT7502","SCL32-CDL02:VBx12-TT7502","SCL32-CDL02:VBx11-TT7502",
+"SCL32-CDL02:VBx10-TT7502","SCL32-CDL02:VBx09-TT7502","SCL32-CDL02:VBx08-TT7502","SCL32-CDL02:VBx07-TT7502","SCL32-CDL02:VBx06-TT7502",
+"SCL32-CDL02:VBx05-TT7502","SCL32-CDL02:VBx04-TT7502","SCL32-CDL02:VBx03-TT7502","SCL32-CDL02:VBx02-TT7502","SCL32-CDL02:VBx01-TT7502",
+"SCL31-CDL01:VBx22-TT7503","SCL31-CDL01:VBx20-TT7503","SCL31-CDL01:VBx18-TT7503","SCL31-CDL01:VBx16-TT7503","SCL31-CDL01:VBx14-TT7503",
+"SCL31-CDL01:VBx12-TT7503","SCL31-CDL01:VBx10-TT7503","SCL31-CDL01:VBx08-TT7503","SCL31-CDL01:VBx06-TT7503","SCL31-CDL01:VBx04-TT7503",
+"SCL31-CDL01:VBx02-TT7503","SCL31-CDL01:EBx01-TT7503","SCL31-CDL01:EBx01-TT7502","Cryo-CDL00:TBx01-TT7502","SCL31-CDL01:EBx01-TT7504",
+"SCL31-CDL01:EBx01-LT7401"};
+
+
+int stopindex = 2;
+char cv7401_valveName[40] = "SCL31-CDL01:EBx01-CV7401";
+char cv7402_valveName[40] = "SCL31-CDL01:EBx01-CV7402";
+char eh7401_valveName[40] = "SCL31-CDL01:EBx01-EH7401";
+char lt7401_valveName[40] = "SCL31-CDL01:EBx01-LT7401";
+
+string steppv;
+assign steppv to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepPV";
+monitor steppv;
+
+int ss_start = 0;
+assign ss_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}Start";
+monitor ss_start;
+evflag	efStop;
+sync ss_start efStop;
+
+int index = 0;
+assign index to "{SYS}{SUBSYS}{DEV}{SUBDEV}Index";
+monitor index;
+
+float cdDelay;
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}ScanTime";
+monitor cdDelay;
+
+int presz_start = 0;
+assign presz_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}PresStart";
+monitor presz_start;
+
+char	logicname[60];
+int		logic_proc = 1;
+assign	logic_proc to "";
+
+char	valvename[60];
+float	valve_val;
+assign  valve_val to "";
+
+char	valve_evalname[60];
+float	valve_eval;
+assign	valve_eval to "";
+
+int first = 0;
+
+ss ssCDOM12
+{
+	state stopCDOM12
+	{
+		when(efTestAndClear(efStop) && ss_start == 1)
+		{
+			index = 0;
+			pvPut(index, SYNC);
+		}state EBx_CV7401
+	}
+
+	state EBx_CV7401
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC",	cv7401_valveName);
+			sprintf(valvename, "%s:Valve",			cv7401_valveName);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valve_val, valvename);
+			pvMonitor(valve_val);
+			pvAssign(logic_proc, logicname);
+			pvMonitor(logic_proc);
+
+			first = 1;
+		} state EBx_CV7401
+
+		when(delay(cdDelay) && valve_val < 50)
+		{
+			logic_proc = 1;
+			pvPut(logic_proc, SYNC);
+			printf("EBx CV7401 Processing...\n");
+		} state EBx_CV7401
+
+		when(delay(cdDelay) && valve_val >= 50)
+		{
+			first = 0;
+
+			pvStopMonitor(valve_val);
+			pvStopMonitor(logic_proc);
+			pvAssign(valve_val,  "");
+			pvAssign(logic_proc, "");
+
+			valvename[0] = '\0';
+			logicname[0] = '\0';
+
+			printf("EBx Transition CV7402.\n");
+		} state EBx_CV7402
+
+	}
+
+	state EBx_CV7402
+	{
+		when(first == 0)
+		{
+			sprintf(logicname, "%s:CDLogic.PROC",	cv7402_valveName);
+			sprintf(valvename, "%s:Valve",			cv7402_valveName);
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valve_val, valvename);
+			pvMonitor(valve_val);
+			pvAssign(logic_proc, logicname);
+			pvMonitor(logic_proc);
+
+			first = 1;
+		} state EBx_CV7402
+
+		when(delay(cdDelay) && valve_val > 0)
+		{
+			logic_proc = 1;
+			pvPut(logic_proc, SYNC);
+			printf("EBx CV7402 Processing...\n");
+		} state EBx_CV7402
+
+		when(delay(cdDelay) && valve_val <= 0)
+		{
+			first = 0;
+
+			pvStopMonitor(valve_val);
+			pvStopMonitor(logic_proc);
+			pvAssign(valve_val,  "");
+			pvAssign(logic_proc, "");
+
+			valvename[0] = '\0';
+			logicname[0] = '\0';
+
+			printf("EBx Transition EH7401.\n");
+		} state EBx_EH7401
+
+	}
+
+	state EBx_EH7401
+	{
+		when(first == 0)
+		{
+			sprintf(logicname,		"%s:CDLogic.PROC",	eh7401_valveName);
+			sprintf(valvename,		"%s:Valve",			eh7401_valveName);
+			sprintf(valve_evalname, "%s:Level",			lt7401_valveName);
+			printf("%s, %s, %s\n", logicname, valvename, valve_evalname);
+
+			pvAssign(valve_val,  valvename);
+			pvAssign(logic_proc, logicname);
+			pvAssign(valve_eval, valve_evalname);
+
+			pvMonitor(valve_val);
+			pvMonitor(logic_proc);
+			pvMonitor(valve_eval);
+
+			first = 1;
+		} state EBx_EH7401
+
+		when(delay(cdDelay) && valve_val < 10 && valve_eval >= 50)
+		{
+			logic_proc = 1;
+			pvPut(logic_proc, SYNC);
+			printf("EBx EH7401 Processing...\n");
+		} state EBx_EH7401
+
+		when(delay(cdDelay) && valve_val >= 10 && valve_eval < 50)
+		{
+			first = 0;
+
+			pvStopMonitor(valve_val);
+			pvStopMonitor(logic_proc);
+			pvStopMonitor(valve_eval);
+			pvAssign(valve_val,  "");
+			pvAssign(valve_eval,  "");
+			pvAssign(logic_proc, "");
+
+			valvename[0] = '\0';
+			logicname[0] = '\0';
+
+
+			//PLC:PID, SCL31-CDL01:EBx01-CV7401:PID = Turn On(1)
+
+			printf("EBx Transition Stop.\n");
+		} state PhaseCond
+	}
+
+	state PhaseCond
+	{
+		when(TRUE)
+		{
+		} state stopCDOM12
+	}
+
+}
