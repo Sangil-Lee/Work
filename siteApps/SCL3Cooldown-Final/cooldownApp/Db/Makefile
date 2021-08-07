@@ -36,6 +36,12 @@ DB += templhePAK.template
 DB += subhePAK.sub
 DB += Waveform.template
 DB += subHePAKWF.sub
+DB += ASubWFParam_QWR_VBx02.template
+DB += ASubWFParam_QWR.template
+DB += ASubWFParam_HWR.template
+DB += subASubWFParam.sub
+DB += PT7002Calc.template
+DB += subPT7002Calc.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

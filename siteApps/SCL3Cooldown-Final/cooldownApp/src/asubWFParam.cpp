@@ -38,6 +38,49 @@ static long InitWFParamQWR(aSubRecord *pRec)
 
 static long InitWFParamHWR(aSubRecord *pRec)
 {
+    return(0);
+}
+
+//
+static long ProcWFParamHWR(aSubRecord *pRec)
+{
+	long status = 0;
+	//E1 = 3 D1 = 2 F1 = 5 E2 = 3 D2 = 2 F2 = 5
+	//H  = 2 I = 7 C = 5 K = 2 L = 4 N = 4 M = 8 J = 7
+	//fx = sym.Eq(E*(X-D)**0.5*F**0.5-H*(I-C+X*K/L*(N/M)**0.25)**0.5*J**0.5, 0)
+	//gx = E*(X-D)**0.5*F**0.5-H*(I-C+X*K/L*(N/M)**0.25)**0.5*J**0.5
+#if 1
+	double *d = (double*)pRec->a; double *e = (double*)pRec->b; double *f = (double*)pRec->c;
+	double *c_old = (double*)pRec->d;
+	double *h = (double*)pRec->e; double *i = (double*)pRec->f; double *j = (double*)pRec->g;
+	double *k = (double*)pRec->h; double *l = (double*)pRec->i; double *m = (double*)pRec->j;
+	double *n = (double*)pRec->k;
+
+	DBADDR *pdbWFParamAddr   = (DBADDR*)(&pRec->outa)->value.pv_link.pvt;
+	waveformRecord *pWFParam = (waveformRecord *)pdbWFParamAddr->precord;
+	double *pWFParamVal      = (double*)pRec->vala;
+	pWFParamVal[0] = d[0];
+	pWFParamVal[1] = e[0];
+	pWFParamVal[2] = f[0];
+	pWFParamVal[3] = c_old[0];
+	pWFParamVal[4] = h[0];
+	pWFParamVal[5] = i[0];
+	pWFParamVal[6] = j[0];
+	pWFParamVal[7] = k[0];
+	pWFParamVal[8] = l[0];
+	pWFParamVal[8] = m[0];
+	pWFParamVal[10] = n[0];
+#else
+#endif
+	
+	dbProcess((dbCommon*)pWFParam);
+    return(0);
+}
+//
+static long ProcWFParamQWR(aSubRecord *pRec)
+{
+	long status = 0;
+#if 1
 	//E1 = 3 D1 = 2 F1 = 5 E2 = 3 D2 = 2 F2 = 5
 	//H  = 2 I = 7 C = 5 K = 2 L = 4 N = 4 M = 8 J = 7
 	//fx = sym.Eq(E1*(X-D1)**0.5*F1**0.5+E2*(X-D2)**0.5*F2**0.5-H*(I-C+X*K/L*(N/M)**0.25)**0.5*J**0.5, 0)
@@ -68,19 +111,7 @@ static long InitWFParamHWR(aSubRecord *pRec)
 	pWFParamVal[12] = m[0];
 	pWFParamVal[13] = n[0];
 	
-    return(0);
-}
-
-//
-static long ProcWFParamHWR(aSubRecord *pRec)
-{
-    return(0);
-}
-//
-static long ProcWFParamQWR(aSubRecord *pRec)
-{
-	long status = 0;
-#if 1
+	dbProcess((dbCommon*)pWFParam);
 
 #else
 	//INPA

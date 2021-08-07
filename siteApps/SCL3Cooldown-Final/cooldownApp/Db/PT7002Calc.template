@@ -1,0 +1,17 @@
+# pyIOCClient.py Solved B(Input Virtual Pressure), Calcation for Thermal Shield line
+
+record(ai, "$(SYS)$(SUBSYS)$(DEV)-PT7001:Press") {
+	field(VAL,"0.0")
+}
+
+#### Calcation Output Virtual Pressure for Thermal Shield line
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Press") {
+  field(CALC, "A*(B/C)*(E/F)**0.25")
+  field(INPA, "$(INPA):Press")
+  field(INPB, "$(INPB):Press")
+  field(INPC, "$(INPC):Dens")
+  field(INPD, "$(INPD):Dens")
+  field(INPE, "$(INPE):Visco")
+  field(INPF, "$(INPF):Visco")
+}
+
