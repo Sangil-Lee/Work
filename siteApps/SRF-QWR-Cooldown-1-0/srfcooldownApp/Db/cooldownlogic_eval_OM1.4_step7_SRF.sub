@@ -1,0 +1,29 @@
+
+#Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
+
+file "db/cd_ai.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,     SIGNAL,             PINI,		VAL,		SCAN		}
+{SRF01,     -Bunker1:,      HWRA01,		-Temp:,     Cavity1Bottom,      "YES",		"200",		"Passive"	} #HWRA 
+{SRF01,     -Bunker1:,      HWRA01,		-Temp:,     Cavity2Bottom,      "YES",		"200",		"Passive"	} #HWRA
+{SRF01,     -Bunker1:,      HWRA01,		-Temp:,     Target,             "YES",		"10",		"Passive"	} #HWRA  
+
+{SRF01,     -Bunker1:,      HWRB01,		-Temp:,     Cavity2Bottom,      "YES",		"200",		"Passive"	} #HWRB 
+{SRF01,     -Bunker1:,      HWRB01,		-Temp:,     Cavity3Bottom,      "YES",		"200",		"Passive"	} #HWRB
+{SRF01,     -Bunker1:,      HWRB01,		-Temp:,     Target,             "YES",		"10",		"Passive"	} #HWRB  
+}
+
+file "db/cd_ai_pressevalOM0.3.template" { pattern
+{SYS,   	SUBSYS,         DEV,        SUBDEV,     SIGNAL,         PINI,		VAL,		SCAN        }
+{SRF01,     -Bunker1:,      HWRA01,		-Pres:,     2KHiValue,		"YES",		"2.2",		"Passive"	} #HWRA   
+{SRF01,     -Bunker1:,      HWRB01,		-Pres:,     2KHiValue,		"YES",		"2.2",		"Passive"	} #HWRB 
+}
+
+
+###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
+###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
+
+file "db/calcout_ao_OM1.4_step6.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,			SIGNAL,     CALC,                                                                                   INPB,                                       INPC,                                           INPD,                                   INPE,                                           INPK                                        }							
+{SRF01,     -Bunker1:,      HWRA01,		-Valve:,		CDFBCV,     "(B>1.3)?0:min(C,E)<=150?(A+0.01):(min(C,E)<=D-10)?0:(min(C,E)<D+10||K)?A:(A+0.01)",    "SRF01-Bunker1:HWRA01-Pres:2KHiValue",      "SRF01-Bunker1:HWRA01-Temp:Cavity1Bottom",      "SRF01-Bunker1:HWRA01-Temp:Target",     "SRF01-Bunker1:HWRA01-Temp:Cavity2Bottom",      "SRF01-Bunker1:HWRA01-Pres:2KHiValueEval"   } #1QWR
+{SRF01,     -Bunker1:,      HWRB01,		-Valve:,		CDFBCV,     "(B>1.3)?0:min(C,E)<=150?(A+0.01):(min(C,E)<=D-10)?0:(min(C,E)<D+10||K)?A:(A+0.01)",    "SRF01-Bunker1:HWRB01-Pres:2KHiValue",      "SRF01-Bunker1:HWRB01-Temp:Cavity1Bottom",      "SRF01-Bunker1:HWRB01-Temp:Target",     "SRF01-Bunker1:HWRB01-Temp:Cavity2Bottom",      "SRF01-Bunker1:HWRB01-Pres:2KHiValueEval"   } #1QWR
+}
