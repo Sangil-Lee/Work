@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += cooldownlogic_eval_OM1.4_step6_SRF.sub
 DB += cooldownlogic_eval_OM1.4_step7_SRF.sub
+DB += RefValue.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
