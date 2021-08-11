@@ -40,8 +40,8 @@ srfcooldown_SRCS_vxWorks += -nil-
 
 ifneq ($(SNCSEQ),)
     srfcooldown_SNCFLAGS += +r
-    srfcooldown_DBD  += CDOM1Cycle.dbd
-    srfcooldown_SRCS += CDOM1Cycle.stt
+    srfcooldown_DBD  += sncSRFCooldown.dbd
+    srfcooldown_SRCS += sncSRFCooldown.stt
     srfcooldown_LIBS += seq pv
 endif
 

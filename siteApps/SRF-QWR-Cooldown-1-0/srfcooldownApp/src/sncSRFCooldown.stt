@@ -1,0 +1,67 @@
+program sncSRFCooldown
+option +r; 
+
+%%#include <math.h> 
+
+char SRF_QWR01_Valve[60] = "SRF01-Bunker1:QWR01-Valve";
+
+char    valvename[60];
+float   valveval;
+assign  valveval to "";
+
+float om1415Val;
+assign om1415Val to "{SYS}{SUBSYS}{DEV}{SUBDEV}Value";
+monitor om1415Val;
+
+float cdDelay;
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}ScanTime";
+monitor cdDelay;
+
+//Valve Control
+char    logicname[60];
+int     proc = 1;
+assign  proc to "";
+
+ss ssSRFCooldown
+{
+    state Stop
+    {
+        when(TRUE)
+        {
+			sprintf(logicname,   "%s:CDLogic.PROC", SRF_QWR01_Valve);
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			sprintf(valvename,   "%s:CDLogic.C",    SRF_QWR01_Valve);
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+        }state SRFCooldown
+    }
+
+	state SRFCooldown
+	{
+		when(delay(cdDelay) && valveval > 4.5 )
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state SRFCooldown
+
+		when(delay(cdDelay) && valveval <= 4.5 )
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+		}state PhaseEnd
+	}
+
+	state PhaseEnd
+	{
+		when(TRUE)
+		{
+		}state PhaseEnd
+
+		when(TRUE)
+		{
+		}state Stop
+	}
+}
