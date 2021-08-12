@@ -1,0 +1,10 @@
+
+#
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
+  field(SCAN, "$(SCAN)")
+  field(PINI, "$(PINI)")
+  field(VAL, "$(VAL)")
+#field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INP) CP")			#After verification, should be connected  with real signal 
+}
+
+

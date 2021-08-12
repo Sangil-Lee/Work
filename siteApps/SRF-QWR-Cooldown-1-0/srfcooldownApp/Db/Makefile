@@ -7,6 +7,14 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
+DB += ai.template
+DB += bi.template
+DB += longin.template
+DB += stringin.template
+DB += Additional.sub
+DB += PressR.template
+DB += TempR.template
+DB += calcout_ao_OM1.4_step6.template
 DB += cooldownlogic_eval_OM1.4_step6_SRF.sub
 DB += cooldownlogic_eval_OM1.4_step7_SRF.sub
 DB += RefValue.vdb

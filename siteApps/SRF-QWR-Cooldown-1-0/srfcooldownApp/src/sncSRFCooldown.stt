@@ -9,12 +9,18 @@ char    valvename[60];
 float   valveval;
 assign  valveval to "";
 
+int ss_start = 0;
+assign ss_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}Start";
+monitor ss_start;
+evflag	efStop;
+sync ss_start to efStop;
+
 float om1415Val;
 assign om1415Val to "{SYS}{SUBSYS}{DEV}{SUBDEV}Value";
 monitor om1415Val;
 
 float cdDelay;
-assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}ScanTime";
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
 monitor cdDelay;
 
 //Valve Control
@@ -26,7 +32,7 @@ ss ssSRFCooldown
 {
     state Stop
     {
-        when(TRUE)
+        when(ss_start == 1)
         {
 			sprintf(logicname,   "%s:CDLogic.PROC", SRF_QWR01_Valve);
 			pvAssign(proc, logicname);
@@ -62,6 +68,8 @@ ss ssSRFCooldown
 
 		when(TRUE)
 		{
+			ss_start = 0;
+			pvPut(ss_start, SYNC);
 		}state Stop
 	}
 }

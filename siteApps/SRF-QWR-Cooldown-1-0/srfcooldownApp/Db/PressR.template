@@ -1,0 +1,25 @@
+
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)"){
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp")
+  field(SCAN, "$(SCAN)")
+  field(PINI, "$(PINI)")
+  field(VAL, "$(VAL)")
+  field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INP) CP")			#After verification, should be connected  with real signal 
+}
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp"){
+  field(SCAN, "Passive")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "5")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval")
+  field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+}
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval"){
+  field(SCAN, "Passive")
+  field(NELM, "5")
+  field(CALC, "A:=AMIN(AA[0,C-1]);B:=AMAX(AA[0,C-1]);C<5?1:ABS(A-B)<D?0:1")
+  field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp")
+  field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp.NUSE")
+  field(INPD, "0.11")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}

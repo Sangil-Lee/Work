@@ -13,10 +13,13 @@ srfcooldown_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
-dbLoadRecords("db/RefValue.vdb","SYS=SRF,SUBSYS=-TF:,DEV=Cooldown,SUBDEV=-RefValue:")
+dbLoadTemplate("db/Additional.sub")
+dbLoadRecords("db/RefValue.vdb",  "SYS=SRF01,SUBSYS=-Bunker1:,DEV=QWR01,SUBDEV=-Temp:")
+dbLoadTemplate("db/cooldownlogic_eval_OM1.4_step6_SRF.sub", "SYS=SRF01, SUBSYS=-Bunker1:, DEV=QWR01, SUBDEV=-Valve:, SIGNAL=Valve")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+

@@ -1,0 +1,23 @@
+file "db/ai.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,	SIGNAL,   DESC,						VAL}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,	StepDly,  "Processing Time",		"1.0"}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  Value,    "Temp. Value",			"0"}
+}
+
+file "db/longin.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,							VAL}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  Index,    "Idx. Valve Ctrl.",			"0"}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  Cycle,    "OM14-15 Interation Cycl.",	"0"}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  PresStart,"Start PressEval",			"0"}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  Start,    "Bunker1 Logic Start",		"0"}
+}
+
+file "db/bi.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,                         VAL,      ZNAM,     ONAM}
+#{SRF01,   -Bunker1:,   QWR01,    -Logic:,  Start,    "Bunker1 Logic Start",        "0",      "Stop",   "Start"}
+}
+
+file "db/stringin.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,               VAL}
+{SRF01,    -Bunker1:,   QWR01,    -Logic:,  StepPV,   "Bunker1 CD-Logic", "Cool-down"}
+}

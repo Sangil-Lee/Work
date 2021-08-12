@@ -1,22 +1,106 @@
 
 #Test, VAL:1 -> 1.2 -> 1.5 => 100(J), VAL: 2 -> 2.2 -> 2.5, Inc+I
 
-file "db/cd_ai.template" { pattern
-{SYS,	    SUBSYS,         DEV,		SUBDEV,     SIGNAL,             PINI,		VAL,		SCAN		}
-{SRF01,     -Bunker1:,      QWR01,		-Temp:,     Cavity1Bottom,      "YES",		"200",		"Passive"	} #QWR  
-{SRF01,     -Bunker1:,      QWR01,		-Temp:,     Target,             "YES",		"10",		"Passive"	} #QWR   
+#file "db/cd_ai.template" { pattern
+file "db/TempR.template" { pattern
+{SYS,	    SUBSYS,         DEV,		SUBDEV,     SIGNAL,             PINI,		VAL,		SCAN,		INP	}
+#{SRF01,     -Bunker1:,      QWR01,		-Temp:,     Cavity1Bottom,      "YES",		"200",		"Passive",	""	} #QWR  
+{SRF01,     -Bunker1:,      QWR01,		-Temp:,     Cav1Bot,			"YES",		"200",		"Passive",  "Cavity1Bottom"	} #QWR  
 }
 
-file "db/cd_ai_pressevalOM0.3.template" { pattern
-{SYS,   	SUBSYS,         DEV,        SUBDEV,     SIGNAL,         PINI,		VAL,		SCAN        }
-{SRF01,     -Bunker1:,      QWR01,		-Pres:,     4KHiValue,		"YES",		"2.2",		"Passive"	} #QWR   
+#file "db/cd_ai_pressevalOM0.3.template" { pattern
+file "db/PressR.template" { pattern
+{SYS,   	SUBSYS,         DEV,        SUBDEV,     SIGNAL,         PINI,		VAL,		SCAN,		INP  }
+#{SRF01,     -Bunker1:,      QWR01,		-Pres:,     4KHiValue,		"YES",		"2.2",		"Passive",	""} #QWR   
+{SRF01,     -Bunker1:,      QWR01,		-Pres:,     4KHi,			"YES",		"2.2",		"Passive",	"4KHiValue"} #QWR   
 }
-
-
-###{"$(SYS)$(SUBSYS)$(DEV)-CV7301:Valve",	"$(SYS)$(SUBSYS):EBx01-PT7301:Press",	"$(SYS)$(SUBSYS):VBx02-PT7301:Press",	"$(SYS)$(SUBSYS):TBx03-PT7303:Press",	"E:=ABS(C-D);F:=ABS(C-B);(B<=H&&E<=G&&F<=G)?100:A+5",	"$(INPA)",	"$(INPA)"	}
-###"D:=ABS(B-C);(D>=E)?A+0:(D<F)?100:(A>=100)?100:A+G"
 
 file "db/calcout_ao_OM1.4_step6.template" { pattern
-{SYS,	    SUBSYS,         DEV,		SUBDEV,			SIGNAL,     CALC,                                                                   INPB,                                   INPC,                                       INPD,                                   INPK                                        }							
-{SRF01,     -Bunker1:,      QWR01,		-Valve:,		CDFBCV,     "(B>1.3)?0:(C<=150)?(A+0.01):(C<=D-10)?0:(C<D+10||K)?A:(A+0.01)",       "SRF01-Bunker1:QWR01-Pres:4KHiValue",   "SRF01-Bunker1:QWR01-Temp:Cavity1Bottom",   "SRF01-Bunker1:QWR01-Temp:Target",      "SRF01-Bunker1:QWR01-Pres:4KHiValueEval"    } #1QWR
+{SYS,	    SUBSYS,         DEV,		SUBDEV,		 CALC,                                                                   INPB,									INPC,                                       INPD,                                   INPK,									INPE,	INPF,	INPG,	INPH,	INPI,	INPJ,	INPL,	OUTB   }							
+#{SRF01,     -Bunker1:,      QWR01,		-Valve:,	 "(B>1.3)?0:(C<=150)?(A+0.01):(C<=D-10)?0:(C<D+10||K)?A:(A+0.01)",       "SRF01-Bunker1:QWR01-Pres:4KHiValue",	"SRF01-Bunker1:QWR01-Temp:Cavity1Bottom",   "SRF01-Bunker1:QWR01-Temp:Target",      "SRF01-Bunker1:QWR01-Pres:4KHiValueEval",											""    } #1QWR
+{SRF01,     -Bunker1:,      QWR01,		-Valve:,	 "(B>1.3)?0:(C<=150)?(A+0.01):(C<=D-10)?0:(C<D+10||K)?A:(A+0.01)",       "SRF01-Bunker1:QWR01-Pres:4KHi",		"SRF01-Bunker1:QWR01-Temp:Cav1Bot",			"SRF01-Bunker1:QWR01-Temp:Target",      "SRF01-Bunker1:QWR01-Pres:4KHiEval",	"",		"",		"",		"",		"",		"",		"",		"CDSetPoint"   } #1QWR
 }
+  
+
+#SRF01-Bunker1:QWR01-Valve:CDFBCV	
+#SRF01-Bunker1:QWR01-Valve:CDOutputCV	
+#SRF01-Bunker1:QWR01-Valve:CDSetManualRamp	
+#SRF01-Bunker1:QWR01-Valve:CDSetPoint	
+
+
+#SRF01-Bunker1:QWR01-Enthal:40KIn	
+#SRF01-Bunker1:QWR01-Enthal:40KOut	
+#SRF01-Bunker1:QWR01-Flow:Dnst	
+#SRF01-Bunker1:QWR01-Flow:MFlow	
+#SRF01-Bunker1:QWR01-Heater:4KCurrR	
+#SRF01-Bunker1:QWR01-Heater:4KSetTemp	
+#SRF01-Bunker1:QWR01-Heater:4KStepTime	
+#SRF01-Bunker1:QWR01-Heater:4KVoltR	
+#SRF01-Bunker1:QWR01-Heater:4KWattR	
+#SRF01-Bunker1:QWR01-Heater:4KWattSet	
+#SRF01-Bunker1:QWR01-Heater:CDCurrR	
+#SRF01-Bunker1:QWR01-Heater:CDSetTemp	
+#SRF01-Bunker1:QWR01-Heater:CDStepTime	
+#SRF01-Bunker1:QWR01-Heater:CDVoltR	
+#SRF01-Bunker1:QWR01-Heater:CDWattR	
+#SRF01-Bunker1:QWR01-Heater:CDWattSet	
+#SRF01-Bunker1:QWR01-Heatload:40K	
+#SRF01-Bunker1:QWR01-Level:4KCVCm	
+#SRF01-Bunker1:QWR01-Level:4KCVPerc	
+#SRF01-Bunker1:QWR01-Pres:40KHiValue	
+#SRF01-Bunker1:QWR01-Pres:4KHiValue	
+#SRF01-Bunker1:QWR01-Pres:M5200	
+#SRF01-Bunker1:QWR01-Pres:MDWS01	
+#SRF01-Bunker1:QWR01-Pres:MSMA	
+#SRF01-Bunker1:QWR01-Press:P30	
+#SRF01-Bunker1:QWR01-Press:P30_Raw	
+#SRF01-Bunker1:QWR01-Solv:4KSetClosePres	
+#SRF01-Bunker1:QWR01-Solv:4KSetOpenPres	
+#SRF01-Bunker1:QWR01-TMP:CavityRpmFB	
+#SRF01-Bunker1:QWR01-TMP:ChamRpmFB	
+#SRF01-Bunker1:QWR01-Temp:40KBack	
+#SRF01-Bunker1:QWR01-Temp:40KBottom	
+#SRF01-Bunker1:QWR01-Temp:40KCoup1	
+#SRF01-Bunker1:QWR01-Temp:40KFront	
+#SRF01-Bunker1:QWR01-Temp:40KIn	
+#SRF01-Bunker1:QWR01-Temp:40KOut	
+#SRF01-Bunker1:QWR01-Temp:40KVacu	
+#SRF01-Bunker1:QWR01-Temp:40KWTC1	
+#SRF01-Bunker1:QWR01-Temp:40KWTC2	
+#SRF01-Bunker1:QWR01-Temp:4KIn	
+#SRF01-Bunker1:QWR01-Temp:4KReserv	
+#SRF01-Bunker1:QWR01-Temp:4KValve	
+#SRF01-Bunker1:QWR01-Temp:Beam1	
+#SRF01-Bunker1:QWR01-Temp:BlowerInlet	
+#SRF01-Bunker1:QWR01-Temp:BlowerOutlet	
+#SRF01-Bunker1:QWR01-Temp:CDLine	
+#SRF01-Bunker1:QWR01-Temp:CDValve	
+#SRF01-Bunker1:QWR01-Temp:Cavity1Bottom	
+#SRF01-Bunker1:QWR01-Temp:Cavity1Top	
+#SRF01-Bunker1:QWR01-Temp:HX1-PT	
+#SRF01-Bunker1:QWR01-Temp:HX2-DT	
+#SRF01-Bunker1:QWR01-Temp:HX3-DT	
+#SRF01-Bunker1:QWR01-Temp:HX3-PT	
+#SRF01-Bunker1:QWR01-Temp:HeReturn	
+#SRF01-Bunker1:QWR01-Temp:HeSupply	
+#SRF01-Bunker1:QWR01-Temp:StrongBack1	
+#SRF01-Bunker1:QWR01-Temp:StrongBack2	
+#SRF01-Bunker1:QWR01-Temp:Tuner1	
+#SRF01-Bunker1:QWR01-Vacu:CavityHi	
+#SRF01-Bunker1:QWR01-Vacu:ChamHi	
+#SRF01-Bunker1:QWR01-Vacu:ChamLow	
+#SRF01-Bunker1:QWR01-Valve:4KCycleTime	
+#SRF01-Bunker1:QWR01-Valve:4KDGain	
+#SRF01-Bunker1:QWR01-Valve:4KFBCV	
+#SRF01-Bunker1:QWR01-Valve:4KIGain	
+#SRF01-Bunker1:QWR01-Valve:4KOutputCV	
+#SRF01-Bunker1:QWR01-Valve:4KPGain	
+#SRF01-Bunker1:QWR01-Valve:4KSetDeadband	
+#SRF01-Bunker1:QWR01-Valve:4KSetManual	
+#SRF01-Bunker1:QWR01-Valve:4KSetManualRamp	
+#SRF01-Bunker1:QWR01-Valve:4KSetPoint	
+#SRF01-Bunker1:QWR01-Valve:CDFBCV	
+#SRF01-Bunker1:QWR01-Valve:CDOutputCV	
+#SRF01-Bunker1:QWR01-Valve:CDSetManualRamp	
+#SRF01-Bunker1:QWR01-Valve:CDSetPoint	
+#SRF01-Bunker1:QWR01:Fanout	

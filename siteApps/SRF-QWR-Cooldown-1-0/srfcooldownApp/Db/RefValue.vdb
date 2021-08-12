@@ -4,13 +4,14 @@
 #! DBDEND
 
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetX") {
-  field(SCAN, "1 second")
+  field(SCAN, "5 second")
   field(PINI, "YES")
   field(CALC, "B<=0?A:A>46800?A:A+C")
   field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetX")
   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Target")
-  field(INPB, "0")
-  field(INPC, "1")
+#field(INPB, "0")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)-Logic:Start")
+  field(INPC, "5")
 }
 
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Target") {
