@@ -23,4 +23,4 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-#seq sncSRFCooldown, "SYS=SRF01,SUBSYS=-Bunker1:, DEV=HWR01, SUBDEV=-Logic:"
+seq sncSRFCooldown, "SYS=SRF01,SUBSYS=-Bunker1:, DEV=HWRB01, SUBDEV=-Logic:"

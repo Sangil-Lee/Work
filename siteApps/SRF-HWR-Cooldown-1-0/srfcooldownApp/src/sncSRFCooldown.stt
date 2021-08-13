@@ -38,7 +38,7 @@ ss ssSRFCooldown
 	{
 		when(TRUE)
 		{
-			printf("Wait Cooldown Logic Processing!!\n");
+			printf("Wait Cooldown Logic Process!!\n");
 			strcpy(steppv, "Wait Cooldown Proc");
 			pvPut(steppv, SYNC);
 		}state Stop
@@ -55,6 +55,7 @@ ss ssSRFCooldown
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
 
+			printf("Started Cooldown!!\n");
 			strcpy(steppv, "Started Cooldown");
 			pvPut(steppv, SYNC);
 
@@ -68,11 +69,12 @@ ss ssSRFCooldown
 			proc = 1;
 			pvPut(proc, SYNC);
 
+			printf("Processing Cooldown Logic !!\n");
 			strcpy(steppv, "Processing Cooldown");
 			pvPut(steppv, SYNC);
 		}state SRFCooldown
 
-		when(delay(cdDelay) && phaseend >= 1  )
+		when(delay(cdDelay) && phaseend >= 1  && ss_start != 1 )
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -84,7 +86,7 @@ ss ssSRFCooldown
 
 	state PhaseEnd
 	{
-		when(TRUE)
+		when(delay(cdDelay) && ss_start != 1)
 		{
 			ss_start = 0;
 			pvPut(ss_start, SYNC);
