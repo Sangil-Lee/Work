@@ -1,0 +1,402 @@
+program seqHeater
+option +r;
+
+//Global Variable 
+//Cool-down Heater
+float cd_volt_read, cd_curr_read, cd_watt_set, cd_volt_out, cd_steptime, cd_tempset, cd_linetemp;
+short cd_scan, cd_scanstatus, cd_output, cd_tempalarm, cd_tempreset;
+//Channel select
+//short cd4k_channel;
+//4K Heater
+float h4k_volt_read, h4k_curr_read, h4k_watt_set, h4k_volt_out, h4k_steptime, h4k_tempset, h4k_linetemp;
+short h4k_scan, h4k_scanstatus, h4k_output, h4k_tempalarm, h4k_tempreset;
+//2K Heater
+//float h2k_volt_read, h2k_curr_read, h2k_watt_set, h2k_volt_out, h2k_steptime, h2k_tempset, h2k_linetemp;
+float h2k_volt_read, h2k_curr_read, h2k_watt_set, h2k_volt_out, h2k_steptime, h2k_tempset;
+short h2k_scan, h2k_scanstatus, h2k_output, h2k_tempalarm, h2k_tempreset;
+
+//assing PV
+//Cool-down Heater
+assign cd_scanstatus to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDScanStatus";
+assign cd_scan to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDScan";
+assign cd_volt_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDVoltR";
+assign cd_curr_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDCurrR";
+assign cd_watt_set to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDWattSet";
+//assign cd_watt_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDWattR";
+assign cd_volt_out to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDVoltSetDummy";
+assign cd_output to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDOutputOnOffDummy";
+assign cd_steptime to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDStepTime";
+assign cd_tempset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDTempSet";
+assign cd_tempalarm to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDTempAlarm";
+assign cd_tempreset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CDTempAlarmReset";
+assign cd_linetemp to "SRF1-QWR01:CM-Temp:CDLine";
+
+//Channel select
+//assign cd4k_channel to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:CD4KSetChannel";
+
+//4K Heater
+assign h4k_scanstatus to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KScanStatus";
+assign h4k_scan to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KScan";
+assign h4k_volt_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KVoltR";
+assign h4k_curr_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KCurrR";
+assign h4k_watt_set to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KWattSet";
+assign h4k_volt_out to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KVoltSetDummy";
+//assign h4k_output to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KOutputOnOff";
+assign h4k_steptime to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KStepTime";
+assign h4k_tempset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KTempSet";
+assign h4k_tempalarm to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KTempAlarm";
+assign h4k_tempreset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:4KTempAlarmReset";
+assign h4k_linetemp to "SRF1-QWR01:CM-Temp:4KReserv";
+
+//2K Heater
+assign h2k_scanstatus to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KScanStatus";
+assign h2k_scan to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KScan";
+assign h2k_volt_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KVoltR";
+assign h2k_curr_read to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KCurrR";
+assign h2k_watt_set to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KWattSet";
+assign h2k_volt_out to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KVoltSetDummy";
+assign h2k_output to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KOutputOnOffDummy";
+assign h2k_steptime to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KStepTime";
+assign h2k_tempset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KTempSet";
+assign h2k_tempalarm to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KTempAlarm";
+assign h2k_tempreset to "{SYS}-{SUBSYS}:{DEV}-{SUBDEV}:2KTempAlarmReset";
+//assign h2k_linetemp to "SRF1-QWR01:CM-Temp:2KReserv";
+
+
+//monitor
+//Cool-down Heater
+monitor cd_scanstatus;
+monitor cd_scan;
+monitor cd_volt_read;
+monitor cd_curr_read;
+monitor cd_watt_set;
+//monitor cd_watt_read;
+monitor cd_volt_out;
+monitor cd_output;
+monitor cd_steptime;
+monitor cd_tempset;
+monitor cd_tempreset;
+monitor cd_linetemp;
+//Channel select
+//monitor cd4k_channel;
+//4K Heater
+monitor h4k_scanstatus;
+monitor h4k_scan;
+monitor h4k_volt_read;
+monitor h4k_curr_read;
+monitor h4k_watt_set;
+monitor h4k_volt_out;
+//monitor h4k_output;
+monitor h4k_steptime;
+monitor h4k_tempset;
+monitor h4k_tempreset;
+monitor h4k_linetemp;
+//2K Heater
+monitor h2k_scanstatus;
+monitor h2k_scan;
+monitor h2k_volt_read;
+monitor h2k_curr_read;
+monitor h2k_watt_set;
+monitor h2k_volt_out;
+monitor h2k_output;
+monitor h2k_steptime;
+monitor h2k_tempset;
+monitor h2k_tempreset;
+//monitor h2k_linetemp;
+
+//Local Variable
+//Cool-down Heater
+float cd_volt_gap, cd_watt_before;
+short cd_inc_flag, cd_dec_flag;
+//4K Heater
+float h4k_volt_gap, h4k_watt_before;
+short h4k_inc_flag, h4k_dec_flag;
+//2K Heater
+float h2k_volt_gap, h2k_watt_before;
+short h2k_inc_flag, h2k_dec_flag;
+
+
+ss scan
+{
+  state init{
+		when(){
+			//Cool-down Heater
+			cd_watt_before=0.0;
+			cd_inc_flag=0;
+			cd_dec_flag=0;
+			//4k Heater
+			h4k_watt_before=0.0;
+			h4k_inc_flag=0;
+			h4k_dec_flag=0;
+			printf("Sequence program started\n");	
+			//2k Heater
+			h2k_watt_before=0.0;
+			h2k_inc_flag=0;
+			h2k_dec_flag=0;
+		} state Scan_Start
+	}
+    
+	state Scan_Start{
+		//when (cd_output==1 && cd_tempset > 100 ){
+		//	cd_tempalarm = 1;
+		//	cd_output = 0;
+		//	pvPut(cd_tempalarm);
+		//	pvPut(cd_output);
+		//} state init
+		//when (cd_tempreset==1){
+		//	cd_tempalarm = 0;
+		//	pvPut(cd_tempalarm);
+		//} state init
+		//when (cd_output==1 && h4k_tempset > 100 ){
+		//	h4k_tempalarm = 1;
+		//	cd_output = 0;
+		//	pvPut(h4k_tempalarm);
+		//	pvPut(cd_output);
+		//} state init
+		//when (h4k_tempreset==1){
+		//	h4k_tempalarm = 0;
+		//	pvPut(h4k_tempalarm);
+		//} state init
+		//when (h2k_output==1 && h2k_tempset > 100 ){
+		//	h2k_tempalarm = 1;
+		//	h2k_output = 0;
+		//	pvPut(h2k_tempalarm);
+		//	pvPut(h2k_output);
+		//} state init
+		//when (h2k_tempreset==1){
+		//	h2k_tempalarm = 0;
+		//	pvPut(h2k_tempalarm);
+		//} state init
+		
+		//CD heater
+		when (cd_scan==1 && cd_scanstatus==0){
+			printf("CD Watt Scan Start!\n");
+			pvGet(cd_watt_set);
+			pvGet(cd_volt_read);
+			pvGet(cd_curr_read);
+			cd_volt_out=cd_volt_read;
+			cd_watt_before=cd_volt_read*cd_curr_read;
+			pvGet(cd_steptime);
+			printf("cd_steptime =%f\n", cd_steptime);
+			if(cd_watt_before < cd_watt_set){
+				cd_volt_gap=0.5;
+				cd_scanstatus=1;
+				pvPut(cd_scanstatus);
+				cd_inc_flag=1;
+				printf("scan condition 111 gap=%f, cd_scanstatus=%d, cd_volt_out=%f\n", cd_volt_gap, cd_scanstatus, cd_volt_out);
+			}else if(cd_watt_before > cd_watt_set){
+				cd_volt_gap=-0.5;
+				cd_scanstatus=1;
+				pvPut(cd_scanstatus);
+				cd_dec_flag=1;
+				printf("scan condition 222 gap=%f, cd_scanstatus=%d, cd_volt_out=%f\n", cd_volt_gap, cd_scanstatus, cd_volt_out);
+			}else {
+				cd_scan=0;
+				pvPut(cd_scan);
+				cd_scanstatus=0;
+				pvPut(cd_scanstatus);
+				printf("CD Watt Scan eles!\n");
+			}
+		} state Scan_CD_Output
+		//4K heater
+		when (h4k_scan==1 && h4k_scanstatus==0){
+			printf("4k Watt Scan Start!\n");
+			pvGet(h4k_watt_set);
+			pvGet(h4k_volt_read);
+			pvGet(h4k_curr_read);
+			h4k_volt_out=h4k_volt_read;
+			h4k_watt_before=h4k_volt_read*h4k_curr_read;
+			pvGet(h4k_steptime);
+			printf("4k_steptime =%f\n", h4k_steptime);
+			if(h4k_watt_before < h4k_watt_set){
+				h4k_volt_gap=0.5;
+				h4k_scanstatus=1;
+				pvPut(h4k_scanstatus);
+				h4k_inc_flag=1;
+				printf("scan condition 111 gap=%f, 4k_scanstatus=%d, 4k_volt_out=%f\n", h4k_volt_gap, h4k_scanstatus, h4k_volt_out);
+			}else if(h4k_watt_before > h4k_watt_set){
+				h4k_volt_gap=-0.5;
+				h4k_scanstatus=1;
+				pvPut(h4k_scanstatus);
+				h4k_dec_flag=1;
+				printf("scan condition 222 gap=%f, 4k_scanstatus=%d, 4k_volt_out=%f\n", h4k_volt_gap, h4k_scanstatus, h4k_volt_out);
+			}else {
+				h4k_scan=0;
+				pvPut(h4k_scan);
+				h4k_scanstatus=0;
+				pvPut(h4k_scanstatus);
+				printf("4k Watt Scan eles!\n");
+			}
+		} state Scan_4K_Output
+		//2K heater
+		when (h2k_scan==1 && h2k_scanstatus==0){
+			printf("2k Watt Scan Start!\n");
+			pvGet(h2k_watt_set);
+			pvGet(h2k_volt_read);
+			pvGet(h2k_curr_read);
+			h2k_volt_out=h2k_volt_read;
+			h2k_watt_before=h2k_volt_read*h2k_curr_read;
+			pvGet(h2k_steptime);
+			printf("2k_steptime =%f\n", h2k_steptime);
+			if(h2k_watt_before < h2k_watt_set){
+				h2k_volt_gap=0.5;
+				h2k_scanstatus=1;
+				pvPut(h2k_scanstatus);
+				h2k_inc_flag=1;
+				printf("scan condition 111 gap=%f, 2k_scanstatus=%d, 2k_volt_out=%f\n", h2k_volt_gap, h2k_scanstatus, h2k_volt_out);
+			}else if(h2k_watt_before > h2k_watt_set){
+				h2k_volt_gap=-0.5;
+				h2k_scanstatus=1;
+				pvPut(h2k_scanstatus);
+				h2k_dec_flag=1;
+				printf("scan condition 222 gap=%f, 2k_scanstatus=%d, 2k_volt_out=%f\n", h2k_volt_gap, h2k_scanstatus, h2k_volt_out);
+			}else {
+				h2k_scan=0;
+				pvPut(h2k_scan);
+				h2k_scanstatus=0;
+				pvPut(h2k_scanstatus);
+				printf("2k Watt Scan eles!\n");
+			}
+		} state Scan_2K_Output
+	}
+
+	state Scan_CD_Output{
+		//CD heater
+		when(cd_scan==1 && cd_scanstatus==1 && cd_output==1){
+				pvPut(cd_volt_out);
+		} state Scan_CD_Check
+    when(cd_scan==0 || cd_scanstatus==0 || cd_output==0){
+			cd_scan = 0;
+			cd_scanstatus = 0;
+			pvPut(cd_scan);
+			pvPut(cd_scanstatus);
+			printf("CD scan stop\n");
+		} state Scan_Start
+	}
+
+	state Scan_4K_Output{
+		//4K heater
+		when(h4k_scan==1 && h4k_scanstatus==1 && cd_output==1){			
+			pvPut(h4k_volt_out);
+		} state Scan_4K_Check
+    when(h4k_scan==0 || h4k_scanstatus==0 || cd_output==0){
+			h4k_scan = 0;
+			h4k_scanstatus = 0;
+			pvPut(h4k_scan);
+			pvPut(h4k_scanstatus);
+			printf("4K scan stop\n");
+		} state Scan_Start
+	}
+
+	state Scan_2K_Output{
+		//2K heater
+		when(h2k_scan==1 && h2k_scanstatus==1 && h2k_output==1){
+				pvPut(h2k_volt_out);
+		} state Scan_2K_Check
+    when(h2k_scan==0 || h2k_scanstatus==0 || h2k_output==0){
+			h2k_scan = 0;
+			h2k_scanstatus = 0;
+			pvPut(h2k_scan);
+			pvPut(h2k_scanstatus);
+			printf("2K scan stop\n");
+		} state Scan_Start
+	}
+
+	state Scan_CD_Check{
+		//CD heater
+		when(cd_scan==1 && delay(cd_steptime)){
+			//pvGet(cd_scan);
+			pvGet(cd_volt_read);
+			cd_volt_out=cd_volt_read+cd_volt_gap;
+			if(cd_volt_out < 0){
+				cd_volt_out = 0;
+			}
+			pvGet(cd_curr_read);
+			cd_watt_before=cd_volt_read*cd_curr_read;
+			printf("cd_volt_out =%f, cd_volt_read=%f, cd_curr_read=%f, cd_watt_before=%f \n", cd_volt_out,cd_volt_read,cd_curr_read,cd_watt_before);
+			if(cd_inc_flag==1 && cd_watt_set<=cd_watt_before){
+				cd_scanstatus=0;
+				pvPut(cd_scanstatus);
+				cd_scan=0;
+				pvPut(cd_scan);
+				cd_inc_flag=0;
+				printf("scan end 111 cd_watt_before =%f, cd_volt_out=%f, cd_volt_read=%f \n", cd_watt_before, cd_volt_out, cd_volt_read);
+			}else if(cd_dec_flag==1 && cd_watt_set>=cd_watt_before){
+				cd_scanstatus=0;
+				pvPut(cd_scanstatus);
+				cd_scan=0;
+				pvPut(cd_scan);
+				cd_dec_flag=0;
+				if(cd_volt_out == 0){
+					pvPut(cd_volt_out);
+				}
+        printf("scan end 222 cd_watt_before =%f, cd_volt_out=%f, cd_volt_read=%f \n", cd_watt_before, cd_volt_out, cd_volt_read);
+			}
+		}state Scan_CD_Output
+	}
+	state Scan_4K_Check{
+		//4k heater
+		when(h4k_scan==1 && delay(h4k_steptime)){
+			//pvGet(h4k_scan);
+			pvGet(h4k_volt_read);
+			h4k_volt_out=h4k_volt_read+h4k_volt_gap;
+			if(h4k_volt_out < 0){
+				h4k_volt_out = 0;
+			}
+			pvGet(h4k_curr_read);
+			h4k_watt_before=h4k_volt_read*h4k_curr_read;
+			printf("4k_volt_out =%f, 4k_volt_read=%f, 4k_curr_read=%f, 4k_watt_before=%f \n", h4k_volt_out,h4k_volt_read,h4k_curr_read,h4k_watt_before);
+			if(h4k_inc_flag==1 && h4k_watt_set<=h4k_watt_before){
+				h4k_scanstatus=0;
+				pvPut(h4k_scanstatus);
+				h4k_scan=0;
+				pvPut(h4k_scan);
+				h4k_inc_flag=0;
+				printf("scan end 111 4k_watt_before =%f, 4k_volt_out=%f, 4k_volt_read=%f \n", h4k_watt_before, h4k_volt_out, h4k_volt_read);
+			}else if(h4k_dec_flag==1 && h4k_watt_set>=h4k_watt_before){
+				h4k_scanstatus=0;
+				pvPut(h4k_scanstatus);
+				h4k_scan=0;
+				pvPut(h4k_scan);
+				h4k_dec_flag=0;
+				if(h4k_volt_out == 0){
+					pvPut(h4k_volt_out);
+				}
+        printf("scan end 222 4k_watt_before =%f, 4k_volt_out=%f, 4k_volt_read=%f \n", h4k_watt_before, h4k_volt_out, h4k_volt_read);
+			}
+		}state Scan_4K_Output
+	}
+	state Scan_2K_Check{
+		//2k heater
+		when(h2k_scan==1 && delay(h2k_steptime)){
+			//pvGet(h2k_scan);
+			pvGet(h2k_volt_read);
+			h2k_volt_out=h2k_volt_read+h2k_volt_gap;
+			if(h2k_volt_out < 0){
+				h2k_volt_out = 0;
+			}
+			pvGet(h2k_curr_read);
+			h2k_watt_before=h2k_volt_read*h2k_curr_read;
+			printf("2k_volt_out =%f, 2k_volt_read=%f, 2k_curr_read=%f, 2k_watt_before=%f \n", h2k_volt_out,h2k_volt_read,h2k_curr_read,h2k_watt_before);
+			if(h2k_inc_flag==1 && h2k_watt_set<=h2k_watt_before){
+				h2k_scanstatus=0;
+				pvPut(h2k_scanstatus);
+				h2k_scan=0;
+				pvPut(h2k_scan);
+				h2k_inc_flag=0;
+				printf("scan end 111 2k_watt_before =%f, 2k_volt_out=%f, 2k_volt_read=%f \n", h2k_watt_before, h2k_volt_out, h2k_volt_read);
+			}else if(h2k_dec_flag==1 && h2k_watt_set>=h2k_watt_before){
+				h2k_scanstatus=0;
+				pvPut(h2k_scanstatus);
+				h2k_scan=0;
+				pvPut(h2k_scan);
+				h2k_dec_flag=0;
+				if(h2k_volt_out == 0){
+					pvPut(h2k_volt_out);
+				}
+        printf("scan end 222 2k_watt_before =%f, 2k_volt_out=%f, 2k_volt_read=%f \n", h2k_watt_before, h2k_volt_out, h2k_volt_read);
+			}
+		}state Scan_2K_Output
+	}
+
+}

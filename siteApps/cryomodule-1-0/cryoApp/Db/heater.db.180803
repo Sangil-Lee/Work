@@ -1,0 +1,493 @@
+
+# heater controller OPE-503QI
+
+######################### Cool-down Heater ###########################
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDScanStatus") {
+	field(DESC, "Cooldown Heater scan status")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI,  "YES")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDScan") {
+	field(DESC, "Cooldown Heater scan")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDStepTime") {
+	field(DESC, "Cooldown Heater set Step-time")
+	field(PREC, "0")
+	field(LOPR,  "1")
+	field(HOPR,  "10")
+	field(DRVL,  "1")
+	field(DRVH,  "10")
+	field(VAL, "2")
+	#field(VAL, "4")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltSetDummy") {
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(DRVL,  "0")
+	field(DRVH,  "50")
+	field(PINI, "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltSet") {
+	field(DESC, "Cooldown Heater Set voltage")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setVoltage L7")
+	field(PINI, "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltR") {
+	field(SCAN, "Passive")
+	field(DESC, "Cooldown heater Read voltage")
+	field(DTYP, "stream")
+	field(INP,  "@heater.proto getVoltage L7")
+	field(LINR, "NO CONVERSION")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(PINI, "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDWattSet") {
+	field(DESC, "Cooldown heater Set Watt")
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "W")
+  field(LOPR,  "0")
+  field(HOPR,  "45")
+	field(DRVL,  "0")
+	field(DRVH,  "45")
+	field(ADEL, "0.01")
+}
+record(calc,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDWattR") {
+	field(DESC, "cooldown Output watt reading")
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "W")
+	field(CALC, "A*B")
+	field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltR")
+	field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrR")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrSetDummy") {
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+	field(DRVL,  "0")
+	field(DRVH,  "1")
+	field(PINI, "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrSet") {
+	field(DESC, "Cooldown Heater Set current")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setCurrent L7")
+	field(PINI, "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrR") {
+	field(SCAN, "Passive")
+  field(DESC, "Cooldown heater Read current")
+  field(DTYP, "stream")
+	field(INP,  "@heater.proto getCurrent L7")
+	field(LINR, "NO CONVERSION")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+	field(PINI, "YES")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDWattR")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOffDummy") {
+	field(DESC, "Cooldown heater Output On/Off Dummy")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOff") {
+	field(DESC, "Cooldown Heater output On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setOutputScan L7")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KSetChan") {
+	field(DESC, "Cooldown heater Channel OUTP1|OUTP2")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setChannel L7")
+	field(ZNAM, "OUTP1")
+	field(ONAM, "OUTP2")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDSetChan") {
+	field(DESC, "Cooldown heater Channel OUTP1|OUTP2")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setChannel L7")
+	field(ZNAM, "OUTP1")
+	field(ONAM, "OUTP1")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDReset") {
+	field(DESC, "Cooldown heater Reset")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto Reset L7")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+############################## CD 4K Scan ##############################
+record(calcout,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KScan") {
+	field(SCAN, "1 second")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KSelect")
+	field(VAL, "1")
+	field(CALC, "A=1?2:1")
+	field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KScan")
+	field(OUT, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KSelect.SELN")
+}
+record(seq,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CD4KSelect") {
+	field(SCAN, "Passive")
+	field(SELM, "Specified")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDSequ PP")
+	field(LNK2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KSequ PP")
+}
+record(seq,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDSequ") {
+	field(SCAN, "Passive" )
+	field(SELM, "All")
+	field(DLY1, "0.1")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDSetChan PP")
+	field(DLY2, "0.1")
+	field(DOL2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltSetDummy")
+	field(LNK2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltSet PP")
+	field(DLY3, "0.2")
+	field(LNK3, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDVoltR PP")
+	field(DLY4, "0.1")
+	field(DOL4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrSetDummy")
+	field(LNK4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrSet PP")
+	field(DLY5, "0.2")
+	field(LNK5, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDCurrR PP")
+	field(DLY6, "0.1")
+	field(DOL6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOffDummy")
+	field(LNK6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOff PP")
+}
+record(seq,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KSequ") {
+	field(SCAN, "Passive" )
+	field(DLY1, "0.1")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KSetChan PP")
+	field(DLY2, "0.1")
+	field(DOL2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltSetDummy")
+	field(LNK2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltSet PP")
+	field(DLY3, "0.2")
+	field(LNK3, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltR PP")
+	field(DLY4, "0.1")
+	field(DOL4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrSetDummy")
+	field(LNK4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrSet PP")
+	field(DLY5, "0.2")
+	field(LNK5, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrR PP")
+	field(DLY6, "0.1")
+	field(DOL6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOffDummy")
+	field(LNK6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDOutputOnOff PP")
+}
+############################## 4K Heater ###############################
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KScanStatus") {
+	field(DESC, "4K Heater scan status")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI,  "YES")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KScan") {
+	field(DESC, "4K Heater scan")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KStepTime") {
+	field(DESC, "4K Heater set Step-time")
+	field(PREC, "0")
+	field(LOPR,  "1")
+	field(HOPR,  "10")
+	field(DRVL,  "1")
+	field(DRVH,  "10")
+	field(VAL, "2")
+	#field(VAL, "4")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltSetDummy") {
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(DRVL,  "0")
+	field(DRVH,  "50")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltSet") {
+	field(DESC, "4K Heater Set voltage")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setVoltage L7")
+	field(PINI,  "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltR") {
+	field(SCAN, "Passive")
+	field(DESC, "4K heater Read voltage")
+	field(DTYP, "stream")
+	field(INP,  "@heater.proto getVoltage L7")
+	field(LINR, "NO CONVERSION")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KWattSet") {
+	field(DESC, "4K heater Set Watt")
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "W")
+  field(LOPR,  "0")
+  field(HOPR,  "45")
+	field(DRVL,  "0")
+	field(DRVH,  "45")
+	field(ADEL, "0.01")
+}
+record(calc,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KWattR") {
+	field(DESC, "4K Output watt reading")
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "W")
+	field(CALC, "A*B")
+	field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVoltR")
+	field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrR")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrSetDummy") {
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+	field(DRVL,  "0")
+	field(DRVH,  "1")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrSet") {
+	field(DESC, "4K Heater Set current")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setCurrent L7")
+	field(PINI,  "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCurrR") {
+  field(SCAN, "Passive")
+  field(DESC, "4K heater Read current")
+  field(DTYP, "stream")
+	field(INP,  "@heater.proto getCurrent L7")
+	field(LINR, "NO CONVERSION")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+  field(PINI,  "YES")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KWattR")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KOutputOnOff") {
+	field(DESC, "4K heater Output On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setOutput L7")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KSetChan") {
+	field(DESC, "4K heater select Channel(OUTP1|OUTP2)")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setChannel L7")
+	field(ZNAM, "OUTP2")
+	field(ONAM, "OUTP2")
+}  
+   
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KReset") {
+	field(DESC, "4K heater Reset")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto Reset L7")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+
+############################ 2K Heater ###############################
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KScanStatus") {
+	field(DESC, "2K Heater scan status")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+  field(PINI,  "YES")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KScan") {
+	field(DESC, "2K Heater sacn")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+  field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KStepTime") {
+	field(DESC, "2K Heater set Step-time")
+	field(PREC, "0")
+	field(LOPR,  "1")
+	field(HOPR,  "10")
+	field(DRVL,  "1")
+	field(DRVH,  "10")
+	field(VAL, "2")
+  field(PINI,  "YES")
+}
+record(calcout,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KEtcScan") {
+	field(SCAN, "2 second")
+	field(PINI, "YES")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KEtcSelect")
+	field(VAL, "1")
+	field(CALC, "A=1?2:1")
+	field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KEtcScan")
+	field(OUT, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSelectEtc.SELN")
+}
+record(seq,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KEtcSelect") {
+	field(SCAN, "Passive")
+	field(SELM, "Specified")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSequ PP")
+	field(LNK2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSequ PP")
+}
+record(seq,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSequ") {
+	field(SCAN, "Passive" )
+	field(DLY1, "0.1")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSetChan PP")
+	field(DLY2, "0.1")
+	field(DOL2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltSetDummy")
+	field(LNK2, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltSet PP")
+	field(DLY3, "0.2")
+	field(LNK3, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltR PP")
+	field(DLY4, "0.1")
+	field(DOL4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrSetDummy")
+	field(LNK4, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrSet PP")
+	field(DLY5, "0.2")
+	field(LNK5, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrR PP")
+	field(DLY6, "0.1")
+	field(DOL6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KOutputOnOffDummy")
+	field(LNK6, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KOutputOnOff PP")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltSetDummy") {
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(DRVL,  "0")
+	field(DRVH,  "50")
+  field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltSet") {
+	field(DESC, "2K Heater Set voltage")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setVoltage L8")
+  field(PINI,  "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltR") {
+	field(SCAN, "Passive")
+	field(DESC, "2K heater Read voltage")
+	field(DTYP, "stream")
+	field(INP,  "@heater.proto getVoltage L8")
+	field(LINR, "NO CONVERSION")
+	field(PREC, "2")
+	field(EGU,  "V")
+	field(LOPR,  "0")
+	field(HOPR,  "50")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KWattSet") {
+	field(DESC, "2K heater Set Watt")
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "W")
+  field(LOPR,  "0")
+  field(HOPR,  "45")
+	field(DRVL,  "0")
+	field(DRVH,  "45")
+	field(ADEL, "0.01")
+}
+record(calc,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KWattR") {
+	field(DESC, "2K Output watt reading")
+	field(SCAN, "Passive")
+	field(PREC, "2")
+	field(EGU,  "W")
+	field(CALC, "A*B")
+	field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KVoltR")
+	field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrR")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrSetDummy") {
+	field(SCAN, "Passive")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+	field(DRVL,  "0")
+	field(DRVH,  "1")
+	field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrSet") {
+	field(DESC, "2K Heater Set current")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setCurrent L8")
+  field(PINI,  "YES")
+}
+record(ai,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCurrR") {
+  field(SCAN, "Passive")
+  field(DESC, "2K heater Read current")
+  field(DTYP, "stream")
+	field(INP,  "@heater.proto getCurrent L8")
+	field(LINR, "NO CONVERSION")
+  field(PREC, "2")
+  field(EGU,  "A")
+  field(LOPR,  "0")
+  field(HOPR,  "1")
+  field(PINI,  "YES")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KWattR")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KOutputOnOffDummy") {
+	field(DESC, "2K heater Output On/Off Dummy")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KOutputOnOff") {
+	field(DESC, "2K Heater output On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setOutputScan L8")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KSetChan") {
+	field(DESC, "2K heater select Channel(OUTP1|OUTP2)")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto setChannel L8")
+	field(ZNAM, "OUTP1")
+	field(ONAM, "OUTP1")
+	field(PINI, "YES")
+}
+record(bo,"$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KReset") {
+	field(DESC, "2K heater Reset")
+	field(DTYP, "stream")
+	field(OUT,  "@heater.proto Reset L8")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "0")
+	field(PINI, "YES")
+}
+

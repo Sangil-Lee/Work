@@ -1,0 +1,130 @@
+record(ao,"$(SYS)-$(SUBSYS):$(DEV):SetVoltage") {
+    field(DESC, "Set voltage")
+    field(DTYP, "stream")
+    field(LINR, "NO CONVERSION")
+    field(OUT,  "@oda.proto setVoltage $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):UpdateVolt")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateVolt") {
+	field(DESC, "Force measurements for volt")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetVoltageRB.PROC")
+	field(DLY1, "1")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):SetVoltageRB") {
+    field(DESC, "Set voltage Read Back")
+    field(DTYP, "stream")
+	field(INP,  "@oda.proto setVoltageRB $(PORT)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):GetVoltage") {
+    field(SCAN, "2 second")
+    field(DESC, "Get voltage")
+    field(DTYP, "stream")
+	field(INP,  "@oda.proto getVoltage $(PORT)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV):SetCurrent") {
+    field(DESC, "Set current")
+    field(DTYP, "stream")
+    field(LINR, "NO CONVERSION")
+	field(OUT,  "@oda.proto setCurrent $(PORT)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "10")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):UpdateCurr")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateCurr") {
+	field(DESC, "Force measurements for curr")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetCurrentRB.PROC")
+	field(DLY1, "1")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):SetCurrentRB") {
+    field(DESC, "Set current Read Back")
+    field(DTYP, "stream")
+	field(INP,  "@oda.proto setCurrentRB $(PORT)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):GetCurrent") {
+    field(SCAN, "2 second")
+    field(DESC, "Get voltage")
+    field(DTYP, "stream")
+		field(INP,  "@oda.proto getCurrent $(PORT)")
+		field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "10")
+    field(PINI,  "YES")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):OutputOnOff") {
+	field(DESC, "Output On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@oda.proto setOutput $(PORT)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):SetChannel") {
+	field(DESC, "Select Channel(OUTP1|OUTP2)")
+	field(DTYP, "stream")
+	field(OUT,  "@oda.proto setChannel $(PORT)")
+	field(PINI, "YES")
+	field(ZNAM, "OUTP1")
+	field(ONAM, "OUTP2")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateChannel") {
+	field(DESC, "Force check channel")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetChannelRB.PROC")
+	field(DLY1, "1")
+}
+
+record(stringin,"$(SYS)-$(SUBSYS):$(DEV):SetChannelRB") {
+	field(DESC, "Channel ReadBack")
+	field(DTYP, "stream")
+	field(INP,  "@oda.proto setChannelRB $(PORT)")
+	field(PINI, "YES")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateOutput") {
+	field(DESC, "Force check output")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):OutputOnOffRB.PROC")
+	field(DLY1, "1")
+}
+
+record(bi,"$(SYS)-$(SUBSYS):$(DEV):OutputOnOffRB") {
+	field(DESC, "Output On/Off ReadBack")
+	field(DTYP, "stream")
+	field(INP,  "@oda.proto setOutputRB $(PORT)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}

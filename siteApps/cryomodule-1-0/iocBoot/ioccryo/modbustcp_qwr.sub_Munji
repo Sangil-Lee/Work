@@ -1,0 +1,177 @@
+file "db/bi_word.template" { pattern
+{P,			R,				PORT,  OFFSET,		MASK		 ZNAM,   ONAM,          SCAN}
+{SRF1-QWR01:CM-,  Valve:4KAutoStatus,				MB_DIn,    0,       0x0100,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Valve:4KManualStatus,			MB_DIn,    0,       0x0200,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Valve:4KErrorStatus,			MB_DIn,    0,       0x0400,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Valve:2KAutoStatus,				MB_DIn,    0,       0x0800,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Valve:2KManualStatus,			MB_DIn,    0,       0x1000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Valve:2KErrorStatus,			MB_DIn,    0,       0x2000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:4KAlarmHiHi,				MB_DIn,    0,       0x4000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:4KAlarmSystem,			MB_DIn,    0,       0x8000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:2KAlarmHiHi,				MB_DIn,    0,       0x0001,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:2KAlarmSystem,			MB_DIn,    0,       0x0002,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:40KHiAlarmHiHi,			MB_DIn,    0,       0x0004,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:4KHiAlarmHiHi,				MB_DIn,    0,       0x0008,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:2KHiAlarmHiHi,				MB_DIn,    0,       0x0010,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:2KLowAlarmHiHi,			MB_DIn,    0,       0x0020,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:4KOpenLamp,					MB_DIn,    0,       0x0040,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:4KCloseLamp,					MB_DIn,    0,       0x0080,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:2KOpenLamp,					MB_DIn,    1,       0x0100,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:2KCloseLamp,					MB_DIn,    1,       0x0200,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFFrontOpenStatus,		MB_DIn,    1,       0x0400,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFFrontCloseStatus,	MB_DIn,    1,       0x0800,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFFrontOpenError,		MB_DIn,    1,       0x1000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFFrontCloseError,		MB_DIn,    1,       0x2000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFRearOpenStatus,		MB_DIn,    1,       0x4000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFRearCloseStatus,		MB_DIn,    1,       0x8000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFRearOpenError,			MB_DIn,    1,       0x0001,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:RFRearCloseError,		MB_DIn,    1,       0x0002,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamOpenStatus,			MB_DIn,    1,       0x0004,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamCloseStatus,			MB_DIn,    1,       0x0008,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamOpenError,				MB_DIn,    1,       0x0010,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamCloseError,			MB_DIn,    1,       0x0020,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityOpenStatus,		MB_DIn,    1,       0x0040,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityCloseStatus,		MB_DIn,    1,       0x0080,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityOpenError,			MB_DIn,    2,       0x0100,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityCloseError,		MB_DIn,    2,       0x0200,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:ChamRunStatus,				MB_DIn,    2,       0x0400,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:ChamError,						MB_DIn,    2,       0x0800,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:CavityRunStatus,			MB_DIn,    2,       0x1000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:CavityError,					MB_DIn,    2,       0x2000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:ChamRunStatus,				MB_DIn,    2,       0x4000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:ChamError,						MB_DIn,    2,       0x8000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:CavityRunStatus,			MB_DIn,    2,       0x0001,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:CavityError,					MB_DIn,    2,       0x0002,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  PLC:CommStatus,						MB_DIn,    2,       0x0004,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamOpenLamp,				MB_DIn,    2,       0x0008,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamCloseLamp,				MB_DIn,    2,       0x0010,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityOpenLamp,			MB_DIn,    2,       0x0020,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityCloseLamp,			MB_DIn,    2,       0x0040,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:ChamRunLamp,					MB_DIn,    2,       0x0080,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:ChamStopLamp,					MB_DIn,    3,       0x0100,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:CavityRunLamp,				MB_DIn,    3,       0x0200,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  DRY:CavityStopLamp,				MB_DIn,    3,       0x0400,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:ChamRunLamp,					MB_DIn,    3,       0x0800,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:ChamStopLamp,					MB_DIn,    3,       0x1000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:CavityRunLamp,				MB_DIn,    3,       0x2000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  TMP:CavityStopLamp,				MB_DIn,    3,       0x4000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:4KOpenAlarm,					MB_DIn,    3,       0x8000,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Solv:2KOpenAlarm,					MB_DIn,    3,       0x0001,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:ChamINTAlarm,				MB_DIn,    3,       0x0002,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Gate:CavityINTAlarm,			MB_DIn,    3,       0x0004,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:4KAlarmLoLo,				MB_DIn,    3,       0x0008,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Level:2KAlarmLoLo,				MB_DIn,    3,       0x0010,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:40KHiAlarmLoLo,			MB_DIn,    3,       0x0020,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:4KHiAlarmLoLo,				MB_DIn,    3,       0x0040,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:2KHiAlarmLoLo,				MB_DIn,    3,       0x0080,   Low,   High,    "I/O Intr"}
+{SRF1-QWR01:CM-,  Pres:2KLowAlarmLoLo,			MB_DIn,    4,       0x0100,   Low,   High,    "I/O Intr"}
+}
+
+file "db/bo_word.template" { pattern
+{P,										R,										PORT,  OFFSET,			MASK     ZNAM,  ONAM}
+{SRF1-QWR01:CM-,  Valve:4KManualSelect,			MB_DOut,    0,     0x0100,   Low,   High}
+{SRF1-QWR01:CM-,  Valve:4KDeadbandEnable,		MB_DOut,    0,     0x0200,   Low,   High}
+{SRF1-QWR01:CM-,  Valve:4KErrorReset,				MB_DOut,    0,     0x0400,   Low,   High}
+{SRF1-QWR01:CM-,  Valve:2KManualSelect,			MB_DOut,    0,     0x0800,   Low,   High}
+{SRF1-QWR01:CM-,  Valve:2KDeadbandEnable,		MB_DOut,    0,     0x1000,   Low,   High}
+{SRF1-QWR01:CM-,  Valve:2KErrorReset,				MB_DOut,    0,     0x2000,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:4KManualSelect,			MB_DOut,    0,     0x4000,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:4KManualOpen,				MB_DOut,    0,     0x8000,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:2KManualSelect,			MB_DOut,    0,     0x0001,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:2KManualOpen,				MB_DOut,    0,     0x0002,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:RFFrontManualOpen,		MB_DOut,    0,     0x0004,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:RFRearManualOpen,		MB_DOut,    0,     0x0008,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:ChamManualOpen,			MB_DOut,    0,     0x0010,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:CavityManualOpen,		MB_DOut,    0,     0x0020,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:ChamManualOn,					MB_DOut,    0,     0x0040,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:ChamErrorReset,				MB_DOut,    0,     0x0080,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:CavityManualOn,				MB_DOut,    1,     0x0100,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:CavityErrorReset,			MB_DOut,    1,     0x0200,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:ChamManualOn,					MB_DOut,    1,     0x0400,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:ChamErrorReset,				MB_DOut,    1,     0x0800,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:CavityManualOn,				MB_DOut,    1,     0x1000,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:CavityErrorReset,			MB_DOut,    1,     0x2000,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:ChamManualClose,			MB_DOut,    1,     0x4000,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:CavityManualClose,		MB_DOut,    1,     0x8000,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:ChamManualOff,				MB_DOut,    1,     0x0001,   Low,   High}
+{SRF1-QWR01:CM-,  DRY:CavityManualOff,			MB_DOut,    1,     0x0002,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:ChamManualOff,				MB_DOut,    1,     0x0004,   Low,   High}
+{SRF1-QWR01:CM-,  TMP:CavityManualOff,			MB_DOut,    1,     0x0008,   Low,   High}
+{SRF1-QWR01:CM-,  All:InterLockOnOff,				MB_DOut,    1,     0x0010,   Low,   High}
+{SRF1-QWR01:CM-,  All:AlarmReset,						MB_DOut,    1,     0x0020,   Low,   High}
+{SRF1-QWR01:CM-,  Level:4KAlarmReset,				MB_DOut,    1,     0x0040,   Low,   High}
+{SRF1-QWR01:CM-,  Level:2KAlarmReset,				MB_DOut,    1,     0x0080,   Low,   High}
+{SRF1-QWR01:CM-,  Pres:40KHiAlarmReset,			MB_DOut,    2,     0x0100,   Low,   High}
+{SRF1-QWR01:CM-,  Pres:4KHiAlarmReset,			MB_DOut,    2,     0x0200,   Low,   High}
+{SRF1-QWR01:CM-,  Pres:2KHiAlarmReset,			MB_DOut,    2,     0x0400,   Low,   High}
+{SRF1-QWR01:CM-,  Pres:2KLowAlarmReset,			MB_DOut,    2,     0x0800,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:4KOpenAlarmReset,		MB_DOut,    2,     0x1000,   Low,   High}
+{SRF1-QWR01:CM-,  Solv:2KOpenAlarmReset,		MB_DOut,    2,     0x2000,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:ChamAlarmReset,			MB_DOut,    2,     0x4000,   Low,   High}
+{SRF1-QWR01:CM-,  Gate:CavityAlarmReset,		MB_DOut,    2,     0x8000,   Low,   High}
+}
+
+file "db/aiFloat64.template" { pattern
+{P,										R,										PORT,  OFFSET,	  DATA_TYPE,  LOPR,  HOPR,  PREC,		EGU,       SCAN}
+{SRF1-QWR01:CM-,  Valve:CDFBCV,						MB_AIn,    0,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Valve:CDOutputCV,				MB_AIn,    2,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Valve:4KFBCV,						MB_AIn,    4,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Valve:4KOutputCV,				MB_AIn,    6,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Valve:2KFBCV,						MB_AIn,    8,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Valve:2KOutputCV,				MB_AIn,   10,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Level:4KCVCm,						MB_AIn,   12,      FLOAT32_BE,  -1e6,  1e6,   2,			"Cm",		"1 second"}
+{SRF1-QWR01:CM-,  Level:4KCVPerc,					MB_AIn,   14,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Level:2KCVCm,						MB_AIn,   16,      FLOAT32_BE,  -1e6,  1e6,   2,			"Cm",		"1 second"}
+{SRF1-QWR01:CM-,  Level:2KCVPerc,					MB_AIn,   18,      FLOAT32_BE,  -1e6,  1e6,   2,			"%",		"1 second"}
+{SRF1-QWR01:CM-,  Pres:40KHiValue,				MB_AIn,   20,      FLOAT32_BE,  -1e6,  1e6,   4,			"bar",	"1 second"}
+{SRF1-QWR01:CM-,  Pres:4KHiValue,					MB_AIn,   22,      FLOAT32_BE,  -1e6,  1e6,   4,			"bar",	"1 second"}
+{SRF1-QWR01:CM-,  Pres:2KHiValue,					MB_AIn,   24,      FLOAT32_BE,  -1e6,  1e6,   4,			"bar",	"1 second"}
+{SRF1-QWR01:CM-,  Pres:2KLowValue,				MB_AIn,   26,      FLOAT32_BE,  -1e6,  1e6,   4,			"mbar",	"1 second"}
+{SRF1-QWR01:CM-,  TMP:ChamRpmFB,					MB_AIn,   28,      FLOAT32_BE,  -1e6,  1e6,   2,			"rpm",	"1 second"}
+{SRF1-QWR01:CM-,  TMP:CavityRpmFB,				MB_AIn,   30,      FLOAT32_BE,  -1e6,  1e6,   2,			"rpm",	"1 second"}
+{SRF1-QWR01:CM-,  PLC:M240-2,							MB_AIn,   32,      FLOAT32_BE,  -1e6,  1e6,   2,			"K",		"1 second"}
+{SRF1-QWR01:CM-,  PLC:M240-4,							MB_AIn,   34,      FLOAT32_BE,  -1e6,  1e6,   2,			"K",		"1 second"}
+}
+
+file "db/aoFloat64.template" { pattern
+{P,											R,									PORT,			OFFSET,		DATA_TYPE,  LOPR,  HOPR,	PREC,		EGU}
+{SRF1-QWR01:CM-,  Valve:CDSetPoint,					MB_AOut,   0,				FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:CDSetManualRamp,		MB_AOut,   2,				FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
+{SRF1-QWR01:CM-,  Valve:4KPGain,						MB_AOut,   4,				FLOAT32_BE,  -1e6,  1e6,     2,		""}
+{SRF1-QWR01:CM-,  Valve:4KIGain,						MB_AOut,   6,				FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+{SRF1-QWR01:CM-,  Valve:4KDGain,						MB_AOut,   8,				FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+{SRF1-QWR01:CM-,  Valve:4KSetManual,				MB_AOut,   10,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:4KSetPoint,					MB_AOut,   12,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:4KSetDeadband,			MB_AOut,   14,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:4KSetManualRamp,		MB_AOut,   16,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
+{SRF1-QWR01:CM-,  Valve:2KPGain,						MB_AOut,   18,      FLOAT32_BE,  -1e6,  1e6,     2,		""}
+{SRF1-QWR01:CM-,  Valve:2KIGain,						MB_AOut,   20,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+{SRF1-QWR01:CM-,  Valve:2KDGain,						MB_AOut,   22,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+{SRF1-QWR01:CM-,  Valve:2KSetManual,				MB_AOut,   24,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:2KSetPoint,					MB_AOut,   26,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:2KSetDeadband,			MB_AOut,   28,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Valve:2KSetManualRamp,		MB_AOut,   30,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
+{SRF1-QWR01:CM-,  Level:4KSetHiHi,					MB_AOut,   32,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Level:4KSetLoLo,					MB_AOut,   34,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Level:2KSetHiHi,					MB_AOut,   36,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Level:2KSetLoLo,					MB_AOut,   38,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
+{SRF1-QWR01:CM-,  Pres:40KHiSetHiHi,				MB_AOut,   40,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:40KHiSetLoLo,				MB_AOut,   42,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:4KHiSetHiHi,					MB_AOut,   44,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:4KHiSetLoLo,					MB_AOut,   46,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:2KHiSetHiHi,					MB_AOut,   48,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:2KHiSetLoLo,					MB_AOut,   50,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Pres:2KLowSetHiHi,				MB_AOut,   52,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Pres:2KLowSetLoLo,				MB_AOut,   54,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Solv:4KSetOpenPres,				MB_AOut,   56,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Solv:4KSetClosePres,			MB_AOut,   58,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Solv:2KSetOpenPres,				MB_AOut,   60,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Solv:2KSetClosePres,			MB_AOut,   62,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
+{SRF1-QWR01:CM-,  Gate:ChamSetOpenPres,			MB_AOut,   64,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Gate:ChamSetClosePres,		MB_AOut,   66,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Gate:CavitySetOpenPres,		MB_AOut,   68,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Gate:CavitySetClosePres,	MB_AOut,   70,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
+{SRF1-QWR01:CM-,  Valve:4KCycleTime,				MB_AOut,   72,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+{SRF1-QWR01:CM-,  Valve:2KCycleTime,				MB_AOut,   74,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
+}
+

@@ -1,0 +1,29 @@
+file "db/ai_SRF_Cooldown.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,	SIGNAL,   DESC,						VAL}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,	StepDly,  "Processing Time",		"5.0"}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  Value,    "Temp. Value",			"0"}
+}
+
+file "db/longin_SRF_Cooldown.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,							VAL}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  Index,    "Idx. Valve Ctrl.",			"0"}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  Cycle,    "OM14-15 Interation Cycl.",	"0"}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  PresStart,"Start PressEval",			"0"}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  Start,    "Bunker2 Logic Start",		"0"}
+}
+
+file "db/bi_SRF_Cooldown.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,                         VAL,      ZNAM,     ONAM}
+#{SRF01,   -Bunker2:,   HWRB01,   -Logic:,  Start,    "Bunker2 Logic Start",        "0",      "Stop",   "Start"}
+}
+
+file "db/stringin_SRF_Cooldown.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,               VAL}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  StepPV,   "Bunker2 CD-Logic", "Cool-down"}
+}
+
+file "db/calc_SRF_Cooldown.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,					CALC,				INPA,									INPB,										INPC,										INPD,	INPE,	INPF,	INPG,	INPH,	INPI,	INPJ,	INPK,	INPL	}
+{SRF01,    -Bunker2:,   HWRB01,   -Logic:,  PhaseEnd, "Cooldown PhaseEnd",	"(A||B||C)?1:0",	"SRF01-Bunker2:HWRB01-Pres:2KHiEval",	"SRF01-Bunker2:HWRB01-Temp:Cav2BotEval",	"SRF01-Bunker2:HWRB01-Temp:Cav3BotEval",		"",		"",		"",		"",		"",		"",		"",		"",		""		}
+}
+

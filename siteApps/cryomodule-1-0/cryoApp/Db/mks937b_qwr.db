@@ -1,0 +1,36 @@
+#-----------------------------------------------#
+# MKS937B :  Measurement Guage									#
+#-----------------------------------------------#
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):ChamHi"){
+  field(DESC, "Measurement Data Gauge 1")
+  field(DTYP, "stream")
+  field(INP, "@mks937b.proto getMData(PR1) L8 0")
+  field(SCAN, "1 second")
+  field(PREC, "1")
+  field(EGU, "mbar")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):ChamLow"){
+  field(DESC, "Measurement Data Gauge 2")
+  field(DTYP, "stream")
+  field(INP, "@mks937b.proto getMData(PR5) L8 0")
+  field(SCAN, "1 second")
+  field(PREC, "1")
+  field(EGU, "mbar")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CavityHi"){
+  field(DESC, "Measurement Data Gauge 3")
+  field(DTYP, "stream")
+  field(INP, "@mks937b.proto getMData(PR3) L8 0")
+  field(SCAN, "1 second")
+  field(PREC, "1")
+  field(EGU, "mbar")
+}
+#record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CavityLow"){
+#  field(DESC, "Measurement Data Gauge 4")
+#  field(DTYP, "stream")
+#  field(INP, "@mks937b.proto getMData(PR6) L9 0")
+#  field(SCAN, "1 second")
+#  field(PREC, "1")
+#  field(EGU, "mbar")
+#}
+

@@ -1,0 +1,54 @@
+program sncModbusTCPtoODA
+option +r;
+option -c;
+
+%% #include <epicsThread.h>
+
+double volt;
+/*assign field to "{SYS}-{SUBSYS}:{DEV}:{FIELD_PV}";*/
+assign volt to "ODA:Volt";
+monitor volt;
+
+evflag ef_volt;
+sync volt ef_volt;
+
+double curr;
+assign curr to "ODA:Curr";
+monitor curr;
+
+evflag ef_curr;
+sync curr ef_curr;
+
+
+double setvolt;
+assign setvolt to "SRF-TF:ODA:SetVoltage";
+
+double setcurr;
+assign setcurr to "SRF-TF:ODA:SetCurrent";
+
+
+ss modbustcp2oda 
+{
+	state init{
+		when(TRUE){
+			setcurr = curr;
+			setvolt = volt;
+			pvPut(setcurr);
+			pvPut(setvolt);
+		}state modbusmap
+	}
+
+	state modbusmap
+	{
+		when(efTestAndClear(ef_volt))
+		{
+			setvolt = volt;
+			pvPut(setvolt);
+		}state modbusmap
+		when(efTestAndClear(ef_curr))
+		{
+			setcurr = curr;
+			pvPut(setcurr);
+		}state modbusmap
+	}
+}

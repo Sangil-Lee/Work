@@ -1,0 +1,23 @@
+record(ao, "CALCOUT:ODA:Curr")
+{
+  field(DESC, "ODA P/S Set Current")
+  field(DTYP, "stream")
+	field(OUT,  "@oda.proto setCurrent $(PORT)")
+  field(PREC, "3")
+  field(OMSL, "closed_loop")
+  field(DOL, "ODA:Curr CPP")
+  field(EGU,  "Curr")
+}
+
+record(ao, "CALCOUT:ODA:Volt")
+{
+  field(DESC, "ODA P/S Set Voltage")
+  field(DTYP, "stream")
+	field(OUT,  "@oda.proto setVoltage $(PORT)")
+  field(OMSL, "closed_loop")
+  field(DOL, "ODA:Volt CPP")
+  field(PREC, "3")
+  field(EGU,  "Volt")
+}
+
+

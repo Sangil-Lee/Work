@@ -1,0 +1,48 @@
+# TGP261 RS-232 Communication Protocol
+# Data format
+# 	baud rate: 9600
+#	start: 1
+#	parity: None
+#	data: 8
+#	stop: 1
+#	hardware handshake: None
+# Communication Procedure
+# Transmit: Mnemonics[and parameters] <CR>[<LF>]
+# Receive: <ACK><CR><LF>
+# Transmit: <ENQ>
+# Receive: Measurement values or parameters <CR>
+
+
+#-----------------------------------------------#
+# Get Error Status				#
+# Mnemonic : ERR				#
+# Receive : aaaa				#
+#-----------------------------------------------#
+getError{
+	out "\$1" CR;
+	in ACK CR LF;
+	out ENQ;
+	in "%d" CR LF;
+}
+
+#-----------------------------------------------#
+# Get Guage Data				#
+# Mnemonic : PRx				#
+# x = Gauge 1 or 2				#
+# Receive : a,sx.xxxxEsxx			#
+# a : Status					#
+# sx.xxxxEsxx : Measurement value[in current pressure unit](s = sign)
+#-----------------------------------------------#
+getStData{
+	out "\$1" CR;
+        in ACK CR LF;
+        out ENQ;
+	in "%d,%*e" CR LF;
+}
+
+getMData{
+        out "\$1" CR;
+        in ACK CR LF;
+        out ENQ;
+        in "%*d,%e" CR LF;
+}

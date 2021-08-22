@@ -1,0 +1,28 @@
+# LS 224 Temperature Monitor, Kelvin
+record(ai, "$(prefix):KTEMP_$(chan)")
+{
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@ls224.proto  read_kelvin($(chan)) $(port) 0")
+  field(SCAN, "1 second")
+  field(PREC, "3")
+  field(EGU,  "K")
+  field(FLNK, "$(prefix):CTEMP_$(chan)")
+}
+
+record(calc, "$(prefix):CTEMP_$(chan)")
+{
+  field(DESC, "Degree Celsius Conversion")
+  field(INPA, "$(prefix):KTEMP_$(chan)")
+  field(CALC, "A-273.15")
+  field(PREC, "3")
+  field(EGU,  "DegC")
+}
+
+record(bo, "$(prefix):RESET")
+{
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@ls224.proto  reset $(port) 0")
+}
+

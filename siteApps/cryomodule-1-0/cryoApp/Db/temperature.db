@@ -1,0 +1,352 @@
+# LS224 Temperature Monitor, Kelvin
+# Lakeshore Reset
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T1Reset"){
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@temperature.proto  reset L1 0")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T2Reset"){
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@temperature.proto  reset L2 0")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T3Reset"){
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@temperature.proto  reset L3 0")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T4Reset"){
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@temperature.proto  reset L4 0")
+}
+record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T5Reset"){
+  field(DESC, "Command Reset")
+  field(DTYP, "stream")
+  field(OUT, "@temperature.proto  reset L5 0")
+}
+#record(bo, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T6Reset"){
+#  field(DESC, "Command Reset")
+#  field(DTYP, "stream")
+#  field(OUT, "@temperature.proto  reset L6 0")
+#}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T1Comm"){
+  field(DESC, "T1 Communication")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto get_comm L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+#  field(EGU,  "K")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T2Comm"){
+  field(DESC, "T2 Communication")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto get_comm L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+#  field(EGU,  "K")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T3Comm"){
+  field(DESC, "T3 Communication")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto get_comm L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+#  field(EGU,  "K")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T4Comm"){
+  field(DESC, "T4 Communication")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto get_comm L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+#  field(EGU,  "K")
+}
+
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):T5Comm"){
+  field(DESC, "T5 Communication")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto get_comm L5 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+#  field(EGU,  "K")
+}
+
+# Read Kevin Temperature
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KCoup1"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(B) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KCoup2"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C5) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDValve"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D1) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KIn"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C4) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KOut"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C5) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KVacu"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(A) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KFront"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D3) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KBack"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D4) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KBottom"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D5) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KValve"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C2) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KValve"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C3) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KBeamFront"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C5) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):40KBeamRear"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D2) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCavity1Top"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(A) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCavity1Bottom"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(B) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KTuner1"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C1) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KIn"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C1) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):CDLine"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D1) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KReserv"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C3) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):StrongBack1"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C3) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):StrongBack2"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C4) L3 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCoup1"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D4) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCavity2Top"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D5) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KCavity2Bottom"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(A) L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KTuner2"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D2) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):2KReserv"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D3) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KCoup2"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(B) L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KVacu"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C4) L4 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):BeamFront"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C2) L1 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):BeamMiddle"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C1) L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):HXHP"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C3) L5 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):HXLP"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C4) L5 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KBeamFront"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(D1) L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+record(ai, "$(SYS)-$(SUBSYS):$(DEV)-$(SUBDEV):4KBeamRear"){
+  field(DESC, "Kevin Temperature")
+  field(DTYP, "stream")
+  field(INP,  "@temperature.proto  read_kelvin(C2) L2 0")
+  field(SCAN, "1 second")
+  field(PREC, "2")
+  field(EGU,  "K")
+}
+

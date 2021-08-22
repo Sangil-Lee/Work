@@ -1,0 +1,23 @@
+# MKS937B RS-232 Communication Protocol
+# Data format
+#	baud rate: 9600
+#	start: 1
+#	parity: None
+#	data: 8
+#	stop: 1
+#	hardware handshake: None
+
+#-----------------------------------------------#
+# Get Guage Data																#
+# Command : @<253><PRx>?;FF											#
+# x = Gauge 1,3,5 or 6													#
+# Receive : @<253>ACK<7.602E+2>;FF							#
+#-----------------------------------------------#
+
+getMData{
+        out "@253\$1?;FF";
+        in "@253ACK%e;FF";
+				@mismatch {
+					in "@253ACK%s;FF";
+				}
+}
