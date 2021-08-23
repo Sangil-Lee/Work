@@ -54,6 +54,7 @@ DB += TempR.template
 DB += calcout_ao_OM1.4_step6.template
 DB += RefValue.vdb
 DB += SRF_HWR_Cooldown.sub
+DB += PhaseEnd.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
