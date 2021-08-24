@@ -27,6 +27,11 @@ int	phaseend;
 assign	phaseend to "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd";
 monitor phaseend;
 
+float	level;
+assign	level to "SRF01-Bunker2:HWRB01-Level:2KCVCm";
+monitor level;
+
+
 float cdDelay;
 assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
 monitor cdDelay;
@@ -69,7 +74,7 @@ ss ssSRFCooldown
 
 	state SRFCooldown
 	{
-		when(delay(cdDelay) && phaseend < 1 && ss_start == 1)
+		when(delay(cdDelay) && level < 20 && ss_start == 1)
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
@@ -79,7 +84,7 @@ ss ssSRFCooldown
 			pvPut(steppv, SYNC);
 		}state SRFCooldown
 
-		when(delay(cdDelay) && phaseend >= 1  && ss_start != 1 )
+		when(delay(cdDelay) && level >= 20  && ss_start == 1 )
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -91,13 +96,16 @@ ss ssSRFCooldown
 
 	state PhaseEnd
 	{
-		when(delay(cdDelay) && ss_start != 1)
+		when(phaseend == 1)
 		{
 			ss_start = 0;
 			pvPut(ss_start, SYNC);
 
 			strcpy(steppv, "Complete PhaseEnd");
 			pvPut(steppv, SYNC);
+
+			//Start PLC PID Level Control
+			//...//
 		}state Stop
 	}
 }
