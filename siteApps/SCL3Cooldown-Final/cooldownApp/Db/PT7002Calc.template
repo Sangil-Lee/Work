@@ -6,7 +6,7 @@ record(ai, "$(SYS)$(SUBSYS)$(DEV)-PT7001:Press") {
 
 #### Calcation Output Virtual Pressure for Thermal Shield line
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Press") {
-  field(CALC, "A*(B/C)*(E/F)**0.25")
+  field(CALC, "A-B*(C/D)*((F/E)**0.25)")
   field(INPA, "$(INPA):Press")
   field(INPB, "$(INPB):Press")
   field(INPC, "$(INPC):Dens")

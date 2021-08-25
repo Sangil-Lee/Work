@@ -42,6 +42,12 @@ DB += ASubWFParam_HWR.template
 DB += subASubWFParam.sub
 DB += PT7002Calc.template
 DB += subPT7002Calc.sub
+DB += MFR7501_7002HWR.template
+DB += subMFR7501_7002HWR.sub
+DB += MFR7503_QWR.template
+DB += subMFR7503_QWR.sub
+DB += MFRColdHe.template
+DB += subMFRColdHe.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

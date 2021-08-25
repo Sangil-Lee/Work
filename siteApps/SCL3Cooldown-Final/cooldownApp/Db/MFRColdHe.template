@@ -1,0 +1,11 @@
+#B=E*(C-D)^0.5*(F/G)^0.5*(1000/3600)
+#A*((B-C)**0.5)*((D/E(999.03))**0.5)*(1000/3600)
+#### Calcation Output Virtual Pressure for Cold Helium
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)MFlow") {
+  field(CALC, "A*((B-C)**0.5)*((D/999.03)**0.5)*(1000/3600)")
+  field(INPA, "$(INPA):Valve")
+  field(INPB, "$(INPB):Press")
+  field(INPC, "$(INPC):Press")
+  field(INPD, "$(INPD):Dens")
+}
+

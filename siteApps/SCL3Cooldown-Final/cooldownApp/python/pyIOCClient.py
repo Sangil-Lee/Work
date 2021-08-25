@@ -11,28 +11,25 @@ import sympy as sym
 from epics import caget, caput
 """
 X = sym.Symbol('X')
-E1 = 3
-#D1 = 6
-D1 = 2
-F1 = 5
-E2 = 3
-D2 = 2
-#D2 = 2
-F2 = 5
-H = 2
-I = 7
-#C = 40
-C = 5
-K = 2
-L = 4
-N = 4
-M = 8
-J = 7
+E1(A) = 3
+D1(B) = 2
+F1(C) = 5
+E2(D) = 3
+D2(E) = 2
+F2(F) = 5
+H(H) = 2
+I(I) = 7
+C(J) = 5
+K(K) = 2
+L(L) = 4
+N(M) = 4
+M(N) = 8
+J(A) = 7
 
 fx = sym.Eq(E1*(X-D1)**0.5*F1**0.5+E2*(X-D2)**0.5*F2**0.5-H*(I-C+X*K/L*(N/M)**0.25)**0.5*J**0.5, 0)
 gx = E1*(X-D1)**0.5*F1**0.5+E2*(X-D2)**0.5*F2**0.5-H*(I-C+X*K/L*(N/M)**0.25)**0.5*J**0.5
 """
-paramlist = ['SCL31-CDL01:EBx01-WF7001:Param', 'SCL31-CDL01:VBx02-WF7001:Param', 'SCL31-CDL01:VBx04-WF7001:Param',
+paramlist = ['SCL31-CDL01:VBx02-WF7001:Param', 'SCL31-CDL01:VBx04-WF7001:Param',
 'SCL31-CDL01:VBx06-WF7001:Param', 'SCL31-CDL01:VBx08-WF7001:Param', 'SCL31-CDL01:VBx10-WF7001:Param',
 'SCL31-CDL01:VBx12-WF7001:Param', 'SCL31-CDL01:VBx14-WF7001:Param', 'SCL31-CDL01:VBx16-WF7001:Param',
 'SCL31-CDL01:VBx18-WF7001:Param', 'SCL31-CDL01:VBx20-WF7001:Param', 'SCL31-CDL01:VBx22-WF7001:Param']

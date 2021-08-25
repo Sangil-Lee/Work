@@ -1,0 +1,7 @@
+#### Calcation Output Virtual Pressure for Thermal Shield line
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)MFlow") {
+  field(CALC, "A+B")
+  field(INPA, "$(INPA):MFlow")
+  field(INPB, "$(INPB):MFlow")
+}
+
