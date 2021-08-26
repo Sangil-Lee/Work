@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += ai.template
+DB += ao.template
 DB += bi.template
 DB += longin.template
 DB += stringin.template
@@ -20,6 +21,8 @@ DB += cooldownlogic_eval_OM1.4_step6_SRF.sub
 DB += cooldownlogic_eval_OM1.4_step7_SRF.sub
 DB += RefValue.vdb
 DB += SRF_HWR_Cooldown.sub
+DB += PhaseEnd.vdb
+DB += IntLockFanout.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

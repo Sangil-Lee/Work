@@ -23,7 +23,6 @@ srfcooldown_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
 srfcooldown_DBD += $(ASYN)/dbd/asyn.dbd
 srfcooldown_DBD += $(CALC)/dbd/calc.dbd
 srfcooldown_DBD += $(CALC)/dbd/calcSupport.dbd
-srfcooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 
 srfcooldown_DBD += PhaseEndEval.dbd
 
@@ -46,7 +45,8 @@ ifneq ($(SNCSEQ),)
 endif
 
 # Finally link to the EPICS Base libraries
-srfcooldown_LIBS += asyn calc std sscan iocshExt
+#srfcooldown_LIBS += asyn calc std sscan iocshExt
+srfcooldown_LIBS += asyn calc std sscan
 srfcooldown_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

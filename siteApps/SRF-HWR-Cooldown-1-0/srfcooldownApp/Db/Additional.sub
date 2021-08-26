@@ -4,6 +4,11 @@ file "db/ai.template" { pattern
 {SRF01,    -Bunker1:,   HWRB01,   -Logic:,  Value,    "Temp. Value",			"0"}
 }
 
+file "db/ao.template" { pattern
+{SYS,      SUBSYS,		DEV,      SUBDEV,	SIGNAL,			DESC,						VAL,	DRVL,	DRVH}
+{SRF01,    -Bunker1:,   HWRB01,   -Logic:,  2KSetPoint,		"CV Valve. SetPoint ",		"0",	0,	100}
+}
+
 file "db/longin.template" { pattern
 {SYS,      SUBSYS,		DEV,      SUBDEV,   SIGNAL,   DESC,							VAL}
 {SRF01,    -Bunker1:,   HWRB01,   -Logic:,  Index,    "Idx. Valve Ctrl.",			"0"}
