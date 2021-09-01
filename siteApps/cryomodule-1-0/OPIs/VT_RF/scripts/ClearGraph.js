@@ -1,0 +1,2 @@
+display.getWidget("XY").clearGraph();
+

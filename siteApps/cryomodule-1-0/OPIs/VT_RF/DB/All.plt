@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<databrowser>
+    <title>All</title>
+    <save_changes>true</save_changes>
+    <show_legend>false</show_legend>
+    <show_toolbar>true</show_toolbar>
+    <grid>false</grid>
+    <scroll>true</scroll>
+    <update_period>3.0</update_period>
+    <scroll_step>5</scroll_step>
+    <start>-1.00 h</start>
+    <end>now</end>
+    <archive_rescale>NONE</archive_rescale>
+    <background>
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+    </background>
+    <title_font>Sans|15|1</title_font>
+    <label_font>Sans|10|1</label_font>
+    <scale_font>Sans|9|0</scale_font>
+    <legend_font>Sans|9|0</legend_font>
+    <axes>
+    </axes>
+    <annotations>
+    </annotations>
+    <pvlist>
+    </pvlist>
+</databrowser>

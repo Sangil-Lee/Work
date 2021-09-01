@@ -12,8 +12,14 @@ file "db/PressR.template" { pattern
 {SRF01,     -Bunker2:,      HWRB01,		-Pres:,     2KHi,		"YES",		"2.2",		"5 second",	"2KHiValue"	} #HWRB 
 }
 
+file "db/SRF_HWR_Cooldown_MFR.template" { pattern
+{SYS,       SUBSYS,			DEV,       SUBDEV,		SIGNAL,    DESC,						SCAN,        FLNK,    INPA,									INPB								}
+{SRF01,     -Bunker2:,		HWRB01,    -MFR:,		Dens,      "Cooldown Logic Density",   "1 second",  "",      "SRF01-Bunker2:HWRB01-Pres:PT7306",	"SRF01-Bunker2:HWRB01-Temp:4KIn"	}
+}
+
 file "db/calcout_ao_OM1.4_step6.template" { pattern
 {SYS,	    SUBSYS,         DEV,		SUBDEV,		CALC,											INPB,									INPC,                               INPD,                              INPE,INPK,INPF,INPG,INPH,INPI,INPJ,INPL,OUTB			}							
 #{SRF01,    -Bunker2:,      HWRA01,		-Valve:,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRA01-Pres:2KHiValue",  "SRF01-Bunker2:HWRA01-MFR:CDFBCV",  "SRF01-Bunker2:HWRA01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  ""				} #HWRA
 {SRF01,     -Bunker2:,      HWRB01,		-Valve:,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRB01-Pres:2KHi",		"SRF01-Bunker2:HWRB01-MFR:CDFBCV",  "SRF01-Bunker2:HWRB01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  "CDSetPoint"	} #HWRB
 }
+

@@ -88,6 +88,10 @@ dbLoadRecords("db/RefValue.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=
 #dbLoadRecords("db/PhaseEnd.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=-Level:")
 dbLoadTemplate("db/SRF_HWR_Cooldown.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:, SIGNAL=Valve")
 
+
+#dbLoadTemplate("db/SRF_HWR_Cooldown_MFR.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:")
+#dbLoadRecords("db/calc_SRF_Cooldown_MFR.vdb")
+
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
