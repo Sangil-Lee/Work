@@ -50,10 +50,12 @@ DB += stringin_SRF_Cooldown.template
 DB += calc_SRF_Cooldown.template
 DB += Additional.sub
 DB += PressR.template
+DB += ValveR.template
 DB += TempR.template
 DB += calcout_ao_OM1.4_step6.template
 DB += RefValue.vdb
 DB += SRF_HWR_Cooldown.sub
+DB += SRF_HWR_Cooldown_MFR.sub
 DB += PhaseEnd.vdb
 
 #----------------------------------------------------
