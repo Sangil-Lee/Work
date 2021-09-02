@@ -2,11 +2,13 @@
 record(ao, "$(P)$(R)") {
     field(DTYP,"asynFloat64")
     field(OUT,"@asyn($(PORT) $(OFFSET))$(DATA_TYPE)")
-		field(OMSL, "closed_loop")
+	field(OMSL, "closed_loop")
     field(HOPR,"$(HOPR)")
     field(LOPR,"$(LOPR)")
     field(PREC,"$(PREC)")
     field(EGU,"$(EGU)")
+    field(DRVH,"$(DRVH)")
+    field(DRVL,"$(DRVL)")
     field(VAL,"0")
 }
 

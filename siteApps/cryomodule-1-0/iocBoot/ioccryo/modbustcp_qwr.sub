@@ -254,53 +254,53 @@ file "db/aiFloat64.template" { pattern
 }
 
 file "db/aoFloat64.template" { pattern
-{P,				R,				PORT,	OFFSET,	    DATA_TYPE,  LOPR,  HOPR,  PREC,		EGU}
-{SRF01-Bunker2:QWR01-,  Valve:CDSetPoint,			MB_AOut,   0,	    FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:CDSetManualRamp,			MB_AOut,   2,	    FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Valve:4KPGain,				MB_AOut,   4,	    FLOAT32_BE,  -1e6,  1e6,     2,		""}
-{SRF01-Bunker2:QWR01-,  Valve:4KIGain,				MB_AOut,   6,	    FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Valve:4KDGain,				MB_AOut,   8,	    FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Valve:4KSetManual,			MB_AOut,   10,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:4KSetPoint,			MB_AOut,   12,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:4KSetDeadband,			MB_AOut,   14,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:4KSetManualRamp,			MB_AOut,   16,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Valve:2KPGain,				MB_AOut,   18,      FLOAT32_BE,  -1e6,  1e6,     2,		""}
-{SRF01-Bunker2:QWR01-,  Valve:2KIGain,				MB_AOut,   20,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Valve:2KDGain,				MB_AOut,   22,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Valve:2KSetManual,			MB_AOut,   24,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:2KSetPoint,			MB_AOut,   26,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:2KSetDeadband,			MB_AOut,   28,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Valve:2KSetManualRamp,			MB_AOut,   30,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Level:4KSetHiHi,			MB_AOut,   32,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Level:4KSetLoLo,			MB_AOut,   34,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Level:2KSetHiHi,			MB_AOut,   36,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Level:2KSetLoLo,			MB_AOut,   38,      FLOAT32_BE,  -1e6,  1e6,     2,		"%"}
-{SRF01-Bunker2:QWR01-,  Pres:40KHiSetHiHi,			MB_AOut,   40,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:40KHiSetLoLo,			MB_AOut,   42,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:4KHiSetHiHi,			MB_AOut,   44,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:4KHiSetLoLo,			MB_AOut,   46,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:2KHiSetHiHi,			MB_AOut,   48,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:2KHiSetLoLo,			MB_AOut,   50,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Pres:2KLowSetHiHi,			MB_AOut,   52,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Pres:2KLowSetLoLo,			MB_AOut,   54,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Solv:4KSetOpenPres,			MB_AOut,   56,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Solv:4KSetClosePres,			MB_AOut,   58,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Solv:2KSetOpenPres,			MB_AOut,   60,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Solv:2KSetClosePres,			MB_AOut,   62,      FLOAT32_BE,  -1e6,  1e6,     2,		"bar"}
-{SRF01-Bunker2:QWR01-,  Gate:ChamSetOpenPres,			MB_AOut,   64,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Gate:ChamSetClosePres,			MB_AOut,   66,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Gate:CavitySetOpenPres,			MB_AOut,   68,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Gate:CavitySetClosePres,		MB_AOut,   70,      FLOAT32_BE,  -1e6,  1e6,     2,		"mbar"}
-{SRF01-Bunker2:QWR01-,  Valve:4KCycleTime,			MB_AOut,   72,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Valve:2KCycleTime,			MB_AOut,   74,      FLOAT32_BE,  -1e6,  1e6,     2,		"s"}
-{SRF01-Bunker2:QWR01-,  Heater:CDStepTime,			MB_AOut,   76,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Heater:CDWattSet,			MB_AOut,   78,      FLOAT32_BE,  -1e6,  1e6,     2,		"w"}
-{SRF01-Bunker2:QWR01-,  Heater:4KStepTime,			MB_AOut,   80,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Heater:4KWattSet,			MB_AOut,   82,      FLOAT32_BE,  -1e6,  1e6,     2,		"w"}
-{SRF01-Bunker2:QWR01-,  Heater:2KStepTime,			MB_AOut,   84,      FLOAT32_BE,  -1e6,  1e6,     2,		"u/s"}
-{SRF01-Bunker2:QWR01-,  Heater:2KWattSet,			MB_AOut,   86,      FLOAT32_BE,  -1e6,  1e6,     2,		"w"}
-{SRF01-Bunker2:QWR01-,  Heater:CDSetTemp,			MB_AOut,   88,      FLOAT32_BE,  -1e6,  1e6,     2,		"K"}
-{SRF01-Bunker2:QWR01-,  Heater:4KSetTemp,			MB_AOut,   90,      FLOAT32_BE,  -1e6,  1e6,     2,		"K"}
-{SRF01-Bunker2:QWR01-,  Heater:2KSetTemp,			MB_AOut,   92,      FLOAT32_BE,  -1e6,  1e6,     2,		"K"}
+{P,						R,							PORT,	OFFSET,	    DATA_TYPE,  LOPR,  HOPR, DRVL, DRVH,	PREC,	EGU}
+{SRF01-Bunker2:QWR01-,  Valve:CDSetPoint,			MB_AOut,   0,	    FLOAT32_BE,  -1e6,  1e6, "0",   "100",	 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:CDSetManualRamp,		MB_AOut,   2,	    FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Valve:4KPGain,				MB_AOut,   4,	    FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		""}
+{SRF01-Bunker2:QWR01-,  Valve:4KIGain,				MB_AOut,   6,	    FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Valve:4KDGain,				MB_AOut,   8,	    FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Valve:4KSetManual,			MB_AOut,   10,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:4KSetPoint,			MB_AOut,   12,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:4KSetDeadband,		MB_AOut,   14,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:4KSetManualRamp,		MB_AOut,   16,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Valve:2KPGain,				MB_AOut,   18,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		""}
+{SRF01-Bunker2:QWR01-,  Valve:2KIGain,				MB_AOut,   20,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Valve:2KDGain,				MB_AOut,   22,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Valve:2KSetManual,			MB_AOut,   24,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:2KSetPoint,			MB_AOut,   26,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:2KSetDeadband,		MB_AOut,   28,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Valve:2KSetManualRamp,		MB_AOut,   30,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Level:4KSetHiHi,			MB_AOut,   32,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Level:4KSetLoLo,			MB_AOut,   34,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Level:2KSetHiHi,			MB_AOut,   36,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Level:2KSetLoLo,			MB_AOut,   38,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"%"}
+{SRF01-Bunker2:QWR01-,  Pres:40KHiSetHiHi,			MB_AOut,   40,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:40KHiSetLoLo,			MB_AOut,   42,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:4KHiSetHiHi,			MB_AOut,   44,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:4KHiSetLoLo,			MB_AOut,   46,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:2KHiSetHiHi,			MB_AOut,   48,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:2KHiSetLoLo,			MB_AOut,   50,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Pres:2KLowSetHiHi,			MB_AOut,   52,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Pres:2KLowSetLoLo,			MB_AOut,   54,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Solv:4KSetOpenPres,			MB_AOut,   56,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Solv:4KSetClosePres,		MB_AOut,   58,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Solv:2KSetOpenPres,			MB_AOut,   60,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Solv:2KSetClosePres,		MB_AOut,   62,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"bar"}
+{SRF01-Bunker2:QWR01-,  Gate:ChamSetOpenPres,		MB_AOut,   64,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Gate:ChamSetClosePres,		MB_AOut,   66,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Gate:CavitySetOpenPres,		MB_AOut,   68,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Gate:CavitySetClosePres,	MB_AOut,   70,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"mbar"}
+{SRF01-Bunker2:QWR01-,  Valve:4KCycleTime,			MB_AOut,   72,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Valve:2KCycleTime,			MB_AOut,   74,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"s"}
+{SRF01-Bunker2:QWR01-,  Heater:CDStepTime,			MB_AOut,   76,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Heater:CDWattSet,			MB_AOut,   78,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"w"}
+{SRF01-Bunker2:QWR01-,  Heater:4KStepTime,			MB_AOut,   80,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Heater:4KWattSet,			MB_AOut,   82,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"w"}
+{SRF01-Bunker2:QWR01-,  Heater:2KStepTime,			MB_AOut,   84,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"u/s"}
+{SRF01-Bunker2:QWR01-,  Heater:2KWattSet,			MB_AOut,   86,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"w"}
+{SRF01-Bunker2:QWR01-,  Heater:CDSetTemp,			MB_AOut,   88,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"K"}
+{SRF01-Bunker2:QWR01-,  Heater:4KSetTemp,			MB_AOut,   90,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"K"}
+{SRF01-Bunker2:QWR01-,  Heater:2KSetTemp,			MB_AOut,   92,      FLOAT32_BE,  -1e6,  1e6, "",   "",		 2,		"K"}
 }
 

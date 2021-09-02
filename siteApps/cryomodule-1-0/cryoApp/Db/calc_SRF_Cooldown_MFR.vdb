@@ -1,6 +1,6 @@
 record(calc, "SRF01-Bunker2:HWRB01-Valve:CDFBKV") {
   field(PINI, "YES")
-  field(CALC, "(0.000006*A^3)-(0.0005*A^2)+(0.0192*A)-0.1353")
+  field(CALC, "(0.0000055977*A^3)-(0.000540972*A^2)+(0.019161167*A)-0.135285913")
   field(INPA, "SRF01-Bunker2:HWRB01-Valve:CDFBCV")
   field(FLNK, "SRF01-Bunker2:HWRB01-MFR:CDFBCV")
   field(SCAN, "5 second")
@@ -9,8 +9,9 @@ record(calc, "SRF01-Bunker2:HWRB01-Valve:CDFBKV") {
 record(calc, "SRF01-Bunker2:HWRB01-MFR:CDFBCV") {
   field(INPA, "SRF01-Bunker2:HWRB01-Valve:CDFBKV")
   field(INPB, "SRF01-Bunker2:HWRB01-MFR:Dens")
-  field(INPC, "SRF01-Bunker2:HWRB01-Pres:PT7306")
+  field(INPC, "SRF01-Bunker2:HWRB01-Pres:PI7306")
   field(INPD, "SRF01-Bunker2:HWRB01-Pres:2KHiValue")
   field(INPE, "SRF01-Bunker2:HWRB01-Temp:4KIn")
-  field(CALC, "519*A*(B*(C-D)*D/F)^0.5*1000/3600*0.04")
+  field(CALC, "519*A*(B*(C-D)*D/F)^0.5*1000/3600*0.055556")
 }
+

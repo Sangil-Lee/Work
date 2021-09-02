@@ -56,6 +56,7 @@ DB += calcout_ao_OM1.4_step6.template
 DB += RefValue.vdb
 DB += PhaseEnd.vdb
 
+DB += calc_SRF_Cooldown_MFR.vdb
 DB += SRF_HWR_Cooldown_MFR.template
 DB += SRF_HWR_Cooldown.sub
 DB += SRF_HWR_Cooldown_MFR.sub
