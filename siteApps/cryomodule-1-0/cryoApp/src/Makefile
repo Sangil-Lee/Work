@@ -48,8 +48,10 @@ ifneq ($(SNCSEQ),)
     cryo_SNCFLAGS += +r
     cryo_DBD  += seqHeater.dbd
     cryo_DBD  += sncSRFCooldown.dbd
+    cryo_DBD  += sncSRFCooldown_MFR.dbd
     cryo_SRCS += sncSRFCooldown.stt
     cryo_SRCS += seqHeater.stt
+    cryo_SRCS += sncSRFCooldown_MFR.stt
     cryo_LIBS += seq pv
 
 #    cryo_SNCFLAGS += +r

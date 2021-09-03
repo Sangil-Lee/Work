@@ -1,0 +1,103 @@
+program sncSRFCooldownMFR
+option +r; 
+
+%%#include <math.h> 
+
+char SRF_HWRB02_Valve[40] = "SRF01-Bunker2:HWRB01-Valve";
+
+string steppv;
+assign steppv to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepPV";
+monitor steppv;
+
+int ss_start = 0;
+assign ss_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}Start";
+monitor ss_start;
+evflag	efStop;
+sync ss_start to efStop;
+
+int		phaseend;
+assign	phaseend to "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd";
+monitor phaseend;
+
+int		phaseend_start;
+assign	phaseend_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}PhaseEnd.C";
+
+float	level;
+assign	level to "SRF01-Bunker2:HWRB01-Level:2KCVCm";
+monitor level;
+
+float cdDelay;
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
+monitor cdDelay;
+
+
+//Valve Control
+char    logicname[60];
+int     proc = 1;
+assign  proc to "";
+
+ss ssSRFCooldown
+{
+	state Init
+	{
+		when(TRUE)
+		{
+			printf("Wait Cooldown Logic Process!!\n");
+			strcpy(steppv, "Wait Cooldown Proc");
+			pvPut(steppv, SYNC);
+		}state Stop
+	}
+    state Stop
+    {
+        when(ss_start == 1)
+        {
+			sprintf(logicname,   "%s:CDLogic.PROC", SRF_HWRB02_Valve);
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			printf("Started Cooldown!!\n");
+			strcpy(steppv, "Started Cooldown");
+			pvPut(steppv, SYNC);
+
+        }state SRFCooldown
+    }
+
+	state SRFCooldown
+	{
+		when(delay(cdDelay) && level < 20 && ss_start == 1)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			printf("Processing Cooldown Logic !!\n");
+			strcpy(steppv, "Processing Cooldown");
+			pvPut(steppv, SYNC);
+		}state SRFCooldown
+
+		when(delay(cdDelay) && level >= 20  && ss_start == 1 )
+		{
+			pvStopMonitor(proc);
+
+			strcpy(steppv, "Stopped Cooldown");
+			pvPut(steppv, SYNC);
+
+			phaseend_start = 1;
+			pvPut(phaseend_start, SYNC);
+		}state PhaseEnd
+	}
+
+	state PhaseEnd
+	{
+		when(phaseend == 1)
+		{
+			ss_start = 0;
+			pvPut(ss_start, SYNC);
+
+			strcpy(steppv, "Complete PhaseEnd");
+			pvPut(steppv, SYNC);
+
+			//Start PLC PID Level Control
+			//...//
+		}state Stop
+	}
+}

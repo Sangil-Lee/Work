@@ -19,8 +19,8 @@ file "db/SRF_HWR_Cooldown_MFR.template" { pattern
 
 #file "db/calcout_ao_OM1.4_step6.template" { pattern
 file "db/calc_SRF_Cooldown.template" { pattern
-{SYS,	    SUBSYS,         DEV,		SUBDEV,		CALC,											INPB,									INPC,                               INPD,                              INPE,INPK,INPF,INPG,INPH,INPI,INPJ,INPL,OUTB			}							
-#{SRF01,    -Bunker2:,      HWRA01,		-Valve:,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRA01-Pres:2KHiValue",  "SRF01-Bunker2:HWRA01-MFR:CDFBCV",  "SRF01-Bunker2:HWRA01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  ""				} #HWRA
-{SRF01,     -Bunker2:,      HWRB01,		-Valve:,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRB01-Pres:2KHiValue",	"SRF01-Bunker2:HWRB01-MFR:CDFBCV",  "SRF01-Bunker2:HWRB01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  "CDSetPoint"	} #HWRB
+{SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,		CALC,											INPB,									INPC,                               INPD,                              INPE,INPK,INPF,INPG,INPH,INPI,INPJ,INPL,OUTB			}							
+#{SRF01,    -Bunker2:,      HWRA01,		-Valve:,	CDLogic,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRA01-Pres:2KHiValue",  "SRF01-Bunker2:HWRA01-MFR:CDFBCV",  "SRF01-Bunker2:HWRA01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  ""				} #HWRA
+{SRF01,     -Bunker2:,      HWRB01,		-Valve:,	CDLogic,	"(B>1.2)?0:C<D-0.2?(A+0.5):(C>D+0.2)?A-0.5:A",  "SRF01-Bunker2:HWRB01-Pres:2KHiValue",	"SRF01-Bunker2:HWRB01-MFR:CDFBCV",  "SRF01-Bunker2:HWRB01-MFR:Target", "",  "",  "",  "",  "",  "",  "",  "",  "CDSetPoint"	} #HWRB
 }
 

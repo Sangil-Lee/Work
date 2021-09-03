@@ -6,15 +6,15 @@
 
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd") {
   field(DESC, "SRF TF Phase End Cond")
-  field(SCAN, "1 second")
+  field(SCAN, "5 second")
   field(PINI, "YES")
   field(CALC, "A==1?1:C==0?0:E<20?2:A>=D?1:B==3?A+10:B==4?A+5:B==5?A+2:B==5?A+1:A+1")
   field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd")
   field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PhaseEnd.SCAN")
   field(INPC, "0")
-  field(VAL, "2")
-  field(INPD, "600")
+  field(INPD, "300")
   field(INPE, "SRF01-Bunker2:HWRB01-Level:2KCVCm")
+  field(VAL, "2")
 }
 
 #! Further lines contain data used by VisualDCT

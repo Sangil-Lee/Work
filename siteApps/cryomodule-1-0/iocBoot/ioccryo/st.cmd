@@ -84,13 +84,15 @@ dbLoadRecords("db/Helium_HeatLoad.vdb", "SYS=SRF01,SUBSYS=Bunker2,DEV=QWR01")
 
 ##HWRB Cooldown Logic
 dbLoadTemplate("db/Additional.sub")
-dbLoadRecords("db/RefValue.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=-Temp:")
-#dbLoadRecords("db/PhaseEnd.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=-Level:")
-dbLoadTemplate("db/SRF_HWR_Cooldown.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:, SIGNAL=Valve")
 
+###Propose 1 for Cooldown Logic
+#dbLoadRecords("db/RefValue.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=-Temp:")
+#dbLoadTemplate("db/SRF_HWR_Cooldown.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:, SIGNAL=Valve")
 
-#dbLoadTemplate("db/SRF_HWR_Cooldown_MFR.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:")
-#dbLoadRecords("db/calc_SRF_Cooldown_MFR.vdb")
+###Propose 2 for Cooldown Logic
+dbLoadRecords("db/PhaseEnd.vdb",  "SYS=SRF01,SUBSYS=-Bunker2:,DEV=HWRB01,SUBDEV=-Level:")
+dbLoadRecords("db/calc_SRF_Cooldown_MFR.vdb")
+dbLoadTemplate("db/SRF_HWR_Cooldown_MFR.sub", "SYS=SRF01, SUBSYS=-Bunker2:, DEV=HWRB01, SUBDEV=-Valve:")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
