@@ -8,6 +8,11 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += calc.template
+DB += ao.template
+DB += bi.template
+DB += bo.template
+DB += longin.template
+DB += longout.template
 DB += calc.sub
 
 #----------------------------------------------------
