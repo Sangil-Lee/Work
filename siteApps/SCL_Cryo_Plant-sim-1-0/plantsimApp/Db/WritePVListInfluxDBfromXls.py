@@ -60,10 +60,28 @@ def Read_DB(ifdb, qword):
     queryword = 'select Signal2 from {tname} where Signal2 =~ /{fword} */'.format(tname=tablename, fword=filterword)
     rs = ifdb.query(queryword)
     dblist = list(rs.get_points(measurement=tablename))
-    for idx, pvlist in enumerate(dblist):
-        pvname = str(pvlist)
-        pvname = pvname.split(',')[0]
-        pvname = pvname.split('\'')[3]
+
+    #for idx, pvlist in enumerate(dblist):
+        #pvname = str(pvlist)
+        #pvname = pvname.split('\'')[7]
+
+        #pvname = pvname.split(',')[1]
+        #pvname = pvname.split(' ')[2]
+        #pvname = pvname.split('\'')[1]
+        #or
+        #pvname = pvname.split(',')[1].split(' ')[2].split('\'')[1]
+
+        #print(str(pvname))
+
+    #Special Search, next
+    #pvname = next( item['time'] for item in dblist if item['Signal2']=='SRF01-Bunker2:HWRB01-Temp:Cavity6Bottom')
+    #print (pvname)
+
+    pvlist = [item['Signal2'] for item in dblist]
+    #pvlist = list(filter(lambda elem: elem['Signal2'], dblist))
+    #pvlist = {item[1] for item in dblist}
+    #print(pvlist)
+    for pvname in pvlist:
         print(pvname)
 
 def Insert_db():
