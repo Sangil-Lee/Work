@@ -14,6 +14,9 @@ DB += bo.template
 DB += longin.template
 DB += longout.template
 DB += calc.sub
+DB += ao.sub
+DB += bi.sub
+DB += bo.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

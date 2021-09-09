@@ -14,6 +14,9 @@ plantsim_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadTemplate("db/calc.sub")
+dbLoadTemplate("db/ao.sub")
+dbLoadTemplate("db/bi.sub")
+dbLoadTemplate("db/bo.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
