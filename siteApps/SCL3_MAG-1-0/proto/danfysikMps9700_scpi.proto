@@ -1,0 +1,41 @@
+#
+#
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 1000;
+LockTimeout   = 5000;
+
+setcmd		{ out "%{LOC|REM}";							}
+getcmd		{ out "CMD";			in "%{LOC|REM} ";	}
+
+power		{ out "OUTP:REL			%{OFF|ON}";			}
+rdpower		{ out "OUTP:REL?";		in "%d";			}
+
+getcurr		{ out "MEAS:CURR?";		in "%f";			}
+getvolt		{ out "MEAS:VOLT?";		in "%f";			}
+
+#adc		{ out "AD \$1";			in "%f";			}
+
+setcurr		{ out ":CURR %03d";							}
+setcurrRB	{ out ":CURR?";			in "%d"				}
+
+setvolt		{ out ":VOLT %03d";							}
+setvoltRB	{ out ":VOLT?";			in "%d"				}
+
+#wrdac  { out "DA \$1 %03d";						}
+#rddac  { out "DA \$1";      in "\$1 %d";		}
+
+
+first  { out "S1FIRSTH";    in "%x";			}
+
+reset  { out "RS";								}
+
+setpol { out "PO %{+|-}";						}
+getpol { out "PO";          in "%{+|-}";		}
+
+#rdcur  { out "MEAS:CURR?"   in "%f";			}
+
+# just for debugging - actually 2 lines
+print  { out "PRINT";       in "%39c" ;			}

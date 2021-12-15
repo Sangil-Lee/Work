@@ -1,0 +1,35 @@
+# Stream Device Protocol for the Danfysik System 9100 power supply
+# RS232 (standard version)
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 1000;
+LockTimeout   = 5000;
+
+interlock.status{out "S1"; in "%{!|.}";}
+
+ExtraInput = ignore;
+
+interlock.ext0{in "%*7c%{.|!}" ;}
+interlock.sum{in "%*9c%{.|!}" ;}
+interlock.overvoltage {in "%*10c%{.|!}" ;}
+interlock.dcocr {in "%*11c%{.|!}" ;}
+interlock.dcuvo {in "%*12c%{.|!}" ;}
+interlock.earth {in "%*16c%{.|!}" ;}
+interlock.fuse {in "%*17c%{.|!}" ;}
+interlock.mpsovertemp {in "%*18c%{.|!}" ;}
+interlock.ext1 {in "%*19c%{.|!}" ;}
+interlock.ext2 {in "%*20c%{.|!}" ;}
+interlock.ext3 {in "%*21c%{.|!}" ;}
+interlock.mpsready {in "%*22c%{.|!}" ;}
+
+#8 . . . . . EXTERNAL INTERLOCK 0 (!=Interlock .=No interlock)
+#11 . . . . . OVER VOLTAGE (OVP) (!=over voltage .=No over voltage)
+#12 . . . . . DC OVER CURRENT (OCP) (!=over current .=No over current)
+#13 . . . . . DC UNDERVOLTAGE (!=Fault .=OK)
+#19 . . . . . MPS OVERTEMPERATURE (!=Fault .=OK)
+#20 . . . . . EXTERNAL INTERLOCK 1 (!=Interlock .=No interlock)
+#21 . . . . . EXTERNAL INTERLOCK 2 (!=Interlock .=No interlock)
+#22 . . . . . EXTERNAL INTERLOCK 3 (!=Interlock .=No interlock)
+#23 . . . . . MPS NOT READY (!=Not ready .=Ready

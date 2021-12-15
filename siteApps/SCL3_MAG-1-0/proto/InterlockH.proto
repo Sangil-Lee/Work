@@ -1,0 +1,13 @@
+# Stream Device Protocol for the Danfysik System 9100 power supply
+# RS232 (standard version)
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 1000;
+LockTimeout   = 5000;
+
+interlock.status{out "S1H"; in "%x";}
+#interlock.status{out "S1"; in "%s";}
+ExtraInput = ignore;
+

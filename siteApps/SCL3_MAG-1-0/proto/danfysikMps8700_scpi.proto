@@ -1,0 +1,35 @@
+#
+#
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 100;
+WriteTimeout  = 100;
+LockTimeout   = 5000;
+
+setcmd		{ out "%{LOC|REM}";							}
+getcmd		{ out "CMD";			in "%{LOC|REM} ";	}
+
+power		{ out "OUTP:REL			%{OFF|ON}";			}
+rdpower		{ out "OUTP:REL?";		in "%d";			}
+
+getcurr		{ out "MEAS:CURR?";		in "%f";			}
+getvolt		{ out "MEAS:VOLT?";		in "%f";			}
+
+setcurr		{ out "CURR %03d";							}
+setcurrRB	{ out "CURR?";			in "%f"				}
+
+status	    { out "STAT?";			in "%d";			}
+reg1	    { out "STAT:OPER:REG1?";in "%d";			}
+reg2	    { out "STAT:OPER:REG2?";in "%d";			}
+reg3	    { out "STAT:OPER:REG3?";in "%d";			}
+
+#setvolt		{ out "VOLT %03d";						}
+#setvoltRB	{ out "VOLT?";			in "%f"				}
+#first  { out "S1FIRSTH";    in "%x";			}
+#reset  { out "RS";								}
+#setpol { out "PO %{+|-}";						}
+#getpol { out "PO";          in "%{+|-}";		}
+# just for debugging - actually 2 lines
+#print  { out "PRINT";       in "%39c" ;			}

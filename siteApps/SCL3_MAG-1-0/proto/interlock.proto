@@ -1,0 +1,24 @@
+# Stream Device Protocol for the Danfysik System 9100 power supply
+# RS232 (standard version)
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 1000;
+LockTimeout   = 5000;
+
+interlock.sum{in "%*9c%{.|!}" ;}
+interlock.overvoltage {in "%*10c%{.|!}" ;}
+interlock.dcocr {in "%*11c%{.|!}" ;}
+interlock.earth {in "%*16c%{.|!}" ;}
+interlock.fuse {in "%*17c%{.|!}" ;}
+interlock.mpstemp {in "%*18c%{.|!}" ;}
+interlock.mpsready {in "%*22c%{.|!}" ;}
+
+#interlock.regmodule  {in "%*12c%{.|!}" ;}
+#interlock.preregul {in "%*13c%{.|!}" ;}
+#interlock.phase {in "%*14c%{.|!}" ;}
+#interlock.mpswater  {in "%*15c%{.|!}" ;}
+#interlock.panicbutton {in "%*19c%{.|!}" ;}
+#interlock.magnetwater {in "%*20c%{.|!}" ;}
+#interlock.magnettemp {in "%*21c%{.|!}" ;}
