@@ -7,9 +7,11 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
+#DB += dbAutoRampup.db
+#DB += IntBitFanout2.vdb
 DB += danfysikMps9700.template
-DB += dbAutoRampup.db
-DB += IntBitFanout2.vdb
+DB += danfysik_SW.sub
+DB += toyotech.db
 
 
 #----------------------------------------------------

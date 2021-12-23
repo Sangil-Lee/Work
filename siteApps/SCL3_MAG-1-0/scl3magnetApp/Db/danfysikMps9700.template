@@ -16,22 +16,38 @@
 # External Reset
 # Switch PLC module ON before resetting local interlocks
 #
-#record(seq, "$(DEVICE):EXTRST")
+#record(seq, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):EXTRST")
 #{
 #    field(DESC, "External Reset")
 #    field(SELM, "All")
-#    field(DOL1, "1") field(LNK1, "$(DEVICE):RESET PP")
-#    field(DOL2, "1") field(LNK2, "$(DEVICE):On PP")
-#    field(DOL3, "0") field(LNK3, "$(DEVICE):On PP")    field(DLY3,"0.5")
-#    field(DOL4, "0") field(LNK4, "$(DEVICE):RESET PP") field(DLY4,"0.5")
-#    field(DOL5, "1") field(LNK5, "$(DEVICE):Rst PP")
-#    field(DOL6, "0") field(LNK6, "$(DEVICE):Rst PP")   field(DLY6,"0.5")
+#    field(DOL1, "1") field(LNK1, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):RESET PP")
+#    field(DOL2, "1") field(LNK2, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):On PP")
+#    field(DOL3, "0") field(LNK3, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):On PP")    field(DLY3,"0.5")
+#    field(DOL4, "0") field(LNK4, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):RESET PP") field(DLY4,"0.5")
+#    field(DOL5, "1") field(LNK5, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):Rst PP")
+#    field(DOL6, "0") field(LNK6, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV):Rst PP")   field(DLY6,"0.5")
 #}
+
+# SYS   SUBSYS DEV    SUBDEV SignalName				PV NAME Signal Description
+# SCL31 QWR01  QMAH01 PSB001 Remote					SCL31-QWR01:QMAH01-PSB001:Remote
+# SCL31 QWR01  QMAH01 PSB001 Stat					SCL31-QWR01:QMAH01-PSB001:Stat
+# SCL31 QWR01  QMAH01 PSB001 OnOff					SCL31-QWR01:QMAH01-PSB001:OnOff
+# SCL31 QWR01  QMAH01 PSB001 OnOffStat				SCL31-QWR01:QMAH01-PSB001:OnOffStat
+# SCL31 QWR01  QMAH01 PSB001 Mode					SCL31-QWR01:QMAH01-PSB001:Mode
+# SCL31 QWR01  QMAH01 PSB001 SetVolt				SCL31-QWR01:QMAH01-PSB001:SetVolt Voltage limit
+# SCL31 QWR01  QMAH01 PSB001 CurrPosNeg				SCL31-QWR01:QMAH01-PSB001:CurrPosNeg Polarity
+# SCL31 QWR01  QMAH01 PSB001 SetCurr				SCL31-QWR01:QMAH01-PSB001:SetCurr
+# SCL31 QWR01  QMAH01 PSB001 CurrOnOff				SCL31-QWR01:QMAH01-PSB001:CurrOnOff
+# SCL31 QWR01  QMAH01 PSB001 CurrRB					SCL31-QWR01:QMAH01-PSB001:CurrRB
+# SCL31 QWR01  QMAH01 PSB001 VoltRB					SCL31-QWR01:QMAH01-PSB001:VoltRB
 ################################################################################
+
+## Control Current Set or Voltage Set
+#SCL31 QWR01 QMAD01 PSU01 CurrOnOff SCL31-QWR01:QMAD01-PSU01:CurrOnOff
+
 # Command Line
 #
-#record(bi, "$(DEVICE):CMDLINE")
-record(bi, "$(DEVICE):RemoteCMD")
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Remote")
 {
     field(DESC, "Command Line")
     field(DTYP, "stream")
@@ -40,8 +56,7 @@ record(bi, "$(DEVICE):RemoteCMD")
     field(ONAM, "Remote")
     field(SCAN, "1 second")
 }
-#record(bo, "$(DEVICE):SETCMDLINE")
-record(bo, "$(DEVICE):SetRemoteCMD")
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetRemote")
 {
     field(DESC, "Command Line")
     field(DTYP, "stream")
@@ -52,31 +67,29 @@ record(bo, "$(DEVICE):SetRemoteCMD")
     field(PINI, "YES")
 }
 ################################################################################
-# Polarity
+# Polarity (Unipolar of SCL3 Quad
 #
-#record(bi, "$(DEVICE):POL")
-record(bi, "$(DEVICE):PolarStat")
-{
-    field(DESC, "Polarity")
-    field(DTYP, "stream")
-    field(INP, "@danfysikMps9700.proto getpol $(port) 0")
-    field(ZNAM, "+")
-    field(ONAM, "-")
-    field(SCAN, "1 second")
-}
-#record(bo, "$(DEVICE):SETPOL")
-record(bo, "$(DEVICE):PolarSwitch")
-{
-    field(DESC, "Polarity")
-    field(DTYP, "stream")
-    field(OUT, "@danfysikMps9700.proto setpol $(port) 0")
-    field(ZNAM, "+")
-    field(ONAM, "-")
-}
+#record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PolarStat")
+#{
+#    field(DESC, "Polarity")
+#    field(DTYP, "stream")
+#    field(INP, "@danfysikMps9700.proto getpol $(port) 0")
+#    field(ZNAM, "+")
+#    field(ONAM, "-")
+#    field(SCAN, "1 second")
+#}
+#record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PolarSwitch")
+#{
+#    field(DESC, "Polarity")
+#    field(DTYP, "stream")
+#    field(OUT, "@danfysikMps9700.proto setpol $(port) 0")
+#    field(ZNAM, "+")
+#    field(ONAM, "-")
+#}
 ################################################################################
 # Main Power
 #
-record(bo, "$(DEVICE):OnOff")
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)OnOff")
 {
     field(DESC, "Main Power")
     field(DTYP, "stream")
@@ -84,7 +97,8 @@ record(bo, "$(DEVICE):OnOff")
     field(ZNAM, "Off")
     field(ONAM, "On")
 }
-record(bi, "$(DEVICE):OnOffStat")
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)OnOffStat")
 {
     field(DESC, "Main Power")
     field(DTYP, "stream")
@@ -93,8 +107,8 @@ record(bi, "$(DEVICE):OnOffStat")
     field(ZNAM, "Off")
     field(ONAM, "On")
 }
-#record(bo, "$(DEVICE):RESET")
-record(bo, "$(DEVICE):Reset")
+
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RstInt")
 {
     field(DESC, "Reset")
     field(DTYP, "stream")
@@ -104,10 +118,10 @@ record(bo, "$(DEVICE):Reset")
 }
 ################################################################################
 ## Pole-tip Field (Gauss)
-record(ao, "$(DEVICE):GAUSS") 
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GAUSS") 
 {
   field(DTYP, "Raw Soft Channel")
-  field(FLNK, "$(DEVICE):CALC")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALC")
   field(DRVH, "9260")
   field(DRVL, "0")
   field(HOPR, "9260")
@@ -115,27 +129,26 @@ record(ao, "$(DEVICE):GAUSS")
   field(EGU,  "Gauss")
 }
 
-record(calc, "$(DEVICE):CALCFC") 
-{
-  field(SCAN, "Passive")
-	#(Gaus*0.0001)(Tesla)/0.027(meter)
-  field(CALC, "A/270.0")
-  field(INPA, "$(DEVICE):GAUSS CPP")
-  field(FLNK, "$(DEVICE):SUBFIELD")
-	field(EGU,  "T/m")
-}
+#record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALCFC") 
+#{
+#  field(SCAN, "Passive")
+##(Gaus*0.0001)(Tesla)/0.027(meter)
+#  field(CALC, "A/270.0")
+#  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GAUSS CPP")
+#  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SUBFIELD")
+#  field(EGU,  "T/m")
+#}
 
-record(sub, "$(DEVICE):SUBFIELD") {
-  field(SCAN, "Passive")
-  field(INAM, "FieldMapCurrentInit")
-  field(SNAM, "FieldMapCurrentProc")
-  field(INPA, "$(DEVICE):CALCFC")
-  field(FLNK, "$(DEVICE):SetCurrent")
-}
+#record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SUBFIELD") {
+#  field(SCAN, "Passive")
+#  field(INAM, "FieldMapCurrentInit")
+#  field(SNAM, "FieldMapCurrentProc")
+#  field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALCFC")
+#  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
+#}
 
 ## Set Current
-#record(ao, "$(DEVICE):SETCURRENT")
-record(ao, "$(DEVICE):SetCurrent")
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
 {
     field(DESC, "Set Output Current")
     field(SCAN, "Passive")
@@ -145,17 +158,16 @@ record(ao, "$(DEVICE):SetCurrent")
     field(HOPR, "$(inom)")
     field(DRVL, "$(imin=0)")
     field(DRVH, "$(imax)")
-    #field(OUP,  "$(DEVICE):SUBFIELD")
-    field(FLNK, "$(DEVICE):CALIOUT")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcSetCurr")
 }
-record(calcout, "$(DEVICE):CALIOUT")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcSetCurr")
 {
     field(DESC, "Set Output Current")
     field(CALC, "ABS(A)")
-    field(INPA, "$(DEVICE):SetCurrent")
-    field(OUT,  "$(DEVICE):OUTIOUT PP")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RSetCurr PP")
 }
-record(ao, "$(DEVICE):OUTIOUT")
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RSetCurr")
 {
     field(DESC, "Set Output Current")
     field(DTYP, "stream")
@@ -172,12 +184,10 @@ record(ao, "$(DEVICE):OUTIOUT")
 ## End Set Current
 ########################################################################
 ## Read Current Output
-#record(ai, "$(DEVICE):GETCURRENT")
-record(ai, "$(DEVICE):RCurrentRB")
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RCurrRB")
 {
     field(DESC, "Output Current")
     field(DTYP, "stream")
-    #field(INP,  "@danfysikMps9700.proto adc(0) $(port) 0")
     field(INP,  "@danfysikMps9700.proto rdcurr $(port) 0")
     field(SCAN, "1 second")
     field(EGU,  "A")
@@ -192,26 +202,25 @@ record(ai, "$(DEVICE):RCurrentRB")
     field(HSV,  "MINOR")
     field(LLSV, "MAJOR")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(DEVICE):CurrentRB")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CurrRB")
 
 }
-record(calc, "$(DEVICE):CurrentRB")
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CurrRB")
 {
     field(DESC, "Output Current")
     field(SCAN, "Passive")
     field(EGU,  "A")
     field(PREC, "3")
-    field(INPA, "$(DEVICE):RCurrentRB")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RCurrentRB")
     field(CALC, "A/100")
 }
 ########################################################################
 ## Read Voltage Output
-#record(ai, "$(DEVICE):GETVOLTAGE")
-record(ai, "$(DEVICE):RVoltRB")
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RVoltRB")
 {
     field(DESC, "Unipolar Voltage Output")
     field(DTYP, "stream")
-    field(INP,  "@danfysikMps9700.proto adc(2) $(port) 0")
+	field(INP,  "@danfysikMps9700.proto rdvolt $(port) 0")
     field(SCAN, "1 second")
     field(LINR, "LINEAR")
     field(ESLO, "0.01")
@@ -227,21 +236,20 @@ record(ai, "$(DEVICE):RVoltRB")
     field(HSV,  "MINOR")
     field(LLSV, "MAJOR")
     field(HHSV, "MAJOR")
-    field(FLNK, "$(DEVICE):VoltRB")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)VoltRB")
 }
-record(calc, "$(DEVICE):VoltRB")
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)VoltRB")
 {
     field(DESC, "Output Voltage")
     field(SCAN, "Passive")
     field(EGU,  "V")
     field(PREC, "3")
-    field(INPA, "$(DEVICE):RVoltRB")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RVoltRB")
     field(CALC, "A/10")
 }
 ########################################################################
 ## Read Back Set Current
-#record(ai, "$(DEVICE):SETCURRENTRB")
-record(ai, "$(DEVICE):SetCurrentRB")
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurrRB")
 {
     field(DESC, "Set Current Read Back")
     field(DTYP, "stream")
@@ -265,44 +273,45 @@ record(ai, "$(DEVICE):SetCurrentRB")
 ################################################################################
 # First Status
 #
-record(ai, "$(DEVICE):FSTA")
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat")
 {
     field(DESC, "First Status")
     field(DTYP, "stream")
     field(INP,  "@danfysikMps9700.proto first $(port) 0")
     field(SCAN, "1 second")
-    field(FLNK, "$(DEVICE):CALFSTA1")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcStat")
     field(PREC, "0")
 }
-record(calcout, "$(DEVICE):CALFSTA1")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcStat")
 {
     field(DESC, "Status bits 1-8")
-    field(OUT,  "$(DEVICE):FSTA1 PP MS")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat1 PP MS")
     field(CALC, "(A>>B)&C")
-    field(INPA, "$(DEVICE):FSTA MS")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat MS")
     field(INPB, "16")
     field(INPC, "255")
-    field(FLNK, "$(DEVICE):CALFSTA2")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcStat2")
 }
-record(mbbiDirect, "$(DEVICE):FSTA1")
+record(mbbiDirect, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat1")
 {
     field(DESC, "Status")
     field(NOBT, "8")
 }
-record(calcout, "$(DEVICE):CALFSTA2")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CalcStat2")
 {
     field(DESC, "Status bits 9-24")
-    field(OUT,  "$(DEVICE):FSTA2 PP MS")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat2 PP MS")
     field(CALC, "A&B")
-    field(INPA, "$(DEVICE):FSTA MS")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat MS")
     field(INPB, "65535")
 }
-record(mbbiDirect, "$(DEVICE):FSTA2")
+record(mbbiDirect, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stat2")
 {
     field(DESC, "Status")
+    field(NOBT, "8")
 }
 ################################################################################
-record(stringin, "$(DEVICE):INFO")
+record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)INFO")
 {
     field(DESC, "User Information")
     field(DTYP, "stream")
@@ -312,55 +321,55 @@ record(stringin, "$(DEVICE):INFO")
 ################################################################################
 # calculate limits
 #
-record(calcout, "$(DEVICE):CALHLIM")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALHLIM")
 {
     field(DESC, "upper limit")
     field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
-    field(OUT,  "$(DEVICE):READI.HIGH")
-    field(INPA, "$(DEVICE):SetCurrent")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.HIGH")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
     field(INPB, "$(imax)")
     field(INPC, "$(ilim)")
     field(INPD, "1000")
     field(SCAN, "1 second")
     field(PHAS, "2")
 }
-record(calcout, "$(DEVICE):CALHHLIM")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALHHLIM")
 {
     field(DESC, "upper limit")
     field(CALC, "(ABS(A)<C)?(C*1.1):(A+(B/D))")
-    field(OUT,  "$(DEVICE):READI.HIHI")
-    field(INPA, "$(DEVICE):SetCurrent")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.HIHI")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
     field(INPB, "$(imax)")
     field(INPC, "$(ilim)")
     field(INPD, "100")
     field(SCAN, "1 second")
     field(PHAS, "2")
 }
-record(calcout, "$(DEVICE):CALLLIM")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALLLIM")
 {
     field(DESC, "lower limit")
     field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
-    field(OUT,  "$(DEVICE):READI.LOW")
-    field(INPA, "$(DEVICE):SetCurrent")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.LOW")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
     field(INPB, "$(imax)")
     field(INPC, "$(ilim)")
     field(INPD, "1000")
     field(SCAN, "1 second")
     field(PHAS, "2")
 }
-record(calcout, "$(DEVICE):CALLLLIM")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CALLLLIM")
 {
     field(DESC, "lower limit")
     field(CALC, "(ABS(A)<C)?(-C*1.1):(A-(B/D))")
-    field(OUT,  "$(DEVICE):READI.LOLO")
-    field(INPA, "$(DEVICE):SetCurrent")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.LOLO")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCurr")
     field(INPB, "$(imax)")
     field(INPC, "$(ilim)")
     field(INPD, "100")
     field(SCAN, "1 second")
     field(PHAS, "2")
 }
-record(seq, "$(DEVICE):DISLIMS")
+record(seq, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DISLIMS")
 {
     field(DESC, "disable limits")
     field(SELM, "All")
@@ -368,20 +377,21 @@ record(seq, "$(DEVICE):DISLIMS")
     field(DOL2, "-10")
     field(DOL3, "$(imax)")
     field(DOL4, "$(imax)")
-    field(LNK1, "$(DEVICE):READI.LOLO")
-    field(LNK2, "$(DEVICE):READI.LOW")
-    field(LNK3, "$(DEVICE):READI.HIGH")
-    field(LNK4, "$(DEVICE):READI.HIHI")
+    field(LNK1, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.LOLO")
+    field(LNK2, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.LOW")
+    field(LNK3, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.HIGH")
+    field(LNK4, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI.HIHI")
 }
-record(calc, "$(DEVICE):ALM")
-{
-    field(DESC, "Alarm Sum")
-    field(CALC, "A+B+C+D")
-    field(INPA, "$(DEVICE):RILK MS")
-    field(INPB, "$(DEVICE):READI MS")
-    field(INPC, "$(DEVICE):V MS")
-    field(INPD, "$(DEVICE):DT MS")
-    field(SCAN, "1 second")
-    field(PHAS, "3")
-}
+
+#record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ALM")
+#{
+#    field(DESC, "Alarm Sum")
+#    field(CALC, "A+B+C+D")
+#    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RILK MS")
+#    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)READI MS")
+#    field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)V MS")
+#    field(INPD, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DT MS")
+#    field(SCAN, "1 second")
+#    field(PHAS, "3")
+#}
 ################################################################################

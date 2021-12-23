@@ -11,7 +11,7 @@ ReadTimeout   = 1000;
 LockTimeout   = 5000;
 
 adc    { out "AD \$1";      in "%f";			}
-rdcurr    { out "MEAS:CURR?";      in "%f";			}
+rdcurr { out "MEAS:CURR?";      in "%f";			}
 
 wrdac  { out "DA \$1 %03d";						}
 rddac  { out "DA \$1";      in "\$1 %d";		}

@@ -1,0 +1,194 @@
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):Remote") {
+	field(DESC, "Remote Control Mode")
+	field(DTYP, "stream")
+	field(OUT,  "@toyotech.proto setRemote $(port)")
+	field(PINI, "YES")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):Local") {
+	field(DESC, "Local Control Mode")
+	field(DTYP, "stream")
+	field(OUT,  "@toyotech.proto setLocal $(port)")
+	field(PINI, "YES")
+}
+
+record(ao,"$(SYS)-$(SUBSYS):$(DEV):SetVoltage") {
+    field(DESC, "Set voltage")
+    field(DTYP, "stream")
+    field(LINR, "NO CONVERSION")
+    field(OUT,  "@toyotech.proto setVoltage $(port)")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):UpdateVolt")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateVolt") {
+	field(DESC, "Force measurements for volt")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetVoltageRB.PROC")
+	field(DLY1, "1")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):SetVoltageRB") {
+    field(DESC, "Set voltage Read Back")
+    field(DTYP, "stream")
+	field(INP,  "@toyotech.proto setVoltageRB $(port)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):GetVoltage") {
+    field(SCAN, "2 second")
+    field(DESC, "Get voltage")
+    field(DTYP, "stream")
+	field(INP,  "@toyotech.proto getVoltage $(port)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "Volts")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+record(ao,"$(SYS)-$(SUBSYS):$(DEV):SetCurrent") {
+    field(DESC, "Set current")
+    field(DTYP, "stream")
+    field(LINR, "NO CONVERSION")
+	field(OUT,  "@toyotech.proto setCurrent $(port)")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "10")
+	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):UpdateCurr")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateCurr") {
+	field(DESC, "Force measurements for curr")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetCurrentRB.PROC")
+	field(DLY1, "1")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):SetCurrentRB") {
+    field(DESC, "Set current Read Back")
+    field(DTYP, "stream")
+	field(INP,  "@toyotech.proto setCurrentRB $(port)")
+	field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "15")
+    field(PINI,  "YES")
+}
+
+record(ai,"$(SYS)-$(SUBSYS):$(DEV):GetCurrent") {
+    field(SCAN, "2 second")
+    field(DESC, "Get voltage")
+    field(DTYP, "stream")
+		field(INP,  "@toyotech.proto getCurrent $(port)")
+		field(LINR, "NO CONVERSION")
+    field(PREC, "3")
+    field(EGU,  "A")
+    field(LOPR,  "0")
+    field(HOPR,  "10")
+    field(PINI,  "YES")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):OutputOnOff") {
+	field(DESC, "Output On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@toyotech.proto setOutput $(port)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):SetChannel") {
+	field(DESC, "Select Channel(OUTP1|OUTP2)")
+	field(DTYP, "stream")
+	field(OUT,  "@toyotech.proto setChannel $(port)")
+	field(PINI, "YES")
+	field(ZNAM, "OUTP1")
+	field(ONAM, "OUTP2")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateChannel") {
+	field(DESC, "Force check channel")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):SetChannelRB.PROC")
+	field(DLY1, "1")
+}
+
+record(stringin,"$(SYS)-$(SUBSYS):$(DEV):SetChannelRB") {
+	field(DESC, "Channel ReadBack")
+	field(DTYP, "stream")
+	field(INP,  "@toyotech.proto setChannelRB $(port)")
+	field(PINI, "YES")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateOutput") {
+	field(DESC, "Force check output")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):OutputOnOffRB.PROC")
+	field(DLY1, "1")
+}
+
+record(bi,"$(SYS)-$(SUBSYS):$(DEV):OutputOnOffRB") {
+	field(DESC, "Output On/Off ReadBack")
+	field(DTYP, "stream")
+	field(INP,  "@toyotech.proto setOutputRB $(port)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):OCP") {
+	field(DESC, "Over Current Protection On/Off")
+	field(DTYP, "stream")
+	field(OUT,  "@toyotech.proto setOCP $(port)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+    	field(FLNK, "$(SYS)-$(SUBSYS):$(DEV):UpdateOCP")
+}
+
+record(seq,"$(SYS)-$(SUBSYS):$(DEV):UpdateOCP") {
+	field(DESC, "Force check overcurrent")
+	field(LNK1, "$(SYS)-$(SUBSYS):$(DEV):OCPRB.PROC")
+	field(DLY1, "1")
+}
+
+record(bi,"$(SYS)-$(SUBSYS):$(DEV):OCPRB") {
+	field(DESC, "O.C.P ReadBack")
+	field(DTYP, "stream")
+	field(INP,  "@toyotech.proto setOCPRB $(port)")
+	field(PINI, "YES")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):POLA1") {
+	field(DESC, "Set Polarity 0(+),1(-)")
+	field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL,  "0")
+	field(ZNAM, "Minus")
+	field(ONAM, "Plus")
+}
+
+record(bo,"$(SYS)-$(SUBSYS):$(DEV):POLA2") {
+	field(DESC, "Set Polarity 0(+),1(-)")
+	field(DTYP, "Soft Channel")
+	field(PINI, "YES")
+	field(VAL,  "0")
+	field(ZNAM, "Minus")
+	field(ONAM, "Plus")
+}
+
+record(stringin,"$(SYS)-$(SUBSYS):$(DEV):Error") {
+    field(DESC, "Error Number")
+    field(DTYP, "stream")
+		field(INP,  "@toyotech.proto getError $(port)")
+    field(PINI,  "YES")
+}

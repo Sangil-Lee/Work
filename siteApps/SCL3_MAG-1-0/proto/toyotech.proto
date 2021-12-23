@@ -1,0 +1,96 @@
+# Toyotech Power Supply Unipolar Communication Protocol
+# Data format
+# 	baud rate: 9600
+#	start: 1
+#	data: 8
+#	stop: 1
+#	parity: None
+#	hardware handshake: None
+# Communication Procedure
+# Transmit: Mnemonics[and parameters] <CR>[<LF>]
+# Receive: <ACK><CR><LF>
+# Transmit: <ENQ>
+# Receive: Measurement values or parameters <CR>
+
+#Terminator = NL;
+
+InTerminator  = LF;
+OutTerminator = LF;
+ReplyTimeout = 3000;
+
+
+#-----------------------------------------------#
+setRemote
+{
+	out "SYST:REM";
+}
+
+setLocal
+{
+	out "SYST:LOC";
+}
+
+#-----------------------------------------------#
+setVoltage
+{
+	out "VOLT %g";
+}
+
+setVoltageRB
+{
+	out "VOLT?"; in "%f";
+}
+
+getVoltage
+{
+	out "MEAS:VOLT?"; in "%f";
+}
+
+#-----------------------------------------------#
+setCurrent
+{
+	out "CURR %g";
+}
+
+setCurrentRB
+{
+	out "CURR?"; in "%f";
+}
+
+getCurrent
+{
+	out "MEAS:CURR?"; in "%f";
+}
+#-----------------------------------------------#
+setOCP
+{
+	out "SOUR:CURR:PROT:STAT %s";
+}
+setOCPRB
+{
+	out "SOUR:CURR:PROT:STAT? %s";
+}
+#-----------------------------------------------#
+setOutput
+{
+	out "OUTP %s";
+}
+setOutputRB
+{
+	out "OUTP?"; in "%b";
+}
+#-----------------------------------------------#
+setChannel
+{
+	out "INST %s";
+}
+setChannelRB
+{
+	out "INST?"; in "%s";
+}
+#-----------------------------------------------#
+getError
+{
+	out "SYST:ERR?"; in "%s";
+}
+#-----------------------------------------------#
