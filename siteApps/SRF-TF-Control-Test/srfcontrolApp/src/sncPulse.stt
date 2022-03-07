@@ -1,0 +1,59 @@
+program sncPulse
+option +r;
+//option -c;
+
+%% #include <epicsThread.h>
+
+double period;
+assign period to "{SYS}{SUBSYS}{DEV}{SUBDEV}Period";
+monitor period;
+
+double duty;
+assign duty to "{SYS}{SUBSYS}{DEV}{SUBDEV}Duty";
+monitor duty;
+
+double pulseon;
+assign pulseon to "{SYS}{SUBSYS}{DEV}{SUBDEV}PulseOn";
+monitor pulseon;
+
+double pulseoff;
+assign pulseoff to "{SYS}{SUBSYS}{DEV}{SUBDEV}PulseOff";
+monitor pulseoff;
+
+int pulse;
+assign pulse to "{SYS}{SUBSYS}{DEV}{SUBDEV}Pulse.PROC";
+monitor pulse;
+
+//evflag	evFieldCurr;
+//sync	calcFieldCurr evFieldCurr;
+
+
+ss makePulse 
+{
+	state init{
+		when(TRUE){
+			printf("Pulse On...\n");
+		}state pulseWidthOn
+	}
+
+	state pulseWidthOn
+	{
+		/*when(scan==1 && rampup <= hiset && rampup >= loset)*/
+		when(delay(pulseon))
+		{
+			pulse = 1;
+			pvPut(pulse, SYNC);
+		}state pulseWidthOff
+	}
+
+	state pulseWidthOff
+	{
+		/*when(delay(dly) && scan==1 && rampup <= hiset && rampup >= loset)*/
+		when(delay(pulseoff))
+		{
+			pulse = 1;
+			pvPut(pulse, SYNC);
+		}state pulseWidthOn
+	}
+}
+
