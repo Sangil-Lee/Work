@@ -13,7 +13,8 @@ opmode_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
-dbLoadRecords("db/dbOPModeSeq.vdb","SYS=SCL3,SUBSYS=-CM01:,DEV=CM,SUBDEV=:")
+dbLoadRecords("db/dbOPModeSeq.vdb",  "SYS=SCL3,SUBSYS=-CM01:,DEV=CM,SUBDEV=:")
+dbLoadRecords("db/operationMode.vdb","SYS=SCL3,SUBSYS=-CoolDown:,DEV=Oper,SUBDEV=:")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

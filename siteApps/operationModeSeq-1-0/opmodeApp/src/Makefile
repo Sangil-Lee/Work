@@ -17,12 +17,14 @@ opmode_DBD += base.dbd
 
 # Include dbd files from all support applications:
 #opmode_DBD += xxx.dbd
+opmode_DBD += CooldownOPModeDefine.dbd
 
 # Add all the support libraries needed by this IOC
 #opmode_LIBS += xxx
 
 # opmode_registerRecordDeviceDriver.cpp derives from opmode.dbd
 opmode_SRCS += opmode_registerRecordDeviceDriver.cpp
+opmode_SRCS += CooldownOPModeDefine.cpp
 
 # Build the main IOC entry point on workstation OSs.
 opmode_SRCS_DEFAULT += opmodeMain.cpp
