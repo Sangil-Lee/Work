@@ -29,12 +29,12 @@
 #SNCSEQ = $(MODULES)/seq-ver
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
-EPICS_BASE = ${EPICS_PATH}/base
+EPICS_BASE=/home/ctrluser/epics/7.0.6.1/base
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
 #RULES = $(MODULES)/build-rules
-ASYN=${EPICS_SYNAPPS}/asyn
+ASYN=${EPICS_SYNAPPS}/asyn-R4-36
 SNCSEQ=${EPICS_SYNAPPS}/seq-2-2-6
 
 # These lines allow developers to override these RELEASE settings

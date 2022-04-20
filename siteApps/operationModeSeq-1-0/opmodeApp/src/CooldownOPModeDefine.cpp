@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <unordered_map>
+#include <algorithm>
 
 #include <registryFunction.h>
 #include <aSubRecord.h>
@@ -45,16 +46,17 @@ static long ProcOPMode(aSubRecord *prec)
 
 	if(aval == nullptr || outwf == nullptr) return(-1);
 
-	string stromstr;
+	string strom;
 	try {
-		stromstr = opmode2str.at(aval[0]);
+		strom = opmode2str.at(aval[0]);
 	} catch ( const std::out_of_range & oor) {
 		//cout << oor.what() << endl;
-		stromstr = string("Not Defined");
+		strom = string("Not Defined");
 	}
 
-	//printf("%f, %s\n", aval[0], stromstr.c_str());
-	strcpy(outwf, stromstr.c_str());
+	//printf("%f, %s\n", aval[0], strom.c_str());
+	strcpy(outwf, strom.c_str());
+	copy_n(strom.c_str(), strom.size()+1, outwf);
 
 	return 0;
 }
