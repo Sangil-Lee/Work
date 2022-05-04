@@ -12,6 +12,8 @@ DB  += aoFloat64.template
 DB  += biWord.template
 DB  += boWord.template
 DB  += TBxcontrol.sub
+DB  += TBxcontrol_2.sub
+DB  += TBxcontrol_test.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

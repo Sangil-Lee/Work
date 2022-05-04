@@ -12,21 +12,34 @@ dbLoadDatabase "dbd/tbxcontrol.dbd"
 tbxcontrol_registerRecordDeviceDriver pdbbase
 
 #Siemens PLC
-#drvAsynIPPortConfigure("TBX_PLC", "192.168.100.11:502", 0, 0, 1)
-#modbusInterposeConfig("TBX_PLC",0,5000,0)
+drvAsynIPPortConfigure("TBX_PLC", "192.168.140.171:502", 0, 0, 1)
+modbusInterposeConfig("TBX_PLC",0,5000,0)
 
 
-#drvModbusAsynConfigure("TBXAI", "TBX_PLC", 0, 5,   0,   100, 7, 100, "Modicon")
-#drvModbusAsynConfigure("TBXAO", "TBX_PLC", 0, 16,  400, 100, 7, 100, "Modicon")
+## to 0   up 250 bytes(125 word), data block
+drvModbusAsynConfigure("TBXAI",   "TBX_PLC", 0, 3,  0,   125, 7, 100, "Modicon")  
+## to 251 up 500 bytes(125 word), data block
+drvModbusAsynConfigure("TBXAI_1", "TBX_PLC", 0, 3,  126, 125, 7, 100, "Modicon")  
+## to 252 up 750 bytes(125 word), data block
+drvModbusAsynConfigure("TBXAI_2", "TBX_PLC", 0, 3,  252, 125, 7, 100, "Modicon")  
 
 
-#drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 3,   550,  27, 7, 100, "Modicon")
-#drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 16,  576,  25, 7, 100, "Modicon")
+#Spare
+#drvModbusAsynConfigure("SPARE", "TBX_PLC",   0, 3,  378,  20, 7, 100, "Modicon")  
+
+
+drvModbusAsynConfigure("TBXAO",   "TBX_PLC", 0, 6,  400, 125, 7, 100, "Modicon")
+drvModbusAsynConfigure("TBXAO_1", "TBX_PLC", 0, 6,  526, 25,  7, 100, "Modicon")
+
+
+drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
+drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 6,  576,  22, 7, 100, "Modicon")
 
 ## Load record instances
-#dbLoadRecords("db/xxx.db","user=ctrluser")
+#dbLoadTemplate("db/TBxcontrol.sub")
+#dbLoadTemplate("db/TBxcontrol_test.sub")
 
-dbLoadTemplate("db/TBxcontrol.sub")
+dbLoadTemplate("db/TBxcontrol_2.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
