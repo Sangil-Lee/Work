@@ -7,6 +7,10 @@ string strbit;
 assign strbit to "{HOST}:StrBitOut";
 monitor strbit;
 
+int strval;
+assign strval to "{HOST}:LongValue";
+monitor strval;
+
 int stop;
 assign stop to "{HOST}:Stop";
 monitor stop;
@@ -28,6 +32,8 @@ ss ledseq
 	{
 		when(TRUE)
 		{
+			//strval = 0;
+			//pvPut(strval,SYNC);
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
 			opmode = 0;
@@ -41,6 +47,8 @@ ss ledseq
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state bluestate
 	}
 
@@ -51,12 +59,16 @@ ss ledseq
 		{
 			strcpy(strbit,"1000");
 			pvPut(strbit,SYNC);
+			//strval = 8;
+			//pvPut(strval,SYNC);
 		}state greenstate
 
 		when(stop && opmode == 0)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -67,12 +79,16 @@ ss ledseq
 		{
 			strcpy(strbit,"0100");
 			pvPut(strbit,SYNC);
+			//strval = 4;
+			//pvPut(strval,SYNC);
 		}state redstate
 
 		when(stop && opmode == 0)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -83,12 +99,16 @@ ss ledseq
 		{
 			strcpy(strbit,"0010");
 			pvPut(strbit,SYNC);
+			//strval = 2;
+			//pvPut(strval,SYNC);
 		}state orangestate
 
 		when(stop && opmode == 0)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -99,12 +119,16 @@ ss ledseq
 		{
 			strcpy(strbit,"0001");
 			pvPut(strbit,SYNC);
+			//strval = 1;
+			//pvPut(strval,SYNC);
 		}state bluestate
 
 		when(stop && opmode == 0)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 }
@@ -124,6 +148,8 @@ ss ledthreeseq
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state threeo 
 	}
 
@@ -133,12 +159,16 @@ ss ledthreeseq
 		{
 			strcpy(strbit,"1110");
 			pvPut(strbit,SYNC);
+			//strval = 14;
+			//pvPut(strval,SYNC);
 		}state twooone
 
 		when(stop && opmode == 1)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -148,12 +178,16 @@ ss ledthreeseq
 		{
 			strcpy(strbit,"1101");
 			pvPut(strbit,SYNC);
+			//strval = 13;
+			//pvPut(strval,SYNC);
 		}state oneotwo
 
 		when(stop && opmode == 1)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -163,12 +197,16 @@ ss ledthreeseq
 		{
 			strcpy(strbit,"1011");
 			pvPut(strbit,SYNC);
+			//strval = 11;
+			//pvPut(strval,SYNC);
 		}state othree
 
 		when(stop && opmode == 1)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -178,12 +216,16 @@ ss ledthreeseq
 		{
 			strcpy(strbit,"0111");
 			pvPut(strbit,SYNC);
+			//strval = 7;
+			//pvPut(strval,SYNC);
 		}state threeo
 
 		when(stop && opmode == 1)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 }
@@ -203,6 +245,8 @@ ss ledtwoseq
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state oneoneoo 
 	}
 
@@ -212,12 +256,16 @@ ss ledtwoseq
 		{
 			strcpy(strbit,"1100");
 			pvPut(strbit,SYNC);
+			//strval = 12;
+			//pvPut(strval,SYNC);
 		}state oneooneo
 
 		when(stop && opmode == 2)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -227,12 +275,16 @@ ss ledtwoseq
 		{
 			strcpy(strbit,"1010");
 			pvPut(strbit,SYNC);
+			//strval = 10;
+			//pvPut(strval,SYNC);
 		}state oooneone
 
 		when(stop && opmode == 2)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -242,12 +294,16 @@ ss ledtwoseq
 		{
 			strcpy(strbit,"0011");
 			pvPut(strbit,SYNC);
+			//strval = 3;
+			//pvPut(strval,SYNC);
 		}state ooneoone
 
 		when(stop && opmode == 2)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 
@@ -257,12 +313,16 @@ ss ledtwoseq
 		{
 			strcpy(strbit,"0101");
 			pvPut(strbit,SYNC);
+			//strval = 5;
+			//pvPut(strval,SYNC);
 		}state oneoneoo
 
 		when(stop && opmode == 2)
 		{
 			strcpy(strbit,"0");
 			pvPut(strbit,SYNC);
+			//strval = 0;
+			//pvPut(strval,SYNC);
 		}state stopstate
 	}
 }

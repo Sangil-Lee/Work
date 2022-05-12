@@ -1,4 +1,4 @@
-#include <subRecord.h>
+#include <aSubRecord.h>
 #include <epicsExport.h>
 
 #include <dbAccess.h>
@@ -11,8 +11,11 @@
 #include <registryFunction.h>
 #include <recSup.h>
 #include <stringinRecord.h>
+#include <longinRecord.h>
 #include <epicsExport.h>
 
+#include <stdio.h>
+#include <string.h>
 #include <cstdio>
 #include <string>
 #include <iostream>
@@ -26,57 +29,30 @@
 
 using namespace std;
 
-static long InitSubStr2Bit(subRecord *precord)
+static long InitSubStr2Bit(aSubRecord *precord)
 {
+    printf("aSub Initialize\n");
     return(0);
 }
 
-static long ProcSubStr2Bit(subRecord *precord)
+static long ProcSubStr2Bit(aSubRecord *precord)
 {
-#if 1
-	//DBADDR *pdbAddrA = dbGetPdbAddrFromLink(&precord->inpa);
-	//DBADDR *pdbAddrA =  (struct dbAddr*)(&precord->inpa)->value.pv_link.pvt;
-	DBADDR *pdbAddrA =  (DBADDR *)(&precord->inpa)->value.pv_link.pvt;
-	//char* sval = (char*)pdbAddrA->pfield;
+	long status = 0;
 
-	string strval((char*)pdbAddrA->pfield);
+	char* sval = (char*)precord->a;
+	string strval((char*)sval);
 	reverse(strval.begin(), strval.end());
 
-	//bitset<32> strbit(sval);
-	bitset<32> strbit((char*)strval.c_str());
-	precord->val = strbit.to_ullong();
+	bitset<5> strbit((char*)strval.c_str());
+	//precord->vala = (void*)strbit.to_ulong();
 
-#else
-	DBADDR *pdbAddrA = dbGetPdbAddrFromLink(&precord->inpa);
-	DBADDR *pdbAddrB = dbGetPdbAddrFromLink(&precord->inpb);
-
-	float *pfieldLinkA =  (float*)pdbAddrA->pfield;
-	float *pfieldLinkB =  (float*)pdbAddrB->pfield;
-
-	long no_elements = pdbAddrA->no_elements;
-	int index = 0;
-
-	waveformRecord *precordLinkA = (waveformRecord *)pdbAddrA->precord;
-	waveformRecord *precordLinkB = (waveformRecord *)pdbAddrB->precord;
-
-	float con_inpA = (float)precord->c;
-	float con_inpB = (float)precord->d;
-	float con_inpDelta = (float)precord->e;
-
-	for(index = 0; index < no_elements;index++)
-	{
-		pfieldLinkA[index] =  cos(con_inpA*M_PI/(float)no_elements * (float)index);
-		pfieldLinkB[index] =  cos(con_inpB*M_PI/(float)no_elements * (float)index + con_inpDelta);
-	};
-
-	precordLinkA->nord = no_elements;
-	precordLinkB->nord = no_elements;
-
-	dbProcess(precordLinkA);
-	dbProcess(precordLinkB);
-#endif
-
-    return(0);
+	long *uval = (long*)precord->vala;
+	uval[0] = strbit.to_ulong();
+	//
+	//long uval = (long)precord->vala;
+	//uval = strbit.to_ulong();
+	//printf("strvalue(%s), longvalue:(%ld)\n", sval, uval[0] );
+    return(status);
 }
 
 /* Register these symbols for use by IOC code: */

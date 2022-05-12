@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/loco
+#!../../bin/linux-aarch64/loco
 
 #- You may have to change loco to something else
 #- everywhere it appears in this file
