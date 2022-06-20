@@ -5,6 +5,8 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
+USR_CXXFLAGS += -Wno-unused-variable -Wno-deprecated-declarations
+
 #=============================
 # Build the IOC application
 
@@ -20,12 +22,14 @@ glalarm_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitReco
 #glalarm_DBD += xxx.dbd
 glalarm_DBD += $(CALC)/dbd/calc.dbd
 glalarm_DBD += $(CALC)/dbd/calcSupport.dbd
+glalarm_DBD += asubGlobalInterlock.dbd
 
 # Add all the support libraries needed by this IOC
 #glalarm_LIBS += xxx
 
 # glalarm_registerRecordDeviceDriver.cpp derives from glalarm.dbd
 glalarm_SRCS += glalarm_registerRecordDeviceDriver.cpp
+glalarm_SRCS += asubGlobalInterlock.cpp
 
 # Build the main IOC entry point on workstation OSs.
 glalarm_SRCS_DEFAULT += glalarmMain.cpp
