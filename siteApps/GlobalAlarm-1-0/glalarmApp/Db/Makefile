@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += globalAlarm.vdb
+DB += bi.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
