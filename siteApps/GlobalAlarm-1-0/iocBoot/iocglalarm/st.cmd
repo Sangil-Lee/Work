@@ -13,9 +13,11 @@ glalarm_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
+dbLoadRecords("db/globalAlarm.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
+dbLoadTemplate("db/sim_pv.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-#seq sncxxx,"user=ctrluser"
+seq sncGLInterlockWF, "SYS=SCL3, SUBSYS=CDL01, SUBSYS2=CDL02, SUBSYS3=CDL03"

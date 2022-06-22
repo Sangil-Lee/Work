@@ -41,12 +41,26 @@ static long ProcGBInterlock(aSubRecord *pRec)
 {
 	long status = 0;
 
-	//INPA
-	//INPB
-	//INPC
-	//INPD
-	//INPE
-	//INPF
+	/* INPA
+	 * SCL3-ALL:IntWF-PT7503:PressR (Waveform, 11)
+	 */
+	
+	/*INPB
+	 *SCL3-ALL:IntWF-XV7301:Eval (1 or 0)
+	 */
+	/*INPC
+	 *SCL3-ALL:IntWF-XV7201:Eval (1 or 0)
+	 */
+
+	/*INPD
+	 * Contant :20.5
+	 */
+	/*INPE
+	 * Cryo-CDL00:TBx01-PT7305:PresR
+	 */
+	/*INPF
+	 * Cryo-CDL00:TBx01-XV7381:CloseStat
+	 */
 	
 
 	//OUTA
@@ -78,5 +92,4 @@ static long ProcGBInterlock(aSubRecord *pRec)
 epicsRegisterFunction(InitGBInterlock);
 epicsRegisterFunction(ProcGBInterlock);
 epicsExportAddress(int, gbintDebug);
-
 
