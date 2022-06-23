@@ -1,5 +1,5 @@
 file "db/bi.template" { pattern
-{SYS,		SUBSYS,		DEV,		SUBDEV,		SIGNAL}
+{SYS,		SUBSYS,		DEV,		SUBDEV,		SIGNAL	}
 {SCL3,		-CDL01:,	EBx01,		-XV7301:,	CloseStat}
 {SCL3,		-CDL01:,	VBx02,		-XV7301:,	CloseStat}
 {SCL3,		-CDL01:,	VBx04,		-XV7301:,	CloseStat}
@@ -76,27 +76,19 @@ file "db/bi.template" { pattern
 {SCL3,		-CDL03:,	VBx17,		-XV7201:,	CloseStat}
 {SCL3,		-CDL03:,	VBx18,		-XV7201:,	CloseStat}
 {SCL3,		-CDL03:,	VBx19,		-XV7201:,	CloseStat}
-{SCL3,		-CDL01:,	VBx02,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx04,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx06,		-XV7502:,	GBInt} 
-{SCL3,		-CDL01:,	VBx08,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx10,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx12,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx14,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx16,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx18,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx20,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx22,		-XV7502:,	GBInt}
-{SCL3,		-CDL01:,	VBx02,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx04,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx06,		-XV7502:,	SetManuOpen} 
-{SCL3,		-CDL01:,	VBx08,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx10,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx12,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx14,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx16,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx18,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx20,		-XV7502:,	SetManuOpen}
-{SCL3,		-CDL01:,	VBx22,		-XV7502:,	SetManuOpen}
 }
 
+file "db/ai.template" { pattern
+{SYS,		SUBSYS,		DEV,		SUBDEV,		SIGNAL}
+{SCL3,		-CDL01:,	VBx02,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx04,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx06,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx08,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx10,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx12,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx14,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx16,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx18,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx20,		-PT7503:,	PressR}
+{SCL3,		-CDL01:,	VBx22,		-PT7503:,	PressR}
+}

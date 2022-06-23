@@ -20,18 +20,12 @@ record(waveform, "${SYS}${SUBSYS}${DEV}-XV7201:CloseStat") {
   field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7201:Eval")
 }
 
-record(waveform, "${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose") {
-  field(SCAN, "Passive")
-  field(PINI, "YES")
-  field(NELM, "11")
-  field(FTVL, "UCHAR")
-}
-
 record(waveform, "${SYS}${SUBSYS}${DEV}-PT7503:PressR") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(NELM, "11")
-  field(FTVL, "UCHAR")
+  field(FTVL, "DOUBLE")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7301:Eval") {
@@ -42,6 +36,7 @@ record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7301:Eval") {
   field(INAA, "${SYS}${SUBSYS}${DEV}-XV7301:CloseStat")
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
+  field(OUT, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB.B PP")
 }
 
 record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7201:Eval") {
@@ -52,71 +47,105 @@ record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7201:Eval") {
   field(INAA, "${SYS}${SUBSYS}${DEV}-XV7201:CloseStat")
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
+  field(OUT, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB.C PP")
 }
 
-record(aSub, "${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF") {
+
+record(aSub, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB") {
   field(SCAN, "1 second")
   field(PINI, "YES")
   field(INAM, "InitGBInterlock")
   field(SNAM, "ProcGBInterlock")
   field(INPA, "${SYS}${SUBSYS}${DEV}-PT7503:PressR")
-  field(INPB, "${SYS}${SUBSYS}${DEV}-XV7301:Eval")
-  field(INPC, "${SYS}${SUBSYS}${DEV}-XV7201:Eval")
   field(INPD, "20.5")
   field(INPE, "SCL3-CDL00:TBx01-PT7305:PressR")
   field(INPF, "SCL3-CDL00:TBx01-XV7381:CloseStat")
-  field(FTB, "CHAR")
-  field(FTC, "CHAR")
+  field(FTB, "USHORT")
+  field(FTC, "USHORT")
   field(NOA, "11")
-  field(OUTA, "${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose PP")
+  field(OUTA, "SCL3-ALL:IntWF-XV7502:GBIntWF PP")
+  field(FTF, "USHORT")
+  field(NOVA, "11")
+  field(FTD, "FLOAT")
+  field(OUTB, "${SYS}${SUBSYS}GBIntlock-XV7502:Release PP")
+  field(FTVB, "LONG")
 }
 
 record(ai, SCL3-CDL00:TBx01-PT7305:PressR) {
   field(VAL, "18.3")
+  field(PINI, "YES")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
 }
 
 record(bi, SCL3-CDL00:TBx01-XV7381:CloseStat) {
   field(VAL, "1")
   field(ZNAM, "Open")
   field(ONAM, "Closed")
+  field(PINI, "YES")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+}
+
+
+record(waveform, SCL3-ALL:IntWF-XV7502:GBIntWF) {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(FTVL, "DOUBLE")
+}
+
+
+record(longin, "${SYS}${SUBSYS}GBIntlock-XV7502:Release") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "0")
 }
 
 #! Further lines contain data used by VisualDCT
-#! View(4456,4519,1.0)
-#! Record("${SYS}${SUBSYS}${DEV}-XV7301:CloseStat",4744,4912,0,1,"${SYS}${SUBSYS}${DEV}-XV7301:CloseStat")
+#! View(0,254,1.0)
+#! Record("${SYS}${SUBSYS}${DEV}-XV7301:CloseStat",15,778,0,1,"${SYS}${SUBSYS}${DEV}-XV7301:CloseStat")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.FLNK",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.FLNK")
 #! Link("${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.FLNK","${SYS}${SUBSYS}${DEV}-XV7301:Eval")
-#! Record("${SYS}${SUBSYS}${DEV}-XV7201:CloseStat",4742,5113,0,1,"${SYS}${SUBSYS}${DEV}-XV7201:CloseStat")
+#! Record("${SYS}${SUBSYS}${DEV}-XV7201:CloseStat",13,979,0,1,"${SYS}${SUBSYS}${DEV}-XV7201:CloseStat")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.VAL")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.FLNK",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.FLNK")
 #! Link("${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.FLNK","${SYS}${SUBSYS}${DEV}-XV7201:Eval")
-#! Record("${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose",5811,4741,0,1,"${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}-PT7503:PressR",5022,4667,0,1,"${SYS}${SUBSYS}${DEV}-PT7503:PressR")
+#! Record("${SYS}${SUBSYS}${DEV}-PT7503:PressR",297,421,0,1,"${SYS}${SUBSYS}${DEV}-PT7503:PressR")
 #! Field("${SYS}${SUBSYS}${DEV}-PT7503:PressR.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-PT7503:PressR.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}-XV7301:Eval",5008,4880,0,0,"${SYS}${SUBSYS}${DEV}-XV7301:Eval")
+#! Field("${SYS}${SUBSYS}${DEV}-PT7503:PressR.FLNK",16777215,1,"${SYS}${SUBSYS}${DEV}-PT7503:PressR.FLNK")
+#! Link("${SYS}${SUBSYS}${DEV}-PT7503:PressR.FLNK","${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#! Record("${SYS}${SUBSYS}${DEV}-XV7301:Eval",282,669,0,0,"${SYS}${SUBSYS}${DEV}-XV7301:Eval")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7301:Eval.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7301:Eval.INAA")
 #! Link("${SYS}${SUBSYS}${DEV}-XV7301:Eval.INAA","${SYS}${SUBSYS}${DEV}-XV7301:CloseStat.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7301:Eval.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7301:Eval.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}-XV7201:Eval",5024,5118,0,0,"${SYS}${SUBSYS}${DEV}-XV7201:Eval")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7301:Eval.OUT",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7301:Eval.OUT")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7301:Eval.OUT","${SYS}${SUBSYS}${DEV}-XV7502:ASUB.B")
+#! Record("${SYS}${SUBSYS}${DEV}-XV7201:Eval",282,933,0,0,"${SYS}${SUBSYS}${DEV}-XV7201:Eval")
 #! Field("${SYS}${SUBSYS}${DEV}-XV7201:Eval.INAA",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7201:Eval.INAA")
 #! Link("${SYS}${SUBSYS}${DEV}-XV7201:Eval.INAA","${SYS}${SUBSYS}${DEV}-XV7201:CloseStat.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7201:Eval.VAL",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7201:Eval.VAL")
-#! Record("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF",5539,4613,0,1,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPA",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPA")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPA","${SYS}${SUBSYS}${DEV}-PT7503:PressR.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPB",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPB")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPB","${SYS}${SUBSYS}${DEV}-XV7301:Eval.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPC",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPC")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPC","${SYS}${SUBSYS}${DEV}-XV7201:Eval.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPE",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPE")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPE","SCL3-CDL00:TBx01-PT7305:PressR.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPF",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPF")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.INPF","SCL3-CDL00:TBx01-XV7381:CloseStat.VAL")
-#! Field("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.OUTA",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.OUTA")
-#! Link("${SYS}${SUBSYS}${DEV}-XV7502:GBIntWF.OUTA","${SYS}${SUBSYS}${DEV}-XV7502:SetManuClose.VAL")
-#! Record(SCL3-CDL00:TBx01-PT7305:PressR,5279,4985,0,1,"SCL3-CDL00:TBx01-PT7305:PressR")
-#! Field("SCL3-CDL00:TBx01-PT7305:PressR.VAL",16777215,0,"SCL3-CDL00:TBx01-PT7305:PressR.VAL")
-#! Record(SCL3-CDL00:TBx01-XV7381:CloseStat,5314,5100,0,1,"SCL3-CDL00:TBx01-XV7381:CloseStat")
-#! Field("SCL3-CDL00:TBx01-XV7381:CloseStat.VAL",16777215,0,"SCL3-CDL00:TBx01-XV7381:CloseStat.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7201:Eval.OUT",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7201:Eval.OUT")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7201:Eval.OUT","${SYS}${SUBSYS}${DEV}-XV7502:ASUB.C")
+#! Record("${SYS}${SUBSYS}${DEV}-XV7502:ASUB",851,374,0,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPA",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPA")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPA","${SYS}${SUBSYS}${DEV}-PT7503:PressR.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPE",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPE")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPE","SCL3-CDL00:TBx01-PT7305:PressR.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPF",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPF")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.INPF","SCL3-CDL00:TBx01-XV7381:CloseStat.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTA",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTA")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTA","SCL3-ALL:IntWF-XV7502:GBIntWF.VAL")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.B",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.B")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.C",16777215,0,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.C")
+#! Field("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTB",16777215,1,"${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTB")
+#! Link("${SYS}${SUBSYS}${DEV}-XV7502:ASUB.OUTB","${SYS}${SUBSYS}GBIntlock-XV7502:Release.VAL")
+#! Record(SCL3-CDL00:TBx01-PT7305:PressR,502,875,0,1,"SCL3-CDL00:TBx01-PT7305:PressR")
+#! Field("SCL3-CDL00:TBx01-PT7305:PressR.VAL",16777215,1,"SCL3-CDL00:TBx01-PT7305:PressR.VAL")
+#! Field("SCL3-CDL00:TBx01-PT7305:PressR.FLNK",16777215,1,"SCL3-CDL00:TBx01-PT7305:PressR.FLNK")
+#! Link("SCL3-CDL00:TBx01-PT7305:PressR.FLNK","${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#! Record(SCL3-CDL00:TBx01-XV7381:CloseStat,504,1039,0,1,"SCL3-CDL00:TBx01-XV7381:CloseStat")
+#! Field("SCL3-CDL00:TBx01-XV7381:CloseStat.VAL",16777215,1,"SCL3-CDL00:TBx01-XV7381:CloseStat.VAL")
+#! Field("SCL3-CDL00:TBx01-XV7381:CloseStat.FLNK",16777215,1,"SCL3-CDL00:TBx01-XV7381:CloseStat.FLNK")
+#! Link("SCL3-CDL00:TBx01-XV7381:CloseStat.FLNK","${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#! Record(SCL3-ALL:IntWF-XV7502:GBIntWF,1096,585,0,1,"SCL3-ALL:IntWF-XV7502:GBIntWF")
+#! Field("SCL3-ALL:IntWF-XV7502:GBIntWF.VAL",16777215,1,"SCL3-ALL:IntWF-XV7502:GBIntWF.VAL")
+#! Record("${SYS}${SUBSYS}GBIntlock-XV7502:Release",1102,772,0,1,"${SYS}${SUBSYS}GBIntlock-XV7502:Release")
+#! Field("${SYS}${SUBSYS}GBIntlock-XV7502:Release.VAL",16777215,1,"${SYS}${SUBSYS}GBIntlock-XV7502:Release.VAL")

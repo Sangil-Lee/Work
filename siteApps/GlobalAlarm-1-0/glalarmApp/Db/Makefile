@@ -10,7 +10,10 @@ include $(TOP)/configure/CONFIG
 DB += globalAlarm.vdb
 DB += globalAlarm_test.vdb
 DB += bi.template
+DB += bi_flnk.template
+DB += ai.template
 DB += sim_pv.sub
+DB += sim_pv_flnk.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

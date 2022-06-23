@@ -10,6 +10,7 @@
 #include <cmath>
 #include <complex>
 #include <iostream>
+#include <numeric>
 
 #include <dbAccess.h>
 #include <link.h>
@@ -32,7 +33,7 @@
 #define hash_map std::unordered_map
 
 using namespace std;
-static int gbintDebug = 0;
+static int gbintDebug = 1;
 
 hash_map<int, int> hashDelay;
 
@@ -72,56 +73,66 @@ static long ProcGBInterlock(aSubRecord *pRec)
 
 
 	//OUTA
+	//SCL3-ALL:IntWF-XV7502:GBIntWF(Waveform, 11)
 
 	int nelm = (int)pRec->noa;
 	double *inpval = (double*)pRec->a;
-	unsigned char *outval = (unsigned char*)pRec->vala;
+	double *outval = (double*)pRec->vala;
+	long *gintlock = (long*)pRec->valb;
 
-	float *inpd = (float*)pRec->d;
-
-	char *b = (char*)pRec->b;
-	char *c = (char*)pRec->c;
+	unsigned short *b = (unsigned short*)pRec->b;
+	unsigned short *c = (unsigned short*)pRec->c;
+	float *d = (float*)pRec->d;
 	double *e = (double*)pRec->e;
-	char *f = (char*)pRec->f;
+	unsigned short *f = (unsigned short*)pRec->f;
 
 	//int bc = (int)((int*)pRec->b[0]) && (int)(((int*)pRec->c[0]);
+	
+	if(gbintDebug)
+	{
+		//printf("D:(%f), E:(%f)\n", d[0], e[0]);
+		cout <<"B:"<<b[0] <<", C:"<<c[0]<<", D:"<<d[0]<<",E:"<<e[0] <<", F:"<<f[0]<< endl;
+	};
 
 	for(int i = 0; i < nelm; i++)
 	{
 		double inpa = (double)inpval[i];
-		bool test = (inpa < inpd[0] && inpa < e[0] )? false : b[0]&&c[0]&&f[0] ? false : true;
+		bool test = (inpa < d[0] || inpa < e[0] )? false : b[0]&&c[0]&&f[0] ? true : false;
 
-		if(test)
+		if(test == true) {
 			hashDelay[i] += 1;
+		}
 		else
 			hashDelay[i] = 0;
 
-		if(hashDelay[i] > 3)
+		if(hashDelay[i] >= 5) {
 			outval[i] = 1;
+			hashDelay[i]=5;
+			gintlock[0] = 1;
+		}
+#if 0
+		//Interlock Release Manual
 		else
 			outval[i] = 0;
+#endif
 	}
 
-
-
-
-	double *sinval = (double*)pRec->a;
-
-#if 1
-	double *pFFTWaveVal = (double*)pRec->vala;
-	double *pFFTFreqWaveVal = (double*)pRec->valb;
+#if 0
+	//accumulate(hashDelay.begin(), hashDelay.end(), 0);
+	if(gbintDebug)
+		cout << "Sum: " << accumulate(hashDelay.begin(), hashDelay.end(), 0, [](const size_t previous, decltype(*hashDelay.begin()) p) { return previous+p.second; }) << endl;
+	 if(accumulate(hashDelay.begin(), hashDelay.end(), 0, [](const size_t previous, decltype(*hashDelay.begin()) p) { return previous+p.second; }) == 0 )
+			gintlock[0] = 0;
 #endif
+
+
 	if(gbintDebug)
 	{
-	};
+		for(size_t i = 0; i < hashDelay.size(); i++)
+			cout << hashDelay[i];
 
-#if 0
-	for(int i = 0; i < ffreq.size(); i++)
-	{
-		pFFTFreqWaveVal[i] = freq(i);
-		pFFTWaveVal[i] = std::abs(ffreq(i));
+		cout << endl;
 	};
-#endif
 
 	return(status);
 
