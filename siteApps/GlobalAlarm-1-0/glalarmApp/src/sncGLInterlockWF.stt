@@ -144,11 +144,11 @@ evflag  evXV7502;
 sync allXV7502 evXV7502;
 
 
-/*XV7301 Interlock */
 unsigned short wfXV7502[11];
 assign wfXV7502 to "{SYS}-ALL:IntWF-XV7502:SetManuOpen";
 
 //QWR
+/*XV7301 Interlock */
 unsigned short allPT7301[11];
 assign allPT7301 to {
 "{SYS}-{SUBSYS}:VBx02-PT7301:PresR", "{SYS}-{SUBSYS}:VBx04-PT7301:PresR", "{SYS}-{SUBSYS}:VBx06-PT7301:PresR",
@@ -163,6 +163,30 @@ sync allPT7301 evPT7301;
 unsigned short wfPT7301[11];
 assign wfPT7301 to "{SYS}-ALL:IntWF-PT7301:PresR";
 
+unsigned short allXV7301GBInt[11];
+assign allXV7301GBInt to {
+"{SYS}-{SUBSYS}:VBx02-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx04-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx06-XV7301:GBInt", 
+"{SYS}-{SUBSYS}:VBx08-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx10-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx12-XV7301:GBInt",
+"{SYS}-{SUBSYS}:VBx14-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx16-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx18-XV7301:GBInt",
+"{SYS}-{SUBSYS}:VBx20-XV7301:GBInt", "{SYS}-{SUBSYS}:VBx22-XV7301:GBInt"
+};
+
+unsigned short wfXV7301Int[11];
+assign wfXV7301Int to "{SYS}-ALL:IntWF-XV7301:GBIntWF";
+monitor wfXV7301Int;
+
+evflag evGBIntXV7301;
+sync wfXV7301Int evGBIntXV7301;
+
+int gintlockxv7301 = 0;
+assign gintlockxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALB";
+monitor gintlockxv7301;
+evflag evGBIntResetXV7301;
+sync gintlockxv7301 evGBIntResetXV7301;
+
+unsigned short intlockresetxv7301[11];
+assign intlockresetxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALA";
+monitor intlockresetxv7301;
 
 %% #include <math.h>
 ss makeWF
@@ -248,7 +272,16 @@ ss wftoscalar
 				allXV7502GBInt[index] = wfXV7502Int[index];
 				pvPut (allXV7502GBInt[index], SYNC);
 			};
+		}state WFtoScalar
 
+		when(efTestAndClear(evGBIntXV7301))
+		{
+			int index = 0;
+			for(;index < 11;index++)
+			{
+				allXV7301GBInt[index] = wfXV7301Int[index];
+				pvPut (allXV7301GBInt[index], SYNC);
+			};
 		}state WFtoScalar
 
 	}
@@ -274,6 +307,17 @@ ss gintrelease
 				intlockreset[index] = 1;
 			};
 			pvPut (intlockreset, SYNC);
+		}state GInterlock
+
+		when(efTestAndClear(evGBIntResetXV7301) && gintlockxv7301<1)
+		{
+			int index = 0;
+			for(;index < 11;index++)
+			{
+				intlockresetxv7301[index] = 1;
+			};
+			pvPut (intlockresetxv7301, SYNC);
+
 		}state GInterlock
 	}
 }

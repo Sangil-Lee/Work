@@ -33,21 +33,19 @@
 #define hash_map std::unordered_map
 
 using namespace std;
-static int gbintDebugXV7301 = 0;
+static int gbintDebugXV7301 = 1;
 
 static hash_map<int, int> hashdelay;
 
 //
 static long InitGBInterlockXV7301(aSubRecord *pRec)
 {
-#if 0
 	double *outval = (double*)pRec->vala;
 	for(int i = 0;i < 11; i++)
 	{
 		hashdelay[i] = 0;
 		outval[i]=1;
 	}
-#endif
     return(0);
 }
 
@@ -56,7 +54,6 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 {
 	long status = 0;
 
-#if 0
 	/* INPA
 	 * SCL3-ALL:IntWF-PT7503:PressR (Waveform, 11)
 	 */
@@ -87,24 +84,22 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 	double *outval = (double*)pRec->vala;
 	long *gintlock = (long*)pRec->valb;
 
-	unsigned short *b = (unsigned short*)pRec->b;
-	unsigned short *c = (unsigned short*)pRec->c;
-	float *d = (float*)pRec->d;
-	double *e = (double*)pRec->e;
-	unsigned short *f = (unsigned short*)pRec->f;
+	double *b = (double*)pRec->b;
+	double *c = (double*)pRec->c;
+	unsigned short *d = (unsigned short*)pRec->d;
+	unsigned short *e = (unsigned short*)pRec->e;
 
-	//int bc = (int)((int*)pRec->b[0]) && (int)(((int*)pRec->c[0]);
-	
 	if(gbintDebugXV7301)
 	{
 		//printf("D:(%f), E:(%f)\n", d[0], e[0]);
-		cout <<"B:"<<b[0] <<", C:"<<c[0]<<", D:"<<d[0]<<",E:"<<e[0] <<", F:"<<f[0]<< endl;
+		cout <<"B:"<<b[0] <<", C:"<<c[0]<<", D:"<<d[0]<<",E:"<<e[0]<< endl;
 	};
 
+#if 1
 	for(int i = 0; i < nelm; i++)
 	{
 		double inpa = (double)inpval[i];
-		bool test = (inpa < d[0] || inpa < e[0] )? false : b[0]&&c[0]&&f[0] ? true : false;
+		bool test = (inpa < b[0] || inpa < c[0] )? false : d[0]&&e[0] ? true : false;
 
 		if(test == true) {
 			hashdelay[i] += 1;
@@ -121,6 +116,7 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 			gintlock[0] = 1;
 		}
 	}
+#endif
 
 	if(gbintDebugXV7301)
 	{
@@ -129,7 +125,6 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 
 		cout << endl;
 	};
-#endif
 
 	return(status);
 

@@ -33,7 +33,7 @@
 #define hash_map std::unordered_map
 
 using namespace std;
-static int gbintDebug = 1;
+static int gbintDebug = 0;
 
 hash_map<int, int> hashDelay;
 
