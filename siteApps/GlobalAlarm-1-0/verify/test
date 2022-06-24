@@ -6,8 +6,9 @@ another termial
  //interlock, after 3sec maintain the value and SCL3-CDL01:VBx06-XV7502:SetManuOpen -> Closed 
 $>caput SCL3-CDL01:VBx06-PT7503:PressR 22 
 
-//QWR Interlock Reset
+//QWR Interlock Reset(XV7502)
 $>caput SCL3-ALL:IntWF-XV7502:ASUB.VALB 0
+
 
 SCL3-ALL:IntWF-XV7502:ASUB
 SCL3-ALL:IntWF-XV7301:CloseStat

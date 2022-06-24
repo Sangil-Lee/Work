@@ -33,27 +33,30 @@
 #define hash_map std::unordered_map
 
 using namespace std;
-static int gbintDebug = 1;
+static int gbintDebugXV7301 = 0;
 
-hash_map<int, int> hashDelay;
+static hash_map<int, int> hashdelay;
 
 //
-static long InitGBInterlock(aSubRecord *pRec)
+static long InitGBInterlockXV7301(aSubRecord *pRec)
 {
+#if 0
 	double *outval = (double*)pRec->vala;
 	for(int i = 0;i < 11; i++)
 	{
-		hashDelay[i] = 0;
+		hashdelay[i] = 0;
 		outval[i]=1;
 	}
+#endif
     return(0);
 }
 
 //
-static long ProcGBInterlock(aSubRecord *pRec)
+static long ProcGBInterlockXV7301(aSubRecord *pRec)
 {
 	long status = 0;
 
+#if 0
 	/* INPA
 	 * SCL3-ALL:IntWF-PT7503:PressR (Waveform, 11)
 	 */
@@ -92,7 +95,7 @@ static long ProcGBInterlock(aSubRecord *pRec)
 
 	//int bc = (int)((int*)pRec->b[0]) && (int)(((int*)pRec->c[0]);
 	
-	if(gbintDebug)
+	if(gbintDebugXV7301)
 	{
 		//printf("D:(%f), E:(%f)\n", d[0], e[0]);
 		cout <<"B:"<<b[0] <<", C:"<<c[0]<<", D:"<<d[0]<<",E:"<<e[0] <<", F:"<<f[0]<< endl;
@@ -104,49 +107,36 @@ static long ProcGBInterlock(aSubRecord *pRec)
 		bool test = (inpa < d[0] || inpa < e[0] )? false : b[0]&&c[0]&&f[0] ? true : false;
 
 		if(test == true) {
-			hashDelay[i] += 1;
+			hashdelay[i] += 1;
 		}
 		else
 		{
-			hashDelay[i] = 0;
+			hashdelay[i] = 0;
 		}
 
 
-		if(hashDelay[i] >= 5) {
+		if(hashdelay[i] >= 5) {
 			outval[i] = 0;
-			hashDelay[i]=5;
+			hashdelay[i]=5;
 			gintlock[0] = 1;
 		}
-#if 0
-		//Interlock Release Manual
-		else
-			outval[i] = 0;
-#endif
 	}
 
-#if 0
-	//accumulate(hashDelay.begin(), hashDelay.end(), 0);
-	if(gbintDebug)
-		cout << "Sum: " << accumulate(hashDelay.begin(), hashDelay.end(), 0, [](const size_t previous, decltype(*hashDelay.begin()) p) { return previous+p.second; }) << endl;
-	 if(accumulate(hashDelay.begin(), hashDelay.end(), 0, [](const size_t previous, decltype(*hashDelay.begin()) p) { return previous+p.second; }) == 0 )
-			gintlock[0] = 0;
-#endif
-
-
-	if(gbintDebug)
+	if(gbintDebugXV7301)
 	{
-		for(size_t i = 0; i < hashDelay.size(); i++)
-			cout << hashDelay[i];
+		for(size_t i = 0; i < hashdelay.size(); i++)
+			cout << hashdelay[i];
 
 		cout << endl;
 	};
+#endif
 
 	return(status);
 
 }
 
 /* Register these symbols for use by IOC code: */
-epicsRegisterFunction(InitGBInterlock);
-epicsRegisterFunction(ProcGBInterlock);
-epicsExportAddress(int, gbintDebug);
+epicsRegisterFunction(InitGBInterlockXV7301);
+epicsRegisterFunction(ProcGBInterlockXV7301);
+epicsExportAddress(int, gbintDebugXV7301);
 

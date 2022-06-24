@@ -14,7 +14,11 @@ glalarm_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 #dbLoadRecords("db/globalAlarm.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
-dbLoadRecords("db/globalAlarm_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
+#dbLoadRecords("db/globalAlarm_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
+
+dbLoadRecords("db/gl_Interlock_XV7502_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
+dbLoadRecords("db/gl_Interlock_XV7301_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
+
 dbLoadTemplate("db/sim_pv.sub")
 dbLoadTemplate("db/sim_pv_flnk.sub")
 

@@ -7,8 +7,10 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += globalAlarm.vdb
-DB += globalAlarm_test.vdb
+#DB += globalAlarm.vdb
+#DB += globalAlarm_test.vdb
+DB += gl_Interlock_XV7502_test.vdb
+DB += gl_Interlock_XV7301_test.vdb
 DB += bi.template
 DB += bi_flnk.template
 DB += ai.template

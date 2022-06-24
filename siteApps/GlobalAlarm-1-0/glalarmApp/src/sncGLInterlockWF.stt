@@ -93,10 +93,10 @@ monitor wfXV7201;
 
 double allPT7503[11];
 assign allPT7503 to {
-"{SYS}-{SUBSYS}:VBx02-PT7503:PressR", "{SYS}-{SUBSYS}:VBx04-PT7503:PressR", "{SYS}-{SUBSYS}:VBx06-PT7503:PressR", 
-"{SYS}-{SUBSYS}:VBx08-PT7503:PressR", "{SYS}-{SUBSYS}:VBx10-PT7503:PressR", "{SYS}-{SUBSYS}:VBx12-PT7503:PressR",
-"{SYS}-{SUBSYS}:VBx14-PT7503:PressR", "{SYS}-{SUBSYS}:VBx16-PT7503:PressR", "{SYS}-{SUBSYS}:VBx18-PT7503:PressR",
-"{SYS}-{SUBSYS}:VBx20-PT7503:PressR", "{SYS}-{SUBSYS}:VBx22-PT7503:PressR"
+"{SYS}-{SUBSYS}:VBx02-PT7503:PresR", "{SYS}-{SUBSYS}:VBx04-PT7503:PresR", "{SYS}-{SUBSYS}:VBx06-PT7503:PresR", 
+"{SYS}-{SUBSYS}:VBx08-PT7503:PresR", "{SYS}-{SUBSYS}:VBx10-PT7503:PresR", "{SYS}-{SUBSYS}:VBx12-PT7503:PresR",
+"{SYS}-{SUBSYS}:VBx14-PT7503:PresR", "{SYS}-{SUBSYS}:VBx16-PT7503:PresR", "{SYS}-{SUBSYS}:VBx18-PT7503:PresR",
+"{SYS}-{SUBSYS}:VBx20-PT7503:PresR", "{SYS}-{SUBSYS}:VBx22-PT7503:PresR"
 };
 
 monitor allPT7503;
@@ -104,27 +104,15 @@ evflag evPT7503;
 sync allPT7503 evPT7503;
 
 unsigned short wfPT7503[11];
-assign wfPT7503 to "{SYS}-ALL:IntWF-PT7503:PressR";
+assign wfPT7503 to "{SYS}-ALL:IntWF-PT7503:PresR";
 
 unsigned short allXV7502GBInt[11];
-/*
-assign allXV7502GBInt to {
-"SCL31-CDL01:VBx02-XV7502:GBInt", "SCL31-CDL01:VBx04-XV7502:GBInt", "SCL31-CDL01:VBx06-XV7502:GBInt", 
-"SCL31-CDL01:VBx08-XV7502:GBInt", "SCL31-CDL01:VBx10-XV7502:GBInt", "SCL31-CDL01:VBx12-XV7502:GBInt",
-"SCL31-CDL01:VBx14-XV7502:GBInt", "SCL31-CDL01:VBx16-XV7502:GBInt", "SCL31-CDL01:VBx18-XV7502:GBInt",
-"SCL31-CDL01:VBx20-XV7502:GBInt", "SCL31-CDL01:VBx22-XV7502:GBInt"
-};
-*/
 assign allXV7502GBInt to {
 "{SYS}-{SUBSYS}:VBx02-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx04-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx06-XV7502:GBInt", 
 "{SYS}-{SUBSYS}:VBx08-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx10-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx12-XV7502:GBInt",
 "{SYS}-{SUBSYS}:VBx14-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx16-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx18-XV7502:GBInt",
 "{SYS}-{SUBSYS}:VBx20-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx22-XV7502:GBInt"
 };
-
-monitor allXV7502GBInt;
-evflag evXV7502;
-sync allXV7502GBInt evXV7502;
 
 unsigned short wfXV7502Int[11];
 assign wfXV7502Int to "{SYS}-ALL:IntWF-XV7502:GBIntWF";
@@ -133,32 +121,47 @@ monitor wfXV7502Int;
 evflag evGBInt;
 sync wfXV7502Int evGBInt;
 
-
-unsigned short allXV7502[11];
-assign allXV7502 to {
-"{SYS}-{SUBSYS}:VBx02-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx04-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx06-XV7502:GBInt", 
-"{SYS}-{SUBSYS}:VBx08-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx10-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx12-XV7502:GBInt",
-"{SYS}-{SUBSYS}:VBx14-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx16-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx18-XV7502:GBInt",
-"{SYS}-{SUBSYS}:VBx20-XV7502:GBInt", "{SYS}-{SUBSYS}:VBx22-XV7502:GBInt"
-};
-
-/*
-"{SYS}-{SUBSYS}:VBx02-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx04-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx06-XV7502:SetManuOpen", 
-"{SYS}-{SUBSYS}:VBx08-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx10-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx12-XV7502:SetManuOpen",
-"{SYS}-{SUBSYS}:VBx14-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx16-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx18-XV7502:SetManuOpen",
-"{SYS}-{SUBSYS}:VBx20-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx22-XV7502:SetManuOpen"
-*/
-
 int gintlock = 0;
 assign gintlock to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALB";
 monitor gintlock;
 evflag evGBIntReset;
 sync gintlock evGBIntReset;
 
-
 unsigned short intlockreset[11];
 assign intlockreset to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALA";
 monitor intlockreset;
+
+
+unsigned short allXV7502[11];
+assign allXV7502 to {
+"{SYS}-{SUBSYS}:VBx02-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx04-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx06-XV7502:SetManuOpen", 
+"{SYS}-{SUBSYS}:VBx08-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx10-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx12-XV7502:SetManuOpen",
+"{SYS}-{SUBSYS}:VBx14-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx16-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx18-XV7502:SetManuOpen",
+"{SYS}-{SUBSYS}:VBx20-XV7502:SetManuOpen", "{SYS}-{SUBSYS}:VBx22-XV7502:SetManuOpen"
+};
+monitor allXV7502;
+evflag  evXV7502;
+sync allXV7502 evXV7502;
+
+
+/*XV7301 Interlock */
+unsigned short wfXV7502[11];
+assign wfXV7502 to "{SYS}-ALL:IntWF-XV7502:SetManuOpen";
+
+//QWR
+unsigned short allPT7301[11];
+assign allPT7301 to {
+"{SYS}-{SUBSYS}:VBx02-PT7301:PresR", "{SYS}-{SUBSYS}:VBx04-PT7301:PresR", "{SYS}-{SUBSYS}:VBx06-PT7301:PresR",
+"{SYS}-{SUBSYS}:VBx08-PT7301:PresR", "{SYS}-{SUBSYS}:VBx10-PT7301:PresR", "{SYS}-{SUBSYS}:VBx12-PT7301:PresR",
+"{SYS}-{SUBSYS}:VBx14-PT7301:PresR", "{SYS}-{SUBSYS}:VBx16-PT7301:PresR", "{SYS}-{SUBSYS}:VBx18-PT7301:PresR",
+"{SYS}-{SUBSYS}:VBx20-PT7301:PresR", "{SYS}-{SUBSYS}:VBx22-PT7301:PresR"
+};
+monitor allPT7301;
+evflag  evPT7301;
+sync allPT7301 evPT7301;
+
+unsigned short wfPT7301[11];
+assign wfPT7301 to "{SYS}-ALL:IntWF-PT7301:PresR";
 
 
 %% #include <math.h>
@@ -194,16 +197,6 @@ ss makeWF
 
 		}state MakeWaveform
 
-		when(efTestAndClear(evXV7502))
-		{
-			int index = 0;
-			for(;index < 11;index++)
-				wfXV7502Int[index]=allXV7502GBInt[index];
-
-			pvPut (wfXV7502Int, SYNC);
-
-		}state MakeWaveform
-
 		when(efTestAndClear(evPT7503))
 		{
 			int index = 0;
@@ -211,6 +204,26 @@ ss makeWF
 				wfPT7503[index]=allPT7503[index];
 
 			pvPut (wfPT7503, SYNC);
+
+		}state MakeWaveform
+
+		when(efTestAndClear(evXV7502))
+		{
+			int index = 0;
+			for(;index < 11;index++)
+				wfXV7502[index]=allXV7502[index];
+
+			pvPut (wfXV7502, SYNC);
+
+		}state MakeWaveform
+
+		when(efTestAndClear(evPT7301))
+		{
+			int index = 0;
+			for(;index < 11;index++)
+				wfPT7301[index]=allPT7301[index];
+
+			pvPut (wfPT7301, SYNC);
 
 		}state MakeWaveform
 	}
@@ -232,8 +245,8 @@ ss wftoscalar
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				allXV7502[index] = wfXV7502Int[index];
-				pvPut (allXV7502[index], SYNC);
+				allXV7502GBInt[index] = wfXV7502Int[index];
+				pvPut (allXV7502GBInt[index], SYNC);
 			};
 
 		}state WFtoScalar
@@ -258,7 +271,7 @@ ss gintrelease
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				intlockreset[index] = 0;
+				intlockreset[index] = 1;
 			};
 			pvPut (intlockreset, SYNC);
 		}state GInterlock

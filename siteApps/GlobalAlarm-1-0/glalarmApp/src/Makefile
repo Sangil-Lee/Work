@@ -23,6 +23,7 @@ glalarm_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitReco
 glalarm_DBD += $(CALC)/dbd/calc.dbd
 glalarm_DBD += $(CALC)/dbd/calcSupport.dbd
 glalarm_DBD += asubGlobalInterlock.dbd
+glalarm_DBD += asubGlobalInterlock_XV7301.dbd
 
 # Add all the support libraries needed by this IOC
 #glalarm_LIBS += xxx
@@ -30,6 +31,7 @@ glalarm_DBD += asubGlobalInterlock.dbd
 # glalarm_registerRecordDeviceDriver.cpp derives from glalarm.dbd
 glalarm_SRCS += glalarm_registerRecordDeviceDriver.cpp
 glalarm_SRCS += asubGlobalInterlock.cpp
+glalarm_SRCS += asubGlobalInterlock_XV7301.cpp
 
 # Build the main IOC entry point on workstation OSs.
 glalarm_SRCS_DEFAULT += glalarmMain.cpp
