@@ -41,10 +41,12 @@ static hash_map<int, int> hashdelay;
 static long InitGBInterlockXV7301(aSubRecord *pRec)
 {
 	double *outval = (double*)pRec->vala;
+	double *outvalc = (double*)pRec->valc;
 	for(int i = 0;i < 11; i++)
 	{
 		hashdelay[i] = 0;
-		outval[i]=1;
+		outval[i]=0;
+		outvalc[i]=0;
 	}
     return(0);
 }
@@ -83,6 +85,7 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 	double *inpval = (double*)pRec->a;
 	double *outval = (double*)pRec->vala;
 	long *gintlock = (long*)pRec->valb;
+	double *outvalc = (double*)pRec->valc;
 
 	double *b = (double*)pRec->b;
 	double *c = (double*)pRec->c;
@@ -114,6 +117,14 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 			outval[i] = 1;
 			hashdelay[i]=5;
 			gintlock[0] = 1;
+		}
+
+		test = (inpa < c[0] )? false : d[0]&&e[0] ? true : false;
+		if(test == true) {
+			outvalc[i] = 1;
+		}
+		else{
+			outvalc[i] = 0;
 		}
 	}
 #endif

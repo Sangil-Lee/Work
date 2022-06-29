@@ -1,0 +1,68 @@
+record(waveform, "${SYS}${SUBSYS}${DEV}-XV7502:SetManuOpen") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(FTVL, "USHORT")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:Eval")
+}
+
+record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7502:Eval") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(CALC, "AMIN(AA)<1?0:1")
+  field(INAA, "${SYS}${SUBSYS}${DEV}-XV7502:SetManuOpen.VAL")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(OUT, "${SYS}${SUBSYS}${DEV}-XV7301:ASUB.E PP")
+}
+
+record(waveform, "${SYS}${SUBSYS}${DEV}-PT7301:PresR") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(FTVL, "DOUBLE")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7301:ASUB")
+}
+
+record(waveform, SCL3-ALL:IntWF-XV7301:GBIntWF) {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(FTVL, "DOUBLE")
+}
+
+record(longin, "${SYS}${SUBSYS}GBIntlock-XV7301:Release") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(VAL, "0")
+}
+
+record(aSub, "${SYS}${SUBSYS}${DEV}-XV7301:ASUB") {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(INAM, "InitGBInterlockXV7301")
+  field(SNAM, "ProcGBInterlockXV7301")
+  field(INPA, "${SYS}${SUBSYS}${DEV}-PT7301:PresR.VAL")
+  field(INPB, "1.8")
+  field(INPC, "Cryo-CDL00:TBx01-PT7305:PresR")
+  field(INPD, "Cryo-CDL00:TBx01-ZSL7381:CloseStat")
+  field(FTB, "DOUBLE")
+  field(FTC, "DOUBLE")
+  field(NOA, "11")
+  field(OUTA, "SCL3-ALL:IntWF-XV7301:GBIntWF.VAL PP")
+  field(NOVA, "11")
+  field(FTD, "USHORT")
+  field(OUTB, "${SYS}${SUBSYS}GBIntlock-XV7301:Release.VAL PP")
+  field(FTVB, "LONG")
+  field(FTE, "USHORT")
+  field(OUTC, "${SYS}${SUBSYS}${DEV}-XV7301:ManuInt PP")
+  field(FTVC, "DOUBLE")
+}
+
+record(waveform, "${SYS}${SUBSYS}${DEV}-XV7301:ManuInt") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(NELM, "11")
+  field(FTVL, "DOUBLE")
+}

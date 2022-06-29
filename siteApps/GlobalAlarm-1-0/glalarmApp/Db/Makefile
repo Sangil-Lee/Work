@@ -13,6 +13,8 @@ DB += gl_Interlock_XV7502_test.vdb
 DB += gl_Interlock_XV7301_test.vdb
 DB += bo.template
 DB += setmanuopen.sub
+DB += bi_manuint.template
+DB += xv7502_xv7301_manual_int.sub
 
 
 ####Simulation

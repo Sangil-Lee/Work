@@ -40,11 +40,13 @@ hash_map<int, int> hashDelay;
 //
 static long InitGBInterlock(aSubRecord *pRec)
 {
-	double *outval = (double*)pRec->vala;
+	double *outval  = (double*)pRec->vala;
+	double *outvalc = (double*)pRec->valc;
 	for(int i = 0;i < 11; i++)
 	{
 		hashDelay[i] = 0;
-		outval[i]=1;
+		outval[i]=0;
+		outvalc[i]=0;
 	}
     return(0);
 }
@@ -82,6 +84,7 @@ static long ProcGBInterlock(aSubRecord *pRec)
 	int nelm = (int)pRec->noa;
 	double *inpval = (double*)pRec->a;
 	double *outval = (double*)pRec->vala;
+	double *outvalc = (double*)pRec->valc;
 	long *gintlock = (long*)pRec->valb;
 
 	unsigned short *b = (unsigned short*)pRec->b;
@@ -106,11 +109,9 @@ static long ProcGBInterlock(aSubRecord *pRec)
 		if(test == true) {
 			hashDelay[i] += 1;
 		}
-		else
-		{
+		else {
 			hashDelay[i] = 0;
 		}
-
 
 		if(hashDelay[i] >= 5) {
 			outval[i] = 1;
@@ -123,14 +124,14 @@ static long ProcGBInterlock(aSubRecord *pRec)
 			outval[i] = 0;
 #endif
 
-#if 0
+#if 1
 		//Manual Open Status
 		test = (inpa < e[0])? false : b[0]&&c[0]&&f[0]? true : false;
 		if(test == true) {
-			outvalb[i] = 1;
+			outvalc[i] = 1;
 		}
 		else{
-			outvalb[i] = 0;
+			outvalc[i] = 0;
 		}
 #endif
 	}

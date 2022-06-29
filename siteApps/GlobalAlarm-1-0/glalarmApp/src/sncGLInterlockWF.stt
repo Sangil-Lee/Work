@@ -206,6 +206,38 @@ unsigned short intlockresetxv7301[11];
 assign intlockresetxv7301 to  "SCL3-ALL:IntWF-XV7301:ASUB.VALA";
 monitor intlockresetxv7301;
 
+unsigned short allXV7502ManuInt[11]; 
+assign allXV7502ManuInt to {
+"{SYS}-{SUBSYS}:VBx02-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx04-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx06-XV7502:ManuInt",
+"{SYS}-{SUBSYS}:VBx08-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx10-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx12-XV7502:ManuInt", 
+"{SYS}-{SUBSYS}:VBx14-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx16-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx18-XV7502:ManuInt", 
+"{SYS}-{SUBSYS}:VBx20-XV7502:ManuInt", "{SYS}-{SUBSYS}:VBx22-XV7502:ManuInt"
+};
+
+unsigned short wfXV7502ManuInt[11];
+assign wfXV7502ManuInt to "SCL3-ALL:IntWF-XV7502:ManuInt";
+monitor wfXV7502ManuInt;
+
+evflag evGBIntXV7502ManuInt;
+sync wfXV7502ManuInt evGBIntXV7502ManuInt;
+
+
+unsigned short allXV7301ManuInt[11]; 
+assign allXV7301ManuInt to {
+"{SYS}-{SUBSYS}:VBx02-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx04-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx06-XV7301:ManuInt",
+"{SYS}-{SUBSYS}:VBx08-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx10-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx12-XV7301:ManuInt", 
+"{SYS}-{SUBSYS}:VBx14-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx16-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx18-XV7301:ManuInt", 
+"{SYS}-{SUBSYS}:VBx20-XV7301:ManuInt", "{SYS}-{SUBSYS}:VBx22-XV7301:ManuInt"
+};
+
+unsigned short wfXV7301ManuInt[11];
+assign wfXV7301ManuInt to "SCL3-ALL:IntWF-XV7301:ManuInt";
+monitor wfXV7301ManuInt;
+
+evflag evGBIntXV7301ManuInt;
+sync wfXV7301ManuInt evGBIntXV7301ManuInt;
+
+
 %% #include <math.h>
 ss makeWF
 {
@@ -268,42 +300,92 @@ ss makeWF
 			pvPut (wfPT7301, SYNC);
 
 		}state MakeWaveform
+
+		when(efTestAndClear(evGBIntXV7502ManuInt))
+		{
+			int index = 0;
+			for(;index < 11;index++)
+			{
+				allXV7502ManuInt[index] = wfXV7502ManuInt[index];
+				pvPut (allXV7502ManuInt[index], SYNC);
+			}
+
+		}state MakeWaveform
+
+		when(efTestAndClear(evGBIntXV7301ManuInt))
+		{
+			int index = 0;
+			for(;index < 11;index++)
+			{
+				allXV7301ManuInt[index] = wfXV7301ManuInt[index];
+				pvPut (allXV7301ManuInt[index], SYNC);
+			}
+
+		}state MakeWaveform
 	}
 }
 
-ss wftoscalar
+ss xv7502Int
 {
 	state init
 	{
 		when(TRUE)
 		{
+		}state WaitInterlock
+	}
+
+	state WaitInterlock
+	{
+		when(efTestAndClear(evGBIntReset) && gintlock >= 1)
+		{
+			
 		}state WFtoScalar
 	}
 
 	state WFtoScalar
 	{
-		when(efTestAndClear(evGBInt))
+		when(efTestAndClear(evGBInt) && gintlock >= 1)
 		{
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				if (gintlock < 1) break;
 				allXV7502GBInt[index] = wfXV7502Int[index];
 				pvPut (allXV7502GBInt[index], SYNC);
 			};
-		}state WFtoScalar
+		}state WaitInterlock
 
+	}
+
+}	
+
+ss xv7301Int
+{
+	state init
+	{
+		when(TRUE)
+		{
+		}state WaitInterlock
+	}
+
+	state WaitInterlock
+	{
+		when(efTestAndClear(evGBIntResetXV7301) && gintlockxv7301 >= 1)
+		{
+			
+		}state WFtoScalar
+	}
+
+	state WFtoScalar
+	{
 		when(efTestAndClear(evGBIntXV7301) && gintlockxv7301 >= 1)
 		{
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				if(gintlockxv7301 < 1) break;
 				allXV7301GBInt[index] = wfXV7301Int[index];
 				pvPut (allXV7301GBInt[index], SYNC);
 			};
-		}state WFtoScalar
-
+		}state WaitInterlock
 	}
 
 }	
@@ -324,7 +406,7 @@ ss gintrelease
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				intlockreset[index] = 1;
+				intlockreset[index] = 0;
 			};
 			pvPut (intlockreset, SYNC);
 		}state GInterlock
@@ -334,7 +416,7 @@ ss gintrelease
 			int index = 0;
 			for(;index < 11;index++)
 			{
-				intlockresetxv7301[index] = 1;
+				intlockresetxv7301[index] = 0;
 			};
 			pvPut (intlockresetxv7301, SYNC);
 
