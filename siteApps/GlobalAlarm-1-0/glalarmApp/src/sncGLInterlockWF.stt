@@ -5,8 +5,9 @@ option +r;
 
 //SYS=SCL3, SUBSYS=-CDL01:, SUBSYS2=-CDL02:, SUBSYS3=-CDL03:
 
-unsigned short allXV7301[44];
+unsigned short allXV7301[11];
 /*
+unsigned short allXV7301[44];
 assign allXV7301 to {
 "SCL31-CDL01:EBx01-XV7301:CloseStat", "SCL31-CDL01:VBx02-XV7301:CloseStat", "SCL31-CDL01:VBx04-XV7301:CloseStat",
 "SCL31-CDL01:VBx06-XV7301:CloseStat", "SCL31-CDL01:VBx08-XV7301:CloseStat", "SCL31-CDL01:VBx10-XV7301:CloseStat",
@@ -23,32 +24,39 @@ assign allXV7301 to {
 "SCL32-CDL03:VBx12-XV7301:CloseStat", "SCL32-CDL03:VBx13-XV7301:CloseStat", "SCL32-CDL03:VBx14-XV7301:CloseStat",
 "SCL32-CDL03:VBx15-XV7301:CloseStat", "SCL32-CDL03:VBx16-XV7301:CloseStat", "SCL32-CDL03:VBx17-XV7301:CloseStat",
 "SCL32-CDL03:VBx18-XV7301:CloseStat", "SCL32-CDL03:VBx19-XV7301:CloseStat" };
-*/
-
 assign allXV7301 to {
 "{SYS}-{SUBSYS}:EBx01-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx02-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx04-XV7301:CloseStat",
 "{SYS}-{SUBSYS}:VBx06-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx08-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx10-XV7301:CloseStat",
 "{SYS}-{SUBSYS}:VBx12-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx14-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx16-XV7301:CloseStat",
 "{SYS}-{SUBSYS}:VBx18-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx20-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx22-XV7301:CloseStat",
-"{SYS}-{SUBSYS2}:VBx01-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx02-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx03-XV7301:CloseStat",
-"{SYS}-{SUBSYS2}:VBx04-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx05-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx06-XV7301:CloseStat",
-"{SYS}-{SUBSYS2}:VBx07-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx08-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx09-XV7301:CloseStat",
-"{SYS}-{SUBSYS2}:VBx10-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx11-XV7301:CloseStat","{SYS}-{SUBSYS2}:VBx12-XV7301:CloseStat",
-"{SYS}-{SUBSYS2}:VBx13-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx01-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx02-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx03-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx04-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx05-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx06-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx07-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx08-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx09-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx10-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx11-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx12-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx13-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx14-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx15-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx16-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx17-XV7301:CloseStat",
-"{SYS}-{SUBSYS3}:VBx18-XV7301:CloseStat","{SYS}-{SUBSYS3}:VBx19-XV7301:CloseStat" };
+"{SYS2}-{SUBSYS2}:VBx01-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx02-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx03-XV7301:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx04-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx05-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx06-XV7301:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx07-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx08-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx09-XV7301:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx10-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx11-XV7301:CloseStat","{SYS2}-{SUBSYS2}:VBx12-XV7301:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx13-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx01-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx02-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx03-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx04-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx05-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx06-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx07-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx08-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx09-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx10-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx11-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx12-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx13-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx14-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx15-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx16-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx17-XV7301:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx18-XV7301:CloseStat","{SYS2}-{SUBSYS3}:VBx19-XV7301:CloseStat" };
+*/
+
+assign allXV7301 to {
+"{SYS}-{SUBSYS}:VBx02-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx04-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx06-XV7301:CloseStat",
+"{SYS}-{SUBSYS}:VBx08-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx10-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx12-XV7301:CloseStat", 
+"{SYS}-{SUBSYS}:VBx14-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx16-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx18-XV7301:CloseStat", 
+"{SYS}-{SUBSYS}:VBx20-XV7301:CloseStat", "{SYS}-{SUBSYS}:VBx22-XV7301:CloseStat"
+};
+
 
 monitor allXV7301;
 evflag evXV7301;
 sync allXV7301 evXV7301;
 
-unsigned short wfXV7301[44];
-//assign wfXV7301 to "SCL3-ALL:IntWF-XV7301:CloseStat";
-assign wfXV7301 to "{SYS}-ALL:IntWF-XV7301:CloseStat";
+unsigned short wfXV7301[11];
+assign wfXV7301 to "SCL3-ALL:IntWF-XV7301:CloseStat";
+//assign wfXV7301 to "{SYS}-ALL:IntWF-XV7301:CloseStat";
 monitor wfXV7301;
 
 unsigned short allXV7201[32];
@@ -69,17 +77,17 @@ assign allXV7201 to {
 */
 
 assign allXV7201 to {
-"{SYS}-{SUBSYS2}:VBx01-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx02-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx03-XV7201:CloseStat",
-"{SYS}-{SUBSYS2}:VBx04-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx05-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx06-XV7201:CloseStat",
-"{SYS}-{SUBSYS2}:VBx07-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx08-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx09-XV7201:CloseStat",
-"{SYS}-{SUBSYS2}:VBx10-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx11-XV7201:CloseStat", "{SYS}-{SUBSYS2}:VBx12-XV7201:CloseStat",
-"{SYS}-{SUBSYS2}:VBx13-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx01-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx02-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx03-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx04-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx05-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx06-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx07-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx08-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx09-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx10-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx11-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx12-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx13-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx14-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx15-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx16-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx17-XV7201:CloseStat",
-"{SYS}-{SUBSYS3}:VBx18-XV7201:CloseStat", "{SYS}-{SUBSYS3}:VBx19-XV7201:CloseStat"
+"{SYS2}-{SUBSYS2}:VBx01-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx02-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx03-XV7201:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx04-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx05-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx06-XV7201:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx07-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx08-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx09-XV7201:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx10-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx11-XV7201:CloseStat", "{SYS2}-{SUBSYS2}:VBx12-XV7201:CloseStat",
+"{SYS2}-{SUBSYS2}:VBx13-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx01-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx02-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx03-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx04-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx05-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx06-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx07-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx08-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx09-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx10-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx11-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx12-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx13-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx14-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx15-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx16-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx17-XV7201:CloseStat",
+"{SYS2}-{SUBSYS3}:VBx18-XV7201:CloseStat", "{SYS2}-{SUBSYS3}:VBx19-XV7201:CloseStat"
 };
 
 monitor allXV7201;
@@ -87,8 +95,8 @@ evflag evXV7201;
 sync allXV7201 evXV7201;
 
 unsigned short wfXV7201[32];
-//assign wfXV7201 to "SCL3-ALL:IntWF-XV7201:CloseStat";
-assign wfXV7201 to "{SYS}-ALL:IntWF-XV7201:CloseStat";
+assign wfXV7201 to "SCL3-ALL:IntWF-XV7201:CloseStat";
+//assign wfXV7201 to "{SYS}-ALL:IntWF-XV7201:CloseStat";
 monitor wfXV7201;
 
 double allPT7503[11];
@@ -104,7 +112,9 @@ evflag evPT7503;
 sync allPT7503 evPT7503;
 
 unsigned short wfPT7503[11];
-assign wfPT7503 to "{SYS}-ALL:IntWF-PT7503:PresR";
+//assign wfPT7503 to "{SYS}-ALL:IntWF-PT7503:PresR";
+assign wfPT7503 to "SCL3-ALL:IntWF-PT7503:PresR";
+
 
 unsigned short allXV7502GBInt[11];
 assign allXV7502GBInt to {
@@ -115,20 +125,23 @@ assign allXV7502GBInt to {
 };
 
 unsigned short wfXV7502Int[11];
-assign wfXV7502Int to "{SYS}-ALL:IntWF-XV7502:GBIntWF";
+//assign wfXV7502Int to "{SYS}-ALL:IntWF-XV7502:GBIntWF";
+assign wfXV7502Int to "SCL3-ALL:IntWF-XV7502:GBIntWF";
 monitor wfXV7502Int;
 
 evflag evGBInt;
 sync wfXV7502Int evGBInt;
 
 int gintlock = 0;
-assign gintlock to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALB";
+//assign gintlock to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALB";
+assign gintlock to  "SCL3-ALL:IntWF-XV7502:ASUB.VALB";
 monitor gintlock;
 evflag evGBIntReset;
 sync gintlock evGBIntReset;
 
 unsigned short intlockreset[11];
-assign intlockreset to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALA";
+//assign intlockreset to  "{SYS}-ALL:IntWF-XV7502:ASUB.VALA";
+assign intlockreset to  "SCL3-ALL:IntWF-XV7502:ASUB.VALA";
 monitor intlockreset;
 
 
@@ -145,7 +158,8 @@ sync allXV7502 evXV7502;
 
 
 unsigned short wfXV7502[11];
-assign wfXV7502 to "{SYS}-ALL:IntWF-XV7502:SetManuOpen";
+//assign wfXV7502 to "{SYS}-ALL:IntWF-XV7502:SetManuOpen";
+assign wfXV7502 to "SCL3-ALL:IntWF-XV7502:SetManuOpen";
 
 //QWR
 /*XV7301 Interlock */
@@ -161,7 +175,8 @@ evflag  evPT7301;
 sync allPT7301 evPT7301;
 
 unsigned short wfPT7301[11];
-assign wfPT7301 to "{SYS}-ALL:IntWF-PT7301:PresR";
+//assign wfPT7301 to "{SYS}-ALL:IntWF-PT7301:PresR";
+assign wfPT7301 to "SCL3-ALL:IntWF-PT7301:PresR";
 
 unsigned short allXV7301GBInt[11];
 assign allXV7301GBInt to {
@@ -172,20 +187,23 @@ assign allXV7301GBInt to {
 };
 
 unsigned short wfXV7301Int[11];
-assign wfXV7301Int to "{SYS}-ALL:IntWF-XV7301:GBIntWF";
+//assign wfXV7301Int to "{SYS}-ALL:IntWF-XV7301:GBIntWF";
+assign wfXV7301Int to "SCL3-ALL:IntWF-XV7301:GBIntWF";
 monitor wfXV7301Int;
 
 evflag evGBIntXV7301;
 sync wfXV7301Int evGBIntXV7301;
 
 int gintlockxv7301 = 0;
-assign gintlockxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALB";
+//assign gintlockxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALB";
+assign gintlockxv7301 to  "SCL3-ALL:IntWF-XV7301:ASUB.VALB";
 monitor gintlockxv7301;
 evflag evGBIntResetXV7301;
 sync gintlockxv7301 evGBIntResetXV7301;
 
 unsigned short intlockresetxv7301[11];
-assign intlockresetxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALA";
+//assign intlockresetxv7301 to  "{SYS}-ALL:IntWF-XV7301:ASUB.VALA";
+assign intlockresetxv7301 to  "SCL3-ALL:IntWF-XV7301:ASUB.VALA";
 monitor intlockresetxv7301;
 
 %% #include <math.h>
@@ -204,7 +222,7 @@ ss makeWF
 		when(efTestAndClear(evXV7301))
 		{
 			int index = 0;
-			for(;index < 44;index++)
+			for(;index < 11;index++)
 				wfXV7301[index]=allXV7301[index];
 
 			pvPut (wfXV7301, SYNC);
@@ -269,16 +287,18 @@ ss wftoscalar
 			int index = 0;
 			for(;index < 11;index++)
 			{
+				if (gintlock < 1) break;
 				allXV7502GBInt[index] = wfXV7502Int[index];
 				pvPut (allXV7502GBInt[index], SYNC);
 			};
 		}state WFtoScalar
 
-		when(efTestAndClear(evGBIntXV7301))
+		when(efTestAndClear(evGBIntXV7301) && gintlockxv7301 >= 1)
 		{
 			int index = 0;
 			for(;index < 11;index++)
 			{
+				if(gintlockxv7301 < 1) break;
 				allXV7301GBInt[index] = wfXV7301Int[index];
 				pvPut (allXV7301GBInt[index], SYNC);
 			};

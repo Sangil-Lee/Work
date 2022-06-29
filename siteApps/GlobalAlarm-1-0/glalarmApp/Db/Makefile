@@ -11,11 +11,16 @@ include $(TOP)/configure/CONFIG
 #DB += globalAlarm_test.vdb
 DB += gl_Interlock_XV7502_test.vdb
 DB += gl_Interlock_XV7301_test.vdb
-DB += bi.template
-DB += bi_flnk.template
-DB += ai.template
-DB += sim_pv.sub
-DB += sim_pv_flnk.sub
+DB += bo.template
+DB += setmanuopen.sub
+
+
+####Simulation
+#DB += bi.template
+#DB += bi_flnk.template
+#DB += ai.template
+#DB += sim_pv.sub
+#DB += sim_pv_flnk.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

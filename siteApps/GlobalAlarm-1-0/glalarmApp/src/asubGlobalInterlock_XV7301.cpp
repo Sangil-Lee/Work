@@ -33,7 +33,7 @@
 #define hash_map std::unordered_map
 
 using namespace std;
-static int gbintDebugXV7301 = 1;
+static int gbintDebugXV7301 = 0;
 
 static hash_map<int, int> hashdelay;
 
@@ -111,7 +111,7 @@ static long ProcGBInterlockXV7301(aSubRecord *pRec)
 
 
 		if(hashdelay[i] >= 5) {
-			outval[i] = 0;
+			outval[i] = 1;
 			hashdelay[i]=5;
 			gintlock[0] = 1;
 		}

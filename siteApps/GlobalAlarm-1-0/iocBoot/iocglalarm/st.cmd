@@ -19,11 +19,18 @@ glalarm_registerRecordDeviceDriver pdbbase
 dbLoadRecords("db/gl_Interlock_XV7502_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
 dbLoadRecords("db/gl_Interlock_XV7301_test.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
 
-dbLoadTemplate("db/sim_pv.sub")
-dbLoadTemplate("db/sim_pv_flnk.sub")
+dbLoadTemplate("db/setmanuopen.sub")
+
+##Selt Simulation
+#dbLoadTemplate("db/sim_pv.sub")
+#dbLoadTemplate("db/sim_pv_flnk.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
-seq sncGLInterlockWF, "SYS=SCL3, SUBSYS=CDL01, SUBSYS2=CDL02, SUBSYS3=CDL03"
+####Simulation
+#seq sncGLInterlockWF, "SYS=SCL3, SUBSYS=CDL01, SUBSYS2=CDL02, SUBSYS3=CDL03"
+
+###Real Global Interlock(XV7502, XV7301, QWR)
+seq sncGLInterlockWF, "SYS=SCL31,SYS2=SCL32, SUBSYS=CDL01, SUBSYS2=CDL02, SUBSYS3=CDL03"

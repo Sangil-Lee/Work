@@ -1,0 +1,8 @@
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{
+	field(SCAN, "Passive")
+	field(VAL, "1")
+	field(ZNAM, "Open")
+	field(ONAM, "Closed")
+	field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen PP")
+}

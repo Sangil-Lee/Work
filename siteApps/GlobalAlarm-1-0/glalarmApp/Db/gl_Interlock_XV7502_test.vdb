@@ -7,8 +7,9 @@
 record(waveform, "${SYS}${SUBSYS}${DEV}-XV7301:CloseStat") {
   field(SCAN, "Passive")
   field(PINI, "YES")
-  field(NELM, "44")
-  field(FTVL, "UCHAR")
+#field(NELM, "44")
+  field(NELM, "11")
+  field(FTVL, "USHORT")
   field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7301:Eval")
 }
 
@@ -16,7 +17,7 @@ record(waveform, "${SYS}${SUBSYS}${DEV}-XV7201:CloseStat") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(NELM, "32")
-  field(FTVL, "UCHAR")
+  field(FTVL, "USHORT")
   field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7201:Eval")
 }
 
@@ -31,7 +32,7 @@ record(waveform, "${SYS}${SUBSYS}${DEV}-PT7503:PresR") {
 record(acalcout, "${SYS}${SUBSYS}${DEV}-XV7301:Eval") {
   field(SCAN, "Passive")
   field(PINI, "YES")
-  field(NELM, "44")
+  field(NELM, "11")
   field(CALC, "AMIN(AA)<1?0:1")
   field(INAA, "${SYS}${SUBSYS}${DEV}-XV7301:CloseStat")
   field(OOPT, "Every Time")
@@ -58,8 +59,10 @@ record(aSub, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB") {
   field(SNAM, "ProcGBInterlock")
   field(INPA, "${SYS}${SUBSYS}${DEV}-PT7503:PresR")
   field(INPD, "20.5")
-  field(INPE, "SCL3-CDL00:TBx01-PT7305:PresR")
-  field(INPF, "SCL3-CDL00:TBx01-XV7381:CloseStat")
+#field(INPE, "SCL3-CDL00:TBx01-PT7305:PresR")
+# field(INPF, "SCL3-CDL00:TBx01-XV7381:CloseStat")
+  field(INPE, "Cryo-CDL00:TBx01-PT7305:PresR")
+  field(INPF, "Cryo-CDL00:TBx01-ZSL7381:CloseStat")
   field(FTB, "USHORT")
   field(FTC, "USHORT")
   field(NOA, "11")
@@ -71,19 +74,19 @@ record(aSub, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB") {
   field(FTVB, "LONG")
 }
 
-record(ai, SCL3-CDL00:TBx01-PT7305:PresR) {
-  field(VAL, "18.3")
-  field(PINI, "YES")
-  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
-}
-
-record(bi, SCL3-CDL00:TBx01-XV7381:CloseStat) {
-  field(VAL, "1")
-  field(ZNAM, "Open")
-  field(ONAM, "Closed")
-  field(PINI, "YES")
-  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
-}
+#record(ai, SCL3-CDL00:TBx01-PT7305:PresR) {
+#  field(VAL, "18.3")
+#  field(PINI, "YES")
+#  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#}
+#
+#record(bi, SCL3-CDL00:TBx01-XV7381:CloseStat) {
+#  field(VAL, "1")
+#  field(ZNAM, "Open")
+#  field(ONAM, "Closed")
+#  field(PINI, "YES")
+#  field(FLNK, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB")
+#}
 
 
 record(waveform, SCL3-ALL:IntWF-XV7502:GBIntWF) {
@@ -98,7 +101,7 @@ record(waveform, SCL3-ALL:IntWF-XV7502:GBIntWF) {
 #!  field(SCAN, "Passive")
 #!  field(PINI, "YES")
 #!  field(NELM, "11")
-#!  field(FTVL, "UCHAR")
+#!  field(FTVL, "USHORT")
 #!}
 #!
 #!record(waveform, "${SYS}${SUBSYS}${DEV}-PT7301:PresR") {
