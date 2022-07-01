@@ -1,0 +1,1087 @@
+#!/bin/bash
+# Shell	 : install_script
+# Author : Seung Hee Nam
+# email  : namsh@ibs.re.kr / beyourangel@icloud.com
+# Date	 : Tuesday, April 25 13:43 KST 2017
+# version: 0.3.3
+#
+# Do not modify and distribute without permission of the author.
+# Please contact me if you have any questions.
+# This script using sudo package so, you have to install sudo package.(except Linux-RT)
+#
+# - 0.1.4 : Tuesday, April 25 13:43 KST 2017
+#	    - Modify code for Linux-RT (adding opkg install package)
+# - 0.1.5 : Wednesday, April 26 15:31 KST 2017
+#	    - bug fix, update tomcat version 7.0.77
+# - 0.1.6 : Monday, May 29 15:05 KST 2017
+#	    - update tomcat version 7.0.78, update jdk version 1.8.0_131
+# - 0.1.7 : Wednesday, Jun 7 10:20 KST 2017
+#	    - Modify code for pyepics install (need to set share lib for using ca protocol)
+# - 0.1.8 : Thursday, October 12 15:49 KST 2017
+#	    - update jdk version 1.8.0_144
+# - 0.2.0 : Tuesday, October 24 16:53 KST 2017
+#           - Rebuild scripts : Modifying code for each OS(centos, debian, raspbian)
+#				Delete epicsExceptionTest to avoid compile bugs(epics base)
+#				Update to JDK version 1.8.0.152, Tomcat version 7.0.82
+#				Update to CSS version 4.4.2, Archiver Appliance 22-June-2017
+#				Update to java-connector 5.1.44
+#				Debian8 backport setting for openjdk-8-jdk
+# - 0.2.1 :  Friday, January 5 09:58 KST 2018
+#	    - Update of epics base, extention and synapps download address
+#	      due to change of EPICS site address
+# - 0.2.2 :  Monday, January 29 14:58 KST 2018
+#	    - Update Tomcat version 7.0.84,commons-daemon-1.1.0-native-src
+# - 0.2.3 :  Tuesday,February 27 13:19 KST 2018
+#	    - Update of epics synapps download address
+# - 0.2.4 :  Wednesday, June 20 13:25 KST 2018
+#	    - Update Tomcat version 7.0.88, Archappl version Fall 2017 for EpicsQT
+# - 0.2.5 :  Friday, August 17 14:00 KST 2018
+#	    - Update Tomcat version 7.0.90
+# - 0.3.0 :  Thursday, January 17 14:33 KST 2019
+#	    - Updata Version : EPICS Base 3.16.2
+#			       EPICS SynApp 6.0
+#	    - Update requirement package : libusb-dev, libusb-1.0-0-dev for dxp module
+#					   libx11-dev, libxext-dev for areadetector module
+#	    - SynApp areaDetector and dxp module activation
+#	    - Installation test for Debian9 64bit-Stretch
+# - 0.3.1 :  Friday, January 18 14:01 KST 2019
+#	    - Add EPICS extension module installation(VDCT, StripTool)
+# - 0.3.2 :  Monday, January 21 14:51 KST 2019
+#	    - Update requiremnet package for StripTool : libxpm-dev, libmotif-dev, libxt-dev, libxmu-dev
+#	     (Need to update for CentOS)
+#	    - Update requiremnet package for python(module) : libglu1-mesa-dev libglw1-mesa-dev libwebkit2gtk-4.0-dev
+#						              libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+#	    - Change PyEPICS installation method for Debian9 Stretch(using pip3 package manager)
+# - 0.3.3 :  Wednesday, January 30 11:30 KST 2019
+#	    - epics_extension_setup and epics_synapp_setup function cleanup
+#	    - Update requirement package for centos synapp areadetectorr : libusb-devel, libusbx-devel
+# - 0.3.4 :  Tuesday , Fall 9 14:42 KST 2019
+#	    - Downgrade epics base 3.16.2 to R3.14.12.5 and synapp 6_0 to 5_8
+#	    - Update requirement package for synapp areadetector : libhdf5 and SZIP
+# - 0.3.5 :  Tuesday. May 7 13:08 KST 2019
+#           - Update requirement package for minimal CentOS7 : Development Tools, wget
+#
+function ini_func() { sleep 1; printf "\n>>>> You are entering in  : %s\n" "${1}"; }
+function end_func() { sleep 1; printf "\n<<<< You are leaving from : %s\n" "${1}"; }
+
+CENT=$(uname -r | grep el | sed '1s/.*/centos/')
+RT=$(uname -r | grep rt | sed '1s/.*/rt/')
+STRETCH=$(uname -a | grep debian\ 4 | sed '1s/.*/stretch/')
+
+function prepare_install(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    echo "Update package list and upgrade packages"
+    if [ "$CENT" == "centos" ]; then
+    $SUDO_CMD yum -y update
+    else
+    $SUDO_CMD apt-get update
+    $SUDO_CMD apt-get -y dist-upgrade
+    fi
+    end_func ${func_name};
+}
+
+LOG_DATE=$(date +"%Y.%m.%d.%H:%M")
+SUDO_CMD="sudo"
+TAR_CMD="tar xzf"
+WGET_CMD="wget -c"
+DOWNLOAD_SITE=${HOME}/epics/downloads
+JDK_install_site=/opt
+TOMCAT_VERSION="7.0.93"
+MYSQL_USER="archappl"
+MYSQL_USER_PW="archappl"
+MYSQL_DB="archappl"
+MYSQL_ROOT_PW=""
+ARCHAPPL_filename="archappl_v0.0.1_SNAPSHOT_27-November-2017T16-32-40.tar.gz"
+AA_HOST_IP=$(hostname -I | awk '{print $1}')
+WARSRC_DIR=${DOWNLOAD_SITE}/archappl
+SITE_SPECIFIC=$(pwd)/site_specific_content
+#EPICS_VERSION="3.14.12.5"
+#EPICS_VERSION="3.16.2"
+#EPICS_VERSION="7.0.3"
+EPICS_VERSION="7.0.6.1"
+#EPICS_PATH=${HOME}/epics/R${EPICS_VERSION}
+EPICS_PATH=${HOME}/epics/${EPICS_VERSION}
+EPICS_BASE=${EPICS_PATH}/base
+CS_STUDIO_VERSION="4.4.2"
+java_home=$(readlink -f /usr/bin/jar | sed 's/\/bin\/jar//g')
+EPICS_V4_VERSION="4.6.0"
+PY_EPICS_VERSION="3.2.5"
+CONNECTOR_VERSION="5.1.44"
+STRIPTOOL_VERSION="2_5_16_0"
+VDCT_VERSION="2.8.2"
+#VDCT_VERSION="2.7.0"
+# Sun Java JDK 1.8
+# Definitely the 64 bit version for production systems. We need the JDK, not the JRE
+function jdk8_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+java -version 2>&1 | grep 'version "1.8'
+if (( ( $? != 0 ) ))
+	then
+	echo "Cannot find the string 1.8 in java -version. Installation JDK8..."
+        case `uname -sm` in
+        "Linux x86_64")
+                if [ "$CENT" == "centos" ]; then
+		$SUDO_CMD yum -y install java-1.8.0-openjdk-devel
+                else
+                        if [ "$STRETCH" == "stretch" ]; then
+                        $SUDO_CMD apt-get -y install openjdk-8-jdk
+                        else
+			#jessie do not provide openjdk8(using jessie backports)
+                        echo "deb http://archive.debian.org/debian jessie-backports main" | \
+                        $SUDO_CMD tee --append /etc/apt/sources.list.d/jessie-backports.list > /dev/null
+                        echo "deb-src http://archive.debian.org/debian jessie-backports main" | \
+                        $SUDO_CMD tee --append /etc/apt/sources.list.d/jessie-backports.list > /dev/null
+			#APT version in jessie, this cannot be ignored on a per source basis, need to disable this check globally
+                        echo "Acquire::Check-Valid-Until no;" | \
+                        $SUDO_CMD tee --append /etc/apt/apt.con.d/99no-check-valid-until > /dev/null
+                        $SUDO_CMD apt-get -y update
+                        $SUDO_CMD apt-get install -y -t jessie-backports openjdk-8-jdk
+                        $SUDO_CMD update-java-alternatives -s java-1.8.0-openjdk-amd64
+                        fi
+                fi
+                ;;
+        "Linux armv7l" | "Linux armv6l")
+		$SUDO_CMD apt-get -y install openjdk-8-jdk
+                ;;
+        *)
+                echo "*********************************************************"
+                echo "Sorry, this scripts do not support your operation system."
+                echo "*********************************************************"
+                ;;
+        esac
+		export JAVA_HOME=$(readlink -f /usr/bin/jar | sed 's/\/bin\/jar//g')
+
+else
+	echo "JDK8 is already installed. Skip to the next step"
+        export JAVA_HOME=${java_home}
+fi
+
+    end_func ${func_name};
+}
+
+
+# A recent version of Tomcat 7.x
+# Preferably apache-tomcat-7.x
+function tomcat_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    cd ${DOWNLOAD_SITE}
+    $SUDO_CMD apt-get install -y libcap-dev
+
+    printf "Downloading the Tomcat7... \n"
+    $WGET_CMD "http://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz"
+    printf "Unzip the tomcat into ${EPICS_PATH}/arhciver_applinace... \n"
+    $TAR_CMD apache-tomcat-${TOMCAT_VERSION}.tar.gz -C ${EPICS_PATH}/archiver_appliance
+
+    export TOMCAT_HOME=${EPICS_PATH}/archiver_appliance/apache-tomcat-${TOMCAT_VERSION}
+
+cat > ${TOMCAT_HOME}/lib/log4j.properties <<EOF
+# Set root logger level and its only appender to A1.
+# DEBUG < INFO < WARN < ERROR < FATAL
+# Set properties file
+log4j.rootLogger=ERROR, A1
+log4j.logger.config.org.epics.archiverappliance=INFO
+log4j.logger.org.apache.http=ERROR
+
+
+# A1 is set to be a DailyRollingFileAppender
+# Use DailyRollingFileAppender to set write files by date specify class to use appender
+log4j.appender.A1=org.apache.log4j.DailyRollingFileAppender
+# Use File option to set file path and names
+log4j.appender.A1.File=arch.log
+# Use DatePattern option to set log file data
+log4j.appender.A1.DatePattern='.'yyyy-MM-dd
+
+
+# A1 uses PatternLayout.
+# DateLayout, HTMLLayout, PatternLayout, SimpleLayout, XMLLayout
+# In general, using PatternLayout is best for debugging
+log4j.appender.A1.layout=org.apache.log4j.PatternLayout
+# Define log pattern
+log4j.appender.A1.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
+EOF
+
+# Build the Apache Commons Daemon that ships with Tomcat
+pushd ${TOMCAT_HOME}/bin
+tar zxf commons-daemon-native.tar.gz
+COMMONS_DAEMON_VERSION_FOLDER=`ls -d commons-daemon-*-native-src | head -1`
+popd
+
+pushd ${TOMCAT_HOME}/bin/commons-daemon-1.1.0-native-src/unix
+./configure
+make
+
+    cp ${TOMCAT_HOME}/bin/commons-daemon-1.1.0-native-src/unix/jsvc ${TOMCAT_HOME}/bin
+
+
+    end_func ${func_name};
+}
+
+
+# A recent version of MySQL
+# If persisting configuration to a database
+function mysql_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    cd ${DOWNLOAD_SITE}
+
+    printf "Downloading mysql-connector... \n"
+    $WGET_CMD "http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-${CONNECTOR_VERSION}.tar.gz"
+    $TAR_CMD mysql-connector-java-${CONNECTOR_VERSION}.tar.gz
+
+    cd ${DOWNLOAD_SITE}/mysql-connector-java-${CONNECTOR_VERSION}
+    cp ${DOWNLOAD_SITE}/mysql-connector-java-${CONNECTOR_VERSION}/mysql-connector-java-${CONNECTOR_VERSION}-bin.jar ${TOMCAT_HOME}/lib
+
+    case "$CENT" in
+      centos)
+            printf "Setup mariadb-server... \n"
+	    $SUDO_CMD yum -y install mariadb-server
+	    $SUDO_CMD systemctl enable mariadb.service
+	    $SUDO_CMD systemctl start mariadb.service
+	    echo ""
+	    echo "Enter the mariadb root password"
+	    echo "create user ${MYSQL_USER}@localhost identified by '${MYSQL_USER_PW}';create database if not exists ${MYSQL_DB};grant all on ${MYSQL_DB}.* to ${MYSQL_USER}@localhost;" | mysql -u "root" -p"${MYSQL_ROOT_PW}"
+    	    echo "use ${MYSQL_DB};" | mysql -u"${MYSQL_USER}" -p"${MYSQL_USER_PW}"
+            ;;
+      *)
+            printf "Setup mysql-server... \n"
+            $SUDO_CMD apt-get -y install mysql-server
+	    echo ""
+	    echo "Enter the mysql root password"
+    	    echo "create user ${MYSQL_USER}@localhost identified by '${MYSQL_USER_PW}';create database if not exists ${MYSQL_DB};grant all on ${MYSQL_DB}.* to ${MYSQL_USER}@localhost;" | mysql -u "root" -p"${MYSQL_ROOT_PW}"
+    	    echo "use ${MYSQL_DB};" | mysql -u"${MYSQL_USER}" -p"${MYSQL_USER_PW}"
+            ;;
+    esac
+    end_func ${func_name};
+}
+
+# Downloading archiver appliance and unzip
+function archappl_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    cd ${DOWNLOAD_SITE}
+
+    mkdir -p ${DOWNLOAD_SITE}/archappl
+
+    printf "Downloading archiver appliance... \n"
+    $WGET_CMD "https://github.com/slacmshankar/epicsarchiverap/releases/download/v0.0.1_SNAPSHOT_27-Nov-2017/${ARCHAPPL_filename}"
+    printf "Unzip ${ARCHAPPL_filename} into ${DOWNLOAD_SITE}/archappl directory... \n"
+    $TAR_CMD ${ARCHAPPL_filename} -C ${DOWNLOAD_SITE}/archappl
+
+# Create an appliances.xml file and set up this appliance's identity.
+cat > ${EPICS_PATH}/archiver_appliance/appliances.xml <<EOF
+ <appliances>
+   <appliance>
+     <identity>appliance0</identity>
+     <cluster_inetport>${AA_HOST_IP}:16670</cluster_inetport>
+     <mgmt_url>http://${AA_HOST_IP}:17665/mgmt/bpl</mgmt_url>
+     <engine_url>http://${AA_HOST_IP}:17666/engine/bpl</engine_url>
+     <etl_url>http://${AA_HOST_IP}:17667/etl/bpl</etl_url>
+     <retrieval_url>http://${AA_HOST_IP}:17668/retrieval/bpl</retrieval_url>
+     <data_retrieval_url>http://${AA_HOST_IP}:17668/retrieval</data_retrieval_url>
+   </appliance>
+ </appliances>
+EOF
+
+export ARCHAPPL_APPLIANCES=${EPICS_PATH}/archiver_appliance/appliances.xml
+export ARCHAPPL_MYIDENTITY=appliance0
+
+# Deploy multiple tomcats
+python ${DOWNLOAD_SITE}/archappl/install_scripts/deployMultipleTomcats.py ${EPICS_PATH}/archiver_appliance
+
+# Set the DB table into mysql DB
+mysql --user=${MYSQL_USER} --password=${MYSQL_USER_PW} --database=${MYSQL_DB} < ${DOWNLOAD_SITE}/archappl/install_scripts/archappl_mysql.sql
+
+# Put context.xml
+cat > ${EPICS_PATH}/archiver_appliance/mgmt/conf/context.xml <<EOF
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!-- The contents of this file will be loaded for each web application -->
+<Context>
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+
+    <!-- Uncomment this to enable Comet connection tacking (provides events
+         on session expiration as well as webapp lifecycle) -->
+    <!--
+    <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
+    -->
+    <Resource name="jdbc/archappl"
+         auth="Container"
+         type="javax.sql.DataSource"
+         factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+         testWhileIdle="true"
+         testOnBorrow="true"
+         testOnReturn="false"
+         validationQuery="SELECT 1"
+         validationInterval="30000"
+         timeBetweenEvictionRunsMillis="30000"
+         maxActive="10"
+         minIdle="2"
+         maxWait="10000"
+         initialSize="2"
+         removeAbandonedTimeout="60"
+         removeAbandoned="true"
+         logAbandoned="true"
+         minEvictableIdleTimeMillis="30000"
+         jmxEnabled="true"
+         driverClassName="com.mysql.jdbc.Driver"
+         url="jdbc:mysql://localhost:3306/${MYSQL_DB}"
+         username="${MYSQL_USER}"
+         password="${MYSQL_USER_PW}"
+     />
+</Context>
+EOF
+export TOMCAT_HOME=${EPICS_PATH}/archiver_appliance/apache-tomcat-${TOMCAT_VERSION}
+
+cd ${EPICS_PATH}/archiver_appliance/mgmt/conf
+cp context.xml ${TOMCAT_HOME}/conf
+    end_func ${func_name};
+}
+
+# Deploys a new build onto the EPICS archiver appliance installation
+function deploy(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    printf "Deploy war release...\n"
+    pushd ${EPICS_PATH}/archiver_appliance/mgmt/webapps && rm -rf mgmt*; cp ${WARSRC_DIR}/mgmt.war .; mkdir mgmt; cd mgmt; jar xf ../mgmt.war; popd; 
+    pushd ${EPICS_PATH}/archiver_appliance/engine/webapps && rm -rf engine*; cp ${WARSRC_DIR}/engine.war .; mkdir engine; cd engine; jar xf ../engine.war; popd; 
+    pushd ${EPICS_PATH}/archiver_appliance/etl/webapps && rm -rf etl*; cp ${WARSRC_DIR}/etl.war .; mkdir etl; cd etl; jar xf ../etl.war; popd; 
+    pushd ${EPICS_PATH}/archiver_appliance/retrieval/webapps && rm -rf retrieval*; cp ${WARSRC_DIR}/retrieval.war .; mkdir retrieval; cd retrieval; jar xf ../retrieval.war; popd
+
+    end_func ${func_name};
+}
+
+# Change template for specific site
+function change_template(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    printf "Change template for the site...\n"
+    java -cp ${EPICS_PATH}/archiver_appliance/mgmt/webapps/mgmt/WEB-INF/classes org.epics.archiverappliance.mgmt.bpl.SyncStaticContentHeadersFooters ${SITE_SPECIFIC}/template_changes.html ${EPICS_PATH}/archiver_appliance/mgmt/webapps/mgmt/ui
+    printf "Change img for the site... \n"
+    cp -R ${SITE_SPECIFIC}/img/* ${EPICS_PATH}/archiver_appliance/mgmt/webapps/mgmt/ui/comm/img/
+
+    end_func ${func_name};
+}
+
+
+# Prepare archiver appliance storage directory
+function prepare_storage(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    printf "Make STS/MTS/LTS directory...\n"
+    mkdir -p ${EPICS_PATH}/archiver_appliance/storage
+    mkdir -p ${EPICS_PATH}/archiver_appliance/storage/{STS,MTS,LTS}
+
+    end_func ${func_name};
+}
+
+
+# Create archiver appliance start script
+function start_script(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    echo "Create Archiver Appliance start script..."
+
+cat > ${EPICS_PATH}/archiver_appliance/single_node_archappl.sh <<EOF
+#!/bin/bash
+# startup script for the RAON archiver appliance
+
+source ${EPICS_PATH}/setEpicsEnv.sh
+#export EPICS_CA_MAX_ARRAY_BYTES=1000000000
+#export EPICS_CA_ADDR_LIST=""
+
+export JAVA_HOME=${java_home}
+export PATH=${JAVA_HOME}/bin:${PATH}
+# We use a lot of memory; so be generous with the heap.
+export JAVA_OPTS="-XX:MaxPermSize=128M -XX:+UseG1GC -Xmx4G -Xms4G -ea"
+
+# Set up Tomcat home
+export TOMCAT_HOME=${EPICS_PATH}/archiver_appliance/apache-tomcat-${TOMCAT_VERSION}
+
+# Set up the root folder of the individual Tomcat instances.
+export ARCHAPPL_DEPLOY_DIR=${EPICS_PATH}/archiver_appliance
+
+# Set appliance.xml and the identity of this appliance
+export ARCHAPPL_APPLIANCES=${EPICS_PATH}/archiver_appliance/appliances.xml
+export ARCHAPPL_MYIDENTITY="appliance0"
+
+# If you have your own policies file, please change this line.
+# export ARCHAPPL_POLICIES=/nfs/epics/archiver/production_policies.py
+
+# Set the location of short term and long term stores; this is necessary only if your policy demands it
+export ARCHAPPL_SHORT_TERM_FOLDER=${EPICS_PATH}/archiver_appliance/storage/STS
+export ARCHAPPL_MEDIUM_TERM_FOLDER=${EPICS_PATH}/archiver_appliance/storage/MTS
+export ARCHAPPL_LONG_TERM_FOLDER=${EPICS_PATH}/archiver_appliance/storage/LTS
+
+# Enable core dumps in case the JVM fails
+ulimit -c unlimited
+
+function startTomcatAtLocation() {
+    export CATALINA_HOME=\$TOMCAT_HOME
+    export CATALINA_BASE=\$1
+    echo "Starting tomcat at location \${CATALINA_BASE}"
+
+    export LD_LIBRARY_PATH=\${CATALINA_BASE}/webapps/engine/WEB-INF/lib/native/linux-x86_64:\${LD_LIBRARY_PATH}
+
+    pushd \${CATALINA_BASE}/logs
+    \${CATALINA_HOME}/bin/jsvc \\
+        -server \\
+        -cp \${CATALINA_HOME}/bin/bootstrap.jar:\${CATALINA_HOME}/bin/tomcat-juli.jar \\
+        \${JAVA_OPTS} \\
+        -Dcatalina.base=\${CATALINA_BASE} \\
+        -Dcatalina.home=\${CATALINA_HOME} \\
+        -cwd \${CATALINA_BASE}/logs \\
+        -outfile \${CATALINA_BASE}/logs/catalina.out \\
+        -errfile \${CATALINA_BASE}/logs/catalina.err \\
+        -pidfile \${CATALINA_BASE}/pid \\
+        org.apache.catalina.startup.Bootstrap start
+     popd
+}
+
+function stopTomcatAtLocation() {
+
+    export CATALINA_HOME=\$TOMCAT_HOME
+    export CATALINA_BASE=\$1
+    echo "Stopping tomcat at location \${CATALINA_BASE}"
+    pushd \${CATALINA_BASE}/logs
+    \${CATALINA_HOME}/bin/jsvc \\
+        -server \\
+        -cp \${CATALINA_HOME}/bin/bootstrap.jar:\${CATALINA_HOME}/bin/tomcat-juli.jar \\
+        \${JAVA_OPTS} \\
+        -Dcatalina.base=\${CATALINA_BASE} \\
+        -Dcatalina.home=\${CATALINA_HOME} \\
+        -cwd \${CATALINA_BASE}/logs \\
+        -outfile \${CATALINA_BASE}/logs/catalina.out \\
+        -errfile \${CATALINA_BASE}/logs/catalina.err \\
+        -pidfile \${CATALINA_BASE}/pid \\
+        -stop \\
+        org.apache.catalina.startup.Bootstrap
+     popd
+}
+
+function stop() { 
+        stopTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/engine
+        stopTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/retrieval
+        stopTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/etl
+        stopTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/mgmt
+}
+
+function start() { 
+        startTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/mgmt
+        startTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/engine
+        startTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/etl
+        startTomcatAtLocation \${ARCHAPPL_DEPLOY_DIR}/retrieval
+}
+
+
+# See how we were called.
+case "\$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart}"
+        exit 2
+esac
+EOF
+
+cd ${EPICS_PATH}/archiver_appliance
+chmod +x single_node_archappl.sh
+
+    end_func ${func_name};
+}
+
+
+function epics_base_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+if [ -d ${EPICS_PATH}/base ]; then
+        echo ""
+        echo "EPICS base already exist"
+        echo "Do you want to change with EPICS base version ${EPICS_VERSION}?"
+        echo "Y / N : "
+        read csanswer
+        if [ "$csanswer" == "Y" ] || [ "$csanswer" == "y" ]; then
+                echo ""
+                echo "Change old EPICS base to EPICS base${EPICS_VERSION}"
+                echo "Old base directory is change with base_bak_${LOG_DATE}"
+		cd ${EPICS_PATH}
+                mv base base_bak_${LOG_DATE}
+
+		cd ${HOME}/epics/downloads
+                echo "EPICS base${EPICS_VERSION} downloading..."
+                $WGET_CMD "https://epics.anl.gov/download/base/base-${EPICS_VERSION}.tar.gz"
+		$TAR_CMD base-${EPICS_VERSION}.tar.gz  --transform 's/base'-${EPICS_VERSION}'/base/' -C ${EPICS_PATH}
+                cd ${EPICS_PATH}/base/src/libCom/test
+                sed -i "s|TESTPROD_HOST += epicsExceptionTest|#TESTPROD_HOST += epicsExceptionTest|g" Makefile
+                sed -i "s|epicsExceptionTest_SRCS += epicsExceptionTest.cpp|#epicsExceptionTest_SRCS += epicsExceptionTest.cpp|g" Makefile
+                sed -i "s|testHarness_SRCS += epicsExceptionTest.cpp|#testHarness_SRCS += epicsExceptionTest.cpp|g" Makefile
+                sed -i "s|TESTS += epicsExceptionTest|#TESTS += epicsExceptionTest|g" Makefile
+		cd ${EPICS_PATH}/base
+    		make
+                echo "EPICS base installed at ${EPICS_PATH}/base"
+        else
+                echo ""
+                echo "Please re-run this script when you want to change EPICS base${EPICS_VERSION}"
+                echo ""
+        fi
+else
+        mkdir -p ${HOME}/epics/{downloads,${EPICS_VERSION}}
+	case `uname -sm` in
+	"Linux x86_64")
+		EPICS_HOST_ARCH=linux-x86_64
+		if [ "$CENT" == "centos" ]; then
+		$SUDO_CMD yum -y install readline-devel
+		$SUDO_CMD yum -y install perl-devel
+		$SUDO_CMD yum -y install perl-Pod-Checker.noarch
+		$SUDO_CMD yum -y groupinstall "Development Tools"
+		$SUDO_CMD yum -y install wget
+		elif [ "$RT" == "rt" ]; then
+		opkg install binutils ntp git coreutils perl perl-modules gcc gcc-dev gcc-dbg gcc-symlinks libgcc-s-dev cpp g++ g++-symlinks builder libreadline6 libreadline-dev libreadline-dbg make libstdc++-dev libxt-dbg netkit-rpc-dbg netkit-rpc-dev file libtool libperl5 net-snmp net-snmp-mibs
+		else
+		$SUDO_CMD apt-get -y install build-essential
+        	$SUDO_CMD apt-get -y install libreadline-dev
+		fi
+		;;
+	"Linux armv7l" | "Linux armv6l")
+		EPICS_HOST_ARCH=linux-arm
+		$SUDO_CMD apt-get -y install build-essential
+        	$SUDO_CMD apt-get -y install libreadline-dev
+		;;
+	"Linux i386" | "Linux i486" | "Linux i586" | "Linux i686")
+		EPICS_HOST_ARCH=linux-x86
+                if [ "$CENT" == "centos" ]; then
+                $SUDO_CMD yum -y install readline-devel
+                $SUDO_CMD yum -y install perl-devel
+                $SUDO_CMD yum -y install perl-Pod-Checker.noarch
+                elif [ "$RT" == "rt" ]; then
+		opkg install binutils ntp git coreutils perl perl-modules gcc gcc-dev gcc-dbg gcc-symlinks libgcc-s-dev cpp g++ g++-symlinks builder libreadline6 libreadline-dev libreadline-dbg make libstdc++-dev libxt-dbg netkit-rpc-dbg netkit-rpc-dev file libtool libperl5 net-snmp net-snmp-mibs
+                else
+                $SUDO_CMD apt-get -y install build-essential
+                $SUDO_CMD apt-get -y install libreadline-dev
+                fi
+		;;
+	*)
+		echo "*********************************************************"
+		echo "Sorry, this scripts do not support your operation system."
+		echo "*********************************************************"
+		;;
+	esac
+	cd ${HOME}/epics/downloads
+        echo "EPICS base-${EPICS_VERSION} downloading..."
+        $WGET_CMD "https://epics.anl.gov/download/base/base-${EPICS_VERSION}.tar.gz"
+        $TAR_CMD base-${EPICS_VERSION}.tar.gz  --transform 's/base'-${EPICS_VERSION}'/base/' -C ${EPICS_PATH}
+        cd ${EPICS_PATH}/base/src/libCom/test
+        sed -i "s|TESTPROD_HOST += epicsExceptionTest|#TESTPROD_HOST += epicsExceptionTest|g" Makefile
+        sed -i "s|epicsExceptionTest_SRCS += epicsExceptionTest.cpp|#epicsExceptionTest_SRCS += epicsExceptionTest.cpp|g" Makefile
+        sed -i "s|testHarness_SRCS += epicsExceptionTest.cpp|#testHarness_SRCS += epicsExceptionTest.cpp|g" Makefile
+        sed -i "s|TESTS += epicsExceptionTest|#TESTS += epicsExceptionTest|g" Makefile
+	cd ${EPICS_PATH}/base
+        make
+        echo "EPICS base installed at ${EPICS_PATH}/base"
+fi
+
+cat > ${EPICS_PATH}/setEpicsEnv.sh <<EOF
+export EPICS_HOST_ARCH=${EPICS_HOST_ARCH}
+export EPICS_PATH=${HOME}/epics/${EPICS_VERSION}
+export EPICS_BASE=${HOME}/epics/${EPICS_VERSION}/base
+export EPICS_EXTENSIONS=${EPICS_PATH}/extensions
+export EPICS_SYNAPPS="EPICS_SYNAPP is empty"
+export RAON_SITEAPPS=${EPICS_PATH}/siteApps
+export RAON_SITELIBS=${EPICS_PATH}/siteLibs
+export PATH=${EPICS_PATH}/base/bin/${EPICS_HOST_ARCH}:${EPICS_PATH}/extensions/bin/${EPICS_HOST_ARCH}:${EPICS_PATH}/siteApps/bin/${EPICS_HOST_ARCH}:${EPICS_PATH}/siteLibs/bin/${EPICS_HOST_ARCH}:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+export LD_LIBRARY_PATH=${EPICS_PATH}/base/lib/${EPICS_HOST_ARCH}:${EPICS_PATH}/extensions/lib/${EPICS_HOST_ARCH}:${EPICS_PATH}/siteApps/lib/${EPICS_HOST_ARCH}:${EPICS_PATH}/siteLibs/lib/${EPICS_HOST_ARCH}
+EOF
+
+    cd ${EPICS_PATH}
+    chmod +x setEpicsEnv.sh
+    source ${EPICS_PATH}/setEpicsEnv.sh
+    end_func ${func_name};
+}
+
+function epics_synapp_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+if [ ! -d ${EPICS_PATH}/base ]; then
+	echo "Cannot find the EPICS base directory. Please install the EPICS base first"
+else
+	case `uname -sm` in
+        "Linux x86_64")
+                EPICS_HOST_ARCH=linux-x86_64
+                if [ "$CENT" == "centos" ]; then
+		EXTN_LIB_ARCH=64
+        	$SUDO_CMD yum -y install epel-release
+        	$SUDO_CMD yum -y install re2c
+        	$SUDO_CMD yum -y install libusb-devel
+        	$SUDO_CMD yum -y install libusbx-devel
+                else
+		EXTN_LIB_ARCH=/x86_64-linux-gnu
+		$SUDO_CMD apt-get -y install re2c
+                $SUDO_CMD apt-get -y install libusb-1.0-0-dev
+                $SUDO_CMD apt-get -y install libusb-dev
+		$SUDO_CMD apt-get -y install libx11-dev
+                $SUDO_CMD apt-get -y install libxext-dev
+                $SUDO_CMD apt-get -y install libtiff5-dev
+                $SUDO_CMD apt-get -y install libxml2-dev
+                $SUDO_CMD apt-get -y install libhdf5-dev
+		fi
+                ;;
+        "Linux armv7l" | "Linux armv6l")
+                EPICS_HOST_ARCH=linux-arm
+		EXTN_LIB_ARCH=arm-linux-gnueabihf
+		$SUDO_CMD apt-get -y install re2c
+                $SUDO_CMD apt-get -y install libusb-1.0-0-dev
+                $SUDO_CMD apt-get -y install libusb-dev
+                $SUDO_CMD apt-get -y install libx11-dev
+                $SUDO_CMD apt-get -y install libxext-dev
+                $SUDO_CMD apt-get -y install libtiff5-dev
+                $SUDO_CMD apt-get -y install libxml2-dev
+		$SUDO_CMD apt-get -y install libhdf5-dev
+                ;;
+        "Linux i386" | "Linux i486" | "Linux i586" | "Linux i686")
+                EPICS_HOST_ARCH=linux-x86
+                if [ "$CENT" == "centos" ]; then
+		EXTN_LIB_ARCH=
+		$SUDO_CMD yum -y install epel-release
+		$SUDO_CMD yum -y install re2c
+        	$SUDO_CMD yum -y install libusbx-devel
+        	$SUDO_CMD yum -y install libusb-devel
+		else
+		EXTN_LIB_ARCH=/i386-linux-gnu
+		$SUDO_CMD apt-get -y install re2c
+                $SUDO_CMD apt-get -y install libusb-1.0-0-dev
+                $SUDO_CMD apt-get -y install libusb-dev
+                $SUDO_CMD apt-get -y install libx11-dev
+                $SUDO_CMD apt-get -y install libxext-dev
+		$SUDO_CMD apt-get -y install libhdf5-dev
+                $SUDO_CMD apt-get -y install libtiff5-dev
+                $SUDO_CMD apt-get -y install libxml2-dev
+                fi
+                ;;
+        *)
+                echo "*********************************************************"
+                echo "Sorry, this scripts do not support your operation system."
+                echo "*********************************************************"
+                ;;
+        esac
+
+	echo "Start the EPICS synapp installation"
+	cd ${DOWNLOAD_SITE}
+	# EPICS SYNAPP need to msi extension
+	echo "Download the extension..."
+	$WGET_CMD "https://epics.anl.gov/download/extensions/extensionsTop_20120904.tar.gz"
+	$WGET_CMD "https://epics.anl.gov/download/extensions/msi1-6.tar.gz"
+	$TAR_CMD extensionsTop_20120904.tar.gz -C ${EPICS_PATH}
+	$TAR_CMD msi1-6.tar.gz -C ${EPICS_PATH}/extensions/src
+
+	extn_conf=${EPICS_PATH}/extensions/configure/os/CONFIG_SITE.linux-x86_64.linux-x86_64
+	cd ${EPICS_PATH}/extensions/configure/os
+	mv ${extn_conf} ${extn_conf}_origin
+	touch ${extn_conf}
+echo -e '-include $(TOP)/configure/os/CONFIG_SITE.linux-x86.linux-x86' >> $extn_conf
+echo "X11_LIB=/usr/lib${EXTN_LIB_ARCH}" >>$extn_conf
+echo "X11_INC=/usr/include" >>$extn_conf
+echo "MOTIF_LIB=/usr/lib${EXTN_LIB_ARCH}" >>$extn_conf
+echo "MOTIF_INC=/usr/include" >> $extn_conf
+echo "JAVA_DIR=/usr" >>$extn_conf
+echo "SCIPLOT=YES" >>$extn_conf
+echo "XRTGRAPH_EXTENSIONS ="  >>$extn_conf
+echo "XRTGRAPH =" >>$extn_conf
+
+	cd ${EPICS_PATH}/extensions/src/msi1-6
+	make
+	cd ${DOWNLOAD_SITE}
+#download and install szip for areadetector
+	$WGET_CMD "http://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-2.1.1.tar.gz"
+	$TAR_CMD szip-2.1.1.tar.gz
+	cd szip-2.1.1
+	./configure --prefix=/usr/local
+	make
+	make check
+	sudo make install
+        cd ${DOWNLOAD_SITE}
+	echo "Download the synApps..."
+	#$WGET_CMD "https://www.aps.anl.gov/files/APS-Uploads/BCDA/synApps/tar/synApps_5_8.tar.gz"
+	$WGET_CMD "https://epics.anl.gov/bcda/synApps/tar/synApps_6_1.tar.gz"
+	mkdir -p ${EPICS_PATH}/epicsLibs
+	$TAR_CMD synApps_6_1.tar.gz --transform 's/synApps_6_1/synApps/' -C ${EPICS_PATH}/epicsLibs
+	cd ${EPICS_PATH}
+	source ${EPICS_PATH}/setEpicsEnv.sh
+	synapp_make
+	echo "EPICS synApps installed at ${EPICS_PATH}/epicsLibs"
+fi
+    end_func ${func_name};
+}
+
+function synapp_make(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    local epics_synapp=${EPICS_PATH}/epicsLibs/synApps/support
+    cd ${epics_synapp}
+    sed -i  "s|^EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" $(find -name 'RELEASE')
+    sed -i  "s|^EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" $(find -name 'RELEASE_LIBS.local')
+    sed -i  "s|^EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" $(find -name 'RELEASE_BASE.local')
+    sed -i  "s|^EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" $(find -name 'RELEASE_PRODS.local')
+    sed -i  "s|^SUPPORT=.*|SUPPORT=${epics_synapp}|g" $(find -name 'RELEASE')
+    sed -i  "s|^SUPPORT=.*|SUPPORT=${epics_synapp}|g" $(find -name 'RELEASE_SUPPORT.local')
+#synapp_5_8 areadetector hdf5,szip path error
+    sed -i  "s|^HDF5         = /APSshare.*|HDF5=/usr|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    sed -i  "s|^HDF5_LIB.*|HDF5_LIB=\$(HDF5)/lib/x86_64-linux-gnu/hdf5/serial|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    sed -i  "s|^HDF5_INCLUDE.*|HDF5_INCLUDE=-I\$(HDF5)/include/hdf5/serial|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    sed -i  "s|^SZIP           = /APSshare.*|SZIP=/usr/local|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    sed -i  "s|^SZIP_LIB.*|SZIP_LIB=\$(SZIP)/lib|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    sed -i  "s|^SZIP_INCLUDE.*|SZIP_INCLUDE=-I\$(SZIP)/include|g" "${EPICS_PATH}/epicsLibs/synApps/support/areaDetector-R2-0/configure/CONFIG_SITE.local.linux-x86_64"
+    disable_areadetector
+    make
+    sed -i~ "s|^export EPICS_SYNAPPS=.*|export EPICS_SYNAPPS=${EPICS_PATH}/epicsLibs/synApps/support|g" "${EPICS_PATH}/setEpicsEnv.sh"
+    rm ${EPICS_PATH}/setEpicsEnv.sh~
+    end_func ${func_name};
+}
+
+function disable_areadetector(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    local epics_synapp=${EPICS_PATH}/epicsLibs/synApps_6_1/support
+    sed -i~ "s|^AREA_DETECTOR=.*|#AREA_DETECTOR=|g" $(find -name 'RELEASE')
+    sed -i  "s|^ADCORE=.*|#ADCORE=|g" $(find -name 'RELEASE')
+    sed -i  "s|^ADBINARIES=.*|#ADBINARIES=|g" $(find -name 'RELEASE')
+    sed -i  "s|^QUADEM=.*|#QUANEM=|g" $(find -name 'RELEASE')
+    sed -i  "s|^DXP=.*|#DXP=.*|g" $(find -name 'RELEASE')
+
+
+    end_func ${func_name};
+}
+
+function epicsv4_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+    cd ${DOWNLOAD_SITE}
+    echo "Download the EPICS_v4 CPP..."
+    $WGET_CMD "http://downloads.sourceforge.net/project/epics-pvdata/${EPICS_V4_VERSION}/EPICS-CPP-${EPICS_V4_VERSION}.tar.gz"
+    mkdir -p ${EPICS_PATH}/EPICS_V4
+    $TAR_CMD EPICS-CPP-${EPICS_V4_VERSION}.tar.gz -C ${EPICS_PATH}/EPICS_V4
+    $WGET_CMD "http://downloads.sourceforge.net/project/epics-pvdata/${EPICS_V4_VERSION}/EPICS-Java-${EPICS_V4_VERSION}.tar.gz"
+    $TAR_CMD EPICS-Java-${EPICS_V4_VERSION}.tar.gz -C ${EPICS_PATH}/EPICS_V4
+    cd ${EPICS_PATH}
+    source ${EPICS_PATH}/setEpicsEnv.sh
+    cd ${EPICS_PATH}/EPICS_V4/EPICS-CPP-${EPICS_V4_VERSION}
+    make
+    echo "EPICS_v4 installed at ${EPICS_PATH}/EPICS-CPP-${EPICS_V4_VERSION}"
+    end_func ${func_name};
+}
+
+
+
+function css_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    cd ${HOME}
+if [ -d ${HOME}/cs-studio ]; then
+        echo ""
+        echo "cs-studio already exist"
+        echo "Do you want to change with cs-studio version ${CS_STUDIO_VERSION}?"
+        echo "Y / N : "
+        read csanswer
+        if [ "$csanswer" == "Y" ] || [ "$csanswer" == "y" ]; then
+                echo ""
+                echo "Change old cs-studio to cs-studio-${CS_STUDIO_VERSION}"
+                echo "Old cs-studio directory is change with cs-studio_bak_${LOG_DATE}"
+		mv cs-studio cs-studio_bak_${LOG_DATE}
+		echo "cs-studio-${CS_STUDIO_VERSION} downloading..."
+		$WGET_CMD "http://control.risp.re.kr:30000/RaonControl/cs-studio-raon/raw/master/cs-studio-raon-${CS_STUDIO_VERSION}/cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz"
+		$TAR_CMD cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz
+		rm cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz
+                echo "cs-studio installed at ${HOME}/cs-studio"
+        else
+                echo ""
+                echo "Please re-run this script when you want to change cs-studio"
+                echo ""
+        fi
+else
+	 echo "cs-studio-${CS_STUDIO_VERSION} downloading..."
+         $WGET_CMD "http://control.risp.re.kr:30000/RaonControl/cs-studio-raon/raw/master/cs-studio-raon-${CS_STUDIO_VERSION}/cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz"
+         $TAR_CMD cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz
+         rm cs-studio-raon-${CS_STUDIO_VERSION}-linux.gtk.x86_64.tar.gz
+         echo "cs-studio installed at ${HOME}/cs-studio"
+
+fi
+
+    end_func ${func_name};
+}
+
+function pyepics_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+    cd ${EPICS_PATH}
+if [ -d ${EPICS_PATH}/pyepics ]; then
+        echo ""
+        echo "pyepics already exist"
+        echo "Do you want to change with pyepics version ${PY_EPICS_VERSION}?"
+        echo "Y / N : "
+        read pyanswer
+        if [ "$pyanswer" == "Y" ] || [ "$pyanswer" == "y" ]; then
+                echo ""
+                echo "Change old pyepics to pyepics-${PY_EPICS_VERSION}"
+                echo "Old pyeics directory is change with pyepics_bak_${LOG_DATE}"
+                mv pyepics pyepics_bak_${LOG_DATE}
+		if [ "$STRETCH" == "stretch" ]; then
+                $SUDO_CMD apt-get -y install python3.5
+                $SUDO_CMD apt-get -y install python3-pip
+	        $SUDO_CMD apt-get -y install libgtk-3-dev
+	        $SUDO_CMD apt-get -y install libglu1-mesa-dev libglw1-mesa-dev libwebkit2gtk-4.0-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+         	$SUDO_CMD update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
+		pip3 install -U scipy numpy matplotlib wxpython pandas pyepics
+                else
+                cd ${DOWNLOAD_SITE}
+                echo "pyepics-${PY_EPICS_VERSION} downloading..."
+                $WGET_CMD http://cars9.uchicago.edu/software/python/pyepics3/src/pyepics-${PY_EPICS_VERSION}.tar.gz
+                $TAR_CMD pyepics-${PY_EPICS_VERSION}.tar.gz --transform 's/pyepics-'${PY_EPICS_VERSION}'/pyepics/' -C ${EPICS_PATH}
+                $SUDO_CMD apt-get -y install python python-setuptools
+                cd ${EPICS_PATH}/pyepics
+                export LD_LIBRARY_PATH=${EPICS_PATH}/base/lib/linux-x86_64:${LD_LIBRARY_PATH}
+                python setup.py build
+                $SUDO_CMD python setup.py install
+                echo "pyepics installed at ${EPICS_PATH}/pyepics"
+	        echo "*****************************************************************************"
+        	echo "pyepics need to CA chared libraries, so please read the INSTALL instructions."
+        	echo "*****************************************************************************"
+                fi
+        else
+                echo ""
+                echo "Please re-run this script when you want to change pyepics"
+                echo ""
+        fi
+else
+        if [ "$STRETCH" == "stretch" ]; then
+        $SUDO_CMD apt-get -y install python3.5
+        $SUDO_CMD apt-get -y install python3-pip
+        $SUDO_CMD apt-get -y install libgtk-3-dev
+        $SUDO_CMD apt-get -y install libglu1-mesa-dev libglw1-mesa-dev libwebkit2gtk-4.0-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+	$SUDO_CMD update-alternatives --install /usr/bin/python python /usr/bin/python3.5 1
+        $SUDO_CMD pip3 -U install scipy numpy matplotlib wxpython pandas pyepics
+        else
+        cd ${DOWNLOAD_SITE}
+        echo "pyepics-${PY_EPICS_VERSION} downloading..."
+        $WGET_CMD http://cars9.uchicago.edu/software/python/pyepics3/src/pyepics-${PY_EPICS_VERSION}.tar.gz
+        $TAR_CMD pyepics-${PY_EPICS_VERSION}.tar.gz --transform 's/pyepics-'${PY_EPICS_VERSION}'/pyepics/' -$
+        $SUDO_CMD apt-get -y install python python-setuptools
+        cd ${EPICS_PATH}/pyepics
+        export LD_LIBRARY_PATH=${EPICS_PATH}/base/lib/linux-x86_64:${LD_LIBRARY_PATH}
+        python setup.py build
+        $SUDO_CMD python setup.py install
+        echo "pyepics installed at ${EPICS_PATH}/pyepics"
+        echo "*****************************************************************************"
+        echo "pyepics need to CA chared libraries, so please read the INSTALL instructions."
+        echo "*****************************************************************************"
+	fi
+fi
+
+    end_func ${func_name};
+}
+
+
+
+
+function epics_extension_setup(){
+
+    local func_name=${FUNCNAME[*]}; ini_func ${func_name};
+
+                echo "Start the EPICS extension(vdct, StripTool) installation"
+                source ${EPICS_PATH}/setEpicsEnv.sh
+                cd ${HOME}/epics/downloads
+                echo "Download the extension..."
+                $WGET_CMD "https://www.aps.anl.gov/epics/download/extensions/extensionsTop_20120904.tar.gz"
+                $TAR_CMD extensionsTop_20120904.tar.gz -C ${EPICS_PATH}
+                extn_conf=${EPICS_PATH}/extensions/configure/os/CONFIG_SITE.linux-x86_64.linux-x86_64
+                cd ${EPICS_PATH}/extensions/configure/os
+                mv ${extn_conf} ${extn_conf}_origin
+                touch ${extn_conf}
+		case `uname -sm` in
+      		"Linux x86_64")
+                	EPICS_HOST_ARCH=linux-x86_64
+              		if [ "$CENT" == "centos" ]; then
+                	EXTN_LIB_ARCH=64
+	                $SUDO_CMD yum -y install libXt-devel
+	                $SUDO_CMD yum -y install libXpm-devel
+	                $SUDO_CMD yum -y install motif-devel
+	                else
+                	EXTN_LIB_ARCH=/x86_64-linux-gnu
+	                $SUDO_CMD apt-get -y install libxt-dev
+	                $SUDO_CMD apt-get -y install libmotif-dev
+	                $SUDO_CMD apt-get -y install libxpm-dev
+	                $SUDO_CMD apt-get -y install libxmu-dev
+        	        fi
+                	;;
+        	"Linux armv7l" | "Linux armv6l")
+                	EPICS_HOST_ARCH=linux-arm
+                	EXTN_LIB_ARCH=arm-linux-gnueabihf
+	                $SUDO_CMD apt-get -y install libxt-dev
+	                $SUDO_CMD apt-get -y install libmotif-dev
+	                $SUDO_CMD apt-get -y install libxmu-dev
+	                $SUDO_CMD apt-get -y install libxpm-dev
+        	        ;;
+  		"Linux i386" | "Linux i486" | "Linux i586" | "Linux i686")
+               		EPICS_HOST_ARCH=linux-x86
+               		if [ "$CENT" == "centos" ]; then
+                	EXTN_LIB_ARCH=
+	                $SUDO_CMD yum -y install motif-devel
+	                $SUDO_CMD yum -y install libXt-devel
+	                $SUDO_CMD yum -y install libXpm-devel
+	                else
+                	EXTN_LIB_ARCH=/i386-linux-gnu
+	                $SUDO_CMD apt-get -y install libxt-dev
+	                $SUDO_CMD apt-get -y install libmotif-dev
+	                $SUDO_CMD apt-get -y install libxmu-dev
+	                $SUDO_CMD apt-get -y install libxpm-dev
+        	        fi
+                	;;
+        	*)
+                	echo "*********************************************************"
+                	echo "Sorry, this scripts do not support your operation system."
+               		echo "*********************************************************"
+                	;;
+        	esac
+echo -e '-include $(TOP)/configure/os/CONFIG_SITE.linux-x86.linux-x86' >> $extn_conf
+echo "X11_LIB=/usr/lib${EXTN_LIB_ARCH}" >>$extn_conf
+echo "X11_INC=/usr/include" >>$extn_conf
+echo "MOTIF_LIB=/usr/lib${EXTN_LIB_ARCH}" >>$extn_conf
+echo "MOTIF_INC=/usr/include" >> $extn_conf
+echo "JAVA_DIR=/usr" >>$extn_conf
+echo "SCIPLOT=YES" >>$extn_conf
+echo "XRTGRAPH_EXTENSIONS ="  >>$extn_conf
+echo "XRTGRAPH =" >>$extn_conf
+                cd ${HOME}/epics/downloads
+                echo "EPICS StripTool downloading..."
+                $WGET_CMD "https://epics.anl.gov/download/extensions/StripTool${STRIPTOOL_VERSION}.tar.gz"
+		$TAR_CMD StripTool${STRIPTOOL_VERSION}.tar.gz -C ${EPICS_PATH}/extensions/src
+                echo "EPICS VisualDCT downloading..."
+                $WGET_CMD "https://github.com/epics-extensions/VisualDCT/releases/download/v${VDCT_VERSION}/VisualDCT-${VDCT_VERSION}-distribution.zip"
+		unzip VisualDCT-${VDCT_VERSION}-distribution.zip -d ${EPICS_PATH}/extensions/src
+
+                cd ${EPICS_EXTENSIONS}/src/StripTool${STRIPTOOL_VERSION}
+	   	sed -i "s|basename|basename_sc|g" StripMisc.c StripDialog.c Strip.c StripMisc.h
+                make
+                echo "EPICS StripTool installed at ${EPICS_PATH}/extensions"
+		cd ${EPICS_EXTENSIONS}/bin/linux-x86_64
+		touch vdct
+echo "java -jar ${EPICS_EXTENSIONS}/src/VisualDCT-${VDCT_VERSION}/VisualDCT.jar $1 $2" >>vdct
+		chmod +x vdct
+		echo "EPICS VisualDCT installed at ${EPICS_PATH}/extensions"
+
+}
+
+
+echo ""
+echo "Auto Installation script for RAON Control system"
+echo "Enter the number of you want to install"
+echo "1 : EPICS Base version ${EPICS_VERSION}"
+echo "2 : EPICS extension(VDCT, StripTool)"
+echo "3 : EPICS synApps"
+echo "4 : EPICS 4 version ${EPICS_V4_VERSION}"
+echo "5 : RAON Control System Studio version ${CS_STUDIO_VERSION}"
+echo "6 : Archiver Appliance"
+echo "7 : PyEpics version ${PY_EPICS_VERSION}"
+echo "0 : Exit script"
+echo ""
+echo -n "Enter the number : "
+read answer
+case "${answer}" in
+        1)
+                echo "Install the EPICS BASE... "
+		prepare_install
+		epics_base_setup
+                ;;
+        2)
+                echo "Install the EPICS extension..."
+                prepare_install
+                epics_extension_setup
+                ;;
+	3)
+		echo "Install the EPICS synApps..."
+		prepare_install
+		epics_synapp_setup
+		;;
+	4)
+		echo "Install the EPICS 4..."
+		prepare_install
+		epicsv4_setup
+		;;
+	5)
+		echo "Install the Control System Studio..."
+		prepare_install
+		jdk8_setup
+		css_setup
+		;;
+        6)
+                echo "Install the Archiver Appliance... "
+		mkdir -p ${HOME}/epics/{downloads,${EPICS_VERSION}}
+		mkdir -p ${EPICS_PATH}/archiver_appliance
+		prepare_install
+		jdk8_setup
+		tomcat_setup
+		mysql_setup
+		archappl_setup
+		deploy
+		change_template
+		prepare_storage
+		start_script
+		echo "Archiver Appliance installed at ${EPICS_PATH}/archiver_appliance"
+		;;
+        7)
+                echo "Install the pyepics"
+		prepare_install
+                pyepics_setup
+                ;;
+	0)
+		echo "Exit the script"
+		exit 1
+		;;
+        *)
+                echo ""
+		echo "You have entered ${answer}"
+		echo "Please select the number in the list..."
+		echo "Exit the script"
+		echo ""
+                exit 1
+                ;;
+esac
+exit 0
