@@ -56,11 +56,11 @@ record(aSub, "${SYS}${SUBSYS}${DEV}-XV7301:ASUB") {
   field(OUTB, "${SYS}${SUBSYS}GBIntlock-XV7301:Release.VAL PP")
   field(FTVB, "LONG")
   field(FTE, "USHORT")
-  field(OUTC, "${SYS}${SUBSYS}${DEV}-XV7301:ManuInt PP")
+  field(OUTC, "${SYS}${SUBSYS}${DEV}-XV7301:IntStatG PP")
   field(FTVC, "DOUBLE")
 }
 
-record(waveform, "${SYS}${SUBSYS}${DEV}-XV7301:ManuInt") {
+record(waveform, "${SYS}${SUBSYS}${DEV}-XV7301:IntStatG") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(NELM, "11")

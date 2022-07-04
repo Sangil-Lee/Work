@@ -69,7 +69,7 @@ record(aSub, "${SYS}${SUBSYS}${DEV}-XV7502:ASUB") {
   field(FTD, "FLOAT")
   field(OUTB, "${SYS}${SUBSYS}GBIntlock-XV7502:Release PP")
   field(FTVB, "LONG")
-  field(OUTC, "${SYS}${SUBSYS}${DEV}-XV7502:ManuInt PP")
+  field(OUTC, "${SYS}${SUBSYS}${DEV}-XV7502:IntStatG PP")
   field(FTVC, "DOUBLE")
 }
 
@@ -80,7 +80,7 @@ record(waveform, "SCL3-ALL:IntWF-XV7502:GBIntWF") {
   field(FTVL, "DOUBLE")
 }
 
-record(waveform, "${SYS}${SUBSYS}${DEV}-XV7502:ManuInt") {
+record(waveform, "${SYS}${SUBSYS}${DEV}-XV7502:IntStatG") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(NELM, "11")
