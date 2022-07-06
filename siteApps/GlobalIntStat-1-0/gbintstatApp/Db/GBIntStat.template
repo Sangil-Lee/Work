@@ -1,0 +1,48 @@
+record(calc, "${SYS}${SUBSYS}${DEV}${SUB}${SIGNAL}") {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(CALC, "(A||B||C||D||E||F) >=1?1:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${NUM}:${SIGNAL}Ohm")
+  field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV1}${NUM}:${SIGNAL}LT${NUM}")
+  field(INPC, "${SYS}${SUBSYS}${DEV}${SUBDEV2}${NUM}:${SIGNAL}PT${NUM}")
+  field(INPD, "${SYS}${SUBSYS}${DEV}${SUBDEV3}${NUM}:${SIGNAL}TT${NUM}")
+  field(INPE, "${SYS}${SUBSYS}${DEV}${SUBDEV4}${NUM}:${SIGNAL}DP${NUM}")
+  field(INPG, "${SYS}${SUBSYS}${DEV}${SUBDEV5}${NUM}:${SIGNAL}TP${NUM}")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}${NUM}:${SIGNAL}Ohm") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV1}${NUM}:${SIGNAL}LT${NUM}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV2}${NUM}:${SIGNAL}PT${NUM}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV3}${NUM}:${SIGNAL}TT${NUM}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV4}${NUM}:${SIGNAL}DP${NUM}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV5}${NUM}:${SIGNAL}TP${NUM}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+

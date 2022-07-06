@@ -1,0 +1,13 @@
+record(calc, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat") {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(CALC, "A>=1?1:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}") {
+  field(VAL, "0")
+  field(ZNAM, "Normal")
+  field(ONAM, "Interlock")
+}
+

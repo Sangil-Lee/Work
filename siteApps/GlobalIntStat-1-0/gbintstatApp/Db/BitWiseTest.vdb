@@ -1,0 +1,40 @@
+record(bi, BInputA) {
+	field(VAL,0)
+	field(ZNAM,"Normal")
+	field(ONAM,"Interlock")
+}
+
+record(bi, BInputB) {
+	field(VAL,0)
+	field(ZNAM,"Normal")
+	field(ONAM,"Interlock")
+}
+
+record(bi, BInputC) {
+	field(VAL,0)
+	field(ZNAM,"Normal")
+	field(ONAM,"Interlock")
+}
+
+record(bi, BInputD) {
+	field(VAL,0)
+	field(ZNAM,"Normal")
+	field(ONAM,"Interlock")
+}
+
+record(calc, CalcBitWiseTest) {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+#field(CALC, "B|(C<<1)|(D<<2)|(E<<3)")
+#field(INPA, "CalcBitWiseTest")
+#field(INPB, "BInputA")
+#field(INPC, "BInputB")
+#field(INPD, "BInputC")
+#field(INPE, "BInputD")
+
+  field(CALC, "A|(B<<1)|(C<<2)|(D<<3)")
+  field(INPA, "BInputA")
+  field(INPB, "BInputB")
+  field(INPC, "BInputC")
+  field(INPD, "BInputD")
+}

@@ -1,0 +1,40 @@
+record(calcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}CalcStat") {
+  field(SCAN, "1 second")
+  field(CALC, "(A==0&&B==0&&C==1&&D==1)?1:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}OpenStat")
+  field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}OpenLampR")
+  field(INPC, "${SYS}${SUBSYS}${DEV}${SUBDEV}CloseStat")
+  field(INPD, "${SYS}${SUBSYS}${DEV}${SUBDEV}CloseLampR")
+  field(OUT, "${SYS}${SUBSYS}${DEV}${SUBDEV}CPStat PP")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}OpenStat") {
+  field(VAL, "0")
+  field(ZNAM, "Close")
+  field(ONAM, "Open")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}OpenLampR") {
+  field(VAL, "0")
+  field(ZNAM, "Close")
+  field(ONAM, "Open")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CloseStat") {
+  field(VAL, "1")
+  field(ZNAM, "Open")
+  field(ONAM, "Close")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CloseLampR") {
+  field(VAL, "1")
+  field(ZNAM, "Open")
+  field(ONAM, "Close")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CPStat") {
+  field(VAL, "0")
+  field(ZNAM, "Open")
+  field(ONAM, "Close")
+}
+

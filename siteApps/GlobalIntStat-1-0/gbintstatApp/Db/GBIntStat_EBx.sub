@@ -1,0 +1,17 @@
+file "db/GBIntStat_2INP_EBx.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		INPA,			INPB}
+#####EBx-CV7502
+{SCL31,	-CDL01:,	EBx01,	-CV7502:,	IntStatPT7502,	IntStatTT7501}
+#####EBx-EH7401A
+{SCL31,	-CDL01:,	EBx01,	-EH7401A:,	IntStatLT7401A,	IntStatLT7401B}
+#####EBx-EH7401B
+{SCL31,	-CDL01:,	EBx01,	-EH7401B:,	IntStatLT7401A,	IntStatLT7401B}
+}
+
+file "db/GBIntStat_1INP_EBx.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		INPA}
+#####EBx-CV7401
+{SCL31,	-CDL01:,	EBx01,	-CV7401:,	IntStatPT7301}
+#####EBx-CV7402
+{SCL31,	-CDL01:,	EBx01,	-CV7402:,	IntStatPT7301}
+}
