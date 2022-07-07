@@ -1,0 +1,5 @@
+file "db/gl_Interlock_EBx.template" { pattern
+{ PREFIX,					INPA,				CALC}
+{"SCL3-EBx:IntA",		"SCL3-EBx:InpA",	"A>=8?1:0"}     
+{"SCL3-EBx:IntB",		"SCL3-EBx:InpB",	"A>=21?1:0"}     
+}

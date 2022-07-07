@@ -1,0 +1,40 @@
+record(calcout, "${PREFIX}:EBxIntLogic") {
+field(SCAN, "1 second")
+#field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(CALC, "${CALC}")
+  field(INPA, "${INPA}")
+  field(FLNK, "${PREFIX}:EBxFIFO")
+  field(DOPT, "Use CALC")
+}
+
+
+record(compress, "${PREFIX}:EBxFIFO") {
+  field(SCAN, "Passive")
+  field(FLNK, "${PREFIX}:Delay")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "5")
+  field(INP, "${PREFIX}:EBxIntLogic")
+}
+
+
+record(acalcout, "${PREFIX}:Delay") {
+  field(SCAN, "Passive")
+  field(NELM, "5")
+  field(CALC, "A==1?1:AMIN(AA)<1? 0:1")
+  field(INAA, "${PREFIX}:EBxFIFO")
+  field(OUT, "${PREFIX}:IntStatG PP")
+  field(INPA, "0")
+}
+
+record(bo, "${PREFIX}:IntStatG") {
+	field(VAL, "0")
+	field(ZNAM, "Normal")
+	field(ONAM, "Interlock")
+	field(OUT, "${PREFIX}:Delay.A")
+}
+
+record(ai, "${INPA}") {
+	field(VAL, "0.0")
+}
+

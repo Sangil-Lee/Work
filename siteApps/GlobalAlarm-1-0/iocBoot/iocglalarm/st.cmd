@@ -24,6 +24,8 @@ dbLoadRecords("db/gl_Interlock_XV7301.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
 
 dbLoadTemplate("db/setmanuopen.sub")
 dbLoadTemplate("db/xv7502_xv7301_manuint.sub")
+###EBx Interlock Test 
+dbLoadTemplate("db/gl_Interlock_EBx.sub")
 
 ##Selt Simulation
 #dbLoadTemplate("db/sim_pv.sub")

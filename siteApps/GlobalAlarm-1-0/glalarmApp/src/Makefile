@@ -43,7 +43,9 @@ glalarm_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     glalarm_SNCFLAGS += +r
     glalarm_DBD  += sncGLInterlockWF.dbd
+    glalarm_DBD  += sncGLInterlock_EBx.dbd
     glalarm_SRCS += sncGLInterlockWF.stt
+    glalarm_SRCS += sncGLInterlock_EBx.stt
     glalarm_LIBS += seq pv
 endif
 

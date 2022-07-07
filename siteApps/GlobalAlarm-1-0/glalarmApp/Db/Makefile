@@ -17,6 +17,8 @@ DB += bo.template
 DB += setmanuopen.sub
 DB += bi_manuint.template
 DB += xv7502_xv7301_manual_int.sub
+DB += gl_Interlock_EBx.template
+DB += gl_Interlock_EBx.sub
 
 
 ####Simulation
