@@ -1,10 +1,12 @@
 TOP=../..
+
 message ("QT_MAJOR_VERSION = " $$QT_MAJOR_VERSION )
+
 QT       += core gui xml
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-#TARGET = QEWidgetDisplay
-TARGET = CDMSTester 
+TARGET = CDMSTester
 TEMPLATE = app
 
 # Determine EPICS_BASE
@@ -54,20 +56,18 @@ MAKEFILE       = Makefile.$$(EPICS_HOST_ARCH)
 INCLUDEPATH += O.$$(EPICS_HOST_ARCH)/ui
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        Login.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += Login.h
 
-FORMS    += LoginMain.ui 
-#FORMS    += Login.ui 
-#FORMS    += mainwindow.ui 
+FORMS    += Login.ui \
+			Setup.ui
 
 INCLUDEPATH += . \
     ./include
 
 RESOURCES += \
     resources.qrc
-
 
 # Include header files from the QE framework
 #
@@ -80,6 +80,8 @@ LIBS += -L$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH) -lca -lCom
 unix: QMAKE_LFLAGS += -Wl,-rpath,$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH)
 
 LIBS += -L$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH) -lQEFramework
+LIBS += -L/usr/lib/x86_64-linux-gnu -lmysqlclient
+
 unix: QMAKE_LFLAGS += -Wl,-rpath,$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH)
 
 # end
