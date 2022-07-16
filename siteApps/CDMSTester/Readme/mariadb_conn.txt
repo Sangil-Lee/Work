@@ -1,0 +1,92 @@
+ctrluser@ubuntu:~/qtepics/qeframework/bin/linux-x86_64$ sudo mysql -u root -p
+Enter password:qwer1234
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 58
+Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.007 sec)
+
+MariaDB [(none)]> 
+MariaDB [(none)]> create database cdmstester;
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [(none)]> create user ctrluser@localhost identified by'qwer1234';
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [(none)]> grant all on cdmstester.* to ctrluser@'localhost';
+Query OK, 0 rows affected (0.001 sec)
+
+==================================================
+for 192.168.10.xxx
+grant all on cdmstester.* to ctrluser@'192.168.10.%';
+==================================================
+
+MariaDB [(none)]> flush privileges;
+Query OK, 0 rows affected (0.002 sec)
+
+MariaDB [(none)]> 
+MariaDB [(none)]> 
+MariaDB [(none)]> exit
+Bye
+ctrluser@ubuntu:~/qtepics/qeframework/bin/linux-x86_64$ sudo mysql -u ctrluser -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 59
+Server version: 10.3.34-MariaDB-0ubuntu0.20.04.1 Ubuntu 20.04
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
+MariaDB [(none)]> 
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| cdmstester         |
+| information_schema |
++--------------------+
+2 rows in set (0.001 sec)
+
+MariaDB [(none)]> 
+
+ariaDB [cdmstester]> CREATE TABLE user_t(seq INT NOT NULL AUTO_INCREMENT, user_id VARCHAR(20), passwd VARCHAR(50), grp VARCHAR(50), PRIMARY KEY(seq) ) ENGINE=MYISAM CHARSET=utf8;
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [cdmstester]> show tables;
++----------------------+
+| Tables_in_cdmstester |
++----------------------+
+| user_t               |
++----------------------+
+1 row in set (0.000 sec)
+
+MariaDB [cdmstester]> insert into user_t(user_id, passwd, grp) values('silee7103', 'qwer1234', 'admin');
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [cdmstester]> select * from user_t;
++-----+-----------+----------+-------+
+| seq | user_id   | passwd   | grp   |
++-----+-----------+----------+-------+
+|   1 | silee7103 | qwer1234 | admin |
++-----+-----------+----------+-------+
+1 row in set (0.000 sec)
+
+$>sudo aptitude search libmysqlclient
+
+i   libmysqlclient-dev                                                                                   - MySQL database development files                                                                              
+i A libmysqlclient21                                                                                     - MySQL database client library                                                                                 
+i   libmysqlcppconn-dev                                                                                  - MySQL Connector for C++ (development files)                                                                   
+i A libmysqlcppconn7v5
