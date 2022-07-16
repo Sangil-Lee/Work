@@ -55,13 +55,18 @@ MAKEFILE       = Makefile.$$(EPICS_HOST_ARCH)
 #
 INCLUDEPATH += O.$$(EPICS_HOST_ARCH)/ui
 
-SOURCES += main.cpp\
-        Login.cpp
+SOURCES += main.cpp \
+        Login.cpp \
+        Setup.cpp \
+        Tester.cpp
 
-HEADERS  += Login.h
+HEADERS  += Login.h \
+			Setup.h \
+			Tester.h
 
 FORMS    += Login.ui \
-			Setup.ui
+			Setup.ui \
+			Tester.ui
 
 INCLUDEPATH += . \
     ./include
