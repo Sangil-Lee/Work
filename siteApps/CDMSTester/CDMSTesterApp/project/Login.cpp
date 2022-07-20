@@ -119,3 +119,7 @@ void Login::accept()
 	};
 }
 
+void Login::SetPasswd(const QString &text)
+{
+	ui->passwd->setText(text);
+}

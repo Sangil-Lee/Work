@@ -22,6 +22,8 @@ public:
     explicit Login(QWidget *parent = 0);
     ~Login();
 
+	void SetPasswd(const QString &text);
+
 private:
 
 public slots:

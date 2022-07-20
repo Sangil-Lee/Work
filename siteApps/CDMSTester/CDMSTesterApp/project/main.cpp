@@ -29,13 +29,18 @@
 
 //#include "mainwindow.h"
 #include <QApplication>
-#include "Login.h"
+//#include "Login.h"
+#include "Tester.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Login login;
-    login.show();
+    //Login login;
+    //login.show();
+
+    Tester tester;
+    tester.show();
+	tester.ShowLogin();
 
     return a.exec();
 }

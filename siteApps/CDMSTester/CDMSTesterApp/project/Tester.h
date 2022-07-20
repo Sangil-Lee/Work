@@ -6,6 +6,8 @@
 
 #include <QWidget> 
 #include <mysql/mysql.h> 
+#include "Login.h"
+#include "Setup.h"
 
 namespace Ui {
 class Tester;
@@ -20,11 +22,17 @@ public:
 	~Tester();
 	
 public slots:
+	void showlogin();
+	void showsetup();
 
 private:
 	Ui::Tester *ui;
+	Login		*plogin;
+	Setup		*psetup;
 
 public:
+	void ShowLogin();
+	void ShowSetup();
 
 };
 #endif  //
