@@ -1,0 +1,28 @@
+ioctest_registerRecordDeviceDriver.obj: \
+ ioctest_registerRecordDeviceDriver.cpp \
+ C:/epics/7.0.6.1/base/include/compilerDependencies.h \
+ C:/epics/7.0.6.1/base/include/compiler/gcc/compilerSpecific.h \
+ C:/epics/7.0.6.1/base/include/epicsStdlib.h \
+ C:/epics/7.0.6.1/base/include/libComAPI.h \
+ C:/epics/7.0.6.1/base/include/os/WIN32/osdStrtod.h \
+ C:/epics/7.0.6.1/base/include/epicsTypes.h \
+ C:/epics/7.0.6.1/base/include/compilerDependencies.h \
+ C:/epics/7.0.6.1/base/include/errMdef.h \
+ C:/epics/7.0.6.1/base/include/iocsh.h \
+ C:/epics/7.0.6.1/base/include/iocshRegisterCommon.h \
+ C:/epics/7.0.6.1/base/include/dbCoreAPI.h \
+ C:/epics/7.0.6.1/base/include/registryCommon.h \
+ C:/epics/7.0.6.1/base/include/dbStaticLib.h \
+ C:/epics/7.0.6.1/base/include/dbFldTypes.h \
+ C:/epics/7.0.6.1/base/include/dbBase.h \
+ C:/epics/7.0.6.1/base/include/ellLib.h \
+ C:/epics/7.0.6.1/base/include/dbDefs.h \
+ C:/epics/7.0.6.1/base/include/recSup.h \
+ C:/epics/7.0.6.1/base/include/devSup.h \
+ C:/epics/7.0.6.1/base/include/link.h \
+ C:/epics/7.0.6.1/base/include/cantProceed.h \
+ C:/epics/7.0.6.1/base/include/dbJLink.h \
+ C:/epics/7.0.6.1/base/include/dbCoreAPI.h \
+ C:/epics/7.0.6.1/base/include/registryRecordType.h \
+ C:/epics/7.0.6.1/base/include/recSup.h \
+ C:/epics/7.0.6.1/base/include/shareLib.h

@@ -1,0 +1,30 @@
+#record(sub,"$(user):subExample")
+#{
+#    field(INAM,"mySubInit")
+#    field(SNAM,"mySubProcess")
+#}
+
+#record(aSub,"$(user):aSubExample")
+#{
+#    field(INAM,"myAsubInit")
+#    field(SNAM,"myAsubProcess")
+#    field(FTA,"DOUBLE")
+#    field(NOA,"100")
+#    field(INPA,"$(user):compressExample CPP")
+#}
+
+record(aSub, "ASUB-SHM-CLI")
+{
+    field(SCAN,"1 second")
+    field(INAM,"myAsubInit")
+    field(SNAM,"myAsubProcess")
+    field(OUTA,"SHM-CLI-Waveform PP")
+    field(FTVA,"FLOAT")
+    field(NOVA,"100")
+}
+
+record(waveform, "SHM-CLI-Waveform")
+{
+    field(FTVL,"FLOAT")
+    field(NELM,"100")
+}
