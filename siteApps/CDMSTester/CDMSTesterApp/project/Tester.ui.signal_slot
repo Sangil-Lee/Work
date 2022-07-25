@@ -275,7 +275,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QELineEdit" name="angle">
+  <widget class="QELineEdit" name="qelineedit">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -324,7 +324,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>angle</sender>
+   <sender>qelineedit</sender>
    <signal>dbValueChanged(QString)</signal>
    <receiver>lineEdit</receiver>
    <slot>setText(QString)</slot>

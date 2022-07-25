@@ -31,6 +31,10 @@ Login::~Login()
 }
 
 
+void Login::close()
+{
+	qApp->exit();
+}
 void Login::accept()
 {
 #if 0

@@ -24,6 +24,9 @@ public:
 public slots:
 	void showlogin();
 	void showsetup();
+	void check();
+	void load();
+	void save();
 
 private:
 	Ui::Tester *ui;

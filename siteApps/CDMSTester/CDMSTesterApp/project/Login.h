@@ -28,6 +28,7 @@ private:
 
 public slots:
 	void accept();
+	void close();
 
 private:
     Ui::Login *ui;

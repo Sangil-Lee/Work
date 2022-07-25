@@ -12,6 +12,9 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 
 	connect(ui->logout, SIGNAL(pressed()), this, SLOT(showlogin()) );
 	connect(ui->setup, SIGNAL(pressed()), this, SLOT(showsetup()) );
+	connect(ui->load, SIGNAL(pressed()), this, SLOT(load()) );
+	connect(ui->check, SIGNAL(pressed()), this, SLOT(check()) );
+	connect(ui->save, SIGNAL(pressed()), this, SLOT(save()) );
 }
 
 Tester::~Tester()
@@ -25,6 +28,12 @@ void Tester::ShowLogin()
 	plogin->show();
 }
 
+void Tester::ShowSetup()
+{
+	psetup->show();
+}
+
+//SLOT
 void Tester::showlogin()
 {
 	plogin->SetPasswd("");
@@ -35,7 +44,19 @@ void Tester::showsetup()
 {
 	ShowSetup();
 }
-void Tester::ShowSetup()
+
+void Tester::load()
 {
-	psetup->show();
+	qDebug() << "Load Pressed";
+}
+
+void Tester::check()
+{
+	qDebug() << "Check Pressed ";
+	qDebug() << "Angle Value: " << ui->angle->text();
+}
+
+void Tester::save()
+{
+	qDebug() << "Save Pressed";
 }
