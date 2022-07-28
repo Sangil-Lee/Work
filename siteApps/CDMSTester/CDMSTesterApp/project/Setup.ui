@@ -99,11 +99,11 @@
      <number>2</number>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="autocheck">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>140</y>
+      <x>100</x>
+      <y>110</y>
       <width>151</width>
       <height>31</height>
      </rect>
@@ -138,14 +138,224 @@
      </size>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="userinfo">
     <property name="geometry">
      <rect>
       <x>35</x>
-      <y>251</y>
+      <y>351</y>
       <width>481</width>
-      <height>521</height>
+      <height>451</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="usersave">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>240</y>
+      <width>83</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>User ID :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>200</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Password :</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>240</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Confirm :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="userid">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>163</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwd">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>203</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="passwdconfirm">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>244</y>
+      <width>191</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="userload">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>300</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>User Load</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="usermodify">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>300</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Modify</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="userdelete">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>300</y>
+      <width>131</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Delete</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="grpcombo">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>200</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>operator</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>engineer</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>admin</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_18">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>160</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Group</string>
     </property>
    </widget>
   </widget>
@@ -350,7 +560,7 @@ Number</string>
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="modtype">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -634,5 +844,22 @@ Number</string>
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Setup</sender>
+   <signal>destroyed()</signal>
+   <receiver>Setup</receiver>
+   <slot>hide()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>502</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>502</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

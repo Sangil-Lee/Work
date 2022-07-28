@@ -51,7 +51,17 @@ private:
 	QStringList m_passwdList;
 	QStringList m_grpList;
 
+	std::string m_curUser;
+	std::string m_curPass;
+	std::string m_curGrp;
+
 public:
+	std::string GetCurUser() { return m_curUser; }
+	std::string GetCurPass() { return m_curPass; }
+	std::string GetCurGrp() { return  m_curGrp; }
+
+	MYSQL *GetDBConn() { return conn; };
+
 };
 
 #endif // LOGIN_DIALOG_H

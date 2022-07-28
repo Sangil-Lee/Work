@@ -91,8 +91,9 @@ void Login::accept()
 		mysql_free_result(result);
 		// Release memories
 		mysql_free_result(res);
+
 		// Close a MySQL connection
-		mysql_close(conn);
+		//mysql_close(conn);
 	} catch (char *e) {
 		cerr << "[EXCEPTION] " << e << endl;
 		return;
@@ -107,6 +108,9 @@ void Login::accept()
         string dbpasswd = m_passwdList.at(index).toLocal8Bit().constData();
 		if(dbuser == userid && dbpasswd == passwd) {
 			checkUser = true;
+			m_curUser = dbuser;
+			m_curPass = dbpasswd;
+			m_curGrp  = m_grpList.at(index).toLocal8Bit().constData();
 			break;
 		};
 	};

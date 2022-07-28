@@ -20,11 +20,16 @@ public:
 	~Setup();
 	
 public slots:
+	void saveuser();
 
 private:
 	Ui::Setup *ui;
+    MYSQL     *m_conn;
+    MYSQL_RES *m_res;
+    MYSQL_ROW m_row;
 
 public:
+	void SetDBConn(MYSQL *pconn) { m_conn = pconn; };
 
 };
 #endif  //

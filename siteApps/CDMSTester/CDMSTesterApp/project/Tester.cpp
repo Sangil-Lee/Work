@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <iostream>
 #include "Tester.h"
 #include "ui_Tester.h"
@@ -15,6 +16,7 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 	connect(ui->load, SIGNAL(pressed()), this, SLOT(load()) );
 	connect(ui->check, SIGNAL(pressed()), this, SLOT(check()) );
 	connect(ui->save, SIGNAL(pressed()), this, SLOT(save()) );
+
 }
 
 Tester::~Tester()
@@ -31,6 +33,7 @@ void Tester::ShowLogin()
 void Tester::ShowSetup()
 {
 	psetup->show();
+	psetup->SetDBConn(plogin->GetDBConn());
 }
 
 //SLOT
@@ -42,7 +45,15 @@ void Tester::showlogin()
 
 void Tester::showsetup()
 {
-	ShowSetup();
+	string strgrp = plogin->GetCurGrp();
+	if(strgrp == string("admin"))
+		ShowSetup();
+	else
+	{
+		QMessageBox msgBox;
+		msgBox.setText("Current user is not admin group!!");
+		msgBox.exec();
+	}
 }
 
 void Tester::load()
