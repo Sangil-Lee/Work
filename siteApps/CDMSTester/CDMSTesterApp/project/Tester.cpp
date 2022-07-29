@@ -1,3 +1,5 @@
+#include <QApplication>
+#include <QDesktopWidget>
 #include <QMessageBox>
 #include <iostream>
 #include "Tester.h"
@@ -32,7 +34,8 @@ void Tester::ShowLogin()
 
 void Tester::ShowSetup()
 {
-	psetup->show();
+	psetup->move(QApplication::desktop()->screen()->rect().center() - psetup->rect().center());
+    psetup->show();
 	psetup->SetDBConn(plogin->GetDBConn());
 }
 

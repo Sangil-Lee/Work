@@ -1,6 +1,7 @@
 #include <QtGui>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <QRegExp>
 #include <iostream>
 #include "Setup.h"
 #include "ui_Setup.h"
@@ -10,17 +11,24 @@ using namespace std;
 Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 {
 	ui->setupUi(this);
+	//config tab
 	connect(ui->usersave, SIGNAL(pressed()), this, SLOT(saveuser()) );
 	connect(ui->userload, SIGNAL(pressed()), this, SLOT(userload()) );
 	connect(ui->usermodify, SIGNAL(pressed()), this, SLOT(usermod()) );
 	connect(ui->userdelete, SIGNAL(pressed()), this, SLOT(userdel()) );
 
-#if 1
+	//module tab
+	connect(ui->addmodlist, SIGNAL(pressed()), this, SLOT(addmodlist()) );
+	connect(ui->delmodlist, SIGNAL(pressed()), this, SLOT(delmodlist()) );
+	connect(ui->modsave,    SIGNAL(pressed()), this, SLOT(modsave()) );
+	connect(ui->modcancel,  SIGNAL(pressed()), this, SLOT(modcancel()) );
+
+	//scenario tab
+
 	QTableWidget *pTable = ui->userinfo;
 	pTable->resizeColumnsToContents();
 	pTable->horizontalHeader()->setStretchLastSection(true);
 	//pTable->horizontalHeader()->setStretchLastSection(true);
-#endif
 }
 
 Setup::~Setup()
@@ -30,7 +38,6 @@ Setup::~Setup()
 
 void Setup::saveuser()
 {
-	cout << "Save User" << endl;
 	//select * from user_t group by user_id having count(*) > 1;
 	QString userid = ui->userid->text();
 	QString passwd = ui->passwd->text();
@@ -142,7 +149,6 @@ void Setup::userdel()
 		// SELECT 쿼리
 		string sql = QString("delete from user_t where user_id = '%1'").arg(userid).toUtf8().constData();
 		MYSQL_RES* result = NULL;
-		MYSQL_ROW row;
 		if(mysql_query(m_conn, sql.c_str()) != 0) {
 			cout << "Delete query error!!" << endl;
 		}
@@ -155,4 +161,115 @@ void Setup::userdel()
 	}
 #endif
 	userload();
+}
+
+void Setup::addmodlist()
+{
+	//modtype/modloc/modkind(QComboBox), modsernum/modname(QLineEdit), moddesc(QTextEdit)
+	QComboBox *pType = ui->modtype;
+	QComboBox *pLoc  = ui->modloc;
+	QComboBox *pKind = ui->modkind;
+
+	QLineEdit *pModser  = ui->modsernum;
+	QLineEdit *pModname = ui->modname;
+	QTextEdit *pModdesc = ui->moddesc;
+
+	if(pModser->text().isEmpty()) {
+		QMessageBox msgBox;
+		msgBox.setText("Serial number should be not empty!!");
+		msgBox.exec();
+
+		return;
+	}
+
+
+	QString strmodlist = QString("Serial:%1,Type:%2,Loc:%3,Name:%4-%5,Desc:%6").arg(pModser->text()).
+		arg(QString::number(pType->currentIndex())).
+		arg(QString::number(pLoc->currentIndex())).
+		arg(pKind->currentText()).
+		arg(pModname->text()).
+		arg(pModdesc->toPlainText());
+
+	cout << strmodlist.toUtf8().constData() << endl;
+
+	//modlist(QListWidget)
+	QListWidget *pModlist = ui->modlist;
+	pModlist->addItem(strmodlist);
+}
+
+void Setup::delmodlist()
+{
+	QListWidget *pModlist = ui->modlist;
+	//pModlist->currentItem()->takeItem();
+	pModlist->model()->removeRow(pModlist->currentRow());
+}
+
+void Setup::modsave()
+{
+	QListWidget *pModlist = ui->modlist;
+
+#if 0
+	if(pModlist->currentRow() < 0) return;
+	QString strlist = pModlist->item(pModlist->currentRow())->text();
+	QStringList slist = strlist.split(QRegExp("[:,]"));
+	qDebug() << slist;
+	serial:slist[1], type:slist[3], location:slist[5], modname:slist[7], desc:slist[9]
+	for(int i = 0; i < slist.size();++i)
+	{
+		if(i%2 == 0) continue;
+		cout << slist.at(i).toUtf8().constData() << endl;
+	}
+#endif
+	try {
+		// Format a MySQL object
+		// Get a result set
+		m_res = mysql_use_result(m_conn);
+		MYSQL_RES* result = NULL;
+
+		for(int i = 0; i < pModlist->count(); ++i)
+		{
+			QString strlist = pModlist->item(i)->text();
+			QStringList slist = strlist.split(QRegExp("[:,]"));
+			qDebug() << slist[1] << "," << slist[3] << "," << slist[5] << "," << slist[7] <<"," <<slist[9];
+
+			// SELECT 쿼리
+			QString inssql = QString("INSERT INTO module_t(sernum, modname, modtype, location, desciption) VALUES('%1','%2',%3,%4,'%5')").arg(slist[1]).arg(slist[7]).arg(slist[3].toInt()).arg(slist[5].toInt()).arg(slist[9]);
+			if(mysql_query(m_conn, inssql.toUtf8().constData())) {
+				cout << "Insert Error" << endl;
+			}
+		};
+
+		mysql_free_result(result);
+		// Release memories
+		mysql_free_result(m_res);
+	} catch (char *e) {
+		cerr << "[EXCEPTION] " << e << endl;
+		return;
+	}
+	
+#if 0
+	for(int i = 0; i < pModlist->count(); ++i)
+	{
+		QString strlist = pModlist->item(i)->text();
+		QStringList slist = strlist.split(QRegExp("[:,]"));
+		qDebug() << slist[1] << "," << slist[3] << "," << slist[5] << "," << slist[7] <<"," <<slist[9];
+	}
+#endif
+	
+}
+
+void Setup::modcancel()
+{
+	QListWidget *pModlist = ui->modlist;
+	pModlist->clear();
+
+	ui->modtype->setCurrentIndex(0);
+	ui->modloc->setCurrentIndex(0);
+	ui->modkind->setCurrentIndex(0);
+
+	ui->modsernum->setText("");
+	ui->modname->setText("");
+	ui->moddesc->setText("");
+
+	hide();
 }

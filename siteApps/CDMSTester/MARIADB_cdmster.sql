@@ -1,14 +1,3 @@
-create table result_t (
-		ridx bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		tdate datetime, 
-		result tinyint unsigned, 
-		rvalue double, 
-		sidx bigint unsigned, 
-		sernum bigint unsigned, 
-		foreign key(sidx) references scenario_t(sidx), 
-		foreign key(sernum) references module_t(sernum) 
-		)ENGINE=INNODB;
-
 create table scenario_t (
 		sidx bigint unsigned NOT NULL AUTO_INCREMENT, 
 		scenario varchar(1024), 
@@ -19,9 +8,21 @@ create table scenario_t (
 		PRIMARY KEY(sidx) 
 		)ENGINE=INNODB;
 
+/*sernum bigint unsigned*/
+create table result_t (
+		ridx bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+		tdate datetime, 
+		result tinyint unsigned, 
+		rvalue double, 
+		sidx bigint unsigned, 
+		sernum varchar(64), 
+		foreign key(sidx) references scenario_t(sidx), 
+		foreign key(sernum) references module_t(sernum) 
+		)ENGINE=INNODB;
 
+/*sernum bigint unsigned NOT NULL,*/
 create table module_t (
-		sernum bigint unsigned NOT NULL, 
+		sernum varchar(64) NOT NULL, 
 		modname varchar(128), 
 		modtype tinyint unsigned, 
 		location tinyint unsigned, 

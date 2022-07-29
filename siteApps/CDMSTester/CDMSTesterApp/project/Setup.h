@@ -20,10 +20,17 @@ public:
 	~Setup();
 	
 public slots:
+	//config
 	void saveuser();
 	void userload();
 	void usermod();
 	void userdel();
+
+	//module
+	void addmodlist();
+	void delmodlist();
+	void modsave();
+	void modcancel();
 
 private:
 	Ui::Setup *ui;
