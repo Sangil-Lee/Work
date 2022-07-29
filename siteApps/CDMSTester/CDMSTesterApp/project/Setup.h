@@ -21,6 +21,9 @@ public:
 	
 public slots:
 	void saveuser();
+	void userload();
+	void usermod();
+	void userdel();
 
 private:
 	Ui::Setup *ui;
