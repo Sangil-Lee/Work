@@ -187,7 +187,7 @@ void Setup::addmodlist()
 	}
 
 
-	QString strmodlist = QString("Serial:%1,Type:%2,Loc:%3,Name:%4-%5,Desc:%6").arg(pModser->text()).
+	QString strmodlist = QString("Serial_%1,Type_%2,Loc_%3,Name_%4-%5,Desc_%6").arg(pModser->text()).
 		arg(QString::number(pType->currentIndex())).
 		arg(QString::number(pLoc->currentIndex())).
 		arg(pKind->currentText()).
@@ -215,7 +215,7 @@ void Setup::modsave()
 #if 0
 	if(pModlist->currentRow() < 0) return;
 	QString strlist = pModlist->item(pModlist->currentRow())->text();
-	QStringList slist = strlist.split(QRegExp("[:,]"));
+	QStringList slist = strlist.split(QRegExp("[_,]"));
 	qDebug() << slist;
 	serial:slist[1], type:slist[3], location:slist[5], modname:slist[7], desc:slist[9]
 	for(int i = 0; i < slist.size();++i)
@@ -233,7 +233,7 @@ void Setup::modsave()
 		for(int i = 0; i < pModlist->count(); ++i)
 		{
 			QString strlist = pModlist->item(i)->text();
-			QStringList slist = strlist.split(QRegExp("[:,]"));
+			QStringList slist = strlist.split(QRegExp("[_,]"));
 			qDebug() << slist[1] << "," << slist[3] << "," << slist[5] << "," << slist[7] <<"," <<slist[9];
 
 			// SELECT 쿼리
@@ -286,31 +286,81 @@ void Setup::addscenario()
 	QComboBox *pfromCh   = ui->fromchCombo;
 	QComboBox *pfromKind = ui->fromkindCombo;
 
+	//PXI-Mod00:AI-CHxx:Volt
+	QString strFrom = QString("From_%1-%2:%3-%4:%5").
+		arg(pfromDev->currentText()).
+		arg(pfromMod->currentText()).
+		arg(pfromType->currentText()).
+		arg(pfromCh->currentText()).
+		arg(pfromKind->currentText());
+
+	qDebug() << strFrom;
+
 	QComboBox *ptoDev  = ui->todevCombo;
 	QComboBox *ptoMod  = ui->tomodCombo;
 	QComboBox *ptoType = ui->totypeCombo;
 	QComboBox *ptoCh   = ui->tochCombo;
 	QComboBox *ptoKind = ui->tokindCombo;
+
+	QString strTo = QString("To_%1-%2:%3-%4:%5").
+		arg(ptoDev->currentText()).
+		arg(ptoMod->currentText()).
+		arg(ptoType->currentText()).
+		arg(ptoCh->currentText()).
+		arg(ptoKind->currentText());
+
+	qDebug() << strTo;
 	
 	QComboBox *pSType = ui->scantypeCombo;
 	QComboBox *pScan  = ui->scanCombo;
-
 	QLineEdit *pscanCount = ui->scanCount;
 
-	QComboBox *pfuncT  = ui->functypeCombo;
+	QString strScan;
+	if(pSType->currentIndex() == 0)
+		strScan = QString("SCAN_%1,%2").arg(pSType->currentText()).arg(pScan->currentText());
+	else
+		strScan = QString("SCAN_%1,%2,%3").arg(pSType->currentText()).arg(pScan->currentText()).arg(pscanCount->text());
 
-	QLineEdit   *puserT = ui->usertarget;
+	qDebug() << strScan;
+
+	QRadioButton *pAuto  = ui->autoRadio;
+	QComboBox    *pfuncT = ui->functypeCombo;
+	QLineEdit    *puserT = ui->usertarget;
+
+	QString strFunc;
+	if(pAuto->isChecked())
+		strFunc = QString("FUNC_Auto,%1").arg(pfuncT->currentText());
+	else
+		strFunc = QString("FUNC_Manu,%1").arg(puserT->text());
+
+	qDebug() << strFunc;
+
+	QString strScenario = strFrom+","+strTo+","+strScan+","+strFunc;
 	QListWidget *pScenlist = ui->scenList;
-
-
+	pScenlist->addItem(strScenario);
 
 }
 void Setup::delscenario()
 {
+	QListWidget *pScenlist = ui->scenList;
+	pScenlist->model()->removeRow(pScenlist->currentRow());
 }
 void Setup::scensave()
 {
+	QListWidget *pScenlist = ui->scenList;
+
+	for(int i = 0; i < pScenlist->count(); ++i)
+	{
+		QString strlist = pScenlist->item(i)->text();
+		QStringList slist = strlist.split(QRegExp("[_,]"));
+		qDebug() << slist;
+		//scenario_t Save
+	}
 }
 void Setup::scencancel()
 {
+	QListWidget *pScenlist = ui->scenList;
+	pScenlist->clear();
+
+	hide();
 }
