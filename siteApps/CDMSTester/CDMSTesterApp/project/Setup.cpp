@@ -24,6 +24,10 @@ Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 	connect(ui->modcancel,  SIGNAL(pressed()), this, SLOT(modcancel()) );
 
 	//scenario tab
+	connect(ui->addscenario, SIGNAL(pressed()), this, SLOT(addscenario()) );
+	connect(ui->delscenario, SIGNAL(pressed()), this, SLOT(delscenario()) );
+	connect(ui->scensave,    SIGNAL(pressed()), this, SLOT(scensave()) );
+	connect(ui->scencancel,  SIGNAL(pressed()), this, SLOT(scencancel()) );
 
 	QTableWidget *pTable = ui->userinfo;
 	pTable->resizeColumnsToContents();
@@ -272,4 +276,41 @@ void Setup::modcancel()
 	ui->moddesc->setText("");
 
 	hide();
+}
+
+void Setup::addscenario()
+{
+	QComboBox *pfromDev  = ui->fromdevCombo;
+	QComboBox *pfromMod  = ui->frommodCombo;
+	QComboBox *pfromType = ui->fromtypeCombo;
+	QComboBox *pfromCh   = ui->fromchCombo;
+	QComboBox *pfromKind = ui->fromkindCombo;
+
+	QComboBox *ptoDev  = ui->todevCombo;
+	QComboBox *ptoMod  = ui->tomodCombo;
+	QComboBox *ptoType = ui->totypeCombo;
+	QComboBox *ptoCh   = ui->tochCombo;
+	QComboBox *ptoKind = ui->tokindCombo;
+	
+	QComboBox *pSType = ui->scantypeCombo;
+	QComboBox *pScan  = ui->scanCombo;
+
+	QLineEdit *pscanCount = ui->scanCount;
+
+	QComboBox *pfuncT  = ui->functypeCombo;
+
+	QLineEdit   *puserT = ui->usertarget;
+	QListWidget *pScenlist = ui->scenList;
+
+
+
+}
+void Setup::delscenario()
+{
+}
+void Setup::scensave()
+{
+}
+void Setup::scencancel()
+{
 }
