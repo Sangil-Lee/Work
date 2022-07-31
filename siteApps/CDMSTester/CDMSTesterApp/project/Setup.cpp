@@ -287,7 +287,7 @@ void Setup::addscenario()
 	QComboBox *pfromKind = ui->fromkindCombo;
 
 	//PXI-Mod00:AI-CHxx:Volt
-	QString strFrom = QString("From_%1-%2:%3-%4:%5").
+	QString strFrom = QString("TEST(%1-%2:%3-%4:%5)").
 		arg(pfromDev->currentText()).
 		arg(pfromMod->currentText()).
 		arg(pfromType->currentText()).
@@ -296,46 +296,44 @@ void Setup::addscenario()
 
 	qDebug() << strFrom;
 
+#if 0
 	QComboBox *ptoDev  = ui->todevCombo;
 	QComboBox *ptoMod  = ui->tomodCombo;
 	QComboBox *ptoType = ui->totypeCombo;
 	QComboBox *ptoCh   = ui->tochCombo;
 	QComboBox *ptoKind = ui->tokindCombo;
 
-	QString strTo = QString("To_%1-%2:%3-%4:%5").
+	QString strTo = QString("To(%1-%2:%3-%4:%5)").
 		arg(ptoDev->currentText()).
 		arg(ptoMod->currentText()).
 		arg(ptoType->currentText()).
 		arg(ptoCh->currentText()).
 		arg(ptoKind->currentText());
-
 	qDebug() << strTo;
+#endif
 	
-	QComboBox *pSType = ui->scantypeCombo;
 	QComboBox *pScan  = ui->scanCombo;
-	QLineEdit *pscanCount = ui->scanCount;
 
 	QString strScan;
-	if(pSType->currentIndex() == 0)
-		strScan = QString("SCAN_%1,%2").arg(pSType->currentText()).arg(pScan->currentText());
-	else
-		strScan = QString("SCAN_%1,%2,%3").arg(pSType->currentText()).arg(pScan->currentText()).arg(pscanCount->text());
+	strScan = QString("SCAN(%1)").arg(pScan->currentText());
 
 	qDebug() << strScan;
 
 	QRadioButton *pAuto  = ui->autoRadio;
 	QComboBox    *pfuncT = ui->functypeCombo;
 	QLineEdit    *puserT = ui->usertarget;
+	QDoubleSpinBox *pminVal = ui->minVal;
+	QDoubleSpinBox *pmaxVal = ui->maxVal;
 
 	QString strFunc;
 	if(pAuto->isChecked())
-		strFunc = QString("FUNC_Auto,%1").arg(pfuncT->currentText());
+		strFunc = QString("FUNC(Auto,%1,Min=%2,Max=%3)").arg(pfuncT->currentText()).arg(pminVal->value()).arg(pmaxVal->value());
 	else
-		strFunc = QString("FUNC_Manu,%1").arg(puserT->text());
+		strFunc = QString("FUNC(Manu,%1)").arg(puserT->text());
 
 	qDebug() << strFunc;
 
-	QString strScenario = strFrom+","+strTo+","+strScan+","+strFunc;
+	QString strScenario = strFrom+","+strScan+","+strFunc;
 	QListWidget *pScenlist = ui->scenList;
 	pScenlist->addItem(strScenario);
 
@@ -349,13 +347,45 @@ void Setup::scensave()
 {
 	QListWidget *pScenlist = ui->scenList;
 
+#if 0
 	for(int i = 0; i < pScenlist->count(); ++i)
 	{
 		QString strlist = pScenlist->item(i)->text();
-		QStringList slist = strlist.split(QRegExp("[_,]"));
+		QStringList slist = strlist.split(QRegExp("[(,)]"));
+		slist.removeAll(QString(""));
 		qDebug() << slist;
+
 		//scenario_t Save
 	}
+#endif
+#if 1
+	try {
+		// Format a MySQL object
+		m_res = mysql_use_result(m_conn);
+		MYSQL_RES* result = NULL;
+
+		for(int i = 0; i < pScenlist->count(); ++i)
+		{
+			QString strlist = pScenlist->item(i)->text();
+			//QStringList slist = strlist.split(QRegExp("[(,)]"));
+			//slist.removeAll(QString(""));
+
+			// SELECT 쿼리
+			QString inssql = QString("INSERT INTO scenario_t(scenario, modinfo) VALUES('%1','%2')").arg(strlist).arg("");
+			if(mysql_query(m_conn, inssql.toUtf8().constData())) {
+				cout << "Insert Error" << endl;
+			}
+		};
+
+		mysql_free_result(result);
+		// Release memories
+		mysql_free_result(m_res);
+	} catch (char *e) {
+		cerr << "[EXCEPTION] " << e << endl;
+		return;
+	}
+#endif
+
 }
 void Setup::scencancel()
 {

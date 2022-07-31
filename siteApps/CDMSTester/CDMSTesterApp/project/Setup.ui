@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
+    <width>1069</width>
     <height>863</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>0</number>
+   <number>1</number>
   </property>
   <widget class="QWidget" name="config_tab">
    <attribute name="title">
@@ -574,7 +574,7 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>490</x>
       <y>350</y>
       <width>91</width>
       <height>131</height>
@@ -639,9 +639,9 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>130</y>
+      <y>150</y>
       <width>391</width>
-      <height>641</height>
+      <height>621</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -940,11 +940,6 @@ Number</string>
            </property>
            <item>
             <property name="text">
-             <string>PXI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
              <string>RTP</string>
             </property>
            </item>
@@ -1002,10 +997,10 @@ Number</string>
    <widget class="QListWidget" name="modlist">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>130</y>
+      <x>590</x>
+      <y>149</y>
       <width>450</width>
-      <height>640</height>
+      <height>621</height>
      </rect>
     </property>
     <property name="font">
@@ -1136,10 +1131,10 @@ Number</string>
    <widget class="QListWidget" name="scenList">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>130</y>
+      <x>590</x>
+      <y>150</y>
       <width>450</width>
-      <height>641</height>
+      <height>621</height>
      </rect>
     </property>
     <property name="font">
@@ -1151,7 +1146,7 @@ Number</string>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>490</x>
       <y>351</y>
       <width>91</width>
       <height>131</height>
@@ -1263,13 +1258,13 @@ Number</string>
    <widget class="QWidget" name="verticalLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>20</x>
       <y>130</y>
       <width>446</width>
       <height>671</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_8" stretch="5,2">
+    <layout class="QVBoxLayout" name="verticalLayout_8" stretch="5,0,0,0,0,0,2">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
@@ -1284,6 +1279,13 @@ Number</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -1301,7 +1303,7 @@ Number</string>
             </font>
            </property>
            <property name="text">
-            <string> From</string>
+            <string>TEST</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -1321,11 +1323,6 @@ Number</string>
              <pointsize>12</pointsize>
             </font>
            </property>
-           <item>
-            <property name="text">
-             <string>PXI</string>
-            </property>
-           </item>
            <item>
             <property name="text">
              <string>RTP</string>
@@ -1591,322 +1588,11 @@ Number</string>
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_10">
-         <item>
-          <spacer name="horizontalSpacer_7">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_20">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>To  </string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="todevCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>PXI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>RTP</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="tomodCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>Mod00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod01</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod02</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod03</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod04</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod05</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod06</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod07</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod08</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod09</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod10</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod11</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod12</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod13</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod14</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Mod15</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="totypeCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>AI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>AO</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>DI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>DO</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Comm</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="tochCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>CH00</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH01</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH02</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH03</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH04</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH05</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH06</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH07</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH08</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH09</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH10</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH11</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH12</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH13</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH14</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>CH15</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="tokindCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>Volt</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Curr</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-        </layout>
+        <widget class="Line" name="line_6">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer_12">
@@ -1922,22 +1608,42 @@ Number</string>
         </spacer>
        </item>
        <item>
-        <spacer name="verticalSpacer_8">
+        <widget class="Line" name="line_3">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_11">
+        <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,0,0,2,2,0,0">
          <item>
           <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_9">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -1968,31 +1674,6 @@ Number</string>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="scantypeCombo">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>Continue</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Count</string>
-            </property>
-           </item>
           </widget>
          </item>
          <item>
@@ -2041,7 +1722,7 @@ Number</string>
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_6">
+          <spacer name="horizontalSpacer_10">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -2052,24 +1733,6 @@ Number</string>
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="scanCount">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
-           </property>
-          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_3">
@@ -2085,6 +1748,13 @@ Number</string>
           </spacer>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="Line" name="line_7">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer_9">
@@ -2111,6 +1781,13 @@ Number</string>
           </size>
          </property>
         </spacer>
+       </item>
+       <item>
+        <widget class="Line" name="line_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -2235,22 +1912,127 @@ Number</string>
            </item>
           </layout>
          </item>
-         <item>
-          <spacer name="horizontalSpacer_5">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
         </layout>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line_8">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_17">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="Line" name="line_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_12">
+       <item>
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_11">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Min</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="minVal">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_13">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Max</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="maxVal">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="decimals">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_8">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="Line" name="line_9">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer_10">

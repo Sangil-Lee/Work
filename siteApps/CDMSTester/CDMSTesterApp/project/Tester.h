@@ -27,6 +27,9 @@ public slots:
 	void check();
 	void load();
 	void save();
+	void start();
+	void stop();
+	void pause();
 
 private:
 	Ui::Tester *ui;
