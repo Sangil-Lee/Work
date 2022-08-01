@@ -29,16 +29,17 @@
 
 //#include "mainwindow.h"
 #include <QApplication>
+#include <QDesktopWidget>
 //#include "Login.h"
 #include "Tester.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //Login login;
-    //login.show();
 
     Tester tester;
+	tester.adjustSize();
+	tester.move(QApplication::desktop()->screen()->rect().center()-tester.rect().center());
     tester.show();
 	tester.ShowLogin();
 

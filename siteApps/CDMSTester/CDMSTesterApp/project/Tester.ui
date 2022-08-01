@@ -52,96 +52,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="setup">
-   <property name="geometry">
-    <rect>
-     <x>879</x>
-     <y>20</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>SET UP</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="load">
-   <property name="geometry">
-    <rect>
-     <x>990</x>
-     <y>20</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>LOAD</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="logout">
-   <property name="geometry">
-    <rect>
-     <x>1120</x>
-     <y>70</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>LOG OUT</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="check">
-   <property name="geometry">
-    <rect>
-     <x>880</x>
-     <y>70</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>CHECK</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="save">
-   <property name="geometry">
-    <rect>
-     <x>990</x>
-     <y>70</y>
-     <width>101</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>13</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>SAVE</string>
-   </property>
-  </widget>
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
@@ -164,8 +74,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
+     <x>60</x>
+     <y>20</y>
      <width>181</width>
      <height>81</height>
     </rect>
@@ -186,68 +96,26 @@
     <enum>Qt::PlainText</enum>
    </property>
   </widget>
-  <widget class="QEPushButton" name="qepushbutton">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>0</y>
-     <width>131</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>START</string>
-   </property>
-  </widget>
-  <widget class="QEPushButton" name="qepushbutton_2">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>0</y>
-     <width>131</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>PAUSE</string>
-   </property>
-  </widget>
-  <widget class="QEPushButton" name="qepushbutton_3">
-   <property name="geometry">
-    <rect>
-     <x>640</x>
-     <y>0</y>
-     <width>131</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>STOP</string>
-   </property>
-  </widget>
   <widget class="QEAnalogProgressBar" name="qeanalogprogressbar">
    <property name="geometry">
     <rect>
-     <x>540</x>
+     <x>1050</x>
      <y>820</y>
-     <width>651</width>
+     <width>191</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="showText">
+    <bool>true</bool>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:progress</string>
+   </property>
+   <property name="visible" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="addUnits">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QEDescriptionLabel" name="qedescriptionlabel">
@@ -268,24 +136,331 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>580</x>
-     <y>70</y>
-     <width>201</width>
-     <height>41</height>
+     <x>370</x>
+     <y>810</y>
+     <width>91</width>
+     <height>51</height>
     </rect>
    </property>
   </widget>
   <widget class="QELineEdit" name="angle">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>60</y>
-     <width>191</width>
+     <x>260</x>
+     <y>810</y>
+     <width>101</width>
      <height>51</height>
     </rect>
    </property>
+   <property name="text">
+    <string>49.000</string>
+   </property>
    <property name="variable" stdset="0">
-    <string>ctrluser:circle:angle</string>
+    <string>ctrluser:line:a</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>30</y>
+     <width>461</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,0,2,0,2">
+    <item>
+     <widget class="QPushButton" name="startPB">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>START</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="stopPB">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>STOP</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pausePB">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>PAUSE</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>20</y>
+     <width>401</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="setup">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>SET UP</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="load">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>LOAD</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="logout">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>LOG OUT</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="check">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>CHECK</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="save">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>SAVE</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="close">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Close</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QELineEdit" name="qelinestart">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>814</y>
+     <width>142</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:progress.SCAN</string>
+   </property>
+   <property name="visible" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QELineEdit" name="qelinestop">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>810</y>
+     <width>142</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:progress</string>
+   </property>
+   <property name="visible" stdset="0">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QESimpleShape" name="qesimpleshape">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::circle</enum>
+   </property>
+   <property name="flashRate">
+    <enum>QEScanTimers::Slow</enum>
+   </property>
+   <property name="edgeColour">
+    <color>
+     <red>38</red>
+     <green>162</green>
+     <blue>105</blue>
+    </color>
+   </property>
+   <property name="flashOffColour">
+    <color alpha="0">
+     <red>143</red>
+     <green>240</green>
+     <blue>164</blue>
+    </color>
+   </property>
+   <property name="colour0" stdset="0">
+    <color>
+     <red>38</red>
+     <green>162</green>
+     <blue>105</blue>
+    </color>
+   </property>
+   <property name="flash0" stdset="0">
+    <bool>true</bool>
+   </property>
+   <property name="flash1" stdset="0">
+    <bool>false</bool>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:heartbeat</string>
    </property>
   </widget>
  </widget>
@@ -311,14 +486,19 @@
    <header>QELineEdit.h</header>
   </customwidget>
   <customwidget>
-   <class>QEPushButton</class>
-   <extends>QPushButton</extends>
-   <header>QEPushButton.h</header>
+   <class>QESimpleShape</class>
+   <extends>QSimpleShape</extends>
+   <header>QESimpleShape.h</header>
   </customwidget>
   <customwidget>
    <class>QEAnalogIndicator</class>
    <extends>QWidget</extends>
    <header>QEAnalogIndicator.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QSimpleShape</class>
+   <extends>QWidget</extends>
+   <header>QSimpleShape.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

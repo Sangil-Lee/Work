@@ -1,5 +1,9 @@
-#include <QMessageBox>
 #include <iostream>
+#include <QApplication>
+#include <QDesktopWidget>
+#include <QMessageBox>
+#include <QThread>
+#include "QELineEdit.h"
 #include "Tester.h"
 #include "ui_Tester.h"
 
@@ -16,6 +20,9 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 	connect(ui->load, SIGNAL(pressed()), this, SLOT(load()) );
 	connect(ui->check, SIGNAL(pressed()), this, SLOT(check()) );
 	connect(ui->save, SIGNAL(pressed()), this, SLOT(save()) );
+	connect(ui->startPB, SIGNAL(pressed()), this, SLOT(start()) );
+	connect(ui->stopPB, SIGNAL(pressed()), this, SLOT(stop()) );
+	connect(ui->pausePB, SIGNAL(pressed()), this, SLOT(pause()) );
 
 }
 
@@ -32,7 +39,8 @@ void Tester::ShowLogin()
 
 void Tester::ShowSetup()
 {
-	psetup->show();
+	psetup->move(QApplication::desktop()->screen()->rect().center() - psetup->rect().center());
+    psetup->show();
 	psetup->SetDBConn(plogin->GetDBConn());
 }
 
@@ -70,4 +78,30 @@ void Tester::check()
 void Tester::save()
 {
 	qDebug() << "Save Pressed";
+}
+
+void Tester::start()
+{
+	QELineEdit *pLine = ui->qelinestart;
+	pLine->setText("1 second");
+	pLine->update();
+	emit pLine->returnPressed();
+}
+
+void Tester::stop()
+{
+	pause();
+	QELineEdit *pLine = ui->qelinestop;
+	pLine->setText("0");
+	pLine->update();
+	emit pLine->returnPressed();
+
+}
+
+void Tester::pause()
+{
+	QELineEdit *pLine = ui->qelinestart;
+	pLine->setText("Passive");
+	pLine->update();
+	emit pLine->returnPressed();
 }

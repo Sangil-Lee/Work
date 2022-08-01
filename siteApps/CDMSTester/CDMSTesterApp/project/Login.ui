@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Login</class>
  <widget class="QDialog" name="Login">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -137,6 +140,11 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="passwd">
    <property name="geometry">
@@ -146,6 +154,11 @@
      <width>191</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
