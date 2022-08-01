@@ -17,7 +17,7 @@
    <string>TabWidget</string>
   </property>
   <property name="currentIndex">
-   <number>1</number>
+   <number>0</number>
   </property>
   <widget class="QWidget" name="config_tab">
    <attribute name="title">
@@ -998,9 +998,9 @@ Number</string>
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>149</y>
+      <y>150</y>
       <width>450</width>
-      <height>621</height>
+      <height>620</height>
      </rect>
     </property>
     <property name="font">
@@ -1128,21 +1128,6 @@ Number</string>
      <number>2</number>
     </property>
    </widget>
-   <widget class="QListWidget" name="scenList">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>150</y>
-      <width>450</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
@@ -1259,12 +1244,12 @@ Number</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>130</y>
+      <y>120</y>
       <width>446</width>
-      <height>671</height>
+      <height>701</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_8" stretch="5,0,0,0,0,0,2">
+    <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0,0,0,20,0">
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_7">
        <item>
@@ -1770,19 +1755,6 @@ Number</string>
         </spacer>
        </item>
        <item>
-        <spacer name="verticalSpacer_13">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
         <widget class="Line" name="line_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
@@ -1924,26 +1896,6 @@ Number</string>
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer_17">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="Line" name="line_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
       <layout class="QHBoxLayout" name="horizontalLayout_12">
        <item>
         <spacer name="horizontalSpacer_5">
@@ -2039,8 +1991,64 @@ Number</string>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Preferred</enum>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_10">
+       <item>
+        <widget class="QLineEdit" name="modsearchLE">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="modsearchPB">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Module Search</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QListWidget" name="modList">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_8">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -2051,6 +2059,37 @@ Number</string>
       </spacer>
      </item>
     </layout>
+   </widget>
+   <widget class="QTableWidget" name="scenTable">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>150</y>
+      <width>450</width>
+      <height>620</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>40</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Module Info</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Test Scenario</string>
+     </property>
+    </column>
    </widget>
   </widget>
  </widget>

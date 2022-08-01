@@ -37,6 +37,7 @@ public slots:
 	void delscenario();
 	void scensave();
 	void scencancel();
+	void modsearch();
 
 private:
 	Ui::Setup *ui;

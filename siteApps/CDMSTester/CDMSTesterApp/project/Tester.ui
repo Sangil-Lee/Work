@@ -32,26 +32,6 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>140</y>
-     <width>431</width>
-     <height>651</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QListWidget" name="listWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>470</x>
-     <y>140</y>
-     <width>771</width>
-     <height>651</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="Line" name="line_2">
    <property name="geometry">
     <rect>
@@ -109,7 +89,7 @@
     <bool>true</bool>
    </property>
    <property name="variable" stdset="0">
-    <string>ctrluser:progress</string>
+    <string>CDMSTester:Progress</string>
    </property>
    <property name="visible" stdset="0">
     <bool>true</bool>
@@ -131,32 +111,6 @@
     <font>
      <pointsize>12</pointsize>
     </font>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>370</x>
-     <y>810</y>
-     <width>91</width>
-     <height>51</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QELineEdit" name="angle">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>810</y>
-     <width>101</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>49.000</string>
-   </property>
-   <property name="variable" stdset="0">
-    <string>ctrluser:line:a</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -395,7 +349,7 @@
     </rect>
    </property>
    <property name="variable" stdset="0">
-    <string>ctrluser:progress.SCAN</string>
+    <string>CDMSTester:Progress.SCAN</string>
    </property>
    <property name="visible" stdset="0">
     <bool>false</bool>
@@ -411,7 +365,7 @@
     </rect>
    </property>
    <property name="variable" stdset="0">
-    <string>ctrluser:progress</string>
+    <string>CDMSTester:Progress</string>
    </property>
    <property name="visible" stdset="0">
     <bool>false</bool>
@@ -430,7 +384,7 @@
     <enum>QSimpleShape::circle</enum>
    </property>
    <property name="flashRate">
-    <enum>QEScanTimers::Slow</enum>
+    <enum>QEScanTimers::VerySlow</enum>
    </property>
    <property name="edgeColour">
     <color>
@@ -440,7 +394,7 @@
     </color>
    </property>
    <property name="flashOffColour">
-    <color alpha="0">
+    <color alpha="150">
      <red>143</red>
      <green>240</green>
      <blue>164</blue>
@@ -460,8 +414,90 @@
     <bool>false</bool>
    </property>
    <property name="variable" stdset="0">
-    <string>ctrluser:heartbeat</string>
+    <string>CDMSTester:HeartBeat</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>1231</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="2,3">
+    <item>
+     <widget class="QTableWidget" name="scenTable">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Module Info</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Test Scenario</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="resultTable">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>40</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>RIndex</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Tested Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Module Number</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Scenario Index</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Result</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Result Value</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>
@@ -502,22 +538,5 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>angle</sender>
-   <signal>dbValueChanged(QString)</signal>
-   <receiver>lineEdit</receiver>
-   <slot>setText(QString)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>397</x>
-     <y>99</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>612</x>
-     <y>92</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

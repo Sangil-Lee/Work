@@ -33,6 +33,8 @@ Login::~Login()
 
 void Login::close()
 {
+	if(conn!=NULL)
+		mysql_close(conn);
 	qApp->exit();
 }
 void Login::accept()

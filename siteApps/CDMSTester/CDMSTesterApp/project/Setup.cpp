@@ -28,11 +28,16 @@ Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 	connect(ui->delscenario, SIGNAL(pressed()), this, SLOT(delscenario()) );
 	connect(ui->scensave,    SIGNAL(pressed()), this, SLOT(scensave()) );
 	connect(ui->scencancel,  SIGNAL(pressed()), this, SLOT(scencancel()) );
+	connect(ui->modsearchPB,  SIGNAL(pressed()), this, SLOT(modsearch()) );
 
 	QTableWidget *pTable = ui->userinfo;
 	pTable->resizeColumnsToContents();
 	pTable->horizontalHeader()->setStretchLastSection(true);
 	//pTable->horizontalHeader()->setStretchLastSection(true);
+
+	QTableWidget *pSTable = ui->scenTable;
+	pSTable->resizeColumnsToContents();
+	pSTable->horizontalHeader()->setStretchLastSection(true);
 }
 
 Setup::~Setup()
@@ -285,6 +290,15 @@ void Setup::addscenario()
 	QComboBox *pfromType = ui->fromtypeCombo;
 	QComboBox *pfromCh   = ui->fromchCombo;
 	QComboBox *pfromKind = ui->fromkindCombo;
+	QListWidget *pList = ui->modList;
+
+	if(pList->currentRow() < 0 )
+	{
+		QMessageBox msgBox;
+		msgBox.setText("No Module Information!!");
+		msgBox.exec();
+		return;
+	}
 
 	//PXI-Mod00:AI-CHxx:Volt
 	QString strFrom = QString("TEST(%1-%2:%3-%4:%5)").
@@ -334,50 +348,42 @@ void Setup::addscenario()
 	qDebug() << strFunc;
 
 	QString strScenario = strFrom+","+strScan+","+strFunc;
-	QListWidget *pScenlist = ui->scenList;
-	pScenlist->addItem(strScenario);
+
+	QString modinfo = pList->currentItem() == NULL ? "" : pList->currentItem()->text();
+	QTableWidget *pTable = ui->scenTable;
+	pTable->insertRow(pTable->rowCount());
+	pTable->setItem(pTable->rowCount()-1, 0, new QTableWidgetItem(modinfo) );
+	pTable->setItem(pTable->rowCount()-1, 1, new QTableWidgetItem(strScenario) );
 
 }
 void Setup::delscenario()
 {
-	QListWidget *pScenlist = ui->scenList;
-	pScenlist->model()->removeRow(pScenlist->currentRow());
+	QTableWidget *pTable = ui->scenTable;
+	pTable->removeRow(pTable->currentRow());
 }
 void Setup::scensave()
 {
-	QListWidget *pScenlist = ui->scenList;
-
-#if 0
-	for(int i = 0; i < pScenlist->count(); ++i)
-	{
-		QString strlist = pScenlist->item(i)->text();
-		QStringList slist = strlist.split(QRegExp("[(,)]"));
-		slist.removeAll(QString(""));
-		qDebug() << slist;
-
-		//scenario_t Save
-	}
-#endif
+	QTableWidget *pTable = ui->scenTable;
 #if 1
 	try {
 		// Format a MySQL object
 		m_res = mysql_use_result(m_conn);
 		MYSQL_RES* result = NULL;
 
-		for(int i = 0; i < pScenlist->count(); ++i)
+		for(int i = 0; i < pTable->rowCount(); ++i)
 		{
-			QString strlist = pScenlist->item(i)->text();
-			//QStringList slist = strlist.split(QRegExp("[(,)]"));
-			//slist.removeAll(QString(""));
+			QString modinfo  = pTable->item(i,0)->text();
+			QString scenario = pTable->item(i,1)->text();
 
 			// SELECT 쿼리
-			QString inssql = QString("INSERT INTO scenario_t(scenario, modinfo) VALUES('%1','%2')").arg(strlist).arg("");
+			QString inssql = QString("INSERT INTO scenario_t(scenario, modinfo) VALUES('%1','%2')").arg(scenario).arg(modinfo);
 			if(mysql_query(m_conn, inssql.toUtf8().constData())) {
 				cout << "Insert Error" << endl;
 			}
 		};
 
 		mysql_free_result(result);
+
 		// Release memories
 		mysql_free_result(m_res);
 	} catch (char *e) {
@@ -389,8 +395,40 @@ void Setup::scensave()
 }
 void Setup::scencancel()
 {
-	QListWidget *pScenlist = ui->scenList;
-	pScenlist->clear();
+	QTableWidget *pTable = ui->scenTable;
+	pTable->setRowCount(0);
 
 	hide();
+}
+void Setup::modsearch()
+{
+	QLineEdit	*pmodLE = ui->modsearchLE;
+	QListWidget *pList = ui->modList;
+	pList->clear();
+
+#if 1
+	try {
+		// Format a MySQL object
+		string sql = QString("select sernum, modname from module_t where sernum like '%%1%'").arg(pmodLE->text()).toUtf8().constData();
+		m_res = mysql_use_result(m_conn);
+
+		MYSQL_RES* result = NULL;
+		MYSQL_ROW row;
+		if(mysql_query(m_conn, sql.c_str()) == 0)
+		{
+			result = mysql_store_result(m_conn);
+			while((row = mysql_fetch_row(result)) != NULL){
+				cout << "serial num:" << row[0] << " modname: " << row[1] << endl;
+				pList->addItem(row[0]);
+			}
+		}
+		mysql_free_result(result);
+		// Release memories
+		mysql_free_result(m_res);
+	} catch (char *e) {
+		cerr << "[EXCEPTION] " << e << endl;
+		return;
+	}
+#endif
+
 }

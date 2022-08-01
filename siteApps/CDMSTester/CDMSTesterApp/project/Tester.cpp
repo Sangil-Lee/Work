@@ -23,6 +23,7 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 	connect(ui->startPB, SIGNAL(pressed()), this, SLOT(start()) );
 	connect(ui->stopPB, SIGNAL(pressed()), this, SLOT(stop()) );
 	connect(ui->pausePB, SIGNAL(pressed()), this, SLOT(pause()) );
+	connect(ui->close, SIGNAL(pressed()), this, SLOT(close()) );
 
 }
 
@@ -72,7 +73,6 @@ void Tester::load()
 void Tester::check()
 {
 	qDebug() << "Check Pressed ";
-	qDebug() << "Angle Value: " << ui->angle->text();
 }
 
 void Tester::save()
@@ -104,4 +104,10 @@ void Tester::pause()
 	pLine->setText("Passive");
 	pLine->update();
 	emit pLine->returnPressed();
+}
+
+void Tester::close()
+{
+	mysql_close(plogin->GetDBConn());
+	qApp->exit();
 }
