@@ -11,7 +11,8 @@ USR_INCLUDES  += -I$(RAON_SITELIBS)/include
 
 LIBRARY_IOC += rtpDev
 
-#LIB_SRCS +=rtpDevManager.cpp rtpSyncManager.cpp
+LIB_SRCS +=rtpDevManager.cpp rtpSyncManager.cpp
+
 LIB_SRCS +=drvRtpAsyn.c
 LIB_SRCS +=rtpInterpose.c
 LIB_LIBS += asyn

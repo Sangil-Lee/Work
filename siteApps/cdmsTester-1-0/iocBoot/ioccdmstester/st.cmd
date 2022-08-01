@@ -11,8 +11,11 @@ cd "${TOP}"
 dbLoadDatabase "dbd/cdmstester.dbd"
 cdmstester_registerRecordDeviceDriver pdbbase
 
-## Load record instances
-#dbLoadRecords("db/xxx.db","user=ctrluser")
+drvSyncRTPConfigure("RTPDevice", "89.89.80.30:50199 TCP", 0, 0)
+
+
+#dbLoadRecords("db/RTPOneTest.vdb")
+dbLoadRecords("db/RTPTest.vdb")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
