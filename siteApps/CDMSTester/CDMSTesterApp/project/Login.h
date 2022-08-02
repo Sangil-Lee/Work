@@ -14,6 +14,8 @@ namespace Ui {
 class Login;
 }
 
+class Tester;
+
 class Login : public QDialog
 {
     Q_OBJECT
@@ -31,9 +33,9 @@ public slots:
 	void close();
 
 private:
-    Ui::Login *ui;
     QString applicationMacros; // Macro substitutions to be applied across the application
 
+    Ui::Login   *ui;
     const char* MY_HOSTNAME;
     const char* MY_DATABASE;
     const char* MY_USERNAME;
@@ -54,13 +56,15 @@ private:
 	std::string m_curUser;
 	std::string m_curPass;
 	std::string m_curGrp;
-
+	Tester	*pTester;
+	
 public:
 	std::string GetCurUser() { return m_curUser; }
 	std::string GetCurPass() { return m_curPass; }
 	std::string GetCurGrp() { return  m_curGrp; }
-
+	void SetTester(Tester *ptester) {pTester = ptester;}
 	MYSQL *GetDBConn() { return conn; };
+
 
 };
 

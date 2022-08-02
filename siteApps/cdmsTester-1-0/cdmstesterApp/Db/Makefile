@@ -10,6 +10,8 @@ include $(TOP)/configure/CONFIG
 DB += RTPTest.vdb
 DB += RTPOneTest.vdb
 
+DB += CDMSTester.db
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>

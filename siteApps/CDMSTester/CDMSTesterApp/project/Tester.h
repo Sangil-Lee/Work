@@ -30,15 +30,17 @@ public slots:
 	void start();
 	void stop();
 	void pause();
+	void close();
 
 private:
 	Ui::Tester *ui;
-	Login		*plogin;
-	Setup		*psetup;
-
+	Login	*plogin;
+	Setup	*psetup;
+	void closeEvent(QCloseEvent *event);
 public:
 	void ShowLogin();
 	void ShowSetup();
+	void Enable();
 
 };
 #endif  //

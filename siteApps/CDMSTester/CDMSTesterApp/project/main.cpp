@@ -37,11 +37,18 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Tester tester;
-	tester.adjustSize();
-	tester.move(QApplication::desktop()->screen()->rect().center()-tester.rect().center());
-    tester.show();
-	tester.ShowLogin();
+	try {
+		Tester tester;
+		tester.adjustSize();
+		tester.move(QApplication::desktop()->screen()->rect().center()-tester.rect().center());
+		tester.show();
+		tester.ShowLogin();
+		return a.exec();
+	} catch (std::exception &e){
+		qDebug() << e.what();
+	} catch(...)
+	{
+		qDebug() << "What is the excption???";
+	}
 
-    return a.exec();
 }

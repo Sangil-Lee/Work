@@ -9,11 +9,12 @@
 
 using namespace std;
 
-Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
+Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Login), psetup(new Setup)
 {
 	ui->setupUi(this);
-	plogin = new Login();
-	psetup = new Setup();
+
+	//plogin = new Login();
+	//psetup = new Setup();
 
 	connect(ui->logout, SIGNAL(pressed()), this, SLOT(showlogin()) );
 	connect(ui->setup, SIGNAL(pressed()), this, SLOT(showsetup()) );
@@ -23,6 +24,10 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 	connect(ui->startPB, SIGNAL(pressed()), this, SLOT(start()) );
 	connect(ui->stopPB, SIGNAL(pressed()), this, SLOT(stop()) );
 	connect(ui->pausePB, SIGNAL(pressed()), this, SLOT(pause()) );
+	connect(ui->close, SIGNAL(pressed()), this, SLOT(close()) );
+
+	plogin->SetTester(this);
+	//plogin->pTester = this;
 
 }
 
@@ -30,7 +35,6 @@ Tester::~Tester()
 {
 	delete ui;
 }
-
 
 void Tester::ShowLogin()
 {
@@ -42,6 +46,24 @@ void Tester::ShowSetup()
 	psetup->move(QApplication::desktop()->screen()->rect().center() - psetup->rect().center());
     psetup->show();
 	psetup->SetDBConn(plogin->GetDBConn());
+}
+
+void Tester::Enable()
+{
+	string user = plogin->GetCurUser();
+	if(!user.empty())
+	{
+		cout << "User" << user << endl;
+		ui->setup->setEnabled(true);
+		ui->load->setEnabled(true);
+		ui->check->setEnabled(true);
+		ui->save->setEnabled(true);
+
+		ui->setup->update();
+		ui->load->update();
+		ui->check->update();
+		ui->save->update();
+	}
 }
 
 //SLOT
@@ -66,13 +88,41 @@ void Tester::showsetup()
 
 void Tester::load()
 {
-	qDebug() << "Load Pressed";
+	QTableWidget *pTable = ui->scenTable;
+    MYSQL  *conn = plogin->GetDBConn();
+	try {
+		MYSQL_RES *res = mysql_use_result(conn);
+
+		// SELECT 쿼리
+		QString sql = QString("select modinfo,scenario from scenario_t");
+		MYSQL_RES* result = NULL;
+		MYSQL_ROW row;
+		if(mysql_query(conn, sql.toUtf8().constData()) == 0)
+		{
+			result = mysql_store_result(conn);
+			while((row = mysql_fetch_row(result)) != NULL){
+				pTable->insertRow(pTable->rowCount());
+				pTable->setItem(pTable->rowCount()-1, 0, new QTableWidgetItem(QString(row[0])) );
+				pTable->setItem(pTable->rowCount()-1, 1, new QTableWidgetItem(QString(row[1])) );
+				QString scenario = QString(row[1]);
+				QStringList slist = scenario.split(QRegExp("[(,)]"));
+				slist.removeAll("");
+				qDebug() << slist;
+
+			}
+		}
+		mysql_free_result(result);
+		// Release memories
+		mysql_free_result(res);
+	} catch (char *e) {
+		cerr << "[EXCEPTION] " << e << endl;
+		return;
+	}
 }
 
 void Tester::check()
 {
 	qDebug() << "Check Pressed ";
-	qDebug() << "Angle Value: " << ui->angle->text();
 }
 
 void Tester::save()
@@ -104,4 +154,28 @@ void Tester::pause()
 	pLine->setText("Passive");
 	pLine->update();
 	emit pLine->returnPressed();
+}
+
+void Tester::close()
+{
+	if(plogin->GetDBConn())
+		mysql_close(plogin->GetDBConn());
+
+	while(QWidget *w = findChild<QWidget*>())
+		delete w;
+
+	qApp->quit();
+}
+
+void Tester::closeEvent(QCloseEvent *event)
+{
+	 QMessageBox::StandardButton resBtn = QMessageBox::question( this, "CDMSTester",
+                                                                tr("Are you sure?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+		close();
+    }
 }
