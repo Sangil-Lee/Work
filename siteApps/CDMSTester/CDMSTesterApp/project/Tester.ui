@@ -98,21 +98,6 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QEDescriptionLabel" name="qedescriptionlabel">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>825</y>
-     <width>451</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
@@ -342,8 +327,8 @@
   <widget class="QELineEdit" name="qelinestart">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>814</y>
+     <x>650</x>
+     <y>810</y>
      <width>142</width>
      <height>41</height>
     </rect>
@@ -358,7 +343,7 @@
   <widget class="QELineEdit" name="qelinestop">
    <property name="geometry">
     <rect>
-     <x>640</x>
+     <x>830</x>
      <y>810</y>
      <width>142</width>
      <height>41</height>
@@ -505,16 +490,6 @@
    <class>QEAnalogProgressBar</class>
    <extends>QEAnalogIndicator</extends>
    <header>QEAnalogProgressBar.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QELabel</class>
-   <extends>QLabel</extends>
-   <header>QELabel.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QEDescriptionLabel</class>
-   <extends>QELabel</extends>
-   <header>QEDescriptionLabel.h</header>
   </customwidget>
   <customwidget>
    <class>QELineEdit</class>

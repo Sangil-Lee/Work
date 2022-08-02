@@ -67,7 +67,36 @@ void Tester::showsetup()
 
 void Tester::load()
 {
-	qDebug() << "Load Pressed";
+	QTableWidget *pTable = ui->scenTable;
+    MYSQL  *conn = plogin->GetDBConn();
+	try {
+		MYSQL_RES *res = mysql_use_result(conn);
+
+		// SELECT 쿼리
+		QString sql = QString("select modinfo,scenario from scenario_t");
+		MYSQL_RES* result = NULL;
+		MYSQL_ROW row;
+		if(mysql_query(conn, sql.toUtf8().constData()) == 0)
+		{
+			result = mysql_store_result(conn);
+			while((row = mysql_fetch_row(result)) != NULL){
+				pTable->insertRow(pTable->rowCount());
+				pTable->setItem(pTable->rowCount()-1, 0, new QTableWidgetItem(QString(row[0])) );
+				pTable->setItem(pTable->rowCount()-1, 1, new QTableWidgetItem(QString(row[1])) );
+				QString scenario = QString(row[1]);
+				QStringList slist = scenario.split(QRegExp("[(,)]"));
+				slist.removeAll("");
+				qDebug() << slist;
+
+			}
+		}
+		mysql_free_result(result);
+		// Release memories
+		mysql_free_result(res);
+	} catch (char *e) {
+		cerr << "[EXCEPTION] " << e << endl;
+		return;
+	}
 }
 
 void Tester::check()
