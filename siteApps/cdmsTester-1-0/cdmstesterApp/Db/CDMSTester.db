@@ -1,0 +1,15 @@
+record(calc, "$(PREFIX):Progress") {
+	field(SCAN, "1 second")
+	field(PINI, "YES")
+	field(INPA, "$(PREFIX):Progress")
+	field(CALC, "A>=100?0:A+10")
+	field(VAL, "0")
+}
+
+record(calc, "$(PREFIX):HeartBeat") {
+	field(SCAN, "1 second")
+	field(PINI, "YES")
+	field(INPA, "$(PREFIX):HeartBeat")
+	field(CALC, "A?0:1")
+	field(VAL, "0")
+}
