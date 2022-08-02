@@ -1,0 +1,26 @@
+
+
+====> Interlock(PT7101) Set Test
+$> caput SCL3-EBx:PT7101 0.5
+Old : SCL3-EBx:PT7101                0
+New : SCL3-EBx:PT7101                0.5
+$> caput SCL3-EBx:PT7102 0.001
+Old : SCL3-EBx:PT7102                0
+New : SCL3-EBx:PT7102                0.001
+$> caput SCL3-EBx:PT7102 0.00001
+Old : SCL3-EBx:PT7102                0.001
+New : SCL3-EBx:PT7102                1e-05
+$> caput SCL3-EBx:PT7101 0.07
+Old : SCL3-EBx:PT7101                0.5
+New : SCL3-EBx:PT7101                0.07
+$> caget SCL3-EBx:PT7101:Delay.A
+SCL3-EBx:PT7101:Delay.A        1
+
+
+
+
+====> Interlock Release
+$> caput SCL3-EBx:PT7101:Delay.A 0
+Old : SCL3-EBx:PT7101:Delay.A        1
+New : SCL3-EBx:PT7101:Delay.A        0
+

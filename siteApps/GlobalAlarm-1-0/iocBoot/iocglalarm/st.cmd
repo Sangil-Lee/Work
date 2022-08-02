@@ -23,9 +23,14 @@ dbLoadRecords("db/gl_Interlock_XV7502.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
 dbLoadRecords("db/gl_Interlock_XV7301.vdb","SYS=SCL3, SUBSYS=-ALL:, DEV=IntWF")
 
 dbLoadTemplate("db/setmanuopen.sub")
-dbLoadTemplate("db/xv7502_xv7301_manuint.sub")
+dbLoadTemplate("db/xv7502_xv7301_manual_int.sub")
+
 ###EBx Interlock Test 
 dbLoadTemplate("db/gl_Interlock_EBx.sub")
+
+
+###HWRA/B, P2DT Global Interlock
+
 
 ##Selt Simulation
 #dbLoadTemplate("db/sim_pv.sub")
