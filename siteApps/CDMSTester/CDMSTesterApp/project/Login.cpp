@@ -1,10 +1,8 @@
 #include <QMessageBox>
 #include <iostream>
 #include "Login.h"
+#include "Tester.h"
 #include "ui_Login.h"
-
-// .ui file opened by push buttons and loaded into a dialog
-#define DIALOG_UI ":/ui/Login.ui"
 
 using namespace std;
 //g++ mariadb_conn.cpp -I/usr/include -L/usr/lib/x86_64-linux-gnu -lmysqlclient
@@ -23,6 +21,9 @@ Login::Login(QWidget *parent):QDialog(parent), ui(new Ui::Login)
 
     // Read the UI
     ui->setupUi(this);
+
+	// Format a MySQL object
+	conn = mysql_init(NULL);
 }
 
 Login::~Login()
@@ -33,9 +34,7 @@ Login::~Login()
 
 void Login::close()
 {
-	if(conn!=NULL)
-		mysql_close(conn);
-	qApp->exit();
+	hide();
 }
 void Login::accept()
 {
@@ -48,8 +47,6 @@ void Login::accept()
 	string userid = ui->login->text().toUtf8().constData();
 	string passwd = ui->passwd->text().toUtf8().constData();
 	try {
-		// Format a MySQL object
-		conn = mysql_init(NULL);
 		// Establish a MySQL connection
 		if (!mysql_real_connect(
 					conn,
@@ -120,6 +117,7 @@ void Login::accept()
 	if(checkUser)
 	{
 		hide();
+		pTester->Enable();
 	}
 	else
 	{

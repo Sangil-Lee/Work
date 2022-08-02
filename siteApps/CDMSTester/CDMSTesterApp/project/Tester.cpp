@@ -9,11 +9,12 @@
 
 using namespace std;
 
-Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
+Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Login), psetup(new Setup)
 {
 	ui->setupUi(this);
-	plogin = new Login();
-	psetup = new Setup();
+
+	//plogin = new Login();
+	//psetup = new Setup();
 
 	connect(ui->logout, SIGNAL(pressed()), this, SLOT(showlogin()) );
 	connect(ui->setup, SIGNAL(pressed()), this, SLOT(showsetup()) );
@@ -25,13 +26,15 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester)
 	connect(ui->pausePB, SIGNAL(pressed()), this, SLOT(pause()) );
 	connect(ui->close, SIGNAL(pressed()), this, SLOT(close()) );
 
+	plogin->SetTester(this);
+	//plogin->pTester = this;
+
 }
 
 Tester::~Tester()
 {
 	delete ui;
 }
-
 
 void Tester::ShowLogin()
 {
@@ -43,6 +46,24 @@ void Tester::ShowSetup()
 	psetup->move(QApplication::desktop()->screen()->rect().center() - psetup->rect().center());
     psetup->show();
 	psetup->SetDBConn(plogin->GetDBConn());
+}
+
+void Tester::Enable()
+{
+	string user = plogin->GetCurUser();
+	if(!user.empty())
+	{
+		cout << "User" << user << endl;
+		ui->setup->setEnabled(true);
+		ui->load->setEnabled(true);
+		ui->check->setEnabled(true);
+		ui->save->setEnabled(true);
+
+		ui->setup->update();
+		ui->load->update();
+		ui->check->update();
+		ui->save->update();
+	}
 }
 
 //SLOT
@@ -137,6 +158,24 @@ void Tester::pause()
 
 void Tester::close()
 {
-	mysql_close(plogin->GetDBConn());
-	qApp->exit();
+	if(plogin->GetDBConn())
+		mysql_close(plogin->GetDBConn());
+
+	while(QWidget *w = findChild<QWidget*>())
+		delete w;
+
+	qApp->quit();
+}
+
+void Tester::closeEvent(QCloseEvent *event)
+{
+	 QMessageBox::StandardButton resBtn = QMessageBox::question( this, "CDMSTester",
+                                                                tr("Are you sure?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
+                                                                QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes) {
+        event->ignore();
+    } else {
+		close();
+    }
 }

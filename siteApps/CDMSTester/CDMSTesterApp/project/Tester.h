@@ -34,12 +34,13 @@ public slots:
 
 private:
 	Ui::Tester *ui;
-	Login		*plogin;
-	Setup		*psetup;
-
+	Login	*plogin;
+	Setup	*psetup;
+	void closeEvent(QCloseEvent *event);
 public:
 	void ShowLogin();
 	void ShowSetup();
+	void Enable();
 
 };
 #endif  //
