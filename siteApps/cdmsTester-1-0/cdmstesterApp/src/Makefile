@@ -4,19 +4,28 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
-DBD         += rtpDev.dbd
+USR_CPPFLAGS += -std=c++11 -ggdb
+nidaqmx_DIR = /usr/lib/x86_64-linux-gnu
 
-INC			+= drvRtpAsyn.h
+USR_DBDFLAGS  += -I$(RAON_SITELIBS)/dbd
+
+DBD += rtpDev.dbd
+DBD += nidaqAsynEpics.dbd
+
+INC			  += drvRtpAsyn.h
 USR_INCLUDES  += -I$(RAON_SITELIBS)/include
 
-LIBRARY_IOC += rtpDev
+LIBRARY_IOC   += rtpDev nidaqAsynEpicsSupport 
 
-LIB_SRCS +=rtpDevManager.cpp rtpSyncManager.cpp
+rtpDev_SRCS += rtpDevManager.cpp rtpSyncManager.cpp
+rtpDev_SRCS +=drvRtpAsyn.c
+rtpDev_SRCS +=rtpInterpose.c
+rtpDev_LIBS += asyn
+rtpDeb_LIBS += $(EPICS_BASE_IOC_LIBS)
 
-LIB_SRCS +=drvRtpAsyn.c
-LIB_SRCS +=rtpInterpose.c
-LIB_LIBS += asyn
-LIB_LIBS += $(EPICS_BASE_IOC_LIBS)
+nidaqAsynEpicsSupport_SRCS += nidaqAsynEpics.cpp nidaqDriver.cpp
+nidaqAsynEpicsSupport_LIBS += asyn nidaqmx
+nidaqAsynEpicsSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #=============================
 # Build the IOC application
@@ -60,7 +69,7 @@ ifneq ($(SNCSEQ),)
 endif
 
 # Finally link to the EPICS Base libraries
-cdmstester_LIBS += asyn calc std sscan rtpDev
+cdmstester_LIBS += asyn calc std sscan rtpDev nidaqAsynEpicsSupport
 cdmstester_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
