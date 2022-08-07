@@ -12,6 +12,11 @@ DB += RTPOneTest.vdb
 
 DB += CDMSTester.db
 
+DB += aiFloat64.template biWord.template
+DB += aoFloat64.template boWord.template
+
+DB += cdmsTester_Modbus.sub
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
