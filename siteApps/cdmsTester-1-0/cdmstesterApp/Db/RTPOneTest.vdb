@@ -9,7 +9,16 @@ record(ai, RTP_TEMP_TEST) {
   field(PINI, "YES")
   field(DTYP, "rtpSyncReadAI")
   field(VAL, "0")
-  field(INP, "@RTP(0,96)")
+#field(INP, "@RTP(0,96)")
+  field(INP, "@RTP(0, 5)")
+}
+
+record(ai, RTP_SINE_WAVE) {
+  field(SCAN, ".5 second")
+  field(PINI, "YES")
+  field(DTYP, "rtpSyncReadAI")
+  field(VAL, "0")
+  field(INP, "@RTP(0, 6)")
 }
 
 #! Further lines contain data used by VisualDCT

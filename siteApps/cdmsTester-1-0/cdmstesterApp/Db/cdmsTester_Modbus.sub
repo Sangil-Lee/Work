@@ -1,32 +1,30 @@
 file "db/aiFloat64.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,	OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,		SCAN,		DESC}
-{RTP,	-Mod00:,	AI,		-CH01:,		VoltR,		CDMSAI,	0,		FLOAT32_BE, 0,		 25,	 3,		 "mbar",	"1 second",	"TBx PT7101 Press"}
-{RTP,	-Mod00:,	AI,		-CH02:,		VoltR,		CDMSAI,	2,		FLOAT32_BE, 0,		 25,	 3,		 "mbar",	"1 second",	"TBx PT7102 Press"}
-{RTP,	-Mod00:,	AI,		-CH03:,		VoltR,		CDMSAI,	4,		FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7103 Press"}
+{RTP,	-Mod00:,	AI,		-CH01:,		VoltR,		CDMSAI,	0,		FLOAT32_BE, 0,		 25,	 3,		 "mbar",	"1 second",	"RTP Modbus"}
 }                                                               
 
-####AO Base Address 400word(800 PLC offset(byte))
-file "db/aoFloat64.template" { pattern
-{SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,	OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
-{RTP,	-Mod01:,	AO,		-CH01:,		VoltW,		CDMSAO,	0,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{RTP,	-Mod01:,	AO,		-CH02:,		VoltW,		CDMSAO,	2,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{RTP,	-Mod01:,	AO,		-CH03:,		VoltW,		CDMSAO,	4,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-}
-
-
-####BI Base Address 550(1100 PLC offset(byte))
-file "db/biWord.template" { pattern
-{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,		PORT,	OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
-{RTP,	-Mod02:,	DI,		-CH01:,		VoltR,		CDMSDI,	0,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{RTP,	-Mod02:,	DI,		-CH02:,		VoltR,		CDMSDI,	0,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-}
-
-####BO Base Address 576(550+26)(1152 PLC offset(byte))
-file "db/boWord.template" { pattern
-{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,		PORT,	OFFSET,	MASK,	 ZNAM,   ONAM,		DESC}
-{RTP,	-Mod03:,	DO,		-CH01:,		VoltW,		CDMSDO,  0,      0x0100,  Open,   Close, "Switch1"}
-{RTP,	-Mod03:,	DO,		-CH02:,		VoltW,		CDMSDO,  0,      0x0200,  Open,   Close, "Switch1"}
-{RTP,	-Mod03:,	DO,		-CH03:,		VoltW,		CDMSDO,  0,      0x0400,  Open,   Close, "Switch1"}
-
-}
+#######AO Base Address 400word(800 PLC offset(byte))
+###file "db/aoFloat64.template" { pattern
+###{SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,	OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
+###{RTP,	-Mod01:,	AO,		-CH01:,		VoltW,		CDMSAO,	0,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+###{RTP,	-Mod01:,	AO,		-CH02:,		VoltW,		CDMSAO,	2,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+###{RTP,	-Mod01:,	AO,		-CH03:,		VoltW,		CDMSAO,	4,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+###}
+###
+###
+#######BI Base Address 550(1100 PLC offset(byte))
+###file "db/biWord.template" { pattern
+###{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,		PORT,	OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
+###{RTP,	-Mod02:,	DI,		-CH01:,		VoltR,		CDMSDI,	0,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+###{RTP,	-Mod02:,	DI,		-CH02:,		VoltR,		CDMSDI,	0,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+###}
+###
+#######BO Base Address 576(550+26)(1152 PLC offset(byte))
+###file "db/boWord.template" { pattern
+###{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,		PORT,	OFFSET,	MASK,	 ZNAM,   ONAM,		DESC}
+###{RTP,	-Mod03:,	DO,		-CH01:,		VoltW,		CDMSDO,  0,      0x0100,  Open,   Close, "Switch1"}
+###{RTP,	-Mod03:,	DO,		-CH02:,		VoltW,		CDMSDO,  0,      0x0200,  Open,   Close, "Switch1"}
+###{RTP,	-Mod03:,	DO,		-CH03:,		VoltW,		CDMSDO,  0,      0x0400,  Open,   Close, "Switch1"}
+###
+###}
 

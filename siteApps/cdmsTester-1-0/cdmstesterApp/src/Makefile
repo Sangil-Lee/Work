@@ -27,7 +27,6 @@ DBD += cdmstester.dbd
 
 # cdmstester.dbd will be made up from these files:
 cdmstester_DBD += base.dbd
-cdmstester_DBD += rtpDev.dbd
 
 # Include dbd files from all support applications:
 #cdmstester_DBD += xxx.dbd
