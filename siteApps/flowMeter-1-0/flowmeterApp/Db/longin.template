@@ -1,0 +1,28 @@
+record(longin, $(PREFIX)$(SIGNAL))
+{
+	field(DESC, "$(DESC)")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT) $(OFFSET)) $(DATA_TYPE)")
+    field(SCAN,"$(SCAN)")
+    field(FLNK,"$(FLNK)")
+}
+
+record(calc, "${PREFIX}Flow") {
+  field(SCAN, "Passive")
+  field(CALC, "((A>>16&0xffff)*10)/100")
+  field(EGU, "I/min")
+  field(INPA, "${PREFIX}Data")
+}
+
+record(calc, "${PREFIX}Temp") {
+  field(SCAN, "Passive")
+  field(CALC, "(A&0xffff)>>2")
+  field(EGU, "Deg")
+  field(INPA, "${PREFIX}Data")
+}
+
+record(fanout, "${PREFIX}Fanout") {
+  field(SCAN, "Passive")
+  field(LNK0, "${PREFIX}Temp")
+  field(LNK1, "${PREFIX}Flow")
+}
