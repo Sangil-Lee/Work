@@ -18,11 +18,16 @@ gbintstat_registerRecordDeviceDriver pdbbase
 #dbLoadTemplate("db/GBIntStat.sub")
 
 ##Real
-#dbLoadTemplate("db/GBIntStat_CMs.sub")
-#dbLoadTemplate("db/GBIntStat_VBx.sub")
-#dbLoadTemplate("db/GBIntStat_EBx.sub")
-#dbLoadTemplate("db/GBCURStat.sub")
+dbLoadTemplate("db/GBIntStat_CMs.sub")
+dbLoadTemplate("db/GBIntStat_VBx.sub")
+dbLoadTemplate("db/GBIntStat_EBx.sub")
 dbLoadTemplate("db/GBCPStat.sub")
+
+##After 0725
+dbLoadTemplate("db/GBCURStat_Each_stat.sub")
+
+##Before 0721
+#dbLoadTemplate("db/GBCURStat.sub")
 
 ##Test
 #dbLoadRecords("db/BitWiseTest.vdb")

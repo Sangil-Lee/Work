@@ -1,0 +1,10 @@
+record(calc, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat") {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(CALC, "(A||B||C||D) >=1?1:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}")
+  field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPB}")
+  field(INPC, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPC}")
+  field(INPD, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPD}")
+}
+

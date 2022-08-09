@@ -4,9 +4,10 @@ record(calc, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat") {
   field(CALC, "(A||B||C) >=1?1:0")
   field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}")
   field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPB}")
-  field(INPC, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPC}")
+  field(INPC, "${INPC}")
 }
 
+####
 #record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}") {
 #  field(VAL, "0")
 #  field(ZNAM, "Normal")
@@ -24,4 +25,4 @@ record(calc, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat") {
 #  field(ZNAM, "Normal")
 #  field(ONAM, "Interlock")
 #}
-
+####
