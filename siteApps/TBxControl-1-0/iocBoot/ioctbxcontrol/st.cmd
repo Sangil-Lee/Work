@@ -32,7 +32,8 @@ drvModbusAsynConfigure("TBXAO",   "TBX_PLC", 0, 6,  400, 125, 7, 100, "Modicon")
 drvModbusAsynConfigure("TBXAO_1", "TBX_PLC", 0, 6,  526, 25,  7, 100, "Modicon")
 
 
-drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
+#drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
+drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 3,  550,  26, 7, 100, "Modicon")
 drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 6,  576,  22, 7, 100, "Modicon")
 
 ## Load record instances

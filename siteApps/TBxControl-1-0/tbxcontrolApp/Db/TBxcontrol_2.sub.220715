@@ -149,7 +149,7 @@ file "db/aiFloat64.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-PT7547:,		PresR,		"TBXAI_2",   38,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PT7548:,		PresR,		"TBXAI_2",   40,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PT7582:,		PresR,		"TBXAI_2",   42,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7483:,		PresR,		"TBXAI_2",   44,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7583:,		PresR,		"TBXAI_2",   44,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		PresR,		"TBXAI_2",   46,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		PresR,		"TBXAI_2",   48,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-CV7582:,		FBRB,		"TBXAI_2",   50,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
@@ -206,63 +206,63 @@ file "db/aiFloat64.template" { pattern
 
 ####AO Base Address 400word(800 PLC offset(byte))
 file "db/aoFloat64.template" { pattern
-{SYS,	SUBSYS,		DEV,	SUBDEV,			SIGNAL,			PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		Setpt,			"TBXAO",	0,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetManuRamp,	"TBXAO",	2,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		Setpt,			"TBXAO",	4,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetManuRamp,	"TBXAO",	6,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		Setpt,			"TBXAO",	8,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetManuRamp,	"TBXAO",	10,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		Setpt,			"TBXAO",	12,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetManuRamp,	"TBXAO",	14,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		Setpt,			"TBXAO",	16,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetManuRamp,	"TBXAO",	18,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		Setpt,			"TBXAO",	20,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetManuRamp,	"TBXAO",	22,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		Setpt,			"TBXAO",	24,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetManuRamp,	"TBXAO",	26,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		Setpt,			"TBXAO",	28,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetManuRamp,	"TBXAO",	30,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		Setpt,			"TBXAO",	32,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetManuRamp,	"TBXAO",	34,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		Setpt,			"TBXAO",	36,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetManuRamp,	"TBXAO",	38,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		Setpt,			"TBXAO",	40,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetManuRamp,	"TBXAO",	42,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		Setpt,			"TBXAO",	44,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetManuRamp,	"TBXAO",	46,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		Setpt,			"TBXAO",	48,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetManuRamp,	"TBXAO",	50,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		Setpt,			"TBXAO",	52,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetManuRamp,	"TBXAO",	54,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		Setpt,			"TBXAO",	56,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetManuRamp,	"TBXAO",	58,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		Setpt,			"TBXAO",	60,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetManuRamp,	"TBXAO",	62,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		Setpt,			"TBXAO",	64,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetManuRamp,	"TBXAO",	66,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		Setpt,			"TBXAO",	68,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetManuRamp,	"TBXAO",	70,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		Setpt,			"TBXAO",	72,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetManuRamp,	"TBXAO",	74,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		Setpt,			"TBXAO",	76,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetManuRamp,	"TBXAO",	78,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		Setpt,			"TBXAO",	80,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetManuRamp,	"TBXAO",	82,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		Setpt,			"TBXAO",	84,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetManuRamp,	"TBXAO",	86,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		Setpt,			"TBXAO",	88,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetManuRamp,	"TBXAO",	90,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		Setpt,			"TBXAO",	92,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetManuRamp,	"TBXAO",	94,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		Setpt,			"TBXAO",	96,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetManuRamp,	"TBXAO",	98,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		Setpt,			"TBXAO",	100,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetManuRamp,	"TBXAO",	102,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		Setpt,			"TBXAO",	104,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetManuRamp,	"TBXAO",	106,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		Setpt,			"TBXAO",	108,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetManuRamp,	"TBXAO",	110,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{SYS,	SUBSYS,		DEV,	SUBDEV,			SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		Setpt,		"TBXAO",	0,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetRamp,	"TBXAO",	2,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		Setpt,		"TBXAO",	4,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetRamp,	"TBXAO",	6,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		Setpt,		"TBXAO",	8,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetRamp,	"TBXAO",	10,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		Setpt,		"TBXAO",	12,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetRamp,	"TBXAO",	14,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		Setpt,		"TBXAO",	16,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetRamp,	"TBXAO",	18,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		Setpt,		"TBXAO",	20,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetRamp,	"TBXAO",	22,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		Setpt,		"TBXAO",	24,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetRamp,	"TBXAO",	26,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		Setpt,		"TBXAO",	28,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetRamp,	"TBXAO",	30,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		Setpt,		"TBXAO",	32,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetRamp,	"TBXAO",	34,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		Setpt,		"TBXAO",	36,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetRamp,	"TBXAO",	38,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		Setpt,		"TBXAO",	40,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetRamp,	"TBXAO",	42,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		Setpt,		"TBXAO",	44,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetRamp,	"TBXAO",	46,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		Setpt,		"TBXAO",	48,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetRamp,	"TBXAO",	50,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		Setpt,		"TBXAO",	52,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetRamp,	"TBXAO",	54,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		Setpt,		"TBXAO",	56,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetRamp,	"TBXAO",	58,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		Setpt,		"TBXAO",	60,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetRamp,	"TBXAO",	62,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		Setpt,		"TBXAO",	64,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetRamp,	"TBXAO",	66,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		Setpt,		"TBXAO",	68,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetRamp,	"TBXAO",	70,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		Setpt,		"TBXAO",	72,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetRamp,	"TBXAO",	74,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		Setpt,		"TBXAO",	76,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetRamp,	"TBXAO",	78,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		Setpt,		"TBXAO",	80,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetRamp,	"TBXAO",	82,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		Setpt,		"TBXAO",	84,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetRamp,	"TBXAO",	86,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		Setpt,		"TBXAO",	88,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetRamp,	"TBXAO",	90,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		Setpt,		"TBXAO",	92,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetRamp,	"TBXAO",	94,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		Setpt,		"TBXAO",	96,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetRamp,	"TBXAO",	98,		FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		Setpt,		"TBXAO",	100,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetRamp,	"TBXAO",	102,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		Setpt,		"TBXAO",	104,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetRamp,	"TBXAO",	106,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		Setpt,		"TBXAO",	108,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetRamp,	"TBXAO",	110,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7503:,		PressSet,	"TBXAO",	112,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7504:,		PressSet,	"TBXAO",	114,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PressSet,	"TBXAO",	116,	FLOAT32_BE,	0,		30,		3,		"%",	"" }
@@ -288,171 +288,171 @@ file "db/aoFloat64.template" { pattern
 ####BI Base Address 550(1100 PLC offset(byte))
 file "db/biWord.template" { pattern
 {SYS,	SUBSYS,		DEV, 	SUBDEV,			SIGNAL,				PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,		OpenStat,			TBXDI,		0,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,		CloseStat,			TBXDI,		0,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7501:,		OpenStat,			TBXDI,		0,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7501:,		CloseStat,			TBXDI,		0,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,		OpenStat,			TBXDI,		0,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,		CloseStat,			TBXDI,		0,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7401:,		OpenStat,			TBXDI,		0,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7401:,		CloseStat,			TBXDI,		0,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,		OpenStat,			TBXDI,		0,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,		CloseStat,			TBXDI,		0,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7302:,		OpenStat,			TBXDI,		0,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7302:,		CloseStat,			TBXDI,		0,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,		OpenStat,			TBXDI,		0,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,		CloseStat,			TBXDI,		0,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7543:,		OpenStat,			TBXDI,		0,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7543:,		CloseStat,			TBXDI,		0,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7502:,		OpenStat,			TBXDI,		0,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7502:,		CloseStat,			TBXDI,		0,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7501:,		OpenStat,			TBXDI,		0,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7501:,		CloseStat,			TBXDI,		0,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7301:,		OpenStat,			TBXDI,		0,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7301:,		CloseStat,			TBXDI,		0,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7401:,		OpenStat,			TBXDI,		0,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7401:,		CloseStat,			TBXDI,		0,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7201:,		OpenStat,			TBXDI,		0,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7201:,		CloseStat,			TBXDI,		0,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7302:,		OpenStat,			TBXDI,		0,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7302:,		CloseStat,			TBXDI,		0,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7303:,		OpenStat,			TBXDI,		0,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7303:,		CloseStat,			TBXDI,		0,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7543:,		OpenStat,			TBXDI,		0,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7543:,		CloseStat,			TBXDI,		0,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7541:,		OpenStat,			TBXDI,		1,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7541:,		CloseStat,			TBXDI,		1,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7341:,		OpenStat,			TBXDI,		1,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7341:,		CloseStat,			TBXDI,		1,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7441:,		OpenStat,			TBXDI,		1,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7441:,		CloseStat,			TBXDI,		1,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7241:,		OpenStat,			TBXDI,		1,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7241:,		CloseStat,			TBXDI,		1,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7343:,		OpenStat,			TBXDI,		1,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7343:,		CloseStat,			TBXDI,		1,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7344:,		OpenStat,			TBXDI,		1,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7344:,		CloseStat,			TBXDI,		1,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7544:,		OpenStat,			TBXDI,		1,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7544:,		CloseStat,			TBXDI,		1,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7542:,		OpenStat,			TBXDI,		1,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7542:,		CloseStat,			TBXDI,		1,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7541:,		OpenStat,			TBXDI,		1,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7541:,		CloseStat,			TBXDI,		1,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7341:,		OpenStat,			TBXDI,		1,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7341:,		CloseStat,			TBXDI,		1,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7441:,		OpenStat,			TBXDI,		1,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7441:,		CloseStat,			TBXDI,		1,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7241:,		OpenStat,			TBXDI,		1,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7241:,		CloseStat,			TBXDI,		1,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7343:,		OpenStat,			TBXDI,		1,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7343:,		CloseStat,			TBXDI,		1,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7344:,		OpenStat,			TBXDI,		1,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7344:,		CloseStat,			TBXDI,		1,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7544:,		OpenStat,			TBXDI,		1,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7544:,		CloseStat,			TBXDI,		1,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7542:,		OpenStat,			TBXDI,		1,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7542:,		CloseStat,			TBXDI,		1,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7342:,		OpenStat,			TBXDI,		2,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7342:,		CloseStat,			TBXDI,		2,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7442:,		OpenStat,			TBXDI,		2,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7442:,		CloseStat,			TBXDI,		2,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7242:,		OpenStat,			TBXDI,		2,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7242:,		CloseStat,			TBXDI,		2,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7381:,		OpenStat,			TBXDI,		2,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7381:,		CloseStat,			TBXDI,		2,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,		OpenStat,			TBXDI,		2,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,		CloseStat,			TBXDI,		2,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7545:,		OpenStat,			TBXDI,		2,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7545:,		CloseStat,			TBXDI,		2,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7581:,		OpenStat,			TBXDI,		2,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7581:,		CloseStat,			TBXDI,		2,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7104:,		OpenStat,			TBXDI,		2,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7104:,		CloseStat,			TBXDI,		2,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7342:,		OpenStat,			TBXDI,		2,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7342:,		CloseStat,			TBXDI,		2,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7442:,		OpenStat,			TBXDI,		2,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7442:,		CloseStat,			TBXDI,		2,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7242:,		OpenStat,			TBXDI,		2,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7242:,		CloseStat,			TBXDI,		2,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7381:,		OpenStat,			TBXDI,		2,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7381:,		CloseStat,			TBXDI,		2,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7503:,		OpenStat,			TBXDI,		2,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7503:,		CloseStat,			TBXDI,		2,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7545:,		OpenStat,			TBXDI,		2,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7545:,		CloseStat,			TBXDI,		2,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7581:,		OpenStat,			TBXDI,		2,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7581:,		CloseStat,			TBXDI,		2,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7104:,		OpenStat,			TBXDI,		2,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7104:,		CloseStat,			TBXDI,		2,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7103:,		OpenStat,			TBXDI,		3,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7103:,		CloseStat,			TBXDI,		3,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7102:,		OpenStat,			TBXDI,		3,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7102:,		CloseStat,			TBXDI,		3,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7144:,		OpenStat,			TBXDI,		3,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7144:,		CloseStat,			TBXDI,		3,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7143:,		OpenStat,			TBXDI,		3,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7143:,		CloseStat,			TBXDI,		3,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7142:,		OpenStat,			TBXDI,		3,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7142:,		CloseStat,			TBXDI,		3,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7181:,		OpenStat,			TBXDI,		3,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7181:,		CloseStat,			TBXDI,		3,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7182:,		OpenStat,			TBXDI,		3,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7182:,		CloseStat,			TBXDI,		3,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7103:,		OpenStat,			TBXDI,		3,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7103:,		CloseStat,			TBXDI,		3,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7102:,		OpenStat,			TBXDI,		3,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7102:,		CloseStat,			TBXDI,		3,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7144:,		OpenStat,			TBXDI,		3,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7144:,		CloseStat,			TBXDI,		3,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7143:,		OpenStat,			TBXDI,		3,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7143:,		CloseStat,			TBXDI,		3,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7142:,		OpenStat,			TBXDI,		3,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7142:,		CloseStat,			TBXDI,		3,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7181:,		OpenStat,			TBXDI,		3,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7181:,		CloseStat,			TBXDI,		3,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7182:,		OpenStat,			TBXDI,		3,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7182:,		CloseStat,			TBXDI,		3,      0x0020,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		3,		0x0040,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		3,		0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,		OpenErrR,			TBXDI,		4,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,		CloseErrR,			TBXDI,		4,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7501:,		OpenErrR,			TBXDI,		4,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7501:,		CloseErrR,			TBXDI,		4,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,		OpenErrR,			TBXDI,		4,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,		CloseErrR,			TBXDI,		4,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7401:,		OpenErrR,			TBXDI,		4,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7401:,		CloseErrR,			TBXDI,		4,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,		OpenErrR,			TBXDI,		4,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,		CloseErrR,			TBXDI,		4,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7302:,		OpenErrR,			TBXDI,		4,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7302:,		CloseErrR,			TBXDI,		4,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,		OpenErrR,			TBXDI,		4,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,		CloseErrR,			TBXDI,		4,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7543:,		OpenErrR,			TBXDI,		4,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7543:,		CloseErrR,			TBXDI,		4,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7502:,		OpenErrR,			TBXDI,		4,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7502:,		CloseErrR,			TBXDI,		4,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7501:,		OpenErrR,			TBXDI,		4,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7501:,		CloseErrR,			TBXDI,		4,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7301:,		OpenErrR,			TBXDI,		4,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7301:,		CloseErrR,			TBXDI,		4,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7401:,		OpenErrR,			TBXDI,		4,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7401:,		CloseErrR,			TBXDI,		4,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7201:,		OpenErrR,			TBXDI,		4,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7201:,		CloseErrR,			TBXDI,		4,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7302:,		OpenErrR,			TBXDI,		4,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7302:,		CloseErrR,			TBXDI,		4,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7303:,		OpenErrR,			TBXDI,		4,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7303:,		CloseErrR,			TBXDI,		4,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7543:,		OpenErrR,			TBXDI,		4,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7543:,		CloseErrR,			TBXDI,		4,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7541:,		OpenErrR,			TBXDI,		5,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7541:,		CloseErrR,			TBXDI,		5,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7341:,		OpenErrR,			TBXDI,		5,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7341:,		CloseErrR,			TBXDI,		5,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7441:,		OpenErrR,			TBXDI,		5,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7441:,		CloseErrR,			TBXDI,		5,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7241:,		OpenErrR,			TBXDI,		5,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7241:,		CloseErrR,			TBXDI,		5,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7343:,		OpenErrR,			TBXDI,		5,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7343:,		CloseErrR,			TBXDI,		5,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7344:,		OpenErrR,			TBXDI,		5,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7344:,		CloseErrR,			TBXDI,		5,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7544:,		OpenErrR,			TBXDI,		5,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7544:,		CloseErrR,			TBXDI,		5,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7542:,		OpenErrR,			TBXDI,		5,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7542:,		CloseErrR,			TBXDI,		5,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7541:,		OpenErrR,			TBXDI,		5,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7541:,		CloseErrR,			TBXDI,		5,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7341:,		OpenErrR,			TBXDI,		5,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7341:,		CloseErrR,			TBXDI,		5,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7441:,		OpenErrR,			TBXDI,		5,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7441:,		CloseErrR,			TBXDI,		5,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7241:,		OpenErrR,			TBXDI,		5,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7241:,		CloseErrR,			TBXDI,		5,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7343:,		OpenErrR,			TBXDI,		5,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7343:,		CloseErrR,			TBXDI,		5,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7344:,		OpenErrR,			TBXDI,		5,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7344:,		CloseErrR,			TBXDI,		5,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7544:,		OpenErrR,			TBXDI,		5,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7544:,		CloseErrR,			TBXDI,		5,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7542:,		OpenErrR,			TBXDI,		5,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7542:,		CloseErrR,			TBXDI,		5,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7342:,		OpenErrR,			TBXDI,		6,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7342:,		CloseErrR,			TBXDI,		6,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7442:,		OpenErrR,			TBXDI,		6,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7442:,		CloseErrR,			TBXDI,		6,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7242:,		OpenErrR,			TBXDI,		6,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7242:,		CloseErrR,			TBXDI,		6,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7381:,		OpenErrR,			TBXDI,		6,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7381:,		CloseErrR,			TBXDI,		6,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,		OpenErrR,			TBXDI,		6,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,		CloseErrR,			TBXDI,		6,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7545:,		OpenErrR,			TBXDI,		6,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7545:,		CloseErrR,			TBXDI,		6,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7581:,		OpenErrR,			TBXDI,		6,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7581:,		CloseErrR,			TBXDI,		6,      0x0020,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7104:,		OpenErrR,			TBXDI,		6,      0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7104:,		CloseErrR,			TBXDI,		6,      0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7342:,		OpenErrR,			TBXDI,		6,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7342:,		CloseErrR,			TBXDI,		6,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7442:,		OpenErrR,			TBXDI,		6,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7442:,		CloseErrR,			TBXDI,		6,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7242:,		OpenErrR,			TBXDI,		6,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7242:,		CloseErrR,			TBXDI,		6,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7381:,		OpenErrR,			TBXDI,		6,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7381:,		CloseErrR,			TBXDI,		6,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7503:,		OpenErrR,			TBXDI,		6,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7503:,		CloseErrR,			TBXDI,		6,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7545:,		OpenErrR,			TBXDI,		6,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7545:,		CloseErrR,			TBXDI,		6,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7581:,		OpenErrR,			TBXDI,		6,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7581:,		CloseErrR,			TBXDI,		6,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7104:,		OpenErrR,			TBXDI,		6,      0x0040,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7104:,		CloseErrR,			TBXDI,		6,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-XV7103:,		OpenErrR,			TBXDI,		7,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7103:,		CloseErrR,			TBXDI,		7,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7102:,		OpenErrR,			TBXDI,		7,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7102:,		CloseErrR,			TBXDI,		7,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7144:,		OpenErrR,			TBXDI,		7,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7144:,		CloseErrR,			TBXDI,		7,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7143:,		OpenErrR,			TBXDI,		7,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7143:,		CloseErrR,			TBXDI,		7,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7142:,		OpenErrR,			TBXDI,		7,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7142:,		CloseErrR,			TBXDI,		7,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7181:,		OpenErrR,			TBXDI,		7,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7181:,		CloseErrR,			TBXDI,		7,      0x0008,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7182:,		OpenErrR,			TBXDI,		7,      0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7182:,		CloseErrR,			TBXDI,		7,      0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7103:,		OpenErrR,			TBXDI,		7,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7103:,		CloseErrR,			TBXDI,		7,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7102:,		OpenErrR,			TBXDI,		7,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7102:,		CloseErrR,			TBXDI,		7,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7144:,		OpenErrR,			TBXDI,		7,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7144:,		CloseErrR,			TBXDI,		7,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7143:,		OpenErrR,			TBXDI,		7,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7143:,		CloseErrR,			TBXDI,		7,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7142:,		OpenErrR,			TBXDI,		7,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7142:,		CloseErrR,			TBXDI,		7,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7181:,		OpenErrR,			TBXDI,		7,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7181:,		CloseErrR,			TBXDI,		7,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSH7182:,		OpenErrR,			TBXDI,		7,      0x0010,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZSL7182:,		CloseErrR,			TBXDI,		7,      0x0020,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		7,      0x0040,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		7,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		CloseStat,			TBXDI,		8,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		CloseStat,			TBXDI,		8,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		CloseStat,			TBXDI,		8,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		CloseStat,			TBXDI,		8,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		CloseStat,			TBXDI,		8,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		CloseStat,			TBXDI,		8,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		CloseStat,			TBXDI,		8,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		CloseStat,			TBXDI,		8,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		CloseStat,			TBXDI,		8,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		CloseStat,			TBXDI,		8,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		CloseStat,			TBXDI,		8,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		CloseStat,			TBXDI,		8,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7502:,		CloseStat,			TBXDI,		8,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7505:,		CloseStat,			TBXDI,		8,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7541:,		CloseStat,			TBXDI,		8,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7543:,		CloseStat,			TBXDI,		8,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7481:,		CloseStat,			TBXDI,		8,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7482:,		CloseStat,			TBXDI,		8,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7581:,		CloseStat,			TBXDI,		8,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7582:,		CloseStat,			TBXDI,		8,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7304:,		CloseStat,			TBXDI,		8,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7504:,		CloseStat,			TBXDI,		8,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7344:,		CloseStat,			TBXDI,		8,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7545:,		CloseStat,			TBXDI,		8,      0x0008,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		8,      0x0010,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		8,      0x0020,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		8,      0x0040,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		8,      0x0080,  Open,   Close,     "1 second", "Switch1"}
 
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		CloseErrR,			TBXDI,		9,      0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		CloseErrR,			TBXDI,		9,      0x0200,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		CloseErrR,			TBXDI,		9,      0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		CloseErrR,			TBXDI,		9,      0x0800,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		CloseErrR,			TBXDI,		9,      0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		CloseErrR,			TBXDI,		9,      0x2000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		CloseErrR,			TBXDI,		9,      0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		CloseErrR,			TBXDI,		9,      0x8000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		CloseErrR,			TBXDI,		9,      0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		CloseErrR,			TBXDI,		9,      0x0002,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		CloseErrR,			TBXDI,		9,      0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		CloseErrR,			TBXDI,		9,      0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7502:,		CloseErrR,			TBXDI,		9,      0x0100,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7505:,		CloseErrR,			TBXDI,		9,      0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7541:,		CloseErrR,			TBXDI,		9,      0x0400,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7543:,		CloseErrR,			TBXDI,		9,      0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7481:,		CloseErrR,			TBXDI,		9,      0x1000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7482:,		CloseErrR,			TBXDI,		9,      0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7581:,		CloseErrR,			TBXDI,		9,      0x4000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7582:,		CloseErrR,			TBXDI,		9,      0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7304:,		CloseErrR,			TBXDI,		9,      0x0001,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7504:,		CloseErrR,			TBXDI,		9,      0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7344:,		CloseErrR,			TBXDI,		9,      0x0004,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-ZTL7545:,		CloseErrR,			TBXDI,		9,      0x0008,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		9,      0x0010,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		9,      0x0020,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		9,      0x0040,  Open,   Close,     "1 second", "Switch1"}
@@ -493,64 +493,64 @@ file "db/biWord.template" { pattern
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		11,     0x0080,  Open,   Close,     "1 second", "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7503:,		CloseStat,			TBXDI,		12,     0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		FailStat,			TBXDI,		12,     0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		ErrStat,			TBXDI,		12,     0x0200,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7501:,		CloseStat,			TBXDI,		12,     0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		FailStat,			TBXDI,		12,     0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		ErrStat,			TBXDI,		12,     0x0800,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7301:,		CloseStat,			TBXDI,		12,     0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		FailStat,			TBXDI,		12,     0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		ErrStat,			TBXDI,		12,     0x2000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7401:,		CloseStat,			TBXDI,		12,     0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		FailStat,			TBXDI,		12,     0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		ErrStat,			TBXDI,		12,     0x8000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7201:,		CloseStat,			TBXDI,		12,     0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		FailStat,			TBXDI,		12,     0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		ErrStat,			TBXDI,		12,     0x0002,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7504:,		CloseStat,			TBXDI,		12,     0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		FailStat,			TBXDI,		12,     0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		ErrStat,			TBXDI,		12,     0x0008,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7304:,		CloseStat,			TBXDI,		12,     0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		FailStat,			TBXDI,		12,     0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		ErrStat,			TBXDI,		12,     0x0020,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7302:,		CloseStat,			TBXDI,		12,     0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		FailStat,			TBXDI,		12,     0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		ErrStat,			TBXDI,		12,     0x0080,  Open,   Close,     "1 second", "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7303:,		CloseStat,			TBXDI,		13,     0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		FailStat,			TBXDI,		13,     0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		ErrStat,			TBXDI,		13,     0x0200,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7544:,		CloseStat,			TBXDI,		13,     0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		FailStat,			TBXDI,		13,     0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		ErrStat,			TBXDI,		13,     0x0800,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7542:,		CloseStat,			TBXDI,		13,     0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		FailStat,			TBXDI,		13,     0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		ErrStat,			TBXDI,		13,     0x2000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7341:,		CloseStat,			TBXDI,		13,     0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		FailStat,			TBXDI,		13,     0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		ErrStat,			TBXDI,		13,     0x8000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7441:,		CloseStat,			TBXDI,		13,     0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		FailStat,			TBXDI,		13,     0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		ErrStat,			TBXDI,		13,     0x0002,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7241:,		CloseStat,			TBXDI,		13,     0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		FailStat,			TBXDI,		13,     0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		ErrStat,			TBXDI,		13,     0x0008,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7545:,		CloseStat,			TBXDI,		13,     0x0010,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		FailStat,			TBXDI,		13,     0x0020,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		ErrStat,			TBXDI,		13,     0x0020,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7344:,		CloseStat,			TBXDI,		13,     0x0040,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		FailStat,			TBXDI,		13,     0x0080,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		ErrStat,			TBXDI,		13,     0x0080,  Open,   Close,     "1 second", "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7342:,		CloseStat,			TBXDI,		14,     0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		FailStat,			TBXDI,		14,     0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		ErrStat,			TBXDI,		14,     0x0200,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7343:,		CloseStat,			TBXDI,		14,     0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		FailStat,			TBXDI,		14,     0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		ErrStat,			TBXDI,		14,     0x0800,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7502:,		CloseStat,			TBXDI,		14,     0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		FailStat,			TBXDI,		14,     0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		ErrStat,			TBXDI,		14,     0x2000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7541:,		CloseStat,			TBXDI,		14,     0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		FailStat,			TBXDI,		14,     0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		ErrStat,			TBXDI,		14,     0x8000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7505:,		CloseStat,			TBXDI,		14,     0x0001,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		FailStat,			TBXDI,		14,     0x0002,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		ErrStat,			TBXDI,		14,     0x0002,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7543:,		CloseStat,			TBXDI,		14,     0x0004,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		FailStat,			TBXDI,		14,     0x0008,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		ErrStat,			TBXDI,		14,     0x0008,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		14,     0x0010,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		14,     0x0020,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		14,     0x0040,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		14,     0x0080,  Open,   Close,     "1 second", "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7582:,		CloseStat,			TBXDI,		15,     0x0100,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		FailStat,			TBXDI,		15,     0x0200,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		ErrStat,			TBXDI,		15,     0x0200,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7482:,		CloseStat,			TBXDI,		15,     0x0400,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		FailStat,			TBXDI,		15,     0x0800,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		ErrStat,			TBXDI,		15,     0x0800,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7581:,		CloseStat,			TBXDI,		15,     0x1000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		FailStat,			TBXDI,		15,     0x2000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		ErrStat,			TBXDI,		15,     0x2000,  Open,   Close,     "1 second", "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7481:,		CloseStat,			TBXDI,		15,     0x4000,  Open,   Close,     "1 second", "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		FailStat,			TBXDI,		15,     0x8000,  Open,   Close,     "1 second", "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		ErrStat,			TBXDI,		15,     0x8000,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		15,     0x0001,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		15,     0x0002,  Open,   Close,     "1 second", "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDI,		15,     0x0004,  Open,   Close,     "1 second", "Switch1"}
@@ -804,132 +804,132 @@ file "db/boWord.template" { pattern
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDO,      3,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-XV7502:,		SetManuSel,			TBXDO,      4,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,		SetFailRst,			TBXDO,      4,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7502:,		SetErrRst,			TBXDO,      4,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7501:,		SetManuSel,			TBXDO,      4,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7501:,		SetFailRst,			TBXDO,      4,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7501:,		SetErrRst,			TBXDO,      4,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7301:,		SetManuSel,			TBXDO,      4,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,		SetFailRst,			TBXDO,      4,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7301:,		SetErrRst,			TBXDO,      4,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7401:,		SetManuSel,			TBXDO,      4,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7401:,		SetFailRst,			TBXDO,      4,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7401:,		SetErrRst,			TBXDO,      4,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7201:,		SetManuSel,			TBXDO,      4,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,		SetFailRst,			TBXDO,      4,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7201:,		SetErrRst,			TBXDO,      4,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7302:,		SetManuSel,			TBXDO,      4,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7302:,		SetFailRst,			TBXDO,      4,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7302:,		SetErrRst,			TBXDO,      4,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7303:,		SetManuSel,			TBXDO,      4,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,		SetFailRst,			TBXDO,      4,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7303:,		SetErrRst,			TBXDO,      4,      0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7543:,		SetManuSel,			TBXDO,      4,      0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7543:,		SetFailRst,			TBXDO,      4,      0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7543:,		SetErrRst,			TBXDO,      4,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-XV7541:,		SetManuSel,			TBXDO,      5,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7541:,		SetFailRst,			TBXDO,      5,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7541:,		SetErrRst,			TBXDO,      5,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7341:,		SetManuSel,			TBXDO,      5,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7341:,		SetFailRst,			TBXDO,      5,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7341:,		SetErrRst,			TBXDO,      5,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7441:,		SetManuSel,			TBXDO,      5,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7441:,		SetFailRst,			TBXDO,      5,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7441:,		SetErrRst,			TBXDO,      5,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7241:,		SetManuSel,			TBXDO,      5,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7241:,		SetFailRst,			TBXDO,      5,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7241:,		SetErrRst,			TBXDO,      5,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7343:,		SetManuSel,			TBXDO,      5,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7343:,		SetFailRst,			TBXDO,      5,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7343:,		SetErrRst,			TBXDO,      5,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7344:,		SetManuSel,			TBXDO,      5,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7344:,		SetFailRst,			TBXDO,      5,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7344:,		SetErrRst,			TBXDO,      5,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7544:,		SetManuSel,			TBXDO,      5,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7544:,		SetFailRst,			TBXDO,      5,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7544:,		SetErrRst,			TBXDO,      5,      0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7542:,		SetManuSel,			TBXDO,      5,      0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7542:,		SetFailRst,			TBXDO,      5,      0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7542:,		SetErrRst,			TBXDO,      5,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-XV7342:,		SetManuSel,			TBXDO,      6,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7342:,		SetFailRst,			TBXDO,      6,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7342:,		SetErrRst,			TBXDO,      6,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7442:,		SetManuSel,			TBXDO,      6,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7442:,		SetFailRst,			TBXDO,      6,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7442:,		SetErrRst,			TBXDO,      6,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7242:,		SetManuSel,			TBXDO,      6,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7242:,		SetFailRst,			TBXDO,      6,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7242:,		SetErrRst,			TBXDO,      6,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7381:,		SetManuSel,			TBXDO,      6,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7381:,		SetFailRst,			TBXDO,      6,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7381:,		SetErrRst,			TBXDO,      6,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7503:,		SetManuSel,			TBXDO,      6,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,		SetFailRst,			TBXDO,      6,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7503:,		SetErrRst,			TBXDO,      6,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7545:,		SetManuSel,			TBXDO,      6,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7545:,		SetFailRst,			TBXDO,      6,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7545:,		SetErrRst,			TBXDO,      6,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7581:,		SetManuSel,			TBXDO,      6,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7581:,		SetFailRst,			TBXDO,      6,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7581:,		SetErrRst,			TBXDO,      6,      0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7104:,		SetManuSel,			TBXDO,      6,      0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7104:,		SetFailRst,			TBXDO,      6,      0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7104:,		SetErrRst,			TBXDO,      6,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-XV7103:,		SetManuSel,			TBXDO,      7,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7103:,		SetFailRst,			TBXDO,      7,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7103:,		SetErrRst,			TBXDO,      7,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7102:,		SetManuSel,			TBXDO,      7,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7102:,		SetFailRst,			TBXDO,      7,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7102:,		SetErrRst,			TBXDO,      7,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7144:,		SetManuSel,			TBXDO,      7,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7144:,		SetFailRst,			TBXDO,      7,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7144:,		SetErrRst,			TBXDO,      7,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7143:,		SetManuSel,			TBXDO,      7,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7143:,		SetFailRst,			TBXDO,      7,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7143:,		SetErrRst,			TBXDO,      7,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7142:,		SetManuSel,			TBXDO,      7,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7142:,		SetFailRst,			TBXDO,      7,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7142:,		SetErrRst,			TBXDO,      7,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7181:,		SetManuSel,			TBXDO,      7,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7181:,		SetFailRst,			TBXDO,      7,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7181:,		SetErrRst,			TBXDO,      7,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-XV7182:,		SetManuSel,			TBXDO,      7,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-XV7182:,		SetFailRst,			TBXDO,      7,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-XV7182:,		SetErrRst,			TBXDO,      7,      0x0020,  Open,   Close, "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDO,      7,      0x0040,  Open,   Close, "Switch1"}
 #{Cryo,	-CDL00:,	TBx01,	-Reserve:,		Signal,				TBXDO,      7,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetManuSel,			TBXDO,      8,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetFailRst,			TBXDO,      8,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetErrRst,			TBXDO,      8,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetManuSel,			TBXDO,      8,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetFailRst,			TBXDO,      8,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetErrRst,			TBXDO,      8,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetManuSel,			TBXDO,      8,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetFailRst,			TBXDO,      8,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetErrRst,			TBXDO,      8,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetManuSel,			TBXDO,      8,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetFailRst,			TBXDO,      8,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetErrRst,			TBXDO,      8,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetManuSel,			TBXDO,      8,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetFailRst,			TBXDO,      8,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetErrRst,			TBXDO,      8,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetManuSel,			TBXDO,      8,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetFailRst,			TBXDO,      8,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetErrRst,			TBXDO,      8,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetManuSel,			TBXDO,      8,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetFailRst,			TBXDO,      8,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetErrRst,			TBXDO,      8,      0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetManuSel,			TBXDO,      8,      0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetFailRst,			TBXDO,      8,      0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetErrRst,			TBXDO,      8,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetManuSel,			TBXDO,      9,      0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetFailRst,			TBXDO,      9,      0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetErrRst,			TBXDO,      9,      0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetManuSel,			TBXDO,      9,      0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetFailRst,			TBXDO,      9,      0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetErrRst,			TBXDO,      9,      0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetManuSel,			TBXDO,      9,      0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetFailRst,			TBXDO,      9,      0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetErrRst,			TBXDO,      9,      0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetManuSel,			TBXDO,      9,      0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetFailRst,			TBXDO,      9,      0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetErrRst,			TBXDO,      9,      0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetManuSel,			TBXDO,      9,      0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetFailRst,			TBXDO,      9,      0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetErrRst,			TBXDO,      9,      0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetManuSel,			TBXDO,      9,      0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetFailRst,			TBXDO,      9,      0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetErrRst,			TBXDO,      9,      0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetManuSel,			TBXDO,      9,      0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetFailRst,			TBXDO,      9,      0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetErrRst,			TBXDO,      9,      0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetManuSel,			TBXDO,      9,      0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetFailRst,			TBXDO,      9,      0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetErrRst,			TBXDO,      9,      0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetManuSel,			TBXDO,      10,     0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetFailRst,			TBXDO,      10,     0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetErrRst,			TBXDO,      10,     0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetManuSel,			TBXDO,      10,     0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetFailRst,			TBXDO,      10,     0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetErrRst,			TBXDO,      10,     0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetManuSel,			TBXDO,      10,     0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetFailRst,			TBXDO,      10,     0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetErrRst,			TBXDO,      10,     0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetManuSel,			TBXDO,      10,     0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetFailRst,			TBXDO,      10,     0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetErrRst,			TBXDO,      10,     0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetManuSel,			TBXDO,      10,     0x0001,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetFailRst,			TBXDO,      10,     0x0002,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetErrRst,			TBXDO,      10,     0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetManuSel,			TBXDO,      10,     0x0004,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetFailRst,			TBXDO,      10,     0x0008,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetErrRst,			TBXDO,      10,     0x0008,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetManuSel,			TBXDO,      10,     0x0010,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetFailRst,			TBXDO,      10,     0x0020,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetErrRst,			TBXDO,      10,     0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetManuSel,			TBXDO,      10,     0x0040,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetFailRst,			TBXDO,      10,     0x0080,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetErrRst,			TBXDO,      10,     0x0080,  Open,   Close, "Switch1"}
 
 {Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetManuSel,			TBXDO,      11,     0x0100,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetFailRst,			TBXDO,      11,     0x0200,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetErrRst,			TBXDO,      11,     0x0200,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetManuSel,			TBXDO,      11,     0x0400,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetFailRst,			TBXDO,      11,     0x0800,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetErrRst,			TBXDO,      11,     0x0800,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetManuSel,			TBXDO,      11,     0x1000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetFailRst,			TBXDO,      11,     0x2000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetErrRst,			TBXDO,      11,     0x2000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetManuSel,			TBXDO,      11,     0x4000,  Open,   Close, "Switch1"}
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetFailRst,			TBXDO,      11,     0x8000,  Open,   Close, "Switch1"}
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetErrRst,			TBXDO,      11,     0x8000,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-DP7103:,		On,					TBXDO,      11,     0x0001,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-DP7103:,		Off,				TBXDO,      11,     0x0002,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-DP7103:,		TripRst,			TBXDO,      11,     0x0004,  Open,   Close, "Switch1"}
