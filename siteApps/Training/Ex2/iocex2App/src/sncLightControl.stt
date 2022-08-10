@@ -1,0 +1,33 @@
+program sncLightControl
+
+option +r;
+
+double voltage;
+assign voltage to "{P}:Voltage";
+monitor voltage;
+
+int onoff;
+assign onoff to "{P}:LightOnOff";
+
+
+ss Light
+{
+	state LightOff
+	{
+		when(voltage > 5)
+		{
+			onoff = 1;
+			pvPut(onoff);
+		}state LightOn
+	}
+
+	state LightOn
+	{
+		when(voltage <= 5)
+		{
+			onoff = 0;
+			pvPut(onoff);
+		}state LightOff
+	}
+}
+

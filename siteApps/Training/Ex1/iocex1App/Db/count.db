@@ -1,0 +1,18 @@
+record(calc, Count:Incr1)
+{
+	field(DESC, "Increment One")
+	field(SCAN, "1 second")
+	field(INPA, "Count:Incr1")
+	field(CALC, "A>=10?B:A+1")
+	field(FLNK, "Count:Incr100")
+
+	field(VAL, "5")
+}
+
+
+record(calc, Count:Incr100)
+{
+	field(SCAN, "Passive")
+	field(INPA, "Count:Incr1")
+	field(CALC, "A*100")
+}
