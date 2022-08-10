@@ -1,0 +1,13 @@
+record(calcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}CalcCPStat") {
+  field(SCAN, "1 second")
+  field(CALC, "A >= 1?1:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}FBRB")
+  field(OUT, "${SYS}${SUBSYS}${DEV}${SUBDEV}CPStat PP")
+}
+
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CPStat") {
+  field(VAL, "0")
+  field(ZNAM, "Close")
+  field(ONAM, "Open")
+}
+
