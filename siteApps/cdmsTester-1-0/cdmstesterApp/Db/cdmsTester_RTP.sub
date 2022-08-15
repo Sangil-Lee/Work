@@ -1,16 +1,60 @@
 file "db/RTP_AI.template" { pattern
 {MOD,			CHNN,		SIG,		IDX,	SCAN,		DESC}
-{RTP-Mod00:,	AI-CH01:,	VoltR,		5,		"1 second",	"RTP Mod0 AI Channel01"}
-{RTP-Mod00:,	AI-CH02:,	VoltR,		6,		"1 second",	"RTP Mod0 AI Channel02"}
+{RTP-Mod00:,	AI-CH01:,	VoltR,		1,		"1 second",	"RTP Mod0 AI Channel01"}
+{RTP-Mod00:,	AI-CH02:,	VoltR,		2,		"1 second",	"RTP Mod0 AI Channel02"}
+{RTP-Mod00:,	AI-CH03:,	VoltR,		3,		"1 second",	"RTP Mod0 AI Channel03"}
+{RTP-Mod00:,	AI-CH04:,	VoltR,		4,		"1 second",	"RTP Mod0 AI Channel04"}
+{RTP-Mod00:,	AI-CH05:,	VoltR,		5,		"1 second",	"RTP Mod0 AI Channel05"}
+{RTP-Mod00:,	AI-CH06:,	VoltR,		6,		"1 second",	"RTP Mod0 AI Channel06"}
+{RTP-Mod00:,	AI-CH07:,	VoltR,		7,		"1 second",	"RTP Mod0 AI Channel07"}
+{RTP-Mod00:,	AI-CH08:,	VoltR,		8,		"1 second",	"RTP Mod0 AI Channel08"}
+{RTP-Mod00:,	AI-CH09:,	VoltR,		9,		"1 second",	"RTP Mod0 AI Channel09"}
+{RTP-Mod00:,	AI-CH10:,	VoltR,		10,		"1 second",	"RTP Mod0 AI Channel10"}
+{RTP-Mod00:,	AI-CH11:,	VoltR,		11,		"1 second",	"RTP Mod0 AI Channel11"}
+{RTP-Mod00:,	AI-CH12:,	VoltR,		12,		"1 second",	"RTP Mod0 AI Channel12"}
+{RTP-Mod00:,	AI-CH13:,	VoltR,		13,		"1 second",	"RTP Mod0 AI Channel13"}
+{RTP-Mod00:,	AI-CH14:,	VoltR,		14,		"1 second",	"RTP Mod0 AI Channel14"}
+{RTP-Mod00:,	AI-CH15:,	VoltR,		15,		"1 second",	"RTP Mod0 AI Channel15"}
+{RTP-Mod00:,	AI-CH16:,	VoltR,		16,		"1 second",	"RTP Mod0 AI Channel16"}
 }                                                               
 
 file "db/RTP_DI.template" { pattern
 {MOD,			CHNN,		SIG,		IDX,	ZNAM,	ONAM,		SCAN,		DESC}
-{RTP-Mod01:,	DI-CH01:,	VoltR,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel01"}
+{RTP-Mod01:,	DI-CH01:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel01"}
+{RTP-Mod01:,	DI-CH02:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel02"}
+{RTP-Mod01:,	DI-CH03:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel03"}
+{RTP-Mod01:,	DI-CH04:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel04"}
+{RTP-Mod01:,	DI-CH05:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel05"}
+{RTP-Mod01:,	DI-CH06:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel06"}
+{RTP-Mod01:,	DI-CH07:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel07"}
+{RTP-Mod01:,	DI-CH08:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel08"}
+{RTP-Mod01:,	DI-CH09:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel09"}
+{RTP-Mod01:,	DI-CH10:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel10"}
+{RTP-Mod01:,	DI-CH11:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel11"}
+{RTP-Mod01:,	DI-CH12:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel12"}
+{RTP-Mod01:,	DI-CH13:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel13"}
+{RTP-Mod01:,	DI-CH14:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel14"}
+{RTP-Mod01:,	DI-CH15:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel15"}
+{RTP-Mod01:,	DI-CH16:,	OnOff,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel16"}
 }
 
 file "db/RTP_DO.template" { pattern
 {MOD,			CHNN,		SIG,		IDX,	ZNAM,	ONAM,		DESC}
-{RTP-Mod02:,	DO-CH01:,	VoltR,		200,	"Open",	"Close",	"RTP Mod2 DO Channel01"}
+{RTP-Mod02:,	DO-CH01:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel01"}
+{RTP-Mod02:,	DO-CH02:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel02"}
+{RTP-Mod02:,	DO-CH03:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel03"}
+{RTP-Mod02:,	DO-CH04:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel04"}
+{RTP-Mod02:,	DO-CH05:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel05"}
+{RTP-Mod02:,	DO-CH06:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel06"}
+{RTP-Mod02:,	DO-CH07:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel07"}
+{RTP-Mod02:,	DO-CH08:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel08"}
+{RTP-Mod02:,	DO-CH09:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel09"}
+{RTP-Mod02:,	DO-CH10:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel10"}
+{RTP-Mod02:,	DO-CH11:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel11"}
+{RTP-Mod02:,	DO-CH12:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel12"}
+{RTP-Mod02:,	DO-CH13:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel13"}
+{RTP-Mod02:,	DO-CH14:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel14"}
+{RTP-Mod02:,	DO-CH15:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel15"}
+{RTP-Mod02:,	DO-CH16:,	SetOnOff,	200,	"Open",	"Close",	"RTP Mod2 DO Channel16"}
 }
 

@@ -1,0 +1,63 @@
+#define TEST 0 x 04
+
+{
+
+DAQmx_Digital_Output (taskHandle, NATDEVICE_NUM1, PORT_A, TEST);
+
+...
+
+}
+
+{
+
+Int32 error = 0;
+
+Int32 numWritten = 1;
+
+If (DevNo == 1 & PortNo == 2) {}
+
+DAQmxErrChk (DAQmxCreateTask ("", & MX_DO_Handle));
+
+DAQmxErrChk (DAQmxCreateDOChan (MX_DO_Handle, "port1/Dev1", "", DAQmx_Val_ChanForAllLines)); It has 8 lines
+
+DAQmxErrChk (DAQmxWriteDigitalU8(MX_DO_Handle,1,1,0.0,DAQmx_Val_GroupByChannel,&iDataToWrite,&numWritten,));
+
+if (!) Error & iDataToWrite == 0x04) {}
+
+printf ("iDataToWrite to writing: 0x%X\n", iDataToWrite);
+
+}
+
+}
+
+on the other
+
+printf ("failed to write! \n") ;
+
+...
+
+}
+
+If (! error & iDataToWrite == 0x04) code, everything I wrote as == 0 x 4 or 0x04, it passes the condition without error.
+
+I wonder if DAQmxWriteDigitalU8 writes the data as 0100 0000. It should be 0000 0100.
+
+If you are writing 0x04 a 8-bit port, then what you get is:
+
+line 0-0
+
+line 1-0
+
+line 2-1
+
+line 3-0
+
+line 4-0
+
+line 5-0
+
+line 6-0
+
+line 7-0
+
+0 is the lsb and it is no different in DAQmx and traditional DAQ.
