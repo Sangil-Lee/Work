@@ -32,6 +32,14 @@ dbLoadTemplate("db/cdmsTester_RTP.sub");
 #dbLoadTemplate("db/cdmsTester_Modbus.sub");
 
 
+##NI-DAQ, PXI Interface
+#nidaqAsynEpicsConfigure("nidaqmx","${TOP}/iocBoot/${IOC}/NIDAQRegister.reg", "PXI1Slot5/ai0")
+
+## Load record instances
+#dbLoadRecords("db/subArray.db","SYS=SRF1,SUBSYS=QWR01,DEV=CM,SUBDEV=P30")
+#dbLoadRecords("db/subArray.db","SYS=SRF2,SUBSYS=QWR01,DEV=CM,SUBDEV=P30")
+#dbLoadTemplate("${TOP}/iocBoot/${IOC}/nidaqmx.sub")
+
 ##Soft Pvs
 dbLoadRecords("db/CDMSTester.db", "PREFIX=CDMSTester")
 

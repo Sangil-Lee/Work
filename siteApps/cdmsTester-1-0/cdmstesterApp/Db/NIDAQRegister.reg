@@ -1,0 +1,31 @@
+##ALIAS##,##Module Options##,##scale parameter ##Param Type##,##devicename##
+#Module Options, scaleparameter(minval, maxval, slope, offset)
+NIDAQ_MX_SLOT2_AI0_AVG,				0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+NIDAQ_MX_SLOT2_AI1_AVG,				0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+NIDAQ_MX_SLOT2_AI2_AVG,				0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_LINEARSCALE_SLOPE,	0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_LINEARSCALE_OFFSET,	0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_MIN_VALUE,			0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_MAX_VALUE,			0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#
+#Options(0x00010001, Higher 0x0001:current module, Lower 0x0001:linear scale)
+#Linear Scale (0.0 ~ 100.0) y=mx+b, m = slope(10), b = offset(5.0)
+#NIDAQ_MX_SLOT5_WAVE_0,				0x00000001, 0.0, 100.0, 10.0,0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+#
+#Current Module
+#NIDAQ_MX_SLOT5_WAVE_0,				0x00010001, 0.0, 50.0, 5.0,0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+#NIDAQ_MX_SLOT5_WAVE_0,				0x00000001, 0.0, 50.0, 5.0,0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+
+
+#Voltage Module Linear Scaling
+#createAIVoltChannel(device, 0.0, 2.0, DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserRangeMap");
+#DAQmxCreateLinScale(userScaleName.c_str(),param[2], param[3], prescaleunit, scaledunit.c_str());
+#NIDAQ_MX_SLOT5_WAVE_0,	 			0x00000001, 0.0, 2.0, 0.2, 0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+
+#Voltage Module Range Mapping(0.0 ~ 10.0 Volts mapped 0.0 ~ 2.0 bar)
+#createAIVoltChannel(device, 0.0, 2.0, DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserRangeMap");
+#DAQmxCreateMapScale(userScaleName.c_str(),param[0], param[1],param[2],param[3],prescaleunit, scaledunit.c_str());
+
+NIDAQ_MX_SLOT2_WAVE_0,	 0x00000001, 0.0, 10.0, 0, 2, 	 asynParamFloat64Array,   PXI1Slot2/ai0,	NIDAQ_MX_SLOT2_AI0_AVG
+NIDAQ_MX_SLOT2_WAVE_1,	 0x00000002, 0.0, 10.0, 0, 2,    asynParamFloat64Array,   PXI1Slot2/ai1,	NIDAQ_MX_SLOT2_AI1_AVG
+NIDAQ_MX_SLOT2_WAVE_2,	 0x00000003, 0.0, 5.0,  1, 1.6,  asynParamFloat64Array,   PXI1Slot2/ai2,	NIDAQ_MX_SLOT2_AI2_AVG

@@ -22,6 +22,8 @@ DB += cdmsTester_RTP.sub
 #DB += cdmsTester_Modbus.sub
 
 ## NI-PXI DB
+DB += nidaqmx.sub
+DB += NIDAQRegister.reg
 
 ## Soft PVs
 DB += CDMSTester.db

@@ -1,0 +1,15 @@
+
+file "db/nidaq_ai.template" { pattern
+{ SYS,	SUBSYS,		DEV,		SUBDEV,		PORT,		ADDR,	TIMEOUT, 	SIGNAL,		ALIAS,							SCAN,		    VAL } 
+{ SRF01, HT01,     VBx21,     PT7203		nidaqmx,        0,    1,        Press,      NIDAQ_MX_SLOT2_AI0_AVG,        	"I/O Intr",  	0.0 }
+{ SRF01, HT01,     VBx21,     PT7205		nidaqmx,        0,    1,        Press,      NIDAQ_MX_SLOT2_AI1_AVG,        	"I/O Intr",  	0.0 }
+{ SRF01, Bunker1,  QWR01,     Press,		nidaqmx,        0,    1,        P30,        NIDAQ_MX_SLOT2_AI2_AVG,        	"I/O Intr",  	0.0 }
+}
+
+file "db/nidaq_waveform.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		PORT,		ADDR,TIMEOUT,	SIGNAL,		 ALIAS,					 DTYP,					NELM,  FLNK,	SCAN }
+{SRF01, HT01,      VBx21,    PT7203,	nidaqmx,     0,   1,		Press_Raw,  NIDAQ_MX_SLOT2_WAVE_0,  "asynFloat64ArrayIn",  1000,   "NIDAQ_MX_SLOT2_AI0_AVG", "I/O Intr"}
+{SRF01, HT01,      VBx21,    PT7205,	nidaqmx,     0,   1,		Press_Raw,  NIDAQ_MX_SLOT2_WAVE_1,  "asynFloat64ArrayIn",  1000,   "NIDAQ_MX_SLOT2_AI1_AVG", "I/O Intr"}
+{SRF01, Bunker1,   QWR01,	 Press,		nidaqmx,     0,   1,		P30_Raw,    NIDAQ_MX_SLOT2_WAVE_2,  "asynFloat64ArrayIn",  1000,   "NIDAQ_MX_SLOT2_AI2_AVG", "I/O Intr"}
+}
+
