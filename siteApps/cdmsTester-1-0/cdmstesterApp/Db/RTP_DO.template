@@ -1,0 +1,10 @@
+record(bo, ${MOD}${CHNN}${SIG}) {
+  field(DESC, "${DESC}")
+  field(PINI, "YES")
+  field(DTYP, "rtpSyncWriteBO")
+  field(INP, "@RTP(0, ${IDX})")
+  field(VAL, "0")
+  field(ZNAM, "${ZNAM}")
+  field(ONAM, "${ONAM}")
+}
+

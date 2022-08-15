@@ -16,6 +16,7 @@ cdmstester_registerRecordDeviceDriver pdbbase
 #dbLoadRecords("db/RTPOneTest.vdb")
 #dbLoadRecords("db/RTPTest.vdb")
 
+dbLoadTemplate("db/cdmsTester_RTP.sub");
 
 ##ModbusTCP
 #drvAsynIPPortConfigure("CDMS_RTP", "192.168.1.61:502", 0, 0, 1)

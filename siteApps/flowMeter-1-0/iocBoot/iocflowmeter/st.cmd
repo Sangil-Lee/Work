@@ -25,9 +25,6 @@ drvModbusAsynConfigure("NDPSAI5",  "NDPSFlowMeter", 0, 3,  6002,   2, 7, 100, "M
 drvModbusAsynConfigure("NDPSAI6",  "NDPSFlowMeter", 0, 3,  7002,   2, 7, 100, "Modicon")  
 drvModbusAsynConfigure("NDPSAI7",  "NDPSFlowMeter", 0, 3,  8002,   2, 7, 100, "Modicon")  
 
-## Load record instances
-#dbLoadRecords("db/xxx.db","user=ctrluser")
-
 ## Real Template
 dbLoadTemplate("db/flowMeter.sub")
 

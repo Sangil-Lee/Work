@@ -102,8 +102,8 @@ static long processAi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPReadAO  ={6, 0, 0, initAo, 0, processAo, 0};
-epicsExportAddress(dset,devSyncRTPReadAO);
+devRTP devSyncRTPWriteAO  ={6, 0, 0, initAo, 0, processAo, 0};
+epicsExportAddress(dset,devSyncRTPWriteAO);
 
 static long initAo (void *prec)
 {
@@ -119,13 +119,13 @@ static long initAo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPReadAO (init_record) Illegal OUT field");
+					"devSyncRTPWriteAO (init_record) Illegal OUT field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPReadAO (init_record) Syntax error: OUT field");
+				"devSyncRTPWriteAO (init_record) Syntax error: OUT field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;
@@ -193,8 +193,8 @@ static long processBi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPReadBO  ={6, 0, 0, initBo, 0, processBo, 0};
-epicsExportAddress(dset,devSyncRTPReadBO);
+devRTP devSyncRTPWriteBO  ={6, 0, 0, initBo, 0, processBo, 0};
+epicsExportAddress(dset,devSyncRTPWriteBO);
 
 static long initBo (void *prec)
 {
@@ -210,13 +210,13 @@ static long initBo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPReadBI (init_record) Illegal INP field");
+					"devSyncRTPWriteBO (init_record) Illegal INP field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPReadBI (init_record) Syntax error: INP field");
+				"devSyncRTPWriteBO (init_record) Syntax error: INP field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;

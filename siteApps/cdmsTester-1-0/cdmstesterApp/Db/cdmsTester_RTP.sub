@@ -1,0 +1,16 @@
+file "db/RTP_AI.template" { pattern
+{MOD,			CHNN,		SIG,		IDX,	SCAN,		DESC}
+{RTP-Mod00:,	AI-CH01:,	VoltR,		5,		"1 second",	"RTP Mod0 AI Channel01"}
+{RTP-Mod00:,	AI-CH02:,	VoltR,		6,		"1 second",	"RTP Mod0 AI Channel02"}
+}                                                               
+
+file "db/RTP_DI.template" { pattern
+{MOD,			CHNN,		SIG,		IDX,	ZNAM,	ONAM,		SCAN,		DESC}
+{RTP-Mod01:,	DI-CH01:,	VoltR,		100,	"Open",	"Close",	"1 second",	"RTP Mod1 DI Channel01"}
+}
+
+file "db/RTP_DO.template" { pattern
+{MOD,			CHNN,		SIG,		IDX,	ZNAM,	ONAM,		DESC}
+{RTP-Mod02:,	DO-CH01:,	VoltR,		200,	"Open",	"Close",	"RTP Mod2 DO Channel01"}
+}
+

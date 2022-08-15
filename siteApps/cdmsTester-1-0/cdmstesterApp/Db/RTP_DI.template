@@ -1,0 +1,11 @@
+record(bi, ${MOD}${CHNN}${SIG}) {
+  field(DESC, "${DESC}")
+  field(SCAN, "${SCAN}")
+  field(PINI, "YES")
+  field(DTYP, "rtpSyncReadBI")
+  field(INP, "@RTP(0, ${IDX})")
+  field(VAL, "0")
+  field(ZNAM, "${ZNAM}")
+  field(ONAM, "${ONAM}")
+}
+
