@@ -40,7 +40,7 @@ nidaqAsynEpics::nidaqAsynEpics(const char *portName, const char* filename, const
 			1, /* Autoconnect */
 			0, /* Default priority */
 			0 /* Default stack size*/
-			),fileName(filename),driverName("nidaqAsynEpics"),system_init_ok(1) 
+			),fileName(filename),driverName("nidaqAsynEpics"),system_init_ok(1),gTask(0)
 {
 	printf("GCC Version-(%d)\n", GCC_VERSION);
     asynStatus status;
@@ -49,8 +49,14 @@ nidaqAsynEpics::nidaqAsynEpics(const char *portName, const char* filename, const
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
 
+	DAQmxCreateTask("", &gTask);
+
     // register parameter list from register file.  
 	registerParamListFromFile(fileName);
+
+	//DAQmxCfgSampClkTiming(gTask, "", 500.0/*Sampling Rate, 500Hz*/, DAQmx_Val_Rising, DAQmx_Val_ContSamps, 1000);
+	DAQmxCfgSampClkTiming(gTask, "", 1000.0/*1kHz*/, DAQmx_Val_Rising, DAQmx_Val_ContSamps, 1000);
+	DAQmxStartTask(gTask);
 
 	if (system_init_ok==1) 
 	{
@@ -65,6 +71,17 @@ nidaqAsynEpics::nidaqAsynEpics(const char *portName, const char* filename, const
 		}
 	} else {
 		status = asynError;
+	};
+
+}
+nidaqAsynEpics::~nidaqAsynEpics()
+{
+	if( gTask!=0 )  {
+		/*********************************************/
+		// DAQmx Stop Code
+		/*********************************************/
+		DAQmxStopTask(gTask);
+		DAQmxClearTask(gTask);
 	};
 }
 
@@ -116,13 +133,6 @@ void nidaqAsynEpics::registerParamListFromFile(string filename)
 		regmap.index++;
 	};	
 
-#if 0
-	for(int i = 0; i < regmaptable.size();i++)
-	{
-		//regmaptable[i].pNIDAQ = new nidaqDriver(regmaptable[i].devicename);
-		regmaptable[i].pNIDAQ = make_shared<nidaq::nidaqDriver>(regmaptable[i].devicename);
-	};
-#endif
 }
 
 asynParamType nidaqAsynEpics::getAsynParamType(const char *paramstring)
@@ -167,12 +177,26 @@ asynStatus nidaqAsynEpics::createParamNMap(RegMap &regmap)
 		opt2 = regmap.scaleparameter[1];
 		opt3 = regmap.scaleparameter[2];
 		opt4 = regmap.scaleparameter[3];
-		printf("scalemode(%d),opt1val(%f),opt2val(%f),opt3val(%f),opt4val(%f),optval(%lu)\n",scalemode, opt1, opt2, opt3, opt4, optval);
-		//regmap.pNIDAQ = make_shared<nidaq::nidaqDriver>(regmap.devicename, minVal, maxVal,slope, offset, scalemode, current);
-		regmap.pNIDAQ = make_shared<nidaq::nidaqDriver>(regmap.devicename, regmap.scaleparameter, scalemode, current);
+		printf("devname(%s),scalemode(%d),opt1val(%f),opt2val(%f),opt3val(%f),opt4val(%f),optval(%lu)\n",regmap.devicename, scalemode, opt1, opt2, opt3, opt4, optval);
+		//regmap.pNIDAQ = make_shared<nidaq::nidaqDriver>(regmap.devicename, regmap.scaleparameter, scalemode, current);
 	};
 
-	//regmap.pNIDAQ = shared_ptr<nidaq::nidaqDriver>(new nidaqDriver(regmap.devicename));
+#if 1
+	if(scalemode == 1) {
+		DAQmxCreateAIVoltageChan(gTask, regmap.devicename, "", DAQmx_Val_RSE, opt3, opt4, DAQmx_Val_FromCustomScale, "UserRangeMap1");
+		DAQmxCreateMapScale("UserRangeMap1",opt1,opt2,opt3,opt4,DAQmx_Val_Volts, "bar");
+	}else if(scalemode == 2) {
+		DAQmxCreateAIVoltageChan(gTask, regmap.devicename, "", DAQmx_Val_RSE, opt3, opt4, DAQmx_Val_FromCustomScale, "UserRangeMap2");
+		DAQmxCreateMapScale("UserRangeMap2",opt1,opt2,opt3,opt4,DAQmx_Val_Volts, "bar");
+	}else if(scalemode == 3) {
+		DAQmxCreateAIVoltageChan(gTask, regmap.devicename, "", DAQmx_Val_RSE, opt3, opt4, DAQmx_Val_FromCustomScale, "UserRangeMap3");
+		DAQmxCreateMapScale("UserRangeMap3",opt1,opt2,opt3,opt4,DAQmx_Val_Volts, "bar");
+	};
+	
+#else
+	DAQmxCreateAIVoltageChan(gTask, regmap.devicename, "", DAQmx_Val_RSE, opt1, opt2, DAQmx_Val_Volts, NULL);
+#endif
+
 	regmaptable[regmap.index] = regmapfile[regmap.drvname] = regmap;
 
 	string strOpt = optbit.to_string();
@@ -253,7 +277,7 @@ asynStatus nidaqAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *v
 	float64	rdValue[nElements];
 	int count = 0;
 
-	regmap.pNIDAQ->ReadAnalog(rdValue, &count, nElements, 2.0);
+	//regmap.pNIDAQ->ReadAnalog(rdValue, &count, nElements, 2.0);
 
 	string strData = string(regmap.drvlink);
 	if(strData.compare("NA") != 0)
@@ -271,13 +295,6 @@ asynStatus nidaqAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *v
 			epicsEventSignal(eventId_);
 		};
 	};
-
-#if 0
-	// using valarray
-	valarray<float64> sumarr(rdValue, nElements);
-	float64 avg = sumarr.sum()/nElements;
-	cout << "Average Val: " << avg << endl;
-#endif
 
 	memcpy(value, rdValue, nElements*sizeof(epicsFloat64));
 	doCallbacksFloat64Array(value, nElements, regmap.index, 0);
@@ -625,8 +642,32 @@ void nidaqAsynEpics::UserProcess()
 {
 	//struct timespec vartime;
 	//long time_elapsed_nanos;
+#if 0
+	while(true)
+	{
+		int32       read = 1000;
+		//DAQmxReadAnalogF64(taskHandle,1000,10,DAQmx_Val_GroupByScanNumber,data,2000,&read,NULL);
+		DAQmxReadAnalogF64(taskHandle,1000,-1,DAQmx_Val_GroupByChannel,data,2000,&read,NULL);
+		/*********************************************/
+		//DAQmxReadAnalogF64(taskHandle, 1, 2.0, DAQmx_Val_GroupByChannel, data, 1, &read, NULL);
+
+		for ( int index = 0; index < 2000; index++) {
+			printf("Data[%d] :%f\n",index, data[index]);
+		}	
+		printf("Acquired %d points\n",(int)read);
+		sleep(1);
+	};
+#endif
 
 	lock();
+
+	const int read = 1000;
+	int32 	  bufread = 0;
+	const int pvcount = 3;
+	float64 dataValue[pvcount*read];
+	double vbx_wave_1[read];
+	double vbx_wave_2[read];
+	double cm_wave_1[read];
 
 	/* Loop forever 
 	 * If the logic will be able to block into scan thread in IOC, this thread should work in IOC.
@@ -634,6 +675,7 @@ void nidaqAsynEpics::UserProcess()
 	while (1) { 
         // Release the lock while we wait for a command to start or wait for updateTime
         unlock();
+		epicsEventWaitWithTimeout(eventId_, 0.5);
 
 #if 0
         if (run) epicsEventWaitWithTimeout(eventId_, 0.0025);	//400Hz
@@ -643,7 +685,63 @@ void nidaqAsynEpics::UserProcess()
         // Take the lock again
         lock(); 
 
+		//DAQmxReadAnalogF64(gTask,1000,5.0,DAQmx_Val_GroupByScanNumber,dataValue,read*pvcount,&bufread,NULL);
+		DAQmxReadAnalogF64(gTask,1000,5.0,DAQmx_Val_GroupByChannel,dataValue,read*pvcount,&bufread,NULL);
+
+		for ( int index = 0; index < read; index++) {
+			//printf("dataValue[%d] :%f\n",index, dataValue[index]);
+			vbx_wave_1[index]  = dataValue[index];
+			vbx_wave_2[index]  = dataValue[index+1000];
+			cm_wave_1[index] = dataValue[index+2000];
 #if 0
+			printf("vbx_wave_1[%d] = %f\n", index, vbx_wave_1[index]);
+			printf("vbx_wave_2[%d] = %f\n", index, vbx_wave_2[index]);
+			printf(" cm_wave_1[%d] = %f\n", index, cm_wave_1[index]);
+#endif
+		};
+
+		float64 vbx_1_avg = accumulate(vbx_wave_1, vbx_wave_1+read, 0.0, plus<float64>()) / read;
+		float64 vbx_2_avg = accumulate(vbx_wave_2, vbx_wave_2+read, 0.0, plus<float64>()) / read;
+		float64 cm_1_avg = accumulate(cm_wave_1, cm_wave_1+read, 0.0, plus<float64>()) / read;
+
+		if(nidaqDebug)	
+		{
+#if 0
+			float64 vbx_min = *std::min_element(vbx_wave_1, vbx_wave_1+read);
+			float64 vbx_max = *std::max_element(vbx_wave_1, vbx_wave_1+read);
+			float64 vbx_min_1 = *std::min_element(vbx_wave_2, vbx_wave_2+read);
+			float64 vbx_max_1 = *std::max_element(vbx_wave_2, vbx_wave_2+read);
+			float64 cm_1_min = *std::min_element(cm_wave_1, cm_wave_1+read);
+			float64 cm_1_max = *std::max_element(cm_wave_1, cm_wave_1+read);
+			printf("Min(VB(%f),CM1(%f)), Avg(VB(%f),CM1(%f)), Max(VB(%f),CM1(%f))\n",vbx_min,cm_1_min, vbx_1_avg, cm_1_avg, vbx_max, cm_1_max);
+#endif
+		};
+
+    	RegMap regmap_vb_1   = regmapfile["NIDAQ_MX_SLOT2_WAVE_0"];
+    	RegMap regmap_vb_2   = regmapfile["NIDAQ_MX_SLOT2_WAVE_1"];
+    	RegMap regmap_cm_1 = regmapfile["NIDAQ_MX_SLOT2_WAVE_2"];
+
+		if((setParamValue(regmap_vb_1.drvlink, vbx_1_avg)) == 0)
+		{
+			callParamCallbacks();
+		};
+
+		if((setParamValue(regmap_vb_2.drvlink, vbx_2_avg)) == 0)
+		{
+			callParamCallbacks();
+		};
+
+		if((setParamValue(regmap_cm_1.drvlink, cm_1_avg)) == 0)
+		{
+			callParamCallbacks();
+		};
+
+		doCallbacksFloat64Array(vbx_wave_1,  read, regmapfile["NIDAQ_MX_SLOT2_WAVE_0"].index, 0);
+		doCallbacksFloat64Array(vbx_wave_2,  read, regmapfile["NIDAQ_MX_SLOT2_WAVE_1"].index, 0);
+		doCallbacksFloat64Array(cm_wave_1, read, regmapfile["NIDAQ_MX_SLOT2_WAVE_2"].index, 0);
+	
+#if 0
+		//epicsThreadSleep(1.0);
         /* run could have changed while we were waiting */
         getIntegerParam(P_Run, &run);
         if (!run) continue;
@@ -685,43 +783,11 @@ bool nidaqAsynEpics::checkBit(epicsUInt32 option, epicsUInt32 nbit)
 	return ((option >> nbit)&1);
 }
 
-#if 0
-//Multi Return Test
-tuple < float, int, int, int > nidaqAsynEpics::cal(int n1, int n2)
-{
-	return make_tuple((float)n1/n2, n1%n2, n1+n2, n1*n2);
-}
-
-void nidaqAsynEpics::caltest()
-{
-	float re1;
-	int re2, re3, re4;
-
-	tie(re1, re2, re3, re4) = cal(5, 10);
-
-	auto result = cal(5,10);
-
-	printf("re1(%f), re2(%d), re3(%d), re4(%d)\n", re1, re2, re3, re4);
-	printf("re1(%f), re2(%d), re3(%d), re4(%d)\n", get<0>(result), get<1>(result), get<2>(result), get<3>(result)); 
-
-}
-#endif
-
 void userProcess(void *drvPvt)
 {
 	nidaqAsynEpics *pPvt = (nidaqAsynEpics *)drvPvt;
 	if(pPvt!=NULL) pPvt->UserProcess();
 }
-
-#if 0
-template <typename epicsType> 
-asynStatus readArray(asynUser *pasynUser, epicsType *value, size_t nElements, size_t *nIn)
-{
-    epicsSnprintf(pasynUser->errorMessage, pasynUser->errorMessageSize, 
-                "%s:readArray not implemented", driverName);
-    return(asynError);
-}
-#endif
 
 extern "C" {
 
