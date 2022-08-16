@@ -30,6 +30,9 @@ drvModbusAsynConfigure("TBXAI_2", "TBX_PLC", 0, 3,  252, 125, 7, 100, "Modicon")
 
 drvModbusAsynConfigure("TBXAO",   "TBX_PLC", 0, 6,  400, 125, 7, 100, "Modicon")
 drvModbusAsynConfigure("TBXAO_1", "TBX_PLC", 0, 6,  526, 25,  7, 100, "Modicon")
+drvModbusAsynConfigure("TBXAO_2", "TBX_PLC", 0, 6,  608, 125,  7, 100, "Modicon")
+drvModbusAsynConfigure("TBXAO_3", "TBX_PLC", 0, 6,  734, 125,  7, 100, "Modicon")
+drvModbusAsynConfigure("TBXAO_4", "TBX_PLC", 0, 6,  860, 100,  7, 100, "Modicon")
 
 
 #drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
