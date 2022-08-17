@@ -1,0 +1,26 @@
+
+###Cryo-CDL00:TBx01-DPT7503:ASubFFT
+record(aSub, "$(SYS):$(DEV):ASubFFT") {
+  field(INAM, "InitFFTWave")
+  field(SNAM, "ProcFFTWave")
+  field(INPA, "$(SYS):$(DEV):$(INPA)")
+  field(NOA, "1000")
+  field(OUTA, "$(SYS):$(DEV):FFTAmp PP")
+  field(OUTB, "$(SYS):$(DEV):FFTFreq PP")
+  field(NOVA, "1000")
+  field(NOVB, "1000")
+  field(SCAN, "$(SCAN)")
+}
+
+record(waveform, "$(SYS):$(DEV):FFTAmp") {
+  field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
+}
+
+record(waveform, "$(SYS):$(DEV):FFTFreq") {
+  field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
+}
+
