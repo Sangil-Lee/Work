@@ -1,0 +1,8 @@
+record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CPStat") {
+  field(SCAN, "1 second")
+  field(VAL, "0")
+  field(ZNAM, "Open")
+  field(ONAM, "Close")
+  field(INP, "$${SYS}${SUBSYS}${DEV}${SUBDEV}{INP} PP")
+}
+

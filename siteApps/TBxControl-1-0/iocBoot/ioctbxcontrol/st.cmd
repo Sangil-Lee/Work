@@ -37,13 +37,17 @@ drvModbusAsynConfigure("TBXAO_4", "TBX_PLC", 0, 6,  860, 100,  7, 100, "Modicon"
 
 #drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
 drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 3,  550,  26, 7, 100, "Modicon")
-drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 6,  576,  22, 7, 100, "Modicon")
+drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 6,  576,  29, 7, 100, "Modicon")
 
-## Load record instances
+## Load record instances, Before 0818
 #dbLoadTemplate("db/TBxcontrol.sub")
 #dbLoadTemplate("db/TBxcontrol_test.sub")
+#dbLoadTemplate("db/TBxcontrol_2.sub")
 
-dbLoadTemplate("db/TBxcontrol_2.sub")
+
+##0818
+dbLoadTemplate("db/TBxcontrol_3.sub")
+dbLoadTemplate("db/SoftPVs_TBx.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

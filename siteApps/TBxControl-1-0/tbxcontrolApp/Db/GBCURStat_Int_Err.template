@@ -1,0 +1,21 @@
+##
+record(mbbi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CURStat") {
+  field(SCAN, "Passive")
+  field(ZRST, "Normal")
+  field(ONST, "OVRStat")
+  field(TWST, "FailStat")
+  field(THST, "IntStat")
+  field(FRST, "DCPCStat")
+  field(FVST, "ManuStat")
+  field(SXST, "AutoStat")
+  field(VAL, "0")
+}
+
+record(calcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}CalcStat") {
+  field(SCAN, "1 second")
+  field(CALC, "A?2:B?3:0")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPA}")
+  field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}${INPB}")
+  field(OUT,  "${SYS}${SUBSYS}${DEV}${SUBDEV}CURStat PP")
+}
+

@@ -1,0 +1,95 @@
+#record(mbbi, "${SYS}${SUBSYS}${DEV}${SUBDEV}CURStat") {
+#  field(SCAN, "Passive")
+#  #field(ZRST, "Normal")
+#  #field(ONST, "OVRStat")
+#  #field(TWST, "FailStat")
+#  #field(THST, "IntStatL")
+#  #field(FRST, "IntStatGL")
+#  #field(FVST, "DCPCStat")
+#  #field(SXST, "ManuStat")
+#  #field(SVST, "AutoStat")
+#  #field(VAL, "0")
+#
+#  ### for test
+#  field(ZRST, "OVRStat")
+#  field(ONST, "FailStat")
+#  field(TWST, "IntStatL")
+#  field(THST, "IntStatGL")
+#  field(FRST, "DCPCStat")
+#  field(FVST, "ManuStat")
+#  field(SXST, "AutoStat")
+#  #field(VAL, "0")
+#}
+
+record(longin, "${SYS}${SUBSYS}${DEV}${SUBDEV}CURStat") {
+  field(SCAN, "Passive")
+  field(VAL, "0")
+}
+
+record(calcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}CalcStat") {
+  field(SCAN, "1 second")
+
+  #field(CALC, "A|(B<<1)|(C<<2)|(D<<3)|(E<<4)|(F<<5)|(G<<6)")
+  #field(CALC, "A?1:B?B<<1:C?C<<2:D?D<<3:E?E<<4:F?F<<5:G?G<<6:0")
+
+#field(CALC, "A?1:B?2:C?3:D?4:E?5:F?6:G?7:0")
+#field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}OVRStat")
+#field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}FailStat")
+#field(INPC, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat")
+#field(INPD, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStatG")
+#field(INPE, "${SYS}${SUBSYS}${DEV}${SUBDEV}DCPCStat")
+#field(INPF, "${SYS}${SUBSYS}${DEV}${SUBDEV}ManuStat")
+#field(INPG, "${SYS}${SUBSYS}${DEV}${SUBDEV}AutoStat")
+
+
+  ###for test
+  field(CALC, "A?0x0100:B?0x0200:0x0100")
+  field(INPA, "${SYS}${SUBSYS}${DEV}${SUBDEV}ManuStat")
+  field(INPB, "${SYS}${SUBSYS}${DEV}${SUBDEV}AutoStat")
+  field(OUT, "${SYS}${SUBSYS}${DEV}${SUBDEV}CURStat PP")
+}
+
+
+####
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}OVRStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}FailStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}IntStatG") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}DCPCStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}ManuStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+##
+##record(bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}AutoStat") {
+##  field(VAL, "1")
+##  field(ZNAM, "Normal")
+##  field(ONAM, "Interlock")
+##}
+

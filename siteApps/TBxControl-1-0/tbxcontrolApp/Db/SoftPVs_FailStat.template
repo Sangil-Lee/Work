@@ -1,0 +1,17 @@
+## EPICS IOC Virtual PVs - HWRB CM
+
+record (bi, "${SYS}${SUBSYS}${DEV}${SUBDEV}FailStat"){
+    field(PINI, "YES")
+    field(SCAN, "Passive")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+}
+
+record (bo, "${SYS}${SUBSYS}${DEV}${SUBDEV}SetFailEN"){
+    field(PINI,  "YES")
+    field(VAL, "0")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+    field(OUT, "${SYS}${SUBSYS}${DEV}${SUBDEV}FailStat PP")
+}
+
