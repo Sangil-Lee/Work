@@ -43,8 +43,6 @@ class nidaqAsynEpics : public asynPortDriver
 {
 public:
 	nidaqAsynEpics(const char *portName, const char* filename, const char *deviceName);
-	~nidaqAsynEpics();
-
 	void UserProcess();
 
 protected:
@@ -55,7 +53,6 @@ private:
 	const char *driverName;
     epicsEventId eventId_;
     int system_init_ok;
-	TaskHandle gTask;
 
 	//unsigned long bit test
 	typedef bitset<32> OptionBit;
@@ -70,7 +67,7 @@ private:
 		char			drvlink[64];
 		int				index;
 		//nidaq::nidaqDriver *pNIDAQ;
-		//shared_ptr<nidaq::nidaqDriver> pNIDAQ;
+		shared_ptr<nidaq::nidaqDriver> pNIDAQ;
 	};
 
 	//GCC Version > 4.3, unordered_map
@@ -137,6 +134,9 @@ private:
 	epicsUInt32 setExclusiveBit(epicsUInt32 option, epicsUInt32 nbit);
 	bool checkBit(epicsUInt32 option, epicsUInt32 nbit);
 #endif
+
+	//tuple < float, int, int, int > cal(int n1, int n2);
+	//void caltest();
 };
 
 #endif
