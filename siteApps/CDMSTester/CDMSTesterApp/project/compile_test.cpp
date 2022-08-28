@@ -9,23 +9,22 @@ while decryption -
 -> program reads encrypted data from encryption.text
 -> decrypted data is stored in outputtext.txt file
 */
-#include<iostream>
-#include<fstream>
-#include<cstring>
-#include<sstream>
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <sstream>
+#include <typeinfo>
+#include <unistd.h>
 #include "key_expand.h"
 #include "encoding.h"
 #include "decoding.h"
-#include <typeinfo>
-#include<windows.h>
+
 using namespace std;
-int main()
+int compile_test()
 {
 	//we will read from file input.txt
-int extendedlength=0;
 int choice;
 string myText;
-label:
    cout<<"Welcome to 128 bits AES encryption"<<endl;
    cout<<endl;
    cout<<"Enter you choice "<<endl;
@@ -53,19 +52,19 @@ label:
 			newfile.open("input.txt",ios::in); //open a file to perform read operation using file object
 			if (newfile.is_open()){   //checking whether the file is open
 				cout<<"Reading plain text from input.txt .........\n";
-				Sleep(1000);
+				usleep(1000);
 				string tp;
 				cout<<"Reading KEY from key.txt ......\n";
-				Sleep(1000);
+				usleep(1000);
 				cout<<"Now encrypting ....\n";
-				Sleep(1000);
+				usleep(1000);
 				cout<<"writing encrypted data in encryption.aes ..\n";
-				Sleep(1000);
+				usleep(1000);
 				cout<<endl;
 				while(getline(newfile, tp)){ 
 					//read data from file object and put it into string.
 					int messlength=tp.length();
-					int extendedlength;
+					int extendedlength = 0;
 					if((messlength%16)!=0)
 					{
 						extendedlength=messlength+(16-(messlength%16));
@@ -140,14 +139,14 @@ label:
 	case 2:
 		{
 			cout<<"Reading encrypted data from encryption.txt .........\n";
-			Sleep(1000);
+			usleep(1000);
 			string tp;
 			cout<<"Reading KEY from key.txt ......\n";
-			Sleep(1000);
+			usleep(1000);
 			cout<<"Now Decrypting ....\n";
-			Sleep(1000);
+			usleep(1000);
 			cout<<"writing decrypted data in outputtext.txt ..\n";
-			Sleep(1000);
+			usleep(1000);
 			cout<<endl;
 			cout<<"Following is our decrypted text:- \n";
 			//clearing outputtext file
@@ -231,7 +230,7 @@ label:
 
 					fin.close();
 					fout.close(); // Closing the file
-					Sleep(500);
+					usleep(500);
 				}
 			}
 			else
@@ -243,5 +242,7 @@ label:
 			break;
 		}
   }
+
+  return 0;
 }
 
