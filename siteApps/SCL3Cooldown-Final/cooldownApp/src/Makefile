@@ -62,9 +62,22 @@ ifneq ($(SNCSEQ),)
 
     PROD_HOST += sncCooldown03_PROD
     sncCooldown03_PROD_SNCFLAGS += +m
-    sncCooldown03_PROD_SRCS += sncCooldown03_PROD.stt
+    sncCooldown03_PROD_SRCS += sncCooldown03_PROD.st
     sncCooldown03_PROD_LIBS += seq pv
     sncCooldown03_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncCooldown04_PROD
+    sncCooldown04_PROD_SNCFLAGS += +m
+    sncCooldown04_PROD_SRCS += sncCooldown04_PROD.st
+    sncCooldown04_PROD_LIBS += seq pv
+    sncCooldown04_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncCDOM14_15_Dic_PROD
+    sncCDOM14_15_Dic_PROD_SNCFLAGS += +m
+    sncCDOM14_15_Dic_PROD_SRCS += sncCDOM14_15_Dic_PROD.st
+    sncCDOM14_15_Dic_PROD_LIBS += seq pv
+    sncCDOM14_15_Dic_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
 endif
 
 # Finally link to the EPICS Base libraries
