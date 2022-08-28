@@ -14,7 +14,7 @@ PROD_IOC = cooldown
 # cooldown.dbd will be created and installed
 DBD += cooldown.dbd
 
-gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/8
+gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/10
 
 # cooldown.dbd will be made up from these files:
 cooldown_DBD += base.dbd
@@ -58,6 +58,13 @@ ifneq ($(SNCSEQ),)
     cooldown_SRCS += sncCDOM14_15_Dic.stt
     cooldown_SRCS += sncPT7001WF2Scalar.stt
     cooldown_LIBS += seq pv
+
+
+    PROD_HOST += sncCooldown03_PROD
+    sncCooldown03_PROD_SNCFLAGS += +m
+    sncCooldown03_PROD_SRCS += sncCooldown03_PROD.stt
+    sncCooldown03_PROD_LIBS += seq pv
+    sncCooldown03_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 endif
 
 # Finally link to the EPICS Base libraries

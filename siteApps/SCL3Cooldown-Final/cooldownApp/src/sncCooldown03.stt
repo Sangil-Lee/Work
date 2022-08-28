@@ -224,7 +224,8 @@ ss ssCDOM031
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_100))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);
-			sprintf(valvename, "%s:Valve", OM031[index]);
+			sprintf(valvename, "%s:Setpt", OM031[index]);
+			//sprintf(valvename, "%s:Valve", OM031[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -244,7 +245,8 @@ ss ssCDOM031
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_1))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);
-			sprintf(valvename, "%s:Valve", OM031[index]);
+			sprintf(valvename, "%s:Setpt", OM031[index]);
+			//sprintf(valvename, "%s:Valve", OM031[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -264,7 +266,8 @@ ss ssCDOM031
 		when(delay(cdDelay)&&efTestAndClear(efCDOM031_5))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM031",OM031[index]);
-			sprintf(valvename, "%s:Valve", OM031[index]);
+			sprintf(valvename, "%s:Setpt", OM031[index]);
+			//sprintf(valvename, "%s:Valve", OM031[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -429,7 +432,8 @@ ss ssCDOM032
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_1))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM032", OM032[index]);
-			sprintf(valvename, "%s:Valve", OM032[index]);
+			sprintf(valvename, "%s:Setpt", OM032[index]);
+			//sprintf(valvename, "%s:Valve", OM032[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -449,7 +453,8 @@ ss ssCDOM032
 		when(delay(cdDelay)&&efTestAndClear(efCDOM032_100))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM032", OM032[index]);
-			sprintf(valvename, "%s:Valve", OM032[index]);
+			sprintf(valvename, "%s:Setpt", OM032[index]);
+			//sprintf(valvename, "%s:Valve", OM032[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -566,7 +571,8 @@ ss ssCDOM034
 		when(delay(cdDelay)&&efTestAndClear(efCDOM034_5))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM034", OM034[index]);
-			sprintf(valvename, "%s:Valve", OM034[index]);
+			sprintf(valvename, "%s:Setpt", OM034[index]);
+			//sprintf(valvename, "%s:Valve", OM034[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -586,7 +592,8 @@ ss ssCDOM034
 		when(delay(cdDelay) && efTestAndClear(efCDOM034_50))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM034", OM034[index]);
-			sprintf(valvename, "%s:Valve", OM034[index]);
+			sprintf(valvename, "%s:Setpt", OM034[index]);
+			//sprintf(valvename, "%s:Valve", OM034[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex)
@@ -693,7 +700,8 @@ ss ssCDOM035
 		when(delay(cdDelay)&&efTestAndClear(efCDOM035))
 		{
 			sprintf(logicname,		"%s:%s:CDLogic.PROC","OM035", OM035[index]);
-			sprintf(valvename,      "%s:Valve",        	  OM035[index]);
+			sprintf(valvename,      "%s:Setpt",        	  OM035[index]);
+			//sprintf(valvename,      "%s:Valve",        	  OM035[index]);
 			sprintf(valve_evalname, "%s:ValveEval",       OM035[index]);
 			printf("%s, %s, %s\n", logicname, valvename, valve_evalname);
 
@@ -777,7 +785,8 @@ ss ssCDOM036
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_1_2))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_1_2", OM036_1_2[index]);
-			sprintf(valvename, "%s:Valve", OM036_1_2[index]);
+			sprintf(valvename, "%s:Setpt", OM036_1_2[index]);
+			//sprintf(valvename, "%s:Valve", OM036_1_2[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex_1_2)
@@ -797,7 +806,8 @@ ss ssCDOM036
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_3))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_3", OM036_3[index]);
-			sprintf(valvename, "%s:Valve", OM036_3[index]);
+			sprintf(valvename, "%s:Setpt", OM036_3[index]);
+			//sprintf(valvename, "%s:Valve", OM036_3[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex_3)
@@ -817,7 +827,8 @@ ss ssCDOM036
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_4))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM036_4", OM036_4[index]);
-			sprintf(valvename, "%s:Valve", OM036_4[index]);
+			sprintf(valvename, "%s:Setpt", OM036_4[index]);
+			//sprintf(valvename, "%s:Valve", OM036_4[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex_4)
@@ -837,7 +848,8 @@ ss ssCDOM036
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_5))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC","OM036_5", OM036_5[index]);
-			sprintf(valvename, "%s:Valve", OM036_5[index]);
+			sprintf(valvename, "%s:Setpt", OM036_5[index]);
+			//sprintf(valvename, "%s:Valve", OM036_5[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex_5)
@@ -857,7 +869,8 @@ ss ssCDOM036
 		when(delay(cdDelay) && efTestAndClear(efCDOM036_6_7))
 		{
 			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM036_6_7", OM036_6_7[index]);
-			sprintf(valvename, "%s:Valve", OM036_6_7[index]);
+			sprintf(valvename, "%s:Setpt", OM036_6_7[index]);
+			//sprintf(valvename, "%s:Valve", OM036_6_7[index]);
 			printf("%s, %s\n", logicname, valvename);
 
 			if(index < stopindex_6_7)
