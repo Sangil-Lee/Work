@@ -15,6 +15,11 @@ DB += NDPS_WS.sub
 DB += NDPS_CCS.sub
 DB += NDPS_VAC.sub
 
+## Flowmeter data processing
+DB += longin.template
+DB += flowMeter.sub
+DB += DataFanout.vdb
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
