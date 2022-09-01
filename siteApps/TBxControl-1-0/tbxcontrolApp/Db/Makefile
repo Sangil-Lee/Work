@@ -1,7 +1,7 @@
 TOP=../..
-include $(TOP)/configure/CONFIG
-#----------------------------------------
-#  ADD MACRO DEFINITIONS AFTER THIS LINE
+include $(TOP)/configure/CONFIG 
+
+#---------------------------------------- #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db

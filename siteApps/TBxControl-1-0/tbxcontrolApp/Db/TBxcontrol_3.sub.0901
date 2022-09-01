@@ -1,133 +1,145 @@
 file "db/aiFloat64.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,			SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,		SCAN,		DESC}
-{Cryo,	-CDL00:,	TBx01,	-PT7101:,		PresR,		"TBXAI",	  0,	 FLOAT32_BE, 0,		 1100,	 2,		 "mbar",	"1 second",	"TBx PT7101 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7102:,		PresR,		"TBXAI",	  2,	 FLOAT32_BE, 0,		 1100,	 2,		 "mbar",	"1 second",	"TBx PT7102 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7103:,		PresR,		"TBXAI",      4,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7103 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7104:,		PresR,		"TBXAI",      6,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7104 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7181:,		PresR,		"TBXAI",      8,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7181 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		PresR,		"TBXAI",     10,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PTSpare1 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7141:,		PresR,		"TBXAI",     12,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7141 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7142:,		PresR,		"TBXAI",     14,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7142 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7143:,		PresR,		"TBXAI",     16,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7143 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7144:,		PresR,		"TBXAI",     18,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7144 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		PresR,		"TBXAI",     20,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PTSpare2 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		PresR,		"TBXAI",     22,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PTSpare3 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7106:,		PresR,		"TBXAI",     24,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7106 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7105:,		PresR,		"TBXAI",     26,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7105 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7146:,		PresR,		"TBXAI",     28,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7146 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7145:,		PresR,		"TBXAI",     30,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7145 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PT7182:,		PresR,		"TBXAI",     32,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PT7182 Press"}
-{Cryo,	-CDL00:,	TBx01,	-PTSpare4:,		PresR,		"TBXAI",     34,     FLOAT32_BE, 0,      1100,   2,      "mbar",	"1 second", "TBx PTSpare4 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7101:,		PresR,		"TBXAI",	  0,	 FLOAT32_BE, 0,		 25,	 3,		 "mbar",	"1 second",	"TBx PT7101 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7102:,		PresR,		"TBXAI",	  2,	 FLOAT32_BE, 0,		 25,	 3,		 "mbar",	"1 second",	"TBx PT7102 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7103:,		PresR,		"TBXAI",      4,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7103 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7104:,		PresR,		"TBXAI",      6,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7104 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7181:,		PresR,		"TBXAI",      8,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7181 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		PresR,		"TBXAI",     10,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PTSpare1 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7141:,		PresR,		"TBXAI",     12,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7141 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7142:,		PresR,		"TBXAI",     14,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7142 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7143:,		PresR,		"TBXAI",     16,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7143 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7144:,		PresR,		"TBXAI",     18,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7144 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		PresR,		"TBXAI",     20,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PTSpare2 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		PresR,		"TBXAI",     22,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PTSpare3 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7106:,		PresR,		"TBXAI",     24,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7106 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7105:,		PresR,		"TBXAI",     26,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7105 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7146:,		PresR,		"TBXAI",     28,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7146 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7145:,		PresR,		"TBXAI",     30,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7145 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PT7182:,		PresR,		"TBXAI",     32,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PT7182 Press"}
+{Cryo,	-CDL00:,	TBx01,	-PTSpare4:,		PresR,		"TBXAI",     34,     FLOAT32_BE, 0,      25,     3,      "mbar",	"1 second", "TBx PTSpare4 Press"}
 #{AI_72																 36,																			}
 #{AI_76																 38,																			}
-{Cryo,	-CDL00:,	TBx01,	-TT7543:,		TempR,		"TBXAI",     40,     FLOAT32_BE, 0,      350,    1,      "K",		"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7541:,		TempR,		"TBXAI",     42,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7544:,		TempR,		"TBXAI",     44,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7542:,		TempR,		"TBXAI",     46,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7581:,		TempR,		"TBXAI",     48,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7582:,		TempR,		"TBXAI",     50,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7543:,		TempR,		"TBXAI",     40,     FLOAT32_BE, 0,      25,     3,      "K",		"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7541:,		TempR,		"TBXAI",     42,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7544:,		TempR,		"TBXAI",     44,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7542:,		TempR,		"TBXAI",     46,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7581:,		TempR,		"TBXAI",     48,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7582:,		TempR,		"TBXAI",     50,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare1:,		TempR,		"TBXAI",     52,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare2:,		TempR,		"TBXAI",     54,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7241:,		TempR,		"TBXAI",     56,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7242:,		TempR,		"TBXAI",     58,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7341:,		TempR,		"TBXAI",     60,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7342:,		TempR,		"TBXAI",     62,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7441:,		TempR,		"TBXAI",     64,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7442:,		TempR,		"TBXAI",     66,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7241:,		TempR,		"TBXAI",     56,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7242:,		TempR,		"TBXAI",     58,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7341:,		TempR,		"TBXAI",     60,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7342:,		TempR,		"TBXAI",     62,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7441:,		TempR,		"TBXAI",     64,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7442:,		TempR,		"TBXAI",     66,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare3:,		TempR,		"TBXAI",     68,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare4:,		TempR,		"TBXAI",     70,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7503:,		TempR,		"TBXAI",     72,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7501:,		TempR,		"TBXAI",     74,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7504:,		TempR,		"TBXAI",     76,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7502:,		TempR,		"TBXAI",     78,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7583:,		TempR,		"TBXAI",     80,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7503:,		TempR,		"TBXAI",     72,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7501:,		TempR,		"TBXAI",     74,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7504:,		TempR,		"TBXAI",     76,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7502:,		TempR,		"TBXAI",     78,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7583:,		TempR,		"TBXAI",     80,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare5:,		TempR,		"TBXAI",     82,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare6:,		TempR,		"TBXAI",     84,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare7:,		TempR,		"TBXAI",     86,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7303:,		TempR,		"TBXAI",     88,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7343:,		TempR,		"TBXAI",     90,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7303:,		TempR,		"TBXAI",     88,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7343:,		TempR,		"TBXAI",     90,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare8:,		TempR,		"TBXAI",     92,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare9:,		TempR,		"TBXAI",     94,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare10:,	TempR,		"TBXAI",     96,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare11:,	TempR,		"TBXAI",     98,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare12:,	TempR,		"TBXAI",    100,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare13:,	TempR,		"TBXAI",    102,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7201:,		TempR,		"TBXAI",    104,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7202:,		TempR,		"TBXAI",    106,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7301:,		TempR,		"TBXAI",    108,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7302:,		TempR,		"TBXAI",    110,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7401:,		TempR,		"TBXAI",    112,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7402:,		TempR,		"TBXAI",    114,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-TT7381:,		TempR,		"TBXAI",    116,     FLOAT32_BE, 0,      350,    1,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7201:,		TempR,		"TBXAI",    104,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7202:,		TempR,		"TBXAI",    106,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7301:,		TempR,		"TBXAI",    108,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7302:,		TempR,		"TBXAI",    110,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7401:,		TempR,		"TBXAI",    112,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7402:,		TempR,		"TBXAI",    114,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-TT7381:,		TempR,		"TBXAI",    116,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-TTSpare14:,	TempR,		"TBXAI",    118,     FLOAT32_BE, 0,      25,     3,      "K",    	"1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7504:,		PresR,		"TBXAI",    120,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7501:,		PresR,		"TBXAI",    122,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7301:,		PresR,		"TBXAI",    124,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7401:,		PresR,		"TBXAI_1",    0,     FLOAT32_BE, 0,      20,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7203:,		PresR,		"TBXAI_1",    2,     FLOAT32_BE, 0,      100,    1,      "mbara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7201:,		PresR,		"TBXAI_1",    4,     FLOAT32_BE, 0,      100,    1,      "mbara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7202:,		PresR,		"TBXAI_1",    6,     FLOAT32_BE, 0,      25,     1,      "mbara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7305:,		PresR,		"TBXAI_1",    8,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7506:,		PresR,		"TBXAI_1",   10,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7504:,		PresR,		"TBXAI",    120,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7501:,		PresR,		"TBXAI",    122,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7301:,		PresR,		"TBXAI",    124,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7401:,		PresR,		"TBXAI_1",    0,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+##{Cryo,	-CDL00:,	TBx01,	-PT7201:,		PresR,		"TBXAI_1",    2,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7203:,		PresR,		"TBXAI_1",    2,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
 
-{Cryo,	-CDL00:,	TBx01,	-PT7505:,		PresR,		"TBXAI_1",   10,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7502:,		PresR,		"TBXAI_1",   12,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7302:,		PresR,		"TBXAI_1",   14,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7402:,		PresR,		"TBXAI_1",   16,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7544:,		PresR,		"TBXAI_1",   18,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7541:,		PresR,		"TBXAI_1",   20,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7341:,		PresR,		"TBXAI_1",   22,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7441:,		PresR,		"TBXAI_1",   24,     FLOAT32_BE, 0,      20,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7306:,		PresR,		"TBXAI_1",   26,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7304:,		PresR,		"TBXAI_1",   28,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7505:,		PresR,		"TBXAI_1",   30,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
+##{Cryo,	-CDL00:,	TBx01,	-PT7241:,		PresR,		"TBXAI_1",    4,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7201:,		PresR,		"TBXAI_1",    4,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
 
-{Cryo,	-CDL00:,	TBx01,	-PT7503:,		PresR,		"TBXAI_1",   32,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7303:,		PresR,		"TBXAI_1",   34,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7403:,		PresR,		"TBXAI_1",   36,     FLOAT32_BE, 0,      20,     2,      "mbar",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7545:,		PresR,		"TBXAI_1",   38,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7542:,		PresR,		"TBXAI_1",   40,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7243:,		PresR,		"TBXAI_1",   42,     FLOAT32_BE, 0,      100,    1,      "mbara",   "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7241:,		PresR,		"TBXAI_1",   44,     FLOAT32_BE, 0,      100,    1,      "mbara",   "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7202:,		PresR,		"TBXAI_1",    6,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7305:,		PresR,		"TBXAI_1",    8,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
 
-{Cryo,	-CDL00:,	TBx01,	-PT7242:,		PresR,		"TBXAI_1",   46,     FLOAT32_BE, 0,      25,     1,      "mbara",   "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7342:,		PresR,		"TBXAI_1",   48,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7442:,		PresR,		"TBXAI_1",   50,     FLOAT32_BE, 0,      20,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7546:,		PresR,		"TBXAI_1",   52,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7543:,		PresR,		"TBXAI_1",   54,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7343:,		PresR,		"TBXAI_1",   56,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7443:,		PresR,		"TBXAI_1",   58,     FLOAT32_BE, 0,      20,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7381:,		PresR,		"TBXAI_1",   60,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7345:,		PresR,		"TBXAI_1",   62,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7344:,		PresR,		"TBXAI_1",   64,     FLOAT32_BE, 0,      10,     2,      "bara",    "1 second", "TBx Temp2"}
+##{Cryo,	-CDL00:,	TBx01,	-PT7505:,		PresR,		"TBXAI_1",   10,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7506:,		PresR,		"TBXAI_1",   10,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+{Cryo,	-CDL00:,	TBx01,	-PT7505:,		PresR,		"TBXAI_1",   10,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7502:,		PresR,		"TBXAI_1",   12,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7302:,		PresR,		"TBXAI_1",   14,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7402:,		PresR,		"TBXAI_1",   16,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7544:,		PresR,		"TBXAI_1",   18,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7541:,		PresR,		"TBXAI_1",   20,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7341:,		PresR,		"TBXAI_1",   22,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7441:,		PresR,		"TBXAI_1",   24,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7306:,		PresR,		"TBXAI_1",   26,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7304:,		PresR,		"TBXAI_1",   28,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+##{Cryo,	-CDL00:,	TBx01,	-PT7506:,		PresR,		"TBXAI_1",   30,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7505:,		PresR,		"TBXAI_1",   30,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+{Cryo,	-CDL00:,	TBx01,	-PT7503:,		PresR,		"TBXAI_1",   32,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7303:,		PresR,		"TBXAI_1",   34,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7403:,		PresR,		"TBXAI_1",   36,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7545:,		PresR,		"TBXAI_1",   38,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7542:,		PresR,		"TBXAI_1",   40,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+##{Cryo,	-CDL00:,	TBx01,	-PT7203:,		PresR,		"TBXAI_1",   42,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7243:,		PresR,		"TBXAI_1",   42,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+##{Cryo,	-CDL00:,	TBx01,	-PT7243:,		PresR,		"TBXAI_1",   44,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7241:,		PresR,		"TBXAI_1",   44,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+
+{Cryo,	-CDL00:,	TBx01,	-PT7242:,		PresR,		"TBXAI_1",   46,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7342:,		PresR,		"TBXAI_1",   48,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7442:,		PresR,		"TBXAI_1",   50,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7546:,		PresR,		"TBXAI_1",   52,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7543:,		PresR,		"TBXAI_1",   54,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7343:,		PresR,		"TBXAI_1",   56,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7443:,		PresR,		"TBXAI_1",   58,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7381:,		PresR,		"TBXAI_1",   60,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7345:,		PresR,		"TBXAI_1",   62,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7344:,		PresR,		"TBXAI_1",   64,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PT7581:,		PresR,		"TBXAI_1",   66,     FLOAT32_BE, 0,      25,     3,      "mbar",    "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		PresR,		"TBXAI_1",   68,     FLOAT32_BE, 0,      25,     3,      "",		"1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		PresR,		"TBXAI_1",   70,     FLOAT32_BE, 0,      25,     3,      "",        "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		PresR,		"TBXAI_1",   72,     FLOAT32_BE, 0,      25,     3,      "",        "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		FBRB,		"TBXAI_1",   74,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx GV7503 FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		FBRB,		"TBXAI_1",   76,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		FBRB,		"TBXAI_1",   78,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		FBRB,		"TBXAI_1",   80,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		FBRB,		"TBXAI_1",   82,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		FBRB,		"TBXAI_1",   84,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		FBRB,		"TBXAI_1",   86,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		FBRB,		"TBXAI_1",   88,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		FBRB,		"TBXAI_1",   90,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		FBRB,		"TBXAI_1",   92,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		FBRB,		"TBXAI_1",   94,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		FBRB,		"TBXAI_1",   96,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		FBRB,		"TBXAI_1",   98,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		FBRB,		"TBXAI_1",  100,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		FBRB,		"TBXAI_1",  102,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		FBRB,		"TBXAI_1",  104,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		FBRB,		"TBXAI_1",  106,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		FBRB,		"TBXAI_1",  108,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		FBRB,		"TBXAI_1",  110,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		FBRB,		"TBXAI_1",  112,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		FBRB,		"TBXAI_1",  114,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		FBRB,		"TBXAI_1",  116,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		FBRB,		"TBXAI_1",  118,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		FBRB,		"TBXAI_1",  120,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		FBRB,		"TBXAI_1",   74,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second","TBx GV7503 FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		FBRB,		"TBXAI_1",   76,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		FBRB,		"TBXAI_1",   78,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		FBRB,		"TBXAI_1",   80,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		FBRB,		"TBXAI_1",   82,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		FBRB,		"TBXAI_1",   84,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		FBRB,		"TBXAI_1",   86,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		FBRB,		"TBXAI_1",   88,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		FBRB,		"TBXAI_1",   90,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		FBRB,		"TBXAI_1",   92,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		FBRB,		"TBXAI_1",   94,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		FBRB,		"TBXAI_1",   96,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		FBRB,		"TBXAI_1",   98,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		FBRB,		"TBXAI_1",  100,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		FBRB,		"TBXAI_1",  102,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		FBRB,		"TBXAI_1",  104,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		FBRB,		"TBXAI_1",  106,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		FBRB,		"TBXAI_1",  108,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		FBRB,		"TBXAI_1",  110,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		FBRB,		"TBXAI_1",  112,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		FBRB,		"TBXAI_1",  114,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		FBRB,		"TBXAI_1",  116,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		FBRB,		"TBXAI_1",  118,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		FBRB,		"TBXAI_1",  120,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx FBRB"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7503:,		PresR,		"TBXAI_1",  122,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Press"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7504:,		PresR,		"TBXAI_1",  124,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Press"}
 
@@ -148,18 +160,18 @@ file "db/aiFloat64.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-PDTSpare1:,	PresR,		"TBXAI_2",   28,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDTSpare2:,	PresR,		"TBXAI_2",   30,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDTSpare3:,	PresR,		"TBXAI_2",   32,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7507:,		PresR,		"TBXAI_2",   34,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7507:,		PresR,		"TBXAI_2",   34,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PT7508:,		PresR,		"TBXAI_2",   36,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7547:,		PresR,		"TBXAI_2",   38,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7547:,		PresR,		"TBXAI_2",   38,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PT7548:,		PresR,		"TBXAI_2",   40,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7582:,		PresR,		"TBXAI_2",   42,     FLOAT32_BE, 0,      30,     2,      "bara",    "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-PT7483:,		PresR,		"TBXAI_2",   44,     FLOAT32_BE, 0,      20,     2,      "bara",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7582:,		PresR,		"TBXAI_2",   42,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PT7483:,		PresR,		"TBXAI_2",   44,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		PresR,		"TBXAI_2",   46,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		PresR,		"TBXAI_2",   48,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		FBRB,		"TBXAI_2",   50,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		FBRB,		"TBXAI_2",   52,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		FBRB,		"TBXAI_2",   54,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx Temp2"}
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		FBRB,		"TBXAI_2",   56,     FLOAT32_BE, 0,      100,    1,      "%",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		FBRB,		"TBXAI_2",   50,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		FBRB,		"TBXAI_2",   52,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		FBRB,		"TBXAI_2",   54,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		FBRB,		"TBXAI_2",   56,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7505:,		PresR,		"TBXAI_2",   58,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7506:,		PresR,		"TBXAI_2",   60,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7545:,		PresR,		"TBXAI_2",   62,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
@@ -206,62 +218,62 @@ file "db/aiFloat64.template" { pattern
 ####AO Base Address 400word(800 PLC offset(byte))
 file "db/aoFloat64.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,			SIGNAL,			PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC,	VAL}
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		Setpt,			"TBXAO",	0,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetManuRamp,	"TBXAO",	2,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		Setpt,			"TBXAO",	4,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetManuRamp,	"TBXAO",	6,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		Setpt,			"TBXAO",	8,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetManuRamp,	"TBXAO",	10,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		Setpt,			"TBXAO",	12,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetManuRamp,	"TBXAO",	14,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		Setpt,			"TBXAO",	16,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetManuRamp,	"TBXAO",	18,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		Setpt,			"TBXAO",	20,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetManuRamp,	"TBXAO",	22,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		Setpt,			"TBXAO",	24,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetManuRamp,	"TBXAO",	26,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		Setpt,			"TBXAO",	28,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetManuRamp,	"TBXAO",	30,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		Setpt,			"TBXAO",	32,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetManuRamp,	"TBXAO",	34,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		Setpt,			"TBXAO",	36,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetManuRamp,	"TBXAO",	38,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		Setpt,			"TBXAO",	40,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetManuRamp,	"TBXAO",	42,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		Setpt,			"TBXAO",	44,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetManuRamp,	"TBXAO",	46,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		Setpt,			"TBXAO",	48,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetManuRamp,	"TBXAO",	50,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		Setpt,			"TBXAO",	52,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetManuRamp,	"TBXAO",	54,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		Setpt,			"TBXAO",	56,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetManuRamp,	"TBXAO",	58,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		Setpt,			"TBXAO",	60,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetManuRamp,	"TBXAO",	62,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		Setpt,			"TBXAO",	64,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetManuRamp,	"TBXAO",	66,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		Setpt,			"TBXAO",	68,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetManuRamp,	"TBXAO",	70,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		Setpt,			"TBXAO",	72,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetManuRamp,	"TBXAO",	74,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		Setpt,			"TBXAO",	76,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetManuRamp,	"TBXAO",	78,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		Setpt,			"TBXAO",	80,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetManuRamp,	"TBXAO",	82,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		Setpt,			"TBXAO",	84,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetManuRamp,	"TBXAO",	86,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		Setpt,			"TBXAO",	88,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetManuRamp,	"TBXAO",	90,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		Setpt,			"TBXAO",	92,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetManuRamp,	"TBXAO",	94,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		Setpt,			"TBXAO",	96,		FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetManuRamp,	"TBXAO",	98,		FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		Setpt,			"TBXAO",	100,	FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetManuRamp,	"TBXAO",	102,	FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		Setpt,			"TBXAO",	104,	FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetManuRamp,	"TBXAO",	106,	FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		Setpt,			"TBXAO",	108,	FLOAT32_BE,	0,		100,	1,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetManuRamp,	"TBXAO",	110,	FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		Setpt,			"TBXAO",	0,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7503:,		SetManuRamp,	"TBXAO",	2,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		Setpt,			"TBXAO",	4,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7501:,		SetManuRamp,	"TBXAO",	6,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		Setpt,			"TBXAO",	8,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7301:,		SetManuRamp,	"TBXAO",	10,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		Setpt,			"TBXAO",	12,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7401:,		SetManuRamp,	"TBXAO",	14,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		Setpt,			"TBXAO",	16,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7201:,		SetManuRamp,	"TBXAO",	18,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		Setpt,			"TBXAO",	20,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7504:,		SetManuRamp,	"TBXAO",	22,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		Setpt,			"TBXAO",	24,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7304:,		SetManuRamp,	"TBXAO",	26,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		Setpt,			"TBXAO",	28,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7302:,		SetManuRamp,	"TBXAO",	30,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		Setpt,			"TBXAO",	32,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7303:,		SetManuRamp,	"TBXAO",	34,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		Setpt,			"TBXAO",	36,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7544:,		SetManuRamp,	"TBXAO",	38,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		Setpt,			"TBXAO",	40,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7542:,		SetManuRamp,	"TBXAO",	42,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		Setpt,			"TBXAO",	44,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7341:,		SetManuRamp,	"TBXAO",	46,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		Setpt,			"TBXAO",	48,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7441:,		SetManuRamp,	"TBXAO",	50,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		Setpt,			"TBXAO",	52,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7241:,		SetManuRamp,	"TBXAO",	54,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		Setpt,			"TBXAO",	56,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7545:,		SetManuRamp,	"TBXAO",	58,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		Setpt,			"TBXAO",	60,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7344:,		SetManuRamp,	"TBXAO",	62,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		Setpt,			"TBXAO",	64,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7342:,		SetManuRamp,	"TBXAO",	66,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		Setpt,			"TBXAO",	68,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7343:,		SetManuRamp,	"TBXAO",	70,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		Setpt,			"TBXAO",	72,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7502:,		SetManuRamp,	"TBXAO",	74,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		Setpt,			"TBXAO",	76,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7541:,		SetManuRamp,	"TBXAO",	78,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		Setpt,			"TBXAO",	80,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7505:,		SetManuRamp,	"TBXAO",	82,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		Setpt,			"TBXAO",	84,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7543:,		SetManuRamp,	"TBXAO",	86,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		Setpt,			"TBXAO",	88,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare1:,		SetManuRamp,	"TBXAO",	90,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		Setpt,			"TBXAO",	92,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CVSpare2:,		SetManuRamp,	"TBXAO",	94,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		Setpt,			"TBXAO",	96,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7582:,		SetManuRamp,	"TBXAO",	98,		FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		Setpt,			"TBXAO",	100,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7482:,		SetManuRamp,	"TBXAO",	102,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		Setpt,			"TBXAO",	104,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7581:,		SetManuRamp,	"TBXAO",	106,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		Setpt,			"TBXAO",	108,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetManuRamp,	"TBXAO",	110,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7503:,		PressSet,		"TBXAO",	112,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7504:,		PressSet,		"TBXAO",	114,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PressSet,		"TBXAO",	116,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
@@ -283,182 +295,184 @@ file "db/aoFloat64.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-PDTSpare3:,	PressSet,		"TBXAO_1",	 24,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 
 ###New list
-{Cryo,	-CDL00:,	TBx01,	-TT7543:,		SetOVR,			"TBXAO_2",	0,		FLOAT32_BE,	"0",	"350",	"1",	 "",	 "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7541:,		SetOVR,			"TBXAO_2",	2,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7544:,		SetOVR,			"TBXAO_2",	4,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7542:,		SetOVR,			"TBXAO_2",	6,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetOVR,			"TBXAO_2",	8,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7582:,		SetOVR,			"TBXAO_2",	10,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare1:,		SetOVR,			"TBXAO_2",	12,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare2:,		SetOVR,			"TBXAO_2",	14,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7241:,		SetOVR,			"TBXAO_2",	16,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7242:,		SetOVR,			"TBXAO_2",	18,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7341:,		SetOVR,			"TBXAO_2",	20,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7342:,		SetOVR,			"TBXAO_2",	22,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7441:,		SetOVR,			"TBXAO_2",	24,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7242:,		SetOVR,			"TBXAO_2",	18,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare3:,		SetOVR,			"TBXAO_2",	28,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare4:,		SetOVR,			"TBXAO_2",	30,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7503:,		SetOVR,			"TBXAO_2",	32,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7501:,		SetOVR,			"TBXAO_2",	34,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7504:,		SetOVR,			"TBXAO_2",	36,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7502:,		SetOVR,			"TBXAO_2",	38,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7583:,		SetOVR,			"TBXAO_2",	40,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare5:,		SetOVR,			"TBXAO_2",	42,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare6:,		SetOVR,			"TBXAO_2",	44,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare7:,		SetOVR,			"TBXAO_2",	46,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7303:,		SetOVR,			"TBXAO_2",	48,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7343:,		SetOVR,			"TBXAO_2",	50,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare8:,		SetOVR,			"TBXAO_2",	52,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare9:,		SetOVR,			"TBXAO_2",	54,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare10:,	SetOVR,			"TBXAO_2",	56,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare11:,	SetOVR,			"TBXAO_2",	58,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare12:,	SetOVR,			"TBXAO_2",	60,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare13:,	SetOVR,			"TBXAO_2",	62,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7201:,		SetOVR,			"TBXAO_2",	64,	    FLOAT32_BE, "0",    "350",  "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7202:,		SetOVR,			"TBXAO_2",	66,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7301:,		SetOVR,			"TBXAO_2",	68,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7302:,		SetOVR,			"TBXAO_2",	70,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7401:,		SetOVR,			"TBXAO_2",	72,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7402:,		SetOVR,			"TBXAO_2",	74,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7381:,		SetOVR,			"TBXAO_2",	76,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TTSpare14:,	SetOVR,			"TBXAO_2",	78,	    FLOAT32_BE, "0",    "350", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7101:,		SetOVR,			"TBXAO_2",	80,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7102:,		SetOVR,			"TBXAO_2",	82,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7103:,		SetOVR,			"TBXAO_2",	84,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7104:,		SetOVR,			"TBXAO_2",	86,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetOVR,			"TBXAO_2",	88,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_2",	90,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7141:,		SetOVR,			"TBXAO_2",	92,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7142:,		SetOVR,			"TBXAO_2",	94,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7143:,		SetOVR,			"TBXAO_2",	96,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7144:,		SetOVR,			"TBXAO_2",	98,	    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_2",	100,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		SetOVR,			"TBXAO_2",	102,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetOVR,			"TBXAO_2",	104,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetOVR,			"TBXAO_2",	106,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetOVR,			"TBXAO_2",	108,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetOVR,			"TBXAO_2",	110,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7182:,		SetOVR,			"TBXAO_2",	112,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare4:,		SetOVR,			"TBXAO_2",	114,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetOVR,			"TBXAO_2",	116,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetOVR,			"TBXAO_2",	118,    FLOAT32_BE, "0",    "1100", "2",     "mbar",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetOVR,			"TBXAO_2",	120,    FLOAT32_BE, "0",    "10",   "2",     "bara",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetOVR,			"TBXAO_2",	122,    FLOAT32_BE, "0",    "20",   "2",     "bara",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7543:,		SetOVR,			"TBXAO_2",	0,		FLOAT32_BE,	"0",	"1000",	"3",	 "",	 "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7541:,		SetOVR,			"TBXAO_2",	2,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7544:,		SetOVR,			"TBXAO_2",	4,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7542:,		SetOVR,			"TBXAO_2",	6,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetOVR,			"TBXAO_2",	8,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7582:,		SetOVR,			"TBXAO_2",	10,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare1:,		SetOVR,			"TBXAO_2",	12,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare2:,		SetOVR,			"TBXAO_2",	14,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7241:,		SetOVR,			"TBXAO_2",	16,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7242:,		SetOVR,			"TBXAO_2",	18,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7341:,		SetOVR,			"TBXAO_2",	20,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7342:,		SetOVR,			"TBXAO_2",	22,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7441:,		SetOVR,			"TBXAO_2",	24,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7242:,		SetOVR,			"TBXAO_2",	18,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare3:,		SetOVR,			"TBXAO_2",	28,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare4:,		SetOVR,			"TBXAO_2",	30,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7503:,		SetOVR,			"TBXAO_2",	32,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7501:,		SetOVR,			"TBXAO_2",	34,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7504:,		SetOVR,			"TBXAO_2",	36,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7502:,		SetOVR,			"TBXAO_2",	38,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7583:,		SetOVR,			"TBXAO_2",	40,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare5:,		SetOVR,			"TBXAO_2",	42,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare6:,		SetOVR,			"TBXAO_2",	44,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare7:,		SetOVR,			"TBXAO_2",	46,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7303:,		SetOVR,			"TBXAO_2",	48,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7343:,		SetOVR,			"TBXAO_2",	50,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare8:,		SetOVR,			"TBXAO_2",	52,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare9:,		SetOVR,			"TBXAO_2",	54,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare10:,	SetOVR,			"TBXAO_2",	56,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare11:,	SetOVR,			"TBXAO_2",	58,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare12:,	SetOVR,			"TBXAO_2",	60,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare13:,	SetOVR,			"TBXAO_2",	62,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7201:,		SetOVR,			"TBXAO_2",	64,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7202:,		SetOVR,			"TBXAO_2",	66,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7301:,		SetOVR,			"TBXAO_2",	68,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7302:,		SetOVR,			"TBXAO_2",	70,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7401:,		SetOVR,			"TBXAO_2",	72,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7402:,		SetOVR,			"TBXAO_2",	74,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7381:,		SetOVR,			"TBXAO_2",	76,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TTSpare14:,	SetOVR,			"TBXAO_2",	78,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7101:,		SetOVR,			"TBXAO_2",	80,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7102:,		SetOVR,			"TBXAO_2",	82,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7103:,		SetOVR,			"TBXAO_2",	84,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7104:,		SetOVR,			"TBXAO_2",	86,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetOVR,			"TBXAO_2",	88,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_2",	90,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7141:,		SetOVR,			"TBXAO_2",	92,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7142:,		SetOVR,			"TBXAO_2",	94,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7143:,		SetOVR,			"TBXAO_2",	96,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7144:,		SetOVR,			"TBXAO_2",	98,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_2",	100,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		SetOVR,			"TBXAO_2",	102,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetOVR,			"TBXAO_2",	104,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetOVR,			"TBXAO_2",	106,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetOVR,			"TBXAO_2",	108,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetOVR,			"TBXAO_2",	110,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7182:,		SetOVR,			"TBXAO_2",	112,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare4:,		SetOVR,			"TBXAO_2",	114,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetOVR,			"TBXAO_2",	116,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetOVR,			"TBXAO_2",	118,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetOVR,			"TBXAO_2",	120,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetOVR,			"TBXAO_2",	122,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
 
-{Cryo,	-CDL00:,	TBx01,	-PT7203:,		SetOVR,			"TBXAO_3",	0,      FLOAT32_BE, "0",    "1000", "1",     "mbara",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetOVR,			"TBXAO_3",	2,		FLOAT32_BE, "0",    "1000", "1",     "mbara",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7202:,		SetOVR,			"TBXAO_3",	4,	    FLOAT32_BE, "0",    "1000", "1",     "mbara",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetOVR,			"TBXAO_3",	6,	    FLOAT32_BE, "0",    "10",   "2",     "bara",      "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetOVR,			"TBXAO_3",	8,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7502:,		SetOVR,			"TBXAO_3",	10,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7302:,		SetOVR,			"TBXAO_3",	12,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7402:,		SetOVR,			"TBXAO_3",	14,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7544:,		SetOVR,			"TBXAO_3",	16,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7541:,		SetOVR,			"TBXAO_3",	18,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7341:,		SetOVR,			"TBXAO_3",	20,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7441:,		SetOVR,			"TBXAO_3",	22,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7306:,		SetOVR,			"TBXAO_3",	24,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7304:,		SetOVR,			"TBXAO_3",	26,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7505:,		SetOVR,			"TBXAO_3",	28,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetOVR,			"TBXAO_3",	30,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetOVR,			"TBXAO_3",	32,	    FLOAT32_BE, "0",    "10",   "1",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetOVR,			"TBXAO_3",	34,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7545:,		SetOVR,			"TBXAO_3",	36,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7542:,		SetOVR,			"TBXAO_3",	38,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7243:,		SetOVR,			"TBXAO_3",	40,	    FLOAT32_BE, "0",    "1000", "1",     "mbara",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7241:,		SetOVR,			"TBXAO_3",	42,	    FLOAT32_BE, "0",    "1000", "1",     "mbara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7242:,		SetOVR,			"TBXAO_3",	44,	    FLOAT32_BE, "0",    "1000", "1",     "mbara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7342:,		SetOVR,			"TBXAO_3",	46,	    FLOAT32_BE, "0",    "10",   "2",     "bara",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7442:,		SetOVR,			"TBXAO_3",	48,	    FLOAT32_BE, "0",    "20",   "2",     "bara",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7546:,		SetOVR,			"TBXAO_3",	50,	    FLOAT32_BE, "0",    "30",   "2",     "bara",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7543:,		SetOVR,			"TBXAO_3",	52,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7343:,		SetOVR,			"TBXAO_3",	54,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7443:,		SetOVR,			"TBXAO_3",	56,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetOVR,			"TBXAO_3",	58,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7345:,		SetOVR,			"TBXAO_3",	60,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7344:,		SetOVR,			"TBXAO_3",	62,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7581:,		SetOVR,			"TBXAO_3",	64,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_3",	66,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_3",	68,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		SetOVR,			"TBXAO_3",	70,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7503:,		SetOVR,			"TBXAO_3",	72,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7504:,		SetOVR,			"TBXAO_3",	74,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		SetOVR,			"TBXAO_3",	76,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7502:,		SetOVR,			"TBXAO_3",	78,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7301:,		SetOVR,			"TBXAO_3",	80,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7302:,		SetOVR,			"TBXAO_3",	82,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7401:,		SetOVR,			"TBXAO_3",	84,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7402:,		SetOVR,			"TBXAO_3",	86,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7543:,		SetOVR,			"TBXAO_3",	88,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7544:,		SetOVR,			"TBXAO_3",	90,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7541:,		SetOVR,			"TBXAO_3",	92,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7542:,		SetOVR,			"TBXAO_3",	94,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7341:,		SetOVR,			"TBXAO_3",	96,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7342:,		SetOVR,			"TBXAO_3",	98,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7441:,		SetOVR,			"TBXAO_3",	100,	FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7442:,		SetOVR,			"TBXAO_3",	102,    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDTSpare1:,	SetOVR,			"TBXAO_3",	104,    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDTSpare2:,	SetOVR,			"TBXAO_3",	106,    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDTSpare3:,	SetOVR,			"TBXAO_3",	108,    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetOVR,			"TBXAO_3",	110,    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7508:,		SetOVR,			"TBXAO_3",	112,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7547:,		SetOVR,			"TBXAO_3",	114,    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7548:,		SetOVR,			"TBXAO_3",	116,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetOVR,			"TBXAO_3",	118,    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetOVR,			"TBXAO_3",	120,    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_3",	122,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_4",	0,      FLOAT32_BE, "0",    "1000", "1",     "",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7505:,		SetOVR,			"TBXAO_4",	2,      FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7506:,		SetOVR,			"TBXAO_4",	4,		FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7545:,		SetOVR,			"TBXAO_4",	6,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7546:,		SetOVR,			"TBXAO_4",	8,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7581:,		SetOVR,			"TBXAO_4",	10,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7582:,		SetOVR,			"TBXAO_4",	12,	    FLOAT32_BE, "0",    "1000", "2",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7509:,		SetOVR,			"TBXAO_4",	14,	    FLOAT32_BE, "0",    "1000", "1",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7549:,		SetOVR,			"TBXAO_4",	16,	    FLOAT32_BE, "0",    "1000", "1",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_4",	18,	    FLOAT32_BE, "0",    "1000", "1",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_4",	20,	    FLOAT32_BE, "0",    "1000", "1",     "g/s",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetCP			"TBXAO_4",	22,	    FLOAT32_BE, "0",    "350", "1",      "",     "", "50"}
-{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetDelayTime,	"TBXAO_4",	24,	    FLOAT32_BE, "0",    "350", "1",      "",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetCP,			"TBXAO_4",	26,	    FLOAT32_BE, "0",    "30",  "2",      "bara", "", "21"}
-{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetDelayTime,	"TBXAO_4",	28,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetCP,			"TBXAO_4",	30,	    FLOAT32_BE, "0",    "30",  "2",      "bara", "", "21"}
-{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetDelayTime,	"TBXAO_4",	32,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetCP,			"TBXAO_4",	34,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "20.5" }
-{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetDelayTime,	"TBXAO_4",	36,	    FLOAT32_BE, "0",    "100",  "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetCP,			"TBXAO_4",	38,	    FLOAT32_BE, "0",    "30",  "2",     "bara",  "", "20.5" }
-{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetDelayTime,	"TBXAO_4",	40,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetCP,			"TBXAO_4",	42,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "18.5" }
-{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetDelayTime,	"TBXAO_4",	44,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetCP,			"TBXAO_4",	46,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetDelayTime,	"TBXAO_4",	48,	    FLOAT32_BE, "0",    "100",  "1",     "s",    "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetCP,			"TBXAO_4",	50,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetDelayTime,	"TBXAO_4",	52,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetCP,			"TBXAO_4",	54,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "1.8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetDelayTime,	"TBXAO_4",	56,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetCP,			"TBXAO_4",	58,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "1.8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetDelayTime,	"TBXAO_4",	60,	    FLOAT32_BE, "0",    "100",  "1",     "s",    "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetCP,			"TBXAO_4",	62,	    FLOAT32_BE, "0",    "10",   "2",     "bara", "", "1.1" }
-{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetDelayTime,	"TBXAO_4",	64,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetCP,			"TBXAO_4",	66,	    FLOAT32_BE, "0",    "100", "1",     "bara", "", "1.8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetDelayTime,	"TBXAO_4",	68,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetCP,			"TBXAO_4",	70,	    FLOAT32_BE, "0",    "30",   "2",     "bara", "", "18.5" }
-{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetDelayTime,	"TBXAO_4",	72,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetCP,			"TBXAO_4",	74,	    FLOAT32_BE, "0",    "20",   "2",     "bara", "", "8" }
-{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetDelayTime,	"TBXAO_4",	76,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetCP,			"TBXAO_4",	78,	    FLOAT32_BE, "0",    "10",  "2",     "bara",  "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetDelayTime,	"TBXAO_4",	80,	    FLOAT32_BE, "0",    "100", "1",     "s",     "", "0" }
-{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetCP,			"TBXAO_4",	86,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0.05" }
-{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetDelayTime,	"TBXAO_4",	88,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetCP,			"TBXAO_4",	90,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0.05" }
-{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetDelayTime,	"TBXAO_4",	92,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetCP,			"TBXAO_4",	94,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0.05" }
-{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetDelayTime,	"TBXAO_4",	96,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetCP,			"TBXAO_4",	98,	    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0.05" }
-{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetDelayTime,	"TBXAO_4",	100,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "3" }
-{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetCP,			"TBXAO_4",	102,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "0.05" }
-{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetDelayTime,	"TBXAO_4",	104,    FLOAT32_BE, "0",    "1000", "1",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7203:,		SetOVR,			"TBXAO_3",	0,      FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetOVR,			"TBXAO_3",	2,		FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7202:,		SetOVR,			"TBXAO_3",	4,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetOVR,			"TBXAO_3",	6,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetOVR,			"TBXAO_3",	8,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7502:,		SetOVR,			"TBXAO_3",	10,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7302:,		SetOVR,			"TBXAO_3",	12,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7402:,		SetOVR,			"TBXAO_3",	14,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7544:,		SetOVR,			"TBXAO_3",	16,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7541:,		SetOVR,			"TBXAO_3",	18,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7341:,		SetOVR,			"TBXAO_3",	20,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7441:,		SetOVR,			"TBXAO_3",	22,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7306:,		SetOVR,			"TBXAO_3",	24,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7304:,		SetOVR,			"TBXAO_3",	26,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7505:,		SetOVR,			"TBXAO_3",	28,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetOVR,			"TBXAO_3",	30,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetOVR,			"TBXAO_3",	32,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetOVR,			"TBXAO_3",	34,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7545:,		SetOVR,			"TBXAO_3",	36,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7542:,		SetOVR,			"TBXAO_3",	38,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7243:,		SetOVR,			"TBXAO_3",	40,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7241:,		SetOVR,			"TBXAO_3",	42,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7242:,		SetOVR,			"TBXAO_3",	44,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7342:,		SetOVR,			"TBXAO_3",	46,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7442:,		SetOVR,			"TBXAO_3",	48,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7546:,		SetOVR,			"TBXAO_3",	50,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7543:,		SetOVR,			"TBXAO_3",	52,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7343:,		SetOVR,			"TBXAO_3",	54,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7443:,		SetOVR,			"TBXAO_3",	56,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetOVR,			"TBXAO_3",	58,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7345:,		SetOVR,			"TBXAO_3",	60,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7344:,		SetOVR,			"TBXAO_3",	62,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7581:,		SetOVR,			"TBXAO_3",	64,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_3",	66,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_3",	68,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare3:,		SetOVR,			"TBXAO_3",	70,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7503:,		SetOVR,			"TBXAO_3",	72,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7504:,		SetOVR,			"TBXAO_3",	74,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		SetOVR,			"TBXAO_3",	76,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7502:,		SetOVR,			"TBXAO_3",	78,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7301:,		SetOVR,			"TBXAO_3",	80,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7302:,		SetOVR,			"TBXAO_3",	82,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7401:,		SetOVR,			"TBXAO_3",	84,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7402:,		SetOVR,			"TBXAO_3",	86,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7543:,		SetOVR,			"TBXAO_3",	88,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7544:,		SetOVR,			"TBXAO_3",	90,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7541:,		SetOVR,			"TBXAO_3",	92,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7542:,		SetOVR,			"TBXAO_3",	94,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7341:,		SetOVR,			"TBXAO_3",	96,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7342:,		SetOVR,			"TBXAO_3",	98,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7441:,		SetOVR,			"TBXAO_3",	100,	FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7442:,		SetOVR,			"TBXAO_3",	102,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDTSpare1:,	SetOVR,			"TBXAO_3",	104,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDTSpare2:,	SetOVR,			"TBXAO_3",	106,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDTSpare3:,	SetOVR,			"TBXAO_3",	108,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetOVR,			"TBXAO_3",	110,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7508:,		SetOVR,			"TBXAO_3",	112,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7547:,		SetOVR,			"TBXAO_3",	114,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7548:,		SetOVR,			"TBXAO_3",	116,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetOVR,			"TBXAO_3",	118,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetOVR,			"TBXAO_3",	120,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_3",	122,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_4",	0,      FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7505:,		SetOVR,			"TBXAO_4",	2,      FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7506:,		SetOVR,			"TBXAO_4",	4,		FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7545:,		SetOVR,			"TBXAO_4",	6,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7546:,		SetOVR,			"TBXAO_4",	8,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7581:,		SetOVR,			"TBXAO_4",	10,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7582:,		SetOVR,			"TBXAO_4",	12,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7509:,		SetOVR,			"TBXAO_4",	14,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7549:,		SetOVR,			"TBXAO_4",	16,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVR,			"TBXAO_4",	18,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVR,			"TBXAO_4",	20,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetCP			"TBXAO_4",	22,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "50"}
+{Cryo,	-CDL00:,	TBx01,	-TT7581:,		SetDelayTime,	"TBXAO_4",	24,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetCP,			"TBXAO_4",	26,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "21"}
+{Cryo,	-CDL00:,	TBx01,	-PT7501:,		SetDelayTime,	"TBXAO_4",	28,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetCP,			"TBXAO_4",	30,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "21"}
+{Cryo,	-CDL00:,	TBx01,	-PT7503:,		SetDelayTime,	"TBXAO_4",	32,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetCP,			"TBXAO_4",	34,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "20.5" }
+{Cryo,	-CDL00:,	TBx01,	-PT7504:,		SetDelayTime,	"TBXAO_4",	36,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetCP,			"TBXAO_4",	38,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "20.5" }
+{Cryo,	-CDL00:,	TBx01,	-PT7506:,		SetDelayTime,	"TBXAO_4",	40,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetCP,			"TBXAO_4",	42,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "18.5" }
+{Cryo,	-CDL00:,	TBx01,	-PT7507:,		SetDelayTime,	"TBXAO_4",	44,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetCP,			"TBXAO_4",	46,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7401:,		SetDelayTime,	"TBXAO_4",	48,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetCP,			"TBXAO_4",	50,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7403:,		SetDelayTime,	"TBXAO_4",	52,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetCP,			"TBXAO_4",	54,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "1.8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7301:,		SetDelayTime,	"TBXAO_4",	56,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetCP,			"TBXAO_4",	58,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "1.8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7303:,		SetDelayTime,	"TBXAO_4",	60,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetCP,			"TBXAO_4",	62,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "1.1" }
+{Cryo,	-CDL00:,	TBx01,	-PT7305:,		SetDelayTime,	"TBXAO_4",	64,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetCP,			"TBXAO_4",	66,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "1.8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7201:,		SetDelayTime,	"TBXAO_4",	68,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetCP,			"TBXAO_4",	70,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "18.5" }
+{Cryo,	-CDL00:,	TBx01,	-PT7582:,		SetDelayTime,	"TBXAO_4",	72,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetCP,			"TBXAO_4",	74,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "8" }
+{Cryo,	-CDL00:,	TBx01,	-PT7483:,		SetDelayTime,	"TBXAO_4",	76,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetCP,			"TBXAO_4",	78,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetDelayTime,	"TBXAO_4",	80,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+#{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetCP,			"TBXAO_4",	82,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+#{Cryo,	-CDL00:,	TBx01,	-PT7381:,		SetDelayTime,	"TBXAO_4",	84,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0" }
+{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetCP,			"TBXAO_4",	86,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0.05" }
+{Cryo,	-CDL00:,	TBx01,	-PT7105:,		SetDelayTime,	"TBXAO_4",	88,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetCP,			"TBXAO_4",	90,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0.05" }
+{Cryo,	-CDL00:,	TBx01,	-PT7106:,		SetDelayTime,	"TBXAO_4",	92,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetCP,			"TBXAO_4",	94,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0.05" }
+{Cryo,	-CDL00:,	TBx01,	-PT7145:,		SetDelayTime,	"TBXAO_4",	96,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetCP,			"TBXAO_4",	98,	    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0.05" }
+{Cryo,	-CDL00:,	TBx01,	-PT7146:,		SetDelayTime,	"TBXAO_4",	100,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
+{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetCP,			"TBXAO_4",	102,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "0.05" }
+{Cryo,	-CDL00:,	TBx01,	-PT7181:,		SetDelayTime,	"TBXAO_4",	104,    FLOAT32_BE, "0",    "1000", "3",     "",     "", "3" }
 ##leesi
 
 }
@@ -1397,93 +1411,6 @@ file "db/boWord.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-PT7549:,		SetOVREN,			TBXDO,      28,     0x0010,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare1:,		SetOVREN,			TBXDO,      28,     0x0020,  Open,   Close, "Switch1"}
 {Cryo,	-CDL00:,	TBx01,	-PTSpare2:,		SetOVREN,			TBXDO,      28,     0x0040,  Open,   Close, "Switch1"}
+
 }
-###Cryo-CDL00:TBx01-PT7203:SetDelayTime	AO	s	1	0	100
-
-###Cryo-CDL00:TBx01-PT7505:PresR	AI	bara	2	0	30 , Need Check
-
-###Cryo-CDL00:TBx01-CV7201:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7241:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7301:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7302:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7303:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7304:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7341:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7342:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7343:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7344:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7401:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7441:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7481:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7482:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7501:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7502:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7503:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7504:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7505:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7541:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7542:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7543:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7544:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7545:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7581:SetManu	AO	%	1	0	100
-###Cryo-CDL00:TBx01-CV7582:SetManu	AO	%	1	0	100
-
-###Cryo-CDL00:TBx01-PT7101:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7102:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7103:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7104:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7105:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7106:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7141:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7142:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7143:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7144:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7145:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7146:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7181:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7182:SetAlm	AO	mbar	2	0	1100
-###Cryo-CDL00:TBx01-PT7201:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7202:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7203:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7204:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7241:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7242:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7243:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7244:SetAlm	AO	mbara	1	0	TBD
-###Cryo-CDL00:TBx01-PT7301:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7302:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7303:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7304:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7305:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7306:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7341:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7342:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7343:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7344:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7345:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7381:SetAlm	AO	bara	2	0	10
-###Cryo-CDL00:TBx01-PT7401:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7402:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7403:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7441:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7442:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7443:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7483:SetAlm	AO	bara	2	0	20
-###Cryo-CDL00:TBx01-PT7501:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7502:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7503:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7504:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7505:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7506:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7507:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7541:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7542:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7543:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7544:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7545:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7546:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7547:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7582:SetAlm	AO	bara	2	0	30
-###Cryo-CDL00:TBx01-PT7583:SetAlm	AO	bara	2	0	30
 

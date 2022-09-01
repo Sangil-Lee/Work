@@ -1,3 +1,12 @@
+file "db/GBIntStat_1INP_TBx.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		INPA}
+{Cryo,	-CDL00:,	TBx01,	-XV7201:,	IntStatPT7201 }
+{Cryo,	-CDL00:,	TBx01,	-XV7301:,	IntStatPT7301 }
+{Cryo,	-CDL00:,	TBx01,	-XV7303:,	IntStatPT7305 }
+{Cryo,	-CDL00:,	TBx01,	-XV7502:,	IntStatPT7504 }
+{Cryo,	-CDL00:,	TBx01,	-XV7503:,	IntStatPT7507 }
+}
+
 file "db/GBIntStat_2INP_TBx.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,		INPA,			INPB}
 {Cryo,	-CDL00:,	TBx01,	-CV7304:,	IntStatPT7303,	IntStatPT7381 }
@@ -7,17 +16,6 @@ file "db/GBIntStat_2INP_TBx.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-CV7582:,	IntStatPT7503,	IntStatPT7582 }
 {Cryo,	-CDL00:,	TBx01,	-XV7401:,	IntStatPT7401,	IntStatPT7403 }
 {Cryo,	-CDL00:,	TBx01,	-XV7501:,	IntStatPT7501,	IntStatPT7503 }
-
-}
-
-file "db/GBIntStat_1INP_TBx.template" { pattern
-{SYS,	SUBSYS,		DEV,	SUBDEV,		INPA}
-{Cryo,	-CDL00:,	TBx01,	-XV7201:,	IntStatPT7201 }
-{Cryo,	-CDL00:,	TBx01,	-XV7301:,	IntStatPT7301 }
-{Cryo,	-CDL00:,	TBx01,	-XV7303:,	IntStatPT7305 }
-{Cryo,	-CDL00:,	TBx01,	-XV7502:,	IntStatPT7504 }
-{Cryo,	-CDL00:,	TBx01,	-XV7503:,	IntStatPT7507 }
-
 }
 
 file "db/GBIntStat_0INP_TBx.template" { pattern
