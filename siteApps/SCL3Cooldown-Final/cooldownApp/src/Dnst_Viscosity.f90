@@ -1229,8 +1229,8 @@ C     do not overwrite.
       IF (NK .GT. NKMAX) RETURN
       N = MAX (1, NK)
       DO 20 J = 0, 40
-   20 KUNITS(J) = KULIB (J, N)
-      CONTINUE
+   20 END DO 
+      KUNITS(J) = KULIB (J, N) 
       END
 C
 C
@@ -1724,11 +1724,14 @@ C
       T2      = T*T
       F(1)    = 1.D0
       DO 40 J = 1, 5
-   40 Q(J)    = 0.D0
+   40 END DO 
+      Q(J)    = 0.D0
       DO 60 K = 1, 6
       DO 50 J = 1, 5
-   50 Q(J)    = Q(J) + F(K)*C(6*J+K-1, M)
-   60 F(K+1)  = F(K)*X
+   50 END DO 
+      Q(J)    = Q(J) + F(K)*C(6*J+K-1, M)
+   60 END DO 
+      F(K+1)  = F(K)*X
       PRESA2  = Q(1)+T2*(Q(2)+T2*(Q(3)+T2*(Q(4)+T2*Q(5))))
       END
 C
@@ -1764,11 +1767,14 @@ C
       T2      = T*T
       F(1)    = 1.
       DO 40 J = 1, 4
-   40 Q(J)    = 0.
+   40 END DO 
+      Q(J)    = 0.
       DO 60 K = 1, 6
       DO 50 J = 1, 4
-   50 Q(J)    = Q(J) + F(K)*C(6*J+K+5, M)
-   60 F(K+1)  = F(K)*X
+   50 END DO 
+      Q(J)    = Q(J) + F(K)*C(6*J+K+5, M)
+   60 END DO 
+      F(K+1)  = F(K)*X
       DPDTA   = (PVTCSA(3) + T*(2.D0*Q(1) + T2*(4.D0*Q(2) + T2*
      A           (6.D0*Q(3) + T2*8.D0*Q(4))))) * 1.D+06
       END
@@ -1805,12 +1811,15 @@ C
       T2      = T*T
       F(1)    = 1.
       DO 40 J = 1, 5
-   40 Q(J)    = 0.
+   40 END DO 
+      Q(J)    = 0.
       DO 60 K = 1, 5
       FF      = F(K)*DBLE(K)
       DO 50 J = 1, 5
-   50 Q(J)    = Q(J) + FF*C(6*J+K, M)
-   60 F(K+1)  = F(K)*X
+   50 END DO 
+      Q(J)    = Q(J) + FF*C(6*J+K, M)
+   60 END DO 
+      F(K+1)  = F(K)*X
       DPDV    = PVTCSA(2) + Q(1) + T2*(Q(2) + T2*(Q(3) + T2*
      A           (Q(4) + T2*Q(5))))
       DPDDA   = -1.D+09 * DPDV/(D*D)
@@ -1848,12 +1857,15 @@ C
       T2      = T*T
       F(1)    = X
       DO 10 J = 1, 4
-   10 Q(J)    = 0.D0
+   10 END DO 
+      Q(J)    = 0.D0
       DO 30 K = 1, 6
       FF      = F(K)/DBLE(K)
       DO 20 J = 1, 4
-   20 Q(J)    = Q(J) + FF*C(6*J+K+5, M)
-   30 F(K+1)  = F(K)*X
+   20 END DO 
+      Q(J)    = Q(J) + FF*C(6*J+K+5, M)
+   30 END DO 
+      F(K+1)  = F(K)*X
       CVA     = (PVTCSA(4) + T*(2.D0*Q(1) + T2*(12.D0*Q(2) + T2*
      A          (30.D0*Q(3) + T2*56.D0*Q(4))))
      B          + T*(C(36,M) + T2*(C(37,M) + T2*(C(38,M)
@@ -1907,12 +1919,15 @@ C
       T5   = T2*T2*T
       F(1) = X
       DO 40 J = 1, 4
-   40 Q(J) = 0.
+   40 END DO
+      Q(J) = 0.
       DO 60 K = 1, 6
          FF = F(K)/DBLE(K)
          DO 50 J = 1, 4
-   50    Q(J) = Q(J) + FF*C(6*J+K+5,M)
-   60 F(K+1) = F(K) * X
+   50    END DO 
+         Q(J) = Q(J) + FF*C(6*J+K+5,M)
+   60 END DO 
+      F(K+1) = F(K) * X
       ENTRA2 =  T*(2.D0*Q(1) + T2*(4.D0*Q(2) + T2*(6.D0*Q(3)
      A        + T2*8.D0*Q(4)))) + C(36,M)*T  + C(37,M)*T2*T/3.D0
      B        + C(38,M)*T5/5.D0 + C(39,M)*T5*T2/7.D0 + C(40,M)
@@ -1966,12 +1981,15 @@ C  and T [K].
       T4 = T2*T2
       F(1)    = X
       DO 40 J = 1, 5
-   40 Q(J)    = 0.
+   40 END DO 
+      Q(J)    = 0.
       DO 60 K = 1, 6
       FF      = F(K)/DBLE(K)
       DO 50 J = 1, 5
-   50 Q(J)    = Q(J) + FF*C(6*J+K-1, M)
-   60 F(K+1)  = F(K)*X
+   50 END DO 
+      Q(J)    = Q(J) + FF*C(6*J+K-1, M)
+   60 END DO
+      F(K+1)  = F(K)*X
       HELMA2  = Q(1)+T2*(Q(2)+T2*(Q(3)+T2*(Q(4)+T2*Q(5))))
      &    + C(36,M)*T2/2.D0 + C(37,M)*T4/12.D0
      &    + C(38,M)*T4*T2/30.D0+ C(39,M)*T4*T4/56.D0
@@ -2044,7 +2062,8 @@ C
       IF (DT .EQ. ZERO) THEN
          Y(1)    = -100.D0
          DO 10 I = 2, MAX
-   10    Y(I)    = ZERO
+   10    END DO 
+         Y(I)    = ZERO
       ELSE
          Z = ABS (DT)
          Y(1) = LOG (Z)
@@ -2055,7 +2074,8 @@ C
          ELSE
             Y(I) = (DT*Y(I-1) - DT**(I-1)/FACT) / DBLE(I-1)
          ENDIF
-   20    FACT = FACT*DBLE(I)
+   20    END DO 
+         FACT = FACT*DBLE(I)
       ENDIF
 *
 * Thermodynamic function evaluation
@@ -2438,7 +2458,8 @@ C Version Nov. 8, 1990
          Y = 1.D0
          DO 20 J = 3, 8
          Y = Y*T
-   20    P = P + C(J)*Y
+   20    END DO 
+         P = P + C(J)*Y
          D = EXP(P) / (2077.2258D0*T)
          Z = (0.0537D0 - 0.514D0/T) / 4.0026D0
          DGSAT = D /(1.+Z*D) + 0.00164D0*D**3
@@ -2616,7 +2637,8 @@ C However, this (corrected) equation gives Pc=227.4623 kPa at 5.1953 K.
       DO 10 J = 3, MX
       Q1 = Q1 + C(J,M)*TN*DBLE(J-2)
       TN = TN*X
-   10 Q0 = Q0 + C(J,M)*TN
+   10 END DO
+      Q0 = Q0 + C(J,M)*TN
       X  = 1.D0 - X
       IF ((M .EQ. 1) .AND. (X .GT. 0.D0)) THEN
          Y  = X**0.9D0
@@ -4335,7 +4357,8 @@ C
       TT=T
       DO 100 I=2,5
       A=C(I)/TT+A
-100   TT=TT*T
+100   END DO 
+      TT=TT*T
       K0=T**(C(1))*EXP(A+CONST)
       DL=D2*LOG(RHO/68.)
       TCON=K0+F(1)*KCRIT+RHO*(F(2)+F(3)*T +F(4)*T1 +F(5)*T2)

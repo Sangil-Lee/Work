@@ -6,14 +6,19 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
+#FC=gfortran
+#FFLAGS=-o3 -Wall -Wextra -std=f2008
+#FFLAGS=-o3 -Wall -Wextra
+#SRC=Dnst_Viscosity.f
+#OBJ=${SRC:.f=.o}
 
 #=============================
 # Build the IOC application
-
 PROD_IOC = cooldown
 # cooldown.dbd will be created and installed
 DBD += cooldown.dbd
 
+#gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/8
 gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/10
 
 # cooldown.dbd will be made up from these files:
@@ -59,7 +64,6 @@ ifneq ($(SNCSEQ),)
     cooldown_SRCS += sncPT7001WF2Scalar.stt
     cooldown_LIBS += seq pv
 
-
     PROD_HOST += sncCooldown03_PROD
     sncCooldown03_PROD_SNCFLAGS += +m
     sncCooldown03_PROD_SRCS += sncCooldown03_PROD.st
@@ -72,11 +76,23 @@ ifneq ($(SNCSEQ),)
     sncCooldown04_PROD_LIBS += seq pv
     sncCooldown04_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
+    PROD_HOST += sncCooldown12_PROD
+    sncCooldown12_PROD_SNCFLAGS += +m
+    sncCooldown12_PROD_SRCS += sncCooldown12_PROD.st
+    sncCooldown12_PROD_LIBS += seq pv
+    sncCooldown12_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
     PROD_HOST += sncCDOM14_15_Dic_PROD
     sncCDOM14_15_Dic_PROD_SNCFLAGS += +m
     sncCDOM14_15_Dic_PROD_SRCS += sncCDOM14_15_Dic_PROD.st
     sncCDOM14_15_Dic_PROD_LIBS += seq pv
     sncCDOM14_15_Dic_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncCooldown04_1_PROD
+    sncCooldown04_1_PROD_SNCFLAGS += +m
+    sncCooldown04_1_PROD_SRCS += sncCooldown04_1_PROD.st
+    sncCooldown04_1_PROD_LIBS += seq pv
+    sncCooldown04_1_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
 endif
 

@@ -1,0 +1,255 @@
+program sncCooldown04
+option +r; 
+
+%%#include <math.h> 
+
+char OM041[2][60] = {
+"SCL31-CDL01:EBx01-CV7501","SCL31-CDL01:EBx01-CV7402"};
+
+int stopindex = 2;
+int stopindex_1_2 = 266;
+int  stopindex_3 = 66;
+int  stopindex_4 = 22;
+int  stopindex_5 = 33;
+int  stopindex_6 = 55;
+int  stopindex_7 = 44;
+int  stopindex_8 = 2;
+
+string steppv;
+assign steppv to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepPV";
+monitor steppv;
+
+int ss_start = 0;
+assign ss_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}Start";
+monitor ss_start;
+evflag	efStop;
+sync ss_start efStop;
+
+int index = 0;
+assign index to "{SYS}{SUBSYS}{DEV}{SUBDEV}Index";
+monitor index;
+
+float cdDelay;
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
+monitor cdDelay;
+
+int presz_start = 0;
+assign presz_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}PresStart";
+monitor presz_start;
+
+char	logicname[60];
+char	logictarget_val[60];
+
+int		proc = 1;
+assign	proc to "";
+
+
+char	valvename[60];
+float	valveval;
+assign  valveval to "";
+
+char	valve_evalname[60];
+int		valve_eval;
+assign	valve_eval to "";
+
+evflag	efCDOM041_0;
+evflag	efCDOM041_20;
+evflag	efCDOM041_100;
+
+ss ssCDOM041
+{
+	state init
+	{
+		when(TRUE)
+		{
+		  efSet(efStop);
+		  printf("Started Cooldown Logic Processig...\n");
+		}state stopCDOM041
+	}
+	state stopCDOM041
+	{
+		when(efTest(efStop) && ss_start == 1)
+		{
+			stopindex = 2;
+			stopindex_1_2 = 266;
+			stopindex_3 = 66;
+			stopindex_4 = 22;
+			stopindex_5 = 33;
+			stopindex_6 = 55;
+			stopindex_7 = 44;
+			stopindex_8 = 2;
+			index = 0;
+			pvPut(index, SYNC);
+			efSet(efCDOM041_20);
+			efClear(efStop);
+		}state CDOM041_Init
+	}
+
+	state CDOM041_Init
+	{
+		when(delay(cdDelay) && efTestAndClear(efCDOM041_20))
+		{
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM041", OM041[index]);
+			sprintf(valvename, "%s:Valve", OM041[index]);
+
+			printf("%s, %s\n", logicname, valvename);
+
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+
+		}state CDOM041_Proc_20
+
+		when(delay(cdDelay) && efTestAndClear(efCDOM041_100))
+		{
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM041", OM041[index]);
+			sprintf(valvename, "%s:Valve", OM041[index]);
+
+			sprintf(logictarget_val, "%s:%s:CDLogic.INPJ","OM041", OM041[index]);
+
+			printf("%s, %s\n", logicname, valvename);
+
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+
+		}state CDOM041_Proc_100
+
+		when(delay(cdDelay) && efTestAndClear(efCDOM041_0))
+		{
+			sprintf(logicname, "%s:%s:CDLogic.PROC","OM041", OM041[index]);
+			sprintf(valvename, "%s:%s:Valve","OM041", OM041[index]);
+
+			printf("%s, %s\n", logicname, valvename);
+
+			if(index < stopindex)
+			{
+				strcpy(steppv, valvename);
+				pvPut(steppv, SYNC);
+
+				pvAssign(valveval, valvename);
+				pvMonitor(valveval);
+
+				pvAssign(proc, logicname);
+				pvMonitor(proc);
+			};
+		}state CDOM04_Proc_0
+	}
+
+	state CDOM041_Proc_20
+	{
+		when(delay(cdDelay) && valveval < 20 && index < stopindex)
+		{
+			printf("CDOM041_Proc_20\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CDOM041_Proc_20
+
+		when(delay(cdDelay) && valveval >= 20 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			efSet(efCDOM041_100);
+		}state CDOM041_Init
+
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM041 Done & OM042 Start");
+			pvPut(steppv, SYNC);
+
+			efSet(efCDOM041_100);
+
+		}state CDOM041_Init
+	}
+
+	state CDOM041_Proc_100
+	{
+		when(delay(cdDelay) && valveval < 100 && index < stopindex)
+		{
+			printf("CDOM041_Proc_100\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CDOM041_Proc_100
+
+		when(delay(cdDelay) && valveval >= 100 && index < stopindex)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			efSet(efCDOM041_0);
+		}state CDOM041_Init
+
+		when(delay(cdDelay) && index >= stopindex)
+		{
+			strcpy(steppv, "OM041 Done & OM042 Start");
+			pvPut(steppv, SYNC);
+
+			efSet(efCDOM041_0);
+
+			ss_start = 2;
+			pvPut(ss_start, SYNC);
+
+		}state stopCDOM041
+	}
+
+	state CDOM04_Proc_0
+	{
+		when(delay(cdDelay) && valveval > 0 && index < stopindex_1_2)
+		{
+			printf("CDOM04_Proc_100\n");
+			proc = 1;
+			pvPut(proc, SYNC);
+		}state CDOM04_Proc_0
+
+		when(delay(cdDelay) && valveval <= 0 && index < stopindex_1_2)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			efSet(efCDOM041_0);
+		}state CDOM041_Init
+
+		when(delay(cdDelay) && index >= stopindex_1_2)
+		{
+			strcpy(steppv, "OM04 Done");
+			pvPut(steppv, SYNC);
+
+			efSet(efStop);
+			ss_start = 2;
+
+			pvPut(ss_start, SYNC);
+		}state stopCDOM041
+	}
+}
