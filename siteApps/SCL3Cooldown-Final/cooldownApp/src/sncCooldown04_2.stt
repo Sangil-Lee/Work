@@ -1,5 +1,6 @@
 program sncCooldown04
 option +r; 
+option +a; 
 
 %%#include <math.h> 
 
@@ -60,7 +61,9 @@ char OM041[268][60] = {
 "SCL31-CDL01:VBx08-CV7301","SCL31-CDL01:VBx06-CV7301","SCL31-CDL01:VBx04-CV7301","SCL31-CDL01:VBx02-CV7301","Cryo-CDL00:TBx01-CV7201",
 "Cryo-CDL00:TBx01-XV7201"};
 
-int  stopindex = 268;
+//int  stopindex = 268;
+int  stopindex = 2;
+
 int  stopindex_1_2 = 266;
 int  stopindex_3 = 66;
 int  stopindex_4 = 22;
@@ -90,6 +93,10 @@ monitor cdDelay;
 int presz_start = 0;
 assign presz_start to "{SYS}{SUBSYS}{DEV}{SUBDEV}PresStart";
 monitor presz_start;
+
+int next = 0;
+assign next to "{SYS}{SUBSYS}{DEV}{SUBDEV}Next";
+monitor next;
 
 char	logicname[60];
 
@@ -126,7 +133,7 @@ ss ssCDOM041
 	{
 		when(efTest(efStop) && ss_start == 1)
 		{
-			stopindex = 268;
+			stopindex = 2;
 			index = 0;
 			pvPut(index, SYNC);
 			efSet(efCDOM041);
@@ -138,9 +145,9 @@ ss ssCDOM041
 	{
 		when(delay(cdDelay) && efTestAndClear(efCDOM041))
 		{
-			sprintf(logicname, "%s:%s:CDLogic.PROC","OM041", OM041[index]);
-			sprintf(valvename, "%s:Valve", OM041[index]);
-			sprintf(target_valname, "%s:%s:CDLogic.INPJ","OM041", OM041[index]);
+			sprintf(logicname,		"%s:%s:CDLogic.PROC","OM041", OM041[index]);
+			sprintf(valvename,		"%s:Valve", OM041[index]);
+			sprintf(target_valname, "%s:%s:TargetVal","OM041", OM041[index]);
 
 			printf("%s, %s\n", logicname, valvename);
 
@@ -152,11 +159,16 @@ ss ssCDOM041
 				pvAssign(valveval, valvename);
 				pvMonitor(valveval);
 
-				pvAssign(target_val, target_valname);
-				pvMonitor(target_val);
-
 				pvAssign(proc, logicname);
 				pvMonitor(proc);
+
+				pvAssign(target_val, target_valname);
+				pvMonitor(target_val);
+				epicsThreadSleep(0.5);
+				pvGet(target_val);
+				printf("targetval:%f, %s\n", target_val, target_valname);
+
+
 			};
 
 		}state CDOM041
@@ -164,22 +176,27 @@ ss ssCDOM041
 
 	state CDOM041
 	{
-		when(delay(cdDelay) && valveval < target_val && index < stopindex)
+		when(delay(cdDelay) && valveval < target_val && index < stopindex && next == 0)
 		{
 			printf("CDOM041 Processing...\n");
 			proc = 1;
 			pvPut(proc, SYNC);
 		}state CDOM041
 
-		when(delay(cdDelay) && valveval >= target_val && index < stopindex)
+		when(delay(cdDelay) && valveval >= target_val && index < stopindex ||  next == 1)
 		{
 			pvStopMonitor(valveval);
+			pvStopMonitor(target_val);
 			pvStopMonitor(proc);
 			pvAssign(valveval, "");
 			pvAssign(proc, "");
+			pvAssign(target_val, "");
 
 			index++;
 			pvPut(index, SYNC);
+
+			next = 0;
+			pvPut(next, SYNC);
 
 			efSet(efCDOM041);
 		}state CDOM041_Init

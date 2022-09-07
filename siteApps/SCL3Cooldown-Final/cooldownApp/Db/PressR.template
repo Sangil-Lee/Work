@@ -1,17 +1,19 @@
 
-record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)"){
-  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp")
-  field(SCAN, "$(SCAN)")
-  field(PINI, "$(PINI)")
-  field(VAL, "$(VAL)")
-}
+###record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)"){
+###  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp")
+###  field(SCAN, "$(SCAN)")
+###  field(PINI, "$(PINI)")
+###  field(VAL, "$(VAL)")
+###}
+
 record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp"){
-  field(SCAN, "Passive")
+  field(SCAN, "1 second")
   field(ALG, "Circular Buffer")
   field(NSAM, "5")
   field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval")
   field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 }
+
 record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Eval"){
   field(SCAN, "Passive")
   field(NELM, "5")
