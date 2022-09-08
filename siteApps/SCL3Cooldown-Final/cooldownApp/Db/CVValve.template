@@ -67,14 +67,15 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(INPG, "$(INPG)")
     field(INPH, "$(INPH)")
     field(INPI, "$(INPI)")
-    field(INPJ, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal CPP")
+	field(INPJ, "$(TARGETJ)")
+#field(INPJ, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal CPP")
 	field(INPK, "$(INPK)")
 	field(INPL, "$(INPL)")
 }
 
-record(ai, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal")
-{
-    field(SCAN, "Passive")
-    field(PINI, "YES")
-    field(VAL, "$(TARGET)")
-}
+##record(ai, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal")
+##{
+##field(SCAN, "Passive")
+##field(PINI, "YES")
+##field(VAL, "$(TARGET)")
+##}

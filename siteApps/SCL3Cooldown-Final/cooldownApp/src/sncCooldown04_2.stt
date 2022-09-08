@@ -147,7 +147,8 @@ ss ssCDOM041
 		{
 			sprintf(logicname,		"%s:%s:CDLogic.PROC","OM041", OM041[index]);
 			sprintf(valvename,		"%s:Valve", OM041[index]);
-			sprintf(target_valname, "%s:%s:TargetVal","OM041", OM041[index]);
+			sprintf(target_valname, "%s:%s:CDLogic.J","OM041", OM041[index]);
+			//sprintf(target_valname, "%s:%s:TargetVal","OM041", OM041[index]);
 
 			printf("%s, %s\n", logicname, valvename);
 
@@ -163,8 +164,8 @@ ss ssCDOM041
 				pvMonitor(proc);
 
 				pvAssign(target_val, target_valname);
-				pvMonitor(target_val);
-				epicsThreadSleep(0.5);
+				//pvMonitor(target_val);
+				epicsThreadSleep(0.1);
 				pvGet(target_val);
 				printf("targetval:%f, %s\n", target_val, target_valname);
 
