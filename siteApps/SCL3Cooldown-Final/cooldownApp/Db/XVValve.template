@@ -1,9 +1,19 @@
 
-record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+###record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+###{
+###    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut")
+###    field(SCAN, "Passive")
+###    field(PINI, "YES")
+###    field(VAL, "0")
+###}
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
     field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut")
     field(SCAN, "Passive")
     field(PINI, "YES")
+    field(CALC, "A")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
     field(VAL, "0")
 }
 
@@ -19,7 +29,6 @@ record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut") {
     field(SCAN, "Passive")
     field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp PP")
     field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
-    #field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
     field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
     field(OMSL, "closed_loop")
 }
@@ -47,8 +56,8 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(SCAN, "Passive")
     field(PINI, "NO")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
-    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).PROC CPP")
-    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL).VAL CPP")
+#field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).PROC CPP")
+    field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).VAL CPP")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")
 	field(CALC, "$(CALC)")
@@ -58,7 +67,7 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(INPG, "$(INPG)")
     field(INPH, "$(INPH)")
     field(INPI, "$(INPI)")
-    field(INPJ, "$(INPJ)")
+    field(INPJ, "$(TARGETJ)")
 	field(INPK, "$(INPK)")
 	field(INPL, "$(INPL)")
 }

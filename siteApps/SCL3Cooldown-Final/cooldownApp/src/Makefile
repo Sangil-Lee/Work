@@ -18,6 +18,8 @@ PROD_IOC = cooldown
 # cooldown.dbd will be created and installed
 DBD += cooldown.dbd
 
+INCLUDES += -I/usr/include/eigen3
+
 #gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/8
 gfortran_DIR=/usr/lib/gcc/x86_64-linux-gnu/10
 
@@ -34,6 +36,7 @@ cooldown_DBD += $(CALC)/dbd/calc.dbd
 cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
 cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 cooldown_DBD += asubWFParam.dbd
+cooldown_DBD += asubLReGression.dbd
 
 # Add all the support libraries needed by this IOC
 #cooldown_LIBS += xxx
@@ -42,6 +45,7 @@ cooldown_DBD += asubWFParam.dbd
 cooldown_SRCS += cooldown_registerRecordDeviceDriver.cpp
 cooldown_SRCS += Dnst_Viscosity.f
 cooldown_SRCS += HePAKLogic.cpp asubWFParam.cpp
+cooldown_SRCS += asubLReGression.cpp
 
 # Build the main IOC entry point on workstation OSs.
 cooldown_SRCS_DEFAULT += cooldownMain.cpp
@@ -55,6 +59,7 @@ ifneq ($(SNCSEQ),)
     cooldown_DBD  += sncCooldown12.dbd
     cooldown_DBD  += sncCDOM14_15_Dic.dbd
     cooldown_DBD  += sncPT7001WF2Scalar.dbd
+    cooldown_DBD  += sncMakeTempWaveform.dbd
 
     cooldown_SRCS += sncSetpt_listWF.stt
     cooldown_SRCS += sncCooldown03.stt
@@ -62,6 +67,7 @@ ifneq ($(SNCSEQ),)
     cooldown_SRCS += sncCooldown12.stt
     cooldown_SRCS += sncCDOM14_15_Dic.stt
     cooldown_SRCS += sncPT7001WF2Scalar.stt
+    cooldown_SRCS += sncMakeTempWaveform.stt
     cooldown_LIBS += seq pv
 
     PROD_HOST += sncCooldown03_PROD

@@ -1,0 +1,76 @@
+
+###Return
+record(waveform, SCL3-CD:Logic-TSR:TempWaveR) {
+  field(SCAN, "Passive")
+  field(NELM, "57")
+  field(FTVL, "DOUBLE")
+  field(PINI, "YES")
+  field(FLNK, "SCL3-CD:Logic-TSR:LRegression")
+}
+
+record(aSub, SCL3-CD:Logic-TSR:LRegression) {
+#field(SCAN, "1 second")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(INAM, "InitLReGression")
+  field(SNAM, "ProcLReGression")
+  field(INPA, "1")
+  field(INPB, "SCL3-CD:Logic-TSR:TempWaveR")
+  field(NOB, "57")
+  field(NOVA, "57")
+  field(OUTA, "SCL3-CD:Logic-TSR:LRTempWave PP")
+}
+
+record(waveform, SCL3-CD:Logic-TSR:LRTempWave) {
+  field(SCAN, "Passive")
+  field(NELM, "57")
+  field(FTVL, "DOUBLE")
+  field(FLNK, "SCL3-CD:Logic-TSR:TempLogic")
+}
+
+record(acalcout, SCL3-CD:Logic-TSR:TempLogic) {
+  field(INAA, "SCL3-CD:Logic-TSR:LRTempWave")
+  field(INBB, "SCL3-CD:Logic-TSR:TempWaveR")
+  field(NELM, "57")
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
+
+###Supply
+record(waveform, SCL3-CD:Logic-TSS:TempWaveR) {
+  field(SCAN, "Passive")
+  field(NELM, "57")
+  field(FTVL, "DOUBLE")
+  field(PINI, "YES")
+  field(FLNK, "SCL3-CD:Logic-TSS:LRegression")
+}
+
+record(aSub, SCL3-CD:Logic-TSS:LRegression) {
+#field(SCAN, "1 second")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(INAM, "InitLReGression")
+  field(SNAM, "ProcLReGression")
+  field(INPA, "1")
+  field(INPB, "SCL3-CD:Logic-TSS:TempWaveR")
+  field(NOB, "57")
+  field(NOVA, "57")
+  field(OUTA, "SCL3-CD:Logic-TSS:LRTempWave PP")
+}
+
+record(waveform, SCL3-CD:Logic-TSS:LRTempWave) {
+  field(SCAN, "Passive")
+  field(NELM, "57")
+  field(FTVL, "DOUBLE")
+  field(FLNK, "SCL3-CD:Logic-TSS:TempLogic")
+}
+
+record(acalcout, SCL3-CD:Logic-TSS:TempLogic) {
+  field(INAA, "SCL3-CD:Logic-TSS:LRTempWave")
+  field(INBB, "SCL3-CD:Logic-TSS:TempWaveR")
+  field(NELM, "57")
+  field(CALC, "CC:=AA-BB;AMAX(ABS(CC))")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}

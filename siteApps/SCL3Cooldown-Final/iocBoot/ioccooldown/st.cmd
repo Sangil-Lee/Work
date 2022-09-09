@@ -40,10 +40,12 @@ cooldown_registerRecordDeviceDriver pdbbase
 dbLoadTemplate("db/Additional.sub")
 dbLoadTemplate("db/PressR_1.sub")
 dbLoadTemplate("db/cooldown04_1.sub")
+dbLoadRecords("db/Linear_regression.vdb")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
 #seq sncCooldown03, "SYS=SCL3,SUBSYS=-CD:,DEV=Logic,SUBDEV=-ADD:"
+seq sncMakeTempWaveform
 

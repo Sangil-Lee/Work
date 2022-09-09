@@ -28,7 +28,6 @@ record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut") {
     field(SCAN, "Passive")
     field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp PP")
     field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
-    #field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
     field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
     field(OMSL, "closed_loop")
 }
@@ -56,7 +55,7 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
-    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).PROC CPP")
+#field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).PROC CPP")
     field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).VAL CPP")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")

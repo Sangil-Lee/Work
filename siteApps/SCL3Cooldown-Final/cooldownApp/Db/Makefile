@@ -13,6 +13,9 @@ DB += cooldown04_1.sub
 DB += CVValve.template
 DB += Additional.sub
 
+## Linear Regression
+DB += Linear_regression.vdb
+
 #DB += press.template
 #DB += PressR.sub
 #DB += ai.template
