@@ -479,16 +479,15 @@ ss ssCDOM14
 			printf("CV8401 Processing...\n");
 		}state CV8401
 
-
 		//when(delay(cdDelay) && valveval >= 100 && valveval_1 >= 100 && Cycle >= 12)
-		when(delay(cdDelay) && valveval >= 100 && cycle >= 12)
+		when(delay(cdDelay) && valveval >= target_val && cycle >= 12)
 		{
 			printf("CV8401 Complete!!\n");
 			first = 0;
 		}state CV8402_5
 
 		//when(delay(cdDelay) && valveval >= 100 && valveval_1 >= 100 && Cycle < 12)
-		when(delay(cdDelay) && valveval >= 100 && cycle < 12)
+		when(delay(cdDelay) && valveval >= target_val && cycle < 12)
 		{
 			printf("CV8401 Complete!!\n");
 			first = 0;
@@ -501,9 +500,10 @@ ss ssCDOM14
 		when(first == 0)
 		{
 			sprintf(logicname, "%s:CDLogic.PROC", OM14_CV8402[cycle]);
-			printf("%s\n", logicname);
 			sprintf(valvename, "%s:Valve", OM14_CV8402[cycle]);
-			printf("%s\n", valvename);
+			sprintf(target_valname, "%s:%s:CDLogic.J",OM14_CV8402[cycle]);
+
+			printf("%s, %s\n", locigcname, valvename);
 
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
@@ -511,17 +511,22 @@ ss ssCDOM14
 			pvAssign(proc, logicname);
 			pvMonitor(proc);
 
+			pvAssign(target_val, target_valname);
+			epicsThreadSleep(0.1);
+			pvGet(target_val);
+			printf("targetval:%f, %s\n", target_val, target_valname);
+
 			first = 1;
 		}state CV8402_5
 
-		when(delay(cdDelay) && valveval < 5)
+		when(delay(cdDelay) && valveval < target_val)
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
 			printf("CV8402_5 Processing...\n");
 		}state CV8402_5
 
-		when(delay(cdDelay) && valveval >= 5)
+		when(delay(cdDelay) && valveval >= target_val)
 		{
 			first = 0;
 			printf("Transition CV8401.\n");
@@ -533,9 +538,10 @@ ss ssCDOM14
 		when(first == 0)
 		{
 			sprintf(logicname, "%s:CDLogic.PROC", OM14_CV7401[cycle]);
-			printf("%s\n", logicname);
 			sprintf(valvename, "%s:Valve", OM14_CV7401[cycle]);
-			printf("%s\n", valvename);
+			sprintf(target_valname, "%s:%s:CDLogic.J",OM14_CV7401[cycle]);
+
+			printf("%s, %s\n", locigcname, valvename);
 
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
@@ -543,23 +549,28 @@ ss ssCDOM14
 			pvAssign(proc, logicname);
 			pvMonitor(proc);
 
+			pvAssign(target_val, target_valname);
+			epicsThreadSleep(0.1);
+			pvGet(target_val);
+			printf("targetval:%f, %s\n", target_val, target_valname);
+
 			first = 1;
 		}state CV7401_100
 
-		when(delay(cdDelay) && valveval < 100)
+		when(delay(cdDelay) && valveval < target_val)
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
 			printf("CV7401_100 Processing...\n");
 		}state CV7401_100
 
-		when(delay(cdDelay) && valveval >= 100 && cycle < 12)
+		when(delay(cdDelay) && valveval >= target_val && cycle < 12)
 		{
 			first = 0;
 			printf("Transition CV8402_5_Regulate.\n");
 		}state CV8402_5_regulate
 
-		when(delay(cdDelay) && valveval >= 100 && cycle >= 12)
+		when(delay(cdDelay) && valveval >= target_val && cycle >= 12)
 		{
 			first = 0;
 			printf("Transition CV8403_Regulate.\n");
@@ -571,9 +582,7 @@ ss ssCDOM14
 		when(first == 0)
 		{
 			sprintf(logicname, "%s:CDLogic.PROC", OM14_CV8402[cycle]);
-			printf("%s\n", logicname);
 			sprintf(valvename, "%s:Valve", OM14_CV8402[cycle]);
-			printf("%s\n", valvename);
 
 			sprintf(valve_evalname, "%s:ValveEval", OM14_CV8402[cycle]);
 			printf("%s\n", valve_evalname);
