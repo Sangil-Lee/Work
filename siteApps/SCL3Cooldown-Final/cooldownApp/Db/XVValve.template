@@ -56,7 +56,6 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(SCAN, "Passive")
     field(PINI, "NO")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
-#field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).PROC CPP")
     field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).VAL CPP")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")
