@@ -7,6 +7,23 @@
 ###    field(VAL, "0")
 ###}
 
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(CalcSetOpen)")
+{
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(CALC, "A")
+  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen PP")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(CalcSetClose)")
+{
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(CALC, "A?0:1")
+  field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuClose PP")
+}
+
+
 record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
     field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut")
@@ -29,6 +46,8 @@ record(dfanout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)FOut") {
     field(SCAN, "Passive")
     field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Comp PP")
     field(OUTB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB) CPP")
+    field(OUTC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(CalcSetOpen).A PP")
+    field(OUTD, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(CalcSetClose).A PP")
     field(DOL,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
     field(OMSL, "closed_loop")
 }
