@@ -1,11 +1,11 @@
 file "db/longin.template" { pattern
-{PREFIX,				SIGNAL,		PORT,			OFFSET, DATA_TYPE,	FLNK,				SCAN,		DESC}
-{NDPS-PS:Flow-CH01:,	Data,		"NDPSFMAI",		0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH1 Data"}
-{NDPS-PS:Flow-CH02:,	Data,		"NDPSFMAI1",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH2 Data"}
-{NDPS-PS:Flow-CH03:,	Data,		"NDPSFMAI2",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH3 Data"}
-{NDPS-PS:Flow-CH04:,	Data,		"NDPSFMAI3",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH4 Data"}
-{NDPS-PS:Flow-CH05:,	Data,		"NDPSFMAI4",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH5 Data"}
-{NDPS-PS:Flow-CH06:,	Data,		"NDPSFMAI5",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH6 Data"}
-{NDPS-PS:Flow-CH07:,	Data,		"NDPSFMAI6",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH7 Data"}
-{NDPS-PS:Flow-CH08:,	Data,		"NDPSFMAI7",	0,		INT32_BE,	"${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH8 Data"}
+{PREFIX,				SIGNAL,		PORT,		OFFSET, DATA_TYPE,		FLNK,				SCAN,		DESC}
+{NDPS-PS:Flow-CH01:,	Data,		"NDPSAI",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH1 Data"}
+{NDPS-PS:Flow-CH02:,	Data,		"NDPSAI1",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH2 Data"}
+{NDPS-PS:Flow-CH03:,	Data,		"NDPSAI2",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH3 Data"}
+{NDPS-PS:Flow-CH04:,	Data,		"NDPSAI3",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH4 Data"}
+{NDPS-PS:Flow-CH05:,	Data,		"NDPSAI4",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH5 Data"}
+{NDPS-PS:Flow-CH06:,	Data,		"NDPSAI5",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH6 Data"}
+{NDPS-PS:Flow-CH07:,	Data,		"NDPSAI6",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH7 Data"}
+{NDPS-PS:Flow-CH08:,	Data,		"NDPSAI7",	 0,		INT32_BE,	  "${PREFIX}Fanout",	"1 second",	"NDPS Flowmeter CH8 Data"}
 }                                                                   

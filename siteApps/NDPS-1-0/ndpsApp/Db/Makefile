@@ -7,18 +7,9 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += aiFloat64.template  
-DB += aoFloat64.template  
-DB += biWord.template  
-DB += boWord.template
-DB += NDPS_WS.sub
-DB += NDPS_CCS.sub
-DB += NDPS_VAC.sub
-
-## Flowmeter data processing
+#DB += aiFloat64.template
 DB += longin.template
 DB += flowMeter.sub
-DB += DataFanout.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

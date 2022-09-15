@@ -14,17 +14,14 @@ DBD += ndps.dbd
 
 # ndps.dbd will be made up from these files:
 ndps_DBD += base.dbd
-ndps_DBD += epidRecord.dbd  scalerRecord.dbd 
-ndps_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
-
-# Include dbd files from all support applications:
-ndps_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
-ndps_DBD += $(ASYN)/dbd/asyn.dbd
-ndps_DBD += $(CALC)/dbd/calc.dbd
-ndps_DBD += $(CALC)/dbd/calcSupport.dbd
 
 # Include dbd files from all support applications:
 #ndps_DBD += xxx.dbd
+ndps_DBD += asyn.dbd
+ndps_DBD += drvAsynIPPort.dbd
+ndps_DBD += modbusSupport.dbd
+ndps_DBD += motorSupport.dbd
+ndps_DBD += phytronSupport.dbd
 
 # Add all the support libraries needed by this IOC
 #ndps_LIBS += xxx
@@ -36,20 +33,18 @@ ndps_SRCS += ndps_registerRecordDeviceDriver.cpp
 ndps_SRCS_DEFAULT += ndpsMain.cpp
 ndps_SRCS_vxWorks += -nil-
 
-ifneq ($(SNCSEQ),)
-    ndps_SNCFLAGS += +r
-#ndps_DBD += 
-#ndps_SRCS += 
-
-    ndps_LIBS += seq pv
-    ndps_LIBS += $(EPICS_BASE_HOST_LIBS)
-endif
-
 # Add support from base/src/vxWorks if needed
 #ndps_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
+ifneq ($(SNCSEQ),)
+    ndps_SNCFLAGS += +r
+    #ndps_DBD  +=
+    #ndps_SRCS +=
+    ndpsIBS += seq pv
+endif
+
 # Finally link to the EPICS Base libraries
-ndps_LIBS += asyn calc std sscan 
+ndps_LIBS += asyn modbus motor phytronAxisMotor
 ndps_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
