@@ -1,10 +1,14 @@
 
-record(longin, $(PREFIX)$(SIGNAL))
+record(ai, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL))
 {
 	field(DESC, "$(DESC)")
-	field(DTYP, "asynInt32")
+	field(DTYP, "asynFloat64")
 	field(INP,  "@asyn($(PORT) $(OFFSET)) $(DATA_TYPE)")
 
     field(SCAN,"$(SCAN)")
-    field(FLNK,"$(FLNK)")
+
+    field(HOPR,"$(HOPR)")
+    field(LOPR,"$(LOPR)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
 }
