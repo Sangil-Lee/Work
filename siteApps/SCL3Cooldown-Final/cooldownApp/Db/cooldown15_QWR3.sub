@@ -9,6 +9,6 @@ file "db/CVValve.template" { pattern
 file "db/CVValve.template" { pattern
 {OM,	SYS,	    SUBSYS,     DEV,		SUBDEV,		SIGNAL,		CALC,			                  INPB,                                 INPC,                               INPH,   INPK,                                       INPI,   INPJ, INPD,INPG,INPL, OUTB}
 {OM15,	SCL31,     -CDL01:,    VBx06,		-CV7301:,	Valve,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx06-TT7301:Temp",    10,     "SCL31-CDL01:VBx06-PT7301:PressEval",       0.05,   100,  "",  "",  "",   "Setpt" } #50->Next
-{OM15,	SCL31,     -CDL01:,    VBx06,		-XV7301:,	Valve,		"(B<H)?A:J",                      "SCL31-CDL01:VBx06-CV7301:Valve",     "",                                 50,     "",                                         "",     0,    "",  "",  "",   "Setpt"  } #3#2QWR
+{OM15,	SCL31,     -CDL01:,    VBx06,		-XV7301:,	Valve,		"(B<H)?A:J",                      "SCL31-CDL01:VBx06-CV7301:Valve",     "",                                 50,     "",                                         "",     0,    "",  "",  "",   "SetManuOpen"  } #3#2QWR
 }
 
