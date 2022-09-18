@@ -1,39 +1,34 @@
-program sncCDOM14_15_One_PROD
+program sncCDOM14_15_Two_PROD
 option +r; 
 
 %%#include <math.h> 
 
 char OM14_ONE[44][4][60] = {
-	{"SCL31-CDL01:VBx02-XV7301", "SCL31-BL01:CM01-CV8401",	"SCL31-CDL01:VBx02-CV7401", "SCL31-BL01:CM01-CV8402"}
+	{"SCL31-CDL01:VBx06-XV7301", "SCL31-BL01:CM05-CV8401",	"SCL31-CDL01:VBx06-CV7401", "SCL31-BL01:CM05-CV8402"}
 };
 
-	//{"SCL31-CDL01:VBx04-XV7301", "SCL31-BL01:CM03-CV8401",	"SCL31-CDL01:VBx04-CV7401", "SCL31-BL01:CM03-CV8402"}
 char OM14_ONE_CV8[44][4][60] = {
-	{"",						 "SCL31-BL01:CM02-CV8401",  "",						 "SCL31-BL01:CM02-CV8402"}
+	{"",						 "SCL31-BL01:CM06-CV8401",  "",						 "SCL31-BL01:CM06-CV8402"}
 };
-	//{"",						 "SCL31-BL01:CM04-CV8401",  "",						 "SCL31-BL01:CM04-CV8402"}
 
 char OM15_ONE[44][4][60] = {
-	{"SCL31-BL01:CM01-CV8402",   "SCL31-BL01:CM01-CV8401", "SCL31-CDL01:VBx02-CV7301", "SCL31-CDL01:VBx02-XV7301"},
-	{"SCL31-BL01:CM03-CV8402",   "SCL31-BL01:CM03-CV8401", "SCL31-CDL01:VBx04-CV7301", "SCL31-CDL01:VBx04-XV7301"}
+	{"SCL31-BL01:CM05-CV8401", "SCL31-BL01:CM05-CV8402",   "SCL31-CDL01:VBx06-CV7301", "SCL31-CDL01:VBx06-XV7301"},
 };
 
 char OM15_ONE_CV8[44][4][60] = {
-	{"SCL31-BL01:CM02-CV8402",	  "SCL31-BL01:CM02-CV8401",	"",							""},
-	{"SCL31-BL01:CM04-CV8402",	  "SCL31-BL01:CM04-CV8401",	"",							""}
+	{"SCL31-BL01:CM06-CV8401",	"SCL31-BL01:CM06-CV8402",	"",							""},
 };
 
 char OM_PhaseEnd_CM01[44][60] = {
-"SCL31-BL01:CM01-LT8401:PercR"
+"SCL31-BL01:CM05-LT8401:PercR"
 };
 
 char OM_PhaseEnd_CM02[44][60] = {
-"SCL31-BL01:CM02-LT8401:PercR"
+"SCL31-BL01:CM06-LT8401:PercR"
 };
 
 char OM15_PIDSet[44][3][60] = {
-	{"SCL31-BL01:CM01-CV8401","SCL31-BL01:CM02-CV8401","SCL31-CDL01:VBx02-CV7301"},
-	{"SCL31-BL01:CM03-CV8401","SCL31-BL01:CM04-CV8401","SCL31-CDL01:VBx04-CV7301"}
+	{"SCL31-BL01:CM05-CV8401","SCL31-BL01:CM06-CV8401","SCL31-CDL01:VBx06-CV7301"},
 };
 
 
@@ -112,8 +107,8 @@ assign  pidsetval to "";
 
 int		first = 0;
 int		sametime = 0;
-int		om14lastcount = 5;
-int		om15lastcount = 5;
+int		om14lastcount = 4;
+int		om15lastcount = 4;
 int     cyclecount = 44;
 
 evflag  efCDOM14;
@@ -130,7 +125,7 @@ ss ssCDOM14
             cyclecount = 44;
             cycle = 0;
             index = 0;
-			om14lastcount = 5;
+			om14lastcount = 4;
             pvPut(cycle, SYNC);
             pvPut(index, SYNC);
 			efSet(efIndex);
@@ -218,6 +213,7 @@ ss ssCDOM14
 
 		when(efTestAndClear(efIndex) && index >= om14lastcount)
 		{
+			printf("OM14 PhaseEnd Transition....\n");
 
 		} state OM14PhaseEnd
 	}
@@ -272,7 +268,7 @@ ss ssCDOM14
 			pvPut(next, SYNC);
 			efSet(efIndex);
 
-			printf("OM14 Transition Indexing....\n");
+			printf("OM14 Transition Indexing(%d)....\n", index);
 		}state Indexing
 
 		when(delay(cdDelay) && valveval >= target_val && valveval_1 >= target_val_1 && sametime == 1 || next == 1)
@@ -301,7 +297,7 @@ ss ssCDOM14
 			next = 0;
 			pvPut(next, SYNC);
 
-			printf("OM14 Transition Indexing....\n");
+			printf("OM14 Transition Indexing(%d)....\n", index);
 		}state Indexing
     }
 
@@ -321,7 +317,12 @@ ss ssCDOM14
 
 		}state OM14PhaseEnd
 
-		when(delay(cdDelay) && omphaseend >= 50 &&  omphaseend_1 >= 50  && first >= 1)
+		when(delay(cdDelay) && (omphaseend < 20 ||  omphaseend_1 < 20)  && first >= 1)
+		{
+			printf("OM14 PhaseEnd Level Checking: %s(%f), %s(%f)....\n",OM_PhaseEnd_CM01[cycle], omphaseend, OM_PhaseEnd_CM02[cycle], omphaseend_1);
+		} state OM14PhaseEnd
+
+		when(delay(cdDelay) && omphaseend >= 20 &&  omphaseend_1 >= 20  && first >= 1)
 		{
 			first = 0;
 			efSet(efCDOM15);
@@ -336,9 +337,11 @@ ss ssCDOM15
 		when(efTestAndClear(efCDOM15) && first == 0) 
 		{
             index = 0;
-			om15lastcount = 5;
+			om15lastcount = 4;
             pvPut(index, SYNC);
 			efSet(efIndex);
+			printf("OM15 Phase Start===>\n");
+		} state OM14PhaseEnd
         }state Indexing
     }
 
@@ -347,9 +350,9 @@ ss ssCDOM15
 		when(efTestAndClear(efIndex) && index < om15lastcount)
 		{
 			sametime = 0;
-			sprintf(logicname,		"%s:%s:CDLogic.PROC",	"OM15", OM15_ONE[index]);
-			sprintf(valvename,		"%s:Valve",						OM15_ONE[index]);
-			sprintf(target_valname, "%s:%s:CDLogic.J",		"OM15", OM15_ONE[index]);
+			sprintf(logicname,		"%s:%s:CDLogic.PROC",	"OM15", OM15_ONE[cycle][index]);
+			sprintf(valvename,		"%s:Valve",						OM15_ONE[cycle][index]);
+			sprintf(target_valname, "%s:%s:CDLogic.J",		"OM15", OM15_ONE[cycle][index]);
 
 			printf("%s, %s\n", logicname, valvename);
 
@@ -367,9 +370,9 @@ ss ssCDOM15
 			if(strstr(OM15_ONE[index], "CV8") != NULL)
 			{
 				sametime = 1;
-				sprintf(logicname_1,		"%s:%s:CDLogic.PROC",	"OM15",	OM15_ONE_CV8[index]);
-				sprintf(valvename_1,		"%s:Valve",						OM15_ONE_CV8[index]);
-				sprintf(target_valname_1,	"%s:%s:CDLogic.J",		"OM15",	OM15_ONE_CV8[index]);
+				sprintf(logicname_1,		"%s:%s:CDLogic.PROC",	"OM15",	OM15_ONE_CV8[cycle][index]);
+				sprintf(valvename_1,		"%s:Valve",						OM15_ONE_CV8[cycle][index]);
+				sprintf(target_valname_1,	"%s:%s:CDLogic.J",		"OM15",	OM15_ONE_CV8[cycle][index]);
 				printf("%s, %s\n", logicname_1, valvename_1);
 
 				pvAssign(valveval_1, valvename_1);
@@ -473,7 +476,7 @@ ss ssCDOM15
 
 		}state OM15PhaseEnd
 
-		when(delay(cdDelay) && omphaseend >= 70 &&  omphaseend_1 >= 70  && first >= 1)
+		when(delay(cdDelay) && omphaseend >= 20 &&  omphaseend_1 >= 20  && first >= 1)
 		{
 			first = 0;
 		} state OM15PIDSet

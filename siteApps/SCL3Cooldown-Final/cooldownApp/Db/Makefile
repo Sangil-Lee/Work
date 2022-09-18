@@ -9,12 +9,27 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += PressR.template
 DB += PressR_1.sub
-DB += cooldown04_1.sub
-DB += CVValve.template
 DB += Additional.sub
+DB += TT8001_Target.template
+DB += TT8001_Target.sub
+
+DB += CVValve.template
+DB += XVValve.template
+#DB += cooldown14_1.sub
+#DB += cooldown14_2.sub
+#DB += cooldown15_1.sub
+DB += cooldown14_QWR3.sub
+DB += cooldown15_QWR3.sub
+
+DB += TT8404_Min.template
+DB += TT8404_Min.sub
 
 ## Linear Regression
 DB += Linear_regression.vdb
+
+## Cool-down Cycle Skip Waveform
+DB += SkipWaveform.template
+DB += SkipCyclePVs.sub
 
 #DB += press.template
 #DB += PressR.sub

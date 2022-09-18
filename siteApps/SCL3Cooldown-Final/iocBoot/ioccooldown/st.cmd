@@ -39,8 +39,12 @@ cooldown_registerRecordDeviceDriver pdbbase
 ###for testing 0903
 dbLoadTemplate("db/Additional.sub")
 dbLoadTemplate("db/PressR_1.sub")
-dbLoadTemplate("db/cooldown04_1.sub")
+dbLoadTemplate("db/cooldown14_1.sub")
+dbLoadTemplate("db/TT8001_Target.sub")
 dbLoadRecords("db/Linear_regression.vdb")
+
+### for CM1.4 ~ 1.5 Testing
+#dbLoadTemplate("db/SkipCyclePVs.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

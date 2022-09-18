@@ -55,7 +55,6 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(SCAN, "Passive")
     field(PINI, "YES")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
-#field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).PROC CPP")
     field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(OUTB).VAL CPP")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")
@@ -67,14 +66,7 @@ record(calcout, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic") {
     field(INPH, "$(INPH)")
     field(INPI, "$(INPI)")
 	field(INPJ, "$(TARGETJ)")
-#field(INPJ, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal CPP")
 	field(INPK, "$(INPK)")
 	field(INPL, "$(INPL)")
 }
 
-##record(ai, "$(OM)$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TargetVal")
-##{
-##field(SCAN, "Passive")
-##field(PINI, "YES")
-##field(VAL, "$(TARGET)")
-##}

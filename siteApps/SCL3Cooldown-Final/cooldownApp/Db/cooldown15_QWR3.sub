@@ -1,0 +1,14 @@
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,     DEV,    SUBDEV,     SIGNAL,		CALC,                                                   INPC,                             INPH,     INPI,   INPK,                                   INPJ,INPB,INPD,INPL,INPG,OUTB}
+{OM15,	SCL31,     -BL01:,     CM05,   -CV8401:,	Valve,		"(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-BL01:CM05-PT8301:Press",   1.3,      0.1,      "SCL31-CDL01:VBx06-PT7401:PressEval",  40 , "",  "",  "",  "",  "Setpt"} #3#2QWR
+{OM15,	SCL31,     -BL01:,     CM06,   -CV8401:,	Valve,		"(C>H+0.1&&A>=I)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",      "SCL31-BL01:CM06-PT8301:Press",   1.3,      0.1,      "SCL31-CDL01:VBx06-PT7401:PressEval",  40 , "",  "",  "",  "",  "Setpt"} #3#2QWR
+{OM15,	SCL31,     -BL01:,     CM05,   -CV8402:,	Valve,		"(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-BL01:CM05-LT8401:Level",   20,       0.05,     "SCL31-CDL01:VBx06-PT7401:PressEval",   0  , "",  "",  "",  "",  "Setpt"} #3#1QWR
+{OM15,	SCL31,     -BL01:,     CM06,   -CV8402:,	Valve,		"(C<H)?A:(A<=J)?J:(A-I)",                               "SCL31-BL01:CM06-LT8401:Level",   20,       0.05,     "SCL31-CDL01:VBx06-PT7401:PressEval",   0  , "",  "",  "",  "",  "Setpt"} #3#1QWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,     DEV,		SUBDEV,		SIGNAL,		CALC,			                  INPB,                                 INPC,                               INPH,   INPK,                                       INPI,   INPJ, INPD,INPG,INPL, OUTB}
+{OM15,	SCL31,     -CDL01:,    VBx06,		-CV7301:,	Valve,		"(C>H||K)?A:(A>=J)?A:(A+I)",      "",                                   "SCL31-CDL01:VBx06-TT7301:Temp",    10,     "SCL31-CDL01:VBx06-PT7301:PressEval",       0.05,   100,  "",  "",  "",   "Setpt" } #50->Next
+{OM15,	SCL31,     -CDL01:,    VBx06,		-XV7301:,	Valve,		"(B<H)?A:J",                      "SCL31-CDL01:VBx06-CV7301:Valve",     "",                                 50,     "",                                         "",     0,    "",  "",  "",   "Setpt"  } #3#2QWR
+}
+

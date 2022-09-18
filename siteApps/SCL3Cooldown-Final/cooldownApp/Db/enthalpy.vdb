@@ -1,0 +1,41 @@
+record(calc, "$(SYS)-$(SUBSYS):$(DEV)-TSHL7401:HtLdTot") {
+  field(DESC, "QWR VBx_TS Heat Load")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(CALC, "A*B")
+  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-DH7401:DEnthlpy")
+  field(INPB, "$(SYS)-$(SUBSYS):CBx01-FT7401:MFlow")
+}
+
+record(calc, "$(SYS)-$(SUBSYS):$(DEV)-DH7401:DEnthlpy") {
+  field(DESC, "QWR VBx_TS D.Ethalpy H7413&H7401")
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(CALC, "B-A")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-TSHL7401:HtLdTot")
+  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-H7401:Enthlpy")
+  field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-H7413:Enthlpy")
+}
+
+
+record(sub, "$(SYS)-$(SUBSYS):$(DEV)-H7401:Enthlpy") {
+  field(DESC, "QWR VBx_TS Supply E.TH")
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-DH7401:DEnthlpy")
+  field(INAM, "InEnthalInit")
+  field(SNAM, "InEnthalProc")
+  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-PT7401:Press")
+  field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-TT7421:TempK")
+}
+
+record(sub, "$(SYS)-$(SUBSYS):$(DEV)-H7413:Enthlpy") {
+  field(DESC, "QWR VBx_TS Return E.TH")
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(FLNK, "$(SYS)-$(SUBSYS):$(DEV)-DH7401:DEnthlpy")
+  field(INAM, "OutEnthalInit")
+  field(SNAM, "OutEnthalProc")
+  field(INPA, "$(SYS)-$(SUBSYS):$(DEV)-PT7405:Press")
+  field(INPB, "$(SYS)-$(SUBSYS):$(DEV)-TT7435:TempK")
+}
