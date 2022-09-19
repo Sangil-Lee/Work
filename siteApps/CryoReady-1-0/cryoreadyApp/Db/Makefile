@@ -7,9 +7,12 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
-DB += CryoReady.db
-DB += CryoReady.template
+#DB += CryoReady.template
+DB += CryoReadyEval.template
 DB += CryoReadyPVs.sub
+DB += CryoReadyQWRCalc.template
+DB += CryoReadyHWRCalc.template
+DB += CryoReadyStatus.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

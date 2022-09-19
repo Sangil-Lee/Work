@@ -1,4 +1,4 @@
-file "db/CryoReady.template" { pattern
+file "db/CryoReadyEval.template" { pattern
 {SYS,	SUBSYS,	DEV,	SUBDEV,		SIGNAL,		CALC,					INPC }
 
 ###QWR 
@@ -76,7 +76,7 @@ file "db/CryoReady.template" { pattern
 
 
 ###HWR
-##LT8501
+##LT8201
 {SCL32,	-BL02:,	CM01,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
 {SCL32,	-BL02:,	CM02,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
 {SCL32,	-BL02:,	CM03,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
