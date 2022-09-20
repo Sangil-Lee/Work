@@ -20,9 +20,16 @@ DB += XVValve.template
 #DB += cooldown15_1.sub
 DB += cooldown14_QWR3.sub
 DB += cooldown15_QWR3.sub
+DB += cooldown14_QWR5.sub
+DB += cooldown15_QWR5.sub
+
+DB += cooldown14_QWR7.sub
+DB += cooldown15_QWR7.sub
 
 DB += TT8404_Min.template
 DB += TT8404_Min.sub
+DB += TT8403_Min.template
+DB += TT8403_Min.sub
 
 ## Linear Regression
 DB += Linear_regression.vdb

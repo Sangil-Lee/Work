@@ -14,21 +14,21 @@ file "db/CVValve.template" { pattern
 {OM14:,	SCL31,     -CDL01:,        VBx06,      -CV7401:,   Valve,	"K?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx02-PT7401:PresR",      "SCL31-CDL01:VBx06-TT7401:TempR",       20,         "SCL31-CDL01:VBx06-PT7401:PresREval"      0.01,      15, "",  "",  "",  "Setpt"} #1QWR
 }
 
+###file "db/CVValve.template" { pattern
+###{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,															INPB,						      INPC,                             INPD,                             INPE,									INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
+###{OM14:,	SCL31,     -BL01:,         CM05,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "SCL31-BL01:CM05-CV8402:TT8001",  "SCL31-BL01:CM05-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+###{OM14:,	SCL31,     -BL01:,         CM06,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "SCL31-BL01:CM06-CV8402:TT8001",  "SCL31-BL01:CM06-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+###}
+
 file "db/CVValve.template" { pattern
-{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,															INPB,						      INPC,                             INPD,                             INPE,									INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
-{OM14:,	SCL31,     -BL01:,         CM05,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "SCL31-BL01:CM05-CV8402:TT8001",  "SCL31-BL01:CM05-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
-{OM14:,	SCL31,     -BL01:,         CM06,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "SCL31-BL01:CM06-CV8402:TT8001",  "SCL31-BL01:CM06-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+{OM,	SYS,	    SUBSYS,        DEV,		SUBDEV,		SIGNAL,	CALC,											INPB,						      INPC,                             INPD,							  INPE,	INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
+{OM14:,	SCL31,     -BL01:,         CM05,	-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "SCL31-BL01:CM05-CV8402:TT8001",  "",   "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+{OM14:,	SCL31,     -BL01:,         CM06,	-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "SCL31-BL01:CM06-CV8402:TT8001",  "",   "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
 }
 
-####file "db/CVValve.template" { pattern
-####{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,											INPB,						      INPC,                             INPD,							  INPE,	INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
-####{OM14:,	SCL31,     -BL01:,         CM05,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "SCL31-BL01:CM05-CV8402:TT8001",  "",   "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
-####{OM14:,	SCL31,     -BL01:,         CM06,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "SCL31-BL01:CM06-CV8402:TT8001",  "",   "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
-####}
-####
-####file "db/CVValve.template" { pattern
-####{OM,		SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,										INPB,						      INPC,                             INPD, INPE,	INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
-####{OM14FCD:,	SCL31,     -BL01:,         CM05,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=150?A+0.01:K?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "",   "",    "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
-####{OM14FCD:,	SCL31,     -BL01:,         CM06,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=150?A+0.01:K?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "",   "",    "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
-####}
+file "db/CVValve.template" { pattern
+{OM,		SYS,	    SUBSYS,    DEV,		SUBDEV,		SIGNAL,	CALC,										INPB,						      INPC,                             INPD, INPE,	INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
+{OM14FCD:,	SCL31,     -BL01:,     CM05,	-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=150?A+0.01:K?A:A+0.01",	"SCL31-BL01:CM05-PT8301:PresR",   "SCL31-BL01:CM05-TT8404:TempR",   "",   "",    "",    "",     0.05,     "SCL31-BL01:CM05-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+{OM14FCD:,	SCL31,     -BL01:,     CM06,	-CV8402:,	Valve,	"A>=J?J:B>1.4?0:C<=150?A+0.01:K?A:A+0.01",	"SCL31-BL01:CM06-PT8301:PresR",   "SCL31-BL01:CM06-TT8404:TempR",   "",   "",    "",    "",     0.05,     "SCL31-BL01:CM06-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+}
 

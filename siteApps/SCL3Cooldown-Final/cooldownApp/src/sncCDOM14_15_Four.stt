@@ -1,14 +1,14 @@
-program sncCDOM14_15_Three_PROD
+program sncCDOM14_15_Four_PROD
 option +r; 
 
 %%#include <math.h> 
 
 char OM14_ONE[44][4][60] = {
-	{"SCL31-CDL01:VBx12-XV7301", "SCL31-BL01:CM11-CV8401",	"SCL31-CDL01:VBx12-CV7401", "SCL31-BL01:CM11-CV8402"}
+	{"SCL31-CDL01:VBx16-XV7301", "SCL31-BL01:CM15-CV8401",	"SCL31-CDL01:VBx16-CV7401", "SCL31-BL01:CM15-CV8402"}
 };
 
 char OM14_ONE_CV8[44][4][60] = {
-	{"",						 "SCL31-BL01:CM12-CV8401",  "",						 "SCL31-BL01:CM12-CV8402"}
+	{"",						 "SCL31-BL01:CM16-CV8401",  "",						 "SCL31-BL01:CM16-CV8402"}
 };
 
 /*
@@ -29,23 +29,23 @@ char OM14_FCD_1[44][60] = {
 */
 
 char OM15_ONE[44][4][60] = {
-	{"SCL31-BL01:CM11-CV8402", "SCL31-BL01:CM11-CV8401",   "SCL31-CDL01:VBx12-CV7301", "SCL31-CDL01:VBx12-XV7301"}
+	{"SCL31-BL01:CM15-CV8402", "SCL31-BL01:CM15-CV8401",   "SCL31-CDL01:VBx16-CV7301", "SCL31-CDL01:VBx16-XV7301"}
 };
 
 char OM15_ONE_CV8[44][4][60] = {
-	{"SCL31-BL01:CM12-CV8402", "SCL31-BL01:CM12-CV8401",	"",							""}
+	{"SCL31-BL01:CM16-CV8402", "SCL31-BL01:CM16-CV8401",	"",							""}
 };
 
 char OM_PhaseEnd_CM01[44][60] = {
-"SCL31-BL01:CM11-LT8401:PercR"
+"SCL31-BL01:CM15-LT8401:PercR"
 };
 
 char OM_PhaseEnd_CM02[44][60] = {
-"SCL31-BL01:CM12-LT8401:PercR"
+"SCL31-BL01:CM16-LT8401:PercR"
 };
 
 char OM15_PIDSet[44][3][60] = {
-	{"SCL31-BL01:CM11-CV8401","SCL31-BL01:CM12-CV8401","SCL31-CDL01:VBx12-CV7301"}
+	{"SCL31-BL01:CM15-CV8401","SCL31-BL01:CM16-CV8401","SCL31-CDL01:VBx16-CV7301"}
 };
 
 
@@ -128,8 +128,9 @@ int		om14lastcount = 4;
 int		om15lastcount = 4;
 int     cyclecount = 44;
 
-evflag  efIndex;
 evflag  efCDOM14;
+evflag  efIndex;
+
 evflag  efCDOM15;
 
 ss ssCDOM14
@@ -404,7 +405,8 @@ ss ssCDOM15
 			}
 		}state OM15
 
-		when(efTestAndClear(efIndex) && index >= om15lastcount)
+		//when(efTestAndClear(efIndex) && index >= om15lastcount)
+		when(index >= om15lastcount)
 		{
 			first = 0;
 		} state OM15PhaseEnd
@@ -418,9 +420,10 @@ ss ssCDOM15
 			pvPut(proc, SYNC);
 
 			printf("OM15 Processing...\n");
+			printf("OM15 Processing(%s)...\n", logicname );
 		}state OM15
 
-		when(delay(cdDelay) && valveval < target_val && valveval_1 < target_val_1 && sametime == 1 && next == 0)
+		when(delay(cdDelay) && (valveval < target_val || valveval_1 < target_val_1) && sametime == 1 && next == 0)
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
@@ -428,10 +431,10 @@ ss ssCDOM15
 			proc_1 = 1;
 			pvPut(proc_1, SYNC);
 
-			printf("OM15 -2 Processing...\n");
+			printf("OM15-2 Processing(%s)(%s)...\n", logicname, logicname_1 );
 		}state OM15
 
-		when(delay(cdDelay) && valveval >= target_val && sametime == 0 )
+		when(delay(cdDelay) && valveval >= target_val && sametime == 0  || next == 1)
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -444,12 +447,14 @@ ss ssCDOM15
 			index++;
 			pvPut(index, SYNC);
 
+			next = 0;
+			pvPut(next, SYNC);
 			efSet(efIndex);
 
-			printf("OM15 Transition Indexing....\n");
+			printf("OM15 Transition Indexing(%d)....\n", index);
 		}state Indexing
 
-		when(delay(cdDelay) && valveval >= target_val && valveval_1 >= target_val_1 && sametime == 1 )
+		when(delay(cdDelay) && valveval >= target_val && valveval_1 >= target_val_1 && sametime == 1 || next == 1 )
 		{
 			pvStopMonitor(valveval);
 			pvStopMonitor(proc);
@@ -470,9 +475,11 @@ ss ssCDOM15
 			index++;
 			pvPut(index, SYNC);
 
+			next = 0;
+			pvPut(next, SYNC);
 			efSet(efIndex);
 
-			printf("OM15 Transition Indexing....\n");
+			printf("OM15 Transition Indexing(%d)....\n", index);
 		}state Indexing
 	}
 
@@ -490,10 +497,12 @@ ss ssCDOM15
 			pvMonitor(omphaseend_val);
 			pvMonitor(omphaseend_val_1);
 
+			printf("OM15 PhaseEnd.\n");
 		}state OM15PhaseEnd
 
 		when(delay(cdDelay) && omphaseend >= 50 &&  omphaseend_1 >= 50  && first >= 1)
 		{
+			printf("OM2 PID Set..\n");
 			first = 0;
 		} state OM15PIDSet
 	}
@@ -518,7 +527,8 @@ ss ssCDOM15
 		when(delay(cdDelay) && first >= 1)
 		{
 			first = 0;
-			efSet(efCDOM14); 
+			printf("Cycle End(%d).\n", cycle);
+			//efSet(efCDOM14); 
 		} state OM15Stop
 	}
 }

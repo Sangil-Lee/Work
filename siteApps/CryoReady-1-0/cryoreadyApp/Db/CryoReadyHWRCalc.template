@@ -1,18 +1,23 @@
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)CryoReady:CalcStatus") {
-  field(SCAN, "1 second")
-  field(CALC, "F?(A||B||D||E):(A||B||C||E)")
-  field(INPA, "$(SYS)$(SUBSYS)$(DEV)LT8201:PercREval")
-  field(INPB, "$(SYS)$(SUBSYS)$(DEV)TT8501:TempREval")
-  field(INPC, "$(SYS)$(SUBSYS)$(DEV)PT8202:PresREval")
-  field(INPD, "$(SYS)$(SUBSYS)$(DEV)LT8401:PercREval")
-  field(INPE, "$(SYS)$(VBOX)$(DEV)PT7201:PresREval")
+
 ###INPF(0): 4.5K mode, INPF(1): 2K mode
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)-CryoReady:CalcStatus") {
+  field(SCAN, "1 second")
+  #field(CALC, "F?(A && B && D && E):(A && B && C && E)")
+  field(CALC, "F?(A && B && D):(A && B && C)")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)-LT8201:PercREval")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)-TT8501:TempREval")
+  field(INPC, "$(SYS)$(SUBSYS)$(DEV)-PT8202:PresREval")
+  field(INPD, "$(SYS)$(SUBSYS)$(DEV)-LT8401:PercREval")
+ ####field(INPE, "(SYS)(VBOX)(DEV)-PT7201:PresREval")
   field(INPF, "0")
-  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)CryoRead:Status PP")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)-CryoReady:Status PP")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
 }
 
-record(calc, "$(SYS)$(SUBSYS)$(DEV)CryoReady:Status") {
+record(bi, "$(SYS)$(SUBSYS)$(DEV)-CryoReady:Status") {
   field(SCAN, "Passive")
-  field(ZNAM, "Ready")
-  field(ONAM, "Not Ready")
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+  field(VAL, "0")
 }

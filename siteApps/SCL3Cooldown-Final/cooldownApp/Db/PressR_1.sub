@@ -1,8 +1,19 @@
 ##for cooldown031.sub
+file "db/PressR.template" { pattern
 {SYS,       SUBSYS,		 DEV,      SUBDEV,   SIGNAL,   PINI,     VAL,           SCAN}
 {SCL31,     -CDL01:,	 EBx01,    -PT7502:, PresR,    "YES",    "0",         "Passive"}
 {SCL31,     -CDL01:,	 EBx01,    -PT7301:, PresR,    "YES",    "0",         "Passive"}
 {SCL31,		-CDL01:,	 VBx02,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx04,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx06,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx08,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx10,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx12,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx14,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx16,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx18,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx20,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
+{SCL31,		-CDL01:,	 VBx22,	   -PT7401:, PresR,    "YES",    "0",         "Passive"}
 {SCL31,		-BL01:,		 CM01,	   -PT8301:, PresR,    "YES",    "0",         "Passive"}
 {SCL31,		-BL01:,		 CM02,	   -PT8301:, PresR,    "YES",    "0",         "Passive"}
 {SCL31,		-BL01:,		 CM03,	   -PT8301:, PresR,    "YES",    "0",         "Passive"}
@@ -61,6 +72,5 @@
 {SCL32,		-BL03:,		 CM18,	   -PT8301:, PresR,    "YES",    "0",         "Passive"}
 {SCL32,		-BL03:,		 CM19,	   -PT8301:, PresR,    "YES",    "0",         "Passive"}
 
-{SCL32,		-CDL02:,	VBx01,		-PT7401:, PresR,    "YES",    "0",         "Passive"}
 }
 

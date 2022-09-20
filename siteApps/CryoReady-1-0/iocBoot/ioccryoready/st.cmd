@@ -14,8 +14,10 @@ cryoready_registerRecordDeviceDriver pdbbase
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
 dbLoadTemplate("db/CryoReadyPVs.sub")
-dbLoadRecords("db/CryoReady.db", "SYS=SCL31, SUBSYS=-Cryo:, DEV=QWR, SUBDEV=":", NELM=22")
-dbLoadRecords("db/CryoReady.db", "SYS=SCL32, SUBSYS=-Cryo:, DEV=HWR, SUBDEV=":", NELM=32")
+dbLoadTemplate("db/CryoReadyStatus.sub")
+
+#dbLoadRecords("db/CryoReady.db", "SYS=SCL31, SUBSYS=-Cryo:, DEV=QWR, SUBDEV=":", NELM=22")
+#dbLoadRecords("db/CryoReady.db", "SYS=SCL32, SUBSYS=-Cryo:, DEV=HWR, SUBDEV=":", NELM=32")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

@@ -37,6 +37,8 @@ DB += GBIntStat_EBx.sub
 DB += GBCURStat_OVR_Fail.template
 DB += GBCURStat_Int_Fail_DCPC.template
 DB += GBCURStat_Fail_DCPC.template
+DB += GBCURStat_NoStat.template
+DB += GBCURStat_ErrLamp.template
 DB += GBCURStat_Each_stat.sub
 
 DB += GBCPStat_XV.template
@@ -48,6 +50,13 @@ DB += GBCPStat.sub
 
 #DB += BitWiseTest.vdb
 #DB += GBCURStat.vdb
+
+#### CryoReady Logic
+DB += CryoReadyEval.template
+DB += CryoReadyPVs.sub
+DB += CryoReadyQWRCalc.template
+DB += CryoReadyHWRCalc.template
+DB += CryoReadyStatus.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

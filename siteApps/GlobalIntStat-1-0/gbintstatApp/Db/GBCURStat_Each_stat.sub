@@ -338,10 +338,10 @@ file "db/GBCURStat_OVR_Fail.template" { pattern
 {SCL31,	-BL01:,		CM22,	-PT8112:,	OVRStat,	FailStat}
 
 #####PT8113
-{SCL31,	-BL01:,		CM03,	-PT8112:,	OVRStat,	FailStat}
-{SCL31,	-BL01:,		CM09,	-PT8112:,	OVRStat,	FailStat}
-{SCL31,	-BL01:,		CM15,	-PT8112:,	OVRStat,	FailStat}
-{SCL31,	-BL01:,		CM19,	-PT8112:,	OVRStat,	FailStat}
+{SCL31,	-BL01:,		CM03,	-PT8113:,	OVRStat,	FailStat}
+{SCL31,	-BL01:,		CM09,	-PT8113:,	OVRStat,	FailStat}
+{SCL31,	-BL01:,		CM15,	-PT8113:,	OVRStat,	FailStat}
+{SCL31,	-BL01:,		CM19,	-PT8113:,	OVRStat,	FailStat}
 
 #####PT8103
 {SCL31,	-BL01:,		CM03,	-PT8103:,	OVRStat,	FailStat}
@@ -2965,6 +2965,43 @@ file "db/GBCURStat_Int_Fail_DCPC.template" { pattern
 
 file "db/GBCURStat_Fail_DCPC.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,		INPA,		INPB }
+##QWR TP8101
+{SCL31,	-BL01:,		CM03,	-TP8101:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM09,	-TP8101:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM15,	-TP8101:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM19,	-TP8101:,	IntStat,	ErrLampR}
+
+##QWR TP8102
+{SCL31,	-BL01:,		CM04,	-TP8102:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM10,	-TP8102:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM16,	-TP8102:,	IntStat,	ErrLampR}
+{SCL31,	-BL01:,		CM20,	-TP8102:,	IntStat,	ErrLampR}
+
+##HWRA TP8101
+{SCL32,	-BL02:,		CM03,	-TP8101:,	IntStat,	ErrLampR}
+{SCL32,	-BL02:,		CM08,	-TP8101:,	IntStat,	ErrLampR}
+{SCL32,	-BL02:,		CM12,	-TP8101:,	IntStat,	ErrLampR}
+
+##HWRA TP8102
+{SCL32,	-BL02:,		CM03,	-TP8102:,	IntStat,	ErrLampR}
+{SCL32,	-BL02:,		CM08,	-TP8102:,	IntStat,	ErrLampR}
+{SCL32,	-BL02:,		CM12,	-TP8102:,	IntStat,	ErrLampR}
+
+##HWRB TP8101
+{SCL32,	-BL03:,		CM03,	-TP8101:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM08,	-TP8101:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM13,	-TP8101:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM17,	-TP8101:,	IntStat,	ErrLampR}
+##HWRB TP8102
+{SCL32,	-BL03:,		CM03,	-TP8102:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM08,	-TP8102:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM13,	-TP8102:,	IntStat,	ErrLampR}
+{SCL32,	-BL03:,		CM17,	-TP8102:,	IntStat,	ErrLampR}
+
+##P2DT TP8101
+{P2DT,	-BL04:,		CM01,	-TP8101:,	IntStat,	ErrLampR}
+{P2DT,	-BL04:,		CM01,	-TP8102:,	IntStat,	ErrLampR}
+
 ##OWR-CMs
 ##EV8301
 {SCL31,	-BL01:,		CM01,	-EV8301:,	FailStat,	DCPCStat}
@@ -3377,4 +3414,106 @@ file "db/GBCURStat_Fail_DCPC.template" { pattern
 {P2DT,	-CDL04:,	VBx01,	-XV7201:,	FailStat,   DCPCStat}
 
 #leesi
+}
+
+file "db/GBCURStat_ErrLamp.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		INPA }
+##QWR DP8101
+{SCL31,	-BL01:,		CM03,	-DP8101:,	ErrLampR}
+{SCL31,	-BL01:,		CM09,	-DP8101:,	ErrLampR}
+{SCL31,	-BL01:,		CM15,	-DP8101:,	ErrLampR}
+{SCL31,	-BL01:,		CM19,	-DP8101:,	ErrLampR}
+
+##QWR DP8102
+{SCL31,	-BL01:,		CM04,	-DP8102:,	ErrLampR}
+{SCL31,	-BL01:,		CM10,	-DP8102:,	ErrLampR}
+{SCL31,	-BL01:,		CM16,	-DP8102:,	ErrLampR}
+{SCL31,	-BL01:,		CM20,	-DP8102:,	ErrLampR}
+
+##HWRA DP8101
+{SCL32,	-BL02:,		CM03,	-DP8101:,	ErrLampR}
+{SCL32,	-BL02:,		CM08,	-DP8101:,	ErrLampR}
+{SCL32,	-BL02:,		CM12,	-DP8101:,	ErrLampR}
+
+##HWRA DP8102
+{SCL32,	-BL02:,		CM03,	-DP8102:,	ErrLampR}
+{SCL32,	-BL02:,		CM08,	-DP8102:,	ErrLampR}
+{SCL32,	-BL02:,		CM12,	-DP8102:,	ErrLampR}
+
+##HWRB DP8101
+{SCL32,	-BL03:,		CM03,	-DP8101:,	ErrLampR}
+{SCL32,	-BL03:,		CM08,	-DP8101:,	ErrLampR}
+{SCL32,	-BL03:,		CM13,	-DP8101:,	ErrLampR}
+{SCL32,	-BL03:,		CM17,	-DP8101:,	ErrLampR}
+
+##HWRB DP8102
+{SCL32,	-BL03:,		CM03,	-DP8102:,	ErrLampR}
+{SCL32,	-BL03:,		CM08,	-DP8102:,	ErrLampR}
+{SCL32,	-BL03:,		CM13,	-DP8102:,	ErrLampR}
+{SCL32,	-BL03:,		CM17,	-DP8102:,	ErrLampR}
+
+##P2DT DP8101
+{P2DT,	-BL04:,		CM01,	-DP8101:,	ErrLampR}
+{P2DT,	-BL04:,		CM01,	-DP8102:,	ErrLampR}
+}
+
+file "db/GBCURStat_NoStat.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV }
+{SCL31,	-BL01:,		CM01,	-IP8101: }
+{SCL31,	-BL01:,		CM02,	-IP8101: }
+{SCL31,	-BL01:,		CM03,	-IP8101: }
+{SCL31,	-BL01:,		CM04,	-IP8101: }
+{SCL31,	-BL01:,		CM05,	-IP8101: }
+{SCL31,	-BL01:,		CM06,	-IP8101: }
+{SCL31,	-BL01:,		CM07,	-IP8101: }
+{SCL31,	-BL01:,		CM08,	-IP8101: }
+{SCL31,	-BL01:,		CM09,	-IP8101: }
+{SCL31,	-BL01:,		CM10,	-IP8101: }
+{SCL31,	-BL01:,		CM11,	-IP8101: }
+{SCL31,	-BL01:,		CM12,	-IP8101: }
+{SCL31,	-BL01:,		CM13,	-IP8101: }
+{SCL31,	-BL01:,		CM14,	-IP8101: }
+{SCL31,	-BL01:,		CM15,	-IP8101: }
+{SCL31,	-BL01:,		CM16,	-IP8101: }
+{SCL31,	-BL01:,		CM17,	-IP8101: }
+{SCL31,	-BL01:,		CM18,	-IP8101: }
+{SCL31,	-BL01:,		CM19,	-IP8101: }
+{SCL31,	-BL01:,		CM20,	-IP8101: }
+{SCL31,	-BL01:,		CM21,	-IP8101: }
+{SCL31,	-BL01:,		CM22,	-IP8101: }
+
+{SCL32,	-BL02:,		CM01,	-IP8101: }
+{SCL32,	-BL02:,		CM02,	-IP8101: }
+{SCL32,	-BL02:,		CM03,	-IP8101: }
+{SCL32,	-BL02:,		CM04,	-IP8101: }
+{SCL32,	-BL02:,		CM05,	-IP8101: }
+{SCL32,	-BL02:,		CM06,	-IP8101: }
+{SCL32,	-BL02:,		CM07,	-IP8101: }
+{SCL32,	-BL02:,		CM08,	-IP8101: }
+{SCL32,	-BL02:,		CM09,	-IP8101: }
+{SCL32,	-BL02:,		CM10,	-IP8101: }
+{SCL32,	-BL02:,		CM11,	-IP8101: }
+{SCL32,	-BL02:,		CM12,	-IP8101: }
+{SCL32,	-BL02:,		CM13,	-IP8101: }
+
+{SCL32,	-BL03:,		CM01,	-IP8101: }
+{SCL32,	-BL03:,		CM02,	-IP8101: }
+{SCL32,	-BL03:,		CM03,	-IP8101: }
+{SCL32,	-BL03:,		CM04,	-IP8101: }
+{SCL32,	-BL03:,		CM05,	-IP8101: }
+{SCL32,	-BL03:,		CM06,	-IP8101: }
+{SCL32,	-BL03:,		CM07,	-IP8101: }
+{SCL32,	-BL03:,		CM08,	-IP8101: }
+{SCL32,	-BL03:,		CM09,	-IP8101: }
+{SCL32,	-BL03:,		CM10,	-IP8101: }
+{SCL32,	-BL03:,		CM11,	-IP8101: }
+{SCL32,	-BL03:,		CM12,	-IP8101: }
+{SCL32,	-BL03:,		CM13,	-IP8101: }
+{SCL32,	-BL03:,		CM14,	-IP8101: }
+{SCL32,	-BL03:,		CM15,	-IP8101: }
+{SCL32,	-BL03:,		CM16,	-IP8101: }
+{SCL32,	-BL03:,		CM17,	-IP8101: }
+{SCL32,	-BL03:,		CM18,	-IP8101: }
+{SCL32,	-BL03:,		CM19,	-IP8101: }
+{P2DT,	-BL04:,		CM01,	-IP8101: }
 }

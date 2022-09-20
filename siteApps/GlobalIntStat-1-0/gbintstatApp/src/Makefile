@@ -16,7 +16,15 @@ DBD += gbintstat.dbd
 gbintstat_DBD += base.dbd
 
 # Include dbd files from all support applications:
-#gbintstat_DBD += xxx.dbd
+gbintstat_DBD += epidRecord.dbd  scalerRecord.dbd
+gbintstat_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
+
+# Include dbd files from all support applications:
+gbintstat_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
+gbintstat_DBD += $(ASYN)/dbd/asyn.dbd
+gbintstat_DBD += $(CALC)/dbd/calc.dbd
+gbintstat_DBD += $(CALC)/dbd/calcSupport.dbd
+
 
 # Add all the support libraries needed by this IOC
 #gbintstat_LIBS += xxx
@@ -30,8 +38,16 @@ gbintstat_SRCS_vxWorks += -nil-
 
 # Add support from base/src/vxWorks if needed
 #gbintstat_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
+ifneq ($(SNCSEQ),)
+    gbintstat_SNCFLAGS += +r
+    gbintstat_DBD  +=  sncMakeCryoReady.dbd
+    gbintstat_SRCS +=  sncMakeCryoReady.stt
+    gbintstat_LIBS += seq pv
+endif
+
 
 # Finally link to the EPICS Base libraries
+gbintstat_LIBS += asyn calc std sscan 
 gbintstat_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================
