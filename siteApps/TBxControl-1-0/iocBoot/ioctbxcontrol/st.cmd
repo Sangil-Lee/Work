@@ -28,16 +28,17 @@ drvModbusAsynConfigure("TBXAI_2", "TBX_PLC", 0, 3,  252, 125, 7, 100, "Modicon")
 #drvModbusAsynConfigure("SPARE", "TBX_PLC",   0, 3,  378,  20, 7, 100, "Modicon")  
 
 
+####400~548
 drvModbusAsynConfigure("TBXAO",   "TBX_PLC", 0, 6,  400, 123, 7, 100, "Modicon")
-drvModbusAsynConfigure("TBXAO_1", "TBX_PLC", 0, 6,  524, 25,  7, 100, "Modicon")
+drvModbusAsynConfigure("TBXAO_1", "TBX_PLC", 0, 6,  524, 24,  7, 100, "Modicon")
+
+drvModbusAsynConfigure("TBXDI", "TBX_PLC",   0, 3,  550,  25, 7, 100, "Modicon")
+drvModbusAsynConfigure("TBXDO", "TBX_PLC",   0, 6,  576,  29, 7, 100, "Modicon")
+
 drvModbusAsynConfigure("TBXAO_2", "TBX_PLC", 0, 6,  608, 123,  7, 100, "Modicon")
 drvModbusAsynConfigure("TBXAO_3", "TBX_PLC", 0, 6,  732, 123,  7, 100, "Modicon")
 drvModbusAsynConfigure("TBXAO_4", "TBX_PLC", 0, 6,  856, 106,  7, 100, "Modicon")
 
-
-#drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 5,  550,  26, 7, 100, "Modicon")
-drvModbusAsynConfigure("TBXDI", "TBX_PLC", 0, 3,  550,  26, 7, 100, "Modicon")
-drvModbusAsynConfigure("TBXDO", "TBX_PLC", 0, 6,  576,  29, 7, 100, "Modicon")
 
 ## Load record instances, Before 0818
 #dbLoadTemplate("db/TBxcontrol.sub")

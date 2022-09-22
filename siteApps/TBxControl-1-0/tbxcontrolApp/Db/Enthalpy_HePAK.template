@@ -1,0 +1,11 @@
+record(sub, "Cryo-CDL00:TBx01-$(SUBDEV):Enthalpy") {
+  field(DESC, "$(DESC)")
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(INAM, "InitHePAKEnthalpy")
+  field(SNAM, "ProcHePAKEnthalpy")
+  field(INPA, "Cryo-CDL00:TBx01-$(INPA):PresR")
+  field(INPB, "Cryo-CDL00:TBx01-$(INPB):TempR")
+  field(EGU, "J/g")
+}
+

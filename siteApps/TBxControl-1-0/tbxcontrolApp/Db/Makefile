@@ -48,6 +48,15 @@ DB  += SoftPVs_FailStat.template
 DB  += SoftPVs_TBx.sub
 
 
+##HePAK DB
+DB  += Density_HePAK.template
+DB  += Enthalpy_HePAK.template
+DB  += HeatLoad.template
+DB  += HeatLoad_4INP.template
+DB  += HeatLoad_5INP.template
+DB  += TBxcontrol_hepak.sub
+
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_template = <templatename>
