@@ -131,7 +131,7 @@ file "db/aiFloat64.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-PDT7503:,		PresR,		"TBXAI_1",  122,     FLOAT32_BE, 0,      25,     3,      "mbara",       "1 second", "TBx Press"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7504:,		PresR,		"TBXAI_1",  124,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Press"}
 
-{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PresR,		"TBXAI_2",    0,     FLOAT32_BE, 0,      25,     3,      "mbara",    "1 second", "TBx Temp2"}
+{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PresR,		"TBXAI_2",    0,     FLOAT32_BE, 0,      150,    3,      "mbara",    "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7502:,		PresR,		"TBXAI_2",	  2,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7301:,		PresR,		"TBXAI_2",    4,     FLOAT32_BE, 0,      25,     3,      "mbara",    "1 second", "TBx Temp2"}
 {Cryo,	-CDL00:,	TBx01,	-PDT7302:,		PresR,		"TBXAI_2",    6,     FLOAT32_BE, 0,      25,     3,      "K",       "1 second", "TBx Temp2"}
@@ -264,7 +264,7 @@ file "db/aoFloat64.template" { pattern
 {Cryo,	-CDL00:,	TBx01,	-CV7481:,		SetManuRamp,	"TBXAO",	110,	FLOAT32_BE,	0,		10,		1,		"%/s",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7503:,		PressSet,		"TBXAO",	112,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7504:,		PressSet,		"TBXAO",	114,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
-{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PressSet,		"TBXAO",	116,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
+{Cryo,	-CDL00:,	TBx01,	-PDT7501:,		PressSet,		"TBXAO",	116,	FLOAT32_BE,	0,		150,	3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7502:,		PressSet,		"TBXAO",	118,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7301:,		PressSet,		"TBXAO",	120,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }
 {Cryo,	-CDL00:,	TBx01,	-PDT7302:,		PressSet,		"TBXAO",	122,	FLOAT32_BE,	0,		30,		3,		"%",	"",	"0" }

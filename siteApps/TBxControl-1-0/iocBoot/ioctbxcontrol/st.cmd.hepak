@@ -1,0 +1,24 @@
+#!../../bin/linux-x86_64/tbxcontrol
+
+#- You may have to change tbxcontrol to something else
+#- everywhere it appears in this file
+
+< envPaths
+
+cd "${TOP}"
+
+## Register all support components
+dbLoadDatabase "dbd/tbxcontrol.dbd"
+tbxcontrol_registerRecordDeviceDriver pdbbase
+
+## Load record instances, Before 0818
+#dbLoadTemplate("db/TBxcontrol.sub")
+#dbLoadTemplate("db/TBxcontrol_test.sub")
+dbLoadTemplate("db/TBxcontrol_hepak.sub")
+
+
+
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
+## Start any sequence programs

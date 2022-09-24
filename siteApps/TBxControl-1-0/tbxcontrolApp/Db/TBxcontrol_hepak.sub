@@ -13,34 +13,6 @@ file "db/Density_HePAK.template" { pattern
 {PDT7545,	PT7243,		TT7242,		0.05472,	0.01866,	"Mass flow rate of SCL2 WSL"}
 }
 
-####{PT7544:,	PresR,															BarA,		"Pressure of SCL2 TSR (CB)"}
-####{TT7543:,	TempR,															K,			"Temperature of SCL2 TSR (CB)"}
-####{PT7541:,	PresR,															BarA,		"Pressure of SCL2 TSS (CB)"}
-####{TT7541:,	TempR,															K,			"Temperature of SCL2 TSS (CB)"}
-####{PT7341:,	PresR,															BarA,		"Pressure of SCL2 GHe (CB)"}
-####{TT7341:,	TempR,															K,			"Temperature of SCL2 GHe (CB)"}
-####{PT7441:,	PresR,															BarA,		"Pressure of SCL2 SHe (CB)"}
-####{TT7441:,	TempR,															K,			"Temperature of SCL2 SHe (CB)"}
-####{PT7241:,	PresR,															BarA,		"Pressure of SCL2 VLP (CB)"}
-####{TT7241:,	TempR,															K,			"Temperature of SCL2 VLP (CB)"}
-####{h7544:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 TSR (CB)"}
-####{h7541:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 TSS (CB)"}
-####{h7341:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 GHe (CB)"}
-####{h7441:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 SHe (CB)"}
-####{h7241:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 VLP (CB)"}
-####{h7546:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 TSR (Tunnel)"}
-####{h7543:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 TSS (Tunnel)"}
-####{h7343:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 GHe (Tunnel)"}
-####{h7443:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 SHe (Tunnel)"}
-####{h7243:,	Enthalpy,														J/g,		"HePAK Enthalpy of SCL2 VLP (Tunnel)"}
-####{SCL2CDS:,	TSHtLd,															W,			"Heat load for SCL2 Tunnel TS line"}
-####{SCL2CDS:,	4KHtLd,															W,			"Heat load for SCL2 Tunnel 4 K line"}
-####{SCL2TBx:,	TSSHtLd,														W,			"Heat load for TBx(SCL2) TSS line"}
-####{SCL2TBx:,	TSRHtLd,														W,			"Heat load for TBx(SCL2) TSR line"}
-####{SCL2TBx:,	SHeHtLd,														W,			"Heat load for TBx(SCL2) SHe line"}
-####{SCL2TBx:,	GHeHtLd,														W,			"Heat load for TBx(SCL2) GHe line"}
-####{SCL2TBx:,	VLPHtLd,														W,			"Heat load for TBx(SCL2) VLP line"}
-
 file "db/Enthalpy_HePAK.template" { pattern
 {SUBDEV,	INPA,		INPB,	DESC }
 {H7504,		PT7504,		TT7503,	"" }
@@ -91,4 +63,3 @@ file "db/HeatLoad_5INP.template" { pattern
 {SCL2CDS,	4KHtLd,		H7443,			PDT7441,	H7243,			PDT7341,	H7343,			"" }	
 }
 
-//silee
