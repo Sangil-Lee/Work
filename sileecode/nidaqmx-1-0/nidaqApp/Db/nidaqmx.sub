@@ -1,0 +1,100 @@
+
+#file "db/ai.template" { pattern
+#{ SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,								SCAN,			VAL } 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 AI_00_AVG,			NIDAQ_MX_SLOT5_AI0_AVG,				"I/O Intr",  0.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 LINEARSCALE_SLOPE,	NIDAQ_MX_SLOT5_LINEARSCALE_SLOPE,	"I/O Intr",  100.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 LINEARSCALE_OFFSET,NIDAQ_MX_SLOT5_LINEARSCALE_OFFSET,	"I/O Intr",  5.0    } 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 MIN_VALUE,			NIDAQ_MX_SLOT5_MIN_VALUE,			"I/O Intr",  0.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 MAX_VALUE,			NIDAQ_MX_SLOT5_MAX_VALUE,			"I/O Intr",  100.0  } 
+#}
+
+#file "db/waveform.template" { pattern
+#{SYS,	SUBSYS, DEV,	PORT,		ADDR,	TIMEOUT,	SIGNAL,		ALIAS,						DTYP,					NELM,	FLNK,	SCAN }
+#{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayIn",	1000,	"",		"1 second"	}
+#{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayOut",	1000,	"",		"1 second"	}
+#}
+
+file "db/mbbiDirect.template" { pattern
+{ SYS,  SUBSYS,     DEV,    SUBDEV,     SIGNAL,     PORT,       ALIAS,                    OFFSET,     MASK  }
+{CDMS,  -Tester:    PXI,    -DI16:      Input0,     nidaqmx,    NIDAQ_MX_SLOT3_DI0_15,    0,          0xFFFF}
+{CDMS,  -Tester:    PXI,    -DI16:      Input1,     nidaqmx,    NIDAQ_MX_SLOT3_DI16_31,   1,          0xFFFF}
+}
+
+file "db/mbboDirect.template" { pattern
+{ SYS,  SUBSYS,     DEV,    SUBDEV,     SIGNAL,     PORT,       ALIAS,                    OFFSET,     MASK  }
+{CDMS,  -Tester:    PXI,    -DO16:      Output0,     nidaqmx,    NIDAQ_MX_SLOT3_DO0_15,    0,          0x1   }
+{CDMS,  -Tester:    PXI,    -DO16:      Output1,     nidaqmx,    NIDAQ_MX_SLOT3_DO16_31,   1,          0x1   }
+}
+
+
+file "db/pxi_bo.template" { pattern
+{SIGNAL,    OUTPUT,     BIT}
+{Output0,   Output0,    B0 }
+{Output1,   Output0,    B1 }
+{Output2,   Output0,    B2 }
+{Output3,   Output0,    B3 }
+{Output4,   Output0,    B4 }
+{Output5,   Output0,    B5 }
+{Output6,   Output0,    B6 }
+{Output7,   Output0,    B7 }
+{Output8,   Output0,    B8 }
+{Output9,   Output0,    B9 }
+{Output10,  Output0,    BA }
+{Output11,  Output0,    BB }
+{Output12,  Output0,    BC }
+{Output13,  Output0,    BD }
+{Output14,  Output0,    BE }
+{Output15,  Output0,    BF }
+{Output16,  Output1,    B0 }
+{Output17,  Output1,    B1 }
+{Output18,  Output1,    B2 }
+{Output19,  Output1,    B3 }
+{Output20,  Output1,    B4 }
+{Output21,  Output1,    B5 }
+{Output22,  Output1,    B6 }
+{Output23,  Output1,    B7 }
+{Output24,  Output1,    B8 }
+{Output25,  Output1,    B9 }
+{Output26,  Output1,    BA }
+{Output27,  Output1,    BB }
+{Output28,  Output1,    BC }
+{Output29,  Output1,    BD }
+{Output30,  Output1,    BE }
+{Output31,  Output1,    BF }
+}
+
+file "db/pxi_bi.template" { pattern
+{SIGNAL,   INPUT,     BIT}
+{Input0,   Input0,    B0 }
+{Input1,   Input0,    B1 }
+{Input2,   Input0,    B2 }
+{Input3,   Input0,    B3 }
+{Input4,   Input0,    B4 }
+{Input5,   Input0,    B5 }
+{Input6,   Input0,    B6 }
+{Input7,   Input0,    B7 }
+{Input8,   Input0,    B8 }
+{Input9,   Input0,    B9 }
+{Input10,  Input0,    BA }
+{Input11,  Input0,    BB }
+{Input12,  Input0,    BC }
+{Input13,  Input0,    BD }
+{Input14,  Input0,    BE }
+{Input15,  Input0,    BF }
+{Input16,  Input1,    B0 }
+{Input17,  Input1,    B1 }
+{Input18,  Input1,    B2 }
+{Input19,  Input1,    B3 }
+{Input20,  Input1,    B4 }
+{Input21,  Input1,    B5 }
+{Input22,  Input1,    B6 }
+{Input23,  Input1,    B7 }
+{Input24,  Input1,    B8 }
+{Input25,  Input1,    B9 }
+{Input26,  Input1,    BA }
+{Input27,  Input1,    BB }
+{Input28,  Input1,    BC }
+{Input29,  Input1,    BD }
+{Input30,  Input1,    BE }
+{Input31,  Input1,    BF }
+}

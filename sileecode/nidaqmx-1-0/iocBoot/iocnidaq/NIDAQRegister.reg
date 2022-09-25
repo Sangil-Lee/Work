@@ -1,0 +1,11 @@
+##ALIAS##,##Module Options##,##scale parameter ##Param Type##,##devicename##
+#Module Options, scaleparameter(minval, maxval, slope, offset)
+#NIDAQ_MX_SLOT5_AI0_AVG,				0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_LINEARSCALE_SLOPE,	0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_LINEARSCALE_OFFSET,	0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_MIN_VALUE,			0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#NIDAQ_MX_SLOT5_MAX_VALUE,			0x00000000,	0.0, 0.0, 0.0,0.0, asynParamFloat64,		NA,				NA
+#
+#Options(0x00010001, Higher 0x0001:current module, Lower 0x0001:linear scale)
+#Linear Scale (0.0 ~ 100.0) y=mx+b, m = slope(10), b = offset(5.0)
+NIDAQ_MX_SLOT5_WAVE_0,				0x00010001, 0.0, 100.0, 10.0,5.0, asynParamFloat64Array,PXI1Slot3/port0,	NIDAQ_MX_SLOT5_AI0_AVG

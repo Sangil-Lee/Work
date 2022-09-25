@@ -1,0 +1,7 @@
+record(calc, $(PREFIX):HeartBeat)
+{
+    field(SCAN, "1 second")
+    field(CALC, "A>=100?0:A+1")
+    field(INPA, "$(PREFIX):HeartBeat")
+    field(VAL,  "0")
+}

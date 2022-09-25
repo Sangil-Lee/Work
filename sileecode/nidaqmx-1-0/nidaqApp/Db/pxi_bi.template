@@ -1,0 +1,9 @@
+record(bi, "CDMS-Tester:PXI-DI:$(SIGNAL)")
+{
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+    field(INP,  "CDMS-Tester:PXI-DI16:$(INPUT).$(BIT)")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+    field(VAL, "0")
+}

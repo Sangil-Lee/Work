@@ -1,0 +1,10 @@
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SIGNAL)")
+{
+    field(PINI, "YES")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(ZNAM, "0")
+    field(ONAM, "1")
+    field(SCAN, "$(SCAN)")
+    field(VAL, 	"0")
+}

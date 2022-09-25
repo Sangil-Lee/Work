@@ -1,0 +1,8 @@
+record(stringin, "$(SYS):$(SUBSYS):$(DEV):$(SIGNAL)")
+{
+    field(PINI,  "YES")
+    field(DTYP, "asynOctetRead")
+    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+	field(VAL, "BuildTime")
+	field(SCAN, "$(SCAN)")
+}

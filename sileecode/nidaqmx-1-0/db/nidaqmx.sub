@@ -1,0 +1,16 @@
+
+#file "db/ai.template" { pattern
+#{ SYS,	SUBSYS,		DEV,		PORT,		ADDR,		TIMEOUT, SIGNAL,			ALIAS,								SCAN,			VAL } 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 AI_00_AVG,			NIDAQ_MX_SLOT5_AI0_AVG,				"I/O Intr",  0.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 LINEARSCALE_SLOPE,	NIDAQ_MX_SLOT5_LINEARSCALE_SLOPE,	"I/O Intr",  100.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 LINEARSCALE_OFFSET,NIDAQ_MX_SLOT5_LINEARSCALE_OFFSET,	"I/O Intr",  5.0    } 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 MIN_VALUE,			NIDAQ_MX_SLOT5_MIN_VALUE,			"I/O Intr",  0.0	} 
+#{ SCL3, NIDAQ,		SLOT5,		nidaqmx,	0,			1,		 MAX_VALUE,			NIDAQ_MX_SLOT5_MAX_VALUE,			"I/O Intr",  100.0  } 
+#}
+
+#file "db/waveform.template" { pattern
+#{SYS,	SUBSYS, DEV,	PORT,		ADDR,	TIMEOUT,	SIGNAL,		ALIAS,						DTYP,					NELM,	FLNK,	SCAN }
+#{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayIn",	1000,	"",		"1 second"	}
+#{SCL3,	NIDAQ,	SLOT5,	nidaqmx,	0,		1,			AI_WAVE_0,	NIDAQ_MX_SLOT5_WAVE_0,		"asynFloat64ArrayOut",	1000,	"",		"1 second"	}
+#}
+
