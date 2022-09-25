@@ -6,6 +6,8 @@
 #include "nidaqDriver.h"
 
 
+
+
 namespace nidaq
 {
 
@@ -145,8 +147,17 @@ int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callba
 	{
 		//int32 DAQmxCreateAIVoltageChan (TaskHandle taskHandle, const char physicalChannel[], const char nameToAssignToChannel[], int32 terminalConfig, float64 minVal, float64 maxVal, int32 units, const char customScaleName[]);
 		//return(DAQmxCreateAIVoltageChan(g_taskHandle, device.c_str(), "", termConfig, minVal, maxVal, DAQmx_Val_Volts, NULL));
+		
+	
+		//DAQmxReadDigitalU32(taskHandle,1,10.0,DAQmx_Val_GroupByChannel,&data,1,&read,NULL);
 		return(DAQmxCreateAIVoltageChan(g_taskHandle, device.c_str(), "", termConfig, minVal, maxVal, units, scaleUnits.c_str()));
 	};
+
+	int nidaqDriver::createDIChannel(const string device)
+	{
+		return(DAQmxCreateDIChan(g_taskHandle,device.c_str(),"", DAQmx_Val_ChanForAllLines));
+	};
+
 
 	int nidaqDriver::configSampleClock(const float64 sampRate, const int32 activeEdge, const uInt64 buffsize)
 	{
@@ -169,6 +180,12 @@ int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callba
 
 		return (status);
 
+	};
+
+	int nidaqDriver::ReadDigital(uInt32 *readData, int32 *chanRead)
+	{
+		int status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, readData, 1, chanRead, NULL);
+		return (status);
 	};
 
 	int nidaqDriver::setScale(e_scaleType scaletype, const string userScaleName, const float64 slope, const float64 yIntercept, const int32 prescaleunit, const string scaledunit)

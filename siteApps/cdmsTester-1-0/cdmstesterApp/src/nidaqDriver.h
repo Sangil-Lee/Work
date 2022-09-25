@@ -30,6 +30,7 @@ namespace nidaq
       nidaqDriver* GetInstance();
 
 	  int ReadAnalog(float64 readArray[], int32 *chanRead, const int32 numSampsPerChan = 1000, const float64 timeout = 10.0);
+	  int ReadDigital(uInt32 *readData, int32 *chanRead);
 
 //============================================================================================================================
     public:
@@ -43,6 +44,7 @@ namespace nidaq
 		int setScale(e_scaleType scaletype, const string userScaleName, const float64 slope = 1.0, const float64 yIntercept = 0.0, const int32 prescaleunit = DAQmx_Val_Volts, const string scaledunit = "volts");
 		int setScale(e_scaleType scaletype, const string userScaleName, const float64 param[], const int paramcnt = 2, const int32 prescaleunit=DAQmx_Val_Volts, const string scaledunit="volts");
 		int createAIVoltChannel(const string device, const float64 minVal = 0.0, const float64 maxVal = 10.0, const int32 termConfig = DAQmx_Val_RSE, const int32 units = DAQmx_Val_Volts, const string scaleUnits = "\0" );
+		int createDIChannel(const string device);
 		int configSampleClock(const float64 sampRate = 10000.0, const int32 activeEdge=DAQmx_Val_Rising, const uInt64 buffsize = 1000);
 		void compileAPITest();
 
