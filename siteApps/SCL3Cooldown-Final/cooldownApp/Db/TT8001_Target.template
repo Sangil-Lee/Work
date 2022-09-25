@@ -1,0 +1,13 @@
+record(calcout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TT8001)
+{
+	field(DESC, "CV8402 Target")
+	field(SCAN, "Passive")
+	field(CALC, "C:=C+1;D-(0.0028*C)")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TT8001")
+	field(INPB, "10")
+	field(INPC, "0")
+	field(INPD, "200")
+	field(OUT, "OM14:$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CDLogic.D")
+	field(VAL, "0")
+}
+

@@ -1,0 +1,65 @@
+file "db/Density_HePAK.template" { pattern
+{SUBDEV,	INPA,		INPB,		D1,			D2,			DESC }
+{PDT7503,	PT7506,     TT7504,     0.0549,		0.01992,	"Mass flow rate of SCL3 TSR"}
+{PDT7501,	PT7503,		TT7502,		0.043,		0.01762,	"Mass flow rate of SCL3 TSS"}
+{PDT7301,	PT7303,		TT7302,		0.043,		0.01321,	"Mass flow rate of SCL3 Ghe"}
+{PDT7401,	PT7403,		TT7402,		0.0371,		0.0119,		"Mass flow rate of SCL3 SHe"}
+{PDT7505,	PT7203,		TT7202,		0.0707,		0.02561,	"Mass flow rate of SCL3 WSL"}
+{PDT7582,	PT7582,		Ambient,	0.0549,		0.02273,	"Mass flow rate of TBx WSL" }
+{PDT7543,	PT7546,		TT7544,		0.0549,		0.01766,	"Mass flow rate of SCL2 TSR"}
+{PDT7541,	PT7543,		TT7542,		0.043,		0.01749,	"Mass flow rate of SCL2 TSS"}
+{PDT7341,	PT7343,		TT7342,		0.05472,	0.01722,	"Mass flow rate of SCL2 Ghe"}
+{PDT7441,	PT7443,		TT7442,		0.05472,	0.01722,	"Mass flow rate of SCL2 SHe"}
+{PDT7545,	PT7243,		TT7242,		0.05472,	0.01866,	"Mass flow rate of SCL2 WSL"}
+}
+
+file "db/Enthalpy_HePAK.template" { pattern
+{SUBDEV,	INPA,		INPB,	DESC }
+{H7504,		PT7504,		TT7503,	"" }
+{H7501,		PT7501,		TT7501,	"" }
+{H7301,		PT7301,		TT7301,	"" }
+{H7401,		PT7401,		TT7401,	"" }
+{H7201,		PT7201,		TT7201,	"" }
+{H7506,		PT7506,		TT7504,	"" }
+{H7503,		PT7503,		TT7502,	"" }
+{H7303,		PT7303,		TT7302,	"" }
+{H7403,		PT7403,		TT7402,	"" }
+{H7203,		PT7203,		TT7202,	"" }
+{H7544,		PT7544,		TT7543,	"" }
+{H7541,		PT7541,		TT7541,	"" }
+{H7341,		PT7341,		TT7341,	"" }
+{H7441,		PT7441,		TT7441,	"" }
+{H7241,		PT7241,		TT7241,	"" }
+{H7546,		PT7546,		TT7544,	"" }
+{H7543,		PT7543,		TT7542,	"" }
+{H7343,		PT7343,		TT7342,	"" }
+{H7443,		PT7443,		TT7442,	"" }
+{H7243,		PT7243,		TT7242,	"" }
+}
+
+file "db/HeatLoad.template" { pattern
+{SUBDEV,	SIGNAL,		IN_ENTHALPY,	IN_MFR,		OUT_ENTHALPY,	OUT_MFR,	DESC }
+{SCL3CDS,	TSHtLd,		H7503,			PDT7501,	H7506,			PDT7503,	"" }	
+{SCL3TBx,	TSSHtLd,	H7501,			PDT7501,	H7503,			PDT7501,	"" }	
+{SCL3TBx,	TSRHtLd,	H7506,			PDT7503,	H7504,			PDT7503,	"" }	
+{SCL3TBx,	SHeHtLd,	H7401,			PDT7401,	H7403,			PDT7401,	"" }	
+{SCL3TBx,	GHeHtLd,	H7303,			PDT7301,	H7301,			PDT7301,	"" }	
+{SCL2CDS,	TSHHtLd,	H7543,			PDT7541,	H7546,			PDT7543,	"" }	
+{SCL2TBx,	TSSHtLd,	H7541,			PDT7541,	H7543,			PDT7541,	"" }	
+{SCL2TBx,	TSRHtLd,	H7546,			PDT7543,	H7544,			PDT7543,	"" }	
+{SCL2TBx,	SHeHtLd,	H7441,			PDT7441,	H7443,			PDT7441,	"" }	
+{SCL2TBx,	GHeHtLd,	H7343,			PDT7341,	H7341,			PDT7341,	"" }	
+}
+
+file "db/HeatLoad_4INP.template" { pattern
+{SUBDEV,	SIGNAL,		IN_ENTHALPY,	IN_MFR,		OUT_ENTHALPY,	OUT_MFR,	DESC }
+{SCL3TBx,	VLPHtLd,	H7203,			PDT7401,	H7201,			PDT7301,	"" }	
+{SCL2TBx,	VLPHtLd,	H7243,			PDT7441,	H7241,			PDT7341,	"" }	
+}
+
+file "db/HeatLoad_5INP.template" { pattern
+{SUBDEV,	SIGNAL,		IN_ENTHALPY,	IN_MFR,		OUT_ENTHALPY,	OUT_MFR,	OUT1_ENTHALPY,	DESC }
+{SCL3CDS,	4KHtLd,		H7403,			PDT7401,	H7203,			PDT7301,	H7303,			"" }	
+{SCL2CDS,	4KHtLd,		H7443,			PDT7441,	H7243,			PDT7341,	H7343,			"" }	
+}
+

@@ -1,0 +1,251 @@
+file "db/CryoReadyEval.template" { pattern
+{SYS,	SUBSYS,	DEV,	SUBDEV,		SIGNAL,		CALC,					INPC }
+
+###QWR 
+###LT8401 
+{SCL31,	-BL01:,	CM01,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }
+{SCL31,	-BL01:,	CM02,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM03,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM04,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM05,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM06,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM07,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM08,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM09,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM10,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM11,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM12,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM13,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM14,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM15,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM16,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM17,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM18,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM19,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM20,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM21,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+{SCL31,	-BL01:,	CM22,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",	30 }  
+
+###TT8501 
+{SCL31,	-BL01:,	CM01,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",	60 }  
+{SCL31,	-BL01:,	CM02,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM03,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM04,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM05,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM06,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM07,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM08,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM09,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM10,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM11,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM12,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM13,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM14,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM15,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM16,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM17,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM18,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM19,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM20,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM21,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL31,	-BL01:,	CM22,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+
+###PT8301 
+{SCL31,	-BL01:,	CM01,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM02,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM03,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM04,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM05,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM06,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM07,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM08,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM09,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM10,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM11,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM12,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM13,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM14,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM15,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM16,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM17,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM18,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM19,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM20,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM21,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL31,	-BL01:,	CM22,	-PT8301:,	PresR,		"B:=AMAX(AA);B>C?0:1",  1.4 }
+
+
+###HWR
+##LT8201
+{SCL32,	-BL02:,	CM01,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM02,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM03,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM04,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM05,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM06,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM07,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM08,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM09,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM10,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM11,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM12,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL02:,	CM13,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM01,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM02,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM03,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM04,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM05,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM06,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM07,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM08,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM09,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM10,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM11,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM12,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM13,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM14,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM15,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM16,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM17,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM18,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+{SCL32,	-BL03:,	CM19,	-LT8201:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 }
+
+##TT8501
+{SCL32,	-BL02:,	CM01,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM02,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM03,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM04,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM05,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM06,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM07,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM08,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM09,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM10,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM11,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM12,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL02:,	CM13,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM01,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM02,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM03,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM04,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM05,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM06,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM07,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM08,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM09,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM10,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM11,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM12,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM13,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM14,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM15,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM16,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM17,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM18,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+{SCL32,	-BL03:,	CM19,	-TT8501:,	TempR,		"B:=AMAX(AA);B>C?0:1",  60 }
+
+
+##PT8202
+{SCL32,	-BL02:,	CM01,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM02,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM03,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM04,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM05,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM06,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM07,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM08,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM09,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM10,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM11,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM12,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL02:,	CM13,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM01,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM02,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM03,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM04,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM05,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM06,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM07,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM08,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM09,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM10,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM11,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM12,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM13,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM14,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM15,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM16,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM17,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM18,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+{SCL32,	-BL03:,	CM19,	-PT8202:,	PresR,		"B:=AMAX(AA);B>C?0:1",  38 }
+
+
+##LT8401
+{SCL32,	-BL02:,	CM01,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM02,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM03,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM04,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM05,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM06,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM07,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM08,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM09,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM10,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM11,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM12,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL02:,	CM13,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM01,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM02,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM03,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM04,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM05,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM06,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM07,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM08,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM09,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM10,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM11,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM12,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM13,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM14,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM15,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM16,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM17,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM18,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+{SCL32,	-BL03:,	CM19,	-LT8401:,	PercR,		"B:=AMAX(AA);B<C?0:1",  30 } 
+
+##PT7201
+{SCL32,	-CDL02:,	VBx01,	-PT7201:,	PresR,	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx02,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx03,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx04,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx05,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx06,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx07,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx08,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx09,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx10,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx11,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx12,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL02:,	VBx13,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx01,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx02,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx03,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx04,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx05,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx06,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx07,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx08,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx09,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx10,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx11,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx12,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx13,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx14,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx15,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx16,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx17,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx18,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+{SCL32,	-CDL03:,	VBx19,	-PT7201:,	PresR 	"B:=AMAX(AA);B>C?0:1",  1.4 }
+
+}

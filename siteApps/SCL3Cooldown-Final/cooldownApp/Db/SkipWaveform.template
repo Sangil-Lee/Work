@@ -1,0 +1,15 @@
+record(waveform, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SkipCycle) 
+{
+	field(PINI, "YES")
+	field(NELM, "44")
+	field(FTVL, "CHAR")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{   
+	field(DESC, "$(DESC)")
+	field(VAL, "0")
+	field(ZNAM, "Process")
+	field(ONAM, "Skip")
+}
+

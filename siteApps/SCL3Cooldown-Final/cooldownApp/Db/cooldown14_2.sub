@@ -1,0 +1,40 @@
+#
+#cooldown14-1
+file "db/XVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,			TARGETJ,INPB,INPC,INPK,INPL,INPD,INPH,INPI,INPG,OUTB}
+{OM14:,	SCL31,     -CDL01:,         VBx04,		-XV7301:,	Valve,	"(A>=J)?A:J",   1,   "",  "",  "",  "",  "",  "",  "",  "",  "SetManuOpen"} #1QWR
+}
+#cooldown14-3
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			                    INPB,                               INPC,                               INPD,                               INPK,                                   INPH, INPI,   TARGETJ, INPL,INPG,	OUTB}
+{OM14:,	SCL31,     -BL01:,         CM03,		-CV8401:,	Valve,	"(C>H||D>H||K)?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx02-PT7401:PresR",   "SCL31-BL01:CM01-PT8301:PresR",     "SCL31-BL01:CM02-PT8301:PresR",     "SCL31-CDL01:VBx02-PT7401:PresREval",   1.4,  0.01,      5,	"",	 "",	  "SetManu"} #1QWR
+{OM14:,	SCL31,     -BL01:,         CM04,		-CV8401:,	Valve,	"(C>H||D>H||K)?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx02-PT7401:PresR",   "SCL31-BL01:CM02-PT8301:PresR",     "SCL31-BL01:CM01-PT8301:PresR",     "SCL31-CDL01:VBx02-PT7401:PresREval",   1.4,  0.01,      5,	"",	 "",	  "SetManu"} #1QWR
+}
+
+#cooldown14-4
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			  INPB,						          INPC,                                INPK,  							       INPI,    INPH,   TARGETJ,INPD,INPL,INPG,OUTB}
+{OM14:,	SCL32,     -BL02:,         CM03,		-CV8402:,	Valve,	"(C>H||K)?A:J",   "SCL32-BL02:CM01-PT8301:PresR",     "SCL32-BL02:CM01-PT8201:PresR",      "SCL32-BL02:CM01-PT8301:PresREval",     0.01,       1.4,    5,	 "",  "",  "",  "Setpt"} #12HWRA
+{OM14:,	SCL32,     -BL02:,         CM04,		-CV8402:,	Valve,	"(C>H||K)?A:J",   "SCL32-BL02:CM02-PT8301:PresR",     "SCL32-BL02:CM02-PT8201:PresR",      "SCL32-BL02:CM02-PT8301:PresREval",     0.01,       1.4,    5,	 "",  "",  "",  "Setpt"} #12HWRA
+}
+
+#cooldown14-5
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			         INPB,						           INPC,                                  INPH,       INPK,                                     INPI,   TARGETJ,INPD,INPL,INPG,OUTB}	
+{OM14:,	SCL31,     -CDL01:,        VBx04,      -CV7401:,   Valve,	"K?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx02-PT7401:PresR",      "SCL31-CDL01:VBx02-TT7401:TempR",       20,         "SCL31-CDL01:VBx02-PT7401:PresREval"      0.01,      15, "",  "",  "",  "Setpt"} #1QWR
+}
+
+#cooldown14-6
+#file "db/CVValve_OM14_step6.template" { pattern
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,															INPB,						       INPC,                             INPD,                             INPE,								INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
+{OM14:,	SCL31,     -BL01:,         CM03,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",  "SCL31-BL01:CM03-PT8301:PresR",   "SCL31-BL01:CM03-TT8404:TempR",   "SCL31-BL01:CM03-CV8402:TT8001",    "SCL31-BL01:CM03-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM03-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+{OM14:,	SCL31,     -BL01:,         CM04,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",  "SCL31-BL01:CM04-PT8301:PresR",   "SCL31-BL01:CM04-TT8404:TempR",   "SCL31-BL01:CM04-CV8402:TT8001",    "SCL31-BL01:CM04-TT8404:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM04-PT8301:PresREval",   90,		 "",  "",  "Setpt"} #1QWR
+}
+
+#cooldown14-7
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,                                               INPB,						          INPC,                                INPK,                                    INPH,   INPI,   TARGETJ,INPD,INPL,INPG,OUTB}
+{OM14:,	SCL32,     -BL02:,         CM02,		-CV8403:,	Valve,	"(C>H+0.1&&A>0)?(A-I):(C>H||K)?A:(A>=J)?J:(A+I)",   "SCL32-CDL02:VBx01-PT7401:PresR",     "SCL32-BL02:CM01-PT8201:PresR",      "SCL32-CDL02:VBx01-PT7401:PresREval"     1.4,    0.01,    100, "",  "",  "",  "Setpt"} #12HWRA
+}
+

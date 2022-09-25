@@ -1,4 +1,3 @@
-
 record(bi, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL))
 {
 	field(DTYP,"asynUInt32Digital")
@@ -7,4 +6,12 @@ record(bi, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL))
     field(ZNAM,"$(ZNAM)")
     field(ONAM,"$(ONAM)")
     field(DESC,"$(DESC)")
+    field(FLNK,"$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(FLNK)")
+}
+
+record(calc, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(FLNK))
+{
+    field(SCAN,"Passive")
+    field(CALC,"A==1?0:1")
+    field(INPA,"$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 }

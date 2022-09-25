@@ -1,0 +1,7 @@
+#cooldown04-1~2
+file "db/CVValve.template" { pattern
+	{OM,	 SYS,	    SUBSYS,          DEV,	    SUBDEV,		SIGNAL,	CALC,													INPB,									INPC,  INPD,   INPH,	INPI,	TARGETJ,	INPK,										INPL,INPG,	OUTB}
+	{OM041:, SCL31,     -CDL01:,         EBx01,		-CV7501:,	Valve,	"K?A:(A<J)?(A+I):(A>=I)?(A-I):A",						"$(SYS)$(SUBSYS)$(DEV)-PT7502:PresR",	"",     "",       "",	0.05,	20,			"$(SYS)$(SUBSYS)$(DEV)-PT7502:PresREval",	"",	 "",	"Setpt"}  #1EBx
+	{OM041:, SCL31,     -CDL01:,         EBx01,		-CV7402:,	Valve,	"K?A:(B>H+0.02&&A>=I)?(A-I):(B<H-0.02&&A<J)?(A+I):A",	"$(SYS)$(SUBSYS)$(DEV)-PT7301:PresR",   "",		"",		1.3,	0.05,	50,			"$(SYS)$(SUBSYS)$(DEV)-PT7301:PresREval",	"",	 "",	"Setpt"}  #2EBx
+}
+

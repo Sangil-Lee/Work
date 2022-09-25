@@ -1,0 +1,136 @@
+program sncMakeTempWaveform
+
+option +r;
+
+float tempVal[57];
+assign tempVal to {
+"SCL31-CDL01:EBx01-TT7503:TempR", "SCL31-BL01:CM01-TT8502:TempR", "SCL31-BL01:CM02-TT8502:TempR", 
+"SCL31-BL01:CM03-TT8502:TempR", "SCL31-BL01:CM04-TT8502:TempR", "SCL31-BL01:CM05-TT8502:TempR", 
+"SCL31-BL01:CM06-TT8502:TempR", "SCL31-BL01:CM07-TT8502:TempR", "SCL31-BL01:CM08-TT8502:TempR",
+"SCL31-BL01:CM09-TT8502:TempR", "SCL31-BL01:CM10-TT8502:TempR", "SCL31-BL01:CM11-TT8502:TempR", 
+"SCL31-BL01:CM12-TT8502:TempR", "SCL31-BL01:CM13-TT8502:TempR", "SCL31-BL01:CM14-TT8502:TempR",
+"SCL31-BL01:CM15-TT8502:TempR", "SCL31-BL01:CM16-TT8502:TempR", "SCL31-BL01:CM17-TT8502:TempR", 
+"SCL31-BL01:CM18-TT8502:TempR", "SCL31-BL01:CM19-TT8502:TempR", "SCL31-BL01:CM20-TT8502:TempR",
+"SCL31-BL01:CM21-TT8502:TempR", "SCL31-BL01:CM22-TT8502:TempR", "SCL32-BL02:CM01-TT8502:TempR", 
+"SCL32-BL02:CM02-TT8502:TempR", "SCL32-BL02:CM03-TT8502:TempR", "SCL32-BL02:CM04-TT8502:TempR",
+"SCL32-BL02:CM05-TT8502:TempR", "SCL32-BL02:CM06-TT8502:TempR", "SCL32-BL02:CM07-TT8502:TempR", 
+"SCL32-BL02:CM08-TT8502:TempR", "SCL32-BL02:CM09-TT8502:TempR", "SCL32-BL02:CM10-TT8502:TempR",
+"SCL32-BL02:CM11-TT8502:TempR", "SCL32-BL02:CM12-TT8502:TempR", "SCL32-BL02:CM13-TT8502:TempR",
+"SCL32-BL03:CM01-TT8502:TempR", "SCL32-BL03:CM02-TT8502:TempR", "SCL32-BL03:CM03-TT8502:TempR",
+"SCL32-BL03:CM04-TT8502:TempR", "SCL32-BL03:CM05-TT8502:TempR", "SCL32-BL03:CM06-TT8502:TempR",
+"SCL32-BL03:CM07-TT8502:TempR", "SCL32-BL03:CM08-TT8502:TempR", "SCL32-BL03:CM09-TT8502:TempR",
+"SCL32-BL03:CM10-TT8502:TempR", "SCL32-BL03:CM11-TT8502:TempR", "SCL32-BL03:CM12-TT8502:TempR",
+"SCL32-BL03:CM13-TT8502:TempR", "SCL32-BL03:CM14-TT8502:TempR", "SCL32-BL03:CM15-TT8502:TempR",
+"SCL32-BL03:CM16-TT8502:TempR", "SCL32-BL03:CM17-TT8502:TempR", "SCL32-BL03:CM18-TT8502:TempR",
+"SCL32-BL03:CM19-TT8502:TempR", "P2DT-BL04:CM01-TT8502:TempR", "Cryo-CDL00:TBx01-TT7583:TempR"
+};
+
+monitor tempVal;
+evflag  evWave;
+sync	tempVal	evWave;
+
+float tempInVal[57];
+assign tempInVal to {
+"SCL31-CDL01:EBx01-TT7502:TempR", "SCL31-BL01:CM01-TT8501:TempR", "SCL31-BL01:CM02-TT8501:TempR",
+"SCL31-BL01:CM03-TT8501:TempR", "SCL31-BL01:CM04-TT8501:TempR", "SCL31-BL01:CM05-TT8501:TempR",
+"SCL31-BL01:CM06-TT8501:TempR", "SCL31-BL01:CM07-TT8501:TempR", "SCL31-BL01:CM08-TT8501:TempR",
+"SCL31-BL01:CM09-TT8501:TempR", "SCL31-BL01:CM10-TT8501:TempR", "SCL31-BL01:CM11-TT8501:TempR",
+"SCL31-BL01:CM12-TT8501:TempR", "SCL31-BL01:CM13-TT8501:TempR", "SCL31-BL01:CM14-TT8501:TempR",
+"SCL31-BL01:CM15-TT8501:TempR", "SCL31-BL01:CM16-TT8501:TempR", "SCL31-BL01:CM17-TT8501:TempR",
+"SCL31-BL01:CM18-TT8501:TempR", "SCL31-BL01:CM19-TT8501:TempR", "SCL31-BL01:CM20-TT8501:TempR",
+"SCL31-BL01:CM21-TT8501:TempR", "SCL31-BL01:CM22-TT8501:TempR", "SCL32-BL02:CM01-TT8501:TempR",
+"SCL32-BL02:CM02-TT8501:TempR", "SCL32-BL02:CM03-TT8501:TempR", "SCL32-BL02:CM04-TT8501:TempR",
+"SCL32-BL02:CM05-TT8501:TempR", "SCL32-BL02:CM06-TT8501:TempR", "SCL32-BL02:CM07-TT8501:TempR",
+"SCL32-BL02:CM08-TT8501:TempR", "SCL32-BL02:CM09-TT8501:TempR", "SCL32-BL02:CM10-TT8501:TempR",
+"SCL32-BL02:CM11-TT8501:TempR", "SCL32-BL02:CM12-TT8501:TempR", "SCL32-BL02:CM13-TT8501:TempR",
+"SCL32-BL03:CM01-TT8501:TempR", "SCL32-BL03:CM02-TT8501:TempR", "SCL32-BL03:CM03-TT8501:TempR",
+"SCL32-BL03:CM04-TT8501:TempR", "SCL32-BL03:CM05-TT8501:TempR", "SCL32-BL03:CM06-TT8501:TempR",
+"SCL32-BL03:CM07-TT8501:TempR", "SCL32-BL03:CM08-TT8501:TempR", "SCL32-BL03:CM09-TT8501:TempR",
+"SCL32-BL03:CM10-TT8501:TempR", "SCL32-BL03:CM11-TT8501:TempR", "SCL32-BL03:CM12-TT8501:TempR",
+"SCL32-BL03:CM13-TT8501:TempR", "SCL32-BL03:CM14-TT8501:TempR", "SCL32-BL03:CM15-TT8501:TempR",
+"SCL32-BL03:CM16-TT8501:TempR", "SCL32-BL03:CM17-TT8501:TempR", "SCL32-BL03:CM18-TT8501:TempR",
+"SCL32-BL03:CM19-TT8501:TempR", "P2DT-BL04:CM01-TT8501:TempR", "Cryo-CDL00:TBx01-TT7581:TempR"
+};
+
+monitor tempInVal;
+evflag  evWaveIn;
+sync	tempInVal	evWaveIn;
+
+float	tempWaveVal[57];
+assign	tempWaveVal to "SCL3-CD:Logic-TSR:TempWaveR";
+monitor tempWaveVal;
+
+float	tempWaveInVal[57];
+assign	tempWaveInVal to "SCL3-CD:Logic-TSS:TempWaveR";
+monitor tempWaveInVal;
+
+
+/*
+int skipCycle[44];
+assign skipCycle to {
+"SCL3-CD:Logic-Skip:QWR01",  "SCL3-CD:Logic-Skip:QWR02",  "SCL3-CD:Logic-Skip:QWR03",
+"SCL3-CD:Logic-Skip:QWR04",  "SCL3-CD:Logic-Skip:QWR05",  "SCL3-CD:Logic-Skip:QWR06",
+"SCL3-CD:Logic-Skip:QWR07",  "SCL3-CD:Logic-Skip:QWR08",  "SCL3-CD:Logic-Skip:QWR09",
+"SCL3-CD:Logic-Skip:QWR10",  "SCL3-CD:Logic-Skip:QWR11",  "SCL3-CD:Logic-Skip:HWRA01",
+"SCL3-CD:Logic-Skip:HWRA02", "SCL3-CD:Logic-Skip:HWRA03", "SCL3-CD:Logic-Skip:HWRA04",
+"SCL3-CD:Logic-Skip:HWRA05", "SCL3-CD:Logic-Skip:HWRA06", "SCL3-CD:Logic-Skip:HWRA07",
+"SCL3-CD:Logic-Skip:HWRA08", "SCL3-CD:Logic-Skip:HWRA09", "SCL3-CD:Logic-Skip:HWRA10",
+"SCL3-CD:Logic-Skip:HWRA11", "SCL3-CD:Logic-Skip:HWRA12", "SCL3-CD:Logic-Skip:HWRA13",
+"SCL3-CD:Logic-Skip:HWRB01", "SCL3-CD:Logic-Skip:HWRB02", "SCL3-CD:Logic-Skip:HWRB03",
+"SCL3-CD:Logic-Skip:HWRB04", "SCL3-CD:Logic-Skip:HWRB05", "SCL3-CD:Logic-Skip:HWRB06",
+"SCL3-CD:Logic-Skip:HWRB07", "SCL3-CD:Logic-Skip:HWRB08", "SCL3-CD:Logic-Skip:HWRB09",
+"SCL3-CD:Logic-Skip:HWRB10", "SCL3-CD:Logic-Skip:HWRB11", "SCL3-CD:Logic-Skip:HWRB12",
+"SCL3-CD:Logic-Skip:HWRB13", "SCL3-CD:Logic-Skip:HWRB14", "SCL3-CD:Logic-Skip:HWRB15",
+"SCL3-CD:Logic-Skip:HWRB16", "SCL3-CD:Logic-Skip:HWRB17", "SCL3-CD:Logic-Skip:HWRB18",
+"SCL3-CD:Logic-Skip:HWRB19", "SCL3-CD:Logic-Skip:P2DT" };
+
+monitor skipCycle;
+evflag  evSkip;
+sync	skipCycle	evSkip;
+
+int	skipWF[57];
+assign	skipWF to "SCL3-CD:Logic-Skip:SkipCycle";
+*/
+
+ss makewave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evWave);
+		}state MakeWaveform
+	}
+
+	state MakeWaveform
+	{
+//	when(delay(2.0) && efTestAndClear(evWave)) 
+		when(delay(2.0)) 
+		{
+			int index = 0;
+			for(index = 0; index < 57;index++)
+			{
+				tempWaveVal[index] = tempVal[index];
+				tempWaveInVal[index] = tempInVal[index];
+			}
+
+			pvPut(tempWaveVal, SYNC);
+			pvPut(tempWaveInVal, SYNC);
+		}state MakeWaveform
+
+/*
+		when(efTestAndClear(evSkip)) 
+		{
+			int idx = 0;
+			for(idx = 0; idx < 44;idx++)
+			{
+				skipWF[idx] = skipCycle[idx];
+			};
+
+			pvPut(skipWF, SYNC);
+		}state MakeWaveform
+*/
+
+	}
+}
+

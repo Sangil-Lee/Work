@@ -1,7 +1,7 @@
 TOP=../..
-include $(TOP)/configure/CONFIG
-#----------------------------------------
-#  ADD MACRO DEFINITIONS AFTER THIS LINE
+include $(TOP)/configure/CONFIG 
+
+#---------------------------------------- #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
@@ -46,6 +46,15 @@ DB  += SoftPVs_DCPC.template
 DB  += SoftPVs_OVRStat.template
 DB  += SoftPVs_FailStat.template
 DB  += SoftPVs_TBx.sub
+
+
+##HePAK DB
+DB  += Density_HePAK.template
+DB  += Enthalpy_HePAK.template
+DB  += HeatLoad.template
+DB  += HeatLoad_4INP.template
+DB  += HeatLoad_5INP.template
+DB  += TBxcontrol_hepak.sub
 
 
 #----------------------------------------------------

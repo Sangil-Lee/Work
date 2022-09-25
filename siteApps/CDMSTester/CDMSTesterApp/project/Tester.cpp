@@ -53,7 +53,6 @@ void Tester::Enable()
 	string user = plogin->GetCurUser();
 	if(!user.empty())
 	{
-		cout << "User" << user << endl;
 		ui->setup->setEnabled(true);
 		ui->load->setEnabled(true);
 		ui->check->setEnabled(true);

@@ -58,11 +58,16 @@ INCLUDEPATH += O.$$(EPICS_HOST_ARCH)/ui
 SOURCES += main.cpp \
         Login.cpp \
         Setup.cpp \
-        Tester.cpp
+        Tester.cpp \
+		compile_test.cpp
 
 HEADERS  += Login.h \
 			Setup.h \
-			Tester.h
+			Tester.h \
+			decoding.h \
+			encoding.h \
+			lookup_table_decoding.h \
+			lookup_table_encoding.h
 
 FORMS    += Login.ui \
 			Setup.ui \

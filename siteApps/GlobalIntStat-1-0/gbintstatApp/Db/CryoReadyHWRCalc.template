@@ -1,0 +1,18 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)CryoReady:CalcStatus") {
+  field(SCAN, "1 second")
+  field(CALC, "F?(A||B||D||E):(A||B||C||E)")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)LT8201:PercREval")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)TT8501:TempREval")
+  field(INPC, "$(SYS)$(SUBSYS)$(DEV)PT8202:PresREval")
+  field(INPD, "$(SYS)$(SUBSYS)$(DEV)LT8401:PercREval")
+  field(INPE, "$(SYS)$(VBOX)$(DEV)PT7201:PresREval")
+###INPF(0): 4.5K mode, INPF(1): 2K mode
+  field(INPF, "0")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)CryoRead:Status PP")
+}
+
+record(calc, "$(SYS)$(SUBSYS)$(DEV)CryoReady:Status") {
+  field(SCAN, "Passive")
+  field(ZNAM, "Ready")
+  field(ONAM, "Not Ready")
+}

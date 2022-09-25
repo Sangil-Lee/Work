@@ -1,0 +1,14 @@
+# ao record template for register outputs
+record(ao, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
+    field(DESC,"$(DESC)")
+    field(DTYP,"asynFloat64")
+    field(OUT,"@asyn($(PORT) $(OFFSET))$(DATA_TYPE)")
+    field(OMSL, "closed_loop")
+    #field(OMSL, "supervisory")
+    field(HOPR,"$(HOPR)")
+    field(LOPR,"$(LOPR)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
+    field(VAL,"0")
+    field(PINI,"NO")
+}

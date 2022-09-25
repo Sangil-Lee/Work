@@ -1,0 +1,23 @@
+record(waveform, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)ReadyWF") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)ReadyWFEVal")
+  field(NELM, "$(NELM)")
+}
+
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)ReadyWFEVal") {
+  field(SCAN, "Passive")
+  field(NELM, "$(NELM)")
+  field(CALC, "B:=AMAX(AA);B?1:0")
+  field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)ReadyWF")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Ready PP")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Ready") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+}

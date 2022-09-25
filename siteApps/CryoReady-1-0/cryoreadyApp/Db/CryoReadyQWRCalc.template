@@ -1,0 +1,16 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)-CryoReady:CalcStatus") {
+  field(SCAN, "1 second")
+  field(CALC, "A&&B&&C?1:0")
+  field(INPA, "$(SYS)$(SUBSYS)$(DEV)-LT8401:PercREval")
+  field(INPB, "$(SYS)$(SUBSYS)$(DEV)-TT8501:TempREval")
+  field(INPC, "$(SYS)$(SUBSYS)$(DEV)-PT8301:PresREval")
+  field(OUT,  "$(SYS)$(SUBSYS)$(DEV)-CryoReady:Status PP")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)-CryoReady:Status") {
+  field(SCAN, "Passive")
+  field(ZNAM, "Not Ready")
+  field(ONAM, "Ready")
+}
