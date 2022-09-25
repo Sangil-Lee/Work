@@ -11,11 +11,15 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += xxx.db
+#DB += longin.template
+#DB += longout.template
+DB += Extra.db
+DB += pxi_longin_bitfanout.vdb
+DB += pxi_longout_bitfanout.vdb
 DB += ao.template
 DB += mbbiDirect.template
 DB += mbboDirect.template
-DB += Extra.db
-DB += nidaqmx.sub
+DB += nidaqmx2.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

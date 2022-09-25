@@ -1,0 +1,10 @@
+file "db/mbbiDirect.template" { pattern
+{ SYS,  SUBSYS,     DEV,    SUBDEV,   SIGNAL,     PORT,       ALIAS,			SCAN,		FLNK	          			}
+{CDMS,  -Tester:    PXI,    -DI:      Input32,     nidaqmx,    NIDAQ_MX_SLOT3_DI32,	"1 second",	$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Mbbi	}
+}
+
+file "db/mbboDirect.template" { pattern
+{ SYS,  SUBSYS,     DEV,    SUBDEV,   SIGNAL,     PORT,       ALIAS                     }
+{CDMS,  -Tester:    PXI,    -DO:      Output32,   nidaqmx,    NIDAQ_MX_SLOT3_DO32       }
+}
+

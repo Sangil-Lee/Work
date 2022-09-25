@@ -1,9 +1,10 @@
 record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
-	field(PINI, "YES")
+    field(PINI, "YES")
     field(DTYP, "asynInt32")
-    field(INP,  "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
-    field(VAL,  "0")
+    #field(INP,  "@asyn((PORT),(ADDR),(TIMEOUT=1))(ALIAS)")
+    field(INP,  "@asyn($(PORT),0,1)$(ALIAS)")
     field(SCAN,  "$(SCAN)")
     field(FLNK,  "$(FLNK)")
+    field(VAL,  "0")
 }
