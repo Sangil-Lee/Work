@@ -3,7 +3,7 @@ include "longoutRecord.dbd"
 include "aoRecord.dbd"
 device(longin,  CONSTANT, devPXI6514Read, "PXI6514Read")
 device(longout, CONSTANT, devPXI6514Write,"PXI6514Write")
-device(ao, CONSTANT, devPXI4322Write,"PXI4322Write")
+device(ao, INST_IO, devPXI4322Write,"PXI4322Write")
 
 variable(nidaqDebug)
 registrar("nidaqAsynEpicsRegister")

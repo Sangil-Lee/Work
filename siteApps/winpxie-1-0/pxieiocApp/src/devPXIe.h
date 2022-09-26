@@ -21,15 +21,13 @@
 #include "epicsExport.h"
 
 
-typedef long (*pxieIoFunction) (dbCommon*);
-
 long initRecordDI(struct longinRecord* pRec);
 long readPXI6514(struct longinRecord* pRec);
 
 long initRecordDO(struct longoutRecord* pRec);
 long writePXI6514(struct longoutRecord* pRec);
 
-long initRecordAO(struct aoRecord* pRec);
+long initRecordPXIAO(struct aoRecord* pRec);
 long writePXIAO(struct aoRecord* pRec);
 
 

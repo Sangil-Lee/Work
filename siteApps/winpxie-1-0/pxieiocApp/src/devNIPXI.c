@@ -45,16 +45,15 @@ long initRecordDI(struct longinRecord *pRec)
 long readPXI6514(struct longinRecord *pRec)
 {
     long 	status;
-	uInt32	data;
-	int32	read;
+    uInt32	data;
+    int32	read;
 
     status = dbGetLink(&(pRec->inp),DBF_LONG, &(pRec->val),0,0);
     /*If return was succesful then set undefined false*/
-    printf("Value:%u\n", pRec->val);
 
-	status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
-	printf("Data acquired: 0x%X\n",(unsigned)data);
-	pRec->val = data;
+    status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
+
+    pRec->val = data;
 
     if(!status) pRec->udf = FALSE;
     return(0);
@@ -105,11 +104,27 @@ long writePXI6514(struct longoutRecord *pRec)
 
 epicsExportAddress(dset,devPXI6514Write);
 
-long initRecordAO(struct aoRecord *pRec)
+struct {
+    long number;
+    DEVSUPFUN report;
+    DEVSUPFUN init;
+    DEVSUPFUN init_record;
+    DEVSUPFUN get_ioint_info;
+    DEVSUPFUN write;
+} devPXI4322Write = {
+    5,
+    NULL,
+    NULL,
+    initRecordPXIAO,
+    NULL,
+    writePXIAO
+};
+
+long initRecordPXIAO(struct aoRecord *pRec)
 {
     if(recGblInitConstantLink(&pRec->out,DBF_DOUBLE,&pRec->val))
-         pRec->udf = FALSE;
-    return(0);
+		pRec->udf = TRUE;
+    return(1);
 }
 
 
@@ -124,26 +139,11 @@ long writePXIAO(struct aoRecord *pRec)
     // DAQmx Write Code
     /*********************************************/
     float64  data = pRec->val;
-    DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
+    status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
 
     if(!status) pRec->udf = FALSE;
     return(0);
 }
-struct {
-    long number;
-    DEVSUPFUN report;
-    DEVSUPFUN init;
-    DEVSUPFUN init_record;
-    DEVSUPFUN get_ioint_info;
-    DEVSUPFUN write;
-} devPXI4322Write = {
-    5,
-    NULL,
-    NULL,
-    initRecordAO,
-    NULL,
-    writePXIAO
-};
 
 epicsExportAddress(dset,devPXI4322Write);
 
@@ -232,7 +232,7 @@ static void niAOCreateFunc(const iocshArgBuf *args)
 	nidaqAOCreateChannel(args[0].sval);
 }
 
-static const iocshFuncDef niTaskStartFuncDef = {"nidaqTastkStart", 0};
+static const iocshFuncDef niTaskStartFuncDef = {"nidaqTaskStart", 0};
 
 static void niTaskStartFunc()
 {
