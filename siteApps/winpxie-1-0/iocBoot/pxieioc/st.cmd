@@ -13,6 +13,9 @@ pxieioc_registerRecordDeviceDriver pdbbase
 
 nidaqDIConfigure("nidaqmx", "PXI1Slot3")
 nidaqDICreateChannel("port0")
+nidaqDOCreateChannel("port4")
+nidaqAOCreateChannel("ao0")
+nidaqTaskStart()
 
 ## Load record instances
 #dbLoadRecords("db/pxieioc.db","user=cdms")
