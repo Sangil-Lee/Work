@@ -1,0 +1,7 @@
+record(mbbiDirect,"$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
+    field(DTYP,"asynUInt32Digital")
+    #field(INP,"@asynMask((PORT) (OFFSET) (MASK))(ALIAS)")
+    field(INP,"@asynMask($(PORT) 0 0xFFFFFFFF)$(ALIAS)")
+    field(SCAN,"$(SCAN)")
+    field(FLNK,"$(FLNK)")
+}

@@ -7,9 +7,13 @@
 #include <dbCommon.h>
 #include <iocsh.h>
 #include <NIDAQmx.h>
+#include <string.h>
 
 
 static int nidaqDebug = 1;
+static TaskHandle  g_taskHandle;
+
+static char gDevName[24];
 
 struct {
     long number;
@@ -39,11 +43,18 @@ long initRecord(struct longinRecord *pRec)
 
 long readPXI6514(struct longinRecord *pRec)
 {
-    long status;
+    long 	status;
+	uInt32	data;
+	int32	read;
 
     status = dbGetLink(&(pRec->inp),DBF_LONG, &(pRec->val),0,0);
     /*If return was succesful then set undefined false*/
     printf("Value:%u\n", pRec->val);
+
+	status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
+	printf("Data acquired: 0x%X\n",(unsigned)data);
+	pRec->val = data;
+
     if(!status) pRec->udf = FALSE;
     return(0);
 }
@@ -78,6 +89,15 @@ long writePXI6514(struct longoutRecord *pRec)
 
     status = dbGetLink(&(pRec->out),DBF_LONG, &(pRec->val),0,0);
     /*If return was succesful then set undefined false*/
+
+	uInt32  data = pRec->val;
+	int32	written;
+
+	/*********************************************/
+	// DAQmx Write Code
+	/*********************************************/
+	status = DAQmxWriteDigitalU32(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,&written,NULL);
+
     if(!status) pRec->udf = FALSE;
     return(0);
 }
@@ -91,35 +111,54 @@ epicsExportAddress(dset,devPXI6514Write);
   * \param[in] maxSizeSnapshot The maximum  number of sample in one snapshot
   * \param[in] maxNbSnapshot The number of snapshot buffered
  */
-epicsShareFunc int nidaqAsynEpicsConfigure(const char *portName, const char* registerfile, const char *deviceName)
+epicsShareFunc int nidaqDIConfigure(const char *portName, const char *deviceName)
 {
-    TaskHandle  g_taskHandle;
     int status = DAQmxCreateTask("", &g_taskHandle);
 
     char devNames[60];
-	int32 sts= DAQmxGetSysDevNames(devNames, sizeof(devNames));
+	status = DAQmxGetSysDevNames(devNames, sizeof(devNames));
 	printf("Device Names: %s\n", devNames);
+	strcpy(gDevName, deviceName);
+	return status;
+}
 
+epicsShareFunc int nidaqDICreateChannel(const char *channelName)
+{
+	char devChName[40];	
+	sprintf(devChName, "%s/%s", gDevName, channelName); 
+
+	int status = DAQmxCreateDIChan(g_taskHandle, devChName, "", DAQmx_Val_ChanForAllLines);
+	DAQmxStartTask(g_taskHandle);
+	return(status);
 }
 
 
 /* EPICS iocsh shell commands */
 static const iocshArg initArg0 = { "portName"          ,iocshArgString};
-static const iocshArg initArg1 = { "register file name",iocshArgString};
-static const iocshArg initArg2 = { "device name"       ,iocshArgString};
-static const iocshArg * const initArgs[] = {&initArg0,
-                                            &initArg1,
-                                            &initArg2};
+static const iocshArg initArg1 = { "device name"       ,iocshArgString};
 
-static const iocshFuncDef initFuncDef = {"nidaqAsynEpicsConfigure",3,initArgs};
+static const iocshArg * const initArgs[] = {&initArg0, &initArg1};
+
+static const iocshFuncDef initFuncDef = {"nidaqDIConfigure",2,initArgs};
+
 static void initCallFunc(const iocshArgBuf *args)
 {
-    nidaqAsynEpicsConfigure(args[0].sval, args[1].sval, args[2].sval);
+    nidaqDIConfigure(args[0].sval, args[1].sval);
+}
+
+static const iocshArg chArg0 = { "chportName", iocshArgString};
+static const iocshArg * const chArgs[] = {&chArg0};
+static const iocshFuncDef niDICreateFuncDef = {"nidaqDICreateChannel", 1, chArgs};
+
+static void niDICreateFunc(const iocshArgBuf *args)
+{
+	nidaqDICreateChannel(args[0].sval);
 }
 
 void nidaqAsynEpicsRegister(void)
 {
     iocshRegister(&initFuncDef,initCallFunc);
+    iocshRegister(&niDICreateFuncDef,niDICreateFunc);
 }
 
 epicsExportAddress(int, nidaqDebug);

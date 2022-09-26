@@ -8,6 +8,8 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += pxi_long.db
+DB += pxi_longin_bitfanout.vdb
+DB += pxi_longout_bitfanout.vdb
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

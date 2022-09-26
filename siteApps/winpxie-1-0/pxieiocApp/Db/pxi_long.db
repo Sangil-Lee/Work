@@ -1,13 +1,14 @@
-record(longin, "PXILongIn")
+record(longin, "CDMS-Tester:PXI-DI:Input32")
 {
     field(DTYP, "PXI6514Read")
     field(SCAN, "1 second")
-    field(VAL, "16")
+    field(FLNK, "CDMS-Tester:PXI-DI:Mbbi")
+    field(VAL, "15")
 }
 
-record(longout, "PXILongOut")
+record(longout, "CDMS-Tester:PXI-DO:Output32")
 {
     field(DTYP, "PXI6514Write")
     field(PINI, "YES")
-    field(VAL, "16")
+    field(VAL, "0")
 }

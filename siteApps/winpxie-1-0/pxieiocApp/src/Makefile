@@ -6,6 +6,8 @@ include $(TOP)/configure/CONFIG
 #=============================
 DBD += devlongPXIe.dbd
 LIBRARY_IOC += nidaqDevSupport
+
+nidaqmx_DIR = /usr/lib/x86_64-linux-gnu
 nidaqDevSupport_SRCS += devlongPXIe.c
 nidaqDevSupport_LIBS += nidaqmx
 nidaqDevSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
