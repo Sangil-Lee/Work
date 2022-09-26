@@ -4,11 +4,11 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
-DBD += devlongPXIe.dbd
+DBD += devNIPXI.dbd
 LIBRARY_IOC += nidaqDevSupport
 
 nidaqmx_DIR = /usr/lib/x86_64-linux-gnu
-nidaqDevSupport_SRCS += devlongPXIe.c
+nidaqDevSupport_SRCS += devNIPXI.c
 nidaqDevSupport_LIBS += nidaqmx
 nidaqDevSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
 #=============================
@@ -20,7 +20,7 @@ DBD += pxieioc.dbd
 
 # pxieioc.dbd will be made up from these files:
 pxieioc_DBD += base.dbd
-pxieioc_DBD += devlongPXIe.dbd
+pxieioc_DBD += devNIPXI.dbd
 
 # Include dbd files from all support applications:
 #pxieioc_DBD += xxx.dbd
@@ -30,7 +30,6 @@ pxieioc_DBD += devlongPXIe.dbd
 
 # pxieioc_registerRecordDeviceDriver.cpp derives from pxieioc.dbd
 pxieioc_SRCS += pxieioc_registerRecordDeviceDriver.cpp
-#pxieioc_SRCS += devaoPXIe.c
 #pxieioc_SRCS += devlongPXIe.c
 # pxieioc_SRCS += nidaqDriver.cpp
 

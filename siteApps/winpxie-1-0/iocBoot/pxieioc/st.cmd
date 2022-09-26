@@ -23,6 +23,8 @@ dbLoadRecords("db/pxi_long.db")
 dbLoadRecords("db/pxi_longin_bitfanout.vdb", "P=CDMS-Tester:PXI-DI")
 dbLoadRecords("db/pxi_longout_bitfanout.vdb", "P=CDMS-Tester:PXI-DO")
 
+dbLoadTemplate("db/pxi_ao.sub")
+
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
