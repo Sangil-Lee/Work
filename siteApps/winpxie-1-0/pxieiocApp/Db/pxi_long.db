@@ -1,0 +1,13 @@
+record(longin, "PXILongIn")
+{
+    field(DTYP, "PXI6514Read")
+    field(SCAN, "1 second")
+    field(VAL, "16")
+}
+
+record(longout, "PXILongOut")
+{
+    field(DTYP, "PXI6514Write")
+    field(PINI, "YES")
+    field(VAL, "16")
+}
