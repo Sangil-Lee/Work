@@ -4,6 +4,7 @@
 #include "epicsExport.h"
 #include "dbCommon.h"
 #include "iocsh.h"
+#include "menuConvert.h"
 #include "NIDAQmx.h"
 
 #include "longinRecord.h"
@@ -11,7 +12,7 @@
 #include "aoRecord.h"
 #include "devPXIe.h"
 
-static int nidaqDebug = 1;
+static int nidaqDebug = 0;
 static TaskHandle  g_taskHandle;
 
 static char gDevName[24];
@@ -52,6 +53,9 @@ long readPXI6514(struct longinRecord *pRec)
     /*If return was succesful then set undefined false*/
 
     status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
+
+    if(nidaqDebug)
+        printf("Data:(0x%X), Read(%d)\n", data, read);
 
     pRec->val = data;
 
@@ -98,13 +102,16 @@ long writePXI6514(struct longoutRecord *pRec)
     /*********************************************/
     status = DAQmxWriteDigitalU32(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,&written,NULL);
 
+    if(nidaqDebug)
+        printf("Written Data(%d)\n", written);
+
     if(!status) pRec->udf = FALSE;
     return(0);
 }
 
 epicsExportAddress(dset,devPXI6514Write);
 
-struct {
+struct devPXI4322Write{
     long number;
     DEVSUPFUN report;
     DEVSUPFUN init;
@@ -120,11 +127,39 @@ struct {
     writePXIAO
 };
 
-long initRecordPXIAO(struct aoRecord *pRec)
+long initRecordPXIAO(struct aoRecord *pRec, int pass)
 {
     if(recGblInitConstantLink(&pRec->out,DBF_DOUBLE,&pRec->val))
-		pRec->udf = TRUE;
-    return(1);
+         pRec->udf = FALSE;
+    return(0);
+#if 0
+    aoRecord *prec = (aoRecord *)pRec;
+    struct devPXI4322Write *pdset;
+    long status;
+
+    if (pass == 0) return (0);
+
+    if ((pdset = (struct devPXI4322Write *)(prec->dset)) == NULL)
+    {
+        recGblRecordError(S_dev_noDSET, prec, "ao: init_record");
+        return (S_dev_noDSET);
+    }
+
+    /* must have write function defined */
+    if ((pdset->number < 5) || (pdset->write == NULL))
+    {
+        recGblRecordError(S_dev_missingSup, pdset, "ao: init_record");
+        return (S_dev_missingSup);
+    }
+
+    if (pdset->init_record)
+    {
+        if ((status = (*pdset->init_record)(prec)))
+            return (status);
+    }
+
+    return (0);
+#endif
 }
 
 
@@ -140,6 +175,9 @@ long writePXIAO(struct aoRecord *pRec)
     /*********************************************/
     float64  data = pRec->val;
     status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
+
+    if(nidaqDebug)
+        printf("AO Output(%f)\n", data);
 
     if(!status) pRec->udf = FALSE;
     return(0);
@@ -169,6 +207,8 @@ epicsShareFunc int nidaqDICreateChannel(const char *channelName)
 {
 	char devChName[40];	
 	sprintf(devChName, "%s/%s", gDevName, channelName); 
+
+    printf("DI Channel:%s\n", devChName);
 
 	int status = DAQmxCreateDIChan(g_taskHandle, devChName, "", DAQmx_Val_ChanForAllLines);
 	return(status);

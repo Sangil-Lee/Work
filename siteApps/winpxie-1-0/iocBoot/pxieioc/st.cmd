@@ -1,4 +1,4 @@
-#!../../bin/linux-x86_64/pxieioc
+#!../../bin/windows-x64/pxieioc
 
 #- You may have to change pxieioc to something else
 #- everywhere it appears in this file

@@ -6,8 +6,6 @@ include $(TOP)/configure/CONFIG
 #=============================
 DBD += devNIPXI.dbd
 LIBRARY_IOC += nidaqDevSupport
-
-nidaqmx_DIR = /usr/lib/x86_64-linux-gnu
 nidaqDevSupport_SRCS += devNIPXI.c
 nidaqDevSupport_LIBS += nidaqmx
 nidaqDevSupport_LIBS += $(EPICS_BASE_IOC_LIBS)
@@ -30,6 +28,7 @@ pxieioc_DBD += devNIPXI.dbd
 
 # pxieioc_registerRecordDeviceDriver.cpp derives from pxieioc.dbd
 pxieioc_SRCS += pxieioc_registerRecordDeviceDriver.cpp
+#pxieioc_SRCS += devaoPXIe.c
 #pxieioc_SRCS += devlongPXIe.c
 # pxieioc_SRCS += nidaqDriver.cpp
 
