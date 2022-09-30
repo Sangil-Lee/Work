@@ -8,23 +8,13 @@
 #PRIMARY KEY(sidx) 
 #)ENGINE=INNODB;
 
+create database cdmstester;
+
 create table scenario_t (
 		sidx int unsigned NOT NULL AUTO_INCREMENT, 
 		scenario varchar(1024), 
 		modinfo varchar(255), 
 		PRIMARY KEY(sidx) 
-		)ENGINE=INNODB;
-
-/*sernum bigint unsigned*/
-create table result_t (
-		ridx bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		tdate datetime, 
-		result tinyint unsigned, 
-		rvalue double, 
-		sidx int unsigned, 
-		sernum varchar(64), 
-		foreign key(sidx) references scenario_t(sidx), 
-		foreign key(sernum) references module_t(sernum) 
 		)ENGINE=INNODB;
 
 /*sernum bigint unsigned NOT NULL,*/
@@ -41,7 +31,19 @@ create table user_t (
 		seq int unsigned NULL AUTO_INCREMENT PRIMARY KEY, 
 		user_id varchar(20), 
 		passwd  varchar(50),
-		grp     varchar(50),
+		grp     varchar(50)
+		)ENGINE=INNODB;
+
+/*sernum bigint unsigned*/
+create table result_t (
+		ridx bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+		tdate datetime, 
+		result tinyint unsigned, 
+		rvalue double, 
+		sidx int unsigned, 
+		sernum varchar(64), 
+		foreign key(sidx) references scenario_t(sidx), 
+		foreign key(sernum) references module_t(sernum) 
 		)ENGINE=INNODB;
 
 

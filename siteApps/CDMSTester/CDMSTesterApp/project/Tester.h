@@ -5,9 +5,10 @@
 #define  TESTER_DIALOG_H
 
 #include <QWidget> 
-#include <mysql/mysql.h> 
+#include <mysql.h> 
 #include "Login.h"
 #include "Setup.h"
+#include "SignalChecker.h"
 
 namespace Ui {
 class Tester;
@@ -36,6 +37,7 @@ private:
 	Ui::Tester *ui;
 	Login	*plogin;
 	Setup	*psetup;
+	SignalChecker	*pcheck;
 	void closeEvent(QCloseEvent *event);
 public:
 	void ShowLogin();

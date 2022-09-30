@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Login), psetup(new Setup)
+Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Login), psetup(new Setup), pcheck(new SignalChecker)
 {
 	ui->setupUi(this);
 
@@ -122,6 +122,8 @@ void Tester::load()
 void Tester::check()
 {
 	qDebug() << "Check Pressed ";
+	pcheck->move(QApplication::desktop()->screen()->rect().center() - pcheck->rect().center());
+    pcheck->show();
 }
 
 void Tester::save()

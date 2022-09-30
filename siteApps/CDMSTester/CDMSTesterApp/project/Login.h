@@ -8,7 +8,7 @@
 #include <QDialog>
 #include <QStringList>
 #include <QDebug>
-#include <mysql/mysql.h>  // require libmysqlclient-dev
+#include <mysql.h>  // require libmysqlclient-dev
 
 namespace Ui {
 class Login;

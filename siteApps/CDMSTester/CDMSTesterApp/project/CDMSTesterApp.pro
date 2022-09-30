@@ -59,11 +59,13 @@ SOURCES += main.cpp \
         Login.cpp \
         Setup.cpp \
         Tester.cpp \
+        SignalChecker.cpp \
 		compile_test.cpp
 
 HEADERS  += Login.h \
 			Setup.h \
 			Tester.h \
+			SignalChecker.h \
 			decoding.h \
 			encoding.h \
 			lookup_table_decoding.h \
@@ -71,7 +73,8 @@ HEADERS  += Login.h \
 
 FORMS    += Login.ui \
 			Setup.ui \
-			Tester.ui
+			Tester.ui \
+			SignalCheck.ui \
 
 INCLUDEPATH += . \
     ./include
@@ -82,6 +85,7 @@ RESOURCES += \
 # Include header files from the QE framework
 #
 INCLUDEPATH += $$(QE_FRAMEWORK)/include
+INCLUDEPATH += C:/MariaDBConnector/include
 
 LIBS += -L$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH) -lca -lCom
 
@@ -90,7 +94,8 @@ LIBS += -L$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH) -lca -lCom
 unix: QMAKE_LFLAGS += -Wl,-rpath,$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH)
 
 LIBS += -L$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH) -lQEFramework
-LIBS += -L/usr/lib/x86_64-linux-gnu -lmysqlclient
+##LIBS += -L/usr/lib/x86_64-linux-gnu -lmysqlclient
+LIBS += -LC:/MariaDBConnector/lib -lmariadb
 
 unix: QMAKE_LFLAGS += -Wl,-rpath,$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH)
 

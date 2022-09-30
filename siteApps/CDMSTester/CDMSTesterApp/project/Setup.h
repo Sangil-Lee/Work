@@ -5,7 +5,7 @@
 #define  SETUP_DIALOG_H
 
 #include <QTabWidget> 
-#include <mysql/mysql.h> 
+#include <mysql.h> 
 
 namespace Ui {
 class Setup;

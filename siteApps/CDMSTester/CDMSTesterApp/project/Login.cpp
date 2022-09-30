@@ -15,7 +15,7 @@ Login::Login(QWidget *parent):QDialog(parent), ui(new Ui::Login)
     // Initialize constants
     MY_HOSTNAME = "localhost";
     MY_DATABASE = "cdmstester";
-    MY_USERNAME = "ctrluser";
+    MY_USERNAME = "root";
     MY_PASSWORD = "qwer1234";
     MY_SOCKET   = NULL;
 
@@ -24,6 +24,14 @@ Login::Login(QWidget *parent):QDialog(parent), ui(new Ui::Login)
 
 	// Format a MySQL object
 	conn = mysql_init(NULL);
+
+	// Establish a MySQL connection
+	if (!mysql_real_connect(
+				conn,
+				MY_HOSTNAME, MY_USERNAME,
+				MY_PASSWORD, MY_DATABASE,
+				MY_PORT_NO, MY_SOCKET, MY_OPT)) {
+	}
 }
 
 Login::~Login()
@@ -36,26 +44,22 @@ void Login::close()
 {
 	hide();
 }
+
 void Login::accept()
 {
-#if 0
+#if 1
 	QString userid = ui->login->text();
 	QString passwd = ui->passwd->text();
-	qDebug() << "UserID: " << userid.toUtf8().constData() <<", Passwd: " << passwd.toUtf8().constData();
-	qDebug() << "UserID: " << userid <<", Passwd: " << passwd;
+	cout << "UserID: " << userid.toUtf8().constData() <<", Passwd: " << passwd.toUtf8().constData() << endl;
+	//cout << "UserID: " << userid.toStdString() <<", Passwd: " << passwd.toStdString() << endl;
+
 #endif
-	string userid = ui->login->text().toUtf8().constData();
-	string passwd = ui->passwd->text().toUtf8().constData();
+
+	//const string userid = ui->login->text().toUtf8().constData();
+	//const string passwd = ui->passwd->text().toUtf8().constData();
+	//string userid = ui->login->text().toStdString();
+	//string passwd = ui->passwd->text().toStdString();
 	try {
-		// Establish a MySQL connection
-		if (!mysql_real_connect(
-					conn,
-					MY_HOSTNAME, MY_USERNAME,
-					MY_PASSWORD, MY_DATABASE,
-					MY_PORT_NO, MY_SOCKET, MY_OPT)) {
-			cerr << mysql_error(conn) << endl;
-			return;
-		}
 #if 0
 		// Execute a sql statement
 		if (mysql_query(conn, "SHOW TABLES")) {
@@ -77,11 +81,14 @@ void Login::accept()
 		// SELECT 쿼리
 		string sql = string("SELECT user_id, passwd, grp FROM user_t");
 		MYSQL_RES* result = NULL;
+		m_userList.clear();
+		m_passwdList.clear();
+		m_grpList.clear();
 		if(mysql_query(conn, sql.c_str()) == 0)
 		{
 			result = mysql_store_result(conn);
 			while((row = mysql_fetch_row(result)) != NULL){
-				//cout << "UserID:" << row[0] << " Passwd: " << row[1] << endl;
+				std::cout << "UserID:" << row[0] << " Passwd: " << row[1] << std::endl;
 				m_userList << row[0];
 				m_passwdList << row[1];
 				m_grpList << row[2];
@@ -95,6 +102,7 @@ void Login::accept()
 		//mysql_close(conn);
 	} catch (char *e) {
 		cerr << "[EXCEPTION] " << e << endl;
+
 		return;
 	}
 
@@ -105,7 +113,7 @@ void Login::accept()
 	{
         string dbuser   = (*constIterator).toLocal8Bit().constData();
         string dbpasswd = m_passwdList.at(index).toLocal8Bit().constData();
-		if(dbuser == userid && dbpasswd == passwd) {
+		if(dbuser == userid.toStdString() && dbpasswd == passwd.toStdString()) {
 			checkUser = true;
 			m_curUser = dbuser;
 			m_curPass = dbpasswd;
@@ -114,13 +122,10 @@ void Login::accept()
 		};
 	};
 
-	if(checkUser)
-	{
+	if(checkUser) {
 		hide();
 		pTester->Enable();
-	}
-	else
-	{
+	} else {
 		QMessageBox msgBox;
 		msgBox.setText("No UserID or Password!!");
 		msgBox.exec();
