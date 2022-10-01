@@ -10,12 +10,111 @@
 #include "longinRecord.h"
 #include "longoutRecord.h"
 #include "aoRecord.h"
+#include "aiRecord.h"
+#include "mbbiDirectRecord.h"
+#include "mbboDirectRecord.h"
+#include "calcoutRecord.h"
 #include "devPXIe.h"
 
-static int nidaqDebug = 0;
+static int nidaqDebug = 3;
 static TaskHandle  g_taskHandle;
 
 static char gDevName[24];
+
+struct {
+    long number;
+    DEVSUPFUN report;
+    DEVSUPFUN init;
+    DEVSUPFUN init_record;
+    DEVSUPFUN get_ioint_info;
+    DEVSUPFUN read;
+} devPXI6514ReadMbbi = {
+    5,
+    NULL,
+    NULL,
+    initRecordMbbiDI,
+    NULL,
+    readPXI6514Mbbi
+};
+
+epicsExportAddress(dset,devPXI6514ReadMbbi);
+
+
+long initRecordMbbiDI(struct mbbiDirectRecord *pRec)
+{
+    if(recGblInitConstantLink(&pRec->inp,DBF_ULONG,&pRec->val))
+         pRec->udf = FALSE;
+    return(0);
+}
+
+long readPXI6514Mbbi(struct mbbiDirectRecord *pRec)
+{
+    long 	status;
+    //uInt32	data = 2147483647;      //0x7FFF,FFFF
+    //uInt32	data = 4294967295;      //0xFFFF,FFFF
+    uInt32	data = 0;
+    int32	read = 0;
+
+    status = dbGetLink(&(pRec->inp),DBF_ULONG, &(pRec->val),0,0);
+    /*If return was succesful then set undefined false*/
+
+    //status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
+
+    pRec->rval = data;
+
+    if(nidaqDebug == 1)
+        printf("Mbbi-Data:(0x%X), Read(%d)\n", pRec->val, read);
+
+
+    if(!status) pRec->udf = FALSE;
+    return(0);
+}
+
+struct {
+    long number;
+    DEVSUPFUN report;
+    DEVSUPFUN init;
+    DEVSUPFUN init_record;
+    DEVSUPFUN get_ioint_info;
+    DEVSUPFUN read;
+} devPXI6514WriteMbbo = {
+    5,
+    NULL,
+    NULL,
+    initRecordMbboDO,
+    NULL,
+    writePXI6514Mbbo
+};
+
+epicsExportAddress(dset,devPXI6514WriteMbbo);
+
+
+long initRecordMbboDO(struct mbboDirectRecord *pRec)
+{
+    if(recGblInitConstantLink(&pRec->out,DBF_ULONG,&pRec->rval))
+         pRec->udf = FALSE;
+    return(0);
+}
+
+long writePXI6514Mbbo(struct mbboDirectRecord *pRec)
+{
+    long 	status;
+    status = dbGetLink(&(pRec->out),DBF_ULONG, &(pRec->rval),0,0);
+
+    uInt32  data = (uInt32)pRec->rval;
+    int32	written;
+
+    /*********************************************/
+    // DAQmx Write Code
+    /*********************************************/
+    status = DAQmxWriteDigitalU32(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,&written,NULL);
+
+    if(nidaqDebug == 2)
+        printf("Data(0x%X), Written Data(%d)\n", data, written);
+
+    if(!status) pRec->udf = FALSE;
+    return(0);
+}
 
 struct {
     long number;
@@ -52,9 +151,9 @@ long readPXI6514(struct longinRecord *pRec)
     status = dbGetLink(&(pRec->inp),DBF_LONG, &(pRec->val),0,0);
     /*If return was succesful then set undefined false*/
 
-    status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
+    //status = DAQmxReadDigitalU32(g_taskHandle,1, 10.0, DAQmx_Val_GroupByChannel, &data, 1, &read, NULL);
 
-    if(nidaqDebug)
+    if(nidaqDebug == 1)
         printf("Data:(0x%X), Read(%d)\n", data, read);
 
     pRec->val = data;
@@ -102,8 +201,8 @@ long writePXI6514(struct longoutRecord *pRec)
     /*********************************************/
     status = DAQmxWriteDigitalU32(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,&written,NULL);
 
-    if(nidaqDebug)
-        printf("Written Data(%d)\n", written);
+    if(nidaqDebug == 2)
+        printf("Data(0x%X), Written Data(%d)\n", data, written);
 
     if(!status) pRec->udf = FALSE;
     return(0);
@@ -173,17 +272,74 @@ long writePXIAO(struct aoRecord *pRec)
     /*********************************************/
     // DAQmx Write Code
     /*********************************************/
+    //Current Output
+    int written = 0;
     float64  data = pRec->val;
-    status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
+    status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel, &data,NULL,NULL);
 
-    if(nidaqDebug)
-        printf("AO Output(%f)\n", data);
+    //Voltage Out
+    //status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
+
+    if(nidaqDebug == 3)
+        printf("AO Output(%f), Written(%d)\n", data, written);
 
     if(!status) pRec->udf = FALSE;
     return(0);
 }
 
 epicsExportAddress(dset,devPXI4322Write);
+
+struct devPXI4322AIWrite{
+    long number;
+    DEVSUPFUN report;
+    DEVSUPFUN init;
+    DEVSUPFUN init_record;
+    DEVSUPFUN get_ioint_info;
+    DEVSUPFUN write;
+} devPXI4322AIWrite = {
+    5,
+    NULL,
+    NULL,
+    initRecordAIPXIAO,
+    NULL,
+    writePXIAI
+};
+
+long initRecordAIPXIAO(struct aiRecord *pRec)
+{
+    //if(recGblInitConstantLink(&pRec->inp,DBF_DOUBLE,&pRec->val))
+         //pRec->udf = FALSE;
+    return(0);
+}
+
+
+long writePXIAI(struct aiRecord *pRec)
+{
+    long status;
+
+    status = dbGetLink(&(pRec->inp),DBF_DOUBLE, &(pRec->val),0,0);
+    /*If return was succesful then set undefined false*/
+
+    /*********************************************/
+    // DAQmx Write Code
+    /*********************************************/
+    //Current Output
+    int written = 0;
+    float64  data = pRec->val;
+    status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel, &data,NULL,NULL);
+
+    //Voltage Out
+    //status = DAQmxWriteAnalogF64(g_taskHandle,1,1,10.0,DAQmx_Val_GroupByChannel,&data,NULL,NULL);
+
+    if(nidaqDebug == 3)
+        printf("AO Output(%f), Written(%d)\n", data, written);
+
+    if(!status) pRec->udf = FALSE;
+    return(0);
+}
+
+epicsExportAddress(dset, devPXI4322AIWrite);
+
 
 
 /** EPICS iocsh callable function to call constructor for the testAsynPortDriver class.
@@ -203,32 +359,39 @@ epicsShareFunc int nidaqDIConfigure(const char *portName, const char *deviceName
 	return status;
 }
 
-epicsShareFunc int nidaqDICreateChannel(const char *channelName)
+epicsShareFunc int nidaqDICreateChannel(const char* pxiDevSlotName, const char *channelName)
 {
 	char devChName[40];	
-	sprintf(devChName, "%s/%s", gDevName, channelName); 
+	sprintf(devChName, "%s/%s", pxiDevSlotName, channelName); 
 
-    printf("DI Channel:%s\n", devChName);
+    printf("DI Channel:(%s)\n", devChName);
 
 	int status = DAQmxCreateDIChan(g_taskHandle, devChName, "", DAQmx_Val_ChanForAllLines);
 	return(status);
 }
 
-epicsShareFunc int nidaqDOCreateChannel(const char *channelName)
+epicsShareFunc int nidaqDOCreateChannel(const char* pxiDevSlotName, const char *channelName)
 {
 	char devChName[40];	
-	sprintf(devChName, "%s/%s", gDevName, channelName); 
+	sprintf(devChName, "%s/%s", pxiDevSlotName, channelName); 
 
+    printf("DO Channel:(%s)\n", devChName);
 	int status = DAQmxCreateDOChan(g_taskHandle, devChName, "", DAQmx_Val_ChanForAllLines);
 	return(status);
 }
 
-epicsShareFunc int nidaqAOCreateChannel(const char *channelName)
+epicsShareFunc int nidaqAOCreateChannel(const char* pxiDevSlotName, const char *channelName)
 {
 	char devChName[40];	
-	sprintf(devChName, "%s/%s", gDevName, channelName); 
+	sprintf(devChName, "%s/%s", pxiDevSlotName, channelName); 
 
-    	int status = DAQmxCreateAOVoltageChan(g_taskHandle,devChName,"",-10.0,10.0,DAQmx_Val_Volts,"");
+    printf("SlotChan:%s\n", devChName);
+
+    //Analog Output Voltage 
+    //int status = DAQmxCreateAOVoltageChan(g_taskHandle,devChName,"",-10.0,10.0,DAQmx_Val_Volts,"");
+
+    //Analog Output Ampere 
+    int status = DAQmxCreateAOCurrentChan(g_taskHandle,devChName,"", 0.0, 0.02, DAQmx_Val_Amps, "");
 	return(status);
 }
 
@@ -245,31 +408,34 @@ static void initCallFunc(const iocshArgBuf *args)
     nidaqDIConfigure(args[0].sval, args[1].sval);
 }
 
-static const iocshArg diArg0 = { "chportName", iocshArgString};
-static const iocshArg * const diArgs[] = {&diArg0};
-static const iocshFuncDef niDICreateFuncDef = {"nidaqDICreateChannel", 1, diArgs};
+static const iocshArg diArg0 = { "pxiDevSlotName", iocshArgString};
+static const iocshArg diArg1 = { "chportName", iocshArgString};
+static const iocshArg * const diArgs[] = {&diArg0, &diArg1};
+static const iocshFuncDef niDICreateFuncDef = {"nidaqDICreateChannel", 2, diArgs};
 
 static void niDICreateFunc(const iocshArgBuf *args)
 {
-	nidaqDICreateChannel(args[0].sval);
+	nidaqDICreateChannel(args[0].sval, args[1].sval);
 }
 
-static const iocshArg doArg0 = { "chportName", iocshArgString};
-static const iocshArg * const doArgs[] = {&doArg0};
-static const iocshFuncDef niDOCreateFuncDef = {"nidaqDOCreateChannel", 1, doArgs};
+static const iocshArg doArg0 = { "pxiDevSlotName", iocshArgString};
+static const iocshArg doArg1 = { "chportName", iocshArgString};
+static const iocshArg * const doArgs[] = {&doArg0, &doArg1};
+static const iocshFuncDef niDOCreateFuncDef = {"nidaqDOCreateChannel", 2, doArgs};
 
 static void niDOCreateFunc(const iocshArgBuf *args)
 {
-	nidaqDOCreateChannel(args[0].sval);
+	nidaqDOCreateChannel(args[0].sval, args[1].sval);
 }
 
-static const iocshArg aoArg0 = { "chportName", iocshArgString};
-static const iocshArg * const aoArgs[] = {&aoArg0};
-static const iocshFuncDef niAOCreateFuncDef = {"nidaqAOCreateChannel", 1, aoArgs};
+static const iocshArg aoArg0 = { "pxiDevSlotName", iocshArgString};
+static const iocshArg aoArg1 = { "chportName", iocshArgString};
+static const iocshArg * const aoArgs[] = {&aoArg0, &aoArg1};
+static const iocshFuncDef niAOCreateFuncDef = {"nidaqAOCreateChannel", 2, aoArgs};
 
 static void niAOCreateFunc(const iocshArgBuf *args)
 {
-	nidaqAOCreateChannel(args[0].sval);
+	nidaqAOCreateChannel(args[0].sval, args[1].sval);
 }
 
 static const iocshFuncDef niTaskStartFuncDef = {"nidaqTaskStart", 0};

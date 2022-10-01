@@ -3,5 +3,9 @@ record(ao, "CDMS-Tester:PXI-AO:$(SIGNAL)")
     field(DTYP, "PXI4322Write")
     ##field(OUT, "@PXI4233")
     field(PINI, "NO")
+    field(LOPR, "0")
+    field(HOPR, "0.02") ## Current mA, HOPR
     field(VAL, "0")
+    field(EGU, "A")
+    field(PREC, "3")
 }

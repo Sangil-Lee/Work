@@ -1,6 +1,7 @@
 record(longin, "CDMS-Tester:PXI-DI:Input32")
 {
-    field(DTYP, "PXI6514Read")
+    #field(DTYP, "PXI6514Read")
+    field(DTYP, "Soft Channel")
     field(SCAN, "1 second")
     field(FLNK, "CDMS-Tester:PXI-DI:Mbbi")
     field(VAL, "0")

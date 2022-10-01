@@ -1,10 +1,20 @@
 include "longinRecord.dbd"
 include "longoutRecord.dbd"
 include "aoRecord.dbd"
+include "calcoutRecord.dbd"
+include "mbbiDirectRecord.dbd"
+include "mbboDirectRecord.dbd"
+
 device(longin,  CONSTANT, devPXI6514Read, "PXI6514Read")
 device(longout, CONSTANT, devPXI6514Write,"PXI6514Write")
 ##device(ao, INST_IO, devPXI4322Write,"PXI4322Write")
 device(ao, CONSTANT, devPXI4322Write,"PXI4322Write")
+
+#device(calcout, CONSTANT, devPXI4322CalcoutWrite,"PXI4322CalcoutWrite")
+device(ai, CONSTANT, devPXI4322AIWrite,"PXI4322AIWrite")
+
+device(mbbiDirect, CONSTANT, devPXI6514ReadMbbi, "PXI6514ReadMbbi")
+device(mbboDirect, CONSTANT, devPXI6514WriteMbbo,"PXI6514WriteMbbo")
 
 variable(nidaqDebug)
 registrar("nidaqAsynEpicsRegister")

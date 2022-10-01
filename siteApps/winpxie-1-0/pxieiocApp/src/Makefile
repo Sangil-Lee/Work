@@ -19,6 +19,13 @@ DBD += pxieioc.dbd
 # pxieioc.dbd will be made up from these files:
 pxieioc_DBD += base.dbd
 pxieioc_DBD += devNIPXI.dbd
+pxieioc_DBD += epidRecord.dbd  scalerRecord.dbd 
+pxieioc_DBD += aCalcoutRecord.dbd  sCalcoutRecord.dbd  sseqRecord.dbd  swaitRecord.dbd  transformRecord.dbd
+pxieioc_DBD += drvAsynIPPort.dbd
+pxieioc_DBD += modbusSupport.dbd
+pxieioc_DBD += asyn.dbd
+pxieioc_DBD += calc.dbd
+pxieioc_DBD += calcSupport.dbd
 
 # Include dbd files from all support applications:
 #pxieioc_DBD += xxx.dbd
@@ -36,12 +43,19 @@ pxieioc_SRCS += pxieioc_registerRecordDeviceDriver.cpp
 pxieioc_SRCS_DEFAULT += pxieiocMain.cpp
 pxieioc_SRCS_vxWorks += -nil-
 
+ifneq ($(SNCSEQ),)
+    pxieioc_SNCFLAGS += +r
+    #pxieioc_DBD  +=
+    #pxieioc_SRCS +=
+    pxieioc_LIBS += seq pv
+endif
+
 # Add support from base/src/vxWorks if needed
 #pxieioc_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # Finally link to the EPICS Base libraries
 #pxieioc_LIBS += asyn nidaqmx
-pxieioc_LIBS += nidaqDevSupport
+pxieioc_LIBS += nidaqDevSupport asyn modbus calc std sscan 
 pxieioc_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

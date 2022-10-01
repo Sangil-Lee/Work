@@ -21,6 +21,12 @@
 #include "epicsExport.h"
 
 
+long initRecordMbbiDI(struct mbbiDirectRecord* pRec);
+long readPXI6514Mbbi(struct mbbiDirectRecord* pRec);
+
+long initRecordMbboDO(struct mbboDirectRecord *pRec);
+long writePXI6514Mbbo(struct mbboDirectRecord *pRec);
+
 long initRecordDI(struct longinRecord* pRec);
 long readPXI6514(struct longinRecord* pRec);
 
@@ -29,6 +35,9 @@ long writePXI6514(struct longoutRecord* pRec);
 
 long initRecordPXIAO(struct aoRecord* pRec, int pass);
 long writePXIAO(struct aoRecord* pRec);
+
+long initRecordAIPXIAO(struct aiRecord* pRec);
+long writePXIAI(struct aiRecord* pRec);
 
 
 //#ifdef __cplusplus
