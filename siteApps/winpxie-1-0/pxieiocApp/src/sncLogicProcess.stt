@@ -1,0 +1,72 @@
+program sncLogicProcess
+
+option +r;
+
+
+int process = 0;
+assign process to "CDMS-Tester:PXI:Process";
+monitor process;
+
+evflag  efProcess;
+sync    process to efProcess; 
+
+ss logic
+{
+   state init {
+        when()
+        {
+            printf("Transition Stop & Waiting!!\n");
+
+        }state Stop
+   } 
+
+   state Stop {
+        when(efTestAndClear(efProcess) && process == 1)
+        {
+            printf("Transition Run & Waiting!!\n");
+        }state Run
+
+        when(delay(1.0) && process != 1)
+        {
+            printf("Not proper proess var in Stop State, be set(process, 1)\n");
+        } state Stop
+   }
+
+   state Run {
+        when(process == 2)
+        {
+            printf("Transition Pause & Waiting!!\n");
+
+        }state Pause
+
+        when(process == 0)
+        {
+            printf("Transition Stop & Waiting!!\n");
+
+        }state Stop
+
+        when(delay(1.0) && process !=2 && process != 0)
+        {
+            printf("Not proper proess var in Run State, be set(process, 0 or 2)\n");
+        } state Run
+   }
+
+   state Pause {
+        when( process == 1)
+        {
+            printf("Transition Run & Waiting!!\n");
+
+        }state Run
+
+        when( process == 0)
+        {
+            printf("Transition Stop & Waiting!!\n");
+
+        }state Stop
+
+        when(delay(1.0) && process !=1 && process != 0)
+        {
+            printf("Not proper proess var in Pause State, be set(process, 0 or 1)\n");
+        }state Pause
+   }
+}

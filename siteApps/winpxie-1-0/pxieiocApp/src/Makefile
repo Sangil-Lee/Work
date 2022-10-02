@@ -26,6 +26,7 @@ pxieioc_DBD += modbusSupport.dbd
 pxieioc_DBD += asyn.dbd
 pxieioc_DBD += calc.dbd
 pxieioc_DBD += calcSupport.dbd
+pxieioc_DBD += subIocsh.dbd
 
 # Include dbd files from all support applications:
 #pxieioc_DBD += xxx.dbd
@@ -35,9 +36,7 @@ pxieioc_DBD += calcSupport.dbd
 
 # pxieioc_registerRecordDeviceDriver.cpp derives from pxieioc.dbd
 pxieioc_SRCS += pxieioc_registerRecordDeviceDriver.cpp
-#pxieioc_SRCS += devaoPXIe.c
-#pxieioc_SRCS += devlongPXIe.c
-# pxieioc_SRCS += nidaqDriver.cpp
+pxieioc_SRCS += subIocsh.c
 
 # Build the main IOC entry point on workstation OSs.
 pxieioc_SRCS_DEFAULT += pxieiocMain.cpp
@@ -45,8 +44,8 @@ pxieioc_SRCS_vxWorks += -nil-
 
 ifneq ($(SNCSEQ),)
     pxieioc_SNCFLAGS += +r
-    #pxieioc_DBD  +=
-    #pxieioc_SRCS +=
+    pxieioc_DBD  += sncLogicProcess.dbd
+    pxieioc_SRCS += sncLogicProcess.stt
     pxieioc_LIBS += seq pv
 endif
 

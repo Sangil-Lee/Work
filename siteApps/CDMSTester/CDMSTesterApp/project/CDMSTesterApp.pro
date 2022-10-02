@@ -86,6 +86,7 @@ RESOURCES += \
 #
 INCLUDEPATH += $$(QE_FRAMEWORK)/include
 INCLUDEPATH += C:/MariaDBConnector/include
+INCLUDEPATH += C:/qtepics/acai/include
 
 LIBS += -L$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH) -lca -lCom
 
@@ -96,6 +97,7 @@ unix: QMAKE_LFLAGS += -Wl,-rpath,$$(EPICS_BASE)/lib/$$(EPICS_HOST_ARCH)
 LIBS += -L$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH) -lQEFramework
 ##LIBS += -L/usr/lib/x86_64-linux-gnu -lmysqlclient
 LIBS += -LC:/MariaDBConnector/lib -lmariadb
+LIBS += -LC:/qtepics/acai/lib/$$(EPICS_HOST_ARCH) -lacai
 
 unix: QMAKE_LFLAGS += -Wl,-rpath,$$(QE_FRAMEWORK)/lib/$$(EPICS_HOST_ARCH)
 

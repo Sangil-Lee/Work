@@ -38,6 +38,7 @@ public slots:
 	void scensave();
 	void scencancel();
 	void modsearch();
+	void channelChange(QString strIndex);
 
 private:
 	Ui::Setup *ui;

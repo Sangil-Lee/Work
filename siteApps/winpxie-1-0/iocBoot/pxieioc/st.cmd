@@ -1,4 +1,4 @@
-#!../../bin/windows-x64/pxieioc
+#!../../bin/windows-x64/pxieioc.exe
 
 #- You may have to change pxieioc to something else
 #- everywhere it appears in this file
@@ -81,3 +81,4 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=cdms"
+##seq sncLogicProcess

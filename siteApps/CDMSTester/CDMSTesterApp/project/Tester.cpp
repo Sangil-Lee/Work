@@ -3,6 +3,9 @@
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QThread>
+#include <acai_client_types.h>
+#include <acai_client.h>
+
 #include "QELineEdit.h"
 #include "Tester.h"
 #include "ui_Tester.h"
@@ -29,6 +32,12 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Lo
 	plogin->SetTester(this);
 	//plogin->pTester = this;
 
+	ui->scenTable->setSelectionBehavior( QAbstractItemView::SelectRows );
+	ui->scenTable->setSelectionMode(QAbstractItemView::SingleSelection);
+	ui->resultTable->setSelectionBehavior( QAbstractItemView::SelectRows );
+	ui->resultTable->setSelectionMode(QAbstractItemView::SingleSelection);
+
+	//ACAI::Client::initialise ();
 }
 
 Tester::~Tester()
@@ -137,6 +146,22 @@ void Tester::start()
 	pLine->setText("1 second");
 	pLine->update();
 	emit pLine->returnPressed();
+
+#if 0
+	ACAI::Client pv ("CDMS-Tester:PXI:Progress");
+	pv.openChannel();
+
+ 	if (pv.dataIsAvailable ()) {
+        double x = pv.getFloating();
+
+		QMessageBox msgBox;
+		msgBox.setText(QString::number(x));
+		msgBox.exec();
+     }
+
+	pv.closeChannel ();
+   	ACAI::Client::finalise ();
+#endif
 }
 
 void Tester::stop()

@@ -93,6 +93,7 @@ long initRecordMbboDO(struct mbboDirectRecord *pRec)
 {
     if(recGblInitConstantLink(&pRec->out,DBF_ULONG,&pRec->rval))
          pRec->udf = FALSE;
+
     return(0);
 }
 

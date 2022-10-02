@@ -29,6 +29,7 @@ Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 	connect(ui->scensave,    SIGNAL(pressed()), this, SLOT(scensave()) );
 	connect(ui->scencancel,  SIGNAL(pressed()), this, SLOT(scencancel()) );
 	connect(ui->modsearchPB,  SIGNAL(pressed()), this, SLOT(modsearch()) );
+	connect(ui->fromchCombo,  SIGNAL(currentIndexChanged(QString)), this, SLOT(channelChange(QString)) );
 
 	QTableWidget *pTable = ui->userinfo;
 	pTable->resizeColumnsToContents();
@@ -43,6 +44,25 @@ Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 Setup::~Setup()
 {
 	delete ui;
+}
+
+void Setup::channelChange(QString strIndex)
+{
+	QComboBox *pCombo = ui->fromkindCombo;
+	pCombo->clear();
+	if(strIndex=="AI") {
+		for(int i = 0; i < 8; i++)
+			pCombo->addItem("Input"+QString::number(i));
+	}
+	else if(strIndex=="DI") {
+		for(int i = 0; i < 32; i++)
+			pCombo->addItem("Input"+QString::number(i));
+	}
+	else if(strIndex=="DO") {
+		for(int i = 0; i < 32; i++)
+			pCombo->addItem("Output"+QString::number(i));
+	};
+
 }
 
 void Setup::saveuser()
