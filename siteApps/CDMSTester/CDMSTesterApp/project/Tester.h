@@ -33,6 +33,8 @@ public slots:
 	void pause();
 	void close();
 
+	void scenDelete();
+
 private:
 	Ui::Tester *ui;
 	Login	*plogin;

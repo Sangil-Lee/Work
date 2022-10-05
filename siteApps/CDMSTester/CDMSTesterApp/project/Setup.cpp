@@ -33,12 +33,14 @@ Setup::Setup(QWidget *parent):QTabWidget(parent),ui(new Ui::Setup)
 
 	QTableWidget *pTable = ui->userinfo;
 	pTable->resizeColumnsToContents();
+	pTable->setSelectionBehavior( QAbstractItemView::SelectRows );
+	pTable->setSelectionMode(QAbstractItemView::SingleSelection);
 	pTable->horizontalHeader()->setStretchLastSection(true);
-	//pTable->horizontalHeader()->setStretchLastSection(true);
 
 	QTableWidget *pSTable = ui->scenTable;
 	pSTable->resizeColumnsToContents();
 	pSTable->horizontalHeader()->setStretchLastSection(true);
+
 }
 
 Setup::~Setup()

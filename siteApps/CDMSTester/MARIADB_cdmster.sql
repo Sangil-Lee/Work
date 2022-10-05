@@ -37,11 +37,12 @@ create table user_t (
 /*sernum bigint unsigned*/
 create table result_t (
 		ridx bigint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-		tdate datetime, 
-		result tinyint unsigned, 
-		rvalue double, 
 		sidx int unsigned, 
 		sernum varchar(64), 
+		scenario varchar(1024), 
+		tdate datetime, 
+		rvalue double, 
+		result tinyint unsigned, 
 		foreign key(sidx) references scenario_t(sidx), 
 		foreign key(sernum) references module_t(sernum) 
 		)ENGINE=INNODB;

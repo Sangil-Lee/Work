@@ -28,14 +28,34 @@ Tester::Tester(QWidget *parent):QWidget(parent),ui(new Ui::Tester),plogin(new Lo
 	connect(ui->stopPB, SIGNAL(pressed()), this, SLOT(stop()) );
 	connect(ui->pausePB, SIGNAL(pressed()), this, SLOT(pause()) );
 	connect(ui->close, SIGNAL(pressed()), this, SLOT(close()) );
+	connect(ui->scendelete, SIGNAL(pressed()), this, SLOT(scenDelete()) );
 
 	plogin->SetTester(this);
 	//plogin->pTester = this;
 
-	ui->scenTable->setSelectionBehavior( QAbstractItemView::SelectRows );
-	ui->scenTable->setSelectionMode(QAbstractItemView::SingleSelection);
 	ui->resultTable->setSelectionBehavior( QAbstractItemView::SelectRows );
 	ui->resultTable->setSelectionMode(QAbstractItemView::SingleSelection);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
+	ui->resultTable->setColumnWidth(2, 700);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(2,QHeaderView::ResizeToContents);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(3,QHeaderView::ResizeToContents);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(4,QHeaderView::ResizeToContents);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(5,QHeaderView::ResizeToContents);
+	ui->resultTable->setColumnWidth(6, 20);
+	ui->resultTable->horizontalHeader()->setSectionResizeMode(6,QHeaderView::Stretch);
+
+	ui->scenTable->setSelectionBehavior( QAbstractItemView::SelectRows );
+	ui->scenTable->setSelectionMode(QAbstractItemView::SingleSelection);
+	ui->scenTable->horizontalHeader()->setSectionResizeMode(0,QHeaderView::ResizeToContents);
+	ui->scenTable->horizontalHeader()->setSectionResizeMode(1,QHeaderView::ResizeToContents);
+	ui->scenTable->setColumnWidth(2, 700);
+	ui->scenTable->horizontalHeader()->setSectionResizeMode(2,QHeaderView::Stretch);
+
+	//header = self.table.horizontalHeader()
+//header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+//header.setSectionResizeMode(1, QtWidgets.QHeaderView.ResizeToContents)
+//header.setSectionResizeMode(2, QtWidgets.QHeaderView.ResizeToContents)
 
 	//ACAI::Client::initialise ();
 }
@@ -66,11 +86,13 @@ void Tester::Enable()
 		ui->load->setEnabled(true);
 		ui->check->setEnabled(true);
 		ui->save->setEnabled(true);
+		ui->result->setEnabled(true);
 
 		ui->setup->update();
 		ui->load->update();
 		ui->check->update();
 		ui->save->update();
+		ui->result->update();
 	}
 }
 
@@ -97,12 +119,11 @@ void Tester::showsetup()
 void Tester::load()
 {
 	QTableWidget *pTable = ui->scenTable;
+	pTable -> setRowCount(0);
     MYSQL  *conn = plogin->GetDBConn();
 	try {
-		MYSQL_RES *res = mysql_use_result(conn);
-
 		// SELECT 쿼리
-		QString sql = QString("select modinfo,scenario from scenario_t");
+		QString sql = QString("select sidx, modinfo,scenario from scenario_t");
 		MYSQL_RES* result = NULL;
 		MYSQL_ROW row;
 		if(mysql_query(conn, sql.toUtf8().constData()) == 0)
@@ -112,6 +133,7 @@ void Tester::load()
 				pTable->insertRow(pTable->rowCount());
 				pTable->setItem(pTable->rowCount()-1, 0, new QTableWidgetItem(QString(row[0])) );
 				pTable->setItem(pTable->rowCount()-1, 1, new QTableWidgetItem(QString(row[1])) );
+				pTable->setItem(pTable->rowCount()-1, 2, new QTableWidgetItem(QString(row[2])) );
 				QString scenario = QString(row[1]);
 				QStringList slist = scenario.split(QRegExp("[(,)]"));
 				slist.removeAll("");
@@ -121,7 +143,6 @@ void Tester::load()
 		}
 		mysql_free_result(result);
 		// Release memories
-		mysql_free_result(res);
 	} catch (char *e) {
 		cerr << "[EXCEPTION] " << e << endl;
 		return;
@@ -184,6 +205,7 @@ void Tester::pause()
 
 void Tester::close()
 {
+#if 0
 	if(plogin->GetDBConn())
 		mysql_close(plogin->GetDBConn());
 
@@ -191,10 +213,28 @@ void Tester::close()
 		delete w;
 
 	qApp->quit();
+#else
+
+	 QMessageBox::StandardButton resBtn = QMessageBox::question( this, "CDMSTester",
+                                                                tr("Are you sure?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::Yes);
+    if (resBtn != QMessageBox::Yes) {
+		return;
+    } else {
+		if(plogin->GetDBConn())
+			mysql_close(plogin->GetDBConn());
+
+		while(QWidget *w = findChild<QWidget*>())
+			delete w;
+
+		qApp->quit();
+    }
+#endif
 }
 
 void Tester::closeEvent(QCloseEvent *event)
 {
+#if 0
 	 QMessageBox::StandardButton resBtn = QMessageBox::question( this, "CDMSTester",
                                                                 tr("Are you sure?\n"),
                                                                 QMessageBox::Cancel | QMessageBox::No | QMessageBox::Yes,
@@ -204,4 +244,37 @@ void Tester::closeEvent(QCloseEvent *event)
     } else {
 		close();
     }
+#else
+	close();
+#endif
+}
+
+void Tester::scenDelete()
+{
+	QTableWidget *pTable = ui->scenTable;
+
+	QMessageBox::StandardButton delBtn = QMessageBox::question( this, "CDMSTester",
+                                                                tr("Delete Selected Column?\n"),
+                                                                QMessageBox::Cancel | QMessageBox::Yes);
+    if (delBtn != QMessageBox::Yes) {
+		return;
+    } else {
+		MYSQL  *conn = plogin->GetDBConn();
+		int sidx = pTable->item(pTable->currentRow(), 0)->text().toLong();
+		try {
+			// Get a result set
+			// SELECT 쿼리
+			QString sql = QString("delete from scenario_t where sidx = %1").arg(sidx);
+			MYSQL_RES* result = NULL;
+			if(mysql_query(conn, sql.toUtf8().constData()) != 0) {
+				cout << "Delete query error!!" << endl;
+			}
+			mysql_free_result(result);
+			pTable->removeRow(pTable->currentRow());
+		} catch (char *e) {
+			cerr << "[EXCEPTION] " << e << endl;
+			return;
+		}
+    }
+
 }
