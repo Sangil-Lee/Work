@@ -1,0 +1,407 @@
+program sncCDOM14_15_One_PROD_HWRA
+option +r; 
+
+%%#include <math.h> 
+
+char OM14_ONE[44][4][60] = {
+	//{"SCL32-BL02:CM01-CV8402", "SCL32-CDL02:VBx01-XV7201",	"SCL32-BL02:CM01-CV8401",	"SCL32-CDL02:VBx01-CV7401",/*TT8402*/, "SCL32-CDL02:VBx01-CV7301", /*TT7301*/, "SCL32-BL02:CM01-CV8403"}
+	{"SCL32-BL02:CM01-CV8402", "SCL32-CDL02:VBx01-XV7201",	"SCL32-BL02:CM01-CV8401",	"SCL32-CDL02:VBx01-CV7401" }
+};
+
+char OM14_ONE_1[44][4][60] = {
+	{"",						"",							"",							"SCL32-CDL02:VBx01-CV7301"}
+};
+
+char OM14_ONE_2[44][4][60] = {
+	{"",						"",							"",							"SCL32-BL02:CM01-CV8403"}
+};
+
+//TT8402,TT7301
+float tt8402;
+assign tt8402 to "SCL32-BL02-CM01-TT8402:TempR";
+monitor tt8402;
+
+float tt7301;
+assign tt7301 to "SCL32-CDL02:VBx01-TT7301:TempR";
+monitor tt7301;
+
+char OM15_ONE[44][2][60] = {
+	//{"SCL32-CDL02:VBx01-CV7201", "SCL32-CDL02:VBx01-XV7201",   "SCL32-BL02:CM01-CV8403", "SCL32-BL02:VBx01-CV8401", "SCL32-CDL02:VBx01-CV7301"}
+	{"SCL32-BL02:CM01-CV8403", "SCL32-BL02:VBx01-CV8401"}
+};
+
+char OM14_PhaseEnd[44][60] = {
+	"SCL32-BL02:CM01-LT8201:PercR"
+};
+
+char OM15_PhaseEnd[44][60] = {
+	"SCL32-BL02:CM01-LT8201:PercR",	"SCL32-BL02:CM01-LT8401:PercR"
+};
+
+char OM15_PIDSet[44][4][60] = {
+	{"SCL32-BL02:CM01-CV8401","SCL32-BL02:CM01-CV8402","SCL32-CDL02:VBx01-CV7301", "SCL32-CDL02:VBx01-CV7201"}
+};
+
+
+int cycle = 0; 
+assign cycle to "{SYS}{SUBSYS}{DEV}{SUBDEV}Cycle";
+monitor cycle;
+
+int index = 0;
+assign index to "{SYS}{SUBSYS}{DEV}{SUBDEV}Index";
+monitor index;
+
+float cdDelay;
+assign cdDelay to "{SYS}{SUBSYS}{DEV}{SUBDEV}StepDly";
+monitor cdDelay;
+
+int next = 0;
+assign next to "{SYS}{SUBSYS}{DEV}{SUBDEV}Next";
+monitor next;
+
+//Valve Control
+char    logicname[60];
+char    logic_tt8001[60];
+
+int     proc = 1;
+string     tt8001_scan;
+
+assign  proc to "";
+assign  tt8001_scan to "";
+
+char    valvename[60];
+char	target_valname[60];
+char	dir_name[60];
+float   valveval;
+float	target_val;
+assign  valveval to "";
+assign  target_val to "";
+int		dir_val = 1;
+assign	dir_val to "";
+
+char    omphaseend[60];
+
+float   omphaseend_val;
+assign  omphaseend_val to "";
+
+//PID Control
+char	pidset[60];
+int		pidsetval;
+assign  pidsetval to "";
+
+int		first = 0;
+int		om14lastcount = 4;
+int		om15lastcount = 3;
+int     cyclecount = 44;
+
+evflag  efCDOM14;
+evflag  efIndex;
+evflag  efCDOM15;
+
+ss ssCDOM14
+{
+    state init
+    {
+        when(TRUE)
+        {
+            cyclecount = 44;
+            cycle = 0;
+            index = 0;
+			om14lastcount = 4;
+            pvPut(cycle, SYNC);
+            pvPut(index, SYNC);
+			efSet(efIndex);
+        }state Indexing
+    }
+
+	state OM14Stop
+	{
+		when(efTestAndClear(efCDOM14)) 
+		{
+/*
+			%%int idx = 0;
+			for(idx = cycle; idx < cyclecount; idx++)
+			{
+				if(!skipCycle[idx]) break;
+				else cycle++;
+			}
+			pvPut(cycle, SYNC);
+*/
+
+        }state Indexing
+    }
+
+	state Indexing
+	{
+		when(efTestAndClear(efIndex) && index < om14lastcount)
+		{
+			sprintf(logicname, "%s:%s:CDLogic.PROC", "OM14", OM14_ONE[cycle][index]);
+			sprintf(valvename, "%s:Valve", OM14_ONE[cycle][index]);
+			sprintf(target_valname, "%s:%s:CDLogic.J","OM14", OM14_ONE[cycle][index]);
+
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			pvAssign(target_val, target_valname);
+			epicsThreadSleep(0.1);
+			pvGet(target_val);
+			printf("targetval:%f, %s\n", target_val, target_valname);
+
+			//if(strstr(OM14_ONE[cycle][index], "CV8403") != NULL)
+			if(strstr(OM14_ONE[cycle][index], "CV7401") != NULL)
+			{
+				sametime = 1;
+				sprintf(logic_tt8001, "%s:%s.SCAN", OM14_ONE[cycle][index], "TT8001");
+				pvAssign(tt8001_scan, logic_tt8001);
+				pvMonitor(tt8001_scan);
+
+				/*	
+				 	sprintf(logic_tt8001_1, "%s:%s.SCAN", OM14_ONE_CV8[cycle][index], "TT8001");
+					pvAssign(tt8001_scan_1, logic_tt8001_1);
+					pvMonitor(tt8001_scan_1);
+				*/
+				epicsThreadSleep(0.1);
+				strcpy(tt8001_scan, "1 second");
+				pvPut(tt8001_scan);
+			};
+
+		}state OM14
+
+		when(index >= om14lastcount)
+		{
+			printf("OM14 PhaseEnd Transition....\n");
+		} state OM14PhaseEnd
+	}
+
+	state OM14
+	{
+		when(delay(cdDelay) && efTestAndClear(next() && && valveval < target_val && next == 0)
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			printf("OM14 Processing(%s)...\n", logicname );
+
+		}state OM14
+
+		when(delay(cdDelay) && valveval >= target_val || next == 1 )
+
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(target_val);
+
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			pvAssign(target_val, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			next = 0;
+			pvPut(next, SYNC);
+			efSet(efIndex);
+
+			printf("OM14 Transition Indexing(%d)....\n", index);
+		}state Indexing
+
+    }
+
+	state OM14PhaseEnd
+	{
+		when(delay(cdDelay) && first == 0)
+		{
+			first = 1;
+			sprintf(omphaseend,   "%s", OM14_PhaseEnd[cycle]);
+			pvAssign(omphaseend_val,   omphaseend);
+			pvMonitor(omphaseend_val);
+
+		}state OM14PhaseEnd
+
+		when(delay(cdDelay) && omphaseend_val < 20  && first >= 1)
+		{
+			printf("OM14 PhaseEnd Level Checking: %s, %s....\n", OM14_PhaseEnd[cycle], omphaseend);
+
+		} state OM14PhaseEnd
+
+		when(delay(cdDelay) && omphaseend_val >= 20 && first >= 1)
+		{
+			first = 0;
+			efSet(efCDOM15);
+		} state OM14Stop
+	}
+}
+
+ss ssCDOM15
+{
+	state OM15Stop
+	{
+		when(efTestAndClear(efCDOM15) && first == 0) 
+		{
+            index = 0;
+			om15lastcount = 5;
+            pvPut(index, SYNC);
+			efSet(efIndex);
+			printf("OM15 Phase Start===>\n");
+        }state Indexing
+    }
+
+	state Indexing
+	{
+		when(efTestAndClear(efIndex) && index < om15lastcount)
+		{
+			sprintf(logicname,		"%s:%s:CDLogic.PROC",	"OM15", OM15_ONE[cycle][index]);
+			sprintf(valvename,		"%s:Valve",						OM15_ONE[cycle][index]);
+			sprintf(target_valname, "%s:%s:CDLogic.J",		"OM15", OM15_ONE[cycle][index]);
+			sprintf(dir_name,		"%s:%s:CDLogic.L",		"OM15", OM15_ONE[cycle][index]);
+
+			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(dir_val, dir_name);
+			pvMonitor(dir_val);
+
+			pvAssign(valveval, valvename);
+			pvMonitor(valveval);
+
+			pvAssign(proc, logicname);
+			pvMonitor(proc);
+
+			pvAssign(target_val, target_valname);
+			epicsThreadSleep(0.1);
+			pvGet(target_val);
+			pvGet(dir_val);
+			dir_val = dir_val?1:0;
+			printf("Targetval:%f, %s, Dir(%d)\n", target_val, target_valname, dir_val);
+
+		}state ChoiceLogic
+
+		when(index >= om15lastcount)
+		{
+			first = 0;
+		} state OM15PhaseEnd
+	}
+
+	state ChoiceLogic
+	{
+		when(delay(cdDelay) && dir_val == 1 ) {
+		}state OM15_Plus
+
+		when(delay(cdDelay) && dir_val == 0 ) {
+		}state OM15_Minus
+
+	}
+
+	state OM15_Plus 
+	{
+		when(delay(cdDelay) && valveval < target_val && next == 0 )
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			printf("OM15 Processing(%s),Dir(%d)...\n", logicname, dir_val );
+
+		}state OM15_Plus
+
+		when(delay(cdDelay) && valveval >= target_val || next == 1)
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(target_val);
+
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			pvAssign(target_val, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			next = 0;
+			pvPut(next, SYNC);
+			efSet(efIndex);
+			printf("OM15 Transition Indexing(%d)....\n", index);
+		}state Indexing
+	}
+
+	state OM15_Minus
+	{
+			when(delay(cdDelay) && valveval > target_val && next == 0 )
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			printf("OM15 Processing(%s),Dir(%d)...\n", logicname, dir_val );
+
+		}state OM15_Minus
+
+		when(delay(cdDelay) && (valveval <= target_val || next == 1))
+		{
+			pvStopMonitor(valveval);
+			pvStopMonitor(proc);
+			pvStopMonitor(target_val);
+
+			pvAssign(valveval, "");
+			pvAssign(proc, "");
+			pvAssign(target_val, "");
+
+			index++;
+			pvPut(index, SYNC);
+
+			next = 0;
+			pvPut(next, SYNC);
+			efSet(efIndex);
+			printf("OM15 Transition Indexing(%d)....\n", index);
+		}state Indexing
+	}
+
+	state OM15PhaseEnd
+	{
+		when(delay(cdDelay) && first == 0)
+		{
+			first = 1;
+			sprintf(omphaseend,   "%s", OM15_PhaseEnd[cycle]);
+			pvAssign(omphaseend_val,   omphaseend);
+			pvMonitor(omphaseend_val);
+//			pvMonitor(omphaseend_val_1);
+
+			printf("OM15 PhaseEnd.\n");
+		}state OM15PhaseEnd
+
+		when(delay(cdDelay) && omphaseend_val >= 50 && first >= 1)
+
+		{
+			printf("OM2 PID Set..\n");
+			first = 0;
+		} state OM15PIDSet
+	}
+
+	state OM15PIDSet
+	{
+		when(delay(cdDelay) && first == 0)
+		{
+			first = 1;
+			%%int idx = 0;
+			for (idx = 0; idx < 4; idx++)
+			{
+				sprintf(pidset, "%s:SetManuSel", OM15_PIDSet[cycle][idx]);
+				pvAssign(pidsetval,   pidset);
+				epicsThreadSleep(0.1);
+				pvPut(pidsetval, SYNC);
+				pvAssign(pidsetval,"");
+			};
+
+		}state OM15PIDSet
+
+		when(delay(cdDelay) && first >= 1)
+		{
+			first = 0;
+			printf("Cycle End(%d).\n", cycle);
+			//efSet(efCDOM14); 
+		} state OM15Stop
+	}
+}
+

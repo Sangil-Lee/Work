@@ -1,0 +1,25 @@
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,                   TARGETJ,    INPB,                               INPC,   INPK,                                   INPL,   INPD,   INPH,   INPI,   INPG,   OUTB}
+{OM14:,	SCL32,      -BL02:,          CM01,		-CV8402:,	Valve,	"K?A:(A>=J)?J:(A+I)",   100,        "SCL32-BL02:CM01-PT8201:PresR",     "",     "SCL32-BL02:CM01-PT8201:PresREval",     "",     "",     "",     1,      "",     "SetManu"} #1HWR
+}
+
+file "db/XVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,			TARGETJ,INPB,INPC,INPK,INPL,INPD,INPH,INPI,INPG,OUTB}
+{OM14:,	SCL32,     -CDL02:,         VBx01,		-XV7201:,	Valve,	"(A>=J)?A:J",   1,   "",  "",  "",  "",  "",  "",  "",  "",  "SetManuOpen"} #1HWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,                           INPB,                               INPC,                               INPD,   INPK,                                  INPH, INPI,   TARGETJ, INPL,  INPG,	OUTB}
+{OM14:,	SCL32,     -BL02:,         CM01,		-CV8401:,	Valve,	"(C>H||K)?A:(A>=J)?J:(A+I)",   "SCL32-CDL02:VBx01-PT7401:PresR",   "SCL32-BL02:CM01-PT8301:PresR",     "",     "SCL32-CDL02:VBx01-PT7401:PresREval",   1.4,  0.1,    30,	  "",	 "",	 "SetManu"} #1HWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,						INPB,						           INPC,	INPH,		INPK,                                     INPI,     TARGETJ,INPD,INPL,INPG,OUTB}	
+{OM14:,	SCL32,     -CDL02:,        VBx01,      -CV7401:,   Valve,	"K?A:(A>=J)?J:(A+I)",		"SCL32-CDL02:VBx01-PT7401:PresR",      "",		"",			"SCL32-CDL02:VBx01-PT7401:PresREval"      0.01,     15,     "",  "",  "",  "Setpt"} #1HWR
+{OM14:,	SCL32,     -CDL02:,        VBx01,      -CV7301:,   Valve,	"K?A:(A>=J)?J:(A+I)",		"SCL32-CDL02:VBx01-PT7301:PresR",      "",      "",         "SCL32-CDL02:VBx01-PT7301:PresREval"      0.02,     15,     "",  "",  "",  "SetManu"} #1HWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,																			INPB,						      INPC,                            INPD,                             INPE,									INPF,                               INPH,   INPI,     INPK,                                TARGETJ, INPL,	INPG,								OUTB}
+{OM14:,	SCL32,     -BL02:,         CM01,		-CV8403:,	Valve,	"A>=J?J:B>1.4?0:(E<=150||G<=150)?A+0.01:(C<=D-5||F>=10)?0:(C<D+5||K)?A:A+0.02",	"SCL32-BL02:CM01-PT8201:PresR",   "SCL32-BL02:CM01-TT8204:TempR",   "SCL32-BL02:CM01-CV8403:TT8001",  "SCL32-BL02:CM01-TT8204:TempRMin",    "SCL32-BL02:CM01-TT8402:TempR",    "",     0.02,     "SCL32-BL02:CM01-PT8201:PresREval",   30,		 "",	"SCL32-BL02:CM01-TT8207:TempRMin",  "Setpt"} #1
+}

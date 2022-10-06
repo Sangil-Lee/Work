@@ -4,11 +4,11 @@ option +r;
 %%#include <math.h> 
 
 char OM14_ONE[44][4][60] = {
-	{"SCL31-CDL01:VBx16-XV7301", "SCL31-BL01:CM15-CV8401",	"SCL31-CDL01:VBx16-CV7401", "SCL31-BL01:CM15-CV8402"}
+	{"SCL31-CDL01:VBx18-XV7301", "SCL31-BL01:CM17-CV8401",	"SCL31-CDL01:VBx18-CV7401", "SCL31-BL01:CM17-CV8402"}
 };
 
 char OM14_ONE_CV8[44][4][60] = {
-	{"",						 "SCL31-BL01:CM16-CV8401",  "",						 "SCL31-BL01:CM16-CV8402"}
+	{"",						 "SCL31-BL01:CM18-CV8401",  "",						 "SCL31-BL01:CM18-CV8402"}
 };
 
 /*
@@ -29,23 +29,23 @@ char OM14_FCD_1[44][60] = {
 */
 
 char OM15_ONE[44][4][60] = {
-	{"SCL31-BL01:CM15-CV8402", "SCL31-BL01:CM15-CV8401",   "SCL31-CDL01:VBx16-CV7301", "SCL31-CDL01:VBx16-XV7301"}
+	{"SCL31-BL01:CM17-CV8402", "SCL31-BL01:CM17-CV8401",   "SCL31-CDL01:VBx18-CV7301", "SCL31-CDL01:VBx18-XV7301"}
 };
 
 char OM15_ONE_CV8[44][4][60] = {
-	{"SCL31-BL01:CM16-CV8402", "SCL31-BL01:CM16-CV8401",	"",							""}
+	{"SCL31-BL01:CM18-CV8402", "SCL31-BL01:CM18-CV8401",	"",							""}
 };
 
 char OM_PhaseEnd_CM01[44][60] = {
-"SCL31-BL01:CM15-LT8401:PercR"
+"SCL31-BL01:CM17-LT8401:PercR"
 };
 
 char OM_PhaseEnd_CM02[44][60] = {
-"SCL31-BL01:CM16-LT8401:PercR"
+"SCL31-BL01:CM18-LT8401:PercR"
 };
 
 char OM15_PIDSet[44][3][60] = {
-	{"SCL31-BL01:CM15-CV8401","SCL31-BL01:CM16-CV8401","SCL31-CDL01:VBx16-CV7301"}
+	{"SCL31-BL01:CM17-CV8401","SCL31-BL01:CM18-CV8401","SCL31-CDL01:VBx18-CV7301"}
 };
 
 
@@ -97,6 +97,8 @@ char    valvename_1[60];
 char    valvename_2[60];
 char	target_valname[60];
 char	target_valname_1[60];
+char	dir_name[60];
+char	dir_name_1[60];
 
 float   valveval;
 float   valveval_1;
@@ -108,6 +110,11 @@ assign  valveval_1 to "";
 assign  valveval_2 to "";
 assign  target_val to "";
 assign  target_val_1 to "";
+
+int		dir_val = 1;
+int		dir_val_1 = 1;
+assign	dir_val to "";
+assign	dir_val_1 to "";
 
 char    omphaseend[60];
 char    omphaseend_1[60];
@@ -370,8 +377,12 @@ ss ssCDOM15
 			sprintf(logicname,		"%s:%s:CDLogic.PROC",	"OM15", OM15_ONE[cycle][index]);
 			sprintf(valvename,		"%s:Valve",						OM15_ONE[cycle][index]);
 			sprintf(target_valname, "%s:%s:CDLogic.J",		"OM15", OM15_ONE[cycle][index]);
+			sprintf(dir_name,		"%s:%s:CDLogic.L",		"OM15", OM15_ONE[cycle][index]);
 
 			printf("%s, %s\n", logicname, valvename);
+
+			pvAssign(dir_val, dir_name);
+			pvMonitor(dir_val);
 
 			pvAssign(valveval, valvename);
 			pvMonitor(valveval);
@@ -382,15 +393,22 @@ ss ssCDOM15
 			pvAssign(target_val, target_valname);
 			epicsThreadSleep(0.1);
 			pvGet(target_val);
+			pvGet(dir_val);
+			dir_val = dir_val?1:0;
 			printf("targetval:%f, %s\n", target_val, target_valname);
 
-			if(strstr(OM15_ONE[cycle][index], "CV8") != NULL)
+			if(strstr(OM15_ONE[index], "CV8") != NULL)
 			{
 				sametime = 1;
 				sprintf(logicname_1,		"%s:%s:CDLogic.PROC",	"OM15",	OM15_ONE_CV8[cycle][index]);
 				sprintf(valvename_1,		"%s:Valve",						OM15_ONE_CV8[cycle][index]);
 				sprintf(target_valname_1,	"%s:%s:CDLogic.J",		"OM15",	OM15_ONE_CV8[cycle][index]);
+				sprintf(dir_name_1,			"%s:%s:CDLogic.L",		"OM15", OM15_ONE_CV8[cycle][index]);
+
 				printf("%s, %s\n", logicname_1, valvename_1);
+
+				pvAssign(dir_val_1, dir_name_1);
+				pvMonitor(dir_val_1);
 
 				pvAssign(valveval_1, valvename_1);
 				pvMonitor(valveval_1);
@@ -401,6 +419,8 @@ ss ssCDOM15
 				pvAssign(target_val_1, target_valname_1);
 				epicsThreadSleep(0.1);
 				pvGet(target_val_1);
+				pvGet(dir_val_1);
+				dir_val_1 = dir_val_1?1:0;
 				printf("targetval:%f, %s\n", target_val_1, target_valname_1);
 			}
 		}state OM15
@@ -414,15 +434,34 @@ ss ssCDOM15
 
 	state OM15
 	{
-		when(delay(cdDelay) && valveval < target_val && sametime == 0 && next == 0)
+		when(delay(cdDelay) && valveval < target_val && sametime == 0 && next == 0 && dir_val == 1 )
 		{
 			proc = 1;
 			pvPut(proc, SYNC);
 
-			printf("OM15 Processing(%s)...\n", logicname );
+			printf("OM15 Processing(%s),Dir(%d)...\n", logicname, dir_val );
 		}state OM15
 
-		when(delay(cdDelay) && (valveval < target_val || valveval_1 < target_val_1) && sametime == 1 && next == 0)
+		when(delay(cdDelay) && valveval > target_val && sametime == 0 && next == 0 && dir_val == 0 )
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			printf("OM15 Processing(%s),Dir(%d)...\n", logicname, dir_val );
+		}state OM15
+
+		when(delay(cdDelay) && (valveval < target_val || valveval_1 < target_val_1) && sametime == 1 && next == 0 && (dir_val == 1 && dir_val_1 == 1))
+		{
+			proc = 1;
+			pvPut(proc, SYNC);
+
+			proc_1 = 1;
+			pvPut(proc_1, SYNC);
+
+			printf("OM15-2 Processing(%s)(%s)...\n", logicname, logicname_1 );
+		}state OM15
+
+		when(delay(cdDelay) && (valveval > target_val || valveval_1 > target_val_1) && sametime == 1 && next == 0 && (dir_val == 0 && dir_val_1 == 0))
 		{
 			proc = 1;
 			pvPut(proc, SYNC);

@@ -41,10 +41,17 @@ dbLoadTemplate("db/PressR_1.sub")
 #dbLoadTemplate("db/cooldown14_QWR3.sub")
 #dbLoadTemplate("db/cooldown15_QWR3.sub")
 
-dbLoadTemplate("db/cooldown14_QWR5.sub")
-dbLoadTemplate("db/cooldown15_QWR5.sub")
-dbLoadTemplate("db/cooldown14_QWR7.sub")
-dbLoadTemplate("db/cooldown15_QWR7.sub")
+#dbLoadTemplate("db/cooldown14_QWR5.sub")
+#dbLoadTemplate("db/cooldown15_QWR5.sub")
+
+#dbLoadTemplate("db/cooldown14_QWR7.sub")
+#dbLoadTemplate("db/cooldown15_QWR7.sub")
+
+#dbLoadTemplate("db/cooldown14_QWR8.sub")
+#dbLoadTemplate("db/cooldown15_QWR8.sub")
+
+dbLoadTemplate("db/cooldown14_QWR9.sub")
+dbLoadTemplate("db/cooldown15_QWR9.sub")
 
 dbLoadTemplate("db/TT8001_Target.sub")
 dbLoadTemplate("db/TT8404_Min.sub")

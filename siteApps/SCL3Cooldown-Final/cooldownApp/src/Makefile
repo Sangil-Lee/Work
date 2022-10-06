@@ -130,6 +130,23 @@ ifneq ($(SNCSEQ),)
     sncCDOM14_15_Four_PROD_LIBS += seq pv
     sncCDOM14_15_Four_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
+    PROD_HOST += sncCDOM14_15_Five_PROD
+    sncCDOM14_15_Five_PROD_SNCFLAGS += +m
+    sncCDOM14_15_Five_PROD_SRCS += sncCDOM14_15_Five_PROD.st
+    sncCDOM14_15_Five_PROD_LIBS += seq pv
+    sncCDOM14_15_Five_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncCDOM14_15_Six_PROD
+    sncCDOM14_15_Six_PROD_SNCFLAGS += +m
+    sncCDOM14_15_Six_PROD_SRCS += sncCDOM14_15_Six_PROD.st
+    sncCDOM14_15_Six_PROD_LIBS += seq pv
+    sncCDOM14_15_Six_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+   PROD_HOST += sncCDOM14_15_One_PROD_HWRA
+   sncCDOM14_15_One_PROD_HWRA_SNCFLAGS += +m
+   sncCDOM14_15_One_PROD_HWRA_SRCS += sncCDOM14_15_One_PROD_HWRA.st
+   sncCDOM14_15_One_PROD_HWRA_LIBS += seq pv
+   sncCDOM14_15_One_PROD_HWRA_LIBS += $(EPICS_BASE_HOST_LIBS)
 endif
 
 # Finally link to the EPICS Base libraries

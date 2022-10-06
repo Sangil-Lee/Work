@@ -1,0 +1,21 @@
+file "db/XVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,          DEV,		SUBDEV,		SIGNAL,	CALC,			TARGETJ,INPB,INPC,INPK,INPL,INPD,INPH,INPI,INPG,OUTB}
+{OM14:,	SCL31,     -CDL01:,         VBx22,		-XV7301:,	Valve,	"(A>=J)?A:J",   1,   "",  "",  "",  "",  "",  "",  "",  "",  "SetManuOpen"} #1QWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			                    INPB,                               INPC,                               INPD,                               INPK,                                   INPH, INPI,   TARGETJ, INPL,INPG,	OUTB}
+{OM14:,	SCL31,     -BL01:,         CM21,		-CV8401:,	Valve,	"(C>H||D>H||K)?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx22-PT7401:PresR",   "SCL31-BL01:CM21-PT8301:PresR",     "SCL31-BL01:CM22-PT8301:PresR",     "SCL31-CDL01:VBx22-PT7401:PresREval",   1.4,  0.02,      5,	"",	 "",	  "SetManu"} #1QWR
+{OM14:,	SCL31,     -BL01:,         CM22,		-CV8401:,	Valve,	"(C>H||D>H||K)?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx22-PT7401:PresR",   "SCL31-BL01:CM22-PT8301:PresR",     "SCL31-BL01:CM21-PT8301:PresR",     "SCL31-CDL01:VBx22-PT7401:PresREval",   1.4,  0.02,      5,	"",	 "",	  "SetManu"} #1QWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,			         INPB,						           INPC,                                  INPH,       INPK,                                     INPI,   TARGETJ,INPD,INPL,INPG,OUTB}	
+{OM14:,	SCL31,     -CDL01:,        VBx22,      -CV7401:,   Valve,	"K?A:(A>=J)?J:(A+I)",   "SCL31-CDL01:VBx22-PT7401:PresR",      "SCL31-CDL01:VBx22-TT7401:TempR",       20,         "SCL31-CDL01:VBx22-PT7401:PresREval"      0.01,      15, "",  "",  "",  "Setpt"} #1QWR
+}
+
+file "db/CVValve.template" { pattern
+{OM,	SYS,	    SUBSYS,         DEV,		SUBDEV,		SIGNAL,	CALC,															INPB,						      INPC,                             INPD,                             INPE,									INPF,  INPH,   INPI,     INPK,                                TARGETJ, INPL,INPG,	OUTB}
+{OM14:,	SCL31,     -BL01:,         CM21,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM21-PT8301:PresR",   "SCL31-BL01:CM21-TT8403:TempR",   "SCL31-BL01:CM21-CV8402:TT8001",  "SCL31-BL01:CM21-TT8403:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM21-PT8301:PresREval",   30,		 "",  "",  "Setpt"} #1QWR
+{OM14:,	SCL31,     -BL01:,         CM22,		-CV8402:,	Valve,	"A>=J?J:B>1.4?0:E<=150?A+0.01:C<=D-5?0:(C<D+5||K)?A:A+0.01",	"SCL31-BL01:CM22-PT8301:PresR",   "SCL31-BL01:CM22-TT8403:TempR",   "SCL31-BL01:CM22-CV8402:TT8001",  "SCL31-BL01:CM22-TT8403:TempRMin",    "",    "",     0.05,     "SCL31-BL01:CM22-PT8301:PresREval",   30,		 "",  "",  "Setpt"} #1QWR
+}

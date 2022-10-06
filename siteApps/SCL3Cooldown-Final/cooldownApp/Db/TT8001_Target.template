@@ -1,6 +1,6 @@
 record(calcout, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TT8001)
 {
-	field(DESC, "CV8402 Target")
+	field(DESC, "Cooldown Valve")
 	field(SCAN, "Passive")
 	field(CALC, "C:=C+1;D-(0.0028*C)")
 	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)TT8001")
