@@ -1,0 +1,142 @@
+file "db/aiFloat64.template" { pattern
+{SYS,   SUBSYS,		DEV,	SUBDEV,	SIGNAL,		PORT,		 OFFSET,  DATA_TYPE,     LOPR,		HOPR,	 PREC,  SCAN,		EGU,	FLNK}
+{NDPS,	-DIAG:,		WS001,	:,		ActPosR,	NDPSDiagAI,  0,       FLOAT32_BE,   -1e6,		1e6,	 3,		"I/O Intr",	"",		""}
+{NDPS,	-DIAG:,		WS001,	:,		MacPosR,	NDPSDiagAI,  2,       FLOAT32_BE,   -1e6,		1e6,	 3,		"I/O Intr",	"",		""}
+{NDPS,	-DIAG:,		WS001,	:,		ActSpdR,	NDPSDiagAI,  4,       FLOAT32_BE,   -1e6,		1e6,	 3,		"I/O Intr",	"",		""}
+{NDPS,	-DIAG:,		WS001,	:,		MacSpdR,	NDPSDiagAI,  6,       FLOAT32_BE,   -1e6,		1e6,	 3,		"I/O Intr",	"",		""}
+}
+#AI_4	8
+#AI_5	10
+#AI_6	12
+#AI_7	14
+#AI_8	16
+#AI_9	18
+#AI_10	20
+#AI_11	22
+#AI_12	24
+#AI_13	26
+#AI_14	28
+#AI_15	30
+#AI_16	32
+#AI_17	34
+#AI_18	36
+#AI_19  38	 
+#AI_20	40
+#AI_21	42
+#AI_22	44
+#AI_23	46
+#AI_24	48
+
+file "db/aoFloat64.template" { pattern
+{SYS,   SUBSYS,		DEV,	SUBDEV,	SIGNAL,		PORT,		OFFSET,	DATA_TYPE,	LOPR,	HOPR,	 PREC,  SCAN,		EGU,	FLNK}
+{NDPS,	-DIAG:,		WS001,	:,		SetJogSpd,	NDPSDiagAO,	 0,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetStepSpd,	NDPSDiagAO,	 2,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetStepVal,	NDPSDiagAO,	 4,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetAccTime,	NDPSDiagAO,	 6,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetDecTime,	NDPSDiagAO,	 8,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetABSSpd1,	NDPSDiagAO,	10,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetABSPos1,	NDPSDiagAO,	12,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetABSSpd2,	NDPSDiagAO,	14,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetABSPos2,	NDPSDiagAO,	16,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+{NDPS,	-DIAG:,		WS001,	:,		SetJERK,	NDPSDiagAO,	18,		FLOAT32_BE,	-1e6,	1e6,	 3,		"I/O Intr",	"",		""}	
+}
+#AO_10	70
+#AO_11	72
+#AO_12	74
+#AO_13	76
+#AO_14	78
+#AO_15	80
+#AO_16	82
+#AO_17	84
+#AO_18	86
+#AO_19	88
+#AO_20	90
+#AO_21	92
+#AO_22	94
+#AO_23	96
+#AO_24	98
+#AO_25	100
+#AO_26	102
+#AO_27	104
+#AO_28	106
+#AO_29	108
+
+## Base Address(110 word addr)
+file "db/bi_word.template" { pattern
+{SYS,    SUBSYS,	DEV,	SUBDEV,	SIGNAL,			PORT,			OFFSET,     MASK,     ZNAM,  	ONAM,	    ZSV,	OSV,	SCAN}
+{NDPS,	-DIAG:,		WS001,	:,		ReadyStat,		NDPSDiagBI,     0,	    	0x0100,   NotReady,	Ready,    NO_ALARM,	MAJOR,	"I/O Intr"}	
+{NDPS,	-DIAG:,		WS001,	:,		EnabledStat,	NDPSDiagBI,     0,	    	0x0200,   Diable,	Enabled,  NO_ALARM,	MAJOR,	"I/O Intr"}	
+{NDPS,	-DIAG:,		WS001,	:,		HomedStat,		NDPSDiagBI,     0,	    	0x0400,   Stopped,	Homing,   NO_ALARM,	MAJOR,	"I/O Intr"}	
+{NDPS,	-DIAG:,		WS001,	:,		MovingStat,		NDPSDiagBI,     0,	    	0x0800,   Stopped,	Moving,   NO_ALARM,	MAJOR,	"I/O Intr"}	
+{NDPS,	-DIAG:,		WS001,	:,		InPosStat,		NDPSDiagBI,     0,	    	0x1000,   PosNok,	PosOK,    NO_ALARM,	MAJOR,	"I/O Intr"}	
+{NDPS,	-DIAG:,		WS001,	:,		AlarmStat,		NDPSDiagBI,     0,	    	0x2000,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		WS001,	:,		LoLimitStat,	NDPSDiagBI,     0,	    	0x4000,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		WS001,	:,		HiLimitStat,	NDPSDiagBI,     0,	    	0x8000,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		WS001,	:,		ComReadyStat,	NDPSDiagBI,     0,	    	0x0001,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		WS001,	:,		RestartReqStat,	NDPSDiagBI,     0,	    	0x0002,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		HVR001,	:,		OnLampR,		NDPSDiagBI,     0,	    	0x0004,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+
+###Need to check
+{NDPS,	-DIAG:,		HVR002,	:,		OnLampR,		NDPSDiagBI,     0,	    	0x0008,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		MPS001,	:,		OnLampR,		NDPSDiagBI,     0,	    	0x0010,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+#####
+
+{NDPS,	-DIAG:,		PSIS001,:,		OnLampR,		NDPSDiagBI,     0,	    	0x0020,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		WS001,  :,		OpFWDInt,		NDPSDiagBI,     0,	    	0x0040,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		OpFWDInt,		NDPSDiagBI,     0,	    	0x0080,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		BWDStat,		NDPSDiagBI,     1,	    	0x0100,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		FWDStat,		NDPSDiagBI,     1,	    	0x0200,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		BWDLampR,		NDPSDiagBI,     1,	    	0x0400,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		FWDLampR,		NDPSDiagBI,     1,	    	0x0800,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		BWDErrStat,		NDPSDiagBI,     1,	    	0x1000,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+{NDPS,	-DIAG:,		FC001,  :,		FWDErrStat,		NDPSDiagBI,     1,	    	0x2000,   NoAlarm,	Alarm,    NO_ALARM,	MAJOR,	"I/O Intr"}			
+}
+#DI_22	222.6	
+#DI_23	222.7	
+#DI_24	223.0	
+#DI_25	223.1	
+#DI_26	223.2	
+#DI_27	223.3	
+#DI_28	223.4	
+#DI_29	223.5	
+#DI_30	223.6	
+#DI_31	223.7	
+
+
+##Base Address(112 word addr)
+file "db/bo_word.template" { pattern
+{SYS,    SUBSYS,	DEV,	SUBDEV,	SIGNAL,		PORT,			OFFSET, MASK,     ZNAM, ONAM,	ZSV,		OSV,		SCAN}
+{NDPS,	-DIAG:,		WS001,	:,		SetFree,	NDPSDiagBO,     0,	   	0x0100,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetHalt,	NDPSDiagBO,     0,	   	0x0200,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetReset,	NDPSDiagBO,     0,	   	0x0400,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetRestart,	NDPSDiagBO,     0,	   	0x0800,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetFWDJog,	NDPSDiagBO,     0,	   	0x1000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetBWDJog,	NDPSDiagBO,     0,	   	0x2000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetHome,	NDPSDiagBO,     0,	   	0x4000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetFWDStep,	NDPSDiagBO,     0,	   	0x8000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetBWDStep,	NDPSDiagBO,     0,	   	0x0001,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetABS1,	NDPSDiagBO,     0,	   	0x0002,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		WS001,	:,		SetABS2,	NDPSDiagBO,     0,	   	0x0004,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		FC001,	:,		SetBWD,		NDPSDiagBO,     0,	   	0x0008,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		FC001,	:,		SetFWD,		NDPSDiagBO,     0,	   	0x0010,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		FC001,	:,		SetErrRst,	NDPSDiagBO,     0,	   	0x0020,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		HVR001,	:,		SetOn,		NDPSDiagBO,     0,	   	0x0040,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-DIAG:,		HVR001,	:,		SetOff,		NDPSDiagBO,     0,	   	0x0080,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+}
+
+###DO_16	Bool	226.0	
+###DO_17	Bool	226.1	
+###DO_18	Bool	226.2	
+###DO_19	Bool	226.3	
+###DO_20	Bool	226.4	
+###DO_21	Bool	226.5	
+###DO_22	Bool	226.6	
+###DO_23	Bool	226.7	
+###DO_24	Bool	227.0	
+###DO_25	Bool	227.1	
+###DO_26	Bool	227.2	
+###DO_27	Bool	227.3	
+###DO_28	Bool	227.4	
+###DO_29	Bool	227.5	
+###DO_30	Bool	227.6	
+###DO_31	Bool	227.7	

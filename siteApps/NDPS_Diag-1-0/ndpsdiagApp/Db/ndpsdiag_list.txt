@@ -1,0 +1,131 @@
+
+############## AI Template ###############
+NDPS-DIAG:WS001:ActPosR	Real	0	0
+NDPS-DIAG:WS001:MacPosR	Real	4	2
+NDPS-DIAG:WS001:ActSpdR	Real	8	4
+NDPS-DIAG:WS001:MacSpdR	Real	12	6
+AI_4	Real	16	8
+AI_5	Real	20	10
+AI_6	Real	24	12
+AI_7	Real	28	14
+AI_8	Real	32	16
+AI_9	Real	36	18
+AI_10	Real	40	20
+AI_11	Real	44	22
+AI_12	Real	48	24
+AI_13	Real	52	26
+AI_14	Real	56	28
+AI_15	Real	60	30
+AI_16	Real	64	32
+AI_17	Real	68	34
+AI_18	Real	72	36
+AI_19	Real	76	 
+AI_20	Real	80	40
+AI_21	Real	84	42
+AI_22	Real	88	44
+AI_23	Real	92	46
+AI_24	Real	96	48
+##########################################
+
+############## AO Template ###############
+NDPS-DIAG:WS001:SetJogSpd	Real	100	50
+NDPS-DIAG:WS001:SetStepSpd	Real	104	52
+NDPS-DIAG:WS001:SetStepVal	Real	108	54
+NDPS-DIAG:WS001:SetAccTime	Real	112	56
+NDPS-DIAG:WS001:SetDecTime	Real	116	58
+NDPS-DIAG:WS001:SetABSSpd1	Real	120	60
+NDPS-DIAG:WS001:SetABSPos1	Real	124	62
+NDPS-DIAG:WS001:SetABSSpd2	Real	128	64
+NDPS-DIAG:WS001:SetABSPos2	Real	132	66
+NDPS-DIAG:WS001:SetJERK	Real	136	68
+AO_10	Real	140	70
+AO_11	Real	144	72
+AO_12	Real	148	74
+AO_13	Real	152	76
+AO_14	Real	156	78
+AO_15	Real	160	80
+AO_16	Real	164	82
+AO_17	Real	168	84
+AO_18	Real	172	86
+AO_19	Real	176	88
+AO_20	Real	180	90
+AO_21	Real	184	92
+AO_22	Real	188	94
+AO_23	Real	192	96
+AO_24	Real	196	98
+AO_25	Real	200	100
+AO_26	Real	204	102
+AO_27	Real	208	104
+AO_28	Real	212	106
+AO_29	Real	216	108
+##########################################
+
+############## DI Template ###############
+NDPS-DIAG:WS001:ReadyStat	Bool	220.0	110
+NDPS-DIAG:WS001:EabledStat	Bool	220.1	
+NDPS-DIAG:WS001:HomedStat	Bool	220.2	
+NDPS-DIAG:WS001:MovingStat	Bool	220.3	
+NDPS-DIAG:WS001:InPosStat	Bool	220.4	
+NDPS-DIAG:WS001:AlatmStat	Bool	220.5	
+NDPS-DIAG:WS001:LoLimitStat	Bool	220.6	
+NDPS-DIAG:WS001:HiLimitStat	Bool	220.7	
+NDPS-DIAG:WS001:ComReadyStat	Bool	221.0	
+NDPS-DIAG:WS001:RestartReqStat	Bool	221.1	
+NDPS-DIAG:HVR001:OnLampR	Bool	221.2	
+NDPS-DIAG:HVR002:OnLampR	Bool	221.3	
+NDPS-DIAG:MPS001:OnLampR	Bool	221.4	
+NDPS-DIAG:PSIS001:OnLampR	Bool	221.5	
+NDPS-DIAG:WS001:OpFWDInt	Bool	221.6	
+NDPS-DIAG:FC001:OpFWDInt	Bool	221.7	
+NDPS-DIAG:FC001:BWDStat	Bool	222.0	
+NDPS-DIAG:FC001:FWDStat	Bool	222.1	
+NDPS-DIAG:FC001:BWDLampR	Bool	222.2	
+NDPS-DIAG:FC001:FWDLampR	Bool	222.3	
+NDPS-DIAG:FC001:BWDErrStat	Bool	222.4	
+NDPS-DIAG:FC001:FWDErrStat	Bool	222.5	
+DI_22	Bool	222.6	
+DI_23	Bool	222.7	
+DI_24	Bool	223.0	
+DI_25	Bool	223.1	
+DI_26	Bool	223.2	
+DI_27	Bool	223.3	
+DI_28	Bool	223.4	
+DI_29	Bool	223.5	
+DI_30	Bool	223.6	
+DI_31	Bool	223.7	
+##########################################
+
+############## DO Template ###############
+NDPS-DIAG:WS001:SetFree	Bool	224.0	112
+NDPS-DIAG:WS001:SetHalt	Bool	224.1	
+NDPS-DIAG:WS001:SetReset	Bool	224.2	
+NDPS-DIAG:WS001:SetRestart	Bool	224.3	
+NDPS-DIAG:WS001:SetFWDJog	Bool	224.4	
+NDPS-DIAG:WS001:SetBWDJog	Bool	224.5	
+NDPS-DIAG:WS001:SetHome	Bool	224.6	
+NDPS-DIAG:WS001:SetFWDStep	Bool	224.7	
+NDPS-DIAG:WS001:SetBWDStep	Bool	225.0	
+NDPS-DIAG:WS001:SetABS1	Bool	225.1	
+NDPS-DIAG:WS001:SetABS2	Bool	225.2	
+NDPS-DIAG:FC001:SetBWD	Bool	225.3	
+NDPS-DIAG:FC001:SetFWD	Bool	225.4	
+NDPS-DIAG:FC001:SetErrRst	Bool	225.5	
+NDPS-DIAG:HVR001:SetOn	Bool	225.6	
+NDPS-DIAG:HVR001:SetOff	Bool	225.7	
+DO_16	Bool	226.0	
+DO_17	Bool	226.1	
+DO_18	Bool	226.2	
+DO_19	Bool	226.3	
+DO_20	Bool	226.4	
+DO_21	Bool	226.5	
+DO_22	Bool	226.6	
+DO_23	Bool	226.7	
+DO_24	Bool	227.0	
+DO_25	Bool	227.1	
+DO_26	Bool	227.2	
+DO_27	Bool	227.3	
+DO_28	Bool	227.4	
+DO_29	Bool	227.5	
+DO_30	Bool	227.6	
+DO_31	Bool	227.7	
+
