@@ -12,8 +12,13 @@ DB += aoFloat64.template
 DB += biWord.template  
 DB += boWord.template
 DB += NDPS_WS.sub
-DB += NDPS_CCS.sub
 DB += NDPS_VAC.sub
+DB += NDPS_CCS.sub
+
+DB += NDPS_CCS2_New.sub
+DB += NDPS_CCS1_New.sub
+DB += NDPS_VAC2_New.sub
+DB += NDPS_VAC1_New.sub
 
 ## Flowmeter data processing
 DB += longin.template
@@ -24,6 +29,8 @@ DB += Phytron_I1AM01.db
 DB += Phytron_MCM01.db
 DB += Phytron_motor.db
 DB += phytronMotor.sub
+
+DB +=  
 
 
 #----------------------------------------------------
