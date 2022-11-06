@@ -11,9 +11,13 @@ DB += aiFloat64.template
 DB += aoFloat64.template  
 DB += biWord.template  
 DB += boWord.template
-DB += NDPS_WS.sub
-DB += NDPS_VAC.sub
-DB += NDPS_CCS.sub
+#DB += NDPS_WS.sub
+#DB += NDPS_VAC.sub
+#DB += NDPS_CCS.sub
+DB += NDPS_WS01.sub
+DB += NDPS_WS02.sub
+DB += NDPS_WS03.sub
+
 
 DB += NDPS_CCS2_New.sub
 DB += NDPS_CCS1_New.sub

@@ -1,0 +1,143 @@
+### Wire-Scanner
+file "db/aiFloat64.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	SCAN,		DESC}
+{NDPS,	-DIAG:,		WS003,	:,			ActPosR,	"NDPSWSAI",	0,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-DIAG:,		WS003,	:,			MacPosR,	"NDPSWSAI",	2,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-DIAG:,		WS003,	:,			ActSpdR,	"NDPSWSAI",	4,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-DIAG:,		WS003,	:,			MacSpdR,	"NDPSWSAI",	6,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+#AI_4
+#AI_5
+#AI_6
+#AI_7
+#AI_8
+#AI_9
+#AI_10
+#AI_11
+#AI_12
+#AI_13
+#AI_14
+#AI_15
+#AI_16
+#AI_17
+#AI_18
+#AI_19
+#AI_20
+#AI_21
+#AI_22
+#AI_23
+#AI_24
+}                                                                   
+
+####AO Base Address 40 word PLC base
+file "db/aoFloat64.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,			SIGNAL,			PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
+{NDPS,	-DIAG:,		WS003,	:,				SetJogSpd,		"NDPSWSAO",	0,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetStepSpd,		"NDPSWSAO",	2,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetStepVal,		"NDPSWSAO",	4,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetAccTime,		"NDPSWSAO",	6,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetDecTime,		"NDPSWSAO",	8,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetABSSpd1,		"NDPSWSAO",	10,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetABSPos1,		"NDPSWSAO",	12,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetABSSpd2,		"NDPSWSAO",	14,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetABSPos2,		"NDPSWSAO",	16,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{NDPS,	-DIAG:,		WS003,	:,				SetJERK,		"NDPSWSAO",	18,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+#AO_10
+#AO_11
+#AO_12
+#AO_13
+#AO_14
+#AO_15
+#AO_16
+#AO_17
+#AO_18
+#AO_19
+#AO_20
+#AO_21
+#AO_22
+#AO_23
+#AO_24
+#AO_25
+#AO_26
+#AO_27
+#AO_28
+#AO_29
+}
+
+####BI Base Address 110 PLC offset(byte))
+file "db/biWord.template" { pattern
+{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,				PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
+{NDPS,	-DIAG:,		WS003,	:,			ReadyStat,			NDPSWSDI,	0,      0x0100,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			EabledStat,			NDPSWSDI,	0,      0x0200,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			HomedStat,			NDPSWSDI,	0,      0x0400,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			MovingStat,			NDPSWSDI,	0,      0x0800,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			InPosStat,			NDPSWSDI,	0,      0x1000,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			AlatmStat,			NDPSWSDI,	0,      0x2000,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			LoLimitStat,		NDPSWSDI,	0,      0x4000,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			HiLimitStat,		NDPSWSDI,	0,      0x8000,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			ComReadyStat,		NDPSWSDI,	0,      0x0001,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			RestartReqStat,		NDPSWSDI,	0,      0x0002,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		HVR003A,:,			OnLampR,			NDPSWSDI,	0,      0x0004,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		HVR003B,:,			OnLampR,			NDPSWSDI,	0,      0x0008,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		MPS003,	:,			OnLampR,			NDPSWSDI,	0,      0x0010,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		PSIS003,:,			OnLampR,			NDPSWSDI,	0,      0x0020,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		WS003,	:,			OpFWDInt,			NDPSWSDI,	0,      0x0040,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			OpFWDInt,			NDPSWSDI,	0,      0x0080,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			BWDStat,			NDPSWSDI,	1,      0x0100,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			FWDStat,			NDPSWSDI,	1,      0x0200,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			BWDLampR,			NDPSWSDI,	1,      0x0400,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			FWDLampR,			NDPSWSDI,	1,      0x0800,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			BWDErrStat,			NDPSWSDI,	1,      0x1000,  Open,   Close,     "1 second", ""}
+{NDPS,	-DIAG:,		FC003,	:,			FWDErrStat,			NDPSWSDI,	1,      0x2000,  Open,   Close,     "1 second", ""}
+#DI_22
+#DI_23
+#DI_24
+#DI_25
+#DI_26
+#DI_27
+#DI_28
+#DI_29
+#DI_30
+#DI_31
+
+}
+
+####BO Base Address 112 PLC 
+file "db/boWord.template" { pattern
+{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,	DESC}
+
+{NDPS,	-DIAG:,		WS003,	:,			SetFree,		NDPSWSDO,   0,      0x0100,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetHalt,		NDPSWSDO,   0,      0x0200,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetReset,		NDPSWSDO,   0,      0x0400,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetRestart,		NDPSWSDO,   0,      0x0800,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetFWDJog,		NDPSWSDO,   0,      0x1000,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetBWDJog,		NDPSWSDO,   0,      0x2000,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetHome,		NDPSWSDO,   0,      0x4000,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetFWDStep,		NDPSWSDO,   0,      0x8000,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetBWDStep,		NDPSWSDO,   0,      0x0001,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetABS1,		NDPSWSDO,   0,      0x0002,  Open,   Close, ""}
+{NDPS,	-DIAG:,		WS003,	:,			SetABS2,		NDPSWSDO,   0,      0x0004,  Open,   Close, ""}
+{NDPS,	-DIAG:,		FC003,	:,			SetBWD,			NDPSWSDO,   0,      0x0008,  Open,   Close, ""}
+{NDPS,	-DIAG:,		FC003,	:,			SetFWD,			NDPSWSDO,   0,      0x0010,  Open,   Close, ""}
+{NDPS,	-DIAG:,		FC003,	:,			SetErrRst,		NDPSWSDO,   0,      0x0020,  Open,   Close, ""}
+{NDPS,	-DIAG:,		HVR003A,:,			SetOn,			NDPSWSDO,   0,      0x0040,  Open,   Close, ""}
+{NDPS,	-DIAG:,		HVR003A,:,			SetOff,			NDPSWSDO,   0,      0x0080,  Open,   Close, ""}
+{NDPS,	-DIAG:,		HVR003B,:,			SetOn,			NDPSWSDO,   1,      0x0100,  Open,   Close, ""}
+{NDPS,	-DIAG:,		HVR003B,:,			SetOff,			NDPSWSDO,   1,      0x0200,  Open,   Close, ""}
+#DO_16
+#DO_17
+#DO_18
+#DO_19
+#DO_20
+#DO_21
+#DO_22
+#DO_23
+#DO_24
+#DO_25
+#DO_26
+#DO_27
+#DO_28
+#DO_29
+#DO_30
+#DO_31
+}
+

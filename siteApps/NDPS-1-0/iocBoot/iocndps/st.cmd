@@ -18,8 +18,10 @@ drvAsynIPPortConfigure("NDPSPhytron", "192.168.1.101:22222", 0, 0, 1)
 phytronCreateController("PhyMotion_1", "NDPSPhytron", 100, 100, 1000)
 
 ###phytronCreateAxis(phytronPort, module, axis)
-phytronCreateAxis("PhyMotion_1", 1, 1)
-#phytronCreateAxis("PhyMotion_1", 2, 1)
+phytronCreateAxis("PhyMotion_1",  1, 1)
+phytronCreateAxis("PhyMotion_1", 1, 2)
+#phytronCreateAxis("PhyMotion_1", 1, 3)
+phytronCreateAxis("PhyMotion_1", 1, 4)
 
 ###################################
 #Phytron Motor DB
@@ -46,7 +48,7 @@ drvModbusAsynConfigure("NDPSCCSAI", "NDPS_CCSPLC", 0, 3,  0,   118,  7, 100, "Mo
 drvModbusAsynConfigure("NDPSCCSAO", "NDPS_CCSPLC", 0, 6,  120, 120, 7, 100, "Modicon")
 drvModbusAsynConfigure("NDPSCCSDI", "NDPS_CCSPLC", 0, 3,  240, 5,  7, 100, "Modicon")
 drvModbusAsynConfigure("NDPSCCSDO", "NDPS_CCSPLC", 0, 6,  246, 10,  7, 100, "Modicon")
-dbLoadTemplate("db/NDPS_CCS.sub")
+dbLoadTemplate("db/NDPS_CCS2_New.sub")
 
 #Siemens Vacuum PLC 
 drvAsynIPPortConfigure("NDPS_VACPLC", "192.168.1.1:502", 0, 0, 1)
@@ -55,7 +57,7 @@ drvModbusAsynConfigure("NDPSVACAI", "NDPS_VACPLC", 0, 3,  0,   98,  7, 100, "Mod
 drvModbusAsynConfigure("NDPSVACAO", "NDPS_VACPLC", 0, 6,  100, 98, 7, 100, "Modicon")
 drvModbusAsynConfigure("NDPSVACDI", "NDPS_VACPLC", 0, 3,  200, 15,  7, 100, "Modicon")
 drvModbusAsynConfigure("NDPSVACDO", "NDPS_VACPLC", 0, 6,  216, 15,  7, 100, "Modicon")
-dbLoadTemplate("db/NDPS_VAC.sub")
+dbLoadTemplate("db/NDPS_VAC2_New.sub")
 
 ###################################
 

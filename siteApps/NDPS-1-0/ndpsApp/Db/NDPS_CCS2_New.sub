@@ -1,113 +1,115 @@
 ### CCS PLC
 file "db/aiFloat64.template" { pattern
 {SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	SCAN,		DESC}
-{NDPS,	-CCS2:,		MAG,	-FM001:,	FlowR,		NDPSCCSAI,	0,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM001:,	TempR,		NDPSCCSAI,	2,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM002:,	FlowR,		NDPSCCSAI,	4,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM002:,	TempR,		NDPSCCSAI,	6,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM003:,	FlowR,		NDPSCCSAI,	8,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM003:,	TempR,		NDPSCCSAI,	10,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM004:,	FlowR,		NDPSCCSAI,	12,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM004:,	TempR,		NDPSCCSAI,	14,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM005:,	FlowR,		NDPSCCSAI,	16,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM005:,	TempR,		NDPSCCSAI,	18,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM006:,	FlowR,		NDPSCCSAI,	20,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM006:,	TempR,		NDPSCCSAI,	22,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM007:,	FlowR,		NDPSCCSAI,	24,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{NDPS,	-CCS2:,		MAG,	-FM007:,	TempR,		NDPSCCSAI,	26,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM008:,	FlowR,		NDPSCCSAI,	28,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM008:,	TempR,		NDPSCCSAI,	30,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM009:,	FlowR,		NDPSCCSAI,	32,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM009:,	TempR,		NDPSCCSAI,	34,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM010:,	FlowR,		NDPSCCSAI,	36,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM010:,	TempR,		NDPSCCSAI,	38,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM011:,	FlowR,		NDPSCCSAI,	40,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM011:,	TempR,		NDPSCCSAI,	42,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM012:,	FlowR,		NDPSCCSAI,	44,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM012:,	TempR,		NDPSCCSAI,	46,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM013:,	FlowR,		NDPSCCSAI,	48,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM013:,	TempR,		NDPSCCSAI,	50,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM014:,	FlowR,		NDPSCCSAI,	52,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM014:,	TempR,		NDPSCCSAI,	54,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM015:,	FlowR,		NDPSCCSAI,	56,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM015:,	TempR,		NDPSCCSAI,	58,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM016:,	FlowR,		NDPSCCSAI,	60,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		MAG,	-FM016:,	TempR,		NDPSCCSAI,	62,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM017:,	FlowR,		NDPSCCSAI,	64,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM017:,	TempR,		NDPSCCSAI,	66,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM018:,	FlowR,		NDPSCCSAI,	68,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM018:,	TempR,		NDPSCCSAI,	70,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM019:,	FlowR,		NDPSCCSAI,	72,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM019:,	TempR,		NDPSCCSAI,	74,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM020:,	FlowR,		NDPSCCSAI,	76,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM020:,	TempR,		NDPSCCSAI,	78,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM021:,	FlowR,		NDPSCCSAI,	80,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM021:,	TempR,		NDPSCCSAI,	82,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM022:,	FlowR,		NDPSCCSAI,	84,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM022:,	TempR,		NDPSCCSAI,	86,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM023:,	FlowR,		NDPSCCSAI,	88,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM023:,	TempR,		NDPSCCSAI,	90,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM024:,	FlowR,		NDPSCCSAI,	92,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-#{NDPS,	-CCS2:,		MAG,	-FM024:,	TempR,		NDPSCCSAI,	94,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC001:,	TempR,		NDPSCCSAI,	96,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC002:,	TempR,		NDPSCCSAI,	98,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC003:,	TempR,		NDPSCCSAI,	100,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC004:,	TempR,		NDPSCCSAI,	102,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC005:,	TempR,		NDPSCCSAI,	104,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC006:,	TempR,		NDPSCCSAI,	106,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC007:,	TempR,		NDPSCCSAI,	108,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC008:,	TempR,		NDPSCCSAI,	110,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC009:,	TempR,		NDPSCCSAI,	112,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
-{NDPS,	-CCS2:,		TGVC,	-TC010:,	TempR,		NDPSCCSAI,	114,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	QM017,		-FM025:,	FlowR,		NDPSCCSAI,	0,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	QM017,		-FM025:,	TempR,		NDPSCCSAI,	2,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	QM018,		-FM026:,	FlowR,		NDPSCCSAI,	4,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	QM018,		-FM026:,	TempR,		NDPSCCSAI,	6,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	DM002,		-FM027:,	FlowR,		NDPSCCSAI,	8,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	DM002,		-FM027:,	TempR,		NDPSCCSAI,	10,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	CTarget,	-FM028:,	FlowR,		NDPSCCSAI,	12,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	CTarget,	-FM028:,	TempR,		NDPSCCSAI,	14,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	BD,			-FM029:,	FlowR,		NDPSCCSAI,	16,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	BD,			-FM029:,	TempR,		NDPSCCSAI,	18,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	Spare,		-FM030:,	FlowR,		NDPSCCSAI,	20,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	Sapre,		-FM030:,	TempR,		NDPSCCSAI,	22,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	LiTarget,	-FM031:,	FlowR,		NDPSCCSAI,	24,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{NDPS,	-CCS:,	LiTarget,	-FM031:,	TempR,		NDPSCCSAI,	26,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	FC003,		-FM032:,	FlowR,		NDPSCCSAI,	28,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	FC003,		-FM032:,	TempR,		NDPSCCSAI,	30,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	QM020,		-FM033:,	FlowR,		NDPSCCSAI,	32,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	QM020,		-FM033:,	TempR,		NDPSCCSAI,	34,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	QM019,		-FM034:,	FlowR,		NDPSCCSAI,	36,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	QM019,		-FM034:,	TempR,		NDPSCCSAI,	38,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM035:,	FlowR,		NDPSCCSAI,	40,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM035:,	TempR,		NDPSCCSAI,	42,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM036:,	FlowR,		NDPSCCSAI,	44,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM036:,	TempR,		NDPSCCSAI,	46,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM037:,	FlowR,		NDPSCCSAI,	48,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM037:,	TempR,		NDPSCCSAI,	50,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM038:,	FlowR,		NDPSCCSAI,	52,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM038:,	TempR,		NDPSCCSAI,	54,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM039:,	FlowR,		NDPSCCSAI,	56,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM039:,	TempR,		NDPSCCSAI,	58,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM040:,	FlowR,		NDPSCCSAI,	60,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,	Spare,		-FM040:,	TempR,		NDPSCCSAI,	62,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+
+#{NDPS,	-CCS:,		MAG,	-FM017:,	FlowR,		NDPSCCSAI,	64,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM017:,	TempR,		NDPSCCSAI,	66,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM018:,	FlowR,		NDPSCCSAI,	68,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM018:,	TempR,		NDPSCCSAI,	70,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM019:,	FlowR,		NDPSCCSAI,	72,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM019:,	TempR,		NDPSCCSAI,	74,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM020:,	FlowR,		NDPSCCSAI,	76,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM020:,	TempR,		NDPSCCSAI,	78,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM021:,	FlowR,		NDPSCCSAI,	80,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM021:,	TempR,		NDPSCCSAI,	82,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM022:,	FlowR,		NDPSCCSAI,	84,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM022:,	TempR,		NDPSCCSAI,	86,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM023:,	FlowR,		NDPSCCSAI,	88,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM023:,	TempR,		NDPSCCSAI,	90,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM024:,	FlowR,		NDPSCCSAI,	92,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+#{NDPS,	-CCS:,		MAG,	-FM024:,	TempR,		NDPSCCSAI,	94,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+
+{NDPS,	-CCS:,		TGVC,	-TC001:,	TempR,		NDPSCCSAI,	96,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC002:,	TempR,		NDPSCCSAI,	98,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC003:,	TempR,		NDPSCCSAI,	100,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC004:,	TempR,		NDPSCCSAI,	102,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC005:,	TempR,		NDPSCCSAI,	104,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC006:,	TempR,		NDPSCCSAI,	106,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC007:,	TempR,		NDPSCCSAI,	108,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC008:,	TempR,		NDPSCCSAI,	110,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC009:,	TempR,		NDPSCCSAI,	112,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
+{NDPS,	-CCS:,		TGVC,	-TC010:,	TempR,		NDPSCCSAI,	114,	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second", ""}
 #AI_58
 #AI_59
 }
 
 ####AO Base Address 40 word PLC base
 file "db/aoFloat64.template" { pattern
-{SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
-{NDPS,	-CCS2:,		MAG,	-FM001:,	FSetOVR,	NDPSCCSAO,	0,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM001:,	TSetOVR,	NDPSCCSAO, 	2,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM002:,	FSetOVR,	NDPSCCSAO, 	4,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM002:,	TSetOVR,	NDPSCCSAO, 	6,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM003:,	FSetOVR,	NDPSCCSAO, 	8,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM003:,	TSetOVR,	NDPSCCSAO, 	10,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM004:,	FSetOVR,	NDPSCCSAO, 	12,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM004:,	TSetOVR,	NDPSCCSAO, 	14,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM005:,	FSetOVR,	NDPSCCSAO, 	16,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM005:,	TSetOVR,	NDPSCCSAO, 	18,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM006:,	FSetOVR,	NDPSCCSAO, 	20,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM006:,	TSetOVR,	NDPSCCSAO, 	22,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM007:,	FSetOVR,	NDPSCCSAO, 	24,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM007:,	TSetOVR,	NDPSCCSAO, 	26,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM008:,	FSetOVR,	NDPSCCSAO, 	28,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM008:,	TSetOVR,	NDPSCCSAO, 	30,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM009:,	FSetOVR,	NDPSCCSAO, 	32,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM009:,	TSetOVR,	NDPSCCSAO, 	34,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM010:,	FSetOVR,	NDPSCCSAO, 	36,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM010:,	TSetOVR,	NDPSCCSAO, 	38,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM011:,	FSetOVR,	NDPSCCSAO, 	40,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM011:,	TSetOVR,	NDPSCCSAO, 	42,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM012:,	FSetOVR,	NDPSCCSAO, 	44,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM012:,	TSetOVR,	NDPSCCSAO, 	46,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM013:,	FSetOVR,	NDPSCCSAO, 	48,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM013:,	TSetOVR,	NDPSCCSAO, 	50,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM014:,	FSetOVR,	NDPSCCSAO, 	52,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM014:,	TSetOVR,	NDPSCCSAO, 	54,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM015:,	FSetOVR,	NDPSCCSAO, 	56,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM015:,	TSetOVR,	NDPSCCSAO, 	58,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM016:,	FSetOVR,	NDPSCCSAO, 	60,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		MAG,	-FM016:,	TSetOVR,	NDPSCCSAO, 	62,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC001:,	SetOVR,		NDPSCCSAO, 	96,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC002:,	SetOVR,		NDPSCCSAO, 	98,      FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC003:,	SetOVR,		NDPSCCSAO, 	100,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC004:,	SetOVR,		NDPSCCSAO, 	102,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC005:,	SetOVR,		NDPSCCSAO, 	104,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC006:,	SetOVR,		NDPSCCSAO, 	106,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC007:,	SetOVR,		NDPSCCSAO, 	108,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC008:,	SetOVR,		NDPSCCSAO, 	110,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC009:,	SetOVR,		NDPSCCSAO, 	112,     FLOAT32_BE, 0,      100,    3,      "",     "" }
-{NDPS,	-CCS2:,		TGVC,	-TC010:,	SetOVR,		NDPSCCSAO, 	114,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PORT,		OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
+{NDPS,	-CCS:,		QM017,		-FM025:,	FSetOVR,	NDPSCCSAO,	0,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM017,		-FM025:,	TSetOVR,	NDPSCCSAO, 	2,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM018,		-FM026:,	FSetOVR,	NDPSCCSAO, 	4,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM018,		-FM026:,	TSetOVR,	NDPSCCSAO, 	6,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		DM002,		-FM027:,	FSetOVR,	NDPSCCSAO, 	8,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		DM002,		-FM027:,	TSetOVR,	NDPSCCSAO, 	10,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		CTarget,	-FM028:,	FSetOVR,	NDPSCCSAO, 	12,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		CTarget,	-FM028:,	TSetOVR,	NDPSCCSAO, 	14,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		BD,			-FM029:,	FSetOVR,	NDPSCCSAO, 	16,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		BD,			-FM029:,	TSetOVR,	NDPSCCSAO, 	18,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM030:,	FSetOVR,	NDPSCCSAO, 	20,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Sapre,		-FM030:,	TSetOVR,	NDPSCCSAO, 	22,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		LiTarget,	-FM031:,	FSetOVR,	NDPSCCSAO, 	24,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		LiTarget,	-FM031:,	TSetOVR,	NDPSCCSAO, 	26,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		FC003,		-FM032:,	FSetOVR,	NDPSCCSAO, 	28,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		FC003,		-FM032:,	TSetOVR,	NDPSCCSAO, 	30,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM020,		-FM033:,	FSetOVR,	NDPSCCSAO, 	32,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM020,		-FM033:,	TSetOVR,	NDPSCCSAO, 	34,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM019,		-FM034:,	FSetOVR,	NDPSCCSAO, 	36,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		QM019,		-FM034:,	TSetOVR,	NDPSCCSAO, 	38,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM035:,	FSetOVR,	NDPSCCSAO, 	40,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM035:,	TSetOVR,	NDPSCCSAO, 	42,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM036:,	FSetOVR,	NDPSCCSAO, 	44,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM036:,	TSetOVR,	NDPSCCSAO, 	46,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM037:,	FSetOVR,	NDPSCCSAO, 	48,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM037:,	TSetOVR,	NDPSCCSAO, 	50,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM038:,	FSetOVR,	NDPSCCSAO, 	52,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM038:,	TSetOVR,	NDPSCCSAO, 	54,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM039:,	FSetOVR,	NDPSCCSAO, 	56,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM039:,	TSetOVR,	NDPSCCSAO, 	58,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM040:,	FSetOVR,	NDPSCCSAO, 	60,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		Spare,		-FM040:,	TSetOVR,	NDPSCCSAO, 	62,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC001:,	SetOVR,		NDPSCCSAO, 	96,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC002:,	SetOVR,		NDPSCCSAO, 	98,      FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC003:,	SetOVR,		NDPSCCSAO, 	100,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC004:,	SetOVR,		NDPSCCSAO, 	102,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC005:,	SetOVR,		NDPSCCSAO, 	104,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC006:,	SetOVR,		NDPSCCSAO, 	106,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC007:,	SetOVR,		NDPSCCSAO, 	108,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC008:,	SetOVR,		NDPSCCSAO, 	110,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC009:,	SetOVR,		NDPSCCSAO, 	112,     FLOAT32_BE, 0,      100,    3,      "",     "" }
+{NDPS,	-CCS:,		TGVC,		-TC010:,	SetOVR,		NDPSCCSAO, 	114,     FLOAT32_BE, 0,      100,    3,      "",     "" }
 #AO_58
 #AO_59
 }
@@ -115,217 +117,217 @@ file "db/aoFloat64.template" { pattern
 ####BI Base Address 110 PLC offset(byte))
 file "db/biWord.template" { pattern
 {SYS,	SUBSYS,	DEV,	SUBDEV,		SIGNAL,		PORT,		OFFSET,	MASK,		ZNAM,   ONAM,	SCAN,		DESC}
-#{NDPS,	-CCS2:,	MAG,	-QM001:,			OnStat,		NDPSCCSDI,	0,		0x0100,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM002:,			OnStat,		NDPSCCSDI,	0,		0x0200,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM003:,			OnStat,		NDPSCCSDI,	0,		0x0400,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM004:,			OnStat,		NDPSCCSDI,	0,		0x0800,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM005:,			OnStat,		NDPSCCSDI,	0,		0x1000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM006:,			OnStat,		NDPSCCSDI,	0,		0x2000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM007:,			OnStat,		NDPSCCSDI,	0,		0x4000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM008:,			OnStat,		NDPSCCSDI,	0,		0x8000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM009:,			OnStat,		NDPSCCSDI,	0,		0x0001,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM010:,			OnStat,		NDPSCCSDI,	0,		0x0002,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM011:,			OnStat,		NDPSCCSDI,	0,		0x0004,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM012:,			OnStat,		NDPSCCSDI,	0,		0x0008,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM013:,			OnStat,		NDPSCCSDI,	0,		0x0010,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM014:,			OnStat,		NDPSCCSDI,	0,		0x0020,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM015:,			OnStat,		NDPSCCSDI,	0,		0x0040,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-QM016:,			OnStat,		NDPSCCSDI,	0,		0x0080,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-QM017:,			OnStat,		NDPSCCSDI,	1,		0x0100,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-QM018:,			OnStat,		NDPSCCSDI,	1,		0x0200,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-QM019:,			OnStat,		NDPSCCSDI,	1,		0x0400,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-QM020:,			OnStat,		NDPSCCSDI,	1,		0x0800,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-DM001:,			OnStat,		NDPSCCSDI,	1,		0x1000,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-DM002:,			OnStat,		NDPSCCSDI,	1,		0x2000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMH001:,			OnStat,		NDPSCCSDI,	1,		0x4000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMH002:,			OnStat,		NDPSCCSDI,	1,		0x8000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMH003:,			OnStat,		NDPSCCSDI,	1,		0x0001,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMH004:,			OnStat,		NDPSCCSDI,	1,		0x0002,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMH005:,			OnStat,		NDPSCCSDI,	1,		0x0004,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-SMH006:,			OnStat,		NDPSCCSDI,	1,		0x0008,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMV001:,			OnStat,		NDPSCCSDI,	1,		0x0010,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMV002:,			OnStat,		NDPSCCSDI,	1,		0x0020,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMV003:,			OnStat,		NDPSCCSDI,	1,		0x0040,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMV004:,			OnStat,		NDPSCCSDI,	1,		0x0080,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	MAG,	-SMV005:,			OnStat,		NDPSCCSDI,	2,		0x0100,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	MAG,	-SMV006:,			OnStat,		NDPSCCSDI,	2,		0x0200,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	DIAG,	-WS001:,			OnStat,		NDPSCCSDI,	2,		0x0400,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	DIAG,	-WS002:,			OnStat,		NDPSCCSDI,	2,		0x0800,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	DIAG,	-WS003:,			OnStat,		NDPSCCSDI,	2,		0x1000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	DIAG,	-FC001:,			OnStat,		NDPSCCSDI,	2,		0x2000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	DIAG,	-FC002:,			OnStat,		NDPSCCSDI,	2,		0x4000,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	DIAG,	-FC003:,			OnStat,		NDPSCCSDI,	2,		0x8000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-GV001:,			OpenStat,	NDPSCCSDI,	2,		0x0001,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-GV002:,			OpenStat,	NDPSCCSDI,	2,		0x0002,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-GV003:,			OpenStat,	NDPSCCSDI,	2,		0x0004,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-GV004:,			OpenStat,	NDPSCCSDI,	2,		0x0008,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-GV005:,			OpenStat,	NDPSCCSDI,	2,		0x0010,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-GV006:,			OpenStat,	NDPSCCSDI,	2,		0x0020,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-GV007:,			OpenStat,	NDPSCCSDI,	2,		0x0040,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-GV008:,			OpenStat,	NDPSCCSDI,	2,		0x0080,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VG001:,			OnStat,		NDPSCCSDI,	3,		0x0100,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VG002:,			OnStat,		NDPSCCSDI,	3,		0x0200,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VG003:,			OnStat,		NDPSCCSDI,	3,		0x0400,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VG004:,			OnStat,		NDPSCCSDI,	3,		0x0800,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VG005:,			OnStat,		NDPSCCSDI,	3,		0x1000,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VG006:,			OnStat,		NDPSCCSDI,	3,		0x2000,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VG007:,			OnStat,		NDPSCCSDI,	3,		0x4000,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VG008:,			OnStat,		NDPSCCSDI,	3,		0x8000,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VGL001:,			OnStat,		NDPSCCSDI,	3,		0x0001,		Close,	Open,	"1 second",	""}
-#{NDPS,	-CCS2:,	CCS,	-VGL002:,			OnStat,		NDPSCCSDI,	3,		0x0002,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VGL003:,			OnStat,		NDPSCCSDI,	3,		0x0004,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VGL004:,			OnStat,		NDPSCCSDI,	3,		0x0008,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VGL005:,			OnStat,		NDPSCCSDI,	3,		0x0100,		Close,	Open,	"1 second",	""}
-{NDPS,	-CCS2:,	CCS,	-VGL006:,			OnStat,		NDPSCCSDI,	3,		0x0200,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM001:,			OnStat,		NDPSCCSDI,	0,		0x0100,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM002:,			OnStat,		NDPSCCSDI,	0,		0x0200,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM003:,			OnStat,		NDPSCCSDI,	0,		0x0400,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM004:,			OnStat,		NDPSCCSDI,	0,		0x0800,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM005:,			OnStat,		NDPSCCSDI,	0,		0x1000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM006:,			OnStat,		NDPSCCSDI,	0,		0x2000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM007:,			OnStat,		NDPSCCSDI,	0,		0x4000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM008:,			OnStat,		NDPSCCSDI,	0,		0x8000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM009:,			OnStat,		NDPSCCSDI,	0,		0x0001,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM010:,			OnStat,		NDPSCCSDI,	0,		0x0002,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM011:,			OnStat,		NDPSCCSDI,	0,		0x0004,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM012:,			OnStat,		NDPSCCSDI,	0,		0x0008,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM013:,			OnStat,		NDPSCCSDI,	0,		0x0010,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM014:,			OnStat,		NDPSCCSDI,	0,		0x0020,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM015:,			OnStat,		NDPSCCSDI,	0,		0x0040,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-QM016:,			OnStat,		NDPSCCSDI,	0,		0x0080,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-QM017:,			OnStat,		NDPSCCSDI,	1,		0x0100,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-QM018:,			OnStat,		NDPSCCSDI,	1,		0x0200,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-QM019:,			OnStat,		NDPSCCSDI,	1,		0x0400,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-QM020:,			OnStat,		NDPSCCSDI,	1,		0x0800,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-DM001:,			OnStat,		NDPSCCSDI,	1,		0x1000,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-DM002:,			OnStat,		NDPSCCSDI,	1,		0x2000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMH001:,			OnStat,		NDPSCCSDI,	1,		0x4000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMH002:,			OnStat,		NDPSCCSDI,	1,		0x8000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMH003:,			OnStat,		NDPSCCSDI,	1,		0x0001,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMH004:,			OnStat,		NDPSCCSDI,	1,		0x0002,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMH005:,			OnStat,		NDPSCCSDI,	1,		0x0004,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-SMH006:,			OnStat,		NDPSCCSDI,	1,		0x0008,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMV001:,			OnStat,		NDPSCCSDI,	1,		0x0010,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMV002:,			OnStat,		NDPSCCSDI,	1,		0x0020,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMV003:,			OnStat,		NDPSCCSDI,	1,		0x0040,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMV004:,			OnStat,		NDPSCCSDI,	1,		0x0080,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	MAG,	-SMV005:,			OnStat,		NDPSCCSDI,	2,		0x0100,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	MAG,	-SMV006:,			OnStat,		NDPSCCSDI,	2,		0x0200,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	DIAG,	-WS001:,			OnStat,		NDPSCCSDI,	2,		0x0400,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	DIAG,	-WS002:,			OnStat,		NDPSCCSDI,	2,		0x0800,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	DIAG,	-WS003:,			OnStat,		NDPSCCSDI,	2,		0x1000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	DIAG,	-FC001:,			OnStat,		NDPSCCSDI,	2,		0x2000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	DIAG,	-FC002:,			OnStat,		NDPSCCSDI,	2,		0x4000,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	DIAG,	-FC003:,			OnStat,		NDPSCCSDI,	2,		0x8000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-GV001:,			OpenStat,	NDPSCCSDI,	2,		0x0001,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-GV002:,			OpenStat,	NDPSCCSDI,	2,		0x0002,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-GV003:,			OpenStat,	NDPSCCSDI,	2,		0x0004,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-GV004:,			OpenStat,	NDPSCCSDI,	2,		0x0008,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-GV005:,			OpenStat,	NDPSCCSDI,	2,		0x0010,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-GV006:,			OpenStat,	NDPSCCSDI,	2,		0x0020,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-GV007:,			OpenStat,	NDPSCCSDI,	2,		0x0040,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-GV008:,			OpenStat,	NDPSCCSDI,	2,		0x0080,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VG001:,			OnStat,		NDPSCCSDI,	3,		0x0100,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VG002:,			OnStat,		NDPSCCSDI,	3,		0x0200,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VG003:,			OnStat,		NDPSCCSDI,	3,		0x0400,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VG004:,			OnStat,		NDPSCCSDI,	3,		0x0800,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VG005:,			OnStat,		NDPSCCSDI,	3,		0x1000,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VG006:,			OnStat,		NDPSCCSDI,	3,		0x2000,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VG007:,			OnStat,		NDPSCCSDI,	3,		0x4000,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VG008:,			OnStat,		NDPSCCSDI,	3,		0x8000,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VGL001:,			OnStat,		NDPSCCSDI,	3,		0x0001,		Close,	Open,	"1 second",	""}
+#{NDPS,	-CCS:,	CCS,	-VGL002:,			OnStat,		NDPSCCSDI,	3,		0x0002,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VGL003:,			OnStat,		NDPSCCSDI,	3,		0x0004,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VGL004:,			OnStat,		NDPSCCSDI,	3,		0x0008,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VGL005:,			OnStat,		NDPSCCSDI,	3,		0x0100,		Close,	Open,	"1 second",	""}
+{NDPS,	-CCS:,	VAC,	-VGL006:,			OnStat,		NDPSCCSDI,	3,		0x0200,		Close,	Open,	"1 second",	""}
 }
 
-###NDPS-CCS2:MAG-QM017:OnStat	482.0
-###NDPS-CCS2:MAG-QM018:OnStat	482.1
-###NDPS-CCS2:MAG-QM019:OnStat	482.2
-###NDPS-CCS2:MAG-QM020:OnStat	482.3
-###NDPS-CCS2:MAG-DM002:OnStat	482.5
-###NDPS-CCS2:MAG-SMH006:OnStat	483.3
-###NDPS-CCS2:MAG-SMV006:OnStat	484.1
-###NDPS-CCS2:DIAG-WS003:OnStat	484.4
-###NDPS-CCS2:DIAG-FC003:OnStat	484.7
-###NDPS-CCS2:VAC-GV005:OpenStat	485.4
-###NDPS-CCS2:VAC-GV006:OpenStat	485.5
-###NDPS-CCS2:VAC-GV007:OpenStat	485.6
-###NDPS-CCS2:VAC-GV008:OpenStat	485.7
-###NDPS-CCS2:VAC-VG005:OnStat	486.4
-###NDPS-CCS2:VAC-VG006:OnStat	486.5
-###NDPS-CCS2:VAC-VG007:OnStat	486.6
-###NDPS-CCS2:VAC-VG008:OnStat	486.7
-###NDPS-CCS2:VAC-VGL003:OnStat	487.2
-###NDPS-CCS2:VAC-VGL004:OnStat	487.3
-###NDPS-CCS2:VAC-VGL005:OnStat	487.4
-###NDPS-CCS2:VAC-VGL006:OnStat	487.5
+###NDPS-CCS:MAG-QM017:OnStat	482.0
+###NDPS-CCS:MAG-QM018:OnStat	482.1
+###NDPS-CCS:MAG-QM019:OnStat	482.2
+###NDPS-CCS:MAG-QM020:OnStat	482.3
+###NDPS-CCS:MAG-DM002:OnStat	482.5
+###NDPS-CCS:MAG-SMH006:OnStat	483.3
+###NDPS-CCS:MAG-SMV006:OnStat	484.1
+###NDPS-CCS:DIAG-WS003:OnStat	484.4
+###NDPS-CCS:DIAG-FC003:OnStat	484.7
+###NDPS-CCS:VAC-GV005:OpenStat	485.4
+###NDPS-CCS:VAC-GV006:OpenStat	485.5
+###NDPS-CCS:VAC-GV007:OpenStat	485.6
+###NDPS-CCS:VAC-GV008:OpenStat	485.7
+###NDPS-CCS:VAC-VG005:OnStat	486.4
+###NDPS-CCS:VAC-VG006:OnStat	486.5
+###NDPS-CCS:VAC-VG007:OnStat	486.6
+###NDPS-CCS:VAC-VG008:OnStat	486.7
+###NDPS-CCS:VAC-VGL003:OnStat	487.2
+###NDPS-CCS:VAC-VGL004:OnStat	487.3
+###NDPS-CCS:VAC-VGL005:OnStat	487.4
+###NDPS-CCS:VAC-VGL006:OnStat	487.5
 
 
 ####BO Base Address 112 PLC 
 file "db/boWord.template" { pattern
-{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,		PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,		DESC}
-{NDPS,	-CCS2:,		MAG,	-FM001:,	FSetOVREN,	NDPSCCSDO,	0,		0x0100,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM001:,	TSetOVREN,	NDPSCCSDO,	0,		0x0200,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM002:,	FSetOVREN,	NDPSCCSDO,	0,		0x0400,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM002:,	TSetOVREN,	NDPSCCSDO,	0,		0x0800,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM003:,	FSetOVREN,	NDPSCCSDO,	0,		0x1000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM003:,	TSetOVREN,	NDPSCCSDO,	0,		0x2000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM004:,	FSetOVREN,	NDPSCCSDO,	0,		0x4000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM004:,	TSetOVREN,	NDPSCCSDO,	0,		0x8000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM005:,	FSetOVREN,	NDPSCCSDO,	0,		0x0001,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM005:,	TSetOVREN,	NDPSCCSDO,	0,		0x0002,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM006:,	FSetOVREN,	NDPSCCSDO,	0,		0x0004,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM006:,	TSetOVREN,	NDPSCCSDO,	0,		0x0008,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM007:,	FSetOVREN,	NDPSCCSDO,	0,		0x0010,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM007:,	TSetOVREN,	NDPSCCSDO,	0,		0x0020,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM008:,	FSetOVREN,	NDPSCCSDO,	0,		0x0040,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM008:,	TSetOVREN,	NDPSCCSDO,	0,		0x0080,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM009:,	FSetOVREN,	NDPSCCSDO,	1,		0x0100,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM009:,	TSetOVREN,	NDPSCCSDO,	1,		0x0200,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM010:,	FSetOVREN,	NDPSCCSDO,	1,		0x0400,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM010:,	TSetOVREN,	NDPSCCSDO,	1,		0x0800,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM011:,	FSetOVREN,	NDPSCCSDO,	1,		0x1000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM011:,	TSetOVREN,	NDPSCCSDO,	1,		0x2000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM012:,	FSetOVREN,	NDPSCCSDO,	1,		0x4000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM012:,	TSetOVREN,	NDPSCCSDO,	1,		0x8000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM013:,	FSetOVREN,	NDPSCCSDO,	1,		0x0001,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM013:,	TSetOVREN,	NDPSCCSDO,	1,		0x0002,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM014:,	FSetOVREN,	NDPSCCSDO,	1,		0x0004,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM014:,	TSetOVREN,	NDPSCCSDO,	1,		0x0008,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM015:,	FSetOVREN,	NDPSCCSDO,	1,		0x0010,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM015:,	TSetOVREN,	NDPSCCSDO,	1,		0x0020,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM016:,	FSetOVREN,	NDPSCCSDO,	1,		0x0040,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-FM016:,	TSetOVREN,	NDPSCCSDO,	1,		0x0080,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM017:,	FSetOVREN,	NDPSCCSDO,	2,		0x0100,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM017:,	TSetOVREN,	NDPSCCSDO,	2,		0x0200,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM018:,	FSetOVREN,	NDPSCCSDO,	2,		0x0400,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM018:,	TSetOVREN,	NDPSCCSDO,	2,		0x0800,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM019:,	FSetOVREN,	NDPSCCSDO,	2,		0x1000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM019:,	TSetOVREN,	NDPSCCSDO,	2,		0x2000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM020:,	FSetOVREN,	NDPSCCSDO,	2,		0x4000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM020:,	TSetOVREN,	NDPSCCSDO,	2,		0x8000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM021:,	FSetOVREN,	NDPSCCSDO,	2,		0x0001,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM021:,	TSetOVREN,	NDPSCCSDO,	2,		0x0002,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM022:,	FSetOVREN,	NDPSCCSDO,	2,		0x0004,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM022:,	TSetOVREN,	NDPSCCSDO,	2,		0x0008,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM023:,	FSetOVREN,	NDPSCCSDO,	2,		0x0010,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM023:,	TSetOVREN,	NDPSCCSDO,	2,		0x0020,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM024:,	FSetOVREN,	NDPSCCSDO,	2,		0x0040,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-FM024:,	TSetOVREN,	NDPSCCSDO,	2,		0x0080,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC001:,	SetOVREN,	NDPSCCSDO,	3,		0x0100,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC002:,	SetOVREN,	NDPSCCSDO,	3,		0x0200,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC003:,	SetOVREN,	NDPSCCSDO,	3,		0x0400,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC004:,	SetOVREN,	NDPSCCSDO,	3,		0x0800,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC005:,	SetOVREN,	NDPSCCSDO,	3,		0x1000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC006:,	SetOVREN,	NDPSCCSDO,	3,		0x2000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC007:,	SetOVREN,	NDPSCCSDO,	3,		0x4000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC008:,	SetOVREN,	NDPSCCSDO,	3,		0x8000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC009:,	SetOVREN,	NDPSCCSDO,	3,		0x0001,	Open,	Close,	""}
-{NDPS,	-CCS2:,		TGVC,	-TC010:,	SetOVREN,	NDPSCCSDO,	3,		0x0002,	Open,	Close,	""}
+{SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,		PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,		DESC}
+{NDPS,	-CCS:,		QM017,		-FM025:,	FSetOVREN,	NDPSCCSDO,	0,		0x0100,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM017,		-FM025:,	TSetOVREN,	NDPSCCSDO,	0,		0x0200,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM018,		-FM026:,	FSetOVREN,	NDPSCCSDO,	0,		0x0400,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM018,		-FM026:,	TSetOVREN,	NDPSCCSDO,	0,		0x0800,	Open,	Close,	""}
+{NDPS,	-CCS:,		DM002,		-FM027:,	FSetOVREN,	NDPSCCSDO,	0,		0x1000,	Open,	Close,	""}
+{NDPS,	-CCS:,		DM002,		-FM027:,	TSetOVREN,	NDPSCCSDO,	0,		0x2000,	Open,	Close,	""}
+{NDPS,	-CCS:,		CTarget,	-FM028:,	FSetOVREN,	NDPSCCSDO,	0,		0x4000,	Open,	Close,	""}
+{NDPS,	-CCS:,		CTarget,	-FM028:,	TSetOVREN,	NDPSCCSDO,	0,		0x8000,	Open,	Close,	""}
+{NDPS,	-CCS:,		BD,			-FM029:,	FSetOVREN,	NDPSCCSDO,	0,		0x0001,	Open,	Close,	""}
+{NDPS,	-CCS:,		BD,			-FM029:,	TSetOVREN,	NDPSCCSDO,	0,		0x0002,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM030:,	FSetOVREN,	NDPSCCSDO,	0,		0x0004,	Open,	Close,	""}
+{NDPS,	-CCS:,		Sapre,		-FM030:,	TSetOVREN,	NDPSCCSDO,	0,		0x0008,	Open,	Close,	""}
+{NDPS,	-CCS:,		LiTarget,	-FM031:,	FSetOVREN,	NDPSCCSDO,	0,		0x0010,	Open,	Close,	""}
+{NDPS,	-CCS:,		LiTarget,	-FM031:,	TSetOVREN,	NDPSCCSDO,	0,		0x0020,	Open,	Close,	""}
+{NDPS,	-CCS:,		FC003,		-FM032:,	FSetOVREN,	NDPSCCSDO,	0,		0x0040,	Open,	Close,	""}
+{NDPS,	-CCS:,		FC003,		-FM032:,	TSetOVREN,	NDPSCCSDO,	0,		0x0080,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM020,		-FM033:,	FSetOVREN,	NDPSCCSDO,	1,		0x0100,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM020,		-FM033:,	TSetOVREN,	NDPSCCSDO,	1,		0x0200,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM019,		-FM034:,	FSetOVREN,	NDPSCCSDO,	1,		0x0400,	Open,	Close,	""}
+{NDPS,	-CCS:,		QM019,		-FM034:,	TSetOVREN,	NDPSCCSDO,	1,		0x0800,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM035:,	FSetOVREN,	NDPSCCSDO,	1,		0x1000,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM035:,	TSetOVREN,	NDPSCCSDO,	1,		0x2000,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM036:,	FSetOVREN,	NDPSCCSDO,	1,		0x4000,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM036:,	TSetOVREN,	NDPSCCSDO,	1,		0x8000,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM037:,	FSetOVREN,	NDPSCCSDO,	1,		0x0001,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM037:,	TSetOVREN,	NDPSCCSDO,	1,		0x0002,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM038:,	FSetOVREN,	NDPSCCSDO,	1,		0x0004,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM038:,	TSetOVREN,	NDPSCCSDO,	1,		0x0008,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM039:,	FSetOVREN,	NDPSCCSDO,	1,		0x0010,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM039:,	TSetOVREN,	NDPSCCSDO,	1,		0x0020,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM040:,	FSetOVREN,	NDPSCCSDO,	1,		0x0040,	Open,	Close,	""}
+{NDPS,	-CCS:,		Spare,		-FM040:,	TSetOVREN,	NDPSCCSDO,	1,		0x0080,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM017:,	FSetOVREN,	NDPSCCSDO,	2,		0x0100,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM017:,	TSetOVREN,	NDPSCCSDO,	2,		0x0200,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM018:,	FSetOVREN,	NDPSCCSDO,	2,		0x0400,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM018:,	TSetOVREN,	NDPSCCSDO,	2,		0x0800,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM019:,	FSetOVREN,	NDPSCCSDO,	2,		0x1000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM019:,	TSetOVREN,	NDPSCCSDO,	2,		0x2000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM020:,	FSetOVREN,	NDPSCCSDO,	2,		0x4000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM020:,	TSetOVREN,	NDPSCCSDO,	2,		0x8000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM021:,	FSetOVREN,	NDPSCCSDO,	2,		0x0001,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM021:,	TSetOVREN,	NDPSCCSDO,	2,		0x0002,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM022:,	FSetOVREN,	NDPSCCSDO,	2,		0x0004,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM022:,	TSetOVREN,	NDPSCCSDO,	2,		0x0008,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM023:,	FSetOVREN,	NDPSCCSDO,	2,		0x0010,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM023:,	TSetOVREN,	NDPSCCSDO,	2,		0x0020,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM024:,	FSetOVREN,	NDPSCCSDO,	2,		0x0040,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-FM024:,	TSetOVREN,	NDPSCCSDO,	2,		0x0080,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC001:,	SetOVREN,	NDPSCCSDO,	3,		0x0100,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC002:,	SetOVREN,	NDPSCCSDO,	3,		0x0200,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC003:,	SetOVREN,	NDPSCCSDO,	3,		0x0400,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC004:,	SetOVREN,	NDPSCCSDO,	3,		0x0800,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC005:,	SetOVREN,	NDPSCCSDO,	3,		0x1000,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC006:,	SetOVREN,	NDPSCCSDO,	3,		0x2000,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC007:,	SetOVREN,	NDPSCCSDO,	3,		0x4000,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC008:,	SetOVREN,	NDPSCCSDO,	3,		0x8000,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC009:,	SetOVREN,	NDPSCCSDO,	3,		0x0001,	Open,	Close,	""}
+{NDPS,	-CCS:,		TGVC,	-TC010:,	SetOVREN,	NDPSCCSDO,	3,		0x0002,	Open,	Close,	""}
 
-#{NDPS,	-CCS2:,		MAG,	-QM001:,	SetOVREN,	NDPSCCSDO,	3,		0x0004,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM002:,	SetOVREN,	NDPSCCSDO,	3,		0x0008,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM003:,	SetOVREN,	NDPSCCSDO,	3,		0x0010,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM004:,	SetOVREN,	NDPSCCSDO,	3,		0x0020,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM005:,	SetOVREN,	NDPSCCSDO,	3,		0x0040,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM006:,	SetOVREN,	NDPSCCSDO,	3,		0x0080,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM007:,	SetOVREN,	NDPSCCSDO,	4,		0x0100,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM008:,	SetOVREN,	NDPSCCSDO,	4,		0x0200,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM009:,	SetOVREN,	NDPSCCSDO,	4,		0x0400,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM010:,	SetOVREN,	NDPSCCSDO,	4,		0x0800,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM011:,	SetOVREN,	NDPSCCSDO,	4,		0x1000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM012:,	SetOVREN,	NDPSCCSDO,	4,		0x2000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM013:,	SetOVREN,	NDPSCCSDO,	4,		0x4000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM014:,	SetOVREN,	NDPSCCSDO,	4,		0x8000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM015:,	SetOVREN,	NDPSCCSDO,	4,		0x0001,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-QM016:,	SetOVREN,	NDPSCCSDO,	4,		0x0002,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-QM017:,	SetOVREN,	NDPSCCSDO,	4,		0x0004,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-QM018:,	SetOVREN,	NDPSCCSDO,	4,		0x0008,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-QM019:,	SetOVREN,	NDPSCCSDO,	4,		0x0010,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-QM020:,	SetOVREN,	NDPSCCSDO,	4,		0x0020,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-DM001:,	SetOVREN,	NDPSCCSDO,	4,		0x0040,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-DM002:,	SetOVREN,	NDPSCCSDO,	4,		0x0080,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMH001:,	SetOVREN,	NDPSCCSDO,	5,		0x0100,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMH002:,	SetOVREN,	NDPSCCSDO,	5,		0x0200,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMH003:,	SetOVREN,	NDPSCCSDO,	5,		0x0400,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMH004:,	SetOVREN,	NDPSCCSDO,	5,		0x0800,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMH005:,	SetOVREN,	NDPSCCSDO,	5,		0x1000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-SMH006:,	SetOVREN,	NDPSCCSDO,	5,		0x2000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMV001:,	SetOVREN,	NDPSCCSDO,	5,		0x4000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMV002:,	SetOVREN,	NDPSCCSDO,	5,		0x8000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMV003:,	SetOVREN,	NDPSCCSDO,	5,		0x0001,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMV004:,	SetOVREN,	NDPSCCSDO,	5,		0x0002,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		MAG,	-SMV005:,	SetOVREN,	NDPSCCSDO,	5,		0x0004,	Open,	Close,	""}
-{NDPS,	-CCS2:,		MAG,	-SMV006:,	SetOVREN,	NDPSCCSDO,	5,		0x0008,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		DIAG,	-WS001:,	SetOVREN,	NDPSCCSDO,	5,		0x0010,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		DIAG,	-WS002:,	SetOVREN,	NDPSCCSDO,	5,		0x0020,	Open,	Close,	""}
-{NDPS,	-CCS2:,		DIAG,	-WS003:,	SetOVREN,	NDPSCCSDO,	5,		0x0040,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		DIAG,	-FC001:,	SetOVREN,	NDPSCCSDO,	5,		0x0080,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		DIAG,	-FC002:,	SetOVREN,	NDPSCCSDO,	6,		0x0100,	Open,	Close,	""}
-{NDPS,	-CCS2:,		DIAG,	-FC003:,	SetOVREN,	NDPSCCSDO,	6,		0x0200,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-GV001:,	SetOVREN,	NDPSCCSDO,	6,		0x0400,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-GV002:,	SetOVREN,	NDPSCCSDO,	6,		0x0800,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-GV003:,	SetOVREN,	NDPSCCSDO,	6,		0x1000,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-GV004:,	SetOVREN,	NDPSCCSDO,	6,		0x2000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-GV005:,	SetOVREN,	NDPSCCSDO,	6,		0x4000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-GV006:,	SetOVREN,	NDPSCCSDO,	6,		0x8000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-GV007:,	SetOVREN,	NDPSCCSDO,	6,		0x0001,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-GV008:,	SetOVREN,	NDPSCCSDO,	6,		0x0002,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VG001:,	SetOVREN,	NDPSCCSDO,	6,		0x0004,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VG002:,	SetOVREN,	NDPSCCSDO,	6,		0x0008,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VG003:,	SetOVREN,	NDPSCCSDO,	6,		0x0010,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VG004:,	SetOVREN,	NDPSCCSDO,	6,		0x0020,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VG005:,	SetOVREN,	NDPSCCSDO,	6,		0x0040,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VG006:,	SetOVREN,	NDPSCCSDO,	6,		0x0080,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VG007:,	SetOVREN,	NDPSCCSDO,	7,		0x0100,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VG008:,	SetOVREN,	NDPSCCSDO,	7,		0x0200,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VGL001:,	SetOVREN,	NDPSCCSDO,	7,		0x0400,	Open,	Close,	""}
-#{NDPS,	-CCS2:,		CCS,	-VGL002:,	SetOVREN,	NDPSCCSDO,	7,		0x0800,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VGL003:,	SetOVREN,	NDPSCCSDO,	7,		0x1000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VGL004:,	SetOVREN,	NDPSCCSDO,	7,		0x2000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VGL005:,	SetOVREN,	NDPSCCSDO,	7,		0x4000,	Open,	Close,	""}
-{NDPS,	-CCS2:,		CCS,	-VGL006:,	SetOVREN,	NDPSCCSDO,	7,		0x8000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM001:,	OnStatDS,	NDPSCCSDO,	3,		0x0004,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM002:,	OnStatDS,	NDPSCCSDO,	3,		0x0008,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM003:,	OnStatDS,	NDPSCCSDO,	3,		0x0010,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM004:,	OnStatDS,	NDPSCCSDO,	3,		0x0020,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM005:,	OnStatDS,	NDPSCCSDO,	3,		0x0040,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM006:,	OnStatDS,	NDPSCCSDO,	3,		0x0080,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM007:,	OnStatDS,	NDPSCCSDO,	4,		0x0100,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM008:,	OnStatDS,	NDPSCCSDO,	4,		0x0200,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM009:,	OnStatDS,	NDPSCCSDO,	4,		0x0400,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM010:,	OnStatDS,	NDPSCCSDO,	4,		0x0800,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM011:,	OnStatDS,	NDPSCCSDO,	4,		0x1000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM012:,	OnStatDS,	NDPSCCSDO,	4,		0x2000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM013:,	OnStatDS,	NDPSCCSDO,	4,		0x4000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM014:,	OnStatDS,	NDPSCCSDO,	4,		0x8000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM015:,	OnStatDS,	NDPSCCSDO,	4,		0x0001,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-QM016:,	OnStatDS,	NDPSCCSDO,	4,		0x0002,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-QM017:,	OnStatDS,	NDPSCCSDO,	4,		0x0004,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-QM018:,	OnStatDS,	NDPSCCSDO,	4,		0x0008,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-QM019:,	OnStatDS,	NDPSCCSDO,	4,		0x0010,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-QM020:,	OnStatDS,	NDPSCCSDO,	4,		0x0020,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-DM001:,	OnStatDS,	NDPSCCSDO,	4,		0x0040,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-DM002:,	OnStatDS,	NDPSCCSDO,	4,		0x0080,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMH001:,	OnStatDS,	NDPSCCSDO,	5,		0x0100,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMH002:,	OnStatDS,	NDPSCCSDO,	5,		0x0200,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMH003:,	OnStatDS,	NDPSCCSDO,	5,		0x0400,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMH004:,	OnStatDS,	NDPSCCSDO,	5,		0x0800,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMH005:,	OnStatDS,	NDPSCCSDO,	5,		0x1000,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-SMH006:,	OnStatDS,	NDPSCCSDO,	5,		0x2000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMV001:,	OnStatDS,	NDPSCCSDO,	5,		0x4000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMV002:,	OnStatDS,	NDPSCCSDO,	5,		0x8000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMV003:,	OnStatDS,	NDPSCCSDO,	5,		0x0001,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMV004:,	OnStatDS,	NDPSCCSDO,	5,		0x0002,	Open,	Close,	""}
+#{NDPS,	-CCS:,		MAG,	-SMV005:,	OnStatDS,	NDPSCCSDO,	5,		0x0004,	Open,	Close,	""}
+{NDPS,	-CCS:,		MAG,	-SMV006:,	OnStatDS,	NDPSCCSDO,	5,		0x0008,	Open,	Close,	""}
+#{NDPS,	-CCS:,		DIAG,	-WS001:,	OnStatDS,	NDPSCCSDO,	5,		0x0010,	Open,	Close,	""}
+#{NDPS,	-CCS:,		DIAG,	-WS002:,	OnStatDS,	NDPSCCSDO,	5,		0x0020,	Open,	Close,	""}
+{NDPS,	-CCS:,		DIAG,	-WS003:,	OnStatDS,	NDPSCCSDO,	5,		0x0040,	Open,	Close,	""}
+#{NDPS,	-CCS:,		DIAG,	-FC001:,	OnStatDS,	NDPSCCSDO,	5,		0x0080,	Open,	Close,	""}
+#{NDPS,	-CCS:,		DIAG,	-FC002:,	OnStatDS,	NDPSCCSDO,	6,		0x0100,	Open,	Close,	""}
+{NDPS,	-CCS:,		DIAG,	-FC003:,	OnStatDS,	NDPSCCSDO,	6,		0x0200,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-GV001:,	OnStatDS,	NDPSCCSDO,	6,		0x0400,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-GV002:,	OnStatDS,	NDPSCCSDO,	6,		0x0800,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-GV003:,	OnStatDS,	NDPSCCSDO,	6,		0x1000,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-GV004:,	OnStatDS,	NDPSCCSDO,	6,		0x2000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-GV005:,	OpenStatDS,	NDPSCCSDO,	6,		0x4000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-GV006:,	OpenStatDS,	NDPSCCSDO,	6,		0x8000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-GV007:,	OpenStatDS,	NDPSCCSDO,	6,		0x0001,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-GV008:,	OpenStatDS,	NDPSCCSDO,	6,		0x0002,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VG001:,	OnStatDS,	NDPSCCSDO,	6,		0x0004,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VG002:,	OnStatDS,	NDPSCCSDO,	6,		0x0008,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VG003:,	OnStatDS,	NDPSCCSDO,	6,		0x0010,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VG004:,	OnStatDS,	NDPSCCSDO,	6,		0x0020,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VG005:,	OnStatDS,	NDPSCCSDO,	6,		0x0040,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VG006:,	OnStatDS,	NDPSCCSDO,	6,		0x0080,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VG007:,	OnStatDS,	NDPSCCSDO,	7,		0x0100,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VG008:,	OnStatDS,	NDPSCCSDO,	7,		0x0200,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VGL001:,	OnStatDS,	NDPSCCSDO,	7,		0x0400,	Open,	Close,	""}
+#{NDPS,	-CCS:,		VAC,	-VGL002:,	OnStatDS,	NDPSCCSDO,	7,		0x0800,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VGL003:,	OnStatDS,	NDPSCCSDO,	7,		0x1000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VGL004:,	OnStatDS,	NDPSCCSDO,	7,		0x2000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VGL005:,	OnStatDS,	NDPSCCSDO,	7,		0x4000,	Open,	Close,	""}
+{NDPS,	-CCS:,		VAC,	-VGL006:,	OnStatDS,	NDPSCCSDO,	7,		0x8000,	Open,	Close,	""}
                                                                         
 }
 

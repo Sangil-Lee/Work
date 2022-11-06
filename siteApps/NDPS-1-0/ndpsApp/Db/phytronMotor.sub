@@ -1,4 +1,4 @@
-################################################################################
+###############################################################################
 # PORT - asynPort created for the Phytron controller
 # ADDR - Address of the axis - right digit represents the index of the axis
 #       of a I1AM01 module, the remaining digit(s) on the lef represent the 
@@ -8,7 +8,9 @@
 file "$(TOP)/db/Phytron_motor.db" { pattern
 {P,         N,      M,     DTYP,         PORT,           ADDR, DESC,          EGU,   DIR,  VELO,  VBAS, VMAX,  ACCL,  BDST,  BVEL,  BACC,  MRES,  ERES,   PREC,  DHLM,  DLLM,   INIT}
 {phytron:,  1,  "m$(N)",  "asynMotor",  "PhyMotion_1",  11,   "motor $(N)",  Deg,   Pos,  360,   180,  720,   .5,    0,     180,   .2,    1.8,   0.18,   5,     1440,  -1440,  ""}
-#{phytron:,  2,  "m$(N)",  "asynMotor",  "PhyMotion_1",  21,   "motor $(N)",  Deg,   Pos,  360,   180,  720,   .5,    0,     180,   .2,    1.8,   0.18,   5,     1440,  -1440,  ""}
+{phytron:,  2,  "m$(N)",  "asynMotor",  "PhyMotion_1",  12,   "motor $(N)",  Deg,   Pos,  360,   180,  720,   .5,    0,     180,   .2,    1.8,   0.18,   5,     1440,  -1440,  ""}
+#{phytron:,  3,  "m$(N)",  "asynMotor",  "PhyMotion_1",  13,   "motor $(N)",  Deg,   Pos,  360,   180,  720,   .5,    0,     180,   .2,    1.8,   0.18,   5,     1440,  -1440,  ""}
+{phytron:,  4,  "m$(N)",  "asynMotor",  "PhyMotion_1",  14,   "motor $(N)",  Deg,   Pos,  360,   180,  720,   .5,    0,     180,   .2,    1.8,   0.18,   5,     1440,  -1440,  ""}
 }
 
 ################################################################################
@@ -28,7 +30,9 @@ file "$(TOP)/db/Phytron_motor.db" { pattern
 file "$(TOP)/db/Phytron_I1AM01.db" { pattern
 {P,        N, M,       PORT,           ADDR, SCAN,        TIMEOUT, INIT, HOMING, MODE, POS_OFFSET, NEG_OFFSET, INIT_TIME, POS_TIME, BOOST, SWITCH_TYP, PWR_STAGE, ENC_TYP, ENC_SFI, ENC_DIR, STOP_CURR, RUN_CURR, BOOST_CURR, CURRENT_DELAY, STEP_RES, PS_MON }
 {phytron,  1, ":m$(N)", "PhyMotion_1", 11,   "1 second",  3,       YES,  0,      1,    0,          0,          20,        20,       0,     0,          1,         1,       0,       1        20,        400,      500,        20,            0,        1}    
-#{phytron,  2, ":m$(N)", "PhyMotion_1", 21,   "1 second",  3,       YES,  0,      1,    0,          0,          20,        20,       0,     0,          1,         1,       0,       1        20,        400,      500,        20,            0,        1}    
+{phytron,  2, ":m$(N)", "PhyMotion_1", 12,   "1 second",  3,       YES,  0,      1,    0,          0,          20,        20,       0,     0,          1,         1,       0,       1        20,        400,      500,        20,            0,        1}    
+#{phytron,  3, ":m$(N)", "PhyMotion_1", 13,   "1 second",  3,       YES,  0,      1,    0,          0,          20,        20,       0,     0,          1,         1,       0,       1        20,        400,      500,        20,            0,        1}    
+{phytron,  4, ":m$(N)", "PhyMotion_1", 14,   "1 second",  3,       YES,  0,      1,    0,          0,          20,        20,       0,     0,          1,         1,       0,       1        20,        400,      500,        20,            0,        1}    
 }
 
 ################################################################################
@@ -40,4 +44,5 @@ file "$(TOP)/db/Phytron_I1AM01.db" { pattern
 file "$(TOP)/db/Phytron_MCM01.db" { pattern
 {P,       DTYP,         PORT,             ADDR, TIMEOUT}
 {phytron, "asynMotor",  "PhyMotion_1",    0,    10    }
+#{phytron, "asynMotor",  "PhyMotion_1",    1,    10    }
 }

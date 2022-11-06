@@ -100,6 +100,12 @@ file "db/aoFloat64.template" { pattern
 {NDPS,	-VAC:,	VGL005,		:,			SetDelayTime,	NDPSVACAO,	78,		FLOAT32_BE,	0,		100,	3,		"",		""}
 {NDPS,	-VAC:,	VGL006,		:,			SetCP,			NDPSVACAO,	80,		FLOAT32_BE,	0,		100,	3,		"",		""}
 {NDPS,	-VAC:,	VGL006,		:,			SetDelayTime,	NDPSVACAO,	82,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL001,		:,			SetCPTP001OpOn,	NDPSVACAO,	84,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL002,		:,			SetCPTP002OpOn,	NDPSVACAO,	86,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL003,		:,			SetCPTP003OpOn,	NDPSVACAO,	88,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL004,		:,			SetCPTP004OpOn,	NDPSVACAO,	90,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL005,		:,			SetCPTP005OpOn,	NDPSVACAO,	92,		FLOAT32_BE,	0,		100,	3,		"",		""}
+{NDPS,	-VAC:,	VGL006,		:,			SetCPTP006OpOn,	NDPSVACAO,	94,		FLOAT32_BE,	0,		100,	3,		"",		""}
 
 #AO_42
 #AO_43
@@ -111,6 +117,8 @@ file "db/aoFloat64.template" { pattern
 #AO_49
 
 }
+
+
 
 ####BI Base Address 110 PLC offset(byte))
 file "db/biWord.template" { pattern
@@ -375,6 +383,7 @@ file "db/biWord.template" { pattern
 
 }
 
+
 ####BO Base Address 112 PLC 
 file "db/boWord.template" { pattern
 {SYS,	SUBSYS,		DEV,		SUBDEV,		SIGNAL,			PORT,		OFFSET,	MASK,	 ZNAM,   ONAM,	DESC}
@@ -485,7 +494,7 @@ file "db/boWord.template" { pattern
 #{NDPS,	-VAC:,		GV003,		:,			SetErrRst,		NDPSVACDO,	6,		0x0400,	Close,	Open,	""}
 #{NDPS,	-VAC:,		GV004,		:,			SetOpen,		NDPSVACDO,	6,		0x0800,	Close,	Open,	""}
 #{NDPS,	-VAC:,		GV004,		:,			SetClose,		NDPSVACDO,	6,		0x1000,	Close,	Open,	""}
-{NDPS,	-VAC:,		GV004,		:,			SetErrRst,		NDPSVACDO,	6,		0x2000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		GV004,		:,			SetErrRst,		NDPSVACDO,	6,		0x2000,	Close,	Open,	""}
 {NDPS,	-VAC:,		GV005,		:,			SetOpen,		NDPSVACDO,	6,		0x4000,	Close,	Open,	""}
 {NDPS,	-VAC:,		GV005,		:,			SetClose,		NDPSVACDO,	6,		0x8000,	Close,	Open,	""}
 {NDPS,	-VAC:,		GV005,		:,			SetErrRst,		NDPSVACDO,	6,		0x0001,	Close,	Open,	""}
@@ -543,75 +552,76 @@ file "db/boWord.template" { pattern
 {NDPS,	-VAC:,		VGL006,		:,			SetOn,			NDPSVACDO,	9,		0x0002,	Close,	Open,	""}
 {NDPS,	-VAC:,		VGL006,		:,			SetOff,			NDPSVACDO,	9,		0x0004,	Close,	Open,	""}
 {NDPS,	-VAC:,		VGL006,		:,			SetErrRst,		NDPSVACDO,	9,		0x0008,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TP001,		:,			SetIntRst,		NDPSVACDO,	9,		0x0010,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TP001,		:,			IntStatVGL001DS,NDPSVACDO,	9,		0x0020,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TP001,		:,			IntStatDP001DS,	NDPSVACDO,	9,		0x0040,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TP002,		:,			SetIntRst,		NDPSVACDO,	9,		0x0080,	Close,	Open,	""}
+{NDPS,	-VAC:,		TCOV001,	:,			SetOn,			NDPSVACDO,	9,		0x0010,	Close,	Open,	""}
+{NDPS,	-VAC:,		TCOV001,	:,			SetOff,			NDPSVACDO,	9,		0x0020,	Close,	Open,	""}
+{NDPS,	-VAC:,		TCOV002,	:,			SetOn,			NDPSVACDO,	9,		0x0040,	Close,	Open,	""}
+{NDPS,	-VAC:,		TCOV002,	:,			SetOff,			NDPSVACDO,	9,		0x0080,	Close,	Open,	""}
 
-#{NDPS,	-VAC:,		TP002,		:,			IntStatVGL002DS,NDPSVACDO,	10,		0x0100,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TP002,		:,			IntStatDP002DS,	NDPSVACDO,	10,		0x0200,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP003,		:,			SetIntRst,		NDPSVACDO,	10,		0x0400,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP003,		:,			IntStatVGL003DS,NDPSVACDO,	10,		0x0800,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP003,		:,			IntStatDP003DS,	NDPSVACDO,	10,		0x1000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP004,		:,			SetIntRst,		NDPSVACDO,	10,		0x2000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP004,		:,			IntStatVGL004DS,NDPSVACDO,	10,		0x4000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP004,		:,			IntStatDP004DS,	NDPSVACDO,	10,		0x8000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP005,		:,			SetIntRst,		NDPSVACDO,	10,		0x0001,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP005,		:,			IntStatVGL005DS,NDPSVACDO,	10,		0x0002,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP005,		:,			IntStatDP005DS,	NDPSVACDO,	10,		0x0004,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP006,		:,			SetIntRst,		NDPSVACDO,	10,		0x0008,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP006,		:,			IntStatVGL006DS,NDPSVACDO,	10,		0x0010,	Close,	Open,	""}
-{NDPS,	-VAC:,		TP006,		:,			IntStatDP006DS,	NDPSVACDO,	10,		0x0020,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV001,	:,			SetIntRst,		NDPSVACDO,	10,		0x0040,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV001,	:,			IntStatVGL001DS,NDPSVACDO,	10,		0x0080,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP001,		:,			SetIntRst,		NDPSVACDO,	10,		0x0100,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP001,		:,			IntStatVGL001DS,NDPSVACDO,	10,		0x0200,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP001,		:,			IntStatDP001DS,	NDPSVACDO,	10,		0x0400,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP002,		:,			SetIntRst,		NDPSVACDO,	10,		0x0800,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP002,		:,			IntStatVGL002DS,NDPSVACDO,	10,		0x1000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TP002,		:,			IntStatDP002DS,	NDPSVACDO,	10,		0x2000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP003,		:,			SetIntRst,		NDPSVACDO,	10,		0x4000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP003,		:,			IntStatVGL003DS,NDPSVACDO,	10,		0x8000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP003,		:,			IntStatDP003DS,	NDPSVACDO,	10,		0x0001,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP004,		:,			SetIntRst,		NDPSVACDO,	10,		0x0002,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP004,		:,			IntStatVGL004DS,NDPSVACDO,	10,		0x0004,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP004,		:,			IntStatDP004DS,	NDPSVACDO,	10,		0x0008,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP005,		:,			SetIntRst,		NDPSVACDO,	10,		0x0010,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP005,		:,			IntStatVGL005DS,NDPSVACDO,	10,		0x0020,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP005,		:,			IntStatDP005DS,	NDPSVACDO,	10,		0x0040,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP006,		:,			SetIntRst,		NDPSVACDO,	10,		0x0080,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP006,		:,			IntStatVGL006DS,NDPSVACDO,	11,		0x0100,	Close,	Open,	""}
+{NDPS,	-VAC:,		TP006,		:,			IntStatDP006DS,	NDPSVACDO,	11,		0x0200,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV001,	:,			SetIntRst,		NDPSVACDO,	11,		0x0400,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV001,	:,			IntStatVGL001DS,NDPSVACDO,	11,		0x0800,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV001,	:,			IntStatDP001DS,	NDPSVACDO,	11,		0x1000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV001,	:,			IntStatTP001DS,	NDPSVACDO,	11,		0x2000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV002,	:,			SetIntRst,		NDPSVACDO,	11,		0x4000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV002,	:,			IntStatVGL002DS,NDPSVACDO,	11,		0x8000,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV002,	:,			IntStatDP002DS,	NDPSVACDO,	11,		0x0001,	Close,	Open,	""}
+#{NDPS,	-VAC:,		TPGV002,	:,			IntStatTP002DS,	NDPSVACDO,	11,		0x0002,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV003,	:,			SetIntRst,		NDPSVACDO,	11,		0x0004,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV003,	:,			IntStatVGL003DS,NDPSVACDO,	11,		0x0008,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV003,	:,			IntStatDP003DS,	NDPSVACDO,	11,		0x0010,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV003,	:,			IntStatTP003DS,	NDPSVACDO,	11,		0x0020,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV004,	:,			SetIntRst,		NDPSVACDO,	11,		0x0040,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV004,	:,			IntStatVGL004DS,NDPSVACDO,	11,		0x0080,	Close,	Open,	""}
 
-#{NDPS,	-VAC:,		TPGV001,	:,			IntStatDP001DS,	NDPSVACDO,	11,		0x0100,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV001,	:,			IntStatTP001DS,	NDPSVACDO,	11,		0x0200,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV002,	:,			SetIntRst,		NDPSVACDO,	11,		0x0400,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV002,	:,			IntStatVGL002DS,NDPSVACDO,	11,		0x0800,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV002,	:,			IntStatDP002DS,	NDPSVACDO,	11,		0x1000,	Close,	Open,	""}
-#{NDPS,	-VAC:,		TPGV002,	:,			IntStatTP002DS,	NDPSVACDO,	11,		0x2000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV003,	:,			SetIntRst,		NDPSVACDO,	11,		0x4000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV003,	:,			IntStatVGL003DS,NDPSVACDO,	11,		0x8000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV003,	:,			IntStatDP003DS,	NDPSVACDO,	11,		0x0001,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV003,	:,			IntStatTP003DS,	NDPSVACDO,	11,		0x0002,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV004,	:,			SetIntRst,		NDPSVACDO,	11,		0x0004,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV004,	:,			IntStatVGL004DS,NDPSVACDO,	11,		0x0008,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV004,	:,			IntStatDP004DS,	NDPSVACDO,	11,		0x0010,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV004,	:,			IntStatTP004DS,	NDPSVACDO,	11,		0x0020,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV005,	:,			SetIntRst,		NDPSVACDO,	11,		0x0040,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV005,	:,			IntStatVGL005DS,NDPSVACDO,	11,		0x0080,	Close,	Open,	""}
-
-{NDPS,	-VAC:,		TPGV005,	:,			IntStatDP005DS,	NDPSVACDO,	12,		0x0100,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV005,	:,			IntStatTP005DS,	NDPSVACDO,	12,		0x0200,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV006,	:,			SetIntRst,		NDPSVACDO,	12,		0x0400,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV006,	:,			IntStatVGL006DS,NDPSVACDO,	12,		0x0800,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV006,	:,			IntStatDP006DS,	NDPSVACDO,	12,		0x1000,	Close,	Open,	""}
-{NDPS,	-VAC:,		TPGV006,	:,			IntStatTP006DS,	NDPSVACDO,	12,		0x2000,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV001,		:,			SetIntRst,		NDPSVACDO,	12,		0x4000,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV001,		:,			IntStatVGL001DS,NDPSVACDO,	12,		0x8000,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV001,		:,			IntStatDP001DS,	NDPSVACDO,	12,		0x0001,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV001,		:,			IntStatTP001DS,	NDPSVACDO,	12,		0x0002,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV002,		:,			SetIntRst,		NDPSVACDO,	12,		0x0004,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV002,		:,			IntStatVGL002DS,NDPSVACDO,	12,		0x0008,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV002,		:,			IntStatDP002DS,	NDPSVACDO,	12,		0x0010,	Close,	Open,	""}
-#{NDPS,	-VAC:,		AV002,		:,			IntStatTP002DS,	NDPSVACDO,	12,		0x0020,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV003,		:,			SetIntRst,		NDPSVACDO,	12,		0x0040,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV003,		:,			IntStatVGL003DS,NDPSVACDO,	12,		0x0080,	Close,	Open,	""}
-
-{NDPS,	-VAC:,		AV003,		:,			IntStatDP003DS,	NDPSVACDO,	13,		0x0100,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV003,		:,			IntStatTP003DS,	NDPSVACDO,	13,		0x0200,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV004,		:,			SetIntRst,		NDPSVACDO,	13,		0x0400,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV004,		:,			IntStatVGL004DS,NDPSVACDO,	13,		0x0800,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV004,		:,			IntStatDP004DS,	NDPSVACDO,	13,		0x1000,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV004,		:,			IntStatTP004DS,	NDPSVACDO,	13,		0x2000,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV005,		:,			SetIntRst,		NDPSVACDO,	13,		0x4000,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV005,		:,			IntStatVGL005DS,NDPSVACDO,	13,		0x8000,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV005,		:,			IntStatDP005DS,	NDPSVACDO,	13,		0x0001,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV005,		:,			IntStatTP005DS,	NDPSVACDO,	13,		0x0002,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV006,		:,			SetIntRst,		NDPSVACDO,	13,		0x0004,	Close,	Open,	""}
-{NDPS,	-VAC:,		AV006,		:,			IntStatVGL006DS,NDPSVACDO,	13,		0x0008,	Close,	Open,	""}
-
+{NDPS,	-VAC:,		TPGV004,	:,			IntStatDP004DS,	NDPSVACDO,	12,		0x0100,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV004,	:,			IntStatTP004DS,	NDPSVACDO,	12,		0x0200,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV005,	:,			SetIntRst,		NDPSVACDO,	12,		0x0400,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV005,	:,			IntStatVGL005DS,NDPSVACDO,	12,		0x0800,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV005,	:,			IntStatDP005DS,	NDPSVACDO,	12,		0x1000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV005,	:,			IntStatTP005DS,	NDPSVACDO,	12,		0x2000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV006,	:,			SetIntRst,		NDPSVACDO,	12,		0x4000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV006,	:,			IntStatVGL006DS,NDPSVACDO,	12,		0x8000,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV006,	:,			IntStatDP006DS,	NDPSVACDO,	12,		0x0001,	Close,	Open,	""}
+{NDPS,	-VAC:,		TPGV006,	:,			IntStatTP006DS,	NDPSVACDO,	12,		0x0002,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV001,		:,			SetIntRst,		NDPSVACDO,	12,		0x0004,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV001,		:,			IntStatVGL001DS,NDPSVACDO,	12,		0x0008,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV001,		:,			IntStatDP001DS,	NDPSVACDO,	12,		0x0010,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV001,		:,			IntStatTP001DS,	NDPSVACDO,	12,		0x0020,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV002,		:,			SetIntRst,		NDPSVACDO,	12,		0x0040,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV002,		:,			IntStatVGL002DS,NDPSVACDO,	12,		0x0080,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV002,		:,			IntStatDP002DS,	NDPSVACDO,	13,		0x0100,	Close,	Open,	""}
+#{NDPS,	-VAC:,		AV002,		:,			IntStatTP002DS,	NDPSVACDO,	13,		0x0200,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV003,		:,			SetIntRst,		NDPSVACDO,	13,		0x0400,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV003,		:,			IntStatVGL003DS,NDPSVACDO,	13,		0x0800,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV003,		:,			IntStatDP003DS,	NDPSVACDO,	13,		0x1000,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV003,		:,			IntStatTP003DS,	NDPSVACDO,	13,		0x2000,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV004,		:,			SetIntRst,		NDPSVACDO,	13,		0x4000,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV004,		:,			IntStatVGL004DS,NDPSVACDO,	13,		0x8000,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV004,		:,			IntStatDP004DS,	NDPSVACDO,	13,		0x0001,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV004,		:,			IntStatTP004DS,	NDPSVACDO,	13,		0x0002,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV005,		:,			SetIntRst,		NDPSVACDO,	13,		0x0004,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV005,		:,			IntStatVGL005DS,NDPSVACDO,	13,		0x0008,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV005,		:,			IntStatDP005DS,	NDPSVACDO,	13,		0x0010,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV005,		:,			IntStatTP005DS,	NDPSVACDO,	13,		0x0020,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV006,		:,			SetIntRst,		NDPSVACDO,	13,		0x0040,	Close,	Open,	""}
+{NDPS,	-VAC:,		AV006,		:,			IntStatVGL006DS,NDPSVACDO,	13,		0x0080,	Close,	Open,	""}
 {NDPS,	-VAC:,		AV006,		:,			IntStatDP006DS,	NDPSVACDO,	14,		0x0100,	Close,	Open,	""}
 {NDPS,	-VAC:,		AV006,		:,			IntStatTP006DS,	NDPSVACDO,	14,		0x0200,	Close,	Open,	""}
 
