@@ -7,6 +7,7 @@
 
 wget https://dlcdn.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
 tar -vzxf kafka_2.12-3.3.1.tgz 
+sleep 1
 ln -s kafka_2.12-3.3.1 kafka
 
 sed -i 's/\/tmp\/zookeeper/\/home\/ctrluser\/zookeeper-logs/g' kafka/config/zookeeper.properties
@@ -17,6 +18,7 @@ sed -i 's/#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/192.168.75.71:9
 sed -i'' -r -e '/#advertised.listeners=/i\advertised.host.name=devDesk' kafka/config/server.properties
 sed -i'' -r -e '/#advertised.listeners=/a\auto.create.topics.enable=false' kafka/config/server.properties
 sed -i 's/#advertised.listeners=PLAINTEXT:\/\/your.host.name:9092/advertised.listeners=PLAINTEXT:\/\/192.168.75.71:9092/g' kafka/config/server.properties
+
 
 ##[zookeeper.service]
 #Environment=JAVA_HOME=/PATH/TO/JDK
@@ -49,6 +51,11 @@ sed -i 's/\/opt\/kafka\/bin\/kafka-server-start.sh \/opt\/kafka\/config\/server.
 sed -i 's/\/opt\/kafka\/bin\/kafka-server-stop.sh/\/home\/ctrluser\/alarm\/kafka\/bin\/kafka-server-stop.sh/g' kafka.service
 
 sudo cp kafka.service zookeeper.service /etc/systemd/system
+
+export hostip=192.168.75.71
+
+sed -i "s#localhost#$hostip#g" create_alarm_topics.sh
+sed -i "s#localhost#$hostip#g" delete_alarm_topics.sh
 
 echo "Next, create topic(Accelerator,Demo,...) by using create_alarm_topic.sh 
      Then, should be started phoebus/services/alarm-server/alarm-server.sh"
