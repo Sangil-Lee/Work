@@ -1,0 +1,6305 @@
+########################################################################
+# External I/O
+# Desc: External trigger input and output.
+
+# Input
+record(bo, "$(P)$(R)ClearExInEv-Cmd"){
+  field(DESC, "Clear External Input trigger event")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClearExInEvCalc")
+}
+
+record(calcout, "$(P)$(R)ClearExInEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear External Input trigger event calc")
+  field(INPA, "$(P)$(R)ClearExInEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto exin_clear_set $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)ExInEdge-Sel"){
+  field(DESC, "External Input edge type")
+  field(ZRST, "FALLING")
+  field(ONST, "RISING")
+  field(TWST, "EITHER")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto exin_edge_set $(PORT)")
+  field(FLNK, "$(P)$(R)ExInEdge-Sts")
+}
+
+record(mbbi, "$(P)$(R)ExInEdge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "External Input edge type Sts")
+  field(ZRST, "FALLING")
+  field(ONST, "RISING")
+  field(TWST, "EITHER")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto exin_edge_get $(PORT)")
+}
+
+record(bi, "$(P)$(R)ExInOver-Mon"){
+  field(DESC, "External Input overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto exin_over_get $(PORT)")
+}
+
+# Output
+record(bo, "$(P)$(R)ExOutPol-Sel"){
+  field(DESC, "External Output trigger polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto exout_pol_set $(PORT)")
+  field(FLNK, "$(P)$(R)ExOutPol-Sts")
+}
+
+record(bi, "$(P)$(R)ExOutPol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output trigger polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto exout_pol_get $(PORT)")
+}
+
+record(stringout, "$(P)$(R)ExOutStim-Sel"){
+  field(DESC, "External Output Stimulus selection")
+  field(FLNK, "$(P)$(R)ExOutStimCalc1")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 1")
+  field(INAA, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)ExOutStimCalc2")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 2")
+  field(INPA, "$(P)$(R)ExOutStimCalc1.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)ExOutStimCalc3")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 3")
+  field(INPA, "$(P)$(R)ExOutStimCalc2.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)ExOutStimCalc4")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 4")
+  field(INPA, "$(P)$(R)ExOutStimCalc3.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)ExOutStimCalc5")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 5")
+  field(INPA, "$(P)$(R)ExOutStimCalc4.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)ExOutStimCalc6")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 6")
+  field(INPA, "$(P)$(R)ExOutStimCalc5.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)ExOutStimCalc7")
+}
+
+record(scalcout, "$(P)$(R)ExOutStimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus calc 7")
+  field(INPA, "$(P)$(R)ExOutStimCalc6.VAL")
+  field(INBB, "$(P)$(R)ExOutStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)ExOutStimOut PP")
+}
+
+record(stringout, "$(P)$(R)ExOutStimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto exout_stim_set $(PORT)")
+  field(FLNK, "$(P)$(R)ExOutStim-Sts")
+}
+
+record(stringin, "$(P)$(R)ExOutStim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "External Output Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto exout_stim_get $(PORT)")
+}
+
+########################################################################
+# Digital I/O
+# Desc: Digital I/O configuration. Simple output signals, and triggers.
+
+# All lines must be configured as digital output
+record(longout, "$(P)$(R)DigWrite-SP"){
+  field(DESC, "Set all digital lines state as an int")
+  field(DRVH, "63")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_writeall_set $(PORT)")
+}
+
+record(longin, "$(P)$(R)DigRead-Mon"){
+  field(DESC, "Read all digital lines state as an int")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_readall_get $(PORT)")
+}
+
+#################################################################
+# DIG1
+
+record(mbbo, "$(P)$(R)Dig1Mod-Sel"){
+  field(DESC, "Digital line 1 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig1Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig1Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 1 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig1State-Sel"){
+  field(DESC, "Digital line 1 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(1) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig1State-Mon"){
+  field(DESC, "Digital line 1 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(1) $(PORT)")
+}
+
+# Command issued only when set to 1
+record(bo, "$(P)$(R)Dig1ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 1")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig1ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig1ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 1")
+  field(INPA, "$(P)$(R)Dig1ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(1) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig1Edge-Sel"){
+  field(DESC, "Digital trigger input 1 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig1Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig1Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 1 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(1) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig1Over-Mon"){
+  field(DESC, "Digital inp. 1 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig1Pol-Sel"){
+  field(DESC, "Digital out. 1 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig1Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig1Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(1) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig1Width-SP"){
+  field(DESC, "Digital out. 1 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig1Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig1Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 1 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig1Assert-Cmd"){
+  field(DESC, "Digital out. 1 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig1AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig1AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig1Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig1Release-Cmd"){
+  field(DESC, "Digital out. 1 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig1ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig1ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trig. release calc")
+  field(INPA, "$(P)$(R)Dig1Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(1) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig1Stim-Sel"){
+  field(DESC, "Digital out. 1 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig1StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig1StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig1StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig1StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig1StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig1StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig1StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig1StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig1StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig1StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig1StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig1StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig1StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig1StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig1StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig1StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 1 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig1Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig1Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 1 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(1) $(PORT)")
+}
+
+#################################################################
+# DIG2
+
+record(mbbo, "$(P)$(R)Dig2Mod-Sel"){
+  field(DESC, "Digital line 2 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig2Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig2Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 2 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig2State-Sel"){
+  field(DESC, "Digital line 2 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(2) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig2State-Mon"){
+  field(DESC, "Digital line 2 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(2) $(PORT)")
+}
+
+# Command issued only when set to 2
+record(bo, "$(P)$(R)Dig2ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 2")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig2ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig2ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 2")
+  field(INPA, "$(P)$(R)Dig2ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(2) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig2Edge-Sel"){
+  field(DESC, "Digital trigger input 2 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig2Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig2Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 2 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(2) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig2Over-Mon"){
+  field(DESC, "Digital inp. 2 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig2Pol-Sel"){
+  field(DESC, "Digital out. 2 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig2Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig2Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(2) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig2Width-SP"){
+  field(DESC, "Digital out. 2 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig2Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig2Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 2 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig2Assert-Cmd"){
+  field(DESC, "Digital out. 2 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig2AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig2AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig2Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig2Release-Cmd"){
+  field(DESC, "Digital out. 2 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig2ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig2ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trig. release calc")
+  field(INPA, "$(P)$(R)Dig2Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(2) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig2Stim-Sel"){
+  field(DESC, "Digital out. 2 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig2StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig2StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig2StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig2StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig2StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig2StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig2StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig2StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig2StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig2StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig2StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig2StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig2StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig2StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig2StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig2StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 2 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig2Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig2Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 2 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(2) $(PORT)")
+}
+
+#################################################################
+# DIG3
+
+record(mbbo, "$(P)$(R)Dig3Mod-Sel"){
+  field(DESC, "Digital line 3 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig3Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig3Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 3 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig3State-Sel"){
+  field(DESC, "Digital line 3 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(3) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig3State-Mon"){
+  field(DESC, "Digital line 3 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(3) $(PORT)")
+}
+
+# Command issued only when set to 3
+record(bo, "$(P)$(R)Dig3ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 3")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig3ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig3ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 3")
+  field(INPA, "$(P)$(R)Dig3ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(3) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig3Edge-Sel"){
+  field(DESC, "Digital trigger input 3 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig3Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig3Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 3 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(3) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig3Over-Mon"){
+  field(DESC, "Digital inp. 3 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig3Pol-Sel"){
+  field(DESC, "Digital out. 3 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig3Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig3Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(3) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig3Width-SP"){
+  field(DESC, "Digital out. 3 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig3Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig3Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 3 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig3Assert-Cmd"){
+  field(DESC, "Digital out. 3 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig3AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig3AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig3Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig3Release-Cmd"){
+  field(DESC, "Digital out. 3 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig3ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig3ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trig. release calc")
+  field(INPA, "$(P)$(R)Dig3Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(3) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig3Stim-Sel"){
+  field(DESC, "Digital out. 3 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig3StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig3StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig3StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig3StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig3StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig3StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig3StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig3StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig3StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig3StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig3StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig3StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig3StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig3StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig3StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig3StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 3 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig3Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig3Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 3 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(3) $(PORT)")
+}
+
+#################################################################
+# DIG4
+
+record(mbbo, "$(P)$(R)Dig4Mod-Sel"){
+  field(DESC, "Digital line 4 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig4Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig4Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 4 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig4State-Sel"){
+  field(DESC, "Digital line 4 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(4) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig4State-Mon"){
+  field(DESC, "Digital line 4 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(4) $(PORT)")
+}
+
+# Command issued only when set to 4
+record(bo, "$(P)$(R)Dig4ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 4")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig4ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig4ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 4")
+  field(INPA, "$(P)$(R)Dig4ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(4) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig4Edge-Sel"){
+  field(DESC, "Digital trigger input 4 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig4Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig4Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 4 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(4) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig4Over-Mon"){
+  field(DESC, "Digital inp. 4 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig4Pol-Sel"){
+  field(DESC, "Digital out. 4 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig4Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig4Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(4) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig4Width-SP"){
+  field(DESC, "Digital out. 4 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig4Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig4Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 4 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig4Assert-Cmd"){
+  field(DESC, "Digital out. 4 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig4AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig4AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig4Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig4Release-Cmd"){
+  field(DESC, "Digital out. 4 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig4ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig4ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trig. release calc")
+  field(INPA, "$(P)$(R)Dig4Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(4) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig4Stim-Sel"){
+  field(DESC, "Digital out. 4 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig4StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig4StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig4StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig4StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig4StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig4StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig4StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig4StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig4StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig4StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig4StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig4StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig4StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig4StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig4StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig4StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 4 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig4Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig4Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 4 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(4) $(PORT)")
+}
+
+#################################################################
+# DIG5
+
+record(mbbo, "$(P)$(R)Dig5Mod-Sel"){
+  field(DESC, "Digital line 5 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(5) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig5Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig5Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 5 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(5) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig5State-Sel"){
+  field(DESC, "Digital line 5 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(5) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig5State-Mon"){
+  field(DESC, "Digital line 5 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(5) $(PORT)")
+}
+
+# Command issued only when set to 5
+record(bo, "$(P)$(R)Dig5ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 5")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig5ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig5ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 5")
+  field(INPA, "$(P)$(R)Dig5ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(5) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig5Edge-Sel"){
+  field(DESC, "Digital trigger input 5 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(5) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig5Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig5Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 5 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(5) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig5Over-Mon"){
+  field(DESC, "Digital inp. 5 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(5) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig5Pol-Sel"){
+  field(DESC, "Digital out. 5 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(5) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig5Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig5Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(5) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig5Width-SP"){
+  field(DESC, "Digital out. 5 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(5) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig5Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig5Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 5 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(5) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig5Assert-Cmd"){
+  field(DESC, "Digital out. 5 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig5AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig5AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig5Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(5) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig5Release-Cmd"){
+  field(DESC, "Digital out. 5 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig5ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig5ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trig. release calc")
+  field(INPA, "$(P)$(R)Dig5Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(5) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig5Stim-Sel"){
+  field(DESC, "Digital out. 5 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig5StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig5StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig5StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig5StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig5StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig5StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig5StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig5StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig5StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig5StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig5StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig5StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig5StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig5StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig5Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig5StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig5StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 5 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(5) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig5Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig5Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 5 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(5) $(PORT)")
+}
+
+#################################################################
+# DIG6
+
+record(mbbo, "$(P)$(R)Dig6Mod-Sel"){
+  field(DESC, "Digital line 6 mode")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_mode_set(6) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig6Mod-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig6Mod-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital line 6 mode Sts")
+  field(ZRST, "DIGIN")
+  field(ONST, "DIGOUT")
+  field(TWST, "DIGOPEN")
+  field(THST, "TRIGIN")
+  field(FRST, "TRIGOUT")
+  field(FVST, "TRIGOPEN")
+  field(SXST, "SYNCMASTER")
+  field(SVST, "SYNCACC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_mode_get(6) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig6State-Sel"){
+  field(DESC, "Digital line 6 state setting")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_state_set(6) $(PORT)")
+}
+
+# Process requested only by user or software
+record(bi, "$(P)$(R)Dig6State-Mon"){
+  field(DESC, "Digital line 6 state")
+  field(ZNAM, "LOW")
+  field(ONAM, "HIGH")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_state_get(6) $(PORT)")
+}
+
+# Command issued only when set to 6
+record(bo, "$(P)$(R)Dig6ClrEv-Cmd"){
+  field(DESC, "Clear trigger event on digital line 6")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig6ClrEvCalc")
+}
+
+record(calcout, "$(P)$(R)Dig6ClrEvCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Calc for clear trig event on dig line 6")
+  field(INPA, "$(P)$(R)Dig6ClrEv-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_clrev_set(6) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)Dig6Edge-Sel"){
+  field(DESC, "Digital trigger input 6 edge")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_edge_set(6) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig6Edge-Sts")
+}
+
+record(mbbi, "$(P)$(R)Dig6Edge-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital trigger input 6 edge Sts")
+  field(ZRST, "Falling")
+  field(ONST, "Rising")
+  field(TWST, "Either")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_edge_get(6) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Dig6Over-Mon"){
+  field(DESC, "Digital inp. 6 trig. overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_over_get(6) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig6Pol-Sel"){
+  field(DESC, "Digital out. 6 trig. polarity")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_pol_set(6) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig6Pol-Sts")
+}
+
+record(bi, "$(P)$(R)Dig6Pol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trig. polarity Sts")
+  field(ZNAM, "Positive")
+  field(ONAM, "Negative")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_pol_get(6) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Dig6Width-SP"){
+  field(DESC, "Digital out. 6 trig. width")
+  field(DRVH, "100000")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_width_set(6) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig6Width-RB")
+}
+
+record(ai, "$(P)$(R)Dig6Width-RB"){
+  field(ASG, "Reserved")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DESC, "Digital out. 6 trig. width RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_width_get(6) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig6Assert-Cmd"){
+  field(DESC, "Digital out. 6 trig. assert cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig6AssertCalc")
+}
+
+record(calcout, "$(P)$(R)Dig6AssertCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trig. assert calc")
+  field(INPA, "$(P)$(R)Dig6Assert-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_assert_set(6) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Dig6Release-Cmd"){
+  field(DESC, "Digital out. 6 trig. release cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Dig6ReleaseCalc")
+}
+
+record(calcout, "$(P)$(R)Dig6ReleaseCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trig. release calc")
+  field(INPA, "$(P)$(R)Dig6Release-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_release_set(6) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Dig6Stim-Sel"){
+  field(DESC, "Digital out. 6 trig. Stimulus selection")
+  field(FLNK, "$(P)$(R)Dig6StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 1")
+  field(INAA, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Dig6StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 2")
+  field(INPA, "$(P)$(R)Dig6StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig6StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 3")
+  field(INPA, "$(P)$(R)Dig6StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Dig6StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 4")
+  field(INPA, "$(P)$(R)Dig6StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Dig6StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 5")
+  field(INPA, "$(P)$(R)Dig6StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Dig6StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 6")
+  field(INPA, "$(P)$(R)Dig6StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Dig6StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Dig6StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. calc 7")
+  field(INPA, "$(P)$(R)Dig6StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Dig6Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Dig6StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Dig6StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital out. 6 trigger Stim. to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digio_stim_set(6) $(PORT)")
+  field(FLNK, "$(P)$(R)Dig6Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Dig6Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digital output 6 trigger Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digio_stim_get(6) $(PORT)")
+}
+
+########################################################################
+# Function selection
+# Desc: Measurement and digitize functions options
+
+record(mbbo, "$(P)$(R)MeasFnc-Sel"){
+  field(DESC, "Measurement function selection")
+  field(ZRST, "DC_VOLTAGE")
+  field(ONST, "AC_VOLTAGE")
+  field(TWST, "DC_CURRENT")
+  field(THST, "AC_CURRENT")
+  field(FRST, "RESISTANCE")
+  field(FVST, "4W_RESISTANCE")
+  field(SXST, "DIODE")
+  field(SVST, "CAPACITANCE")
+  field(EIST, "TEMPERATURE")
+  field(NIST, "CONTINUITY")
+  field(TEST, "ACV_FREQUENCY")
+  field(ELST, "ACV_PERIOD")
+  field(TVST, "DCV_RATIO")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_func_set $(PORT)")
+  field(FLNK, "$(P)$(R)AuxCalc1")
+}
+
+record(mbbo, "$(P)$(R)DigtzeFnc-Sel"){
+  field(DESC, "Digitize function selection")
+  field(ZRST, "DIGITIZE_VOLTAGE")
+  field(ONST, "DIGITIZE_CURRENT")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_func_set $(PORT)")
+  field(FLNK, "$(P)$(R)AuxCalc1")
+}
+
+record(calcout, "$(P)$(R)AuxCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Waits a second while function changes")
+  field(CALC, "1")
+  field(ODLY, "1")
+  field(OUT, "$(P)$(R)MeasFnc-Sts.PROC")
+}
+
+record(mbbi, "$(P)$(R)MeasFnc-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement function selection Sts")
+  field(ZRST, "NONE")
+  field(ONST, "DC_VOLTAGE")
+  field(TWST, "AC_VOLTAGE")
+  field(THST, "DC_CURRENT")
+  field(FRST, "AC_CURRENT")
+  field(FVST, "RESISTANCE")
+  field(SXST, "4W_RESISTANCE")
+  field(SVST, "DIODE")
+  field(EIST, "CAPACITANCE")
+  field(NIST, "TEMPERATURE")
+  field(TEST, "CONTINUITY")
+  field(ELST, "ACV_FREQUENCY")
+  field(TVST, "ACV_PERIOD")
+  field(TTST, "DCV_RATIO")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_func_get $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeFnc-Sts")
+}
+
+record(mbbi, "$(P)$(R)DigtzeFnc-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize function selection Sts")
+  field(ZRST, "NONE")
+  field(ONST, "DIGITIZE_VOLTAGE")
+  field(TWST, "DIGITIZE_CURRENT")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_func_get $(PORT)")
+  field(FLNK, "$(P)$(R)FunctionCheck")
+}
+
+record(calc, "$(P)$(R)FunctionCheck"){
+  field(ASG, "Reserved")
+  field(DESC, "Function selection check calc")
+  field(INPA, "$(P)$(R)MeasFnc-Sts.VAL")
+  field(INPB, "$(P)$(R)DigtzeFnc-Sts.VAL")
+  field(CALC, "A=0?(B+12):(A-1)")
+  field(FLNK, "$(P)$(R)Function-Sts")
+}
+
+# Processing Function-Sts triggers the upload of all function-related records.
+# This is accomplished by the forward link to 'UpFncCalc1'.
+record(mbbi, "$(P)$(R)Function-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Function selection Sts")
+  field(ZRST, "DC_VOLTAGE")
+  field(ONST, "AC_VOLTAGE")
+  field(TWST, "DC_CURRENT")
+  field(THST, "AC_CURRENT")
+  field(FRST, "RESISTANCE")
+  field(FVST, "4W_RESISTANCE")
+  field(SXST, "DIODE")
+  field(SVST, "CAPACITANCE")
+  field(EIST, "TEMPERATURE")
+  field(NIST, "CONTINUITY")
+  field(TEST, "ACV_FREQUENCY")
+  field(ELST, "ACV_PERIOD")
+  field(TVST, "DCV_RATIO")
+  field(TTST, "DIGITIZE_VOLTAGE")
+  field(FTST, "DIGITIZE_CURRENT")
+  field(INP, "$(P)$(R)FunctionCheck.VAL")
+  field(FLNK, "$(P)$(R)UpFncCalc1")
+}
+
+########################################################################
+# Measurement Input Impedance
+# Desc: Input impedance setting for DC Voltage measurement.
+
+record(bo, "$(P)$(R)MeasImpedance-Sel"){
+  field(DESC, "Enable meas. 10MΩ input divider")
+  field(ZNAM, "AUTO")
+  field(ONAM, "10MOhm")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_imped_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasImpedance-Sts")
+}
+
+record(bi, "$(P)$(R)MeasImpedance-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Enable meas. 10MΩ input divider Sts")
+  field(ZNAM, "AUTO")
+  field(ONAM, "10MOhm")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_imped_get $(PORT)")
+}
+
+########################################################################
+# Digitize Input Impedance
+# Desc: Input impedance setting for Voltage Digitize.
+
+record(bo, "$(P)$(R)DigtzeImpedance-Sel"){
+  field(DESC, "Enable digitize 10MΩ input divider")
+  field(ZNAM, "AUTO")
+  field(ONAM, "10MOhm")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_imped_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeImpedance-Sts")
+}
+
+record(bi, "$(P)$(R)DigtzeImpedance-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Enable digitize 10MΩ input divider Sts")
+  field(ZNAM, "AUTO")
+  field(ONAM, "10MOhm")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_imped_get $(PORT)")
+}
+
+########################################################################
+# Measurement
+# Desc: Measurement function options.
+
+# Changing NPLC also updates aperture readback value
+
+# The protocol sets the aperture for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MeasApert-SP"){
+  field(DESC, "Measurement function aperture")
+  field(DRVH, "250")
+  field(DRVL, "0.008333")
+  field(EGU, "ms")
+  field(PREC, "6")
+  field(ASLO, "1000")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_apert_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasApert-RB")
+}
+
+record(ai, "$(P)$(R)MeasApert-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement function aperture RB")
+  field(EGU, "ms")
+  field(ASLO, "1000")
+  field(PREC, "6")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_apert_get $(PORT)")
+}
+
+# The protocol sets NPLC for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MeasNPLC-SP"){
+  field(DESC, "Meas. aperture in power line cycles")
+  field(DRVH, "15")
+  field(DRVL, "0.0005")
+  field(PREC, "4")
+  field(EGU, "PLC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_nplc_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasNPLC-RB")
+}
+
+record(ai, "$(P)$(R)MeasNPLC-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. aperture in power line cycles RB")
+  field(PREC, "4")
+  field(EGU, "PLC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_nplc_get $(PORT)")
+  field(FLNK, "$(P)$(R)MeasApert-RB")
+}
+
+# The protocol sets the autodelay for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MeasAutoDly-Sel"){
+  field(DESC, "Measurement autodelay enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_autodly_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasAutoDly-Sts")
+}
+
+record(bi, "$(P)$(R)MeasAutoDly-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement autodelay enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_autodly_get $(PORT)")
+}
+
+# The protocol sets the line sync option for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MeasLineSync-Sel"){
+  field(DESC, "Enable/disable line sync for measurement")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_linesync_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasLineSync-Sts")
+}
+
+record(bi, "$(P)$(R)MeasLineSync-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Enable line sync for measurement Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_linesync_get $(PORT)")
+}
+
+record(longout, "$(P)$(R)MeasCnt-SP"){
+  field(DESC, "Number of meas. done after a request")
+  field(DRVH, "1000000")
+  field(DRVL, "1")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_cnt_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasCnt-RB")
+}
+
+record(longin, "$(P)$(R)MeasCnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Number of meas. done after a request RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_cnt_get $(PORT)")
+}
+
+record(stringout, "$(P)$(R)MeasStim-Sel"){
+  field(DESC, "Measurement Stimulus selection")
+  field(FLNK, "$(P)$(R)MeasStimCalc1")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 1")
+  field(INAA, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)MeasStimCalc2")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 2")
+  field(INPA, "$(P)$(R)MeasStimCalc1.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)MeasStimCalc3")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 3")
+  field(INPA, "$(P)$(R)MeasStimCalc2.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)MeasStimCalc4")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 4")
+  field(INPA, "$(P)$(R)MeasStimCalc3.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)MeasStimCalc5")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 5")
+  field(INPA, "$(P)$(R)MeasStimCalc4.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)MeasStimCalc6")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 6")
+  field(INPA, "$(P)$(R)MeasStimCalc5.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)MeasStimCalc7")
+}
+
+record(scalcout, "$(P)$(R)MeasStimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus calc 7")
+  field(INPA, "$(P)$(R)MeasStimCalc6.VAL")
+  field(INBB, "$(P)$(R)MeasStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)MeasStimOut PP")
+}
+
+record(stringout, "$(P)$(R)MeasStimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto meas_stim_set $(PORT)")
+  field(FLNK, "$(P)$(R)MeasStim-Sts")
+}
+
+record(stringin, "$(P)$(R)MeasStim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto meas_stim_get $(PORT)")
+}
+
+########################################################################
+# Filter
+# Desc: Filter applied to measurement result.
+
+# The protocol sets the filter count for the SELECTED MEASUREMENT
+record(longout, "$(P)$(R)FilterCnt-SP"){
+  field(DESC, "Measurement filter count")
+  field(DRVH, "100")
+  field(DRVL, "1")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto filter_cnt_set $(PORT)")
+  field(FLNK, "$(P)$(R)FilterCnt-RB")
+}
+
+record(longin, "$(P)$(R)FilterCnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement filter count RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto filter_cnt_get $(PORT)")
+}
+
+# The protocol sets the filter enable state for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)FilterEnbl-Sel"){
+  field(DESC, "Measurement filter enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto filter_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)FilterEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)FilterEnbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement filter enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto filter_en_get $(PORT)")
+}
+
+# The protocol sets the filter type for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)FilterTyp-Sel"){
+  field(DESC, "Measurement filter type")
+  field(ZNAM, "Repeat")
+  field(ONAM, "Moving")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto filter_typ_set $(PORT)")
+  field(FLNK, "$(P)$(R)FilterTyp-Sts")
+}
+
+record(bi, "$(P)$(R)FilterTyp-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement filter type Sts")
+  field(ZNAM, "Repeat")
+  field(ONAM, "Moving")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto filter_typ_get $(PORT)")
+}
+
+# The protocol sets the filter window for the SELECTED MEASUREMENT
+record(longout, "$(P)$(R)FilterWind-SP"){
+  field(DESC, "Measurement filter window")
+  field(DRVH, "10")
+  field(DRVL, "0")
+  field(EGU, "%")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto filter_wind_set $(PORT)")
+  field(FLNK, "$(P)$(R)FilterWind-RB")
+}
+
+record(longin, "$(P)$(R)FilterWind-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement filter window RB")
+  field(EGU, "%")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto filter_wind_get $(PORT)")
+}
+
+########################################################################
+# Autozero
+# Desc: Autozero function enable/disable and once command.
+#	Only some measurement functions allow the use of autozero.
+
+# The protocol enables/disables autozero for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)AutoZero-Sel"){
+  field(DESC, "Enable/disalbe Autozero")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto azero_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)AutoZero-Sts")
+}
+
+record(bi, "$(P)$(R)AutoZero-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Enable/disalbe Autozero Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto azero_en_get $(PORT)")
+}
+
+record(bo, "$(P)$(R)AZeroOnce-Cmd"){
+  field(DESC, "Autozero once command")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)AZeroOnceCalc")
+}
+
+record(calcout, "$(P)$(R)AZeroOnceCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Autozero once calc")
+  field(INPA, "$(P)$(R)AZeroOnce-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP,"stream")
+  field(OUT, "@dmm7510.proto azero_once_set $(PORT)")
+}
+
+########################################################################
+# Digitize
+# Desc: Digitize function options.
+
+# The protocol sets the auto aperture for the SELECTED DIGITIZE function
+record(bo, "$(P)$(R)DigtzeApertAuto-Cmd"){
+  field(DESC, "Digitize AUTO aperture cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)DigtzeApertAutoCalc")
+}
+
+record(calcout, "$(P)$(R)DigtzeApertAutoCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize AUTO aperture calc")
+  field(INPA, "$(P)$(R)DigtzeApertAuto-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_apertauto_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeApert-RB")
+}
+
+# The protocol sets the aperture for the SELECTED DIGITIZE function
+record(ao, "$(P)$(R)DigtzeApert-SP"){
+  field(DESC, "Digitize function aperture")
+  field(DRVH, "1000")
+  field(DRVL, "1")
+  field(ASLO, "1000000")
+  field(EGU, "us")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_apert_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeApert-RB")
+}
+
+record(ai, "$(P)$(R)DigtzeApert-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize function aperture RB")
+  field(ASLO, "1000000")
+  field(EGU, "us")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_apert_get $(PORT)")
+}
+
+# Only the digitize voltage function has the coupling choice
+record(bo, "$(P)$(R)DigtzeCoup-Sel"){
+  field(DESC, "Digitize signal coupling")
+  field(ZNAM, "AC")
+  field(ONAM, "DC")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_coup_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeCoup-Sts")
+}
+
+record(bi, "$(P)$(R)DigtzeCoup-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize signal coupling Sts")
+  field(ZNAM, "AC")
+  field(ONAM, "DC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_coup_get $(PORT)")
+}
+
+# The protocol sets the sampling rate for the SELECTED DIGITIZE function
+record(longout, "$(P)$(R)DigtzeSR-SP"){
+  field(DESC, "Digitize sampling rate")
+  field(DRVH, "1000000")
+  field(DRVL, "1000")
+  field(EGU, "rdgs per sec")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_sr_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeSR-RB")
+}
+
+record(longin, "$(P)$(R)DigtzeSR-RB"){
+  field(ASG, "Reserved")  
+  field(EGU, "rdgs per sec")
+  field(DESC, "Digitize sampling rate RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_sr_get $(PORT)")
+}
+
+record(longout, "$(P)$(R)DigtzeCnt-SP"){
+  field(DESC, "Number of meas. done after a request")
+  field(DRVH, "55000000")
+  field(DRVL, "1")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_cnt_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeCnt-RB")
+}
+
+record(longin, "$(P)$(R)DigtzeCnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Number of meas. done after a request RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_cnt_get $(PORT)")
+}
+
+record(stringout, "$(P)$(R)DigtzeStim-Sel"){
+  field(DESC, "Digitize function stimulus selection")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc1")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 1")
+  field(INAA, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc2")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 2")
+  field(INPA, "$(P)$(R)DigtzeStimCalc1.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc3")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 3")
+  field(INPA, "$(P)$(R)DigtzeStimCalc2.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc4")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 4")
+  field(INPA, "$(P)$(R)DigtzeStimCalc3.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc5")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 5")
+  field(INPA, "$(P)$(R)DigtzeStimCalc4.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc6")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 6")
+  field(INPA, "$(P)$(R)DigtzeStimCalc5.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)DigtzeStimCalc7")
+}
+
+record(scalcout, "$(P)$(R)DigtzeStimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus calc 7")
+  field(INPA, "$(P)$(R)DigtzeStimCalc6.VAL")
+  field(INBB, "$(P)$(R)DigtzeStim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)DigtzeStimOut PP")
+}
+
+record(stringout, "$(P)$(R)DigtzeStimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_stim_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeStim-Sts")
+}
+
+record(stringin, "$(P)$(R)DigtzeStim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_stim_get $(PORT)")
+}
+
+record(bo, "$(P)$(R)DigtzeACFilter-Sel"){
+  field(DESC, "Digitize AC coupling filter")
+  field(ZNAM, "Slow")
+  field(ONAM, "Fast")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_acfilter_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeACFilter-Sts")
+}
+
+record(bi, "$(P)$(R)DigtzeACFilter-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize AC coupling filter Sts")
+  field(ZNAM, "Slow")
+  field(ONAM, "Fast")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_acfilter_get $(PORT)")
+}
+
+record(ao, "$(P)$(R)DigtzeACFreq-SP"){
+  field(DESC, "Digitize AC freq. for optimization")
+  field(DRVH, "1000000")
+  field(DRVL, "3")
+  field(EGU, "Hz")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto digtz_acfreq_set $(PORT)")
+  field(FLNK, "$(P)$(R)DigtzeACFreq-RB")
+}
+
+record(ai, "$(P)$(R)DigtzeACFreq-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize AC freq. for optimization RB")
+  field(EGU, "Hz")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto digtz_acfreq_get $(PORT)")
+}
+
+########################################################################
+# Measurement Analog Trigger
+# Desc: Generate trigger based on input signal while 
+# a Measurement function is selected.
+
+# The protocol sets the edge level for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MATrEdgeLvl-SP"){
+  field(DESC, "Measure Analog Trig edge level")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_edgelvl_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrEdgeLvl-RB")
+}
+
+record(ai, "$(P)$(R)MATrEdgeLvl-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig edge level RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_edgelvl_get $(PORT)")
+}
+
+# The protocol sets the edge slope for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MATrEdgeSlp-Sel"){
+  field(DESC, "Measure Analog Trig edge slope")
+  field(ZNAM, "Rising")
+  field(ONAM, "Falling")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_edgeslp_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrEdgeSlp-Sts")
+}
+
+record(bi, "$(P)$(R)MATrEdgeSlp-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig edge slope Sts")
+  field(ZNAM, "Rising")
+  field(ONAM, "Falling")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_edgeslp_get $(PORT)")
+}
+
+# The protocol sets the high frequency rejection for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MATrHFR-Sel"){
+  field(DESC, "Measure Analog Trig HF rejection")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_hfr_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrHFR-Sts")
+}
+
+record(bi, "$(P)$(R)MATrHFR-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig HF rejection Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_hfr_get $(PORT)")
+}
+
+# The protocol sets the mode for the SELECTED MEASUREMENT
+record(mbbo, "$(P)$(R)MATrMode-Sel"){
+  field(DESC, "Measurement Analog Trigger mode")
+  field(ZRST, "OFF")
+  field(ONST, "Edge")
+  field(TWST, "Pulse")
+  field(THST, "Window")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_mode_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrMode-Sts")
+}
+
+record(mbbi, "$(P)$(R)MATrMode-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measurement Analog Trigger mode Sts")
+  field(ZRST, "OFF")
+  field(ONST, "Edge")
+  field(TWST, "Pulse")
+  field(THST, "Window")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_mode_get $(PORT)")
+}
+
+# The protocol sets the pulse trigger condition for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MATrPulCond-Sel"){
+  field(DESC, "Measure Analog Trig pulse condition")
+  field(ZNAM, "Greater")
+  field(ONAM, "Less")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_pulcond_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrPulCond-Sts")
+}
+
+record(bi, "$(P)$(R)MATrPulCond-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig pulse condition Sts")
+  field(ZNAM, "Greater")
+  field(ONAM, "Less")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_pulcond_get $(PORT)")
+}
+
+# The protocol sets the pulse level for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MATrPulLvl-SP"){
+  field(DESC, "Measure Analog Trig pulse level")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_pullvl_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrPulLvl-RB")
+}
+
+record(ai, "$(P)$(R)MATrPulLvl-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig pulse level RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_pullvl_get $(PORT)")
+}
+
+# The protocol sets the pulse polarity for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MATrPulPol-Sel"){
+  field(DESC, "Measure Analog Trig pulse polarity")
+  field(ZNAM, "Above")
+  field(ONAM, "Below")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_pulpol_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrPulPol-Sts")
+}
+
+record(bi, "$(P)$(R)MATrPulPol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig pulse polarity Sts")
+  field(ZNAM, "Above")
+  field(ONAM, "Below")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_pulpol_get $(PORT)")
+}
+
+# The protocol sets the pulse width for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MATrPulWidth-SP"){
+  field(DESC, "Measure Analog Trig pulse width")
+  field(EGU, "seconds")
+  field(DRVH, "0.04")
+  field(DRVL, "0.000001")
+  field(PREC, "6")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_pulwidth_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrPulWidth-RB")
+}
+
+record(ai, "$(P)$(R)MATrPulWidth-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig pulse width RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_pulwidth_get $(PORT)")
+}
+
+# The protocol sets the window direction for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MATrWindDir-Sel"){
+  field(DESC, "Measure Analog Trig window direction")
+  field(ZNAM, "Enter")
+  field(ONAM, "Leave")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_winddir_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrWindDir-Sts")
+}
+
+record(bi, "$(P)$(R)MATrWindDir-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig window direction Sts")
+  field(ZNAM, "Enter")
+  field(ONAM, "Leave")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_winddir_get $(PORT)")
+}
+
+# The protocol sets the window upper boundary for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MATrWindHigh-SP"){
+  field(DESC, "Measure Analog Trig window up boundary")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_windhigh_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrWindHigh-RB")
+}
+
+record(ai, "$(P)$(R)MATrWindHigh-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Measure Analog Trig window up bound. RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_windhigh_get $(PORT)")
+}
+
+# The protocol sets the window lower boundary for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MATrWindLow-SP"){
+  field(DESC, "Measure Analog Trig window low boundary")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_atr_windlow_set $(PORT)")
+  field(FLNK, "$(P)$(R)MATrWindLow-RB")
+}
+
+record(ai, "$(P)$(R)MATrWindLow-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. Analog Trig window low bound. RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_atr_windlow_get $(PORT)")
+}
+
+########################################################################
+# Digitize Analog Trigger
+# Desc: Generate trigger based on input signal while Digitize
+# function is selected.
+
+# The protocol sets the edge level for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DATrEdgeLvl-SP"){
+  field(DESC, "Digitize Analog Trigger edge level")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_edgelvl_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrEdgeLvl-RB")
+}
+
+record(ai, "$(P)$(R)DATrEdgeLvl-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trigger edge level RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_edgelvl_get $(PORT)")
+}
+
+# The protocol sets the edge slope for the SELECTED Digitize FUNCTION
+record(bo, "$(P)$(R)DATrEdgeSlp-Sel"){
+  field(DESC, "Digitize Analog Trigger edge slope")
+  field(ZNAM, "Rising")
+  field(ONAM, "Falling")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_edgeslp_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrEdgeSlp-Sts")
+}
+
+record(bi, "$(P)$(R)DATrEdgeSlp-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trigger edge slope Sts")
+  field(ZNAM, "Rising")
+  field(ONAM, "Falling")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_edgeslp_get $(PORT)")
+}
+
+# The protocol sets the high frequency rejection for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DATrHFR-Sel"){
+  field(DESC, "Digitize Analog Trg. HF rejection")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_hfr_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrHFR-Sts")
+}
+
+record(bi, "$(P)$(R)DATrHFR-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trig. HF rejection Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_hfr_get $(PORT)")
+}
+
+# The protocol sets the mode for the SELECTED DIGITIZE FUNCTION
+record(mbbo, "$(P)$(R)DATrMode-Sel"){
+  field(DESC, "Digitize Analog Trigger mode")
+  field(ZRST, "OFF")
+  field(ONST, "Edge")
+  field(TWST, "Pulse")
+  field(THST, "Window")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_mode_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrMode-Sts")
+}
+
+record(mbbi, "$(P)$(R)DATrMode-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trigger mode Sts")
+  field(ZRST, "OFF")
+  field(ONST, "Edge")
+  field(TWST, "Pulse")
+  field(THST, "Window")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_mode_get $(PORT)")
+}
+
+# The protocol sets the pulse trigger condition for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DATrPulCond-Sel"){
+  field(DESC, "Digitize Analog Trig pulse condition")
+  field(ZNAM, "Greater")
+  field(ONAM, "Less")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_pulcond_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrPulCond-Sts")
+}
+
+record(bi, "$(P)$(R)DATrPulCond-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trig pulse condition Sts")
+  field(ZNAM, "Greater")
+  field(ONAM, "Less")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_pulcond_get $(PORT)")
+}
+
+# The protocol sets the pulse level for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DATrPulLvl-SP"){
+  field(DESC, "Digitize Analog Trigger pulse level")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_pullvl_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrPulLvl-RB")
+}
+
+record(ai, "$(P)$(R)DATrPulLvl-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trig pulse level RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_pullvl_get $(PORT)")
+}
+
+# The protocol sets the pulse polarity for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DATrPulPol-Sel"){
+  field(DESC, "Digitize Analog Trig pulse polarity")
+  field(ZNAM, "Above")
+  field(ONAM, "Below")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_pulpol_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrPulPol-Sts")
+}
+
+record(bi, "$(P)$(R)DATrPulPol-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trig pulse polarity Sts")
+  field(ZNAM, "Above")
+  field(ONAM, "Below")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_pulpol_get $(PORT)")
+}
+
+# The protocol sets the pulse width for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DATrPulWidth-SP"){
+  field(DESC, "Digitize Analog Trig pulse width")
+  field(EGU, "seconds")
+  field(DRVH, "0.04")
+  field(DRVL, "0.000001")
+  field(PREC, "6")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_pulwidth_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrPulWidth-RB")
+}
+
+record(ai, "$(P)$(R)DATrPulWidth-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize Analog Trig pulse width RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_pulwidth_get $(PORT)")
+}
+
+# The protocol sets the window direction for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DATrWindDir-Sel"){
+  field(DESC, "Digitize Analog Trig window direction")
+  field(ZNAM, "Enter")
+  field(ONAM, "Leave")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_winddir_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrWindDir-Sts")
+}
+
+record(bi, "$(P)$(R)DATrWindDir-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze Analog Trig window direction Sts")
+  field(ZNAM, "Enter")
+  field(ONAM, "Leave")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_winddir_get $(PORT)")
+}
+
+# The protocol sets the window upper boundary for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DATrWindHigh-SP"){
+  field(DESC, "Digtze Analog Trig window upper boundary")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_windhigh_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrWindHigh-RB")
+}
+
+record(ai, "$(P)$(R)DATrWindHigh-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze Analog Trig window up. bound. RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_windhigh_get $(PORT)")
+}
+
+# The protocol sets the window lower boundary for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DATrWindLow-SP"){
+  field(DESC, "Digtze Analog Trig window lower boundary")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_atr_windlow_set $(PORT)")
+  field(FLNK, "$(P)$(R)DATrWindLow-RB")
+}
+
+record(ai, "$(P)$(R)DATrWindLow-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze Analog Trig window low bound. RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_atr_windlow_get $(PORT)")
+}
+
+########################################################################
+# Measurement Range
+# Desc: Measurement range options. Automatic or manual, and ranges.
+
+# Changing autorange or range update both status values
+
+# The protocol sets the autorange option for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MAutoRange-Sel"){
+  field(DESC, "Meas. function auto range")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_range_auto_set $(PORT)")
+  field(FLNK, "$(P)$(R)MAutoRange-Sts")
+}
+
+record(bi, "$(P)$(R)MAutoRange-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. function auto range Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_range_auto_get $(PORT)")
+  field(FLNK, "$(P)$(R)MRange-RB")
+}
+
+# The protocol sets the range for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MRange-SP"){
+  field(DESC, "Meas. positive full-scale range")
+  field(DRVL, "0")
+  field(PREC, "9")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_range_fullscale_set $(PORT)")
+  field(FLNK, "$(P)$(R)MAutoRange-Sts")
+}
+
+record(ai, "$(P)$(R)MRange-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. positive full-scale range RB")
+  field(PREC, "9")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_range_fullscale_get $(PORT)")
+}
+
+########################################################################
+# Digitize Range
+# Desc: Digitize range options.
+
+# The protocol sets the range for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DRange-SP"){
+  field(DESC, "Digitize positive full-scale range")
+  field(DRVL, "0")
+  field(PREC, "9")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_range_fullscale_set $(PORT)")
+  field(FLNK, "$(P)$(R)DRange-RB")
+}
+
+record(ai, "$(P)$(R)DRange-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize positive full-scale range RB")
+  field(PREC, "9")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_range_fullscale_get $(PORT)")
+}
+
+########################################################################
+# Measurement Relative Offset
+# Desc: Relative offset applied to measurement result.
+
+# The protocol sets the relative offset for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MRelOff-SP"){
+  field(DESC, "Meas. relative offset")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_rel_value_set $(PORT)")
+  field(FLNK, "$(P)$(R)MRelOff-RB")
+}
+
+record(ai, "$(P)$(R)MRelOff-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. relative offset RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_rel_value_get $(PORT)")
+}
+
+# The protocol issues the acquire relative offset for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MRelOffAcq-Cmd"){
+  field(DESC, "Meas. relative offset acquire cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)MRelOffAcqCalc")
+}
+
+record(calcout, "$(P)$(R)MRelOffAcqCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. relative offset acquire calc")
+  field(INPA, "$(P)$(R)MRelOffAcq-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_rel_acq_set $(PORT)")
+  field(FLNK, "$(P)$(R)MRelOff-RB")
+}
+
+# The protocol enables/disables relative offset for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MRelOffEnbl-Sel"){
+  field(DESC, "Meas. enable relative offset")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_rel_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)MRelOffEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)MRelOffEnbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. enable relative offset Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_rel_en_get $(PORT)")
+}
+
+########################################################################
+# Digitize Relative Offset
+# Desc: Relative offset applied to digitization result.
+
+# The protocol sets the relative offset for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DRelOff-SP"){
+  field(DESC, "Digitize relative offset")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_rel_value_set $(PORT)")
+  field(FLNK, "$(P)$(R)DRelOff-RB")
+}
+
+record(ai, "$(P)$(R)DRelOff-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize relative offset RB")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_rel_value_get $(PORT)")
+}
+
+# The protocol issues the acquire relative offset for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DRelOffAcq-Cmd"){
+  field(DESC, "Digitize relative offset acquire cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)DRelOffAcqCalc")
+}
+
+record(calcout, "$(P)$(R)DRelOffAcqCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize relative offset acquire calc")
+  field(INPA, "$(P)$(R)DRelOffAcq-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_rel_acq_set $(PORT)")
+  field(FLNK, "$(P)$(R)DRelOff-RB")
+}
+
+# The protocol enables/disables relative offset for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DRelOffEnbl-Sel"){
+  field(DESC, "Digitize enable relative offset")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_rel_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)DRelOffEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)DRelOffEnbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize enable relative offset Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_rel_en_get $(PORT)")
+}
+
+########################################################################
+# Measurement Math
+# Desc: Math function applied to measurement result.
+
+# The protocol sets the math operation for the SELECTED MEASUREMENT
+record(mbbo, "$(P)$(R)MMathOp-Sel"){
+  field(DESC, "Meas. math operation selection")
+  field(ZRST, "y=mx+b")
+  field(ONST, "Percent")
+  field(TWST, "Reciprocal")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_math_op_set $(PORT)")
+  field(FLNK, "$(P)$(R)MMathOp-Sts")
+}
+
+record(mbbi, "$(P)$(R)MMathOp-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. math operation selection Sts")
+  field(ZRST, "y=mx+b")
+  field(ONST, "Percent")
+  field(TWST, "Reciprocal")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_math_op_get $(PORT)")
+}
+
+# The protocol sets the offset factor for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MMathBFactor-SP"){
+  field(DESC, "Meas. offset factor B for y=mx+B")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_math_bfactor_set $(PORT)")
+  field(FLNK, "$(P)$(R)MMathBFactor-RB")
+}
+
+record(ai, "$(P)$(R)MMathBFactor-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. offset factor B for y=mx+B RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_math_bfactor_get $(PORT)")
+}
+
+# The protocol sets the scale factor for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MMathMFactor-SP"){
+  field(DESC, "Meas. scale factor M for y=Mx+b")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_math_mfactor_set $(PORT)")
+  field(FLNK, "$(P)$(R)MMathMFactor-RB")
+}
+
+record(ai, "$(P)$(R)MMathMFactor-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. scale factor M for y=Mx+b RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_math_mfactor_get $(PORT)")
+}
+
+# The protocol sets the percent reference constant for the SELECTED MEASUREMENT
+record(ao, "$(P)$(R)MMathPercRef-SP"){
+  field(DESC, "Meas. reference for percent math op.")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_math_percref_set $(PORT)")
+  field(FLNK, "$(P)$(R)MMathPercRef-RB")
+}
+
+record(ai, "$(P)$(R)MMathPercRef-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. reference for percent math op. RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_math_percref_get $(PORT)")
+}
+
+# The protocol enables/disables the math op. for the SELECTED MEASUREMENT
+record(bo, "$(P)$(R)MMathEnbl-Sel"){
+  field(DESC, "Meas. enable math operation")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto m_math_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)MMathEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)MMathEnbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. enable math operation Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto m_math_en_get $(PORT)")
+}
+
+########################################################################
+# Digitize Math
+# Desc: Math function applied to digitization result.
+
+# The protocol sets the math operation for the SELECTED DIGITIZE FUNCTION
+record(mbbo, "$(P)$(R)DMathOp-Sel"){
+  field(DESC, "Digtze math operation selection")
+  field(ZRST, "y=mx+b")
+  field(ONST, "Percent")
+  field(TWST, "Reciprocal")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_math_op_set $(PORT)")
+  field(FLNK, "$(P)$(R)DMathOp-Sts")
+}
+
+record(mbbi, "$(P)$(R)DMathOp-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze math operation selection Sts")
+  field(ZRST, "y=mx+b")
+  field(ONST, "Percent")
+  field(TWST, "Reciprocal")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_math_op_get $(PORT)")
+}
+
+# The protocol sets the offset factor for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DMathBFactor-SP"){
+  field(DESC, "Digtze offset factor B for y=mx+B")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_math_bfactor_set $(PORT)")
+  field(FLNK, "$(P)$(R)DMathBFactor-RB")
+}
+
+record(ai, "$(P)$(R)DMathBFactor-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze offset factor B for y=mx+B RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_math_bfactor_get $(PORT)")
+}
+
+# The protocol sets the scale factor for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DMathMFactor-SP"){
+  field(DESC, "Digtze scale factor M for y=Mx+b")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_math_mfactor_set $(PORT)")
+  field(FLNK, "$(P)$(R)DMathMFactor-RB")
+}
+
+record(ai, "$(P)$(R)DMathMFactor-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze scale factor M for y=Mx+b RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_math_mfactor_get $(PORT)")
+}
+
+# The protocol sets the percent reference constant for the SELECTED DIGITIZE FUNCTION
+record(ao, "$(P)$(R)DMathPercRef-SP"){
+  field(DESC, "Digtze ref. for percent math op.")
+  field(DRVH, "1000000000000")
+  field(DRVL, "-1000000000000")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_math_percref_set $(PORT)")
+  field(FLNK, "$(P)$(R)DMathPercRef-RB")
+}
+
+record(ai, "$(P)$(R)DMathPercRef-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze ref. for percent math op. RB")
+  field(PREC, "12")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_math_percref_get $(PORT)")
+}
+
+# The protocol enables/disables the math op. for the SELECTED DIGITIZE FUNCTION
+record(bo, "$(P)$(R)DMathEnbl-Sel"){
+  field(DESC, "Digtze enable math operation")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto d_math_en_set $(PORT)")
+  field(FLNK, "$(P)$(R)DMathEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)DMathEnbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Digtze enable math operation Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto d_math_en_get $(PORT)")
+}
+
+########################################################################
+# Trace
+# Desc: Buffer operations, request readings.
+
+record(longin, "$(P)$(R)CntBuff1-Mon"){
+  field(DESC, "Num. of readings in defbuffer1")
+  field(EGU, "rdgs")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_cnt_get(1) $(PORT)")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+}
+
+record(longin, "$(P)$(R)CntBuff2-Mon"){
+  field(DESC, "Num. of readings in defbuffer2")
+  field(EGU, "rdgs")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_cnt_get(2) $(PORT)")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+}
+
+record(bo, "$(P)$(R)ClrBuff1-Cmd"){
+  field(DESC, "Clear defbuffer1 cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClrBuff1Calc")
+}
+
+record(calcout, "$(P)$(R)ClrBuff1Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear defbuffer1 calc")
+  field(INPA, "$(P)$(R)ClrBuff1-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_clr_set(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)ClrBuff2-Cmd"){
+  field(DESC, "Clear defbuffer2 cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClrBuff2Calc")
+}
+
+record(calcout, "$(P)$(R)ClrBuff2Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear defbuffer2 calc")
+  field(INPA, "$(P)$(R)ClrBuff2-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_clr_set(2) $(PORT)")
+}
+
+record(longin, "$(P)$(R)StartBuff1-Mon"){
+  field(DESC, "Defbuffer1 start index")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_start_get(1) $(PORT)")
+}
+
+record(longin, "$(P)$(R)EndBuff1-Mon"){
+  field(DESC, "Defbuffer1 end index")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_end_get(1) $(PORT)")
+}
+
+record(longout, "$(P)$(R)StartRead1-SP"){
+  field(DESC, "Defbuffer1 reading request start index")
+  field(DRVL, "1")
+  field(VAL, "1")
+}
+
+record(longout, "$(P)$(R)EndRead1-SP"){
+  field(DESC, "Defbuffer1 reading request end index")
+  field(DRVL, "1")
+  field(VAL, "1")
+}
+
+record(bo, "$(P)$(R)ReadBuff1-Cmd"){
+  field(DESC, "Read defbuffer1 readings cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ReadBuff1Calc")
+}
+
+record(calcout, "$(P)$(R)ReadBuff1Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Read defbuffer1 readings calc")
+  field(INPA, "$(P)$(R)ReadBuff1-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)ReadBuff1-Mon.PROC")
+}
+
+record(waveform, "$(P)$(R)ReadBuff1-Mon"){
+  field(DESC, "Defbuffer1 readings monitor")
+  field(FTVL, "DOUBLE")
+  field(NELM, "1000000")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_read_get($(P)$(R),1) $(PORT)")
+}
+
+record(ai, "$(P)$(R)FetchBuff1-Mon"){
+  field(DESC, "Last defbuffer1 reading")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_fetch_get(1) $(PORT)")
+}
+
+record(longin, "$(P)$(R)StartBuff2-Mon"){
+  field(DESC, "Defbuffer2 start index")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_start_get(2) $(PORT)")
+}
+
+record(longin, "$(P)$(R)EndBuff2-Mon"){
+  field(DESC, "Defbuffer2 end index")
+  field(ADEL, "-1")
+  field(MDEL, "-1")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_end_get(2) $(PORT)")
+}
+
+record(longout, "$(P)$(R)StartRead2-SP"){
+  field(DESC, "Defbuffer2 reading request start index")
+  field(DRVL, "1")
+}
+
+record(longout, "$(P)$(R)EndRead2-SP"){
+  field(DESC, "Defbuffer2 reading request end index")
+  field(DRVL, "1")
+}
+
+record(bo, "$(P)$(R)ReadBuff2-Cmd"){
+  field(DESC, "Read defbuffer2 readings cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ReadBuff2Calc")
+}
+
+record(calcout, "$(P)$(R)ReadBuff2Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Read defbuffer2 readings calc")
+  field(INPA, "$(P)$(R)ReadBuff2-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)ReadBuff2-Mon.PROC")
+}
+
+record(waveform, "$(P)$(R)ReadBuff2-Mon"){
+  field(DESC, "Defbuffer2 readings monitor")
+  field(FTVL, "DOUBLE")
+  field(NELM, "1000000")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_read_get($(P)$(R),2) $(PORT)")
+}
+
+record(ai, "$(P)$(R)FetchBuff2-Mon"){
+  field(DESC, "Last defbuffer2 reading")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_fetch_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)FillModeBuff1-Sel"){
+  field(DESC, "Fill mode of defbuffer1")
+  field(ZNAM, "Once")
+  field(ONAM, "Continuous")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_fill_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)FillModeBuff1-Sts")
+}
+
+record(bi, "$(P)$(R)FillModeBuff1-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Fill mode of defbuffer1 Sts")
+  field(ZNAM, "Once")
+  field(ONAM, "Continuous")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_fill_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)FillModeBuff2-Sel"){
+  field(DESC, "Fill mode of defbuffer2")
+  field(ZNAM, "Once")
+  field(ONAM, "Continuous")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_fill_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)FillModeBuff2-Sts")
+}
+
+record(bi, "$(P)$(R)FillModeBuff2-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Fill mode of defbuffer2 Sts")
+  field(ZNAM, "Once")
+  field(ONAM, "Continuous")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_fill_get(2) $(PORT)")
+}
+
+record(longout, "$(P)$(R)SizeBuff1-SP"){
+  field(DESC, "Size of defbuffer1")
+  field(DRVL, "0")
+  field(EGU, "rdgs")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_capacity_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)SizeBuff1-RB")
+}
+
+record(longin, "$(P)$(R)SizeBuff1-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "rdgs")
+  field(DESC, "Size of defbuffer1 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_capacity_get(1) $(PORT)")
+}
+
+record(longout, "$(P)$(R)SizeBuff2-SP"){
+  field(DESC, "Size of defbuffer2")
+  field(DRVL, "0")
+  field(EGU, "rdgs")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_capacity_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)SizeBuff2-RB")
+}
+
+record(longin, "$(P)$(R)SizeBuff2-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "rdgs")
+  field(DESC, "Size of defbuffer2 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_capacity_get(2) $(PORT)")
+}
+
+record(ai, "$(P)$(R)AvgBuff1-Mon"){
+  field(DESC, "Average of defbuffer1 readings")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_avg_get(1) $(PORT)")
+}
+
+record(ai, "$(P)$(R)AvgBuff2-Mon"){
+  field(DESC, "Average of defbuffer2 readings")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_avg_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)ClrStatBuff1-Cmd"){
+  field(DESC, "Clear statistics of defbuffer1 cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClrStatBuff1Calc")
+}
+
+record(calcout, "$(P)$(R)ClrStatBuff1Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear statistics of defbuffer1 calc")
+  field(INPA, "$(P)$(R)ClrStatBuff1-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_clrstat_set(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)ClrStatBuff2-Cmd"){
+  field(DESC, "Clear statistics of defbuffer2 cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClrStatBuff2Calc")
+}
+
+record(calcout, "$(P)$(R)ClrStatBuff2Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear statistics of defbuffer2 calc")
+  field(INPA, "$(P)$(R)ClrStatBuff2-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_clrstat_set(2) $(PORT)")
+}
+
+record(ai, "$(P)$(R)MaxBuff1-Mon"){
+  field(DESC, "Maximum reading value of defbuffer1")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_max_get(1) $(PORT)")
+}
+
+record(ai, "$(P)$(R)MaxBuff2-Mon"){
+  field(DESC, "Maximum reading value of defbuffer2")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_max_get(2) $(PORT)")
+}
+
+record(ai, "$(P)$(R)MinBuff1-Mon"){
+  field(DESC, "Minimum reading value of defbuffer1")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_min_get(1) $(PORT)")
+}
+
+record(ai, "$(P)$(R)MinBuff2-Mon"){
+  field(DESC, "Minimum reading value of defbuffer2")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_min_get(2) $(PORT)")
+}
+
+record(ai, "$(P)$(R)StdDBuff1-Mon"){
+  field(DESC, "Stand. deviation of defbuffer1 readings")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_stdd_get(1) $(PORT)")
+}
+
+record(ai, "$(P)$(R)StdDBuff2-Mon"){
+  field(DESC, "Stand. deviation of defbuffer2 readings")
+  field(PREC, "16")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto trace_stdd_get(2) $(PORT)")
+}
+
+# A measurement function must be selected before sending this command
+record(bo, "$(P)$(R)MeasBuff1-Cmd"){
+  field(DESC, "Meas. and store in defbuffer1")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)MeasBuff1Calc")
+}
+
+record(calcout, "$(P)$(R)MeasBuff1Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. and store in defbuffer1 calc")
+  field(INPA, "$(P)$(R)MeasBuff1-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_meas_set($(P)$(R),1) $(PORT)")
+}
+
+# A measurement function must be selected before sending this command
+record(bo, "$(P)$(R)MeasBuff2-Cmd"){
+  field(DESC, "Meas. and store in defbuffer2")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)MeasBuff2Calc")
+}
+
+record(calcout, "$(P)$(R)MeasBuff2Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Meas. and store in defbuffer2 calc")
+  field(INPA, "$(P)$(R)MeasBuff2-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_meas_set($(P)$(R),2) $(PORT)")
+}
+
+# A digitize function must be selected before sending this command
+record(bo, "$(P)$(R)DigtzBuff1-Cmd"){
+  field(DESC, "Digitize and store in defbuffer1")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)DigtzBuff1Calc")
+}
+
+record(calcout, "$(P)$(R)DigtzBuff1Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize and store in defbuffer1 calc")
+  field(INPA, "$(P)$(R)DigtzBuff1-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_digtz_set($(P)$(R),1) $(PORT)")
+}
+
+# A digitize function must be selected before sending this command
+record(bo, "$(P)$(R)DigtzBuff2-Cmd"){
+  field(DESC, "Digitize and store in defbuffer2")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)DigtzBuff2Calc")
+}
+
+record(calcout, "$(P)$(R)DigtzBuff2Calc"){
+  field(ASG, "Reserved")
+  field(DESC, "Digitize and store in defbuffer2 calc")
+  field(INPA, "$(P)$(R)DigtzBuff2-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto trace_digtz_set($(P)$(R),2) $(PORT)")
+}
+
+########################################################################
+# Calibration
+# Desc: Temperature information and autocalibration.
+
+record(longin, "$(P)$(R)ACalCnt-Mon"){
+  field(DESC, "Num. of times autocal. has been run")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto acal_count_get $(PORT)")
+}
+
+record(ai, "$(P)$(R)ACalDiff-Mon"){
+  field(DESC, "Internal and last autocal. temp. diff.")
+  field(SCAN, "10 second")
+  field(EGU, "DegC")
+  field(PREC, "2")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto acal_diff_get $(PORT)")
+  field(FLNK, "$(P)$(R)ACalWarn-Mon")
+}
+
+record(bo, "$(P)$(R)ACalRst-Cmd"){
+  field(DESC, "Autocal. reset temp. warning")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ACalWarn-Mon")
+}
+
+record(calc, "$(P)$(R)ACalWarn-Mon"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration needed flag")
+  field(INPA, "$(P)$(R)ACalDiff-Mon.VAL")
+  field(INPB, "$(P)$(R)ACalLim-SP.VAL")
+  field(INPC, "$(P)$(R)ACalRst-Cmd.VAL")
+  field(CALC, "(C=0&&(A>=B||A<=-B||VAL=1))?1:0")
+}
+
+# The dmm7510 manual recommends maximum variation of 5 degrees Celsius
+record(ao, "$(P)$(R)ACalLim-SP"){
+  field(DESC, "Max temperature variation accepted")
+  field(EGU, "DegC")
+  field(VAL, "5")
+  field(PREC, "2")
+}
+
+record(stringin, "$(P)$(R)ACalLast-Mon"){
+  field(DESC, "Last autocalibration time")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto acal_last_get $(PORT)")
+}
+
+record(stringin, "$(P)$(R)ACalNext-Mon"){
+  field(DESC, "Next autocalibration time")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto acal_next_get $(PORT)")
+}
+
+record(bo, "$(P)$(R)ACalRev-Cmd"){
+  field(DESC, "Return previous calibration values cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ACalRevCalc")
+}
+
+record(calcout, "$(P)$(R)ACalRevCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Return previous calibration values calc")
+  field(INPA, "$(P)$(R)ACalRev-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_rev_set $(PORT)")
+}
+
+record(bo, "$(P)$(R)ACalStart-Cmd"){
+  field(DESC, "Start autocalibration cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ACalStartCalc")
+}
+
+record(calcout, "$(P)$(R)ACalStartCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Start autocalibration calc")
+  field(INPA, "$(P)$(R)ACalStart-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_start_set $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)ACalSchAct-Sel"){
+  field(DESC, "Schedule autocalibration action")
+  field(ZRST, "NONE")
+  field(ONST, "Run")
+  field(TWST, "Notify")
+  field(FLNK, "$(P)$(R)ACalSchCalc1")
+}
+
+record(mbbi, "$(P)$(R)ACalSchAct-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Schedule autocalibration action Sts")
+  field(ZRST, "NONE")
+  field(ONST, "Run")
+  field(TWST, "Notify")
+}
+
+record(mbbo, "$(P)$(R)ACalSchInt-Sel"){
+  field(DESC, "Schedule autocalibration interval")
+  field(ZRST, "8 hours")
+  field(ONST, "16 hours")
+  field(TWST, "1 day")
+  field(THST, "7 days")
+  field(FRST, "14 days")
+  field(FVST, "30 days")
+  field(SXST, "90 days")
+  field(FLNK, "$(P)$(R)ACalSchCalc2")
+}
+
+record(mbbi, "$(P)$(R)ACalSchInt-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Schedule autocalibration interval Sts")
+  field(ZRST, "8 hours")
+  field(ONST, "16 hours")
+  field(TWST, "1 day")
+  field(THST, "7 days")
+  field(FRST, "14 days")
+  field(FVST, "30 days")
+  field(SXST, "90 days")
+}
+
+record(longout, "$(P)$(R)ACalSchHr-SP"){
+  field(DESC, "Schedule autocalibration hour")
+  field(DRVH, "23")
+  field(DRVL, "0")
+  field(EGU, "hours")
+  field(FLNK, "$(P)$(R)ACalSchCalc3")
+}
+
+record(longin, "$(P)$(R)ACalSchHr-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "hours")
+  field(DESC, "Schedule autocalibration hour RB")
+}
+
+record(calcout, "$(P)$(R)ACalSchCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule calc1")
+  field(INPA, "$(P)$(R)ACalSchAct-Sel.VAL")
+  field(INPB, "$(P)$(R)ACalSchInt-Sts.VAL")
+  field(CALC, "(A=0||B<2)?5:3")
+  field(OUT, "$(P)$(R)ACalSchRes PP")
+}
+
+record(calcout, "$(P)$(R)ACalSchCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule calc2")
+  field(INPA, "$(P)$(R)ACalSchAct-Sts.VAL")
+  field(INPB, "$(P)$(R)ACalSchInt-Sel.VAL")
+  field(CALC, "A=0?0:(B<2?4:2)")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)ACalSchRes PP")
+}
+
+record(calcout, "$(P)$(R)ACalSchCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule calc3")
+  field(INPA, "$(P)$(R)ACalSchAct-Sts.VAL")
+  field(INPB, "$(P)$(R)ACalSchInt-Sts.VAL")
+  field(CALC, "(A=0||B<2)?0:1")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)ACalSchRes PP")
+}
+
+record(longin, "$(P)$(R)ACalSchRes"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration calc result")
+  field(FLNK, "$(P)$(R)ACalSchFout")
+}
+
+record(fanout, "$(P)$(R)ACalSchFout"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule fanout")
+  field(SELM, "Specified")
+  field(SELL, "$(P)$(R)ACalSchRes.VAL")
+  field(LNK1, "$(P)$(R)ACalSchOut1")
+  field(LNK2, "$(P)$(R)ACalSchOut2")
+  field(LNK3, "$(P)$(R)ACalSchOut3")
+  field(LNK4, "$(P)$(R)ACalSchOut4")
+  field(LNK5, "$(P)$(R)ACalSchOut5")
+}
+
+# Protocol for the complete schedule to set hour
+record(bo, "$(P)$(R)ACalSchOut1"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule out 1")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_set1($(P)$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)ACalSchRead")
+}
+
+# Protocol for the complete schedule to set interval
+record(bo, "$(P)$(R)ACalSchOut2"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule out 2")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_set2($(P)$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)ACalSchRead")
+}
+
+# Protocol for the complete schedule to set action
+record(bo, "$(P)$(R)ACalSchOut3"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule out 3")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_set4($(P)$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)ACalSchRead")
+}
+
+# Protocol to set interval for interval smaller than 1 day
+record(bo, "$(P)$(R)ACalSchOut4"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule out 4")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_set4($(P)$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)ACalSchRead")
+}
+
+# Protocol to set action for schedule interval smaller than 1 day
+record(bo, "$(P)$(R)ACalSchOut5"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule out 5")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_set5($(P)$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)ACalSchRead")
+}
+
+# StreamDevice redirects values to corresponding RB records
+record(calcout, "$(P)$(R)ACalSchRead"){
+  field(ASG, "Reserved")
+  field(DESC, "Autocalibration schedule read")
+  field(ODLY, "2")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto acal_sch_get($(P)$(R)) $(PORT)")
+}
+
+########################################################################
+# Blender
+# Desc: Combines trigger events with OR/AND logic.
+
+record(bo, "$(P)$(R)Blend1Clr-Cmd"){
+  field(DESC, "Clear blender 1 event detector")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Blend1ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Blend1ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear blender 1 event detector calc")
+  field(INPA, "$(P)$(R)Blend1Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blend_clr_set(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Blend2Clr-Cmd"){
+  field(DESC, "Clear blender 2 event detector")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Blend2ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Blend2ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear blender 2 event detector calc")
+  field(INPA, "$(P)$(R)Blend2Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blend_clr_set(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Blend1Op-Sel"){
+  field(DESC, "Blender 1 operation")
+  field(ZNAM, "OR")
+  field(ONAM, "AND")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blend_mode_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend1Op-Sts")
+}
+
+record(bi, "$(P)$(R)Blend1Op-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 operation Sts")
+  field(ZNAM, "OR")
+  field(ONAM, "AND")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blend_mode_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Blend2Op-Sel"){
+  field(DESC, "Blender 2 operation")
+  field(ZNAM, "OR")
+  field(ONAM, "AND")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blend_mode_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend2Op-Sts")
+}
+
+record(bi, "$(P)$(R)Blend2Op-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 operation Sts")
+  field(ZNAM, "OR")
+  field(ONAM, "AND")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blend_mode_get(2) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Blend1Over-Mon"){
+  field(DESC, "Blender 1 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blend_over_get(1) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Blend2Over-Mon"){
+  field(DESC, "Blender 2 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blend_over_get(2) $(PORT)")
+}
+
+#################################################################
+# Blender 1 Stim1
+
+record(stringout, "$(P)$(R)Blend1Stim1-Sel"){
+  field(DESC, "Blender 1 Stimulus 1 selection")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 1")
+  field(INAA, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 2")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 3")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 4")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 5")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 6")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend1Stim1Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim1Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 calc 7")
+  field(INPA, "$(P)$(R)Blend1Stim1Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend1Stim1Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend1Stim1Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(1,1) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend1Stim1-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend1Stim1-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 1 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(1,1) $(PORT)")
+}
+
+#################################################################
+# Blender 1 Stim2
+record(stringout, "$(P)$(R)Blend1Stim2-Sel"){
+  field(DESC, "Blender 1 Stimulus 2 selection")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 1")
+  field(INAA, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 2")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 3")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 4")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 5")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 6")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend1Stim2Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim2Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 calc 7")
+  field(INPA, "$(P)$(R)Blend1Stim2Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend1Stim2Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend1Stim2Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(1,2) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend1Stim2-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend1Stim2-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 2 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(1,2) $(PORT)")
+}
+
+#################################################################
+# Blender 1 Stim3
+record(stringout, "$(P)$(R)Blend1Stim3-Sel"){
+  field(DESC, "Blender 1 Stimulus 3 selection")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 1")
+  field(INAA, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 2")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 3")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 4")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 5")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 6")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend1Stim3Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim3Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 calc 7")
+  field(INPA, "$(P)$(R)Blend1Stim3Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend1Stim3Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend1Stim3Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(1,3) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend1Stim3-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend1Stim3-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 3 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(1,3) $(PORT)")
+}
+
+#################################################################
+# Blender 1 Stim4
+record(stringout, "$(P)$(R)Blend1Stim4-Sel"){
+  field(DESC, "Blender 1 Stimulus 4 selection")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 1")
+  field(INAA, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 2")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 3")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 4")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 5")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 6")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend1Stim4Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend1Stim4Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 calc 7")
+  field(INPA, "$(P)$(R)Blend1Stim4Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend1Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend1Stim4Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend1Stim4Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(1,4) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend1Stim4-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend1Stim4-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 1 Stimulus 4 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(1,4) $(PORT)")
+}
+
+#################################################################
+# Blender 2 Stim1
+record(stringout, "$(P)$(R)Blend2Stim1-Sel"){
+  field(DESC, "Blender 2 Stimulus 1 selection")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 1")
+  field(INAA, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 2")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 3")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 4")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 5")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 6")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend2Stim1Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim1Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 calc 7")
+  field(INPA, "$(P)$(R)Blend2Stim1Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim1-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend2Stim1Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend2Stim1Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(2,1) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend2Stim1-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend2Stim1-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 1 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(2,1) $(PORT)")
+}
+
+#################################################################
+# Blender 2 Stim2
+record(stringout, "$(P)$(R)Blend2Stim2-Sel"){
+  field(DESC, "Blender 2 Stimulus 2 selection")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 1")
+  field(INAA, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 2")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 3")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 4")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 5")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 6")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend2Stim2Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim2Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 calc 7")
+  field(INPA, "$(P)$(R)Blend2Stim2Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim2-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend2Stim2Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend2Stim2Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(2,2) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend2Stim2-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend2Stim2-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 2 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(2,2) $(PORT)")
+}
+
+#################################################################
+# Blender 2 Stim3
+record(stringout, "$(P)$(R)Blend2Stim3-Sel"){
+  field(DESC, "Blender 2 Stimulus 3 selection")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 1")
+  field(INAA, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 2")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 3")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 4")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 5")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 6")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend2Stim3Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim3Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 calc 7")
+  field(INPA, "$(P)$(R)Blend2Stim3Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim3-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend2Stim3Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend2Stim3Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(2,3) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend2Stim3-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend2Stim3-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 3 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(2,3) $(PORT)")
+}
+
+#################################################################
+# Blender 2 Stim4
+record(stringout, "$(P)$(R)Blend2Stim4-Sel"){
+  field(DESC, "Blender 2 Stimulus 4 selection")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc1")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 1")
+  field(INAA, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc2")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 2")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc1.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc3")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 3")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc2.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc4")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 4")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc3.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc5")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 5")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc4.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc6")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 6")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc5.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Blend2Stim4Calc7")
+}
+
+record(scalcout, "$(P)$(R)Blend2Stim4Calc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 calc 7")
+  field(INPA, "$(P)$(R)Blend2Stim4Calc6.VAL")
+  field(INBB, "$(P)$(R)Blend2Stim4-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Blend2Stim4Out PP")
+}
+
+record(stringout, "$(P)$(R)Blend2Stim4Out"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto blender_stim_set(2,4) $(PORT)")
+  field(FLNK, "$(P)$(R)Blend2Stim4-Sts")
+}
+
+record(stringin, "$(P)$(R)Blend2Stim4-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Blender 2 Stimulus 4 Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto blender_stim_get(2,4) $(PORT)")
+}
+
+########################################################################
+# Trigger Model
+# Desc: Trigger model status.
+
+record(bo, "$(P)$(R)TMAbort-Cmd"){
+  field(DESC, "Trigger model abort cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)TMAbortCalc")
+}
+
+record(calcout, "$(P)$(R)TMAbortCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Trigger model abort calc")
+  field(INPA, "$(P)$(R)TMAbort-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto tm_abort_set $(PORT)")
+}
+
+record(bo, "$(P)$(R)TMStart-Cmd"){
+  field(DESC, "Trigger model start cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)TMStartCalc")
+}
+
+record(calcout, "$(P)$(R)TMStartCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Trigger model start calc")
+  field(INPA, "$(P)$(R)TMStart-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto tm_start_set(1) $(PORT)")
+}
+
+record(waveform, "$(P)$(R)TMBlockList-Mon"){
+  field(DESC, "List of trigger model blocks")
+  field(FTVL, "CHAR")
+  field(NELM, "2500")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto tm_list_get $(PORT)")
+}
+
+# Load empty trigger model
+record(bo, "$(P)$(R)TMClear-Cmd"){
+  field(DESC, "Trigger model clear cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)TMClearCalc")
+}
+
+record(calcout, "$(P)$(R)TMClearCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Trigger model clear calc")
+  field(INPA, "$(P)$(R)TMClear-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto tm_clear_set $(PORT)")
+}
+
+# set by TM-Mon stream protocol
+record(longin, "$(P)$(R)TMIdx-Mon"){
+  field(DESC, "Trigger model position index")
+  field(DTYP, "Soft Channel")
+}
+
+record(mbbi, "$(P)$(R)TM-Mon"){
+  field(DESC, "Trigger model state")
+  field(ZRST, "Idle")
+  field(ONST, "Running")
+  field(TWST, "Waiting")
+  field(THST, "Empty")
+  field(FRST, "Building")
+  field(FVST, "Failed")
+  field(SXST, "Aborting")
+  field(SVST, "Aborted")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto tm_state_get($(P)$(R)) $(PORT)")
+}
+
+########################################################################
+# Timer
+
+#################################################################
+# Timer 1
+
+record(bo, "$(P)$(R)Timer1Clr-Cmd"){
+  field(DESC, "Clear timer 1 event detector cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Timer1ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Timer1ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear timer 1 event detector calc")
+  field(INPA, "$(P)$(R)Timer1Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_clr_set(1) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer1Cnt-SP"){
+  field(DESC, "Timer 1 repeat count")
+  field(DRVH, "1048575")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_count_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Cnt-RB")
+}
+
+record(longin, "$(P)$(R)Timer1Cnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 repeat count RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_count_get(1) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer1Dly-SP"){
+  field(DESC, "Timer 1 delay")
+  field(DRVH, "100000")
+  field(DRVL, "0.000008")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_dly_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Dly-RB")
+}
+
+record(ai, "$(P)$(R)Timer1Dly-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 delay RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_dly_get(1) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer1Frac-SP"){
+  field(DESC, "Fractional time to start timer 1")
+  field(DRVH, "1")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_frac_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Frac-RB")
+}
+
+record(ai, "$(P)$(R)Timer1Frac-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Fractional time to start timer 1 RB")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_frac_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer1Gen-Sel"){
+  field(DESC, "When timer 1 events are generated")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_gen_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Gen-Sts")
+}
+
+record(bi, "$(P)$(R)Timer1Gen-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "When timer 1 events are generated Sts")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_gen_get(1) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Timer1Over-Mon"){
+  field(DESC,"Timer 1 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_over_get(1) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer1Sec-SP"){
+  field(DESC, "Time in future to start timer 1")
+  field(DRVH, "2147483647")
+  field(DRVL, "0")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_sec_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Sec-RB")
+}
+
+record(longin, "$(P)$(R)Timer1Sec-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "seconds")
+  field(DESC, "Time in future to start timer 1 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_sec_get(1) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer1Enbl-Sel"){
+  field(DESC, "Timer 1 enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_en_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Enbl-Sts")
+}
+
+record(bi, "$(P)$(R)Timer1Enbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_en_get(1) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Timer1Stim-Sel"){
+  field(DESC, "Timer 1 Stimulus selection")
+  field(FLNK, "$(P)$(R)Timer1StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 1")
+  field(INAA, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Timer1StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 2")
+  field(INPA, "$(P)$(R)Timer1StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer1StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 3")
+  field(INPA, "$(P)$(R)Timer1StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer1StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 4")
+  field(INPA, "$(P)$(R)Timer1StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Timer1StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 5")
+  field(INPA, "$(P)$(R)Timer1StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Timer1StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 6")
+  field(INPA, "$(P)$(R)Timer1StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Timer1StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Timer1StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus calc 7")
+  field(INPA, "$(P)$(R)Timer1StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Timer1Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Timer1StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Timer1StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_stim_set(1) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer1Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Timer1Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 1 Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_stim_get(1) $(PORT)")
+}
+
+#################################################################
+# Timer 2
+
+record(bo, "$(P)$(R)Timer2Clr-Cmd"){
+  field(DESC, "Clear timer 2 event detector cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Timer2ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Timer2ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear timer 2 event detector calc")
+  field(INPA, "$(P)$(R)Timer2Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_clr_set(2) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer2Cnt-SP"){
+  field(DESC, "Timer 2 repeat count")
+  field(DRVH, "1048575")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_count_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Cnt-RB")
+}
+
+record(longin, "$(P)$(R)Timer2Cnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 repeat count RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_count_get(2) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer2Dly-SP"){
+  field(DESC, "Timer 2 delay")
+  field(DRVH, "100000")
+  field(DRVL, "0.000008")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_dly_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Dly-RB")
+}
+
+record(ai, "$(P)$(R)Timer2Dly-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 delay RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_dly_get(2) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer2Frac-SP"){
+  field(DESC, "Fractional time to start timer 2")
+  field(DRVH, "1")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_frac_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Frac-RB")
+}
+
+record(ai, "$(P)$(R)Timer2Frac-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Fractional time to start timer 2 RB")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_frac_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer2Gen-Sel"){
+  field(DESC, "When timer 2 events are generated")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_gen_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Gen-Sts")
+}
+
+record(bi, "$(P)$(R)Timer2Gen-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "When timer 2 events are generated Sts")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_gen_get(2) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Timer2Over-Mon"){
+  field(DESC,"Timer 2 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_over_get(2) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer2Sec-SP"){
+  field(DESC, "Time in future to start timer 2")
+  field(DRVH, "2147483647")
+  field(DRVL, "0")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_sec_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Sec-RB")
+}
+
+record(longin, "$(P)$(R)Timer2Sec-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "seconds")
+  field(DESC, "Time in future to start timer 2 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_sec_get(2) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer2Enbl-Sel"){
+  field(DESC, "Timer 2 enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_en_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Enbl-Sts")
+}
+
+record(bi, "$(P)$(R)Timer2Enbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_en_get(2) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Timer2Stim-Sel"){
+  field(DESC, "Timer 2 Stimulus selection")
+  field(FLNK, "$(P)$(R)Timer2StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 1")
+  field(INAA, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Timer2StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 2")
+  field(INPA, "$(P)$(R)Timer2StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer2StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 3")
+  field(INPA, "$(P)$(R)Timer2StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer2StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 4")
+  field(INPA, "$(P)$(R)Timer2StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Timer2StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 5")
+  field(INPA, "$(P)$(R)Timer2StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Timer2StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 6")
+  field(INPA, "$(P)$(R)Timer2StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Timer2StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Timer2StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus calc 7")
+  field(INPA, "$(P)$(R)Timer2StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Timer2Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Timer2StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Timer2StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_stim_set(2) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer2Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Timer2Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 2 Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_stim_get(2) $(PORT)")
+}
+
+#################################################################
+# Timer 3
+
+record(bo, "$(P)$(R)Timer3Clr-Cmd"){
+  field(DESC, "Clear timer 3 event detector cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Timer3ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Timer3ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear timer 3 event detector calc")
+  field(INPA, "$(P)$(R)Timer3Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_clr_set(3) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer3Cnt-SP"){
+  field(DESC, "Timer 3 repeat count")
+  field(DRVH, "1048575")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_count_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Cnt-RB")
+}
+
+record(longin, "$(P)$(R)Timer3Cnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 repeat count RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_count_get(3) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer3Dly-SP"){
+  field(DESC, "Timer 3 delay")
+  field(DRVH, "100000")
+  field(DRVL, "0.000008")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_dly_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Dly-RB")
+}
+
+record(ai, "$(P)$(R)Timer3Dly-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 delay RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_dly_get(3) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer3Frac-SP"){
+  field(DESC, "Fractional time to start timer 3")
+  field(DRVH, "1")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_frac_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Frac-RB")
+}
+
+record(ai, "$(P)$(R)Timer3Frac-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Fractional time to start timer 3 RB")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_frac_get(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer3Gen-Sel"){
+  field(DESC, "When timer 3 events are generated")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_gen_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Gen-Sts")
+}
+
+record(bi, "$(P)$(R)Timer3Gen-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "When timer 3 events are generated Sts")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_gen_get(3) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Timer3Over-Mon"){
+  field(DESC,"Timer 3 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_over_get(3) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer3Sec-SP"){
+  field(DESC, "Time in future to start timer 3")
+  field(DRVH, "2147483647")
+  field(DRVL, "0")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_sec_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Sec-RB")
+}
+
+record(longin, "$(P)$(R)Timer3Sec-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "seconds")
+  field(DESC, "Time in future to start timer 3 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_sec_get(3) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer3Enbl-Sel"){
+  field(DESC, "Timer 3 enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_en_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Enbl-Sts")
+}
+
+record(bi, "$(P)$(R)Timer3Enbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_en_get(3) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Timer3Stim-Sel"){
+  field(DESC, "Timer 3 Stimulus selection")
+  field(FLNK, "$(P)$(R)Timer3StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 1")
+  field(INAA, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Timer3StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 2")
+  field(INPA, "$(P)$(R)Timer3StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer3StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 3")
+  field(INPA, "$(P)$(R)Timer3StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer3StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 4")
+  field(INPA, "$(P)$(R)Timer3StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Timer3StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 5")
+  field(INPA, "$(P)$(R)Timer3StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Timer3StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 6")
+  field(INPA, "$(P)$(R)Timer3StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Timer3StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Timer3StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus calc 7")
+  field(INPA, "$(P)$(R)Timer3StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Timer3Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Timer3StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Timer3StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_stim_set(3) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer3Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Timer3Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 3 Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_stim_get(3) $(PORT)")
+}
+
+#################################################################
+# Timer 4
+
+record(bo, "$(P)$(R)Timer4Clr-Cmd"){
+  field(DESC, "Clear timer 4 event detector cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)Timer4ClrCalc")
+}
+
+record(calcout, "$(P)$(R)Timer4ClrCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear timer 4 event detector calc")
+  field(INPA, "$(P)$(R)Timer4Clr-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_clr_set(4) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer4Cnt-SP"){
+  field(DESC, "Timer 4 repeat count")
+  field(DRVH, "1048575")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_count_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Cnt-RB")
+}
+
+record(longin, "$(P)$(R)Timer4Cnt-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 repeat count RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_count_get(4) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer4Dly-SP"){
+  field(DESC, "Timer 4 delay")
+  field(DRVH, "100000")
+  field(DRVL, "0.000008")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_dly_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Dly-RB")
+}
+
+record(ai, "$(P)$(R)Timer4Dly-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 delay RB")
+  field(PREC, "6")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_dly_get(4) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Timer4Frac-SP"){
+  field(DESC, "Fractional time to start timer 4")
+  field(DRVH, "1")
+  field(DRVL, "0")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_frac_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Frac-RB")
+}
+
+record(ai, "$(P)$(R)Timer4Frac-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "Fractional time to start timer 4 RB")
+  field(PREC, "6")
+  field(EGU, "second")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_frac_get(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer4Gen-Sel"){
+  field(DESC, "When timer 4 events are generated")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_gen_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Gen-Sts")
+}
+
+record(bi, "$(P)$(R)Timer4Gen-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "When timer 4 events are generated Sts")
+  field(ZNAM, "Elapse")
+  field(ONAM, "Start and elapse")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_gen_get(4) $(PORT)")
+}
+
+record(bi, "$(P)$(R)Timer4Over-Mon"){
+  field(DESC,"Timer 4 overrun status")
+  field(ZNAM, "No overrun")
+  field(ONAM, "Overrun")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_over_get(4) $(PORT)")
+}
+
+record(longout, "$(P)$(R)Timer4Sec-SP"){
+  field(DESC, "Time in future to start timer 4")
+  field(DRVH, "2147483647")
+  field(DRVL, "0")
+  field(EGU, "seconds")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_sec_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Sec-RB")
+}
+
+record(longin, "$(P)$(R)Timer4Sec-RB"){
+  field(ASG, "Reserved")
+  field(EGU, "seconds")
+  field(DESC, "Time in future to start timer 4 RB")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_sec_get(4) $(PORT)")
+}
+
+record(bo, "$(P)$(R)Timer4Enbl-Sel"){
+  field(DESC, "Timer 4 enable/disable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_en_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Enbl-Sts")
+}
+
+record(bi, "$(P)$(R)Timer4Enbl-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 enable/disable Sts")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_en_get(4) $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Timer4Stim-Sel"){
+  field(DESC, "Timer 4 Stimulus selection")
+  field(FLNK, "$(P)$(R)Timer4StimCalc1")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 1")
+  field(INAA, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "AA=='NONE'||AA=='DISPLAY'||AA=='COMMAND'||AA=='ANALOGTRIGGER'||AA=='EXTERNAL'")
+  field(FLNK, "$(P)$(R)Timer4StimCalc2")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 2")
+  field(INPA, "$(P)$(R)Timer4StimCalc1.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=7&&BB[0,5]=='NOTIFY'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer4StimCalc3")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 3")
+  field(INPA, "$(P)$(R)Timer4StimCalc2.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=4&&BB[0,2]=='LAN'&&int(BB)>0&&int(BB)<9)")
+  field(FLNK, "$(P)$(R)Timer4StimCalc4")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc4"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 4")
+  field(INPA, "$(P)$(R)Timer4StimCalc3.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='DIGIO'&&int(BB)>0&&int(BB)<7)")
+  field(FLNK, "$(P)$(R)Timer4StimCalc5")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc5"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 5")
+  field(INPA, "$(P)$(R)Timer4StimCalc4.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=6&&BB[0,4]=='TIMER'&&int(BB)>0&&int(BB)<5)")
+  field(FLNK, "$(P)$(R)Timer4StimCalc6")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc6"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 6")
+  field(INPA, "$(P)$(R)Timer4StimCalc5.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='BLENDER'&&int(BB)>0&&int(BB)<3)")
+  field(FLNK, "$(P)$(R)Timer4StimCalc7")
+}
+
+record(scalcout, "$(P)$(R)Timer4StimCalc7"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus calc 7")
+  field(INPA, "$(P)$(R)Timer4StimCalc6.VAL")
+  field(INBB, "$(P)$(R)Timer4Stim-Sel.VAL")
+  field(CALC, "A||(len(BB)=8&&BB[0,6]=='TSPLINK'&&int(BB)>0&&int(BB)<4)")
+  field(OCAL, "BB")
+  field(DOPT, "Use OCAL")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Timer4StimOut PP")
+}
+
+record(stringout, "$(P)$(R)Timer4StimOut"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus to proto")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto timer_stim_set(4) $(PORT)")
+  field(FLNK, "$(P)$(R)Timer4Stim-Sts")
+}
+
+record(stringin, "$(P)$(R)Timer4Stim-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "Timer 4 Stimulus Sts")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto timer_stim_get(4) $(PORT)")
+}
+
+########################################################################
+# System Settings
+# Desc: System access, password, time, instr. temperature and initial setup.
+
+record(mbbo, "$(P)$(R)Access-Sel"){
+  field(DESC, "User access type")
+  field(ZRST, "FULL")
+  field(ONST, "EXCLUSIVE")
+  field(TWST, "PROTECTED")
+  field(THST, "LOCKOUT")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_access_set $(PORT)")
+  field(FLNK, "$(P)$(R)Access-Sts")
+}
+
+record(mbbi, "$(P)$(R)Access-Sts"){
+  field(ASG, "Reserved")
+  field(DESC, "User access type Sts")
+  field(ZRST, "FULL")
+  field(ONST, "EXCLUSIVE")
+  field(TWST, "PROTECTED")
+  field(THST, "LOCKOUT")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_access_get $(PORT)")
+}
+
+record(stringout, "$(P)$(R)Login-SP"){
+  field(DESC, "Log into the interface using password")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_login_set $(PORT)")
+}
+
+record(bo, "$(P)$(R)Logout-Cmd"){
+  field(DESC, "Log out of the interface cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)LogoutCalc")
+}
+
+record(calcout, "$(P)$(R)LogoutCalc"){
+  field(ASG, "Reserved")
+  field(INPA, "$(P)$(R)Logout-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_logout_set $(PORT)")
+}
+
+record(bo, "$(P)$(R)ClearEvLog-Cmd"){
+  field(DESC, "Clear event log cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ClearEvLogCalc")
+}
+
+record(calcout, "$(P)$(R)ClearEvLogCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Clear event log calc")
+  field(INPA, "$(P)$(R)ClearEvLog-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_clearlog_set $(PORT)")
+}
+
+# Number of events since last query or log clear
+record(longin, "$(P)$(R)EvLogCnt-Mon"){
+  field(DESC, "Number of unread events in the log")
+  field(EGU, "events")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_cntlog_get $(PORT)")
+}
+
+# Cause EvLogNext-Mon to process and get an event
+record(bo, "$(P)$(R)EvLogGetNext-Cmd"){
+  field(DESC, "Cmd to process the event log monitor")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)EvLogNextCalc")
+}
+
+# Calc to prevent event fetching when command is set ot zero
+record(calcout, "$(P)$(R)EvLogNextCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Event log monitor processing calc")
+  field(INPA, "$(P)$(R)EvLogGetNext-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)EvLogNext-Mon.PROC")
+}
+
+# Return oldest unread message from the event log
+record(waveform, "$(P)$(R)EvLogNext-Mon"){
+  field(DESC, "Acquire oldest unread msg from event log")
+  field(FTVL, "CHAR")
+  field(NELM, "150")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_nextlog_get $(PORT)")
+}
+
+record(longin, "$(P)$(R)LineFreq-Mon"){
+  field(DESC, "Power line frequency read-only")
+  field(EGU, "Hz")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_linefr_get $(PORT)")
+}
+
+record(stringout, "$(P)$(R)PassNew-SP"){
+  field(DESC, "Change instrument password")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_passnew_set $(PORT)")
+}
+
+# Autozero must be ON for temperature to be updated
+record(ai, "$(P)$(R)Temp-Mon"){
+  field(DESC, "Instrument internal temperature")
+  field(SCAN, "10 second")
+  field(PREC, "2")
+  field(EGU, "DegC")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_temp_get $(PORT)")
+}
+
+# Time: <year>, <month>, <day>, <hour>, <minute>, <second>
+record(stringout, "$(P)$(R)Time-SP"){
+  field(DESC, "Instrument time")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto sys_time_set $(PORT)")
+}
+
+record(stringin, "$(P)$(R)Time-Mon"){
+  field(DESC, "Instrument time monitor")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto sys_time_get $(PORT)")
+}
+
+########################################################################
+# Module Support
+# Desc: Upload command and network status.
+
+record(bo, "$(P)$(R)Reset-Cmd"){
+  field(DESC, "Reset instrument settings cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)ResetCalc")
+}
+
+record(calcout, "$(P)$(R)ResetCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset instrument settings calc")
+  field(INPA, "$(P)$(R)Reset-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto support_rst_set $(PORT)")
+  field(FLNK, "$(P)$(R)RstUpload")
+}
+
+record(calcout, "$(P)$(R)RstUpload"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset cmd upload trigger calc")
+  field(INPA, "$(P)$(R)ResetCalc.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)Upload-Cmd PP")
+}
+
+record(bo, "$(P)$(R)Upload-Cmd"){
+  field(DESC, "Upload instrument configuration")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(P)$(R)UploadT")
+}
+
+record(calcout, "$(P)$(R)UploadT"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload trigger")
+  field(INPA, "$(P)$(R)Upload-Cmd.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)UploadAll1.PROC")
+}
+
+record(longin, "$(P)$(R)TimeSec-Mon"){
+  field(ASG, "Reserved")
+  field(DESC, "Time seconds field status")
+  field(SCAN, "2 second")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto support_timesec_get $(PORT)")
+  field(FLNK, "$(P)$(R)NetworkCalc")
+}
+
+record(calcout, "$(P)$(R)NetworkCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Network connection calc")
+  field(INPA, "$(P)$(R)TimeSec-Mon.VAL")
+  field(INPB, "$(P)$(R)NetworkAux.VAL")
+  field(CALC, "A#B")
+  field(OOPT, "Transition To Non-zero")
+  field(OUT, "$(P)$(R)Upload-Cmd PP")
+  field(FLNK, "$(P)$(R)NetworkAux")
+}
+
+record(longin, "$(P)$(R)NetworkAux"){
+  field(ASG, "Reserved")
+  field(DESC, "Network calc auxiliar variable")
+  field(INP, "$(P)$(R)TimeSec-Mon.VAL")
+  field(FLNK, "$(P)$(R)Network-Mon")
+}
+
+record(bi, "$(P)$(R)Network-Mon"){
+  field(ASG, "Reserved")
+  field(DESC, "Network connection status")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(P)$(R)NetworkCalc.VAL")
+}
+
+#################################################################
+# Upload parameters NOT RELATED to the meas/digtize function
+ 
+# |UPLOAD SCHEME|
+# 
+#===============
+#    UploadT     
+#===============
+#      ||
+#      \/
+#=============== [All RB/Sts records NOT related to Function-Sts]
+#   UploadAll1
+# (fanout flnks)
+#      ...
+#   UploadAll13
+# (fanout flnks)
+#===============
+#      ||
+#      \/
+#===============
+#  MeasFunction
+#===============
+#      ||
+#      \/
+#---------------
+#     ...
+#---------------
+#      ||
+#      \/
+#===============
+#  Function-Sts
+#===============
+#      ||
+#      \/
+#=============== [All RB/Sts records related to Function-Sts]
+#  UpFncCalc1
+#  UpFncCalc2
+#  UpFncCalc3
+#  UploadFnc1
+# (fanout flnks)
+#  UploadFnc2
+# (fanout flnks)
+#  UploadFnc3
+# (fanout flnks)
+
+record(fanout, "$(P)$(R)UploadAll1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 1")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)ExInEdge-Sts")
+  field(LNK2, "$(P)$(R)ExOutPol-Sts")
+  field(LNK3, "$(P)$(R)ExOutStim-Sts")
+  field(LNK4, "$(P)$(R)Dig1Mod-Sts")
+  field(LNK5, "$(P)$(R)Dig1Edge-Sts")
+  field(LNK6, "$(P)$(R)Dig1Pol-Sts")
+  field(FLNK, "$(P)$(R)UploadAll2")
+}
+
+record(fanout, "$(P)$(R)UploadAll2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 2")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Dig1Width-RB")
+  field(LNK2, "$(P)$(R)Dig1Stim-Sts")
+  field(LNK3, "$(P)$(R)Dig2Mod-Sts")
+  field(LNK4, "$(P)$(R)Dig2Edge-Sts")
+  field(LNK5, "$(P)$(R)Dig2Pol-Sts")
+  field(LNK6, "$(P)$(R)Dig2Width-RB")
+  field(FLNK, "$(P)$(R)UploadAll3")
+}
+
+record(fanout, "$(P)$(R)UploadAll3"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 3")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Dig2Stim-Sts")
+  field(LNK2, "$(P)$(R)Dig3Mod-Sts")
+  field(LNK3, "$(P)$(R)Dig3Edge-Sts")
+  field(LNK4, "$(P)$(R)Dig3Pol-Sts")
+  field(LNK5, "$(P)$(R)Dig3Width-RB")
+  field(LNK6, "$(P)$(R)Dig3Stim-Sts")
+  field(FLNK, "$(P)$(R)UploadAll4")
+}
+
+record(fanout, "$(P)$(R)UploadAll4"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 4")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Dig4Mod-Sts")
+  field(LNK2, "$(P)$(R)Dig4Edge-Sts")
+  field(LNK3, "$(P)$(R)Dig4Pol-Sts")
+  field(LNK4, "$(P)$(R)Dig4Width-RB")
+  field(LNK5, "$(P)$(R)Dig4Stim-Sts")
+  field(LNK6, "$(P)$(R)Dig5Mod-Sts")
+  field(FLNK, "$(P)$(R)UploadAll5")
+}
+
+record(fanout, "$(P)$(R)UploadAll5"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 5")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Dig5Edge-Sts")
+  field(LNK2, "$(P)$(R)Dig5Pol-Sts")
+  field(LNK3, "$(P)$(R)Dig5Width-RB")
+  field(LNK4, "$(P)$(R)Dig5Stim-Sts")
+  field(LNK5, "$(P)$(R)Dig6Mod-Sts")
+  field(LNK6, "$(P)$(R)Dig6Edge-Sts")
+  field(FLNK, "$(P)$(R)UploadAll6")
+}
+
+record(fanout, "$(P)$(R)UploadAll6"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 6")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Dig6Pol-Sts")
+  field(LNK2, "$(P)$(R)Dig6Width-RB")
+  field(LNK3, "$(P)$(R)Dig6Stim-Sts")
+  field(LNK4, "$(P)$(R)FillModeBuff1-Sts")
+  field(LNK5, "$(P)$(R)FillModeBuff2-Sts")
+  field(LNK6, "$(P)$(R)SizeBuff1-RB")
+  field(FLNK, "$(P)$(R)UploadAll7")
+}
+
+record(fanout, "$(P)$(R)UploadAll7"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 7")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)SizeBuff2-RB")
+  field(LNK2, "$(P)$(R)ACalSchRead")
+  field(LNK3, "$(P)$(R)Access-Sts")
+  field(LNK5, "$(P)$(R)Blend1Op-Sts")
+  field(LNK6, "$(P)$(R)Blend2Op-Sts")
+  field(FLNK, "$(P)$(R)UploadAll8")
+}
+
+record(fanout, "$(P)$(R)UploadAll8"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 8")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Blend1Stim1-Sts")
+  field(LNK2, "$(P)$(R)Blend1Stim2-Sts")
+  field(LNK3, "$(P)$(R)Blend1Stim3-Sts")
+  field(LNK4, "$(P)$(R)Blend1Stim4-Sts")
+  field(LNK5, "$(P)$(R)Blend2Stim1-Sts")
+  field(LNK6, "$(P)$(R)Blend2Stim2-Sts")
+  field(FLNK, "$(P)$(R)UploadAll9")
+}
+
+record(fanout, "$(P)$(R)UploadAll9"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 9")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Blend2Stim3-Sts")
+  field(LNK2, "$(P)$(R)Blend2Stim4-Sts")
+  field(LNK3, "$(P)$(R)Timer1Cnt-RB")
+  field(LNK4, "$(P)$(R)Timer1Dly-RB")
+  field(LNK5, "$(P)$(R)Timer1Frac-RB")
+  field(LNK6, "$(P)$(R)Timer1Gen-Sts")
+  field(FLNK, "$(P)$(R)UploadAll10")
+}
+
+record(fanout, "$(P)$(R)UploadAll10"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 10")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Timer1Sec-RB")
+  field(LNK2, "$(P)$(R)Timer1Enbl-Sts")
+  field(LNK3, "$(P)$(R)Timer1Stim-Sts")
+  field(LNK4, "$(P)$(R)Timer2Cnt-RB")
+  field(LNK5, "$(P)$(R)Timer2Dly-RB")
+  field(LNK6, "$(P)$(R)Timer2Frac-RB")
+  field(FLNK, "$(P)$(R)UploadAll11")
+}
+
+record(fanout, "$(P)$(R)UploadAll11"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 11")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Timer2Gen-Sts")
+  field(LNK2, "$(P)$(R)Timer2Sec-RB")
+  field(LNK3, "$(P)$(R)Timer2Enbl-Sts")
+  field(LNK4, "$(P)$(R)Timer2Stim-Sts")
+  field(LNK5, "$(P)$(R)Timer3Cnt-RB")
+  field(LNK6, "$(P)$(R)Timer3Dly-RB")
+  field(FLNK, "$(P)$(R)UploadAll12")
+}
+
+record(fanout, "$(P)$(R)UploadAll12"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 12")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Timer3Frac-RB")
+  field(LNK2, "$(P)$(R)Timer3Gen-Sts")
+  field(LNK3, "$(P)$(R)Timer3Sec-RB")
+  field(LNK4, "$(P)$(R)Timer3Enbl-Sts")
+  field(LNK5, "$(P)$(R)Timer3Stim-Sts")
+  field(LNK6, "$(P)$(R)Timer4Cnt-RB")
+  field(FLNK, "$(P)$(R)UploadAll13")
+}
+
+record(fanout, "$(P)$(R)UploadAll13"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-independent param. 13")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)Timer4Dly-RB")
+  field(LNK2, "$(P)$(R)Timer4Frac-RB")
+  field(LNK3, "$(P)$(R)Timer4Gen-Sts")
+  field(LNK4, "$(P)$(R)Timer4Sec-RB")
+  field(LNK5, "$(P)$(R)Timer4Enbl-Sts")
+  field(LNK6, "$(P)$(R)Timer4Stim-Sts")
+  field(FLNK, "$(P)$(R)MeasFnc-Sts")
+}
+
+#################################################################
+# Upload function-related parameters
+
+# function num -> mask
+# 	calc1		calc2		calc3
+# 0 ->	011010 (26)	001111 (15)	000101 (5)
+# 1 ->	011010 (26)	000111 (7)	000000 (0)
+# 2 ->	011010 (26)	001111 (15)	000001 (1)
+# 3 ->	011010 (26)	000111 (7)	000000 (0)
+# 4 ->	011010 (26)	001111 (15)	000000 (0)
+# 5 ->	011010 (26)	001111 (15)	000000 (0)
+# 6 ->	011010 (26)	000100 (4)	000000 (0)
+# 7 ->	000010 (2)	000011 (3)	000000 (0)
+# 8 ->	011010 (26)	001100 (12)	000000 (0)
+# 9 ->	000010 (2)	001000 (8)	000000 (0)
+# 10 ->	001010 (10)	000000 (0)	000000 (0)
+# 11 ->	001010 (10)	000000 (0)	000000 (0)
+# 12 ->	011010 (26)	001111 (15)	000000 (0)
+# 13 ->	000101 (5)	000000 (0)	000010 (2)
+# 14 ->	000001 (1)	000000 (0)	000010 (2)
+
+record(calc, "$(P)$(R)UpFncCalc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function related param. calc1")
+  field(INPA, "$(P)$(R)Function-Sts")
+  field(CALC, "(A<7||A=8||A=12)?26:((A=7||A=9)?2:((A=10||A=11)?10:(A=13?5:(A=14?1:0))))")
+  field(FLNK, "$(P)$(R)UpFncCalc2")
+}
+
+record(calc, "$(P)$(R)UpFncCalc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function related param. calc2")
+  field(INPA, "$(P)$(R)Function-Sts")
+  field(CALC, "(A=10||A=11||A>12)?0:((A=1||A=3)?7:(A=6?4:(A=7?3:(A=8?12:(A=9?8:15)))))")
+  field(FLNK, "$(P)$(R)UpFncCalc3")
+}
+
+record(calc, "$(P)$(R)UpFncCalc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function related param. calc3")
+  field(INPA, "$(P)$(R)Function-Sts")
+  field(CALC, "A=0?5:(A=2?1:(A>12?2:0))")
+  field(FLNK, "$(P)$(R)UploadFnc1")
+}
+
+# Links organized by groups of functions that share parameters
+# when possible (Fout suffix). When it's not, direct param. links are used.
+record(fanout, "$(P)$(R)UploadFnc1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-related param. fanout1")
+  field(SELL, "$(P)$(R)UpFncCalc1.VAL")
+  field(SELM, "Mask")
+  field(LNK1, "$(P)$(R)DigtzFout1")
+  field(LNK2, "$(P)$(R)MeasFout1")
+  field(LNK3, "$(P)$(R)DigVoltFout")
+  field(LNK4, "$(P)$(R)MeasApert-RB")
+  field(LNK5, "$(P)$(R)MeasNPLC-RB")
+  field(FLNK, "$(P)$(R)UploadFnc2")
+}
+
+record(fanout, "$(P)$(R)UploadFnc2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-related param. fanout2")
+  field(SELL, "$(P)$(R)UpFncCalc2.VAL")
+  field(SELM, "Mask")
+  field(LNK1, "$(P)$(R)MAutoRange-Sts")
+  field(LNK2, "$(P)$(R)MRange-RB")
+  field(LNK3, "$(P)$(R)AutoZero-Sts")
+  field(LNK4, "$(P)$(R)MeasLineSync-Sts")
+  field(FLNK, "$(P)$(R)UploadFnc3")
+}
+
+record(fanout, "$(P)$(R)UploadFnc3"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload function-related param. fanout3")
+  field(SELL, "$(P)$(R)UpFncCalc3.VAL")
+  field(SELM, "Mask")
+  field(LNK1, "$(P)$(R)MATrFout1")
+  field(LNK2, "$(P)$(R)DATrFout1")
+  field(LNK3, "$(P)$(R)MeasImpedance-Sts")
+}
+
+record(fanout, "$(P)$(R)DigtzFout1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload digitize param. 1")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)DigtzeApert-RB")
+  field(LNK2, "$(P)$(R)DigtzeSR-RB")
+  field(LNK3, "$(P)$(R)DigtzeCnt-RB")
+  field(LNK4, "$(P)$(R)DigtzeStim-Sts")
+  field(LNK5, "$(P)$(R)DRange-RB")
+  field(LNK6, "$(P)$(R)DRelOff-RB")
+  field(FLNK, "$(P)$(R)DigtzFout2")
+}
+
+record(fanout, "$(P)$(R)DigtzFout2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload digitize param. 2")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)DMathBFactor-RB")
+  field(LNK2, "$(P)$(R)DMathMFactor-RB")
+  field(LNK3, "$(P)$(R)DMathPercRef-RB")
+  field(LNK4, "$(P)$(R)DRelOffEnbl-Sts")
+  field(LNK5, "$(P)$(R)DMathOp-Sts")
+  field(LNK6, "$(P)$(R)DMathEnbl-Sts")
+}
+
+record(fanout, "$(P)$(R)MeasFout1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload measurement param. 1")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)MeasAutoDly-Sts")
+  field(LNK2, "$(P)$(R)MeasCnt-RB")
+  field(LNK3, "$(P)$(R)MeasStim-Sts")
+  field(LNK4, "$(P)$(R)FilterCnt-RB")
+  field(LNK5, "$(P)$(R)FilterEnbl-Sts")
+  field(LNK6, "$(P)$(R)FilterTyp-Sts")
+  field(FLNK, "$(P)$(R)MeasFout2")
+}
+
+record(fanout, "$(P)$(R)MeasFout2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload measurement param. 2")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)FilterWind-RB")
+  field(LNK2, "$(P)$(R)MRelOff-RB")
+  field(LNK3, "$(P)$(R)MMathBFactor-RB")
+  field(LNK4, "$(P)$(R)MMathMFactor-RB")
+  field(LNK5, "$(P)$(R)MMathPercRef-RB")
+  field(LNK6, "$(P)$(R)MRelOffEnbl-Sts")
+  field(FLNK, "$(P)$(R)MeasFout3")
+}
+
+record(fanout, "$(P)$(R)MeasFout3"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload measurement param. 3")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)MMathOp-Sts")
+  field(LNK2, "$(P)$(R)MMathEnbl-Sts")
+}
+
+record(fanout, "$(P)$(R)DigVoltFout"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload digitize voltage related param.")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)DigtzeImpedance-Sts")
+  field(LNK2, "$(P)$(R)DigtzeCoup-Sts")
+}
+
+record(fanout, "$(P)$(R)MATrFout1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload meas. analog trig param. 1")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)MATrEdgeLvl-RB")
+  field(LNK2, "$(P)$(R)MATrEdgeSlp-Sts")
+  field(LNK3, "$(P)$(R)MATrHFR-Sts")
+  field(LNK4, "$(P)$(R)MATrMode-Sts")
+  field(LNK5, "$(P)$(R)MATrPulCond-Sts")
+  field(LNK6, "$(P)$(R)MATrPulLvl-RB")
+  field(FLNK, "$(P)$(R)MATrFout2")
+}
+
+record(fanout, "$(P)$(R)MATrFout2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload meas. analog trig param. 2")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)MATrPulPol-Sts")
+  field(LNK2, "$(P)$(R)MATrPulWidth-RB")
+  field(LNK3, "$(P)$(R)MATrWindDir-Sts")
+  field(LNK4, "$(P)$(R)MATrWindHigh-RB")
+  field(LNK5, "$(P)$(R)MATrWindLow-RB")
+}
+
+record(fanout, "$(P)$(R)DATrFout1"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload digtze analog trig param. 1")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)DATrEdgeLvl-RB")
+  field(LNK2, "$(P)$(R)DATrEdgeSlp-Sts")
+  field(LNK3, "$(P)$(R)DATrHFR-Sts")
+  field(LNK4, "$(P)$(R)DATrMode-Sts")
+  field(LNK5, "$(P)$(R)DATrPulCond-Sts")
+  field(LNK6, "$(P)$(R)DATrPulLvl-RB")
+  field(FLNK, "$(P)$(R)DATrFout2")
+}
+
+record(fanout, "$(P)$(R)DATrFout2"){
+  field(ASG, "Reserved")
+  field(DESC, "Upload digtze analog trig param. 2")
+  field(SELM, "All")
+  field(LNK1, "$(P)$(R)DATrPulPol-Sts")
+  field(LNK2, "$(P)$(R)DATrPulWidth-RB")
+  field(LNK3, "$(P)$(R)DATrWindDir-Sts")
+  field(LNK4, "$(P)$(R)DATrWindHigh-RB")
+  field(LNK5, "$(P)$(R)DATrWindLow-RB")
+}
+
+########################################################################
+# Debug commands
+# Desc: Commands useful for debugging procedures.
+
+record(bo, "$(P)$(R)SoftTrg-Cmd"){
+  field(DESC, "Send a *TRG to instrument")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(P)$(R)SoftTrgCalc")
+}
+
+record(calcout, "$(P)$(R)SoftTrgCalc"){
+  field(DESC, "Calc for soft trigger cmd")
+  field(INPA, "$(P)$(R)SoftTrg-Cmd")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(DTYP, "stream")
+  field(OUT, "@dmm7510.proto soft_trg_set $(PORT)")
+}
+
+########################################################################
+# Custom command
+# Desc: Allows a custom command to be issued through StreamDevice.
+
+record(waveform, "$(P)$(R)Custom-SP"){
+  field(DESC, "Send custom command to instrument")
+  field(FTVL, "CHAR")
+  field(NELM, "250")
+  field(DTYP, "stream")
+  field(INP, "@dmm7510.proto custom_cmd_set $(PORT)")
+}
+

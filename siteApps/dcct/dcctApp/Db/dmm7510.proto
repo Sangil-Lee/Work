@@ -1,0 +1,1336 @@
+Terminator = NL;
+ExtraInput = Ignore;
+ReplyTimeout = 35000;
+MaxInput = 8000000;
+
+###########################################################################
+# Module Support
+
+support_rst_set{
+	# cmd
+	out "reset()";
+}
+
+support_timesec_get{
+	# read
+	out "print(localnode.gettime())";
+	in "%i";
+	@replytimeout{
+		disconnect;
+		connect 5000;
+	}
+	@mismatch{
+		disconnect;
+		connect 5000;
+	}
+	@readtimeout{
+		disconnect;
+		connect 5000;
+	}
+}
+
+###########################################################################
+# External I/O
+
+exin_clear_set{
+	# cmd
+	out "trigger.extin.clear()";
+}
+
+exin_edge_set{
+	# set
+	out "trigger.extin.edge = trigger.EDGE_%{FALLING|RISING|EITHER}";
+}
+
+exin_edge_get{
+	# read
+	out "print(trigger.extin.edge)";
+	in "trigger.EDGE_%{FALLING|RISING|EITHER}";
+}
+
+exin_over_get{
+	# get
+	out "print(trigger.extin.overrun)";
+	in "%{false|true}";
+}
+
+exout_pol_set{
+	# set
+	out "trigger.extout.logic = trigger.LOGIC_%{POSITIVE|NEGATIVE}";
+}
+
+exout_pol_get{
+	# read
+	out "print(trigger.extout.logic)";
+	in "trigger.LOGIC_%{POSITIVE|NEGATIVE}";
+}
+
+exout_stim_set{
+	# set
+	out "trigger.extout.stimulus = trigger.EVENT_%s";
+}
+
+exout_stim_get{
+	# read
+	out "print(trigger.extout.stimulus)";
+	in "trigger.EVENT_%s";
+}
+
+###########################################################################
+# Digital I/O
+
+digio_writeall_set{
+	# set
+	out "digio.writeport(%i)";
+}
+
+digio_readall_get{
+	# read
+	out "print(digio.readport())";
+	in "%i";
+}
+
+digio_mode_set{
+	# set
+	out "digio.line[\$1].mode = digio.%{MODE_DIGITAL_IN|MODE_DIGITAL_OUT|MODE_DIGITAL_OPEN_DRAIN|MODE_TRIGGER_IN|MODE_TRIGGER_OUT|MODE_TRIGGER_OPEN_DRAIN|MODE_SYNCHRONOUS_MASTER|MODE_SYNCHRONOUS_ACCEPTOR}";
+}
+
+digio_mode_get{
+	# read
+	out "print(digio.line[\$1].mode)";
+	in "digio.%{MODE_DIGITAL_IN|MODE_DIGITAL_OUT|MODE_DIGITAL_OPEN_DRAIN|MODE_TRIGGER_IN|MODE_TRIGGER_OUT|MODE_TRIGGER_OPEN_DRAIN|MODE_SYNCHRONOUS_MASTER|MODE_SYNCHRONOUS_ACCEPTOR}";
+}
+
+digio_state_set{
+	# set
+	out "digio.line[\$1].state = %b";
+}
+
+digio_state_get{
+	# read
+	out "print(digio.line[\$1].state)";
+	in "digio.STATE_%{LOW|HIGH}";
+}
+
+digio_clrev_set{
+	# cmd
+	out "trigger.digin[\$1].clear()";
+}
+
+digio_edge_set{
+	# set
+	out "trigger.digin[\$1].edge = trigger.EDGE_%{FALLING|RISING|EITHER}";
+}
+
+digio_edge_get{
+	# read
+	out "print(trigger.digin[\$1].edge)";
+	in "trigger.EDGE_%{FALLING|RISING|EITHER}";
+}
+
+digio_over_get{
+	# read
+	out "print(trigger.digin[\$1].overrun)";
+	in "%{false|true}";
+}
+
+digio_pol_set{
+	# set
+	out "trigger.digout[\$1].logic = trigger.LOGIC_%{POSITIVE|NEGATIVE}";
+}
+
+digio_pol_get{
+	# read
+	out "print(trigger.digout[\$1].logic)";
+	in "trigger.LOGIC_%{POSITIVE|NEGATIVE}";
+}
+
+digio_width_set{
+	# set
+	out "trigger.digout[\$1].pulsewidth = %f";
+}
+
+digio_width_get{
+	# read
+	out "print(trigger.digout[\$1].pulsewidth)";
+	in "%f";
+}
+
+digio_assert_set{
+	# cmd
+	out "trigger.digout[\$1].assert()";
+}
+
+digio_release_set{
+	# cmd
+	out "trigger.digout[\$1].release()";
+}
+
+digio_stim_set{
+	# set
+	out "trigger.digout[\$1].stimulus = trigger.EVENT_%s";
+}
+
+digio_stim_get{
+	# read
+	out "print(trigger.digout[\$1].stimulus)";
+	in "trigger.EVENT_%s";
+}
+
+###########################################################################
+# Measurement Input Impedance
+
+meas_imped_set{
+	# set
+	out "dmm.measure.inputimpedance = dmm.IMPEDANCE_%{AUTO|10M}";
+}
+
+meas_imped_get{
+	# read
+	out "print(dmm.measure.inputimpedance)";
+	in "dmm.IMPEDANCE_%{AUTO|10M}";
+}
+
+###########################################################################
+# Digitize Input Impedance
+
+digtz_imped_set{
+	# set
+	out "dmm.digitize.inputimpedance = dmm.IMPEDANCE_%{AUTO|10M}";
+}
+
+digtz_imped_get{
+	# read
+	out "print(dmm.digitize.inputimpedance)";
+	in "dmm.IMPEDANCE_%{AUTO|10M}";
+}
+
+###########################################################################
+# Function selection
+
+meas_func_set{
+	# set
+	out "dmm.measure.func = dmm.FUNC_%{DC_VOLTAGE|AC_VOLTAGE|DC_CURRENT|AC_CURRENT|RESISTANCE|4W_RESISTANCE|DIODE|CAPACITANCE|TEMPERATURE|CONTINUITY|ACV_FREQUENCY|ACV_PERIOD|DCV_RATIO}";
+}
+
+
+digtz_func_set{
+	# set
+	out "dmm.digitize.func = dmm.FUNC_%{DIGITIZE_VOLTAGE|DIGITIZE_CURRENT}";
+}
+
+meas_func_get{
+	# read
+	out "print(dmm.measure.func)";
+	in "dmm.FUNC_%{NONE|DC_VOLTAGE|AC_VOLTAGE|DC_CURRENT|AC_CURRENT|RESISTANCE|4W_RESISTANCE|DIODE|CAPACITANCE|TEMPERATURE|CONTINUITY|ACV_FREQUENCY|ACV_PERIOD|DCV_RATIO}";
+}
+
+digtz_func_get{
+	# read
+	out "print(dmm.digitize.func)";
+	in "dmm.FUNC_%{NONE|DIGITIZE_VOLTAGE|DIGITIZE_CURRENT}";
+}
+
+###########################################################################
+# Measurement
+
+meas_apert_set{
+	# set
+	out "dmm.measure.aperture = %.7f";
+}
+
+meas_apert_get{
+	# read
+	out "print(dmm.measure.aperture)";
+	in "%f";
+}
+
+meas_nplc_set{
+	# set
+	out "dmm.measure.nplc = %f";
+}
+
+meas_nplc_get{
+	# read
+	out "print(dmm.measure.nplc)";
+	in "%f";
+}
+
+meas_autodly_set{
+	# set
+	out "dmm.measure.autodelay = dmm.DELAY_%{OFF|ON}";
+}
+
+meas_autodly_get{
+	# read
+	out "print(dmm.measure.autodelay)";
+	in "dmm.DELAY_%{OFF|ON}";
+}
+
+meas_linesync_set{
+	# set
+	out "dmm.measure.linesync = dmm.%{OFF|ON}";
+}
+
+meas_linesync_get{
+	# read
+	out "print(dmm.measure.linesync)";
+	in "dmm.%{OFF|ON}";
+}
+
+meas_cnt_set{
+	# set
+	out "dmm.measure.count = %i";
+}
+
+meas_cnt_get{
+	# read
+	out "print(dmm.measure.count)";
+	in "%i";
+}
+
+meas_stim_set{
+	# set
+	out "dmm.trigger.measure.stimulus = trigger.EVENT_%s";
+}
+
+meas_stim_get{
+	# read
+	out "print(dmm.trigger.measure.stimulus)";
+	in "trigger.EVENT_%s";
+}
+
+###########################################################################
+# Filter
+
+filter_cnt_set{
+	# set
+	out "dmm.measure.filter.count = %i";
+}
+
+filter_cnt_get{
+	# read
+	out "print(dmm.measure.filter.count)";
+	in "%i";
+}
+
+filter_en_set{
+	# set
+	out "dmm.measure.filter.enable = dmm.%{OFF|ON}";
+}
+
+filter_en_get{
+	# read
+	out "print(dmm.measure.filter.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+filter_typ_set{
+	# set
+	out "dmm.measure.filter.type = dmm.FILTER_%{REPEAT_AVG|MOVING_AVG}";
+}
+
+filter_typ_get{
+	# read
+	out "print(dmm.measure.filter.type)";
+	in "dmm.FILTER_%{REPEAT_AVG|MOVING_AVG}";
+}
+
+filter_wind_set{
+	# set
+	out "dmm.measure.filter.window = %i";
+}
+
+filter_wind_get{
+	# read
+	out "print(dmm.measure.filter.window)";
+	in "%i";
+}
+
+###########################################################################
+# Autozero
+
+azero_en_set{
+	# set
+	out "dmm.measure.autozero.enable = dmm.%{OFF|ON}";
+}
+
+azero_en_get{
+	# read
+	out "print(dmm.measure.autozero.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+azero_once_set{
+	# cmd
+	out "dmm.measure.autozero.once()";
+}
+
+###########################################################################
+# Digitize
+
+digtz_apertauto_set{
+	# set
+	out "dmm.digitize.aperture = dmm.APERTURE_AUTO";
+}
+
+digtz_apert_set{
+	# set
+	out "dmm.digitize.aperture = %f";
+}
+
+digtz_apert_get{
+	# read
+	out "print(dmm.digitize.aperture)";
+	in "%f";
+}
+
+digtz_coup_set{
+	# set
+	out "dmm.digitize.coupling.type = %{dmm.COUPLING_AC|dmm.COUPLING_DC}";
+}
+
+digtz_coup_get{
+	# read
+	out "print(dmm.digitize.coupling.type)";
+	in "%{dmm.COUPLING_AC|dmm.COUPLING_DC}";
+}
+
+digtz_sr_set{
+	# set
+	out "dmm.digitize.samplerate = %i";
+}
+
+digtz_sr_get{
+	# read
+	out "print(dmm.digitize.samplerate)";
+	in "%i";
+}
+
+digtz_cnt_set{
+	# set
+	out "dmm.digitize.count = %i";
+}
+
+digtz_cnt_get{
+	# read
+	out "print(dmm.digitize.count)";
+	in "%i";
+}
+
+digtz_stim_set{
+	# set
+	out "dmm.trigger.digitize.stimulus = trigger.EVENT_%s";
+}
+
+digtz_stim_get{
+	# read
+	out "print(dmm.trigger.digitize.stimulus)";
+	in "trigger.EVENT_%s";
+}
+
+digtz_acfilter_set{
+	# set
+	out "dmm.digitize.coupling.acfilter = dmm.AC_FILTER_%{SLOW|FAST}";
+}
+
+digtz_acfilter_get{
+	# read
+	out "print(dmm.digitize.coupling.acfilter)";
+	in "dmm.AC_FILTER_%{SLOW|FAST}";
+}
+
+digtz_acfreq_set{
+	# set
+	out "dmm.digitize.coupling.acfrequency = %f";
+}
+
+digtz_acfreq_get{
+	# read
+	out "print(dmm.digitize.coupling.acfrequency)";
+	in "%f";
+}
+
+###########################################################################
+# Measurement Analog Trigger
+
+m_atr_edgelvl_set{
+	# set
+	out "dmm.measure.analogtrigger.edge.level = %f";
+}
+
+m_atr_edgelvl_get{
+	# read
+	out "print(dmm.measure.analogtrigger.edge.level)";
+	in "%f";
+}
+
+m_atr_edgeslp_set{
+	# set
+	out "dmm.measure.analogtrigger.edge.slope = dmm.SLOPE_%{RISING|FALLING}";
+}
+
+m_atr_edgeslp_get{
+	# read
+	out "print(dmm.measure.analogtrigger.edge.slope)";
+	in "dmm.SLOPE_%{RISING|FALLING}";
+}
+
+m_atr_hfr_set{
+	# set
+	out "dmm.measure.analogtrigger.highfreqreject = dmm.%{OFF|ON}";
+}
+
+m_atr_hfr_get{
+	# read
+	out "print(dmm.measure.analogtrigger.highfreqreject)";
+	in "dmm.%{OFF|ON}";
+}
+
+m_atr_mode_set{
+	# set
+	out "dmm.measure.analogtrigger.mode = dmm.MODE_%{OFF|EDGE|PULSE|WINDOW}";
+}
+
+m_atr_mode_get{
+	# read
+	out "print(dmm.measure.analogtrigger.mode)";
+	in "dmm.MODE_%{OFF|EDGE|PULSE|WINDOW}";
+}
+
+m_atr_pulcond_set{
+	# set
+	out "dmm.measure.analogtrigger.pulse.condition = dmm.CONDITION_%{GREATER|LESS}";
+}
+
+m_atr_pulcond_get{
+	# read
+	out "print(dmm.measure.analogtrigger.pulse.condition)";
+	in "dmm.CONDITION_%{GREATER|LESS}";
+}
+
+m_atr_pullvl_set{
+	# set
+	out "dmm.measure.analogtrigger.pulse.level = %f";
+}
+
+m_atr_pullvl_get{
+	# read
+	out "print(dmm.measure.analogtrigger.pulse.level)";
+	in "%f";
+}
+
+m_atr_pulpol_set{
+	# set
+	out "dmm.measure.analogtrigger.pulse.polarity = dmm.POLARITY_%{ABOVE|BELOW}";
+}
+
+m_atr_pulpol_get{
+	# read
+	out "print(dmm.measure.analogtrigger.pulse.polarity)";
+	in "dmm.POLARITY_%{ABOVE|BELOW}";
+}
+
+m_atr_pulwidth_set{
+	# set
+	out "dmm.measure.analogtrigger.pulse.width = %f";
+}
+
+m_atr_pulwidth_get{
+	# read
+	out "print(dmm.measure.analogtrigger.pulse.width)";
+	in "%f";
+}
+
+m_atr_winddir_set{
+	# set
+	out "dmm.measure.analogtrigger.window.direction = dmm.DIRECTION_%{ENTER|LEAVE}";
+}
+
+m_atr_winddir_get{
+	# read
+	out "print(dmm.measure.analogtrigger.window.direction)";
+	in "dmm.DIRECTION_%{ENTER|LEAVE}";
+}
+
+m_atr_windhigh_set{
+	# set
+	out "dmm.measure.analogtrigger.window.levelhigh = %f";
+}
+
+m_atr_windhigh_get{
+	# read
+	out "print(dmm.measure.analogtrigger.window.levelhigh)";
+	in "%f";
+}
+
+m_atr_windlow_set{
+	# set
+	out "dmm.measure.analogtrigger.window.levellow = %f";
+}
+
+m_atr_windlow_get{
+	# read
+	out "print(dmm.measure.analogtrigger.window.levellow)";
+	in "%f";
+}
+
+###########################################################################
+# Digitize Analog Trigger
+
+d_atr_edgelvl_set{
+	# set
+	out "dmm.digitize.analogtrigger.edge.level = %f";
+}
+
+d_atr_edgelvl_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.edge.level)";
+	in "%f";
+}
+
+d_atr_edgeslp_set{
+	# set
+	out "dmm.digitize.analogtrigger.edge.slope = dmm.SLOPE_%{RISING|FALLING}";
+}
+
+d_atr_edgeslp_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.edge.slope)";
+	in "dmm.SLOPE_%{RISING|FALLING}";
+}
+
+d_atr_hfr_set{
+	# set
+	out "dmm.digitize.analogtrigger.highfreqreject = dmm.%{OFF|ON}";
+}
+
+d_atr_hfr_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.highfreqreject)";
+	in "dmm.%{OFF|ON}";
+}
+
+d_atr_mode_set{
+	# set
+	out "dmm.digitize.analogtrigger.mode = dmm.MODE_%{OFF|EDGE|PULSE|WINDOW}";
+}
+
+d_atr_mode_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.mode)";
+	in "dmm.MODE_%{OFF|EDGE|PULSE|WINDOW}";
+}
+
+d_atr_pulcond_set{
+	# set
+	out "dmm.digitize.analogtrigger.pulse.condition = dmm.CONDITION_%{GREATER|LESS}";
+}
+
+d_atr_pulcond_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.pulse.condition)";
+	in "dmm.CONDITION_%{GREATER|LESS}";
+}
+
+d_atr_pullvl_set{
+	# set
+	out "dmm.digitize.analogtrigger.pulse.level = %f";
+}
+
+d_atr_pullvl_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.pulse.level)";
+	in "%f";
+}
+
+d_atr_pulpol_set{
+	# set
+	out "dmm.digitize.analogtrigger.pulse.polarity = dmm.POLARITY_%{ABOVE|BELOW}";
+}
+
+d_atr_pulpol_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.pulse.polarity)";
+	in "dmm.POLARITY_%{ABOVE|BELOW}";
+}
+
+d_atr_pulwidth_set{
+	# set
+	out "dmm.digitize.analogtrigger.pulse.width = %f";
+}
+
+d_atr_pulwidth_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.pulse.width)";
+	in "%f";
+}
+
+d_atr_winddir_set{
+	# set
+	out "dmm.digitize.analogtrigger.window.direction = dmm.DIRECTION_%{ENTER|LEAVE}";
+}
+
+d_atr_winddir_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.window.direction)";
+	in "dmm.DIRECTION_%{ENTER|LEAVE}";
+}
+
+d_atr_windhigh_set{
+	# set
+	out "dmm.digitize.analogtrigger.window.levelhigh = %f";
+}
+
+d_atr_windhigh_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.window.levelhigh)";
+	in "%f";
+}
+
+d_atr_windlow_set{
+	# set
+	out "dmm.digitize.analogtrigger.window.levellow = %f";
+}
+
+d_atr_windlow_get{
+	# read
+	out "print(dmm.digitize.analogtrigger.window.levellow)";
+	in "%f";
+}
+
+###########################################################################
+# Measurement Range
+
+m_range_auto_set{
+	# set
+	out "dmm.measure.autorange = dmm.%{OFF|ON}";
+}
+
+m_range_auto_get{
+	# read
+	out "print(dmm.measure.autorange)";
+	in "dmm.%{OFF|ON}";
+}
+
+m_range_fullscale_set{
+	# set
+	out "dmm.measure.range = %E";
+}
+
+m_range_fullscale_get{
+	# read
+	out "print(dmm.measure.range)";
+	in "%f";
+}
+
+###########################################################################
+# Digitize Range
+
+d_range_fullscale_set{
+	# set
+	out "dmm.digitize.range = %E";
+}
+
+d_range_fullscale_get{
+	# read
+	out "print(dmm.digitize.range)";
+	in "%f";
+}
+
+###########################################################################
+# Measurement Relative Offset
+
+m_rel_value_set{
+	# set
+	out "dmm.measure.rel.level = %f";
+}
+
+m_rel_value_get{
+	# read
+	out "print(dmm.measure.rel.level)";
+	in "%f";
+}
+
+m_rel_acq_set{
+	# cmd
+	out "dmm.measure.rel.acquire()";
+}
+
+m_rel_en_set{
+	# set
+	out "dmm.measure.rel.enable = dmm.%{OFF|ON}";
+}
+
+m_rel_en_get{
+	# read
+	out "print(dmm.measure.rel.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+###########################################################################
+# Digitize Relative Offset
+
+d_rel_value_set{
+	# set
+	out "dmm.digitize.rel.level = %f";
+}
+
+d_rel_value_get{
+	# read
+	out "print(dmm.digitize.rel.level)";
+	in "%f";
+}
+
+d_rel_acq_set{
+	# cmd
+	out "dmm.digitize.rel.acquire()";
+}
+
+d_rel_en_set{
+	# set
+	out "dmm.digitize.rel.enable = dmm.%{OFF|ON}";
+}
+
+d_rel_en_get{
+	# read
+	out "print(dmm.digitize.rel.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+###########################################################################
+# Measurement Math
+
+m_math_op_set{
+	# set
+	out "dmm.measure.math.format = dmm.MATH_%{MXB|PERCENT|RECIPROCAL}";
+}
+
+m_math_op_get{
+	# read
+	out "print(dmm.measure.math.format)";
+	in "dmm.MATH_%{MXB|PERCENT|RECIPROCAL}";
+}
+
+m_math_bfactor_set{
+	# set
+	out "dmm.measure.math.mxb.bfactor = %f";
+}
+
+m_math_bfactor_get{
+	# read
+	out "print(dmm.measure.math.mxb.bfactor)";
+	in "%f";
+}
+
+m_math_mfactor_set{
+	# set
+	out "dmm.measure.math.mxb.mfactor = %f";
+}
+
+m_math_mfactor_get{
+	# read
+	out "print(dmm.measure.math.mxb.mfactor)";
+	in "%f";
+}
+
+m_math_percref_set{
+	# set
+	out "dmm.measure.math.percent = %f";
+}
+
+m_math_percref_get{
+	# read
+	out "print(dmm.measure.math.percent)";
+	in "%f";
+}
+
+m_math_en_set{
+	# set
+	out "dmm.measure.math.enable = dmm.%{OFF|ON}";
+}
+
+m_math_en_get{
+	# read
+	out "print(dmm.measure.math.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+###########################################################################
+# Digitize Math
+
+d_math_op_set{
+	# set
+	out "dmm.digitize.math.format = dmm.MATH_%{MXB|PERCENT|RECIPROCAL}";
+}
+
+d_math_op_get{
+	# read
+	out "print(dmm.digitize.math.format)";
+	in "dmm.MATH_%{MXB|PERCENT|RECIPROCAL}";
+}
+
+d_math_bfactor_set{
+	# set
+	out "dmm.digitize.math.mxb.bfactor = %f";
+}
+
+d_math_bfactor_get{
+	# read
+	out "print(dmm.digitize.math.mxb.bfactor)";
+	in "%f";
+}
+
+d_math_mfactor_set{
+	# set
+	out "dmm.digitize.math.mxb.mfactor = %f";
+}
+
+d_math_mfactor_get{
+	# read
+	out "print(dmm.digitize.math.mxb.mfactor)";
+	in "%f";
+}
+
+d_math_percref_set{
+	# set
+	out "dmm.digitize.math.percent = %f";
+}
+
+d_math_percref_get{
+	# read
+	out "print(dmm.digitize.math.percent)";
+	in "%f";
+}
+
+d_math_en_set{
+	# set
+	out "dmm.digitize.math.enable = dmm.%{OFF|ON}";
+}
+
+d_math_en_get{
+	# read
+	out "print(dmm.digitize.math.enable)";
+	in "dmm.%{OFF|ON}";
+}
+
+###########################################################################
+# Trace
+
+trace_cnt_get{
+	# read
+	out "print(defbuffer\$1.n)";
+	in "%i";
+}
+
+trace_clr_set{
+	# cmd
+	out "defbuffer\$1.clear()";
+}
+
+trace_start_get{
+	# read
+	out "print(defbuffer\$1.startindex)";
+	in "%i";
+}
+
+trace_end_get{
+	# read
+	out "print(defbuffer\$1.endindex)";
+	in "%i";
+}
+
+trace_read_get{
+	separator=",";
+	# read
+	out "printbuffer(%(\$1StartRead\$2-SP)i, %(\$1EndRead\$2-SP)i, defbuffer\$2.readings)";
+	in "%f";
+}
+
+trace_fetch_get{
+	# read
+	out "printbuffer(defbuffer\$1.endindex, defbuffer\$1.endindex, defbuffer\$1.readings)";
+	in "%f";
+}
+
+trace_fill_set{
+	# set
+	out "defbuffer\$1.fillmode = %b";
+}
+
+trace_fill_get{
+	# read
+	out "print(defbuffer\$1.fillmode)";
+	in "%b";
+}
+
+trace_capacity_set{
+	# set
+	out "defbuffer\$1.capacity = %i";
+}
+
+trace_capacity_get{
+	# read
+	out "print(defbuffer\$1.capacity)";
+	in "%i";
+}
+
+trace_avg_get{
+	# read
+	out "statsVar = buffer.getstats(defbuffer\$1)";
+	out "print(statsVar.mean)";
+	in "%f";
+}
+
+trace_clrstat_set{
+	# cmd
+	out "buffer.clearstats(defbuffer\$1)";
+}
+
+trace_max_get{
+	# read
+	out "statsVar = buffer.getstats(defbuffer\$1)";
+	out "print(statsVar.max.reading)";
+	in "%f";
+}
+
+trace_min_get{
+	# read
+	out "statsVar = buffer.getstats(defbuffer\$1)";
+	out "print(statsVar.min.reading)";
+	in "%f";
+}
+
+trace_stdd_get{
+	# read
+	out "statsVar = buffer.getstats(defbuffer\$1)";
+	out "print(statsVar.stddev)";
+	in "%f";
+}
+
+trace_meas_set{
+	# cmd
+	out "print(dmm.measure.read(defbuffer\$2))";
+	in "%(\$1FetchBuff\$2-Mon)f";
+}
+
+trace_digtz_set{
+	# cmd
+	out "print(dmm.digitize.read(defbuffer\$2))";
+	in "%(\$1FetchBuff\$2-Mon)f";
+}
+
+###########################################################################
+# Calibration
+
+acal_count_get{
+	# read
+	out "print(acal.count)";
+	in "%i";
+}
+
+acal_diff_get{
+	# read
+	out "print(acal.lastrun.tempdiff)";
+	in "%f";
+}
+
+acal_last_get{
+	# read
+	out "print(acal.lastrun.time)";
+	in "%s";
+}
+
+acal_next_get{
+	# read
+	out "print(acal.nextrun.time)";
+	in "%s";
+}
+
+acal_rev_set{
+	# cmd
+	out "acal.revert()";
+}
+
+acal_start_set{
+	# cmd
+	out "acal.run()";
+}
+
+# Set hour with complete schedule
+acal_sch_set1{
+	# set
+	out "acal.schedule(acal.ACTION_%(\$1ACalSchAct-Sts){NONE|RUN|NOTIFY}, acal.INTERVAL_%(\$1ACalSchInt-Sts){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY}, %(\$1ACalSchHr-SP)i)";
+}
+
+# Set interval with complete schedule
+acal_sch_set2{
+	# set
+	out "acal.schedule(acal.ACTION_%(\$1ACalSchAct-Sts){NONE|RUN|NOTIFY}, acal.INTERVAL_%(\$1ACalSchInt-Sel){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY}, %(\$1ACalSchHr-RB)i)";
+}
+
+# Set action with complete schedule
+acal_sch_set3{
+	# set
+	out "acal.schedule(acal.ACTION_%(\$1ACalSchAct-Sel){NONE|RUN|NOTIFY}, acal.INTERVAL_%(\$1ACalSchInt-Sts){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY}, %(\$1ACalSchHr-RB)i)";
+}
+
+# Set interval for interval smaller than 1 day
+acal_sch_set4{
+	# set
+	out "acal.schedule(acal.ACTION_%(\$1ACalSchAct-Sts){NONE|RUN|NOTIFY}, acal.INTERVAL_%(\$1ACalSchInt-Sel){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY})";
+}
+
+# Set action for interval smaller than 1 day
+acal_sch_set5{
+	# set
+	out "acal.schedule(acal.ACTION_%(\$1ACalSchAct-Sel){NONE|RUN|NOTIFY}, acal.INTERVAL_%(\$1ACalSchInt-Sts){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY})";
+}
+
+acal_sch_get{
+	# read
+	out "print(acal.schedule())";
+	in "acal.ACTION_%(\$1ACalSchAct-Sts){NONE|RUN|NOTIFY}\tacal.INTERVAL_%(\$1ACalSchInt-Sts){8HR|16HR|1DAY|7DAY|14DAY|30DAY|90DAY}\t%(\$1ACalSchHr-RB)i";
+}
+
+###########################################################################
+# Blender
+
+blend_clr_set{
+	# cmd
+	out "trigger.blender[\$1].clear()";
+}
+
+blend_mode_set{
+	# set
+	out "trigger.blender[\$1].orenable = %{true|false}";
+}
+
+blend_mode_get{
+	# read
+	out "print(trigger.blender[\$1].orenable)";
+	in "%{true|false}";
+}
+
+blend_over_get{
+	# read
+	out "print(trigger.blender[\$1].overrun)";
+	in "%{true|false}";
+}
+
+blender_stim_set{
+	# set
+	out "trigger.blender[\$1].stimulus[\$2] = trigger.EVENT_%s";
+}
+
+blender_stim_get{
+	# read
+	out "print(trigger.blender[\$1].stimulus[\$2])";
+	in "trigger.EVENT_%s";
+}
+
+###########################################################################
+# Trigger Model
+
+tm_abort_set{
+	# cmd
+	out "trigger.model.abort()";
+}
+
+tm_start_set{
+	# cmd
+	out "trigger.model.initiate()";
+}
+
+tm_list_get{
+	InTerminator = "";
+	# read
+	out "print(trigger.model.getblocklist())";
+	in "%#s";
+}
+
+tm_clear_set{
+	# cmd
+	out "trigger.model.load('Empty')";
+}
+
+tm_state_get{
+	# read
+	out "print(trigger.model.state())";
+	in "trigger.STATE_%{IDLE|RUNNING|WAITING|EMPTY|BUILDING|FAILED|ABORTING|ABORTED}\t%*s\t%(\$1TMIdx-Mon)i";
+}
+
+###########################################################################
+# Timer
+
+timer_clr_set{
+	# cmd
+	out "trigger.timer[\$1].clear()";
+}
+
+timer_count_set{
+	# set
+	out "trigger.timer[\$1].count = %i";
+}
+
+timer_count_get{
+	# read
+	out "print(trigger.timer[\$1].count)";
+	in "%i";
+}
+
+timer_dly_set{
+	# set
+	out "trigger.timer[\$1].delay = %f";
+}
+
+timer_dly_get{
+	# read
+	out "print(trigger.timer[\$1].delay)";
+	in "%f";
+}
+
+timer_frac_set{
+	# set
+	out "trigger.timer[\$1].start.fractionalseconds = %f";
+}
+
+timer_frac_get{
+	# read
+	out "print(trigger.timer[\$1].start.fractionalseconds)";
+	in "%f";
+}
+
+timer_gen_set{
+	# set
+	out "trigger.timer[\$1].start.generate = trigger.%{OFF|ON}";
+}
+
+timer_gen_get{
+	# read
+	out "print(trigger.timer[\$1].start.generate)";
+	in "trigger.%{OFF|ON}";
+}
+
+timer_over_get{
+	# read
+	out "print(trigger.timer[\$1].start.overrun)";
+	in "%{false|true}";
+}
+
+timer_sec_set{
+	# set
+	out "trigger.timer[\$1].start.seconds = %i";
+}
+
+timer_sec_get{
+	# read
+	out "print(trigger.timer[\$1].start.seconds)";
+	in "%i";
+}
+
+timer_en_set{
+	# set
+	out "trigger.timer[\$1].enable = trigger.%{OFF|ON}";
+}
+
+timer_en_get{
+	# read
+	out "print(trigger.timer[\$1].enable)";
+	in "trigger.%{OFF|ON}";
+}
+
+timer_stim_set{
+	# set
+	out "trigger.timer[\$1].start.stimulus = trigger.EVENT_%s";
+}
+
+timer_stim_get{
+	# read
+	out "print(trigger.timer[\$1].start.stimulus)";
+	in "trigger.EVENT_%s";
+}
+
+###########################################################################
+# System Settings
+
+sys_access_set{
+	# set
+	out "localnode.access = localnode.ACCESS_%{FULL|EXCLUSIVE|PROTECTED|LOCKOUT}";
+}
+
+sys_access_get{
+	# read
+	out "print(localnode.access)";
+	in "localnode.ACCESS_%{FULL|EXCLUSIVE|PROTECTED|LOCKOUT}";
+}
+
+sys_login_set{
+	# cmd
+	out "login %s";
+}
+
+sys_logout_set{
+	# cmd
+	out "logout";
+}
+
+sys_clearlog_set{
+	# cmd
+	out "eventlog.clear()";
+}
+
+sys_cntlog_get{
+	# read
+	out "print(eventlog.getcount())";
+	in "%i";
+}
+
+sys_nextlog_get{
+	# read
+	out "print(eventlog.next())";
+	in "%#s";
+}
+
+sys_linefr_get{
+	# read
+	out "print(localnode.linefreq)";
+	in "%i";
+}
+
+sys_passnew_set{
+	# cmd
+	out "localnode.password = '%s'";
+}
+
+sys_temp_get{
+	# read
+	out "print(localnode.internaltemp)";
+	in "%f";
+}
+
+sys_time_set{
+	# set
+	out "localnode.settime(%s)";
+}
+
+sys_time_get{
+	# read
+	out "print(os.date('\%c', gettime()))";
+	in "%#s";
+}
+
+###########################################################################
+# Debug commands
+
+soft_trg_set{
+	# set
+        out "*TRG";
+}
+
+###########################################################################
+# Custom command
+
+custom_cmd_set{
+	out "%#s";
+}

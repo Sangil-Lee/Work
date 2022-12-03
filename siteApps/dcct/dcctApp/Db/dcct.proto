@@ -1,0 +1,25 @@
+Terminator = NL;
+ExtraInput = Ignore;
+ReplyTimeout = 15000;
+MaxInput = 8000000;
+
+################################################
+# 1. read the timestamp of the first new reading
+# 2. read the block of new readings in a given buffer
+
+buff_and_time_get{
+    out "print('Time\$2:' .. defbuffer\$2.timestamps[%(\$1IdxBuff\$2-Mon)i])";
+    in "Time\$2:%(\$1TimeRawBuff\$2-Mon)#s";
+    Separator = ", ";
+    out "printbuffer(%(\$1IdxBuff\$2-Mon)i, %(\$3EndBuff\$2-Mon)i, defbuffer\$2.readings)";
+    in "%f";
+}
+
+set_hasshutdown{
+    out "hasShutDown = 0";
+}
+
+get_hasshutdown{
+    out "print('hasShutDown=' .. tostring(hasShutDown))";
+    in "%{hasShutDown=0|hasShutDown=}";
+}
