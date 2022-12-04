@@ -1,0 +1,1116 @@
+program sncDCCT
+
+%%//----------------------------------------
+%%// 	      Variables
+%%//----------------------------------------
+
+int prev_buff_1_end_idx;
+int prev_buff_2_end_idx;
+int var_sample_cnt;
+int saved_meas_mode;
+
+%%//----------------------------------------
+%%// 	      Monitored PVs
+%%//----------------------------------------
+
+string error_list[4];
+assign error_list to "{P}{R}ReliableMeasLabels-Cte";
+
+int reset_cmd;
+assign reset_cmd to "{Instrument}Reset-Cmd";
+
+int meas_mode_sel;
+assign meas_mode_sel to "{P}{R}MeasMode-Sel";
+monitor meas_mode_sel;
+
+int meas_mode_sts;
+assign meas_mode_sts to "{P}{R}MeasMode-Sts";
+monitor meas_mode_sts;
+evflag meas_mode_sts_flg;
+sync meas_mode_sts meas_mode_sts_flg;
+
+int enbl_sel;
+assign enbl_sel to "{P}{R}Enbl-Sel";
+monitor enbl_sel;
+evflag enbl_sel_flg;
+sync enbl_sel enbl_sel_flg;
+
+int enbl_sts;
+assign enbl_sts to "{P}{R}Enbl-Sts";
+
+int meas_trg_sts;
+assign meas_trg_sts to "{P}{R}MeasTrg-Sts";
+monitor meas_trg_sts;
+evflag meas_trg_sts_flg;
+sync meas_trg_sts meas_trg_sts_flg;
+
+int low_lim_enbl_sts;
+assign low_lim_enbl_sts to "{P}{R}LowLimEnbl-Sts";
+monitor low_lim_enbl_sts;
+evflag low_lim_enbl_sts_flg;
+sync low_lim_enbl_sts low_lim_enbl_sts_flg;
+
+int meas_stim_sel;
+assign meas_stim_sel to "{P}{R}MeasStim-Sel";
+
+int tm_clear_cmd;
+assign tm_clear_cmd to "{P}{R}TMClear-Cmd";
+
+int tm_start_cmd;
+assign tm_start_cmd to "{P}{R}TMStart-Cmd";
+
+int tm_abort_cmd;
+assign tm_abort_cmd to "{P}{R}TMAbort-Cmd";
+
+string tm_mon_scan;
+assign tm_mon_scan to "{P}{R}TM-Mon.SCAN";
+
+int tm_mon;
+assign tm_mon to "{P}{R}TM-Mon";
+monitor tm_mon;
+evflag tm_mon_flg;
+sync tm_mon tm_mon_flg;
+
+int tm_idx_mon;
+assign tm_idx_mon to "{P}{R}TMIdx-Mon";
+monitor tm_idx_mon;
+evflag tm_idx_mon_flg;
+sync tm_idx_mon tm_idx_mon_flg;
+
+int tm_idx_mon_mdel;
+assign tm_idx_mon_mdel to "{P}{R}TMIdx-Mon.MDEL";
+
+int download_phase_done_mon;
+assign download_phase_done_mon to "{P}{R}DownloadPhaseDone-Mon";
+monitor download_phase_done_mon;
+evflag download_phase_done_mon_flg;
+sync download_phase_done_mon download_phase_done_mon_flg;
+
+int download_done_mon;
+assign download_done_mon to "{P}{R}DownloadDone-Mon";
+
+int download_cmd;
+assign download_cmd to "{P}{R}Download-Cmd";
+monitor download_cmd;
+evflag download_cmd_flg;
+sync download_cmd download_cmd_flg;
+
+int valid_download_proc;
+assign valid_download_proc to "{P}{R}ValidDownload.PROC";
+
+int soft_trg_cmd;
+assign soft_trg_cmd to "{P}{R}SoftTrg-Cmd";
+
+char custom_sp[250];
+assign custom_sp to "{P}{R}Custom-SP";
+
+int raw_buff_1_mon_proc;
+assign raw_buff_1_mon_proc to "{P}{R}RawBuff1-Mon.PROC";
+
+int raw_buff_2_mon_proc;
+assign raw_buff_2_mon_proc to "{P}{R}RawBuff2-Mon.PROC";
+
+int ex_out_pol_sel;
+assign ex_out_pol_sel to "{Instrument}ExOutPol-Sel";
+
+string ex_out_stim_sel;
+assign ex_out_stim_sel to "{Instrument}ExOutStim-Sel";
+
+int sample_cnt_rb;
+assign sample_cnt_rb to "{P}{R}SampleCnt-RB";
+monitor sample_cnt_rb;
+evflag sample_cnt_rb_flg;
+sync sample_cnt_rb sample_cnt_rb_flg;
+
+int fast_sample_cnt_rb;
+assign fast_sample_cnt_rb to "{P}{R}FastSampleCnt-RB";
+monitor fast_sample_cnt_rb;
+evflag fast_sample_cnt_rb_flg;
+sync fast_sample_cnt_rb fast_sample_cnt_rb_flg;
+
+int cnt_buff_1_mon;
+assign cnt_buff_1_mon to "{Instrument}CntBuff1-Mon";
+monitor cnt_buff_1_mon;
+evflag cnt_buff_1_mon_flg;
+sync cnt_buff_1_mon cnt_buff_1_mon_flg;
+
+int cnt_buff_2_mon;
+assign cnt_buff_2_mon to "{Instrument}CntBuff2-Mon";
+monitor cnt_buff_2_mon;
+evflag cnt_buff_2_mon_flg;
+sync cnt_buff_2_mon cnt_buff_2_mon_flg;
+
+string cnt_buff_1_mon_scan;
+assign cnt_buff_1_mon_scan to "{Instrument}CntBuff1-Mon.SCAN";
+
+string cnt_buff_2_mon_scan;
+assign cnt_buff_2_mon_scan to "{Instrument}CntBuff2-Mon.SCAN";
+
+int meas_buff_1_cmd;
+assign meas_buff_1_cmd to "{Instrument}MeasBuff1-Cmd";
+
+int meas_buff_2_cmd;
+assign meas_buff_2_cmd to "{Instrument}MeasBuff2-Cmd";
+
+int digtz_buff_1_cmd;
+assign digtz_buff_1_cmd to "{Instrument}DigtzBuff1-Cmd";
+
+int digtz_buff_2_cmd;
+assign digtz_buff_2_cmd to "{Instrument}DigtzBuff2-Cmd";
+
+int clear_buff_1_cmd;
+assign clear_buff_1_cmd to "{Instrument}ClrBuff1-Cmd";
+
+int clear_buff_2_cmd;
+assign clear_buff_2_cmd to "{Instrument}ClrBuff2-Cmd";
+
+int start_buff_1_mon;
+assign start_buff_1_mon to "{Instrument}StartBuff1-Mon";
+monitor start_buff_1_mon;
+evflag start_buff_1_mon_flg;
+sync start_buff_1_mon start_buff_1_mon_flg;
+
+int start_buff_2_mon;
+assign start_buff_2_mon to "{Instrument}StartBuff2-Mon";
+monitor start_buff_2_mon;
+evflag start_buff_2_mon_flg;
+sync start_buff_2_mon start_buff_2_mon_flg;
+
+int end_buff_1_mon;
+assign end_buff_1_mon to "{Instrument}EndBuff1-Mon";
+monitor end_buff_1_mon;
+evflag end_buff_1_mon_flg;
+sync end_buff_1_mon end_buff_1_mon_flg;
+
+int end_buff_2_mon;
+assign end_buff_2_mon to "{Instrument}EndBuff2-Mon";
+monitor end_buff_2_mon;
+evflag end_buff_2_mon_flg;
+sync end_buff_2_mon end_buff_2_mon_flg;
+
+string start_buff_1_mon_scan;
+assign start_buff_1_mon_scan to "{Instrument}StartBuff1-Mon.SCAN";
+
+string start_buff_2_mon_scan;
+assign start_buff_2_mon_scan to "{Instrument}StartBuff2-Mon.SCAN";
+
+string end_buff_1_mon_scan;
+assign end_buff_1_mon_scan to "{Instrument}EndBuff1-Mon.SCAN";
+
+string end_buff_2_mon_scan;
+assign end_buff_2_mon_scan to "{Instrument}EndBuff2-Mon.SCAN";
+
+int idx_buff_1_mon;
+assign idx_buff_1_mon to "{P}{R}IdxBuff1-Mon";
+
+int idx_buff_2_mon;
+assign idx_buff_2_mon to "{P}{R}IdxBuff2-Mon";
+
+string time_sec_mon_scan;
+assign time_sec_mon_scan to "{Instrument}TimeSec-Mon.SCAN";
+
+string time_sec_mon;
+assign time_sec_mon to "{Instrument}TimeSec-Mon";
+monitor time_sec_mon;
+evflag time_sec_mon_flg;
+sync time_sec_mon time_sec_mon_flg;
+
+int network_mon;
+assign network_mon to "{Instrument}Network-Mon";
+monitor network_mon;
+evflag network_mon_flg;
+sync network_mon network_mon_flg;
+
+int size_buff_1_sp;
+assign size_buff_1_sp to "{Instrument}SizeBuff1-SP";
+
+int size_buff_2_sp;
+assign size_buff_2_sp to "{Instrument}SizeBuff2-SP";
+
+int reconnection_cnt;
+assign reconnection_cnt to "{P}{R}ReconnectionCnt";
+monitor reconnection_cnt;
+evflag reconnection_cnt_flg;
+sync reconnection_cnt reconnection_cnt_flg;
+
+int rst_shutdown_monitor;
+assign rst_shutdown_monitor to "{P}{R}SetHasShutDown";
+
+int get_shutdown_monitor;
+assign get_shutdown_monitor to "{P}{R}GetHasShutDown";
+monitor get_shutdown_monitor;
+evflag get_shutdown_monitor_flg;
+sync get_shutdown_monitor get_shutdown_monitor_flg;
+
+int get_shutdown_monitor_proc;
+assign get_shutdown_monitor_proc to "{P}{R}GetHasShutDown.PROC";
+
+%%//----------------------------------------
+%%//        Escaped C Code
+%%//----------------------------------------
+
+%%#include <unistd.h>
+%%#include <string.h>
+%%#include "Logger.h"
+
+%%#define SCAN_RATE ".02 second"
+%%#define NETWORK_SCAN_RATE "5 second"
+%%#define ACQ_TIMEOUT 15.0
+%%#define MDEL_ALWAYS -1
+%%#define MDEL_ON_CHANGE 0
+%%#define TIMEOUT_CONN_NOT_TRIG 0.5
+%%#define CONFIG_TIMEOUT 15.0
+%%#define TEMP_ERROR "Temperature difference warning"
+%%#define NETWORK_ERROR "Network disconnection"
+%%#define ENBL_WARNING "Acquisition disabled"
+%%#define RANGE_WARNING "Measurement out of range"
+
+%%//----------------------------------------
+%%//        State Notation Language
+%%//----------------------------------------
+
+ss dcct_acquisition {
+    state init {
+	when (delay(5.0)) {
+            LOG_INFO("[%s%s] Initialization start\n", macValueGet("P"), macValueGet("R"));
+	    LOG_INFO("[%s%s] Initializing ReliableMeasLabels-Cte\n", macValueGet("P"), macValueGet("R"));
+            strcpy(error_list[0], ENBL_WARNING);
+            strcpy(error_list[1], NETWORK_ERROR);
+            strcpy(error_list[2], TEMP_ERROR);
+            strcpy(error_list[3], RANGE_WARNING);
+            pvPut(error_list, SYNC);
+	    LOG_INFO("[%s%s] Initialization of ReliableMeasLabels-Cte finished\n", macValueGet("P"), macValueGet("R"));
+	} state download_phase_1
+    }
+
+    state download_phase_1 {
+        entry {
+            LOG_INFO("[%s%s] Download phase 1\n", macValueGet("P"), macValueGet("R"));
+            // update download done status
+            download_done_mon = 0;
+            pvPut(download_done_mon, SYNC);
+            // abort a Trigger Model if
+            // there is one running
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+            // reset instrument
+            reset_cmd = 1;
+            pvPut(reset_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+            // save measure mode setting
+            saved_meas_mode = meas_mode_sel;
+            // config measure mode to setting that
+            // is NOT selected
+            if (saved_meas_mode == 1){ meas_mode_sel = 0;}
+            else{ meas_mode_sel = 1;}
+            pvPut(meas_mode_sel, SYNC);
+            // do download for this setting
+            download_cmd = 1;
+            pvPut(download_cmd, SYNC);
+            // allow download to proceed
+            valid_download_proc = 1;
+            pvPut(valid_download_proc, SYNC);
+        }
+
+        when (efTestAndClear(download_phase_done_mon_flg)
+              && download_phase_done_mon == 1){
+            /* Go to next state */
+        } state download_phase_2
+    }
+
+    state download_phase_2 {
+        entry {
+            LOG_INFO("[%s%s] Download phase 2\n", macValueGet("P"), macValueGet("R"));
+            // config measure mode that actually should
+            // be used
+            meas_mode_sel = saved_meas_mode;
+            pvPut(meas_mode_sel, SYNC);
+            // do download for this setting
+            download_cmd = 1;
+            pvPut(download_cmd, SYNC);
+            // allow download to proceed
+            valid_download_proc = 1;
+            pvPut(valid_download_proc, SYNC);
+        }
+
+        when (efTestAndClear(download_phase_done_mon_flg)
+              && download_phase_done_mon == 1){
+            LOG_INFO("[%s%s] Download finished\n", macValueGet("P"), macValueGet("R"));
+            // reset shutdown monitor flag in device
+            rst_shutdown_monitor = 1;
+            pvPut(rst_shutdown_monitor, SYNC);
+            // put download PV low
+            download_cmd = 0;
+            pvPut(download_cmd, SYNC);
+            // update download done status
+            download_done_mon = 1;
+            pvPut(download_done_mon, SYNC);
+        } state wait_enbl
+    }
+
+    state wait_enbl{
+        entry{
+            // enable network connection monitoring
+            // while meaurement does not start
+            strcpy(time_sec_mon_scan, NETWORK_SCAN_RATE);
+            pvPut(time_sec_mon_scan, SYNC);
+            // clear connection monitoring flag
+            // to make sure connection state is up-to-date
+            // inside transition checks
+            efClear(time_sec_mon_flg);
+            // clear reconnection flag. If it updates
+            // there was a reconnection
+            efClear(reconnection_cnt_flg);
+        }
+
+        when (efTestAndClear(download_cmd_flg)
+              && download_cmd == 1){
+            /* Download requested */
+            LOG_INFO("[%s%s] Received request for download\n", macValueGet("P"), macValueGet("R"));
+        } state download_phase_1
+
+        when (efTestAndClear(reconnection_cnt_flg)){
+            /* Reconnection detected.
+               Do download in case DMM is misconfigured */
+            LOG_MINOR("[%s%s] Reconnection detected while waiting for enable command. An automatic download will start.\n", macValueGet("P"), macValueGet("R"));
+        } state download_phase_1
+
+        when (enbl_sel == 1 && efTestAndClear(time_sec_mon_flg)
+              && network_mon == 1){
+        } state validate_enbl
+    }
+
+    state validate_enbl{
+        when (meas_mode_sts != 1 && meas_mode_sts != 2){
+            // Error: No valid meas mode is selected
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            LOG_MAJOR("[%s%s] Error: No valid meas mode is selected\n", macValueGet("P"), macValueGet("R"));
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            //  enbl = OFF to prevent a loop
+            enbl_sel = 0;
+            pvPut(enbl_sel, SYNC);
+            // sleep for 500 ms
+            usleep(500000);
+        } state wait_enbl
+        when (meas_trg_sts != 1 && meas_trg_sts != 2 && meas_trg_sts != 3){
+            // Error: No valid trigger is selected
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            LOG_MAJOR("[%s%s] Error: No valid trigger is selected\n", macValueGet("P"), macValueGet("R"));
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            //  enbl = OFF to prevent a loop
+            enbl_sel = 0;
+            pvPut(enbl_sel, SYNC);
+            // sleep for 500 ms
+            usleep(500000);
+        } state wait_enbl
+        when (meas_trg_sts == 2 && low_lim_enbl_sts != 0){
+            // Error: 'Low limit enbl' is ON while InLevel trig is selected
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            LOG_MAJOR("[%s%s] Error: LowLimEnbl and InLevel trig are both ON\n", macValueGet("P"), macValueGet("R"));
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            //  enbl = OFF to prevent a loop
+            enbl_sel = 0;
+            pvPut(enbl_sel, SYNC);
+            // sleep for 500 ms
+            usleep(500000);
+        } state wait_enbl
+        when (){
+            // Success
+            LOG_INFO("[%s%s] Enabling acquisition\n", macValueGet("P"), macValueGet("R"));
+            // disable network connection monitoring
+            // since long measurements can momentarily
+            // stop communication from DMM side
+            strcpy(time_sec_mon_scan, "Passive");
+            pvPut(time_sec_mon_scan, SYNC);
+            // update enbl status: 'Preparing'
+            enbl_sts = 2;
+            pvPut(enbl_sts, SYNC);
+        } state resize_buffers
+    }
+
+    state resize_buffers {
+        entry {
+            // buffers 1 and 2 of instrument
+            // should have at least 10 elements.
+            // set sizes to at least 2 x sample cnt
+            if (meas_mode_sts == 1){
+                size_buff_1_sp = sample_cnt_rb;
+                size_buff_2_sp = sample_cnt_rb;
+            }else{
+                size_buff_1_sp = fast_sample_cnt_rb;
+                size_buff_2_sp = fast_sample_cnt_rb;
+            }
+            if (size_buff_1_sp < 5){
+                size_buff_1_sp = 12;
+                size_buff_2_sp = 12;
+            }else{
+                size_buff_1_sp = 2 * size_buff_1_sp;
+                size_buff_2_sp = 2 * size_buff_2_sp;
+            }
+            pvPut(size_buff_1_sp, SYNC);
+            pvPut(size_buff_2_sp, SYNC);
+        }
+
+        when (){
+        } state config_tm
+    }
+
+    state config_tm{
+        when (meas_trg_sts == 1 || meas_trg_sts == 2){
+            /* Load Trigger Model with hardware trg*/
+            // clear
+            tm_clear_cmd = 1;
+            pvPut(tm_clear_cmd, SYNC);
+            // Block 1 - soft trg 1
+            strcpy(custom_sp, "trigger.model.setblock(1,trigger.BLOCK_WAIT,trigger.EVENT_COMMAND,trigger.CLEAR_ENTER)");
+            pvPut(custom_sp, SYNC);
+            // Block 2 - hard trg 1
+            if (meas_trg_sts == 1) {
+                strcpy(custom_sp, "trigger.model.setblock(2,trigger.BLOCK_WAIT,trigger.EVENT_EXTERNAL,trigger.CLEAR_ENTER)");
+            }
+            else{
+                strcpy(custom_sp, "trigger.model.setblock(2,trigger.BLOCK_WAIT,trigger.EVENT_ANALOGTRIGGER,trigger.CLEAR_ENTER)");
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 3 - measurement 1
+            if (meas_mode_sts == 1){
+                sprintf(custom_sp, "trigger.model.setblock(3,trigger.BLOCK_MEASURE,defbuffer1,%d)", sample_cnt_rb);
+            }
+            else {
+                sprintf(custom_sp, "trigger.model.setblock(3,trigger.BLOCK_DIGITIZE,defbuffer1,%d)", fast_sample_cnt_rb);
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 4 - soft trg 2
+            strcpy(custom_sp, "trigger.model.setblock(4,trigger.BLOCK_WAIT,trigger.EVENT_COMMAND,trigger.CLEAR_ENTER)");
+            pvPut(custom_sp, SYNC);
+            // Block 5 - hard trg 2
+            if (meas_trg_sts == 1) {
+                strcpy(custom_sp, "trigger.model.setblock(5,trigger.BLOCK_WAIT,trigger.EVENT_EXTERNAL,trigger.CLEAR_ENTER)");
+            }
+            else{
+                strcpy(custom_sp, "trigger.model.setblock(5,trigger.BLOCK_WAIT,trigger.EVENT_ANALOGTRIGGER,trigger.CLEAR_ENTER)");
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 6 - measurement 2
+            if (meas_mode_sts == 1){
+                sprintf(custom_sp, "trigger.model.setblock(6,trigger.BLOCK_MEASURE,defbuffer1,%d)", sample_cnt_rb);
+            }
+            else {
+                sprintf(custom_sp, "trigger.model.setblock(6,trigger.BLOCK_DIGITIZE,defbuffer1,%d)", fast_sample_cnt_rb);
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 7 - back to start
+            strcpy(custom_sp, "trigger.model.setblock(7, trigger.BLOCK_BRANCH_ALWAYS, 4)");
+            pvPut(custom_sp, SYNC);
+        } state clear_buffer_1
+        
+        when (){
+            /* Load Trigger Model with soft trigger only */
+            // clear
+            tm_clear_cmd = 1;
+            pvPut(tm_clear_cmd, SYNC);
+            // Block 1 - soft trg 1
+            strcpy(custom_sp, "trigger.model.setblock(1,trigger.BLOCK_WAIT,trigger.EVENT_COMMAND)");
+            pvPut(custom_sp, SYNC);
+            // Block 2 - measurement 1
+            if (meas_mode_sts == 1){
+                sprintf(custom_sp, "trigger.model.setblock(2,trigger.BLOCK_MEASURE,defbuffer1,%d)", sample_cnt_rb);
+            }
+            else {
+                sprintf(custom_sp, "trigger.model.setblock(2,trigger.BLOCK_DIGITIZE,defbuffer1,%d)", fast_sample_cnt_rb);
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 3 - soft trg 2
+            strcpy(custom_sp, "trigger.model.setblock(3,trigger.BLOCK_WAIT,trigger.EVENT_COMMAND)");
+            pvPut(custom_sp, SYNC);
+            // Block 4 - measurement 2
+            if (meas_mode_sts == 1){
+                sprintf(custom_sp, "trigger.model.setblock(4,trigger.BLOCK_MEASURE,defbuffer2,%d)", sample_cnt_rb);
+            }
+            else {
+                sprintf(custom_sp, "trigger.model.setblock(4,trigger.BLOCK_DIGITIZE,defbuffer2,%d)", fast_sample_cnt_rb);
+            }
+            pvPut(custom_sp, SYNC);
+            // Block 5 - back to start
+            strcpy(custom_sp, "trigger.model.setblock(5, trigger.BLOCK_BRANCH_ALWAYS, 1)");
+            pvPut(custom_sp, SYNC);
+        } state clear_buffer_1
+    }
+
+    state clear_buffer_1{
+        when (delay(2.0)){
+            // clear buffer 1
+            clear_buff_1_cmd = 1;
+            pvPut(clear_buff_1_cmd, SYNC);
+            // monitor buffer fill
+            strcpy(cnt_buff_1_mon_scan, SCAN_RATE);
+            pvPut(cnt_buff_1_mon_scan, SYNC);
+        } state clear_buffer_2
+    }
+
+    state clear_buffer_2{
+        when (efTestAndClear(cnt_buff_1_mon_flg)
+              && cnt_buff_1_mon == 0){
+            // clear buffer 2
+            clear_buff_2_cmd = 1;
+            pvPut(clear_buff_2_cmd, SYNC);
+            // monitor buffer fill
+            strcpy(cnt_buff_2_mon_scan, SCAN_RATE);
+            pvPut(cnt_buff_2_mon_scan, SYNC);
+        } state prefill_buffer_1
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot clear buffer 1\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state prefill_buffer_1{
+        when (efTestAndClear(cnt_buff_2_mon_flg)
+              && cnt_buff_2_mon == 0){
+            // prefill buffer 1
+            if (meas_mode_sts == 1){
+                meas_buff_1_cmd = 1;
+                pvPut(meas_buff_1_cmd, SYNC);
+            }
+            else{
+                digtz_buff_1_cmd = 1;
+                pvPut(digtz_buff_1_cmd, SYNC);
+            }
+        } state prefill_buffer_2
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot clear buffer 2\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state prefill_buffer_2{
+        when (efTestAndClear(cnt_buff_1_mon_flg)
+              &&
+              ((cnt_buff_1_mon == sample_cnt_rb 
+                && meas_mode_sts == 1)
+               || 
+               (cnt_buff_1_mon == fast_sample_cnt_rb 
+                && meas_mode_sts == 2))
+             ){
+            // prefill buffer 2
+            if (meas_mode_sts == 1){
+                meas_buff_2_cmd = 1;
+                pvPut(meas_buff_2_cmd, SYNC);
+            }
+            else{
+                digtz_buff_2_cmd = 1;
+                pvPut(digtz_buff_2_cmd, SYNC);
+            }
+        } state buffers_ready
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot prefill buffer 1\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state buffers_ready {
+        when (
+              ((cnt_buff_1_mon == sample_cnt_rb 
+                && meas_mode_sts == 1)
+                || (cnt_buff_1_mon == fast_sample_cnt_rb 
+                    && meas_mode_sts == 2))
+              && 
+               ((cnt_buff_2_mon == sample_cnt_rb 
+                  && meas_mode_sts == 1)
+                  || (cnt_buff_2_mon == fast_sample_cnt_rb 
+                      && meas_mode_sts == 2))
+               ){
+            // stop buffer fill monitor
+            strcpy(cnt_buff_1_mon_scan, "Passive");
+            pvPut(cnt_buff_1_mon_scan, SYNC);
+            strcpy(cnt_buff_2_mon_scan, "Passive");
+            pvPut(cnt_buff_2_mon_scan, SYNC);
+            // clear buffer index flags
+            efClear(end_buff_1_mon_flg);
+            efClear(end_buff_2_mon_flg);
+            // monitor buffers end index
+            strcpy(end_buff_1_mon_scan, SCAN_RATE);
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, SCAN_RATE);
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // use a variable to store sample count
+            if (meas_mode_sts == 1){
+                var_sample_cnt = sample_cnt_rb;
+            }
+            else{
+                var_sample_cnt = fast_sample_cnt_rb;
+            }
+        } state buff_end_idx_ok
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot prefill buffer 2\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state buff_end_idx_ok{
+        when (efTestAndClear(end_buff_1_mon_flg)
+               && efTestAndClear(end_buff_2_mon_flg)){
+            // initialize previous buffer end indexes
+            prev_buff_1_end_idx = end_buff_1_mon;
+            prev_buff_2_end_idx = end_buff_2_mon;
+            // monitor TM state and index.
+            //   used to a)make sure TM finished
+            //   restarting and b) acquisition loop
+            strcpy(tm_mon_scan, SCAN_RATE);
+            pvPut(tm_mon_scan, SYNC);
+        } state run_tm
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot monitor buffer position\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state run_tm{
+        when (tm_mon != 2){
+            // when TM state has been read
+            // start TM
+            tm_start_cmd = 1;
+            pvPut(tm_start_cmd, SYNC);
+        } state start_acq
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: cannot monitor Trigger Model\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state start_acq{
+        when (tm_mon == 2){
+            // when TM-Mon == Waiting
+            LOG_INFO("[%s%s] Acquisition start\n", macValueGet("P"), macValueGet("R"));
+            // update enable status
+            enbl_sts = 1;
+            pvPut(enbl_sts, SYNC);
+            // enable low limit signal
+            if (low_lim_enbl_sts == 1 && meas_trg_sts != 2){
+                // select polarity
+                ex_out_pol_sel = 1; // negative pol
+                pvPut(ex_out_pol_sel, SYNC);
+                // enbl output trg
+                strcpy(ex_out_stim_sel, "ANALOGTRIGGER");
+                pvPut(ex_out_stim_sel, SYNC);
+            }
+            // allow acquisition start
+            soft_trg_cmd = 1;
+            pvPut(soft_trg_cmd, SYNC);
+        } state acq_cycle_step_1
+
+        when (delay(CONFIG_TIMEOUT)){
+            /* if configuration fails */
+            LOG_MAJOR("[%s%s] Acquisition start failed: Trigger Model cannot start\n", macValueGet("P"), macValueGet("R"));
+        } state failure_recovery_init
+    }
+
+    state acq_cycle_step_1{
+        when (efTestAndClear(download_cmd_flg)
+              && download_cmd == 1){
+            /* Download requested */
+            LOG_INFO("[%s%s] Acquisition stopped\n", macValueGet("P"), macValueGet("R"));
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+        } state download_phase_1
+
+        when (efTestAndClear(enbl_sel_flg)
+              && enbl_sel == 0){
+            /* Acquisition disabled */
+            LOG_INFO("[%s%s] Acquisition stopped\n", macValueGet("P"), macValueGet("R"));
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+        } state wait_enbl
+
+        when (delay(ACQ_TIMEOUT)){
+            /* give up after timeout and
+               go to failure state */
+        } state failure_test_acq_step_1
+
+        when (tm_idx_mon == 4 && meas_trg_sts != 3
+               && end_buff_1_mon != prev_buff_1_end_idx
+               && end_buff_1_mon % var_sample_cnt == 0){
+            // update previous buffer end index
+            prev_buff_1_end_idx = end_buff_1_mon;
+            // update initial buffer position (for new values)
+            idx_buff_1_mon = end_buff_1_mon - var_sample_cnt + 1;
+            pvPut(idx_buff_1_mon, SYNC);
+            /* buffer 1 full:
+               send soft trg and
+               fetch reading */
+            soft_trg_cmd = 1;
+            pvPut(soft_trg_cmd, SYNC);
+            raw_buff_1_mon_proc = 1;
+            pvPut(raw_buff_1_mon_proc, SYNC);
+        } state acq_cycle_step_2
+
+        when (tm_idx_mon == 3 && meas_trg_sts == 3
+               && end_buff_1_mon != prev_buff_1_end_idx
+               && end_buff_1_mon % var_sample_cnt == 0){
+            // update previous buffer end index
+            prev_buff_1_end_idx = end_buff_1_mon;
+            // update initial buffer position (for new values)
+            idx_buff_1_mon = end_buff_1_mon - var_sample_cnt + 1;
+            pvPut(idx_buff_1_mon, SYNC);
+            /* soft mode - buffer 1 full:
+               send soft trg and
+               fetch reading */
+            soft_trg_cmd = 1;
+            pvPut(soft_trg_cmd, SYNC);
+            raw_buff_1_mon_proc = 1;
+            pvPut(raw_buff_1_mon_proc, SYNC);
+        } state acq_cycle_step_2
+    }
+
+    state acq_cycle_step_2 {
+        when (efTestAndClear(download_cmd_flg)
+              && download_cmd == 1){
+            /* Download requested */
+            LOG_INFO("[%s%s] Acquisition stopped\n", macValueGet("P"), macValueGet("R"));
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+        } state download_phase_1
+
+        when (efTestAndClear(enbl_sel_flg)
+              && enbl_sel == 0){
+            /* Acquisition disabled */
+            LOG_INFO("[%s%s] Acquisition stopped\n", macValueGet("P"), macValueGet("R"));
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+            // sleep for 1 s
+            usleep(1000000);
+        } state wait_enbl
+
+        when (delay(ACQ_TIMEOUT)){
+            /* give up after timeout and
+               go to failure state */
+        } state failure_test_acq_step_2
+
+        when (tm_idx_mon == 4 && meas_trg_sts != 3
+               && end_buff_1_mon != prev_buff_1_end_idx
+               && end_buff_1_mon % var_sample_cnt == 0){
+            // update previous buffer end index
+            prev_buff_1_end_idx = end_buff_1_mon;
+            // update initial buffer position (for new values)
+            idx_buff_1_mon = end_buff_1_mon - var_sample_cnt + 1;
+            pvPut(idx_buff_1_mon, SYNC);
+            /* buffer 2 full:
+               send soft trg and
+               fetch reading */
+            soft_trg_cmd = 1;
+            pvPut(soft_trg_cmd, SYNC);
+            raw_buff_1_mon_proc = 1;
+            pvPut(raw_buff_1_mon_proc, SYNC);
+        } state acq_cycle_step_1
+
+        when (tm_idx_mon == 1 && meas_trg_sts == 3
+               && end_buff_2_mon != prev_buff_2_end_idx
+               && end_buff_2_mon % var_sample_cnt == 0){
+            // update previous buffer end index
+            prev_buff_2_end_idx = end_buff_2_mon;
+            // update initial buffer position (for new values)
+            idx_buff_2_mon = end_buff_2_mon - var_sample_cnt + 1;
+            pvPut(idx_buff_2_mon, SYNC);
+            /* soft mode - buffer 2 full:
+               send soft trg and
+               fetch reading */
+            soft_trg_cmd = 1;
+            pvPut(soft_trg_cmd, SYNC);
+            raw_buff_2_mon_proc = 1;
+            pvPut(raw_buff_2_mon_proc, SYNC);
+        } state acq_cycle_step_1
+    }
+
+    state failure_test_acq_step_1 {
+        entry {
+            LOG_MINOR("[%s%s] Acquisition timeout: checking connection\n", macValueGet("P"), macValueGet("R"));
+            // allow TM index monitors to
+            // be sent always (not only 
+            // on change).
+            tm_idx_mon_mdel = MDEL_ALWAYS;
+            pvPut(tm_idx_mon_mdel, SYNC);
+            // clear TM index mon flag.
+            // if it updates soon, then
+            // connection is fine
+            efClear(tm_idx_mon_flg);
+        }
+
+        when (efTestAndClear(tm_idx_mon_flg)){
+            /* connection is ok, so it is a trigger problem */
+            LOG_MINOR("[%s%s] Acquisition timeout: connection OK. Trigger may be missing\n", macValueGet("P"), macValueGet("R"));
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state acq_cycle_step_1
+
+        when (delay(TIMEOUT_CONN_NOT_TRIG)){
+            /* network connection problem */
+            LOG_MAJOR("[%s%s] Acquisition timeout: no response, connection failure\n", macValueGet("P"), macValueGet("R"));
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state failure_recovery
+    }
+
+    state failure_test_acq_step_2 {
+        entry {
+            LOG_MINOR("[%s%s] Acquisition timeout: checking connection\n", macValueGet("P"), macValueGet("R"));
+            // allow TM index monitors to
+            // be sent always (not only 
+            // on change).
+            tm_idx_mon_mdel = MDEL_ALWAYS;
+            pvPut(tm_idx_mon_mdel, SYNC);
+            // clear TM index mon flag.
+            // if it updates soon, then
+            // connection is fine
+            efClear(tm_idx_mon_flg);
+        }
+
+        when (efTestAndClear(tm_idx_mon_flg)){
+            /* connection is ok, so it is a trigger problem */
+            LOG_MINOR("[%s%s] Acquisition timeout: connection OK. Trigger may be missing\n", macValueGet("P"), macValueGet("R"));
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state acq_cycle_step_2
+
+        when (delay(TIMEOUT_CONN_NOT_TRIG)){
+            /* network connection problem */
+            LOG_MAJOR("[%s%s] Acquisition timeout: no response, connection failure\n", macValueGet("P"), macValueGet("R"));
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state failure_recovery
+    }
+
+    state failure_recovery {
+        entry{
+            LOG_MINOR("[%s%s] Failure recovery: waiting for connection to start recovery\n", macValueGet("P"), macValueGet("R"));
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // clear network monitoring flag
+            efClear(time_sec_mon_flg);
+            // start network connection monitoring
+            strcpy(time_sec_mon_scan, NETWORK_SCAN_RATE);
+            pvPut(time_sec_mon_scan, SYNC);
+        }
+
+        when(efTestAndClear(time_sec_mon_flg) && network_mon == 1){
+            LOG_MINOR("[%s%s] Failure recovery: connection established, starting recovery\n", macValueGet("P"), macValueGet("R"));
+            // stop network connection monitoring
+            strcpy(time_sec_mon_scan, "Passive");
+            pvPut(time_sec_mon_scan, SYNC);
+        } state shutdown_detect
+    }
+
+    state shutdown_detect {
+        entry{
+            LOG_MINOR("[%s%s] Failure recovery: Verifying if device has shutdown\n", macValueGet("P"), macValueGet("R"));
+            // clear shutdown monitor flag
+            efClear(get_shutdown_monitor_flg);
+            // request update of shutdown flag value
+            get_shutdown_monitor_proc = 1;
+            pvPut(get_shutdown_monitor_proc, SYNC);
+        }
+
+        when(efTest(get_shutdown_monitor_flg) && get_shutdown_monitor == 0){
+            LOG_MINOR("[%s%s] Failure recovery: device has not shut down, restarting acquisition\n", macValueGet("P"), macValueGet("R"));
+            // clear shutdown monitor flag
+            efClear(get_shutdown_monitor_flg);
+        } state find_acq_state
+
+        when(efTest(get_shutdown_monitor_flg) && get_shutdown_monitor == 1){
+            LOG_MINOR("[%s%s] Failure recovery: device has shut down, preparing download\n", macValueGet("P"), macValueGet("R"));
+            // clear shutdown monitor flag
+            efClear(get_shutdown_monitor_flg);
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+        } state download_phase_1
+    }
+
+    state find_acq_state {
+        entry{
+            // restart TM monitor
+            strcpy(tm_mon_scan, SCAN_RATE);
+            pvPut(tm_mon_scan, SYNC);
+            // clear TM index monitor flag
+            efClear(tm_idx_mon_flg);
+            // allow TM index monitors to
+            // be sent always (not only 
+            // on change).
+            tm_idx_mon_mdel = MDEL_ALWAYS;
+            pvPut(tm_idx_mon_mdel, SYNC);
+            // restart monitor buffers end index
+            strcpy(end_buff_1_mon_scan, SCAN_RATE);
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, SCAN_RATE);
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 1;
+            pvPut(enbl_sts, SYNC);
+        }
+
+        when(efTest(tm_idx_mon_flg)
+             && (meas_trg_sts != 3) 
+             || (meas_trg_sts == 3 && tm_idx_mon > 1 && tm_idx_mon <= 3)
+            ){
+            /* go to acquisition cycle step 1 */
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state acq_cycle_step_1
+        
+        when(efTest(tm_idx_mon_flg)
+             && (meas_trg_sts == 3 && (tm_idx_mon == 1 || tm_idx_mon >= 4))
+            ){
+            /* go to acquisition cycle step 2 */
+            // send TM index monitors
+            // only on change
+            tm_idx_mon_mdel = MDEL_ON_CHANGE;
+            pvPut(tm_idx_mon_mdel, SYNC);
+        } state acq_cycle_step_2
+    }
+
+    state failure_recovery_init {
+        entry{
+            LOG_MINOR("[%s%s] Failure recovery: waiting for connection to start recovery\n", macValueGet("P"), macValueGet("R"));
+            // stop TM monitor
+            strcpy(tm_mon_scan, "Passive");
+            pvPut(tm_mon_scan, SYNC);
+            // stop monitor buffers end index
+            strcpy(end_buff_1_mon_scan, "Passive");
+            pvPut(end_buff_1_mon_scan, SYNC);
+            strcpy(end_buff_2_mon_scan, "Passive");
+            pvPut(end_buff_2_mon_scan, SYNC);
+            // update enbl status
+            enbl_sts = 0;
+            pvPut(enbl_sts, SYNC);
+            // stop buffer fill monitor
+            // since failure was at initialization
+            strcpy(cnt_buff_1_mon_scan, "Passive");
+            pvPut(cnt_buff_1_mon_scan, SYNC);
+            strcpy(cnt_buff_2_mon_scan, "Passive");
+            pvPut(cnt_buff_2_mon_scan, SYNC);
+            // clear network monitoring flag
+            efClear(time_sec_mon_flg);
+            // start network connection monitoring
+            strcpy(time_sec_mon_scan, NETWORK_SCAN_RATE);
+            pvPut(time_sec_mon_scan, SYNC);
+        }
+
+        when(efTestAndClear(time_sec_mon_flg) && network_mon == 1){
+            LOG_MINOR("[%s%s] Failure recovery: connection established, starting recovery\n", macValueGet("P"), macValueGet("R"));
+            // disable output trg
+            strcpy(ex_out_stim_sel, "NONE");
+            pvPut(ex_out_stim_sel, SYNC);
+            // abort TM
+            tm_abort_cmd = 1;
+            pvPut(tm_abort_cmd, SYNC);
+        } state download_phase_1
+    }
+}

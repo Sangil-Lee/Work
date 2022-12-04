@@ -1,0 +1,4 @@
+.PHONY: conf
+
+conf:
+	echo "EPICS_BASE=${EPICS_BASE}" > $(TOP)/configure/RELEASE.local
