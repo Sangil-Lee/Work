@@ -16,10 +16,10 @@ sed -i 's/\/tmp\/zookeeper/\/home\/ctrluser\/zookeeper-logs/g' kafka/config/zook
 sed -i 's/\/tmp\/kafka-logs/\/home\/ctrluser\/kafka-logs/g' kafka/config/server.properties
 sed -i 's/timeout.ms=18000/timeout.ms=300000/g' kafka/config/server.properties
 
-sed -i 's/#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/192.168.75.71:9092/g' kafka/config/server.properties
+sed -i "s/#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/${hostip}:9092/g" kafka/config/server.properties
 sed -i'' -r -e '/#advertised.listeners=/i\advertised.host.name=devDesk' kafka/config/server.properties
 sed -i'' -r -e '/#advertised.listeners=/a\auto.create.topics.enable=false' kafka/config/server.properties
-sed -i 's/#advertised.listeners=PLAINTEXT:\/\/your.host.name:9092/advertised.listeners=PLAINTEXT:\/\/192.168.75.71:9092/g' kafka/config/server.properties
+sed -i "s/#advertised.listeners=PLAINTEXT:\/\/your.host.name:9092/advertised.listeners=PLAINTEXT:\/\/${hostip}:9092/g" kafka/config/server.properties
 
 
 ##[zookeeper.service]
