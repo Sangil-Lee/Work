@@ -3,7 +3,9 @@
 ###### Before Following Procedure ###############
 ###$>cp -rf phoebus/app/alarm/example ~/alarm
 ###$>cp -rf phoebus/service/alarm-server ~/
+###$>cp GitHub/Work/EPICS/IOCs/Phoebus_Alarm_Setup/alarm-server_setup.sh alarm/
 ###$>cd alarm
+###$alarm>./alarm-server_setup.sh
 
 export hostip=192.168.75.71
 
