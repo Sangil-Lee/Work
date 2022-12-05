@@ -1,7 +1,10 @@
 #!/bin/bash
 
+export account=`whoami`
+
 if [ "$#" -ne 1 ] ; then
 	echo ">$0 alarm_server_ip"
+	echo $account
 	exit 3
 fi
 
@@ -19,9 +22,9 @@ tar -vzxf kafka_2.12-3.3.1.tgz
 sleep 1
 ln -s kafka_2.12-3.3.1 kafka
 
-sed -i 's/\/tmp\/zookeeper/\/home\/ctrluser\/zookeeper-logs/g' kafka/config/zookeeper.properties
-sed -i 's/\/tmp\/kafka-logs/\/home\/ctrluser\/kafka-logs/g' kafka/config/server.properties
-sed -i 's/timeout.ms=18000/timeout.ms=300000/g' kafka/config/server.properties
+sed -i "s/\/tmp\/zookeeper/\/home\/${account}\/zookeeper-logs/g" kafka/config/zookeeper.properties
+sed -i "s/\/tmp\/kafka-logs/\/home\/${account}\/kafka-logs/g" kafka/config/server.properties
+sed -i "s/timeout.ms=18000/timeout.ms=300000/g" kafka/config/server.properties
 
 sed -i "s/#listeners=PLAINTEXT:\/\/:9092/listeners=PLAINTEXT:\/\/${hostip}:9092/g" kafka/config/server.properties
 sed -i'' -r -e '/#advertised.listeners=/i\advertised.host.name=devDesk' kafka/config/server.properties
@@ -34,30 +37,30 @@ sed -i "s/#advertised.listeners=PLAINTEXT:\/\/your.host.name:9092/advertised.lis
 sed -i 's/JAVA_HOME=\/PATH\/TO\/JDK/JAVA_HOME=\/usr\/lib\/jvm\/java-17-openjdk-amd64/g' zookeeper.service
 
 #ExecStart=/opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
-sed -i 's/\/opt\/kafka\/bin\/zookeeper-server-start.sh \/opt\/kafka\/config\/zookeeper.properties/\/home\/ctrluser\/alarm\/kafka\/bin\/zookeeper-server-start.sh \/home\/ctrluser\/alarm\/kafka\/config\/zookeeper.properties/g' zookeeper.service
+sed -i "s/\/opt\/kafka\/bin\/zookeeper-server-start.sh \/opt\/kafka\/config\/zookeeper.properties/\/home\/${account}\/alarm\/kafka\/bin\/zookeeper-server-start.sh \/home\/${account}\/alarm\/kafka\/config\/zookeeper.properties/g" zookeeper.service
 
 #ExecStop=/opt/kafka/bin/zookeeper-server-stop.sh
-sed -i 's/\/opt\/kafka\/bin\/zookeeper-server-stop.sh/\/home\/ctrluser\/alarm\/kafka\/bin\/zookeeper-server-stop.sh/g' zookeeper.service
+sed -i "s/\/opt\/kafka\/bin\/zookeeper-server-stop.sh/\/home\/${account}\/alarm\/kafka\/bin\/zookeeper-server-stop.sh/g" zookeeper.service
 
 #User=DESIRED_USER
 #Group=DESIRED_GROUP
-sed -i 's/DESIRED_USER/ctrluser/g' zookeeper.service
-sed -i 's/DESIRED_GROUP/ctrluser/g' zookeeper.service
+sed -i "s/DESIRED_USER/${account}/g" zookeeper.service
+sed -i "s/DESIRED_GROUP/${account}/g" zookeeper.service
 
 ##[kafka.service]
 #User=DESIRED_USER
 #Group=DESIRED_GROUP
-sed -i 's/DESIRED_USER/ctrluser/g' kafka.service
-sed -i 's/DESIRED_GROUP/ctrluser/g' kafka.service
+sed -i "s/DESIRED_USER/${account}/g" kafka.service
+sed -i "s/DESIRED_GROUP/${account}/g" kafka.service
 
 #Environment=JAVA_HOME=/PATH/TO/JDK
 sed -i 's/JAVA_HOME=\/PATH\/TO\/JDK/JAVA_HOME=\/usr\/lib\/jvm\/java-17-openjdk-amd64/g' kafka.service
 
 #ExecStart=/opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
-sed -i 's/\/opt\/kafka\/bin\/kafka-server-start.sh \/opt\/kafka\/config\/server.properties/\/home\/ctrluser\/alarm\/kafka\/bin\/kafka-server-start.sh \/home\/ctrluser\/alarm\/kafka\/config\/server.properties/g' kafka.service
+sed -i "s/\/opt\/kafka\/bin\/kafka-server-start.sh \/opt\/kafka\/config\/server.properties/\/home\/${account}\/alarm\/kafka\/bin\/kafka-server-start.sh \/home\/${account}\/alarm\/kafka\/config\/server.properties/g" kafka.service
 
 #ExecStop=/opt/kafka/bin/kafka-server-stop.sh
-sed -i 's/\/opt\/kafka\/bin\/kafka-server-stop.sh/\/home\/ctrluser\/alarm\/kafka\/bin\/kafka-server-stop.sh/g' kafka.service
+sed -i "s/\/opt\/kafka\/bin\/kafka-server-stop.sh/\/home\/${account}\/alarm\/kafka\/bin\/kafka-server-stop.sh/g" kafka.service
 
 sudo cp kafka.service zookeeper.service /etc/systemd/system
 
