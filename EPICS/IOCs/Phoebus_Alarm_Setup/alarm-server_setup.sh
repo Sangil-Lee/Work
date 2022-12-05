@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$#" -ne 1 ] ; then
+	echo ">$0 alarm_server_ip"
+	exit 3
+fi
+
 ###### Before Following Procedure ###############
 ###$>cp -rf phoebus/app/alarm/example ~/alarm
 ###$>cp -rf phoebus/service/alarm-server ~/
@@ -7,7 +12,7 @@
 ###$>cd alarm
 ###$alarm>./alarm-server_setup.sh
 
-export hostip=192.168.75.71
+export hostip=$1
 
 wget https://dlcdn.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
 tar -vzxf kafka_2.12-3.3.1.tgz 
