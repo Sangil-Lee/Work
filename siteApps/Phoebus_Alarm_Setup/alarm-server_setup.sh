@@ -5,6 +5,8 @@
 ###$>cp -rf phoebus/service/alarm-server ~/
 ###$>cd alarm
 
+export hostip=192.168.75.71
+
 wget https://dlcdn.apache.org/kafka/3.3.1/kafka_2.12-3.3.1.tgz
 tar -vzxf kafka_2.12-3.3.1.tgz 
 sleep 1
@@ -52,7 +54,6 @@ sed -i 's/\/opt\/kafka\/bin\/kafka-server-stop.sh/\/home\/ctrluser\/alarm\/kafka
 
 sudo cp kafka.service zookeeper.service /etc/systemd/system
 
-export hostip=192.168.75.71
 
 sed -i "s#localhost#$hostip#g" create_alarm_topics.sh
 sed -i "s#localhost#$hostip#g" delete_alarm_topics.sh
