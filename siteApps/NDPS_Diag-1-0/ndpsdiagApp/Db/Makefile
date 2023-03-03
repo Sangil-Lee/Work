@@ -14,6 +14,7 @@ DB += bo_word.template
 DB += ndpsdiag001.sub
 DB += ndpsdiag002.sub
 DB += ndpsdiag003.sub
+DB += ndpsCTarget.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

@@ -1,0 +1,244 @@
+### Base Address(FC:, 2000)
+file "db/aiFloat64.template" { pattern
+{SYS,   SUBSYS,		DEV,	SUBDEV,	SIGNAL,		PORT,			 OFFSET,	DATA_TYPE,     LOPR,	HOPR,	 PREC,  SCAN,		EGU,	FLNK}
+{NDPS,	-TG002:,	TG,		-TC1:,		TempR,	NDPSCTargetAI,	 0,			FLOAT32_LE,   -200.0,	1370.0,	 3,		"I/O Intr",	"Deg",	""}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		PosR,	NDPSCTargetAI,	 2,			FLOAT32_LE,		0,		6000.0,	 3,		"I/O Intr",	"Pos",	""}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SpdR,	NDPSCTargetAI,	 4,			FLOAT32_LE,		0,		100,	 3,		"I/O Intr",	"Spd",	""}
+{NDPS,	-TG002:,	TTRHS,	-MOTZ:,		PosR,	NDPSCTargetAI,	 6,			FLOAT32_LE,		0,		6000.0,	 3,		"I/O Intr",	"Pos",	""}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		SpdR,	NDPSCTargetAI,	 8,			FLOAT32_LE,		0,		100,	 3,		"I/O Intr",	"Spd",	""}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	PosR,	NDPSCTargetAI,	10,			FLOAT32_LE,   	0,		6000.0,	 3,		"I/O Intr",	"Pos",	""}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	SpdR,	NDPSCTargetAI,	12,			FLOAT32_LE,   	0,		100,	 3,		"I/O Intr",	"Spd",	""}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	PosR,	NDPSCTargetAI,	14,			FLOAT32_LE,   	0,		6000.0,	 3,		"I/O Intr",	"Pos",	""}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	SpdR,	NDPSCTargetAI,	16,			FLOAT32_LE,   	0,		100,	 3,		"I/O Intr",	"Spd",	""}
+{NDPS,	-TG002:,	TG,		-POTX:,		PosR,	NDPSCTargetAI,	18,			FLOAT32_LE,   	0,		16,000,	 3,		"I/O Intr",	"Pos",	""}
+}
+
+#NDPS-TG002:TG-TC1:TempR	Real	4	D00000	D2000	0	(Temp. -200 ~ 1370 Deg.)
+#NDPS-TG002:TRHS-MOTX:PosR	Real	4	D00100	D2002	2	(X Axis Pos. 0 ~ 60,000(6,000.0))
+#NDPS-TG002:TRHS-MOTX:SpdR	Real	4	D00300	D2004	4	(X Axis Spd. 0 ~ 100)
+#NDPS-TG002:TTRHS-MOTZ:PosR	Real	4	D00110	D2006	6	(Z Axis Pos. 0 ~ 60,000(6,000.0))
+#NDPS-TG002:TRHS-MOTZ:SpdR	Real	4	D00390	D2008	8	(Z Axis Spd. 0 ~ 100)
+#NDPS-TG002:TG-MOTX1:PosR	Real	4	D00120	D2010	10	(X1 Axis Pos. 0 ~ 60,000(6,000.0))
+#NDPS-TG002:TG-MOTX1:SpdR	Real	4	D00400	D2012	12	(X1 Axis Spd. 0 ~ 100)
+#NDPS-TG002:TG-MOTX2:PosR	Real	4	D00130	D2014	14	(X2 Axis Pos. 0 ~ 60,000(6,000.0))
+#NDPS-TG002:TG-MOTX2:SpdR	Real	4	D00410	D2016	16	(X2 Axis Spd. 0 ~ 100)
+#NDPS-TG002:TG-POTX:PosR	Real	4	D00420	D2018	18  (Analog 4~20mA, 0 ~ 16,000)
+
+
+### Base Address(FC:, 2000)
+file "db/aoFloat64.template" { pattern
+{SYS,   SUBSYS,		DEV,	SUBDEV,		SIGNAL,			PORT,			OFFSET,	DATA_TYPE,	LOPR,	HOPR,	 PREC,  SCAN,		EGU,	FLNK}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPos1,		NDPSCTargetAO,	40,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPos2,		NDPSCTargetAO,	42,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPos3,		NDPSCTargetAO,	44,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPos4,		NDPSCTargetAO,	46,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPos5,		NDPSCTargetAO,	48,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		AutoSetPos,		NDPSCTargetAO,	50,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		AutoSetPosC1,	NDPSCTargetAO,	52,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetPosC1,		NDPSCTargetAO,	54,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		SetSpd,			NDPSCTargetAO,	56,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Spd",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		SetPos,			NDPSCTargetAO,	58,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		SetSpd,			NDPSCTargetAO,	60,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Spd",		""}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	SetPosC1,		NDPSCTargetAO,	62,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	SetSpd,			NDPSCTargetAO,	64,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Spd",		""}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	SetPosC1,		NDPSCTargetAO,	66,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	SetSpd,			NDPSCTargetAO,	68,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Spd",		""}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		AutoSetPosC1,	NDPSCTargetAO,	70,		FLOAT32_LE,	-1e6,	1e6,	 3,		"I/O Intr",	"Pos",		""}	
+}
+
+
+#NDPS-TG002:TRHS-MOTX:SetPos1		Real	4	D00140	D2040	40	(X Axis	Pos1. 0 ~ 60,000(0.0 ~ 6,000.0)) 
+#NDPS-TG002:TRHS-MOTX:SetPos2		Real	4	D00145	D2042	42	(X Axis	Pos2. 0 ~ 60,000(0.0 ~ 6,000.0)) 
+#NDPS-TG002:TRHS-MOTX:SetPos3		Real	4	D00150	D2044	44	(X Axis	Pos3. 0 ~ 60,000(0.0 ~ 6,000.0)) 
+#NDPS-TG002:TRHS-MOTX:SetPos4		Real	4	D00155	D2046	46	(X Axis	Pos4. 0 ~ 60,000(0.0 ~ 6,000.0)) 
+#NDPS-TG002:TRHS-MOTX:SetPos5		Real	4	D00160	D2048	48	(X Axis	Pos5. 0 ~ 60,000(0.0 ~ 6,000.0)) 
+#NDPS-TG002:TRHS-MOTZ:AutoSetPos	Real	4	D00035	D2050	50	(Auto. Z Axis Target Storage Height (0 ~ 9,000)
+#NDPS-TG002:TRHS-MOTZ:AutoSetPosC1	Real	4	D00030	D2052	52	(Auto. Z Axis Catch Height (0 ~ 9,000)
+#NDPS-TG002:TRHS-MOTX:SetPosC1		Real	4	D00165	D2054	54  (X Axis Pos. SV 0 ~ 60,000)
+#NDPS-TG002:TRHS-MOTX:SetSpd		Real	4	D00180	D2056	56  (X Axis Spd. SV 0 ~ 100)
+#NDPS-TG002:TRHS-MOTZ:SetPos		Real	4	D00175	D2058	58  (Z Axis Pos. SV 0 ~ 60,000)
+#NDPS-TG002:TRHS-MOTZ:SetSpd		Real	4	D00190	D2060	60  (Z Axis Spd. SV 0 ~ 100)
+#NDPS-TG002:TG-MOTX1:SetPosC1		Real	4	D00185	D2062	62  (X1 Axis Pos. SV 0 ~ 60,000)
+#NDPS-TG002:TG-MOTX1:SetSpd			Real	4	D00200	D2064	64  (X1 Axis Spd. SV 0 ~ 100)
+#NDPS-TG002:TG-MOTX2:SetPosC1		Real	4	D00195	D2066	66  (X2 Axis Pos. SV 0 ~ 60,000)
+#NDPS-TG002:TG-MOTX2:SetSpd			Real	4	D00210	D2068	68  (X2 Axis Spd. SV 0 ~ 100)
+#NDPS-TG002:TRHS-MOTX:AutoSetPosC1	Real	4	D00215	D2070	70  (Auto. X Axis Catch Height (0 ~ 60,000)
+
+
+### Base Address(FC:, 2110)
+file "db/bi_word.template" { pattern
+{SYS,    SUBSYS,	DEV,	SUBDEV,	SIGNAL,					PORT,			OFFSET,	MASK,     ZNAM,		ONAM,		ZSV,		OSV,		SCAN}
+{NDPS,	-TG002:,	TRHS,	-CLP1:,		OpenStat,			NDPSCTagetBI,	0,	   	0x0100,   Close,	Open,		NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Pos1Stat,			NDPSCTagetBI,	0,	   	0x0200,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Pos2Stat,			NDPSCTagetBI,	0,	   	0x0400,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Pos3Stat,			NDPSCTagetBI,	0,	   	0x0800,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Pos4Stat,			NDPSCTagetBI,	0,	   	0x1000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Pos5Stat,			NDPSCTagetBI,	0,	   	0x2000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		PosCStat,			NDPSCTagetBI,	0,	   	0x4000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		FwdLimit,			NDPSCTagetBI,	0,	   	0x8000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		FwdLimit,			NDPSCTagetBI,	0,	   	0x0001,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	FwdLimit,			NDPSCTagetBI,	0,	   	0x0002,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	FwdLimit,			NDPSCTagetBI,	0,	   	0x0004,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		PosSStat,			NDPSCTagetBI,	0,	   	0x0008,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP1:,		AutoCloseStat,		NDPSCTagetBI,	0,	   	0x0010,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP2:,		AutoOpenStat,		NDPSCTagetBI,	0,	   	0x0020,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOT:,		AutoOriginStat,		NDPSCTagetBI,	0,	   	0x0040,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOT:,		AutoErrorStat,		NDPSCTagetBI,	0,	   	0x0080,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		OrginLampR,			NDPSCTagetBI,	1,	   	0x0100,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		ErrorLampR,			NDPSCTagetBI,	1,	   	0x0200,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovingLampR,		NDPSCTagetBI,	1,	   	0x0400,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		OrginLampR,			NDPSCTagetBI,	1,	   	0x0800,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		ErrorLampR,			NDPSCTagetBI,	1,	   	0x1000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		MovingLampR,		NDPSCTagetBI,	1,	   	0x2000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	OrginLampR,			NDPSCTagetBI,	1,	   	0x4000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	ErrorLampR,			NDPSCTagetBI,	1,	   	0x8000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	MovingLampR,		NDPSCTagetBI,	1,	   	0x0001,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	OrginLampR,			NDPSCTagetBI,	1,	   	0x0002,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	ErrorLampR,			NDPSCTagetBI,	1,	   	0x0004,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	MovingLampR,		NDPSCTagetBI,	1,	   	0x0008,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		OriginStat,			NDPSCTagetBI,	1,	   	0x0010,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		OriginStat,			NDPSCTagetBI,	1,	   	0x0020,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX1:,	OriginStat,			NDPSCTagetBI,	1,	   	0x0040,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-MOTX2:,	OrginStat,			NDPSCTagetBI,	1,	   	0x0080,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		PosC1Stat,			NDPSCTagetBI,	2,	   	0x0100,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		PosC2Stat,			NDPSCTagetBI,	2,	   	0x0200,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP2A:,	OpenStat,			NDPSCTagetBI,	2,	   	0x0400,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP2B:,	OpenStat,			NDPSCTagetBI,	2,	   	0x0800,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP2A:,	CloseStat,			NDPSCTagetBI,	2,	   	0x1000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+{NDPS,	-TG002:,	TG,		-CLP2B:,	CloseStat,			NDPSCTagetBI,	2,	   	0x2000,   Off,		On,		   NO_ALARM,	NO_ALARM,	"I/O Intr"}	
+}
+
+#NDPS-TG002:TRHS-CLP1:OpenStat			Bool	M00000		D2110.0	2110.0	2110
+#NDPS-TG002:TRHS-MOTX:Pos1Stat			Bool	M00001		D2110.1	2110.1	2110
+#NDPS-TG002:TRHS-MOTX:Pos2Stat			Bool	M00002		D2110.2	2110.2	2110
+#NDPS-TG002:TRHS-MOTX:Pos3Stat			Bool	M00003		D2110.3	2110.3	2110
+#NDPS-TG002:TRHS-MOTX:Pos4Stat			Bool	M00004		D2110.4	2110.4	2110
+#NDPS-TG002:TRHS-MOTX:Pos5Stat			Bool	M00005		D2110.5	2110.5	2110
+#NDPS-TG002:TRHS-MOTZ:PosCStat			Bool	M00006		D2110.6	2110.6	2110
+#NDPS-TG002:TRHS-MOTX:FwdLimit			Bool	M00007		D2110.7	2110.7	2110
+#NDPS-TG002:TRHS-MOTZ:FwdLimit			Bool	M00008		D2110.8	2110.8	2110
+#NDPS-TG002:TG-MOTX1:FwdLimit			Bool	M00009		D2110.9	2110.9	2110
+#NDPS-TG002:TG-MOTX2:FwdLimit			Bool	M0000A		D2110.A	2110.A	2110
+#NDPS-TG002:TRHS-MOTZ:PosSStat			Bool	M0000B		D2110.B	2110.B	2110
+#NDPS-TG002:TG-CLP1:Auto_CloseStat		Bool	M00600		D2110.C	2110.C	2110
+#NDPS-TG002:TG-CLP2:Auto_OpenStat		Bool	M00601		D2110.D	2110.D	2110
+#NDPS-TG002:TRHS-MOT:Auto_OriginStat	Bool	M00602		D2110.E	2110.E	2110
+#NDPS-TG002:TRHS-MOT:Auto_ErrorStat		Bool	M00603		D2110.F	2110.F	2110
+#NDPS-TG002:TRHS-MOTX:OrginLampR		Bool	K04204		D2111.0	2111.0	2111
+#NDPS-TG002:TRHS-MOTX:ErrorLampR		Bool	K04201		D2111.1	2111.1	2111
+#NDPS-TG002:TRHS-MOTX:MovingLampR		Bool	K04200		D2111.2	2111.2	2111
+#NDPS-TG002:TRHS-MOTZ:OrginLampR		Bool	K04304		D2111.3	2111.3	2111
+#NDPS-TG002:TRHS-MOTZ:ErrorLampR		Bool	K04301		D2111.4	2111.4	2111
+#NDPS-TG002:TRHS-MOTZ:MovingLampR		Bool	K04300		D2111.5	2111.5	2111
+#NDPS-TG002:TG-MOTX1:OrginLampR			Bool	D01100.4	D2111.6	2111.6	2111
+#NDPS-TG002:TG-MOTX1:ErrorLampR			Bool	D01100.1	D2111.7	2111.7	2111
+#NDPS-TG002:TG-MOTX1:MovingLampR		Bool	D01100.0	D2111.8	2111.8	2111
+#NDPS-TG002:TG-MOTX2:OrginLampR			Bool	D01200.4	D2111.9	2111.9	2111
+#NDPS-TG002:TG-MOTX2:ErrorLampR			Bool	D01200.1	D2111.A	2111.A	2111
+#NDPS-TG002:TG-MOTX2:MovingLampR		Bool	D01200.0	D2111.B	2111.B	2111
+#NDPS-TG002:TRHS-MOTX:OriginStat		Bool	M0000C		D2111.C	2111.C	2111
+#NDPS-TG002:TRHS-MOTZ:OriginStat		Bool	M0000E		D2111.D	2111.D	2111
+#NDPS-TG002:TG-MOTX1:OriginStat			Bool	D01100.4	D2111.E	2111.E	2111
+#NDPS-TG002:TG-MOTX2:OrginStat			Bool	D01200.4	D2111.F	2111.F	2111
+#NDPS-TG002:TRHS-MOTX:PosC1Stat			Bool	M00080		D2112.0	2112.0	2112
+#NDPS-TG002:TRHS-MOTX:PosC2Stat			Bool	M00081		D2112.1	2112.1	2112
+#NDPS-TG002:TG-CLP2A:OpenStat			Bool	M00082		D2112.2	2112.2	2112
+#NDPS-TG002:TG-CLP2B:OpenStat			Bool	M00083		D2112.3	2112.3	2112
+#NDPS-TG002:TG-CLP2A:CloseStat			Bool	M00084		D2112.4	2112.4	2112
+#NDPS-TG002:TG-CLP2B:CloseStat			Bool	M00085		D2112.5	2112.5	2112
+
+
+### Base Address(FC:, 2114)
+file "db/bo_word.template" { pattern
+{SYS,    SUBSYS,	DEV,	SUBDEV,		SIGNAL,		PORT,			OFFSET, MASK,     ZNAM, ONAM,	ZSV,		OSV,		SCAN}
+{NDPS,	-TG002:,	TG,		:,			Stop,		NDPSCTargetBO,	0,	   	0x0100,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-CLP1:,		Open,		NDPSCTargetBO,	0,	   	0x0200,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-CLP1:,		Close,		NDPSCTargetBO,	0,	   	0x0400,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-CLP2:,		Open,		NDPSCTargetBO,	0,	   	0x0800,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-CLP2:,		Close,		NDPSCTargetBO,	0,	   	0x1000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovePos1,	NDPSCTargetBO,	0,	   	0x2000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovePos2,	NDPSCTargetBO,	0,	   	0x4000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovePos3,	NDPSCTargetBO,	0,	   	0x8000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovePos4,	NDPSCTargetBO,	0,	   	0x0001,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MovePos5,	NDPSCTargetBO,	0,	   	0x0002,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOT:,		AutoStart,	NDPSCTargetBO,	0,	   	0x0004,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOT:,		AutoStop,	NDPSCTargetBO,	0,	   	0x0008,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	:,			Remote,		NDPSCTargetBO,	0,	   	0x0010,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MoveFwd,	NDPSCTargetBO,	0,	   	0x0020,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		MoveBwd,	NDPSCTargetBO,	0,	   	0x0040,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Move,		NDPSCTargetBO,	0,	   	0x0080,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Stop,		NDPSCTargetBO,	1,	   	0x0100,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Reset,		NDPSCTargetBO,	1,	   	0x0200,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		Origin,		NDPSCTargetBO,	1,	   	0x0400,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		MoveFwd,	NDPSCTargetBO,	1,	   	0x0800,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		MoveBwd,	NDPSCTargetBO,	1,	   	0x1000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		Move,		NDPSCTargetBO,	1,	   	0x2000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		Stop,		NDPSCTargetBO,	1,	   	0x4000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		Reset,		NDPSCTargetBO,	1,	   	0x8000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		Origin,		NDPSCTargetBO,	1,	   	0x0001,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	MoveFwd,	NDPSCTargetBO,	1,	   	0x0002,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	MoveBwd,	NDPSCTargetBO,	1,	   	0x0004,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	Move,		NDPSCTargetBO,	1,	   	0x0008,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	Stop,		NDPSCTargetBO,	1,	   	0x0010,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	Reset,		NDPSCTargetBO,	1,	   	0x0020,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	Origin,		NDPSCTargetBO,	1,	   	0x0040,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	MoveFwd,	NDPSCTargetBO,	1,	   	0x0080,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+
+{NDPS,	-TG002:,	TG,		-MOTX2:,	MoveBwd,	NDPSCTargetBO,	2,	   	0x0100,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	Move,		NDPSCTargetBO,	2,	   	0x0200,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	Stop,		NDPSCTargetBO,	2,	   	0x0400,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	Reset,		NDPSCTargetBO,	2,	   	0x0800,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	Origin,		NDPSCTargetBO,	2,	   	0x1000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTX:,		PwrOn,		NDPSCTargetBO,	2,	   	0x2000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TRHS,	-MOTZ:,		PwrOn,		NDPSCTargetBO,	2,	   	0x4000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX1:,	PwrOn,		NDPSCTargetBO,	2,	   	0x8000,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+{NDPS,	-TG002:,	TG,		-MOTX2:,	PwrOn,		NDPSCTargetBO,	2,	   	0x0001,   Off,	On,     NO_ALARM,	NO_ALARM,	"I/O Intr"}
+}
+
+
+#NDPS-TG002:TG:Stop				Bool	M0000F	D2114.0	2114.0	2114
+#NDPS-TG002:TRHS-CLP1:Open		Bool	M00028	D2114.1	2114.1	2114
+#NDPS-TG002:TRHS-CLP1:Close		Bool	M00029	D2114.2	2114.2	2114
+#NDPS-TG002:TG-CLP2:Open		Bool	M0002A	D2114.3	2114.3	2114
+#NDPS-TG002:TG-CLP2:Close		Bool	M0002B	D2114.4	2114.4	2114
+#NDPS-TG002:TRHS-MOTX:MovePos1	Bool	M00030	D2114.5	2114.5	2114
+#NDPS-TG002:TRHS-MOTX:MovePos2	Bool	M00031	D2114.6	2114.6	2114
+#NDPS-TG002:TRHS-MOTX:MovePos3	Bool	M00032	D2114.7	2114.7	2114
+#NDPS-TG002:TRHS-MOTX:MovePos4	Bool	M00033	D2114.8	2114.8	2114
+#NDPS-TG002:TRHS-MOTX:MovePos5	Bool	M00034	D2114.9	2114.9	2114
+#NDPS-TG002:TRHS-MOT:Auto_Start	Bool	M00040	D2114.A	2114.A	2114
+#NDPS-TG002:TRHS-MOT:Auto_Stop	Bool	M00041	D2114.B	2114.B	2114
+#NDPS-TG002:TRHS:Remote			Bool	M00060	D2114.C	2114.C	2114
+#NDPS-TG002:TRHS-MOTX:MoveFwd	Bool	M00301	D2114.D	2114.D	2114
+#NDPS-TG002:TRHS-MOTX:MoveBwd	Bool	M00300	D2114.E	2114.E	2114
+#NDPS-TG002:TRHS-MOTX:Move		Bool	M00309	D2114.F	2114.F	2114
+#NDPS-TG002:TRHS-MOTX:Stop		Bool	M00307	D2115.0	2115.0	2115
+#NDPS-TG002:TRHS-MOTX:Reset		Bool	M00305	D2115.1	2115.1	2115
+#NDPS-TG002:TRHS-MOTX:Origin	Bool	M00311	D2115.2	2115.2	2115
+#NDPS-TG002:TRHS-MOTZ:MoveFwd	Bool	M00303	D2115.3	2115.3	2115
+#NDPS-TG002:TRHS-MOTZ:MoveBwd	Bool	M00302	D2115.4	2115.4	2115
+#NDPS-TG002:TRHS-MOTZ:Move		Bool	M00310	D2115.5	2115.5	2115
+#NDPS-TG002:TRHS-MOTZ:Stop		Bool	M00308	D2115.6	2115.6	2115
+#NDPS-TG002:TRHS-MOTZ:Reset		Bool	M00306	D2115.7	2115.7	2115
+#NDPS-TG002:TRHS-MOTZ:Origin	Bool	M00312	D2115.8	2115.8	2115
+#NDPS-TG002:TG-MOTX1:MoveFwd	Bool	M00401	D2115.9	2115.9	2115
+#NDPS-TG002:TG-MOTX1:MoveBwd	Bool	M00400	D2115.A	2115.A	2115
+#NDPS-TG002:TG-MOTX1:Move		Bool	M00409	D2115.B	2115.B	2115
+#NDPS-TG002:TG-MOTX1:Stop		Bool	M00407	D2115.C	2115.C	2115
+#NDPS-TG002:TG-MOTX1:Reset		Bool	M00405	D2115.D	2115.D	2115
+#NDPS-TG002:TG-MOTX1:Origin		Bool	M00411	D2115.E	2115.E	2115
+#NDPS-TG002:TG-MOTX2:MoveFwd	Bool	M00501	D2115.F	2115.F	2115
+#NDPS-TG002:TG-MOTX2:MoveBwd	Bool	M00500	D2116.0	2116.0	2116
+#NDPS-TG002:TG-MOTX2:Move		Bool	M00410	D2116.1	2116.1	2116
+#NDPS-TG002:TG-MOTX2:Stop		Bool	M00408	D2116.2	2116.2	2116
+#NDPS-TG002:TG-MOTX2:Reset		Bool	M00406	D2116.3	2116.3	2116
+#NDPS-TG002:TG-MOTX2:Origin		Bool	M00412	D2116.4	2116.4	2116
+#NDPS-TG002:TRHS-MOTX:PwrOn		Bool	M00024	D2116.5	2116.5	2116
+#NDPS-TG002:TRHS-MOTZ:PwrOn		Bool	M00025	D2116.6	2116.6	2116
+#NDPS-TG002:TG-MOTX1:PwrOn		Bool	M00026	D2116.7	2116.7	2116
+#NDPS-TG002:TG-MOTX2:PwrOn		Bool	M00027	D2116.8	2116.8	2116
+#
+
