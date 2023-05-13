@@ -1,0 +1,11 @@
+file "db/Volume_TBx_Line.template" { pattern
+{ SYS,		SUBSYS,		DEV,	SUBDEV,		SIGNAL,		LENGTH,		RADIUS,		DEN_INPA,								DEN_INPB							}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	2KReturn,	25000,		4.155,		"$(SYS)$(SUBSYS)$(DEV)PT7306:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7303:TempR"	}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	2KSupply,	25000,		1.15,		"$(SYS)$(SUBSYS)$(DEV)PT7507:PresR",	300									}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	4KReturn,	25000,		3.525,		"$(SYS)$(SUBSYS)$(DEV)PT7504:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7503:TempR"	}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	4KSupply,	30000,		2.745,		"$(SYS)$(SUBSYS)$(DEV)PT7501:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7501:TempR"	}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	CDReturn,	25000,		2.745,		"$(SYS)$(SUBSYS)$(DEV)PT7301:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7301:TempR"	}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	CDSupply,	25000,		2.15,		"$(SYS)$(SUBSYS)$(DEV)PT7401:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7401:TempR"	}
+{ Cryo,		-CDL00:,	TBx01,	-LT8401:,	VLPReturn,	20000,		12.97,		"$(SYS)$(SUBSYS)$(DEV)PT7201:PresR",	"$(SYS)$(SUBSYS)$(DEV)TT7201:TempR"	}
+}
+

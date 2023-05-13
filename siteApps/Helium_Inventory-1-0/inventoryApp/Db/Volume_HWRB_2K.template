@@ -1,0 +1,14 @@
+###HWRA####
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{
+	field(SCAN, "Passive")
+	field(CALC, "A*B")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CmR")
+	field(INPB, "84")
+}
+
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CmR")
+{
+	field(SCAN, "Passive")
+	field(VAL,  "0")
+}
