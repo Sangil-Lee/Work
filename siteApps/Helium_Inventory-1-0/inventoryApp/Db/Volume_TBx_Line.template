@@ -1,16 +1,5 @@
 ##### TBx Volume for He Line
-
-record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
-{
-	field(SCAN, "Passive")
-	field(CALC, "A*B*C^2*PI")
-	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Density")
-	field(INPB, "$(LENGTH)")
-	field(INPC, "$(RADIUS)")
-    field(EGU,  "m3")
-}
-
-record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Density")
+record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Den")
 {
     field(SCAN, "1 second")
     field(PINI, "YES")
@@ -21,5 +10,15 @@ record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Density")
     field(INPB, "$(DEN_INPB)")
     field(EGU,  "kg/m3")
     field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+}
+
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{
+	field(SCAN, "Passive")
+	field(CALC, "A*B*C^2*PI")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)Den")
+	field(INPB, "$(LENGTH)")
+	field(INPC, "$(RADIUS)")
+    field(EGU,  "m3")
 }
 

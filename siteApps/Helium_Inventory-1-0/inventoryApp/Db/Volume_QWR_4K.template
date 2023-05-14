@@ -1,14 +1,30 @@
 ###QWR####
+record(sub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Density")
+{
+    field(SCAN, "1 second")
+    field(PINI, "YES")
+	field(VAL,  "0")
+    field(INAM, "InitHePAKDensity")
+    field(SNAM, "ProcHePAKDensity")
+    field(INPA, "$(DEN_INPA)")
+    field(INPB, "$(DEN_INPB)")
+    field(EGU,  "kg/m3")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+}
+
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
 {
 	field(SCAN, "Passive")
-	field(CALC, "A*B")
+	field(CALC, "(A*C)*B")
 	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CmR")
-	field(INPB, "26")
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Density")
+	field(INPC, "26")
 }
 
+## For simulation, deleted later in real IOC
 record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)CmR")
 {
 	field(SCAN, "Passive")
-	field(VAL,  "0")
+	field(VAL,  "70")
 }
+

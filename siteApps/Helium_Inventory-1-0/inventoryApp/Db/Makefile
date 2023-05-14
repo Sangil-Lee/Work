@@ -15,6 +15,10 @@ DB += Volume_HWRB_2K.template
 DB += Volume_TBx_Line.template
 DB += Reservoir.sub
 DB += TBx_Line.sub
+DB += SCL3_TBx_Invetory_total.vdb
+DB += Simulation.template
+DB += Simulation.sub
+DB += noisewaveform.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
