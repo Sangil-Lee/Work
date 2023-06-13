@@ -1,4 +1,4 @@
-C     PROGRAM Dnst
+C   PROGRAM Dnst
 C This is a program to calculate the density of GHe in the cryogenic blower.
 C The following assignments are required.
 C Code, 3 = Density, 9 = Enthalpy
@@ -90,10 +90,15 @@ C         VALU2= 100.
 
 C ------------------------------------- INPUT DATA
 C
-         JIN1 = 2
-         VALU1= Temp
+         IF (Temp .LT. 0) THEN
+            JIN1 = 13
+            JIN2 = 13
+        ELSE
+            JIN1 = 2
+            JIN2 = 1
+        ENDIF
 
-         JIN2 = 1
+         VALU1= Temp
 C Pressure unit shall be changed from "barg" to "kPa" 
 C
          VALU2= (Press)*100
@@ -163,7 +168,8 @@ C------------------------------------- OUTPUT DATA
 C
 C
 
-      IF (IDID .GE.1)  THEN
+C      IF (IDID .GE.1)  THEN
+       IF (IDID .EQ. 1)  THEN
 C
 C If the calculation was finished successfully,
 C the output data is inputted into the result variable, "Dnst".
@@ -178,6 +184,10 @@ C
 C Print selected results after a successful calculation for test. 
 C 
 C         WRITE (1, 10) Dnst_Enthalpy, IDID
+      ELSE IF (IDID .EQ. 4) THEN
+C Liquid saturation 
+	   Dnst_Enthalpy = PROP(Code,1)
+
       ELSE
 C
 C  Otherwise print error message for test.
