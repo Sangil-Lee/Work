@@ -93,6 +93,7 @@ C
          IF (Temp .LT. 0) THEN
             JIN1 = 13
             JIN2 = 13
+            IDID = 4
         ELSE
             JIN1 = 2
             JIN2 = 1
