@@ -29,7 +29,13 @@
 #SNCSEQ = $(MODULES)/seq-ver
 
 # EPICS_BASE should appear last so earlier modules can override stuff:
-EPICS_BASE = /home/ctrluser/epics/7.0.7/base
+EPICS_BASE = /home/krissuser/epics/7.0.7/base
+
+ASYN=${EPICS_SYNAPPS}/asyn-R4-36
+CALC=${EPICS_SYNAPPS}/calc-R3-7-3
+STREAM=${EPICS_SYNAPPS}/StreamDevice-2-8-9
+MODBUS=${EPICS_SYNAPPS}/modbus-R3-0
+SNCSEQ=${EPICS_SYNAPPS}/seq-2-2-6
 
 # Set RULES here if you want to use build rules from somewhere
 # other than EPICS_BASE:
