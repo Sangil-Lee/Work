@@ -1,0 +1,18 @@
+record(ai, $(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)) {
+    field(DTYP,"asynFloat64")
+    field(INP,"@asyn($(PORT) $(OFFSET))$(DATA_TYPE)")
+    field(HOPR,"$(HOPR)")
+    field(LOPR,"$(LOPR)")
+    field(PREC,"$(PREC)")
+    field(EGU,"$(EGU)")
+    field(SCAN,"$(SCAN)")
+    field(HIHI,"$(HIHI)")
+    field(HIGH,"$(HIGH)")
+    field(LOW,"$(LOW)")
+    field(LOLO,"$(LOLO)")
+    #field(HHSV,"MAJOR")
+    #field(HSV,"MINOR")
+    #field(LSV,"MINOR")
+    #field(LLSV,"MAJOR")
+}
+

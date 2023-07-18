@@ -1,0 +1,56 @@
+file "db/aiFloat64.template" { pattern
+{SYS, 	SUBSYS,	DEV, 	SUBDEV,		SIGNAL,		PORT,			OFFSET,	DATA_TYPE,	LOPR,	HOPR,	HIHI,	HIGH,	LOW,	LOLO,	PREC,	EGU,   	SCAN	}
+{}
+}
+
+file "db/aoFloat64.template" { pattern
+{SYS, 	SUBSYS,	DEV, 	SUBDEV,		SIGNAL,		PORT,			OFFSET,	DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU	}
+{}
+}
+
+#### I/O ###############
+
+file "db/bi_word.template" { pattern
+{SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,	OFFSET,		MASK,		 ZNAM,		  ONAM,			SCAN	}
+{ KRs,	:,			Rn,		-Tipoff:,	PwrOn,			DIn,	0,			0x0001,		 PwrOff,	  PwrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	AModeSel,		DIn,	0,			0x0002,		 AutoOff,	  AutoOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MModeSel,		DIn,	0,			0x0004,		 ManuOff,	  ManuOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrOn,		DIn,	0,			0x0008,		 TOffTmrOff,  TOffTmrOn,	"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilTmrOn,		DIn,	0,			0x0010,		 TilTmrOff,	 TilTmrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MDDlyTmrOn,		DIn,	0,			0x0020,		 DlyTmrOff,	 DlyTmrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuOn,		DIn,	0,			0x0040,		 ManuOff,	 ManuOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcStart,		DIn,	0,			0x0080,		 Stop,		 Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcStop,		DIn,	0,			0x0100,		 Start,		 Stop,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcReset,		DIn,	0,			0x0200,		 NReset,	 Reset,		    "1 second"	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	TorchFront,		DIn,	0,			0x0400,		 NFront,	 Front,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchBack,		DIn,	0,			0x0800,		 NTorBack,	 TorBack,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchManuOn,	DIn,	0,			0x1000,		 ManuOff,	 ManuOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuLeft,	DIn,	0,			0x2000,		 NLeft,		 Left,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuHome,	DIn,	0,			0x4000,		 NHome,		 Home,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuRight,	DIn,	0,			0x8000,		 NRight,	 Right,			"1 second"	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,		DIn,	1,			0x0001,		 NManuup,	 ManuUp,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuHome,	DIn,	1,			0x0002,		 NManuHome,	 ManuHome,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuDown,	DIn,	1,			0x0004,		 NManuDown,	 ManuDown,		"1 second"	}
+}
+
+file "db/bo_word.template" { pattern
+{SYS,   SUBSYS,     DEV,    SUBDEV,  	SIGNAL,				PORT,	OFFSET,		MASK,		ZNAM,			ONAM }
+{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrStart,		DOut,	0,			0x0001,		NTmrStart,		Tmr-Start	}
+{ KRs,	:,			Rn,		-Tipoff:,	TimerReset,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	TimerStart,			DOut,	0,			0x0004,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0008,		NManuup,		ManuUp	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,			DOut,	0,			0x0002,		NManuup,		ManuUp	}
+}
