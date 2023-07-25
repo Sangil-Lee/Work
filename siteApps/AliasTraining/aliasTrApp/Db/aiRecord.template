@@ -1,0 +1,20 @@
+
+record(ai, "$(P)$(SIGNAL)")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(VAL, "50")
+
+	field(HIHI, "90")
+	field(HIGH, "80")
+	field(LOW,  "20")
+	field(LOLO,  "10")
+
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+
+	alias("$(ALIAS)")
+}
+
