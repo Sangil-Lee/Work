@@ -1,0 +1,19 @@
+
+record(calc, "$(P)-Test:A")
+{
+	field(SCAN, "1 second")
+	field(CALC, "B < 50? A < 100 ? A+1:0:A")
+
+	field(INPA, "$(P)-Test:A")
+	field(INPB, "$(P)-Input:B")
+	field(VAL, "10")
+	alias("$(P)-Logic")
+}
+
+record(ai, "$(P)-Input:B")
+{
+	field("VAL", 50)
+	alias("$(P)-Input")
+}
+
+###$>softIoc -m "P=Calc" -d test.db -m "P=Calc" -d alias.db
