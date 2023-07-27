@@ -1,0 +1,15 @@
+record(ai, "$(P)-RTest:A")
+{
+	field(SCAN, "Passive")
+	field(INP, "$(P)-Test:A CP")
+
+	alias("Remote-A")
+}
+
+record(ao, "$(P)-RInput:B")
+{
+	field(OUT, "$(P)-Input:B CP")
+	alias("Remote-Input")
+}
+
+####$>softIoc -m "P=Calc" -d remote.db
