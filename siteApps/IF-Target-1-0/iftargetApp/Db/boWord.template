@@ -1,0 +1,9 @@
+# bo record template for register outputs
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
+    field(DESC,"$(DESC)")
+	field(DTYP,"asynUInt32Digital")
+	field(OUT,"@asynMask($(PORT) $(OFFSET) $(MASK))BCD_UNSIGNED")
+    field(ZNAM,"$(ZNAM)")
+    field(ONAM,"$(ONAM)")
+    field(PINI,"NO")
+}

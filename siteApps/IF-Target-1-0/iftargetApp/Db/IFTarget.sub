@@ -1,0 +1,74 @@
+### Wire-Scanner
+file "db/aiFloat64.template" { pattern
+{SYS,		SUBSYS,		DEV,	SUBDEV,		SIGNAL,			PORT,			OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	SCAN,		DESC}
+{IFTarget,	-DIAG:,		WS001,	:,		ActPosR,		"IFTargetWSAI",	0,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{IFTarget,	-DIAG:,		WS001,	:,		MacPosR,		"IFTargetWSAI",	2,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{IFTarget,	-DIAG:,		WS001,	:,		ActSpdR,		"IFTargetWSAI",	4,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+{IFTarget,	-DIAG:,		WS001,	:,		MacSpdR,		"IFTargetWSAI",	6,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
+}                                                                   
+
+####AO Base Address 40 word PLC base
+file "db/aoFloat64.template" { pattern
+{SYS,		SUBSYS,		DEV,	SUBDEV,		SIGNAL,			PORT,			OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
+{IFTarget,	-DIAG:,		WS001,	:,		SetJogSpd,		"IFTargetWSAO",	0,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetStepSpd,		"IFTargetWSAO",	2,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetStepVal,		"IFTargetWSAO",	4,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetAccTime,		"IFTargetWSAO",	6,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetDecTime,		"IFTargetWSAO",	8,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetABSSpd1,		"IFTargetWSAO",	10,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetABSPos1,		"IFTargetWSAO",	12,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetABSSpd2,		"IFTargetWSAO",	14,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetABSPos2,		"IFTargetWSAO",	16,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IFTarget,	-DIAG:,		WS001,	:,		SetJERK,		"IFTargetWSAO",	18,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+}
+
+####BI Base Address 110 PLC offset(byte))
+file "db/biWord.template" { pattern
+{SYS,		SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,			OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
+{IFTarget,	-DIAG:,		WS001,	:,		ReadyStat,		IFTargetWSDI,	0,      0x0100,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		EabledStat,		IFTargetWSDI,	0,      0x0200,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		HomedStat,		IFTargetWSDI,	0,      0x0400,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		MovingStat,		IFTargetWSDI,	0,      0x0800,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		InPosStat,		IFTargetWSDI,	0,      0x1000,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		AlatmStat,		IFTargetWSDI,	0,      0x2000,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		LoLimitStat,	IFTargetWSDI,	0,      0x4000,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		HiLimitStat,	IFTargetWSDI,	0,      0x8000,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		ComReadyStat,	IFTargetWSDI,	0,      0x0001,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		RestartReqStat,	IFTargetWSDI,	0,      0x0002,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		HVR001A,:,		OnLampR,		IFTargetWSDI,	0,      0x0004,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		HVR001B,:,		OnLampR,		IFTargetWSDI,	0,      0x0008,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		MPS001,	:,		OnLampR,		IFTargetWSDI,	0,      0x0010,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		PSIS001,:,		OnLampR,		IFTargetWSDI,	0,      0x0020,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		WS001,	:,		OpFWDInt,		IFTargetWSDI,	0,      0x0040,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		OpFWDInt,		IFTargetWSDI,	0,      0x0080,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		BWDStat,		IFTargetWSDI,	1,      0x0100,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		FWDStat,		IFTargetWSDI,	1,      0x0200,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		BWDLampR,		IFTargetWSDI,	1,      0x0400,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		FWDLampR,		IFTargetWSDI,	1,      0x0800,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		BWDErrStat,		IFTargetWSDI,	1,      0x1000,  Open,   Close,     "1 second", ""}
+{IFTarget,	-DIAG:,		FC001,	:,		FWDErrStat,		IFTargetWSDI,	1,      0x2000,  Open,   Close,     "1 second", ""}
+}
+
+####BO Base Address 112 PLC 
+file "db/boWord.template" { pattern
+{SYS,		SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,			OFFSET,	MASK,	 ZNAM,   ONAM,	DESC}
+{IFTarget,	-DIAG:,		WS001,	:,		SetFree,		IFTargetWSDO,   0,      0x0100,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetHalt,		IFTargetWSDO,   0,      0x0200,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetReset,		IFTargetWSDO,   0,      0x0400,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetRestart,		IFTargetWSDO,   0,      0x0800,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetFWDJog,		IFTargetWSDO,   0,      0x1000,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetBWDJog,		IFTargetWSDO,   0,      0x2000,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetHome,		IFTargetWSDO,   0,      0x4000,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetFWDStep,		IFTargetWSDO,   0,      0x8000,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetBWDStep,		IFTargetWSDO,   0,      0x0001,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetABS1,		IFTargetWSDO,   0,      0x0002,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		WS001,	:,		SetABS2,		IFTargetWSDO,   0,      0x0004,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		FC001,	:,		SetBWD,			IFTargetWSDO,   0,      0x0008,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		FC001,	:,		SetFWD,			IFTargetWSDO,   0,      0x0010,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		FC001,	:,		SetErrRst,		IFTargetWSDO,   0,      0x0020,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		HVR001A,:,		SetOn,			IFTargetWSDO,   0,      0x0040,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		HVR001A,:,		SetOff,			IFTargetWSDO,   0,      0x0080,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		HVR001B,:,		SetOn,			IFTargetWSDO,   1,      0x0100,  Open,   Close, ""}
+{IFTarget,	-DIAG:,		HVR001B,:,		SetOff,			IFTargetWSDO,   1,      0x0200,  Open,   Close, ""}
+}
+
