@@ -4,4 +4,6 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)") {
     field(OUT,"@asynMask($(PORT) $(OFFSET) $(MASK))BCD_UNSIGNED")
     field(ZNAM,"$(ZNAM)")
     field(ONAM,"$(ONAM)")
+    field(HIGH,"1")
+    field(VAL,"0")
 }

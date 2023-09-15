@@ -1,61 +1,83 @@
-file "db/aiFloat64.template" { pattern
-{SYS, 	SUBSYS,	DEV, 	SUBDEV,		SIGNAL,		PORT,			OFFSET,	DATA_TYPE,	LOPR,	HOPR,	HIHI,	HIGH,	LOW,	LOLO,	PREC,	EGU,   	SCAN	}
-{}
-}
-
-file "db/aoFloat64.template" { pattern
-{SYS, 	SUBSYS,	DEV, 	SUBDEV,		SIGNAL,		PORT,			OFFSET,	DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU	}
-{}
-}
-
 #### I/O ###############
 file "db/bi_word.template" { pattern
 {SYS,	SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,	OFFSET,		MASK,		 ZNAM,				ONAM,			SCAN	}
-{ KRs,	:,			Rn,		-Tipoff:,	PwrOn,			DIn,	0,			0x0001,		 PwrOff,			PwrOn,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	AModeSel,		DIn,	0,			0x0002,		 AutoOff,			AutoOn,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	MModeSel,		DIn,	0,			0x0004,		 ManuOff,			ManuOn,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrOn,		DIn,	0,			0x0008,		 TOffTmrOff,		TOffTmrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	PwrOn,			DIn,	1,			0x0001,		 PwrOff,			PwrOn,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	AModeSel,		DIn,	1,			0x0002,		 AutoOff,			AutoOn,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MModeSel,		DIn,	1,			0x0004,		 ManuOff,			ManuOn,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrOn,		DIn,	1,			0x0008,		 TOffTmrOff,		TOffTmrOn,		"1 second"	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	TilTmrOn,		DIn,	0,			0x0010,		 TilTmrOff,			TilTmrOn,		"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	MDDlyTmrOn,		DIn,	0,			0x0020,		 DlyTmrOff,			DlyTmrOn,		"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	HeatManuOn,		DIn,	0,			0x0040,		 ManuOff,			ManuOn,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	ProcStart,		DIn,	0,			0x0080,		 Stop,				Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilTmrOn,		DIn,	1,			0x0010,		 TilTmrOff,			TilTmrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MDDlyTmrOn,		DIn,	1,			0x0020,		 DlyTmrOff,			DlyTmrOn,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatManuOn,		DIn,	1,			0x0040,		 ManuOff,			ManuOn,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcStart,		DIn,	1,			0x0080,		 Stop,				Start,			"1 second"	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	ProcStop,		DIn,	0,			0x0100,		 Start,				Stop,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	ProcReset,		DIn,	0,			0x0200,		 NReset,			Reset,		    "1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TorchFront,		DIn,	0,			0x0400,		 NoFront,			Front,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TorchBack,		DIn,	0,			0x0800,		 NoTorBack,			TorBack,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcStop,		DIn,	1,			0x0100,		 Start,				Stop,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcReset,		DIn,	1,			0x0200,		 NReset,			Reset,		    "1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchFront,		DIn,	1,			0x0400,		 NoFront,			Front,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchBack,		DIn,	1,			0x0800,		 NoTorBack,			TorBack,		"1 second"	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	TorchManuOn,	DIn,	0,			0x1000,		 ManuOff,			ManuOn,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TilManuLeft,	DIn,	0,			0x2000,		 NoLeft,			Left,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TilManuHome,	DIn,	0,			0x4000,		 NoHome,			Home,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	TilManuRight,	DIn,	0,			0x8000,		 NoRight,			Right,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchManuOn,	DIn,	1,			0x1000,		 ManuOff,			ManuOn,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuLeft,	DIn,	1,			0x2000,		 NoLeft,			Left,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuHome,	DIn,	1,			0x4000,		 NoHome,			Home,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TilManuRight,	DIn,	1,			0x8000,		 NoRight,			Right,			"1 second"	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	HeatManuUp,		DIn,	1,			0x0001,		 NoManuup,			ManuUp,			"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	HeatManuHome,	DIn,	1,			0x0002,		 NoManuHome,		ManuHome,		"1 second"	}
-{ KRs,	:,			Rn,		-Tipoff:,	HeatManuDown,	DIn,	1,			0x0004,		 NoManuDown,		ManuDown,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MotorUp,		DIn,	2,			0x0001,		 NoManuup,			ManuUp,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MotorHome,		DIn,	2,			0x0002,		 NoManuHome,		ManuHome,		"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MotorDown,		DIn,	2,			0x0004,		 NoManuDown,		ManuDown,		"1 second"	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	TipoffTimer,	DIn,	3,			0x0001,		 Start,				Stop,			"1 second"	}
+#{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0002,		 Stop,				Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0004,		 Start,				Stop,			"1 second"	}
+#{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0008,		 Stop,				Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchTimer,		DIn,	3,			0x0010,		 Start,				Stop,			"1 second"	}
+#{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0020,		 Stop,				Start,			"1 second"	}
+#{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0040,		 Stop,				Start,			"1 second"	}
+#{ KRs,	:,			Rn,		-Tipoff:,	DownTimer,		DIn,	3,			0x0080,		 Stop,				Start,			"1 second"	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	TReset,			DIn,	5,			0x0001,		 NoReset,			Reset,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatDNTStart,	DIn,	5,			0x0002,		 Stop,				Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	HeatDNTReset,	DIn,	5,			0x0004,		 No,				Reset,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchTStart,	DIn,	5,			0x0008,		 Stop,				Start,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchTReset,	DIn,	5,			0x0010,		 No,				Reset,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TipoffOn,		DIn,	5,			0x0020,		 Off,				On,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcessLamp,	DIn,	5,			0x0040,		 Off,				On,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchFrontL,	DIn,	5,			0x0080,		 Off,				On,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchBackL,		DIn,	5,			0x0100,		 Off,				On,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	TorchOnSol,		DIn,	5,			0x0200,		 Off,				On,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	MotorStartH,	DIn,	5,			0x0400,		 NotHome,			Home,			"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	ManualLamp,		DIn,	5,			0x0800,		 ManualOff,			Manual,			"1 second"	}
+
+{ KRs,	:,			Rn,		-Tipoff:,	Position1,		DIn,	6,			0x0100,		 Out,				In,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	Position2,		DIn,	6,			0x0200,		 Out,				In,				"1 second"	}
+{ KRs,	:,			Rn,		-Tipoff:,	Position4,		DIn,	6,			0x0300,		 Out,				In,				"1 second"	}
 }
 
 file "db/bo_word.template" { pattern
 {SYS,   SUBSYS,     DEV,    SUBDEV,  	SIGNAL,			PORT,	OFFSET,		MASK,		ZNAM,				ONAM		}
-{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrStart,	DOut,	0,			0x0001,		NoTmrStart,			TmrStart	}
-{ KRs,	:,			Rn,		-Tipoff:,	TOffTmrReset,	DOut,	0,			0x0002,		NoTmrReset,			TmrReset	}
-{ KRs,	:,			Rn,		-Tipoff:,	TiTmrStart,		DOut,	0,			0x0004,		NoTmrStart,			TmrStart	}
-{ KRs,	:,			Rn,		-Tipoff:,	TiTmrReset,		DOut,	0,			0x0008,		NoTmrReset,			TmrReset	}
+{ KRs,	:,			Rn,		-Tipoff:,	CtrlMode,		DOut,	0,			0x0001,		Manual,				Auto		}
+{ KRs,	:,			Rn,		-Tipoff:,	RNTipoff,		DOut,	0,			0x0002,		NoTmrReset,			TmrReset	}
+{ KRs,	:,			Rn,		-Tipoff:,	AutoMode,		DOut,	0,			0x0004,		NoTmrStart,			TmrStart	}
+{ KRs,	:,			Rn,		-Tipoff:,	ManualMode,		DOut,	0,			0x0008,		NoTmrReset,			TmrReset	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	TmrUDStart,		DOut,	0,			0x0010,		NoTmrUDStart,		TmrUDStart	}
-{ KRs,	:,			Rn,		-Tipoff:,	TmrUDReset,		DOut,	0,			0x0020,		NoTmrUDReset,		TmrUDReset	}
-{ KRs,	:,			Rn,		-Tipoff:,	TOffMCOn,		DOut,	0,			0x0040,		NoTOffMCOn,			TOffMCOn	}
-{ KRs,	:,			Rn,		-Tipoff:,	TOffStartL,		DOut,	0,			0x0080,		NoTOffStartL,		TOffStartL	}
+#{ KRs,	:,			Rn,		-Tipoff:,	,		DOut,	0,			0x0010,		NoTmrUDStart,		TmrUDStart	}
+#{ KRs,	:,			Rn,		-Tipoff:,	,		DOut,	0,			0x0020,		NoTmrUDReset,		TmrUDReset	}
+#{ KRs,	:,			Rn,		-Tipoff:,	,		DOut,	0,			0x0040,		NoTOffMCOn,			TOffMCOn	}
+#{ KRs,	:,			Rn,		-Tipoff:,	,		DOut,	0,			0x0080,		NoTOffStartL,		TOffStartL	}
+#
+#{ KRs,	:,			Rn,		-Tipoff:,	AlmBuzz,		DOut,	0,			0x0100,		NoAlarmBuzz,		AlarmBuzz	}
+#{ KRs,	:,			Rn,		-Tipoff:,	MotorHomeSW,	DOut,	0,			0x0200,		NoHome,				Home		}
+{ KRs,	:,			Rn,		-Tipoff:,	MotorHomeSW,	DOut,	0,			0x0400,		NoHome,				Home		}
+#{ KRs,	:,			Rn,		-Tipoff:,	TorBackSol,		DOut,	0,			0x0400,		NoTorchBSol,		TorchBSol	}
+#{ KRs,	:,			Rn,		-Tipoff:,	TorOnSol,		DOut,	0,			0x0800,		NoTorchOnSol,		TorchOnSol	}
+#
+#{ KRs,	:,			Rn,		-Tipoff:,	TiLeftSol,		DOut,	0,			0x1000,		NoTiLeftSol,		TiLeftSol	}
+#{ KRs,	:,			Rn,		-Tipoff:,	TiHomeSol,		DOut,	0,			0x2000,		NoTiHomeSol,		TiHomeSol	}
+#{ KRs,	:,			Rn,		-Tipoff:,	TiRightSol,		DOut,	0,			0x4000,		NoTiRightSol,		TiRightSol	}
 
-{ KRs,	:,			Rn,		-Tipoff:,	AlmBuzz,		DOut,	0,			0x0100,		NoAlarmBuzz,		AlarmBuzz	}
-{ KRs,	:,			Rn,		-Tipoff:,	TorFrontSol,	DOut,	0,			0x0200,		NoTorchFSol,		TorchFSol	}
-{ KRs,	:,			Rn,		-Tipoff:,	TorBackSol,		DOut,	0,			0x0400,		NoTorchBSol,		TorchBSol	}
-{ KRs,	:,			Rn,		-Tipoff:,	TorOnSol,		DOut,	0,			0x0800,		NoTorchOnSol,		TorchOnSol	}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcessStart,	DOut,	1,			0x0001,		Stopped,			Start		}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcessStop,	DOut,	1,			0x0002,		Start,				Stopped		}
+{ KRs,	:,			Rn,		-Tipoff:,	ProcessReset,	DOut,	1,			0x0004,		Not,				Reset		}
 
-{ KRs,	:,			Rn,		-Tipoff:,	TiLeftSol,		DOut,	0,			0x1000,		NoTiLeftSol,		TiLeftSol	}
-{ KRs,	:,			Rn,		-Tipoff:,	TiHomeSol,		DOut,	0,			0x2000,		NoTiHomeSol,		TiHomeSol	}
-{ KRs,	:,			Rn,		-Tipoff:,	TiRightSol,		DOut,	0,			0x4000,		NoTiRightSol,		TiRightSol	}
 }
 
 
