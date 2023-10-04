@@ -18,7 +18,10 @@ DB  += boWord.template
 #DB  += TBxcontrol_test.sub
 
 ##0818
-DB  += TBxcontrol_3.sub
+#DB  += TBxcontrol_3.sub
+
+##23_0927
+DB  += TBxcontrol_4.sub
 
 
 ##0818, CPStat
