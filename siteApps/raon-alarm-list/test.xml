@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf8'?>
+<config name="Demo">
+    <component name="TEST:GROUP1">
+        <pv name="TEST:PV1">
+            <enabled>true</enabled>
+            <filter>TEST:PV2 > 10</filter>
+        </pv>
+        <pv name="TEST:PV2">
+            <enabled>true</enabled>
+        </pv>
+        <pv name="TEST:PV3">
+            <enabled>true</enabled>
+        </pv>
+    </component>
+    <component name="TEST:GROUP2">
+        <component name="TEST:GROUP3">
+            <pv name="TEST:PV4">
+                <enabled>true</enabled>
+            </pv>
+            <pv name="TEST:PV5">
+                <enabled>true</enabled>
+            </pv>
+        </component>
+        <pv name="TEST:PV6">
+            <enabled>true</enabled>
+        </pv>
+        <pv name="TEST:PV7">
+            <enabled>true</enabled>
+        </pv>
+    </component>
+</config>
