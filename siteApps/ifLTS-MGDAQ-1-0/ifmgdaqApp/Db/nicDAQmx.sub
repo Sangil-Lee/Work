@@ -1,0 +1,27 @@
+
+file "db/nicDAQ_ai.template" { pattern
+{ SYS,		SUBSYS,	DEV,	SUBDEV,	SIGNAL,		PORT,	ADDR,	TIMEOUT,	ALIAS,					SCAN,		VAL } 
+{ SRF01,	HT01,	VBx21,	PT7203,	Press1,		nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_AI0_AVG, "I/O Intr",	0.0 }
+{ SRF01,	HT01,	VBx21,	PT7203,	Press2,		nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_AI1_AVG, "I/O Intr",	0.0 }
+{ SRF01,	HT01,	VBx21,	PT7203,	Press3,		nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_AI2_AVG, "I/O Intr",	0.0 }
+{ SRF01,	HT01,	VBx21,	PT7203,	Press4,		nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_AI3_AVG, "I/O Intr",	0.0 }
+}
+
+file "db/nicDAQ_waveform.template" { pattern
+{SYS,	SUBSYS,		DEV,	SUBDEV,		SIGNAL,	PORT,	ADDR,	TIMEOUT,	ALIAS,					DTYP,					NELM,	FLNK,						SCAN }
+{Cryo,	-CDL00:,	TBx01,	-DPT7203,	Raw,	nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_WAVE_0,	"asynFloat64ArrayIn",	1000,	"NIDAQ_MX_SLOT1_AI0_AVG",	"I/O Intr"}
+{Cryo,	-CDL00:,	TBx01,	-DPT7203,	Raw,	nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_WAVE_1,	"asynFloat64ArrayIn",	1000,	"NIDAQ_MX_SLOT1_AI1_AVG",	"I/O Intr"}
+{Cryo,	-CDL00:,	TBx01,	-DPT7203,	Raw,	nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_WAVE_2,	"asynFloat64ArrayIn",	1000,	"NIDAQ_MX_SLOT1_AI2_AVG",	"I/O Intr"}
+{Cryo,	-CDL00:,	TBx01,	-DPT7203,	Raw,	nicDAQ,	0,		1,			NIDAQ_MX_SLOT1_WAVE_3,	"asynFloat64ArrayIn",	1000,	"NIDAQ_MX_SLOT1_AI3_AVG",	"I/O Intr"}
+}
+
+{ Cryo-CDL00,	TBx01-DPT7201,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7301,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7401,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7501,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7241,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7341,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7441,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7541,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7503,	Raw,	"1 second"	}
+{ Cryo-CDL00,	TBx01-DPT7543,	Raw,	"1 second"	}
