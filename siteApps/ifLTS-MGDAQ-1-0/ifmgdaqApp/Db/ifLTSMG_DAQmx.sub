@@ -1,0 +1,43 @@
+
+file "db/ifLTSMGDAQ_ai.template" { pattern
+{ SUBDEV,	SIGNAL,		PORT,		ADDR,	TIMEOUT,	ALIAS,					SCAN,	VAL } 
+{ -BT8111:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI00_AVG, "I/O Intr",	0.0 }
+{ -BT8112:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI01_AVG, "I/O Intr",	0.0 }
+{ -BT8113:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI02_AVG, "I/O Intr",	0.0 }
+{ -BT8114:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI03_AVG, "I/O Intr",	0.0 }
+{ -BT8115:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI04_AVG, "I/O Intr",	0.0 }
+{ -BT8116:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI05_AVG, "I/O Intr",	0.0 }
+{ -BT8117:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI06_AVG, "I/O Intr",	0.0 }
+{ -BT8118:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI07_AVG, "I/O Intr",	0.0 }
+{ -BT8121:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI08_AVG, "I/O Intr",	0.0 }
+{ -BT8122:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI09_AVG, "I/O Intr",	0.0 }
+{ -BT8123:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI10_AVG, "I/O Intr",	0.0 }
+{ -BT8124:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI11_AVG, "I/O Intr",	0.0 }
+{ -BT8131:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI12_AVG, "I/O Intr",	0.0 }
+{ -BT8132:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI13_AVG, "I/O Intr",	0.0 }
+{ -BT8133:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI14_AVG, "I/O Intr",	0.0 }
+{ -BT8134:,	HSensor,	ifLTSDAQ,	0,		1,			IFLTS_DAQ_AI15_AVG, "I/O Intr",	0.0 }
+
+}
+
+file "db/nicDAQ_waveform.template" { pattern
+{ SUBDEV,	SIGNAL,		PORT,		ADDR,	TIMEOUT,	ALIAS,				DTYP,					FLNK,						SCAN }
+{ -BT8111:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_00,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI00_AVG",	"I/O Intr"}
+{ -BT8112:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_01,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI01_AVG",	"I/O Intr"}
+{ -BT8113:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_02,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI02_AVG",	"I/O Intr"}
+{ -BT8114:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_03,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI03_AVG",	"I/O Intr"}
+{ -BT8115:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_04,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI04_AVG",	"I/O Intr"}
+{ -BT8116:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_05,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI05_AVG",	"I/O Intr"}
+{ -BT8117:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_06,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI06_AVG",	"I/O Intr"}
+{ -BT8118:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_07,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI07_AVG",	"I/O Intr"}
+{ -BT8121:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_08,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI08_AVG",	"I/O Intr"}
+{ -BT8122:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_09,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI09_AVG",	"I/O Intr"}
+{ -BT8123:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_10,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI10_AVG",	"I/O Intr"}
+{ -BT8124:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_11,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI11_AVG",	"I/O Intr"}
+{ -BT8131:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_12,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI12_AVG",	"I/O Intr"}
+{ -BT8132:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_13,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI13_AVG",	"I/O Intr"}
+{ -BT8133:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_14,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI14_AVG",	"I/O Intr"}
+{ -BT8134:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_15,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI15_AVG",	"I/O Intr"}
+}
+
+

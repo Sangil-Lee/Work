@@ -1,0 +1,9 @@
+record(waveform, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SIGNAL)")
+{
+	field(PINI,  "YES")
+    field(DTYP,  "$(DTYP)")
+    field(INP,   "@asyn($(PORT),$(ADDR),$(TIMEOUT))$(ALIAS)")
+    field(NELM,  "(NELM)")
+    field(FTVL,  "DOUBLE")
+    field(SCAN,  "$(SCAN)")
+}

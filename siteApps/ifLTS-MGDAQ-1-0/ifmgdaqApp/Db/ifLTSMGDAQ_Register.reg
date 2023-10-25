@@ -1,0 +1,55 @@
+##ALIAS##,##Module Options##,##scale parameter ##Param Type##,##devicename##
+#Module,			Options,	scaleparameter(minval, maxval, slope, offset)
+IFLTS_DAQ_AI00_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI01_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI02_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI03_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI04_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI05_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI06_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI07_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI08_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI09_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI10_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI11_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI12_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI13_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI14_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+IFLTS_DAQ_AI15_AVG,	0x0,		0.0, 0.0, 0.0,0.0,		   asynParamFloat64,		NA,				NA
+
+#
+#Options(0x00010001, Higher 0x0001:current module, Lower 0x0001:linear scale)
+#Linear Scale (0.0 ~ 100.0) y=mx+b, m = slope(10), b = offset(5.0)
+#NIDAQ_MX_SLOT5_WAVE_0,				0x00000001, 0.0, 100.0, 10.0,0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+
+#Voltage Module Linear Scaling
+#createAIVoltChannel(device, 0.0, 2.0, DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserRangeMap");
+#DAQmxCreateLinScale(userScaleName.c_str(),param[2], param[3], prescaleunit, scaledunit.c_str());
+#NIDAQ_MX_SLOT5_WAVE_0,	 			0x00000001, 0.0, 2.0, 0.2, 0.0, asynParamFloat64Array,PXI1Slot5/ai0,	NIDAQ_MX_SLOT5_AI0_AVG
+
+#Voltage Module Range Mapping(0.0 ~ 10.0 Volts mapped 0.0 ~ 2.0 bar)
+#createAIVoltChannel(device, 0.0, 2.0, DAQmx_Val_RSE, DAQmx_Val_FromCustomScale, "UserRangeMap");
+#DAQmxCreateMapScale(userScaleName.c_str(),param[0], param[1],param[2],param[3],prescaleunit, scaledunit.c_str());
+
+#NIDAQ_MX_SLOT1_WAVE_0,	 0x00000001, 0.0, 5.0,  1.0, 1.6, 	 asynParamFloat64Array,   Mod2/ai0,	NIDAQ_MX_SLOT1_AI0_AVG
+#NIDAQ_MX_SLOT1_WAVE_1,	 0x00000001, 0.0, 5.0,  1.0, 1.6, 	 asynParamFloat64Array,   Mod2/ai1,	NIDAQ_MX_SLOT1_AI1_AVG
+#NIDAQ_MX_SLOT1_WAVE_2,	 0x00000001, 0.0, 5.0,  1.0, 1.6, 	 asynParamFloat64Array,   Mod2/ai2,	NIDAQ_MX_SLOT1_AI2_AVG
+#NIDAQ_MX_SLOT1_WAVE_3,	 0x00000002, 0.0, 5.0,  0.0, 2.0, 	 asynParamFloat64Array,   Mod2/ai3,	NIDAQ_MX_SLOT1_AI3_AVG
+#NIDAQ_MX_SLOT2_WAVE_0,	 0x00000002, 0.0, 10.0, 0.0, 2.0, 	 asynParamFloat64Array,   Mod2/ai0,	NIDAQ_MX_SLOT2_AI0_AVG
+#
+IFLTS_DAQ_WAVE_00,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai0,	IFLTS_DAQ_AI00_AVG
+IFLTS_DAQ_WAVE_01,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai1,	IFLTS_DAQ_AI01_AVG
+IFLTS_DAQ_WAVE_02,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai2,	IFLTS_DAQ_AI02_AVG
+IFLTS_DAQ_WAVE_03,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai3,	IFLTS_DAQ_AI03_AVG
+IFLTS_DAQ_WAVE_04,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai4,	IFLTS_DAQ_AI04_AVG
+IFLTS_DAQ_WAVE_05,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai5,	IFLTS_DAQ_AI05_AVG
+IFLTS_DAQ_WAVE_06,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai6,	IFLTS_DAQ_AI06_AVG
+IFLTS_DAQ_WAVE_07,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai7,	IFLTS_DAQ_AI07_AVG
+IFLTS_DAQ_WAVE_08,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai8,	IFLTS_DAQ_AI08_AVG
+IFLTS_DAQ_WAVE_09,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai9,	IFLTS_DAQ_AI09_AVG
+IFLTS_DAQ_WAVE_10,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai10,	IFLTS_DAQ_AI10_AVG
+IFLTS_DAQ_WAVE_11,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai11,	IFLTS_DAQ_AI11_AVG
+IFLTS_DAQ_WAVE_12,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai12,	IFLTS_DAQ_AI12_AVG
+IFLTS_DAQ_WAVE_13,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai13,	IFLTS_DAQ_AI13_AVG
+IFLTS_DAQ_WAVE_14,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai14,	IFLTS_DAQ_AI14_AVG
+IFLTS_DAQ_WAVE_15,	 0x1, 0.0, 10.0,  0.0, 10.0, 	 asynParamFloat64Array,   Slot6/ai15,	IFLTS_DAQ_AI15_AVG

@@ -6,17 +6,17 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-#DB += xxx.db
 
-###NI-cDAQ PVs
-DB += nicDAQ_ai.template  
-DB += nicDAQ_waveform.template
-DB += nicDAQmx.sub
-DB += NIcDAQRegister.reg  
+###IF LTS Magnet DAQ PVs
+DB += ifLTSMGDAQ_ai.template 
+DB += ifLTSMGDAQ_waveform.template
+DB += ifLTSMGDAQ_Register.reg 
+DB += ifLTSMG_DAQmx.sub  
 
 ###Make FFTWaveform from cDAQ sampling data
-DB += fftWaveform.template
-DB += fftWaveform.sub
+#DB += fftWaveform.template
+#DB += fftWaveform.sub
+
 
 
 #----------------------------------------------------

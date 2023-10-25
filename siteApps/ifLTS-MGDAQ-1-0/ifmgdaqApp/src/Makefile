@@ -29,7 +29,7 @@ DBD += ifmgdaq.dbd
 # ifmgdaq.dbd will be made up from these files:
 ifmgdaq_DBD += base.dbd
 ifmgdaq_DBD += nicDAQAsynEpics.dbd
-ifmgdaq_DBD += asubFFTWave.dbd
+#ifmgdaq_DBD += asubFFTWave.dbd
 
 # Include dbd files from all support applications:
 #ifmgdaq_DBD += xxx.dbd
@@ -39,7 +39,7 @@ ifmgdaq_DBD += asubFFTWave.dbd
 
 # ifmgdaq_registerRecordDeviceDriver.cpp derives from ifmgdaq.dbd
 ifmgdaq_SRCS += ifmgdaq_registerRecordDeviceDriver.cpp
-ifmgdaq_SRCS += asubFFTWave.cpp
+#ifmgdaq_SRCS += asubFFTWave.cpp
 
 # Build the main IOC entry point on workstation OSs.
 ifmgdaq_SRCS_DEFAULT += ifmgdaqMain.cpp

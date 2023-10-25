@@ -49,21 +49,14 @@ nicDAQAsynEpics::nicDAQAsynEpics(const char *portName, const char* filename, con
 
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
-
 	deviceName = string(devName);
-
-//	DAQmxCreateTask(deviceName, &gTask);
 
     // register parameter list from register file.  
 	registerParamListFromFile(fileName);
 
-	//DAQmxCfgSampClkTiming(gTask, "", 500.0/*Sampling Rate, 500Hz*/, DAQmx_Val_Rising, DAQmx_Val_ContSamps, 1000);
-//	DAQmxCfgSampClkTiming(gTask, "", 10000.0/*1kHz*/, DAQmx_Val_Rising, DAQmx_Val_ContSamps, 1000);
-//	DAQmxStartTask(gTask);
-
 	if (system_init_ok==1) 
 	{
-		status = (asynStatus)(epicsThreadCreate("nicDAQAsynEpicsUserTask",
+		status = (asynStatus)(epicsThreadCreate("ifLTSDAQAsynEpicsUserTask",
 					epicsThreadPriorityMedium,
 					epicsThreadGetStackSize(epicsThreadStackMedium),
 					(EPICSTHREADFUNC)::userProcess,
@@ -658,7 +651,7 @@ void nicDAQAsynEpics::UserProcess()
 	// DAQmx Configure Code
 	/*********************************************/
 	//string chName = string("cDAQ9189-1C742B4")+string("Mod1/ai0");
-	error = DAQmxCreateTask("cDAQTest",&taskHandle);
+	error = DAQmxCreateTask("ifLTSMGDAQ",&taskHandle);
 	if(DAQmxFailed(error)) {
 		DAQmxGetExtendedErrorInfo(errBuff,2048);
 		if( taskHandle!=0 ) {
