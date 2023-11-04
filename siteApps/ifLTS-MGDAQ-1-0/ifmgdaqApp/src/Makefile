@@ -9,6 +9,7 @@ USR_CXXFLAGS += -Wno-deprecated-declarations -Wno-unused-variable -Wno-stringop-
 USR_CPPFLAGS += -std=c++11 -ggdb -D_POSIX_C_SOURCE=200809L
 
 DBD += nicDAQAsynEpics.dbd
+
 LIBRARY_IOC += nicDAQAsynEpicsSupport 
 nidaqmx_DIR = /usr/lib/x86_64-linux-gnu
 

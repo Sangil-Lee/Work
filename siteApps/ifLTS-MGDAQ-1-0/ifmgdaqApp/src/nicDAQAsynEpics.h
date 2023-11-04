@@ -36,6 +36,7 @@ private:
 	string fileName;
 	const char *driverName;
 	string deviceName;
+	string taskName;
     epicsEventId eventId_;
     int system_init_ok;
 	TaskHandle gTask;

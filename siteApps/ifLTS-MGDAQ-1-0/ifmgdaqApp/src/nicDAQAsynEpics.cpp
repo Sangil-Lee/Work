@@ -25,7 +25,7 @@ static void userProcess(void *drvPvt);
 
 //using nicDAQ::nicDAQDriver;
 
-static int nicDAQDebug = 2;
+static int nicDAQDebug = 0;
 epicsExportAddress(int, nicDAQDebug);
 
 static int nicDAQPrintCount = 20;
@@ -50,6 +50,7 @@ nicDAQAsynEpics::nicDAQAsynEpics(const char *portName, const char* filename, con
     // Create database entries
     eventId_ = epicsEventCreate(epicsEventEmpty);  
 	deviceName = string(devName);
+	taskName = string(portName);
 
     // register parameter list from register file.  
 	registerParamListFromFile(fileName);
@@ -286,7 +287,7 @@ asynStatus nicDAQAsynEpics::readFloat64Array(asynUser *pasynUser, epicsFloat64 *
 		{
 			float64 min = *std::min_element(rdValue, rdValue+nElements);
 			float64 max = *std::max_element(rdValue, rdValue+nElements);
-			printf("Min:%f, Avg: %f, Max: %f\n",min, avg, max);
+			printf("readFloat64Array: Min:%f, Avg: %f, Max: %f\n",min, avg, max);
 		};
 		if((setParamValue(regmap.drvlink, avg)) == 0)
 		{
@@ -651,7 +652,8 @@ void nicDAQAsynEpics::UserProcess()
 	// DAQmx Configure Code
 	/*********************************************/
 	//string chName = string("cDAQ9189-1C742B4")+string("Mod1/ai0");
-	error = DAQmxCreateTask("ifLTSMGDAQ",&taskHandle);
+	//error = DAQmxCreateTask("ifLTSMGDAQ",&taskHandle);
+	error = DAQmxCreateTask(taskName.c_str(),&taskHandle);
 	if(DAQmxFailed(error)) {
 		DAQmxGetExtendedErrorInfo(errBuff,2048);
 		if( taskHandle!=0 ) {
@@ -844,7 +846,7 @@ extern "C" {
   * \param[in] maxSizeSnapshot The maximum  number of sample in one snapshot
   * \param[in] maxNbSnapshot The number of snapshot buffered
  */
-epicsShareFunc int nicDAQAsynEpicsConfigure(const char *portName, const char* registerfile, const char *devName, const int samprate, const int nofe)
+epicsShareFunc int nidaqAsynEpicsConfigure(const char *portName, const char* registerfile, const char *devName, const int samprate, const int nofe)
 {
     new nicDAQAsynEpics(portName, registerfile, devName, samprate, nofe);
     return(asynSuccess);
@@ -863,10 +865,10 @@ static const iocshArg * const initArgs[] = {&initArg0,
                                             &initArg3,
                                             &initArg4 };
 
-static const iocshFuncDef initFuncDef = {"nicDAQAsynEpicsConfigure",5,initArgs};
+static const iocshFuncDef initFuncDef = {"nidaqAsynEpicsConfigure",5,initArgs};
 static void initCallFunc(const iocshArgBuf *args)
 {
-    nicDAQAsynEpicsConfigure(args[0].sval, args[1].sval, args[2].sval,args[3].dval, args[4].ival);
+    nidaqAsynEpicsConfigure(args[0].sval, args[1].sval, args[2].sval,args[3].dval, args[4].ival);
 }
 
 void nicDAQAsynEpicsRegister(void)

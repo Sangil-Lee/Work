@@ -11,7 +11,9 @@ include $(TOP)/configure/CONFIG
 DB += ifLTSMGDAQ_ai.template 
 DB += ifLTSMGDAQ_waveform.template
 DB += ifLTSMGDAQ_Register.reg 
+DB += ifLTSMGDAQ_Register_2.reg 
 DB += ifLTSMG_DAQmx.sub  
+DB += ifLTSMG_DAQmx_2.sub  
 
 ###Make FFTWaveform from cDAQ sampling data
 #DB += fftWaveform.template

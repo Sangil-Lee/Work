@@ -20,7 +20,7 @@ file "db/ifLTSMGDAQ_ai.template" { pattern
 
 }
 
-file "db/nicDAQ_waveform.template" { pattern
+file "db/ifLTSMGDAQ_waveform.template" { pattern
 { SUBDEV,	SIGNAL,		PORT,		ADDR,	TIMEOUT,	ALIAS,				DTYP,					FLNK,						SCAN }
 { -BT8111:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_00,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI00_AVG",	"I/O Intr"}
 { -BT8112:,	rawDAQ,		ifLTSDAQ,	0,		1,			IFLTS_DAQ_WAVE_01,	"asynFloat64ArrayIn",	"IFLTS_DAQ_AI01_AVG",	"I/O Intr"}
