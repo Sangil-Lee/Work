@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>668</width>
+    <height>496</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QESimpleShape" name="qesimpleshape">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>100</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::valve_h</enum>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:ai1</string>
+   </property>
+  </widget>
+  <widget class="QSimpleShape" name="qsimpleshape">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>60</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::circle</enum>
+   </property>
+   <property name="semiCycles">
+    <number>5</number>
+   </property>
+   <property name="percentSize">
+    <number>1</number>
+   </property>
+   <property name="modulus">
+    <number>8</number>
+   </property>
+   <property name="indent">
+    <number>3</number>
+   </property>
+   <property name="isActive">
+    <bool>true</bool>
+   </property>
+   <property name="flashOffColour">
+    <color>
+     <red>0</red>
+     <green>0</green>
+     <blue>0</blue>
+    </color>
+   </property>
+   <property name="colour0" stdset="0">
+    <color>
+     <red>0</red>
+     <green>0</green>
+     <blue>0</blue>
+    </color>
+   </property>
+  </widget>
+  <widget class="QESimpleShape" name="qesimpleshape_2">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>230</y>
+     <width>41</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::con_valve_h</enum>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:ai1</string>
+   </property>
+  </widget>
+  <widget class="QESimpleShape" name="qesimpleshape_3">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>300</y>
+     <width>131</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::valve_h</enum>
+   </property>
+   <property name="variable" stdset="0">
+    <string>ctrluser:ai1</string>
+   </property>
+  </widget>
+  <widget class="QESimpleShape" name="qesimpleshape_4">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>170</y>
+     <width>101</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="shape">
+    <enum>QSimpleShape::valve_h</enum>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QESimpleShape</class>
+   <extends>QSimpleShape</extends>
+   <header>QESimpleShape.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QSimpleShape</class>
+   <extends>QWidget</extends>
+   <header>QSimpleShape.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
