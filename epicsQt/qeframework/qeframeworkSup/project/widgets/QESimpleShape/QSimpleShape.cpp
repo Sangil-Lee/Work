@@ -88,7 +88,7 @@ void QSimpleShape::equaliseRect (QRect& rect)
 
 //-----------------------------------------------------------------------------
 //
-void QSimpleShape::paintEvent (QPaintEvent*)
+void QSimpleShape::paintEvent (QPaintEvent* e)
 {
    QPainter painter (this);
    QPen pen;
@@ -777,7 +777,56 @@ void QSimpleShape::paintEvent (QPaintEvent*)
 		painter.drawPolygon (polygon, 7);
 		painter.drawChord (rect, 30*16, 120*16 );
 		break;
+	 case pump:
+		
+		//painter.drawPolygon(QPolygon() << rect.bottomLeft() << QPoint(rect.center().x(), 0) << rect.bottomRight());
+		{
+			QRect circle = rect;
+			circle.setWidth(rect.width() * 0.8);
+			circle.setHeight(rect.height() * 0.8);
+			painter.drawPolygon(QPolygon() << circle.bottomLeft() << QPoint(circle.center()) << circle.bottomRight());
+			painter.drawPolygon(QPolygon() << rect.topRight() 
+								<< QPoint(rect.right(), circle.center().y()) 
+								<< circle.center()
+								<< QPoint(rect.center().x(), 0) );
+			line_1.setP1(rect.topRight());
+			line_1.setP2(QPoint(rect.right(), circle.center().y()) );
+			painter.setPen(QPen( Qt::black, 4, Qt::SolidLine, Qt::RoundCap) );
+			painter.drawLine( line_1 );
+			painter.setPen(QPen( Qt::black, 1, Qt::SolidLine, Qt::RoundCap) );
+			painter.drawEllipse(circle);
+		}
 
+#if 0
+
+			QGraphicsScene *scene = new QGraphicsScene(this);
+			QGraphicsProxyWidget *w = scene->addWidget(button);
+			w->setPos(50, 50);
+			w->setRotation(45);
+			ui->graphicsView->setScene(scene);
+
+		line_1.setP1(rect.topRight());
+		line_1.setP2(QPoint(rect.right(), rect.center().y()) );
+		painter.setPen(QPen( Qt::black, 1, Qt::SolidLine, Qt::RoundCap) );
+		painter.drawLine( line_1 );
+
+		 line_1.setP1(QPoint(rect.left(), rect.top()));
+		 line_1.setP2(QPoint(rect.left(), rect.bottom()));
+		 painter.drawLine( line_1 );
+		 painter.setPen(QPen( Qt::black, 3, Qt::SolidLine, Qt::RoundCap) );
+		 line_1.setP1(QPoint(rect.right(), rect.top()));
+		 line_1.setP2(QPoint(rect.right(), rect.bottom()));
+		 painter.drawLine( line_1 );
+
+		{
+         // Calculate the circle dimensions (inscribed in the rectangle)
+         int circleDiameter = qMin(rect.width(), rect.height());
+         int circleX = rect.x() + (rect.width()  - circleDiameter) / 2;
+         int circleY = rect.y() + (rect.height() - circleDiameter) / 2;
+         painter.drawEllipse(rect.center(), circleDiameter*0.5, circleDiameter*0.5);
+		}
+#endif
+		break;
      default:
          // And just for fun ....
          dx = double (rect.right ()  - rect.left ())/100.0;
