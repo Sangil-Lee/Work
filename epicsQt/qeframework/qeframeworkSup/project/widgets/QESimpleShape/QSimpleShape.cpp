@@ -827,6 +827,21 @@ void QSimpleShape::paintEvent (QPaintEvent* e)
 		}
 #endif
 		break;
+	 case crosspump:
+		
+		{
+			painter.drawPolygon(QPolygon() << rect.topLeft() 
+								<< QPoint(rect.bottomLeft().x()*0.35,  rect.bottomLeft().y()*0.35) 
+								<< QPoint(rect.bottomRight().x()*0.35, rect.bottomRight().y()*0.35) 
+								<< QPoint(rect.bottomRight().x()*0.35, rect.bottomRight().y()) 
+								<< QPoint(rect.bottomRight().x()*0.7, rect.bottomRight().y()) 
+								<< QPoint(rect.bottomRight().x()*0.7, rect.bottomRight().y()*0.35) 
+								<< QPoint(rect.bottomRight().x(),     rect.bottomRight().y()*0.35) 
+								<< rect.topRight()
+								<< rect.topLeft()
+								);
+		}
+		break;
      default:
          // And just for fun ....
          dx = double (rect.right ()  - rect.left ())/100.0;

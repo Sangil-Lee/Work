@@ -50,7 +50,7 @@ public:
                  diamond, equalDiamond, arrowUp, arrowDown, arrowLeft, arrowRight,
                  crossHorizontal, crossVertical, hexagon, octogon,
                  snakeHorizontal, snakeVertical, pentagon, star, plus, tick, cross,
-                 roundpie, pie, heart, valve_h, valve_v, con_valve_h, pump };
+                 roundpie, pie, heart, valve_h, valve_v, con_valve_h, pump, crosspump };
    Q_ENUMS (Shapes)
 
    /// Nominated shape
