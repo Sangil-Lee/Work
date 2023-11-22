@@ -12,29 +12,29 @@ dbLoadDatabase "dbd/iftarget.dbd"
 iftarget_registerRecordDeviceDriver pdbbase
 
 ###Phytron phymotion controller
-drvAsynIPPortConfigure("IFPhytron", "192.168.1.101:22222", 0, 0, 1)
+#drvAsynIPPortConfigure("IFPhytron", "192.168.1.101:22222", 0, 0, 1)
 
 ###phytronCreateController (phytronPort, asynPort, movingPollPeriod, idlePollPeriod, timeout)
-phytronCreateController("IFPhy", "IFPhytron", 100, 100, 1000)
+#phytronCreateController("IFPhy", "IFPhytron", 100, 100, 1000)
 
 ###phytronCreateAxis(phytronPort, module, axis)
-phytronCreateAxis("IFPhy", 1, 1)
-phytronCreateAxis("IFPhy", 1, 2)
+#phytronCreateAxis("IFPhy", 1, 1)
+#phytronCreateAxis("IFPhy", 1, 2)
 
 ###################################
 #Phytron Motor DB
-dbLoadTemplate("db/phytronMotor.sub")
+#dbLoadTemplate("db/phytronMotor.sub")
 ###################################
 
-#Siemens CCS PLC 
-#drvAsynIPPortConfigure("IFPLC", "192.168.1.11:502", 0, 0, 1)
-#modbusInterposeConfig("IFPLC",   0,5000,0)
+#LS PLC Step Motor
+drvAsynIPPortConfigure("IFPLC", "192.168.0.2:502", 0, 0, 1)
+modbusInterposeConfig("IFPLC",   0,5000,0)
 
-#drvModbusAsynConfigure("IFCCSAI", "IFPLC", 0, 3,  0,   118,  7, 100, "Modicon")  
-#drvModbusAsynConfigure("IFCCSAO", "IFPLC", 0, 6,  120, 120, 7, 100, "Modicon")
-#drvModbusAsynConfigure("IFCCSDI", "IFPLC", 0, 3,  240, 5,  7, 100, "Modicon")
-#drvModbusAsynConfigure("IFCCSDO", "IFPLC", 0, 6,  246, 10,  7, 100, "Modicon")
-#dbLoadTemplate("db/IFTarget.sub")
+drvModbusAsynConfigure("IFBDumpAI", "IFPLC", 0, 6,  0,   32,  7, 100, "Modicon")
+drvModbusAsynConfigure("IFBDumpAO", "IFPLC", 0, 6,  128, 122, 7, 100, "Modicon")
+drvModbusAsynConfigure("IFBDumpDI", "IFPLC", 0, 3,  256, 4,   7, 100, "Modicon")
+drvModbusAsynConfigure("IFBDumpDO", "IFPLC", 0, 6,  260, 4,   7, 100, "Modicon")
+dbLoadTemplate("db/IFTarget.sub")
 
 
 ###ModbusTCP to FlowMeter
@@ -53,9 +53,6 @@ dbLoadTemplate("db/phytronMotor.sub")
 
 ## Real Template
 ##dbLoadTemplate("db/flowMeter.sub")
-
-## Load record instances
-#dbLoadRecords("db/iftarget.db","user=ctrluser")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

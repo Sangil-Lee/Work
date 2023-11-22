@@ -1,74 +1,252 @@
-### Wire-Scanner
+####AI Base Address 40 word PLC base(128)
 file "db/aiFloat64.template" { pattern
-{SYS,		SUBSYS,		DEV,	SUBDEV,		SIGNAL,			PORT,			OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	SCAN,		DESC}
-{IFTarget,	-DIAG:,		WS001,	:,		ActPosR,		"IFTargetWSAI",	0,		FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{IFTarget,	-DIAG:,		WS001,	:,		MacPosR,		"IFTargetWSAI",	2,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{IFTarget,	-DIAG:,		WS001,	:,		ActSpdR,		"IFTargetWSAI",	4,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-{IFTarget,	-DIAG:,		WS001,	:,		MacSpdR,		"IFTargetWSAI",	6,	 	FLOAT32_BE, 0,		 100,	 3,		"",		"1 second",	""}
-}                                                                   
+{SYS,    SUBSYS,     DEV,    SUBDEV,     SIGNAL,             PORT,          OFFSET, DATA_TYPE,  LOPR,   HOPR,   PREC,   EGU,    DESC,   SCAN}
+{IF,    -BDump:,        R,   -LINR:,     1Ax_CurPosR,       "IFBDumpAI",     0,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -LINR:,     1Ax_EncPosR,       "IFBDumpAI",     2,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -LINR:,     1Ax_ErrorR,        "IFBDumpAI",     4,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -LINR:,     1Ax_AI3,           "IFBDumpAI",     6,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
 
-####AO Base Address 40 word PLC base
-file "db/aoFloat64.template" { pattern
-{SYS,		SUBSYS,		DEV,	SUBDEV,		SIGNAL,			PORT,			OFFSET, DATA_TYPE,	LOPR,	HOPR,	PREC,	EGU,	DESC}
-{IFTarget,	-DIAG:,		WS001,	:,		SetJogSpd,		"IFTargetWSAO",	0,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetStepSpd,		"IFTargetWSAO",	2,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetStepVal,		"IFTargetWSAO",	4,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetAccTime,		"IFTargetWSAO",	6,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetDecTime,		"IFTargetWSAO",	8,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetABSSpd1,		"IFTargetWSAO",	10,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetABSPos1,		"IFTargetWSAO",	12,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetABSSpd2,		"IFTargetWSAO",	14,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetABSPos2,		"IFTargetWSAO",	16,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
-{IFTarget,	-DIAG:,		WS001,	:,		SetJERK,		"IFTargetWSAO",	18,	 	FLOAT32_BE, 0,		100,	3,		"",		"" }
+{IF,    -BDump:,        R,   -Slit:,     2Ax_CurPosR,       "IFBDumpAI",     8,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -Slit:,     2Ax_EncPosR,       "IFBDumpAI",    10,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -Slit:,     2Ax_ErrorR,        "IFBDumpAI",    12,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        R,   -Slit:,     2Ax_AI3,           "IFBDumpAI",    14,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+
+{IF,    -BDump:,        L,   -LINR:,     3Ax_CurPosR,       "IFBDumpAI",    16,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -LINR:,     3Ax_EncPosR,       "IFBDumpAI",    18,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -LINR:,     3Ax_ErrorR,        "IFBDumpAI",    20,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -LINR:,     3Ax_AI7,           "IFBDumpAI",    22,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+
+{IF,    -BDump:,        L,   -Slit:,     4Ax_CurPosR,       "IFBDumpAI",    24,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -Slit:,     4Ax_EncPosR,       "IFBDumpAI",    26,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -Slit:,     4Ax_ErrorR,        "IFBDumpAI",    28,      FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
+{IF,    -BDump:,        L,   -Slit:,     4Ax_AI11,          "IFBDumpAI",    30 ,     FLOAT32_LE, 0,      100,    3,      "",     "",   "1 second"}
 }
 
-####BI Base Address 110 PLC offset(byte))
-file "db/biWord.template" { pattern
-{SYS,		SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,			OFFSET,	MASK,	 ZNAM,   ONAM,		SCAN,		DESC}
-{IFTarget,	-DIAG:,		WS001,	:,		ReadyStat,		IFTargetWSDI,	0,      0x0100,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		EabledStat,		IFTargetWSDI,	0,      0x0200,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		HomedStat,		IFTargetWSDI,	0,      0x0400,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		MovingStat,		IFTargetWSDI,	0,      0x0800,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		InPosStat,		IFTargetWSDI,	0,      0x1000,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		AlatmStat,		IFTargetWSDI,	0,      0x2000,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		LoLimitStat,	IFTargetWSDI,	0,      0x4000,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		HiLimitStat,	IFTargetWSDI,	0,      0x8000,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		ComReadyStat,	IFTargetWSDI,	0,      0x0001,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		RestartReqStat,	IFTargetWSDI,	0,      0x0002,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		HVR001A,:,		OnLampR,		IFTargetWSDI,	0,      0x0004,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		HVR001B,:,		OnLampR,		IFTargetWSDI,	0,      0x0008,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		MPS001,	:,		OnLampR,		IFTargetWSDI,	0,      0x0010,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		PSIS001,:,		OnLampR,		IFTargetWSDI,	0,      0x0020,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		WS001,	:,		OpFWDInt,		IFTargetWSDI,	0,      0x0040,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		OpFWDInt,		IFTargetWSDI,	0,      0x0080,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		BWDStat,		IFTargetWSDI,	1,      0x0100,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		FWDStat,		IFTargetWSDI,	1,      0x0200,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		BWDLampR,		IFTargetWSDI,	1,      0x0400,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		FWDLampR,		IFTargetWSDI,	1,      0x0800,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		BWDErrStat,		IFTargetWSDI,	1,      0x1000,  Open,   Close,     "1 second", ""}
-{IFTarget,	-DIAG:,		FC001,	:,		FWDErrStat,		IFTargetWSDI,	1,      0x2000,  Open,   Close,     "1 second", ""}
-}
+####AO Base Address 40 word PLC base(128)
+ file "db/aoFloat64.template" { pattern
+ {SYS,       SUBSYS,     DEV,    SUBDEV,     SIGNAL,             PORT,           OFFSET, DATA_TYPE,  LOPR,   HOPR,   PREC,   EGU,    DESC}
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_StepValSet,     "IFBDumpAO",    0,      FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_AccTimeSet,     "IFBDumpAO",    2,      FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_DecTimeSet,     "IFBDumpAO",    4,      FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_HomePosSet,     "IFBDumpAO",    6,      FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_HomeSpdSet,     "IFBDumpAO",    8,      FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_FwdPosSet,      "IFBDumpAO",    10,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_FwdSpdSet,      "IFBDumpAO",    12,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_BwdPosSet,      "IFBDumpAO",    14,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_BwdSpdSet,      "IFBDumpAO",    16,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_JogSpdSet,      "IFBDumpAO",    18,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare0,         "IFBDumpAO",    20,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare1,         "IFBDumpAO",    22,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare2,         "IFBDumpAO",    24,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare3,         "IFBDumpAO",    26,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare4,         "IFBDumpAO",    28,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -LINR:,     1Ax_Spare5,         "IFBDumpAO",    30,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ 
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_StepValSet,     "IFBDumpAO",    32,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_AccTimeSet,     "IFBDumpAO",    34,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_DecTimeSet,     "IFBDumpAO",    36,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_HomePosSet,     "IFBDumpAO",    38,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_HomeSpdSet,     "IFBDumpAO",    40,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_FwdPosSet,      "IFBDumpAO",    42,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_FwdSpdSet,      "IFBDumpAO",    44,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_BwdPosSet,      "IFBDumpAO",    46,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_BwdSpdSet,      "IFBDumpAO",    48,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_JogSpdSet,      "IFBDumpAO",    50,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare0,         "IFBDumpAO",    52,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare1,         "IFBDumpAO",    54,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare2,         "IFBDumpAO",    56,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare3,         "IFBDumpAO",    58,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare4,         "IFBDumpAO",    60,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        R,      -Slit:,     2Ax_Spare5,         "IFBDumpAO",    62,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_StepValSet,     "IFBDumpAO",    64,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_AccTimeSet,     "IFBDumpAO",    66,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_DecTimeSet,     "IFBDumpAO",    68,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_HomePosSet,     "IFBDumpAO",    70,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_HomeSpdSet,     "IFBDumpAO",    72,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_FwdPosSet,      "IFBDumpAO",    74,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_FwdSpdSet,      "IFBDumpAO",    76,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_BwdPosSet,      "IFBDumpAO",    78,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_BwdSpdSet,      "IFBDumpAO",    80,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_JogSpdSet,      "IFBDumpAO",    82,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare0,         "IFBDumpAO",    84,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare1,         "IFBDumpAO",    86,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare2,         "IFBDumpAO",    88,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare3,         "IFBDumpAO",    90,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare4,         "IFBDumpAO",    92,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -LINR:,     3Ax_Spare5,         "IFBDumpAO",    94,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ 
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_StepValSet,     "IFBDumpAO",    96,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_AccTimeSet,     "IFBDumpAO",    98,     FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_DecTimeSet,     "IFBDumpAO",    100,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_HomePosSet,     "IFBDumpAO",    102,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_HomeSpdSet,     "IFBDumpAO",    104,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_FwdPosSet,      "IFBDumpAO",    106,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_FwdSpdSet,      "IFBDumpAO",    108,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_BwdPosSet,      "IFBDumpAO",    110,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_BwdSpdSet,      "IFBDumpAO",    112,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_JogSpdSet,      "IFBDumpAO",    114,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_Spare0,         "IFBDumpAO",    116,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_Spare1,         "IFBDumpAO",    118,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_Spare2,         "IFBDumpAO",    120,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ {IF,    -BDump:,        L,      -Slit:,     4Ax_Spare3,         "IFBDumpAO",    122,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ #{IF,   -BDump:,        L,      -Slit:,     4Ax_Spare4,         "IFBDumpAO",    124,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ #{IF,   -BDump:,        L,      -Slit:,     4Ax_Spare5,         "IFBDumpAO",    126,    FLOAT32_LE, 0,      100,    3,      "",     "" }
+ 
+ }
 
-####BO Base Address 112 PLC 
-file "db/boWord.template" { pattern
-{SYS,		SUBSYS,		DEV, 	SUBDEV,		SIGNAL,			PORT,			OFFSET,	MASK,	 ZNAM,   ONAM,	DESC}
-{IFTarget,	-DIAG:,		WS001,	:,		SetFree,		IFTargetWSDO,   0,      0x0100,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetHalt,		IFTargetWSDO,   0,      0x0200,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetReset,		IFTargetWSDO,   0,      0x0400,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetRestart,		IFTargetWSDO,   0,      0x0800,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetFWDJog,		IFTargetWSDO,   0,      0x1000,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetBWDJog,		IFTargetWSDO,   0,      0x2000,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetHome,		IFTargetWSDO,   0,      0x4000,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetFWDStep,		IFTargetWSDO,   0,      0x8000,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetBWDStep,		IFTargetWSDO,   0,      0x0001,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetABS1,		IFTargetWSDO,   0,      0x0002,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		WS001,	:,		SetABS2,		IFTargetWSDO,   0,      0x0004,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		FC001,	:,		SetBWD,			IFTargetWSDO,   0,      0x0008,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		FC001,	:,		SetFWD,			IFTargetWSDO,   0,      0x0010,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		FC001,	:,		SetErrRst,		IFTargetWSDO,   0,      0x0020,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		HVR001A,:,		SetOn,			IFTargetWSDO,   0,      0x0040,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		HVR001A,:,		SetOff,			IFTargetWSDO,   0,      0x0080,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		HVR001B,:,		SetOn,			IFTargetWSDO,   1,      0x0100,  Open,   Close, ""}
-{IFTarget,	-DIAG:,		HVR001B,:,		SetOff,			IFTargetWSDO,   1,      0x0200,  Open,   Close, ""}
-}
+ ####BI Base Address 110 PLC offset(byte), Base=256)
+ file "db/biWord.template" { pattern
+ {SYS,   SUBSYS,     DEV,    SUBDEV,     SIGNAL,             PORT,           OFFSET, MASK,    ZNAM,   ONAM,      SCAN,       DESC}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_ReadyR,         IFBDumpDI,      0,      0x0001,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_EnabledR,       IFBDumpDI,      0,      0x0002,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_MovingR,        IFBDumpDI,      0,      0x0004,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_AlarmR,         IFBDumpDI,      0,      0x0008,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_HomeOKR,        IFBDumpDI,      0,      0x0010,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_UpperLimitR,    IFBDumpDI,      0,      0x0020,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_LowerLimitR,    IFBDumpDI,      0,      0x0040,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_PowerOffR,      IFBDumpDI,      0,      0x0080,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_EncPosErrR,     IFBDumpDI,      0,      0x0100,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_9,               IFBDumpDI,      0,      0x0200,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_10,              IFBDumpDI,      0,      0x0400,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_11,              IFBDumpDI,      0,      0x0800,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_12,              IFBDumpDI,      0,      0x1000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_13,              IFBDumpDI,      0,      0x2000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_14,              IFBDumpDI,      0,      0x4000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_15,              IFBDumpDI,      0,      0x8000,  Open,   Close,     "1 second", ""}
+ 
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_ReadyR,         IFBDumpDI,      1,      0x0001,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_EnabledR,       IFBDumpDI,      1,      0x0002,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_MovingR,        IFBDumpDI,      1,      0x0004,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_AlarmR,         IFBDumpDI,      1,      0x0008,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_HomeOKR,        IFBDumpDI,      1,      0x0010,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_UpperLimitR,    IFBDumpDI,      1,      0x0020,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_LowerLimitR,    IFBDumpDI,      1,      0x0040,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_PowerOffR,      IFBDumpDI,      1,      0x0080,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_EncPosErrR,     IFBDumpDI,      1,      0x0100,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_25,              IFBDumpDI,      1,      0x0200,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_26,              IFBDumpDI,      1,      0x0400,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_27,              IFBDumpDI,      1,      0x0800,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_28,              IFBDumpDI,      1,      0x1000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_29,              IFBDumpDI,      1,      0x2000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_30,              IFBDumpDI,      1,      0x4000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_31,              IFBDumpDI,      1,      0x8000,  Open,   Close,     "1 second", ""}
+
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_ReadyR,         IFBDumpDI,      2,      0x0001,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_EnabledR,       IFBDumpDI,      2,      0x0002,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_MovingR,        IFBDumpDI,      2,      0x0004,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_AlarmR,         IFBDumpDI,      2,      0x0008,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_HomeOKR,        IFBDumpDI,      2,      0x0010,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_UpperLimitR,    IFBDumpDI,      2,      0x0020,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_LowerLimitR,    IFBDumpDI,      2,      0x0040,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_PowerOffR,      IFBDumpDI,      2,      0x0080,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_EncPosErrR,     IFBDumpDI,      2,      0x0100,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_41,              IFBDumpDI,      2,      0x0200,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_42,              IFBDumpDI,      2,      0x0400,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_43,              IFBDumpDI,      2,      0x0800,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_44,              IFBDumpDI,      2,      0x1000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_45,              IFBDumpDI,      2,      0x2000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_46,              IFBDumpDI,      2,      0x4000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_47,              IFBDumpDI,      2,      0x8000,  Open,   Close,     "1 second", ""}
+
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_ReadyR,         IFBDumpDI,      3,      0x0001,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_EnabledR,       IFBDumpDI,      3,      0x0002,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_MovingR,        IFBDumpDI,      3,      0x0004,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_AlarmR,         IFBDumpDI,      3,      0x0008,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_HomeOKR,        IFBDumpDI,      3,      0x0010,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_UpperLimitR,    IFBDumpDI,      3,      0x0020,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_LowerLimitR,    IFBDumpDI,      3,      0x0040,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_PowerOffR,      IFBDumpDI,      3,      0x0080,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_EncPosErrR,     IFBDumpDI,      3,      0x0100,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_57,              IFBDumpDI,      3,      0x0200,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_58,              IFBDumpDI,      3,      0x0400,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_59,              IFBDumpDI,      3,      0x0800,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_60,              IFBDumpDI,      3,      0x1000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_61,              IFBDumpDI,      3,      0x2000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_62,              IFBDumpDI,      3,      0x4000,  Open,   Close,     "1 second", ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_63,              IFBDumpDI,      3,      0x8000,  Open,   Close,     "1 second", ""}
+
+ }
+ ####BO Base Address 112 PLC (Base 260)
+ file "db/boWord.template" { pattern
+ {SYS,   SUBSYS,     DEV,    SUBDEV,     SIGNAL,                 PORT,       OFFSET, MASK,    ZNAM,   ONAM,  DESC}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_12,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_13,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_14,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     DI_15,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
+
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_28,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_29,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_30,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     DI_31,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
+
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_44,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_45,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_46,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_47,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
+
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     4Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_60,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_61,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_62,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     DI_63,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
+
+ }
+
+ 29 #LS Step Motor Controller
+ 30 drvAsynIPPortConfigure("IFPLC", "192.168.0.2:502", 0, 0, 1)
+ 31 modbusInterposeConfig("IFPLC",   0,5000,0)
+ 32
+ 33 drvModbusAsynConfigure("IFBDumpAI", "IFPLC", 0, 6,  0,   32,  7, 100, "Modicon")
+ 33 drvModbusAsynConfigure("IFBDumpAO", "IFPLC", 0, 6,  128, 122, 7, 100, "Modicon")
+ 34 drvModbusAsynConfigure("IFBDumpDI", "IFPLC", 0, 3,  256, 4,   7, 100, "Modicon")
+ 35 drvModbusAsynConfigure("IFBDumpDO", "IFPLC", 0, 6,  260, 4,   7, 100, "Modicon")
+ 36 dbLoadTemplate("db/IFTarget.sub")
+
 
