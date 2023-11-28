@@ -12,10 +12,9 @@ DB += biWord.template
 DB += boWord.template
 DB += IFTarget.sub
 
-## Flowmeter data processing
-DB += longin.template
-DB += flowMeter.sub
-DB += DataFanout.vdb
+DB += longin.template  
+DB += longout.template  
+DB += IFSiemensIOC.sub
 
 DB += Phytron_I1AM01.db
 DB += Phytron_MCM01.db

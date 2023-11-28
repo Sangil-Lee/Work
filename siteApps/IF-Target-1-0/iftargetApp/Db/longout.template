@@ -1,0 +1,14 @@
+record(longout, "$(PREFIX)$(SIGNAL)F")
+{
+	field(DESC, "$(DESC)")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT) $(OFFSET)) $(DATA_TYPE)")
+    field(FLNK, "$(FLNK)")
+}
+
+record(calc, "${PREFIX}${SIGNAL}") {
+  field(SCAN, "Passive")
+  field(CALC, "A*1000")
+  field(EGU, "mm")
+  field(INPA, "${PREFIX}${SIGNAL}F")
+}

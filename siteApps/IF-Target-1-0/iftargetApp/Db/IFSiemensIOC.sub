@@ -1,0 +1,255 @@
+### LongInput(Base, 0) ###
+file "db/longin.template" { pattern
+{PREFIX,			SIGNAL,		PORT,			OFFSET, DATA_TYPE,	  FLNK,						SCAN,		DESC}
+{IF-Target:BLDC:,	SpeedFBR,	"IFSiemensLI",	 0,		INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-Target:BLDC:,	SpeedOutR,	"IFSiemensLI",	 2,		INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-Target:BLDC:,	CurrentR,	"IFSiemensLI",	 4,		INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-Target:BLDC:,	RampOutR,	"IFSiemensLI",	 6,		INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-DumpR:BLDC:,	SpeedFBR,	"IFSiemensLI",	 8,		INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-DumpR:BLDC:,	SpeedOutR,	"IFSiemensLI",	 10,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-DumpR:BLDC:,	CurrentR,	"IFSiemensLI",	 12,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:7:,			Spare0,		"IFSiemensLI",	 14,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-DumpL:BLDC:,	SpeedFBR,	"IFSiemensLI",   16, 	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}                                 
+{IF-DumpL:BLDC:,	SpeedOutR,	"IFSiemensLI",   18,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-DumpL:BLDC:,	CurrentR,	"IFSiemensLI",   20,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:11:,			Spare1,		"IFSiemensLI",   22,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:12:,			Spare2,		"IFSiemensLI",   24,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:13:,			Spare3,		"IFSiemensLI",   26,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:14:,			Spare4,		"IFSiemensLI",   28,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+{IF-AI:15:,			Spare5,		"IFSiemensLI",   30,	INT32_BE,	  "${PREFIX}$(SIGNAL}F",	"1 second",	""}
+}
+
+### LongOutput(Base, 64) ###
+file "db/longout.template" { pattern
+{PREFIX,			SIGNAL,				PORT,			OFFSET, DATA_TYPE,	  FLNK,						DESC}
+{IF-Target:BLDC:,	SetRampRising,		"IFSiemensLO",	 0,		INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-Target:BLDC:,	SetRampFalling,		"IFSiemensLO",	 2,		INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-Target:BLDC:,	SetSpeedIn,			"IFSiemensLO",	 4,		INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-Target:BLDC:,	SetSpeedUpLimit,	"IFSiemensLO",	 6,		INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpR:BLDC:,	SetRampRising,		"IFSiemensLO",	 8,		INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpR:BLDC:,	SetRampFalling,		"IFSiemensLO",	 10,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpR:BLDC:,	SetSpeedIn,			"IFSiemensLO",	 12,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpR:BLDC:,	SetSpeedUpLimit,	"IFSiemensLO",	 14,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpL:BLDC:,	SetRampRising,		"IFSiemensLO",   16, 	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}                                 
+{IF-DumpL:BLDC:,	SetRampFalling,		"IFSiemensLO",   18,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpL:BLDC:,	SetSpeedIn,			"IFSiemensLO",   20,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-DumpL:BLDC:,	SetSpeedUpLimit,	"IFSiemensLO",   22,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-AO:12:,			Spare0,				"IFSiemensLO",   24,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-AO:13:,			Spare1,				"IFSiemensLO",   26,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-AO:14:,			Spare2,				"IFSiemensLO",   28,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+{IF-AO:15:,			Spare3,				"IFSiemensLO",   30,	INT32_BE,	  "${PREFIX}$(SIGNAL}",		""}
+}
+
+####BI Base Address 110 PLC offset(byte), Base=128)
+file "db/biWord.template" { pattern
+{SYS,   SUBSYS,     DEV,    SUBDEV,     SIGNAL,		       PORT,           OFFSET, MASK,    ZNAM,   ONAM,      SCAN,       DESC}
+{IF,	-Target:,	BLDC,	:,			OutErrStat,         IFSiemseDI,    0,      0x0100,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	BLDC,	:,			OutErrStat,         IFSiemseDI,    0,      0x0200,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	BLDC,	:,			OutErrStat,         IFSiemseDI,    0,      0x0400,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_3,												IFSiemseDI,    0,      0x0800,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	BLDC,	:,			RunStat,			IFSiemseDI,    0,      0x1000,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	BLDC,	:,			StopStat,			IFSiemseDI,    0,      0x2000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_6,												IFSiemseDI,    0,      0x4000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_7,         										IFSiemseDI,    0,      0x8000,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	BLDC,	:,			RunStat,		    IFSiemseDI,    0,      0x0001,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	BLDC,	:,			StopStat,			IFSiemseDI,    0,      0x0002,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_10,												IFSiemseDI,    0,      0x0004,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_11,												IFSiemseDI,    0,      0x0008,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL,		BLDC,	:,			RunStat,			IFSiemseDI,    0,      0x0010,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL,		BLDC,	:,			StopStat,			IFSiemseDI,    0,      0x0020,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_14,												IFSiemseDI,    0,      0x0040,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_15,         									IFSiemseDI,    0,      0x0080,  Open,   Close,     "1 second", ""}
+
+{IF,	-Target:,	SOL1,	:,			CloseStat,			IFSiemseDI,    1,      0x0100,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL1,	:,			OpenStat,			IFSiemseDI,    1,      0x0200,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_18,												IFSiemseDI,    1,      0x0400,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_19,         									IFSiemseDI,    1,      0x0800,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL2,	:,			CloseStat,			IFSiemseDI,    1,      0x1000,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL2,	:,			OpenStat,			IFSiemseDI,    1,      0x2000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_22,												IFSiemseDI,    1,      0x4000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_23,         									IFSiemseDI,    1,      0x8000,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL3,	:,			CloseStat,			IFSiemseDI,    1,      0x0001,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL3,	:,			OpenStat,			IFSiemseDI,    1,      0x0002,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_26,												IFSiemseDI,    1,      0x0004,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_27,         									IFSiemseDI,    1,      0x0008,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL4,	:,			CloseStat,			IFSiemseDI,    1,      0x0010,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL4,	:,			OpenStat,			IFSiemseDI,    1,      0x0020,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_30,												IFSiemseDI,    1,      0x0040,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_31,         									IFSiemseDI,    1,      0x0080,  Open,   Close,     "1 second", ""}
+
+{IF,	-Target:,	SOL5,	:,			CloseStat,			IFSiemseDI,    2,      0x0100,  Open,   Close,     "1 second", ""}
+{IF,	-Target:,	SOL5,	:,			OpenStat,			IFSiemseDI,    2,      0x0200,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_34,												IFSiemseDI,    2,      0x0400,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_35,         									IFSiemseDI,    2,      0x0800,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_36,         									IFSiemseDI,    2,      0x1000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_37,         									IFSiemseDI,    2,      0x2000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_38,         									IFSiemseDI,    2,      0x4000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_39,         									IFSiemseDI,    2,      0x8000,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL1,	:,			CloseStat,			IFSiemseDI,    2,      0x0001,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL1,	:,			OpenStat,			IFSiemseDI,    2,      0x0002,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_42:,	,										IFSiemseDI,    2,      0x0004,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_43:,	,         								IFSiemseDI,    2,      0x0008,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL2,	:,			CloseStat,			IFSiemseDI,    2,      0x0010,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL2,	:,			OpenStat,			IFSiemseDI,    2,      0x0020,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_46:,	,										IFSiemseDI,    2,      0x0040,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_47:,	,         								IFSiemseDI,    2,      0x0080,  Open,   Close,     "1 second", ""}
+
+{IF,	-DumpR:,	SOL3,	:,			CloseStat,			IFSiemseDI,    3,      0x0100,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL3,	:,			OpenStat,			IFSiemseDI,    3,      0x0200,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_50:,	,										IFSiemseDI,    3,      0x0400,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_51:,	,         								IFSiemseDI,    3,      0x0800,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL4,	:,			CloseStat,			IFSiemseDI,    3,      0x1000,  Open,   Close,     "1 second", ""}
+{IF,	-DumpR:,	SOL4,	:,			OpenStat,			IFSiemseDI,    3,      0x2000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_54:,	,										IFSiemseDI,    3,      0x4000,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_55:,	,         								IFSiemseDI,    3,      0x8000,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL1,	:,			CloseStat,			IFSiemseDI,    3,      0x0001,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL1,	:,			OpenStat,			IFSiemseDI,    3,      0x0002,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_58:,	,										IFSiemseDI,    3,      0x0004,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_59:,	,         								IFSiemseDI,    3,      0x0008,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL2,	:,			CloseStat,			IFSiemseDI,    3,      0x0010,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL2,	:,			OpenStat,			IFSiemseDI,    3,      0x0020,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_62:,	,										IFSiemseDI,    3,      0x0040,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_63:,	,         								IFSiemseDI,    3,      0x0080,  Open,   Close,     "1 second", ""}
+
+{IF,	-DumpL:,	SOL3,	:,			CloseStat,			IFSiemseDI,    4,      0x0100,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL3,	:,			OpenStat,			IFSiemseDI,    4,      0x0200,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_66:,	,										IFSiemseDI,    4,      0x0400,  Open,   Close,     "1 second", ""}
+#{IF,	-DI_67:,	,         								IFSiemseDI,    4,      0x0800,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL4,	:,			CloseStat,			IFSiemseDI,    4,      0x1000,  Open,   Close,     "1 second", ""}
+{IF,	-DumpL:,	SOL4,	:,			OpenStat,			IFSiemseDI,    4,      0x2000,  Open,   Close,     "1 second", ""}
+
+#{IF,	-DI_70
+#{IF,	-DI_71
+#{IF,	-DI_72
+#{IF,	-DI_73
+#{IF,	-DI_74
+#{IF,	-DI_75
+#{IF,	-DI_76
+#{IF,	-DI_77
+#{IF,	-DI_78
+#{IF,	-DI_79
+#{IF,	-DI_80
+#{IF,	-DI_81
+#{IF,	-DI_82
+#{IF,	-DI_83
+#{IF,	-DI_84
+#{IF,	-DI_85
+#{IF,	-DI_86
+#{IF,	-DI_87
+#{IF,	-DI_88
+#{IF,	-DI_89
+#{IF,	-DI_90
+#{IF,	-DI_91
+#{IF,	-DI_92
+#{IF,	-DI_93
+#{IF,	-DI_94
+#{IF,	-DI_95
+}
+
+
+ ####BO Base Address 112 PLC (Base 138)
+file "db/boWord.template" { pattern
+{SYS,   SUBSYS,     DEV,    SUBDEV,     SIGNAL,                 PORT,			OFFSET, MASK,    ZNAM,   ONAM,  DESC}
+{IF,	-Target:,	BLDC,	:,			SetOnSw,				IFSiemensDO,	0,      0x0100,  Open,   Close, ""}
+{IF,	-Target:,	BLDC,	:,			SetOffSw,				IFSiemensDO,	0,      0x0200,  Open,   Close, ""}
+{IF,	-Target:,	BLDC,	:,			SetRampErrAck,			IFSiemensDO,	0,      0x0400,  Open,   Close, ""}
+{IF,	-Target:,	BLDC,	:,			SetRampRst,				IFSiemensDO,	0,      0x0800,  Open,   Close, ""}
+{IF,	-DO_4:,		DO,		:,			Spare,					IFSiemensDO,	0,      0x1000,  Open,   Close, ""}
+{IF,	-DO_5:,		DO,		:,			Spare,					IFSiemensDO,	0,      0x2000,  Open,   Close, ""}
+{IF,	-DO_6:,		DO,		:,			Spare,					IFSiemensDO,	0,      0x4000,  Open,   Close, ""}
+{IF,	-DO_7:,		DO,		:,			Spare,					IFSiemensDO,	0,      0x8000,  Open,   Close, ""}
+{IF,	-DumpR:,	BLDC,	:,			SetOnSw,				IFSiemensDO,	0,      0x0001,  Open,   Close, ""}
+{IF,	-DumpR:,	BLDC,	:,			SetOffSw,				IFSiemensDO,	0,      0x0002,  Open,   Close, ""}
+{IF,	-DumpR:,	BLDC,	:,			SetRampErrAck,			IFSiemensDO,	0,      0x0004,  Open,   Close, ""}
+{IF,	-DumpR:,	BLDC,	:,			SetRampRst,				IFSiemensDO,	0,      0x0008,  Open,   Close, ""}
+{IF,	-DO_12:,	DO,		:,			Spare,					IFSiemensDO,	0,      0x0010,  Open,   Close, ""}
+{IF,	-DO_13:,	DO,		:,			Spare,					IFSiemensDO,	0,      0x0020,  Open,   Close, ""}
+{IF,	-DO_14:,	DO,		:,			Spare,					IFSiemensDO,	0,      0x0040,  Open,   Close, ""}
+{IF,	-DO_15:,	DO,		:,			Spare,					IFSiemensDO,	0,      0x0080,  Open,   Close, ""}
+
+{IF,	-DumpL:,	BLDC,	:,			SetOnSw,				IFSiemensDO,	1,      0x0100,  Open,   Close, ""}
+{IF,	-DumpL:,	BLDC,	:,			SetOffSw,				IFSiemensDO,	1,      0x0200,  Open,   Close, ""}
+{IF,	-DumpL:,	BLDC,	:,			SetRampErrAck,			IFSiemensDO,	1,      0x0400,  Open,   Close, ""}
+{IF,	-DumpL:,	BLDC,	:,			SetRampRst,				IFSiemensDO,	1,      0x0800,  Open,   Close, ""}
+{IF,	-DO_20:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x1000,  Open,   Close, ""}
+{IF,	-DO_21:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x2000,  Open,   Close, ""}
+{IF,	-DO_22:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x4000,  Open,   Close, ""}
+{IF,	-DO_23:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x8000,  Open,   Close, ""}
+{IF,	-DO_24:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0001,  Open,   Close, ""}
+{IF,	-DO_25:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0002,  Open,   Close, ""}
+{IF,	-DO_26:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0004,  Open,   Close, ""}
+{IF,	-DO_27:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0008,  Open,   Close, ""}
+{IF,	-DO_28:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0010,  Open,   Close, ""}
+{IF,	-DO_29:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0020,  Open,   Close, ""}
+{IF,	-DO_30:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0040,  Open,   Close, ""}
+{IF,	-DO_31:,	DO,		:,			Spare,					IFSiemensDO,	1,      0x0080,  Open,   Close, ""}
+
+{IF,	-Target:,	SOL1,	:,			SetOpen,				IFSiemensDO,	2,      0x0100,  Open,   Close, ""}
+{IF,	-Target:,	SOL1,	:,			SetClose,				IFSiemensDO,	2,      0x0200,  Open,   Close, ""}
+{IF,	-DO_34:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0400,  Open,   Close, ""}
+{IF,	-DO_35:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0800,  Open,   Close, ""}
+{IF,	-Target:,	SOL2,	:,			SetOpen,				IFSiemensDO,	2,      0x1000,  Open,   Close, ""}
+{IF,	-Target:,	SOL2,	:,			SetClose,				IFSiemensDO,	2,      0x2000,  Open,   Close, ""}
+{IF,	-DO_38:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x4000,  Open,   Close, ""}
+{IF,	-DO_39:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x8000,  Open,   Close, ""}
+{IF,	-Target:,	SOL3,	:,			SetOpen,				IFSiemensDO,	2,      0x0001,  Open,   Close, ""}
+{IF,	-Target:,	SOL3,	:,			SetClose,				IFSiemensDO,	2,      0x0002,  Open,   Close, ""}
+{IF,	-DO_42:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0004,  Open,   Close, ""}
+{IF,	-DO_43:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0008,  Open,   Close, ""}
+{IF,	-Target:,	SOL4,	:,			SetOpen,				IFSiemensDO,	2,      0x0010,  Open,   Close, ""}
+{IF,	-Target:,	SOL4,	:,			SetClose,				IFSiemensDO,	2,      0x0020,  Open,   Close, ""}
+{IF,	-DO_46:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0040,  Open,   Close, ""}
+{IF,	-DO_47:,	DO,		:,			Spare,					IFSiemensDO,	2,      0x0080,  Open,   Close, ""}
+
+{IF,	-Target:,	SOL5,	:,			SetOpen,				IFSiemensDO,	3,      0x0100,  Open,   Close, ""}
+{IF,	-Target:,	SOL5,	:,			SetClose,				IFSiemensDO,	3,      0x0200,  Open,   Close, ""}
+{IF,	-DO_50:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0400,  Open,   Close, ""}
+{IF,	-DO_51:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0800,  Open,   Close, ""}
+{IF,	-DO_52:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x1000,  Open,   Close, ""}
+{IF,	-DO_53:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x2000,  Open,   Close, ""}
+{IF,	-DO_54:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x4000,  Open,   Close, ""}
+{IF,	-DO_55:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x8000,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL1,	:,			SetOpen,				IFSiemensDO,	3,      0x0001,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL1,	:,			SetClose,				IFSiemensDO,	3,      0x0002,  Open,   Close, ""}
+{IF,	-DO_58:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0004,  Open,   Close, ""}
+{IF,	-DO_59:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0008,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL2,	:,			SetOpen,				IFSiemensDO,	3,      0x0010,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL2,	:,			SetClose,				IFSiemensDO,	3,      0x0020,  Open,   Close, ""}
+{IF,	-DO_62:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0040,  Open,   Close, ""}
+{IF,	-DO_63:,	DO,		:,			Spare,					IFSiemensDO,	3,      0x0080,  Open,   Close, ""}
+
+{IF,	-DumpR:,	SOL3,	:,			SetOpen,				IFSiemensDO,	4,      0x0100,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL3,	:,			SetClose,				IFSiemensDO,	4,      0x0200,  Open,   Close, ""}
+{IF,	-DO_66:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0400,  Open,   Close, ""}
+{IF,	-DO_67:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0800,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL4,	:,			SetOpen,				IFSiemensDO,	4,      0x1000,  Open,   Close, ""}
+{IF,	-DumpR:,	SOL4,	:,			SetClose,				IFSiemensDO,	4,      0x2000,  Open,   Close, ""}
+{IF,	-DO_70:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x4000,  Open,   Close, ""}
+{IF,	-DO_71:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x8000,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL1,	:,			SetOpen,				IFSiemensDO,	4,      0x0001,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL1,	:,			SetClose,				IFSiemensDO,	4,      0x0002,  Open,   Close, ""}
+{IF,	-DO_74:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0004,  Open,   Close, ""}
+{IF,	-DO_75:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0008,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL2,	:,			SetOpen,				IFSiemensDO,	4,      0x0010,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL2,	:,			SetClose,				IFSiemensDO,	4,      0x0020,  Open,   Close, ""}
+{IF,	-DO_78:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0040,  Open,   Close, ""}
+{IF,	-DO_79:,	DO,		:,			Spare,					IFSiemensDO,	4,      0x0080,  Open,   Close, ""}
+
+{IF,	-DumpL:,	SOL3,	:,			SetOpen,				IFSiemensDO,	5,      0x0100,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL3,	:,			SetClose,				IFSiemensDO,	5,      0x0200,  Open,   Close, ""}
+{IF,	-DO_82:,	DO,		:,			Spare,					IFSiemensDO,	5,      0x0400,  Open,   Close, ""}
+{IF,	-DO_83:,	DO,		:,			Spare,					IFSiemensDO,	5,      0x0800,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL4,	:,			SetOpen,				IFSiemensDO,	5,      0x1000,  Open,   Close, ""}
+{IF,	-DumpL:,	SOL4,	:,			SetClose,				IFSiemensDO,	5,      0x2000,  Open,   Close, ""}
+#{IF,	-DO_86
+#{IF,	-DO_87
+#{IF,	-DO_88
+#{IF,	-DO_89
+#{IF,	-DO_90
+#{IF,	-DO_91
+#{IF,	-DO_92
+#{IF,	-DO_93
+#{IF,	-DO_94
+#{IF,	-DO_95
+}
+

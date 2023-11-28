@@ -26,7 +26,7 @@ iftarget_registerRecordDeviceDriver pdbbase
 #dbLoadTemplate("db/phytronMotor.sub")
 ###################################
 
-#LS PLC Step Motor
+#Embededd IOC LS PLC Step Motor
 drvAsynIPPortConfigure("IFPLC", "192.168.0.2:502", 0, 0, 1)
 modbusInterposeConfig("IFPLC",   0,5000,0)
 
@@ -35,6 +35,16 @@ drvModbusAsynConfigure("IFBDumpAO", "IFPLC", 0, 6,  128, 122, 7, 100, "Modicon")
 drvModbusAsynConfigure("IFBDumpDI", "IFPLC", 0, 3,  256, 4,   7, 100, "Modicon")
 drvModbusAsynConfigure("IFBDumpDO", "IFPLC", 0, 6,  260, 4,   7, 100, "Modicon")
 dbLoadTemplate("db/IFTarget.sub")
+
+#IF Target Siemens PLC I/O
+#drvAsynIPPortConfigure("SIPLC", "192.168.0.2:502", 0, 0, 1)
+#modbusInterposeConfig("SIPLC",   0,5000,0)
+
+#drvModbusAsynConfigure("IFSiemensLI", "SIPLC", 0, 6,  0,   32,  7, 100, "Modicon")
+#drvModbusAsynConfigure("IFSiemensLO", "SIPLC", 0, 6,  64,  32,  7, 100, "Modicon")
+#drvModbusAsynConfigure("IFSiemensDI", "SIPLC", 0, 3,  128, 6,   7, 100, "Modicon")
+#drvModbusAsynConfigure("IFSiemensDO", "SIPLC", 0, 6,  138, 6,   7, 100, "Modicon")
+#dbLoadTemplate("db/IFSiemensIOC.sub")
 
 
 ###ModbusTCP to FlowMeter
