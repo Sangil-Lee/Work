@@ -1,0 +1,197 @@
+program sncQWRGInt
+option +r; 
+option +c; 
+option -a; 
+
+%%#include <math.h> 
+%%#define arrSize 11
+
+int xv7502_setmanusel[11];
+assign xv7502_setmanusel to {
+	"SCL31-CDL01:VBx02-XV7502:SetManuSel", "SCL31-CDL01:VBx04-XV7502:SetManuSel",
+	"SCL31-CDL01:VBx06-XV7502:SetManuSel", "SCL31-CDL01:VBx08-XV7502:SetManuSel",
+	"SCL31-CDL01:VBx10-XV7502:SetManuSel", "SCL31-CDL01:VBx12-XV7502:SetManuSel",
+	"SCL31-CDL01:VBx14-XV7502:SetManuSel", "SCL31-CDL01:VBx16-XV7502:SetManuSel",
+	"SCL31-CDL01:VBx18-XV7502:SetManuSel", "SCL31-CDL01:VBx20-XV7502:SetManuSel",
+	"SCL31-CDL01:VBx22-XV7502:SetManuSel"
+};
+
+int xv7502_setmanuopen[11];
+assign xv7502_setmanuopen to {
+	"SCL31-CDL01:VBx02-XV7502:SetManuOpen", "SCL31-CDL01:VBx04-XV7502:SetManuOpen",
+	"SCL31-CDL01:VBx06-XV7502:SetManuOpen", "SCL31-CDL01:VBx08-XV7502:SetManuOpen",
+	"SCL31-CDL01:VBx10-XV7502:SetManuOpen", "SCL31-CDL01:VBx12-XV7502:SetManuOpen",
+	"SCL31-CDL01:VBx14-XV7502:SetManuOpen", "SCL31-CDL01:VBx16-XV7502:SetManuOpen",
+	"SCL31-CDL01:VBx18-XV7502:SetManuOpen", "SCL31-CDL01:VBx20-XV7502:SetManuOpen",
+	"SCL31-CDL01:VBx22-XV7502:SetManuOpen"
+};
+
+int xv7502_setmanuclose[11];
+assign xv7502_setmanuclose to {
+	"SCL31-CDL01:VBx02-XV7502:SetManuClose", "SCL31-CDL01:VBx04-XV7502:SetManuClose",
+	"SCL31-CDL01:VBx06-XV7502:SetManuClose", "SCL31-CDL01:VBx08-XV7502:SetManuClose",
+	"SCL31-CDL01:VBx10-XV7502:SetManuClose", "SCL31-CDL01:VBx12-XV7502:SetManuClose",
+	"SCL31-CDL01:VBx14-XV7502:SetManuClose", "SCL31-CDL01:VBx16-XV7502:SetManuClose",
+	"SCL31-CDL01:VBx18-XV7502:SetManuClose", "SCL31-CDL01:VBx20-XV7502:SetManuClose",
+	"SCL31-CDL01:VBx22-XV7502:SetManuClose"
+};
+
+int xv7502_intstat[11];
+assign xv7502_intstat to {
+	"SCL31-CDL01:VBx02-XV7502:IntStatPT7503G", "SCL31-CDL01:VBx04-XV7502:IntStatPT7503G",
+	"SCL31-CDL01:VBx06-XV7502:IntStatPT7503G", "SCL31-CDL01:VBx08-XV7502:IntStatPT7503G",
+	"SCL31-CDL01:VBx10-XV7502:IntStatPT7503G", "SCL31-CDL01:VBx12-XV7502:IntStatPT7503G",
+	"SCL31-CDL01:VBx14-XV7502:IntStatPT7503G", "SCL31-CDL01:VBx16-XV7502:IntStatPT7503G",
+	 "SCL31-CDL01:VBx18-XV7502:IntStatPT7503G", "SCL31-CDL01:VBx20-XV7502:IntStatPT7503G",
+	 "SCL31-CDL01:VBx22-XV7502:IntStatPT7503G"
+};
+
+int xv7502GI[11];
+assign xv7502GI to {
+	"SCL31-CDL01:VBx02-PT7503:XV7502GI", "SCL31-CDL01:VBx04-PT7503:XV7502GI",
+	"SCL31-CDL01:VBx06-PT7503:XV7502GI", "SCL31-CDL01:VBx08-PT7503:XV7502GI",
+	"SCL31-CDL01:VBx10-PT7503:XV7502GI", "SCL31-CDL01:VBx12-PT7503:XV7502GI",
+	"SCL31-CDL01:VBx14-PT7503:XV7502GI", "SCL31-CDL01:VBx16-PT7503:XV7502GI",
+	"SCL31-CDL01:VBx18-PT7503:XV7502GI", "SCL31-CDL01:VBx20-PT7503:XV7502GI",
+	"SCL31-CDL01:VBx22-PT7503:XV7502GI"
+};
+monitor xv7502GI;
+evflag	evXV7502GI;
+sync	xv7502GI evXV7502GI;
+
+int xv7301_setmanusel[11];
+assign xv7301_setmanusel to {
+	"SCL31-CDL01:VBx02-XV7301:SetManuSel", "SCL31-CDL01:VBx04-XV7301:SetManuSel",
+	"SCL31-CDL01:VBx06-XV7301:SetManuSel", "SCL31-CDL01:VBx08-XV7301:SetManuSel",
+	"SCL31-CDL01:VBx10-XV7301:SetManuSel", "SCL31-CDL01:VBx12-XV7301:SetManuSel",
+	"SCL31-CDL01:VBx14-XV7301:SetManuSel", "SCL31-CDL01:VBx16-XV7301:SetManuSel",
+	"SCL31-CDL01:VBx18-XV7301:SetManuSel", "SCL31-CDL01:VBx20-XV7301:SetManuSel",
+	"SCL31-CDL01:VBx22-XV7301:SetManuSel"
+};
+
+int xv7301_setmanuopen[11];
+assign xv7301_setmanuopen to {
+	"SCL31-CDL01:VBx02-XV7301:SetManuOpen", "SCL31-CDL01:VBx04-XV7301:SetManuOpen",
+	"SCL31-CDL01:VBx06-XV7301:SetManuOpen", "SCL31-CDL01:VBx08-XV7301:SetManuOpen",
+	"SCL31-CDL01:VBx10-XV7301:SetManuOpen", "SCL31-CDL01:VBx12-XV7301:SetManuOpen",
+	"SCL31-CDL01:VBx14-XV7301:SetManuOpen", "SCL31-CDL01:VBx16-XV7301:SetManuOpen",
+	"SCL31-CDL01:VBx18-XV7301:SetManuOpen", "SCL31-CDL01:VBx20-XV7301:SetManuOpen",
+	"SCL31-CDL01:VBx22-XV7301:SetManuOpen"
+};
+
+int xv7301_setmanuclose[11];
+assign xv7301_setmanuclose to {
+	"SCL31-CDL01:VBx02-XV7301:SetManuClose", "SCL31-CDL01:VBx04-XV7301:SetManuClose",
+	"SCL31-CDL01:VBx06-XV7301:SetManuClose", "SCL31-CDL01:VBx08-XV7301:SetManuClose",
+	"SCL31-CDL01:VBx10-XV7301:SetManuClose", "SCL31-CDL01:VBx12-XV7301:SetManuClose",
+	"SCL31-CDL01:VBx14-XV7301:SetManuClose", "SCL31-CDL01:VBx16-XV7301:SetManuClose",
+	"SCL31-CDL01:VBx18-XV7301:SetManuClose", "SCL31-CDL01:VBx20-XV7301:SetManuClose",
+	"SCL31-CDL01:VBx22-XV7301:SetManuClose"
+};
+
+int xv7301_intstat[11];
+assign xv7301_intstat to {
+	"SCL31-CDL01:VBx02-XV7301:IntStatPT7301G", "SCL31-CDL01:VBx04-XV7301:IntStatPT7301G",
+	"SCL31-CDL01:VBx06-XV7301:IntStatPT7301G", "SCL31-CDL01:VBx08-XV7301:IntStatPT7301G",
+	"SCL31-CDL01:VBx10-XV7301:IntStatPT7301G", "SCL31-CDL01:VBx12-XV7301:IntStatPT7301G",
+	"SCL31-CDL01:VBx14-XV7301:IntStatPT7301G", "SCL31-CDL01:VBx16-XV7301:IntStatPT7301G",
+	"SCL31-CDL01:VBx18-XV7301:IntStatPT7301G", "SCL31-CDL01:VBx20-XV7301:IntStatPT7301G",
+	"SCL31-CDL01:VBx22-XV7301:IntStatPT7301G"
+};
+
+int xv7301GI[11];
+assign xv7301GI to {
+	"SCL31-CDL01:VBx02-PT7301:XV7301GI", "SCL31-CDL01:VBx04-PT7301:XV7301GI",
+	"SCL31-CDL01:VBx06-PT7301:XV7301GI", "SCL31-CDL01:VBx08-PT7301:XV7301GI",
+	"SCL31-CDL01:VBx10-PT7301:XV7301GI", "SCL31-CDL01:VBx12-PT7301:XV7301GI",
+	"SCL31-CDL01:VBx14-PT7301:XV7301GI", "SCL31-CDL01:VBx16-PT7301:XV7301GI",
+	"SCL31-CDL01:VBx18-PT7301:XV7301GI", "SCL31-CDL01:VBx20-PT7301:XV7301GI",
+	"SCL31-CDL01:VBx22-PT7301:XV7301GI"
+};
+monitor xv7301GI;
+evflag	evXV7301GI;
+sync	xv7301GI evXV7301GI;
+
+int cvpt7503GI[11];
+assign cvpt7503GI to {
+	"SCL31-CDL01:VBx02-PT7503:CVPT7503GI", "SCL31-CDL01:VBx04-PT7503:CVPT7503GI",
+	"SCL31-CDL01:VBx06-PT7503:CVPT7503GI", "SCL31-CDL01:VBx08-PT7503:CVPT7503GI",
+	"SCL31-CDL01:VBx10-PT7503:CVPT7503GI", "SCL31-CDL01:VBx12-PT7503:CVPT7503GI",
+	"SCL31-CDL01:VBx14-PT7503:CVPT7503GI", "SCL31-CDL01:VBx16-PT7503:CVPT7503GI",
+	"SCL31-CDL01:VBx18-PT7503:CVPT7503GI", "SCL31-CDL01:VBx20-PT7503:CVPT7503GI",
+	"SCL31-CDL01:VBx22-PT7503:CVPT7503GI"
+};
+monitor cvpt7503GI;
+evflag	evCVPT7503GI;
+sync	cvpt7503GI evCVPT7503GI;
+
+ss ssQWRInterlock {
+	state init {
+		when(TRUE)
+		{
+			
+		}state QWRGInterlock 
+	}
+
+	state QWRGInterlock
+	{
+		when(efTestAndClear(evXV7502GI))
+		{
+			int i = 0;
+			for( ; i < 11; i++)
+			{
+				if (xv7502GI[i] == 1) {
+					xv7502_intstat[i] = xv7502_setmanusel[i] = xv7502_setmanuclose[i] = 1;
+				} else {
+					xv7502_intstat[i] = xv7502_setmanusel[i] = xv7502_setmanuclose[i] = 0;
+				}
+				pvPut(xv7502_setmanuclose[i], SYNC);
+				pvPut(xv7502_setmanusel[i], SYNC);
+				pvPut(xv7502_intstat[i], SYNC);
+			}
+
+		}state QWRGInterlock
+
+		when(efTestAndClear(evXV7301GI))
+		{
+			int i = 0;
+			int intCount = 0;
+			for( ; i < 11; i++)
+			{
+				if (xv7301GI[i] == 1) {
+					xv7301_intstat[i] = xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 1;
+				} else {
+					xv7301_intstat[i] = xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 0;
+				}
+				pvPut(xv7301_setmanuclose[i], SYNC);
+				pvPut(xv7301_setmanusel[i], SYNC);
+				pvPut(xv7301_intstat[i], SYNC);
+			}
+
+
+		}state QWRGInterlock
+
+		when(efTestAndClear(evCVPT7503GI))
+		{
+			int i = 0;
+			int intCount = 0;
+			for( ; i < 11; i++)
+			{
+				if (xv7301GI[i] == 1) {
+					intCount++;
+				}
+			}
+
+			if(intCount)
+			{
+				//PID ??
+				//Close Cryo-CDL00:TBx01-CV7504:Setpt
+				//Close Cryo-CDL00:TBx01-CV7304:Setpt
+				//Close Cryo-CDL00:TBx01-CV7545:Setpt
+				//Close Cryo-CDL00:TBx01-CV7344:Setpt
+			}
+		}state QWRGInterlock
+	}
+
+}
+
