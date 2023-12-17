@@ -1,0 +1,16 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntQWRPT7503DSG") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntQWRPT7503DSG")
+	field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatQWRPT7503G.VAL PP")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatQWRPT7503G") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
+}

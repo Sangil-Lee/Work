@@ -16,9 +16,14 @@ ginterlock_registerRecordDeviceDriver pdbbase
 dbLoadTemplate("db/biSim.sub")
 dbLoadTemplate("db/aiSim.sub")
 
-dbLoadTemplate("db/GInt.sub")
+###dbLoadTemplate("db/GInt.sub")
+
 dbLoadTemplate("db/globalIntWF.sub")
 dbLoadTemplate("db/globalInt_PT7503.sub")
+dbLoadTemplate("db/globalInt_PT7301.sub")
+dbLoadTemplate("db/globalInt_PT7503PT7307.sub")
+dbLoadTemplate("db/globalInt_PT7503CV.sub")
+dbLoadTemplate("db/globalInt_PT7301CV.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

@@ -8,14 +8,27 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 #DB += GInt_INP1.template
-DB += GIntXV.template
-DB += GIntCV.template
-DB += GInt.sub
+#DB += GIntXV.template
+#DB += GIntCV.template
+#DB += GInt.sub
+
 DB += globalIntWF.template
 DB += globalIntWF.sub
 
-DB += globalInt_PT7503.sub
 DB += globalInt_PT7503.template
+DB += globalInt_PT7503.sub
+DB += globalInt_PT7301.template
+DB += globalInt_PT7301.sub
+
+DB += globalInt_PT7503PT7307.template
+DB += globalInt_PT7503PT7307.sub
+
+DB += globalInt_PT7503CV_QWR.template
+DB += globalInt_PT7503CV.template
+DB += globalInt_PT7503CV.sub
+
+DB += globalInt_PT7301CV.template
+DB += globalInt_PT7301CV.sub
 
 DB += biSim.template
 DB += biSim2.template

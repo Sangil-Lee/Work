@@ -29,19 +29,19 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntEval") {
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBuff.VAL")    
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
-    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7503DSG")  
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7301DSG")  
 }                            
 
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7503DSG") {
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7301DSG") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7503DSG")
-	field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7503G.VAL PP")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7301DSG")
+	field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7301G.VAL PP")
 	field(VAL, "0")
 }
 
-record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7503G") {
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7301G") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(VAL, "0")
