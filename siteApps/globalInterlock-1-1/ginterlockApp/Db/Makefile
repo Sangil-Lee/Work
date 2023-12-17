@@ -11,9 +11,17 @@ include $(TOP)/configure/CONFIG
 DB += GIntXV.template
 DB += GIntCV.template
 DB += GInt.sub
+DB += globalIntWF.template
+DB += globalIntWF.sub
+
+DB += globalInt_PT7503.sub
+DB += globalInt_PT7503.template
+
 DB += biSim.template
 DB += biSim2.template
 DB += biSim.sub
+DB += aiSim.template
+DB += aiSim.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

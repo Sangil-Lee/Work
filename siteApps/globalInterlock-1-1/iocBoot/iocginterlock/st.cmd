@@ -13,8 +13,12 @@ ginterlock_registerRecordDeviceDriver pdbbase
 
 ## Load record instances
 #dbLoadRecords("db/xxx.db","user=ctrluser")
-dbLoadTemplate("db/GInt.sub")
 dbLoadTemplate("db/biSim.sub")
+dbLoadTemplate("db/aiSim.sub")
+
+dbLoadTemplate("db/GInt.sub")
+dbLoadTemplate("db/globalIntWF.sub")
+dbLoadTemplate("db/globalInt_PT7503.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit

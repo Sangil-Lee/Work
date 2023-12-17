@@ -1,5 +1,6 @@
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuSel")
 {
+	field(PINI, "YES")
 	field(VAL, "0")
 	field(ZNAM, "$(ZNAM)")
 	field(ONAM, "$(ONAM)")
@@ -7,6 +8,7 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuSel")
 
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen")
 {
+	field(PINI, "YES")
 	field(VAL, "0")
 	field(ZNAM, "$(ZNAM1)")
 	field(ONAM, "$(ONAM1)")
@@ -14,6 +16,7 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuOpen")
 
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetManuClose")
 {
+	field(PINI, "YES")
 	field(VAL, "0")
 	field(ZNAM, "$(ZNAM1)")
 	field(ONAM, "$(ONAM1)")

@@ -42,7 +42,16 @@ ifneq ($(SNCSEQ),)
     ginterlock_SNCFLAGS += +r
     ginterlock_DBD   += sncQWRGInt.dbd
     ginterlock_SRCS  += sncQWRGInt.stt
+    #ginterlock_DBD   += sncGLInterlockWF.dbd
+    #ginterlock_SRCS  += sncGLInterlockWF.stt
     ginterlock_LIBS  += seq pv
+
+    PROD_HOST += sncGLInterlockWF_PROD
+    sncGLInterlockWF_PROD_SNCFLAGS += +m
+    sncGLInterlockWF_PROD_SRCS += sncGLInterlockWF_PROD.st
+    sncGLInterlockWF_PROD_LIBS += seq pv
+    sncGLInterlockWF_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
 endif
 
 # Finally link to the EPICS Base libraries
