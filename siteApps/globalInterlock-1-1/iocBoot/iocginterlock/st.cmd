@@ -21,16 +21,30 @@ ginterlock_registerRecordDeviceDriver pdbbase
 
 ###dbLoadTemplate("db/GInt.sub")
 
-###QWR
+###Waveform
 dbLoadTemplate("db/globalIntWF.sub")
+
+###QWR
 dbLoadTemplate("db/globalInt_PT7503.sub")
 dbLoadTemplate("db/globalInt_PT7301.sub")
+
 dbLoadTemplate("db/globalInt_PT7503PT7307.sub")
+
 dbLoadTemplate("db/globalInt_PT7503CV.sub")
 dbLoadTemplate("db/globalInt_PT7301CV.sub")
+
 dbLoadTemplate("db/globalInt_PT7301PT7307.sub")
+
 ###HWR
 dbLoadTemplate("db/globalInt_PT7502PT7201_HWR.sub")
+
+dbLoadTemplate("db/globalInt_PT7502_HWR.sub")
+
+dbLoadTemplate("db/globalInt_PT7502CV_HWR.sub")
+dbLoadTemplate("db/globalInt_PT7201CV_HWR.sub")
+
+###SSR
+dbLoadTemplate("db/globalInt_PT7502PT7201_SSR.sub")
 
 #2023.12.06 New GInterlock PVs
 dbLoadRecords("db/Alias_IntStat.db")

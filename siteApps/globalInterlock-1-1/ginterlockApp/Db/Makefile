@@ -35,9 +35,24 @@ DB += globalInt_PT7301PT7307.sub
 
 
 ###HWR
-DB += globalInt_PT7502_HWR.template
-DB += globalInt_PT7201_HWR.template
+DB += globalInt_PT7502PT7307_HWR.template
+DB += globalInt_PT7201PT7307_HWR.template
 DB += globalInt_PT7502PT7201_HWR.sub
+
+DB += globalInt_PT7502CV_HWR.template
+DB += globalInt_PT7502CV_HWR_IntStat.template
+DB += globalInt_PT7502CV_HWR.sub
+
+DB += globalInt_PT7201CV_HWR.template
+DB += globalInt_PT7201CV_HWR.sub
+
+DB += globalInt_PT7201_HWR.template
+DB += globalInt_PT7201_HWR.sub
+
+###SSR
+DB += globalInt_PT7502PT7381_SSR.template 
+DB += globalInt_PT7201PT7381_SSR.template
+DB += globalInt_PT7502PT7201_SSR.sub
 
 ###Alias DB
 DB += Alias_IntStat.db
