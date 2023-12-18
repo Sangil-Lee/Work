@@ -34,7 +34,7 @@ cooldown_DBD += $(ASYN)/dbd/drvAsynIPPort.dbd
 cooldown_DBD += $(ASYN)/dbd/asyn.dbd
 cooldown_DBD += $(CALC)/dbd/calc.dbd
 cooldown_DBD += $(CALC)/dbd/calcSupport.dbd
-cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
+#cooldown_DBD += $(SITELIBS)/dbd/dblfilter.dbd
 cooldown_DBD += asubWFParam.dbd
 cooldown_DBD += asubLReGression.dbd
 
@@ -150,7 +150,8 @@ ifneq ($(SNCSEQ),)
 endif
 
 # Finally link to the EPICS Base libraries
-cooldown_LIBS += asyn calc std sscan iocshExt gfortran
+#cooldown_LIBS += asyn calc std sscan iocshExt gfortran
+cooldown_LIBS += asyn calc std sscan gfortran
 cooldown_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 #===========================

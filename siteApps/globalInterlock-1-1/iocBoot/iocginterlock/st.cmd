@@ -18,6 +18,7 @@ dbLoadTemplate("db/aiSim.sub")
 
 ###dbLoadTemplate("db/GInt.sub")
 
+###QWR
 dbLoadTemplate("db/globalIntWF.sub")
 dbLoadTemplate("db/globalInt_PT7503.sub")
 dbLoadTemplate("db/globalInt_PT7301.sub")
@@ -25,9 +26,12 @@ dbLoadTemplate("db/globalInt_PT7503PT7307.sub")
 dbLoadTemplate("db/globalInt_PT7503CV.sub")
 dbLoadTemplate("db/globalInt_PT7301CV.sub")
 
+###HWR
+dbLoadTemplate("db/globalInt_PT7502PT7201_HWR.sub")
+
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-seq sncQWRGInt
+#seq sncGLInterlockWF

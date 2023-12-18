@@ -30,6 +30,14 @@ DB += globalInt_PT7503CV.sub
 DB += globalInt_PT7301CV.template
 DB += globalInt_PT7301CV.sub
 
+
+###HWR
+DB += globalInt_PT7502_HWR.template
+DB += globalInt_PT7201_HWR.template
+DB += globalInt_PT7502PT7201_HWR.sub
+
+
+####for Simulation#########
 DB += biSim.template
 DB += biSim2.template
 DB += biSim.sub

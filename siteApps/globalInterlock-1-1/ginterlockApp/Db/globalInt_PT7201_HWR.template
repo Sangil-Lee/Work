@@ -1,0 +1,64 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCalc") 
+{                                                                           
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "A<=B?1:0")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
+    field(INPB, "$(INPB) CPP")
+    field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBuff")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBuff") {    
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+    field(INP,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCalc")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntEval")
+}
+    
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntEval") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+    field(CALC, "AMIN(AA)<1?0:1")
+    field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBuff.VAL")    
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7201DSG")  
+}                            
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7201DSG") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7201DSG")
+	field(OUT,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7201G.VAL PP")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7201G") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
+}
+
+
+###for Simulation PVs######
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") {
+	field(PINI, "YES")
+	field(VAL, "1.34")
+}
+
+record(ai, "$(INPB)") {
+	field(PINI, "YES")
+	field(VAL, "0.89")
+}
+
+
