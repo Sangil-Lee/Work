@@ -2,9 +2,15 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCV")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "A>=B?1:0")
+    field(CALC, "(C&&D&&E&&F)==1?0:A>=B?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
     field(INPB, "23.5")
+	field(INPC,  "Cryo-CDL00:TBx01-CV7504:SetIntQWRPT7503DSG")
+	field(INPD,  "Cryo-CDL00:TBx01-CV7304:SetIntQWRPT7503DSG")
+	field(INPE,  "Cryo-CDL00:TBx01-CV7545:SetIntQWRPT7503DSG")
+	field(INPF,  "Cryo-CDL00:TBx01-CV7344:SetIntQWRPT7503DSG")
+
+
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)BuffCV")
     field(OOPT, "Every Time")                                       
     field(DOPT, "Use CALC")                                          
@@ -34,6 +40,7 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)EvalCV") {
 }                            
 
 record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(GINTPV)") {
+	field(DESC, "$(SUBDEV)")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(VAL, "0")

@@ -34,6 +34,7 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)EvalCV") {
 }                            
 
 record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(GINTPV)") {
+	field(DESC, "$(SUBDEV)")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(VAL, "0")

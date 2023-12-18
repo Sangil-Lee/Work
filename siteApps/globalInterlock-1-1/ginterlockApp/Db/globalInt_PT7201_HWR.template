@@ -33,6 +33,7 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntEval") {
 }                            
 
 record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7201DSG") {
+	field(DESC, "$(SUBDEV)")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
@@ -42,6 +43,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetIntPT7201DSG") {
 }
 
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7201G") {
+	field(DESC, "$(SUBDEV)")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(VAL, "0")
@@ -51,14 +53,14 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)IntStatPT7201G") {
 
 
 ###for Simulation PVs######
-record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") {
-	field(PINI, "YES")
-	field(VAL, "1.34")
-}
-
-record(ai, "$(INPB)") {
-	field(PINI, "YES")
-	field(VAL, "0.89")
-}
+#record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") {
+#	field(PINI, "YES")
+#	field(VAL, "1.34")
+#}
+#
+#record(ai, "$(INPB)") {
+#	field(PINI, "YES")
+#	field(VAL, "0.89")
+#}
 
 
