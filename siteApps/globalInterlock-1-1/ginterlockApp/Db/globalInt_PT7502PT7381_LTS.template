@@ -26,8 +26,10 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval") {
     field(SCAN, "Passive")
     field(NELM, "5")
     field(NUSE, "5")
-    field(CALC, "AMIN(AA)<1?0:1")
+	field(CALC, "AMIN(AA)<1?0:1")
+#field(CALC, "AMIN(AA)>=1?1:A==1?1:0")
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff.VAL")    
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)ResetInt")    
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
     field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7502PT7381G")  
@@ -50,5 +52,13 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502PT7381DSG") {
 	field(ZNAM, "Enable")
 	field(ONAM, "Disable")
 }
+
+#record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)ResetInt") {
+#	field(DESC, "ResetInt")
+#	field(PINI, "YES")
+#	field(VAL, "0")
+#	field(ZNAM, "Normal")
+#	field(ONAM, "Reset")
+#}
 
 

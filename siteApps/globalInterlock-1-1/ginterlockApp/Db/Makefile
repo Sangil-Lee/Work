@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 #DB += GIntCV.template
 #DB += GInt.sub
 
+###QWR
 DB += globalIntWF.template
 DB += globalIntWF.sub
 
@@ -89,21 +90,24 @@ DB += globalInt_PT7301_LTS.template
 DB += globalInt_PT7301_LTS.sub
 
 ###EDx
+DB += globalInt_PT7501CV_EBx.template
+DB += globalInt_PT7501CV_EBx_IntStat.template
+DB += globalInt_PT7501CV_EBx.sub
 
 ###VBx-TBx Vacuum
 
 ###TBx
 
 ###Alias DB
-DB += Alias_IntStat.db
-DB += Alias_SetInt.db
+#DB += Alias_IntStat.db
+#DB += Alias_SetInt.db
 
 ####for Simulation#########
-DB += biSim.template
-DB += biSim2.template
-DB += biSim.sub
-DB += aiSim.template
-DB += aiSim.sub
+#DB += biSim.template
+#DB += biSim2.template
+#DB += biSim.sub
+#DB += aiSim.template
+#DB += aiSim.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

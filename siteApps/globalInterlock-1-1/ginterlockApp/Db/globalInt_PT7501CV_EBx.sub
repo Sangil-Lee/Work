@@ -1,0 +1,20 @@
+file "db/globalInt_PT7501CV_EBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		INPA,	INPB,								GINTPV 	}
+{SCL31,		-CDL01:,		EBx01,		-PT7501:,	PresR,	"SCL31-CDL01:EBx01-PT7501:SetCP",	PT7502CV	}
+{SCL31,		-CDL01:,		EBx01,		-PT7401:,	PresR,	8,									PT7502CV	}
+{IF,		-CDL07:,		EBx01,		-PT7501:,	PresR,	24,									PT7502CV	}
+{IF,		-CDL07:,		EBx01,		-PT7401:,	PresR,	8,									PT7502CV	}
+}
+
+file "db/globalInt_PT7501CV_EBx_IntStat.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		INTSTAT,				SETINT,					RESET		}
+{Cryo,		-CDL00:,		TBx01,		-XV7501:,	IntStatSCL3EBxPT7501G,	SetIntSCL3EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7502:,	IntStatSCL3EBxPT7501G,	SetIntSCL3EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7582:,	IntStatSCL3EBxPT7501G,	SetIntSCL3EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7582:,	IntStatSCL2EBxPT7501G,	SetIntSCL2EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-XV7541:,	IntStatSCL3EBxPT7501G,	SetIntSCL3EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-XV7541:,	IntStatSCL2EBxPT7501G,	SetIntSCL2EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7541:,	IntStatSCL3EBxPT7501G,	SetIntSCL3EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7541:,	IntStatSCL2EBxPT7501G,	SetIntSCL2EBxPT7501G,	ResetInt	}
+{Cryo,		-CDL00:,		TBx01,		-CV7581:,	IntStatSCL2EBxPT7501G,	SetIntSCL2EBxPT7501G,	ResetInt	}
+}

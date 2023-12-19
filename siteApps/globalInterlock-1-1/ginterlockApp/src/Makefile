@@ -70,7 +70,24 @@ ifneq ($(SNCSEQ),)
     sncLTSGInt_PROD_LIBS += seq pv
     sncLTSGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
+    PROD_HOST += sncEBxGInt_PROD
+    sncEBxGInt_PROD_SNCFLAGS += +m
+    sncEBxGInt_PROD_SRCS += sncEBxGInt_PROD.st
+    sncEBxGInt_PROD_LIBS += seq pv
+    sncEBxGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
+
+    PROD_HOST += sncVBxTBxVacGInt_PROD
+    sncVBxTBxVacGInt_PROD_SNCFLAGS += +m
+    sncVBxTBxVacGInt_PROD_SRCS += sncVBxTBxVacGInt_PROD.st
+    sncVBxTBxVacGInt_PROD_LIBS += seq pv
+    sncVBxTBxVacGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncTBxGInt_PROD
+    sncTBxGInt_PROD_SNCFLAGS += +m
+    sncTBxGInt_PROD_SRCS += sncTBxGInt_PROD.st
+    sncTBxGInt_PROD_LIBS += seq pv
+    sncTBxGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
     #PROD_HOST += sncGLInterlockWF_PROD
     #sncGLInterlockWF_PROD_SNCFLAGS += +m

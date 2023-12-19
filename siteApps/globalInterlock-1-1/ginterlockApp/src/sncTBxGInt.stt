@@ -1,0 +1,25 @@
+program sncTBxGInt
+option +r; 
+option +c; 
+option -a; 
+
+%%#include <math.h> 
+
+
+int idxcount = 13;
+ss ssTBxInterlock {
+	state init {
+		when(TRUE)
+		{
+			
+		}state TBxGInterlock 
+	}
+
+	state TBxGInterlock
+	{
+		when(TRUE)
+		{
+		} state TBxGInterlock
+	}
+}
+

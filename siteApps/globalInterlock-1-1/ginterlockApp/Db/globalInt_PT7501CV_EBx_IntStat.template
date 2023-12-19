@@ -1,0 +1,23 @@
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(SETINT)") {
+	field(DESC, "$(SETINT)")
+	field(PINI, "YES")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INTSTAT)") {
+	field(DESC, "$(INTSTAT)")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(RESET)") {
+	field(DESC, "$(RESET)")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+}
