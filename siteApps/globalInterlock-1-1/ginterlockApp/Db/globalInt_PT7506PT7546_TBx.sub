@@ -1,0 +1,40 @@
+file "db/globalInt_PT7506_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,							INPB		}
+#{Cryo,		-CDL00:,		TBx01,		-PT7506:,   -XV7502:,	"Cryo-CDL00:TBx01-PT7506:SetCP" }
+{Cryo,		-CDL00:,		TBx01,		-PT7506:,   "SCL31-CDL01:EBx01-CV7501:",	23.5	}
+}
+
+file "db/globalInt_PT7506_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,						INPB		}
+{Cryo,		-CDL00:,		TBx01,		-PT7506:,   "IF-CDL07:EBx01-CV7501:",	23.5		}
+}
+
+file "db/globalInt_PT7303CV7401_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,							INPB	}
+{Cryo,		-CDL00:,		TBx01,		-PT7303:,   "SCL31-CDL01:EBx01-CV7401:",	1.8		}
+}
+
+file "db/globalInt_PT7303CV7402_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,							INPB	}
+{Cryo,		-CDL00:,		TBx01,		-PT7303:,   "SCL31-CDL01:EBx01-CV7402:",	1.8		}
+}
+
+file "db/globalInt_PT7343CV7401_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,						INPB		}
+{Cryo,		-CDL00:,		TBx01,		-PT7343:,   "IF-CDL07:EBx01-CV7401:",	1.8			}
+}
+
+file "db/globalInt_PT7343CV7402_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,						INPB		}
+{Cryo,		-CDL00:,		TBx01,		-PT7343:,   "IF-CDL07:EBx01-CV7402:",	1.8			}
+}
+
+file "db/globalInt_PT7203_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,						INPB		}
+{Cryo,		-CDL00:,		TBx01,		-PT203:,   "SCL32-CDL02:VBx01-XV7301:",	1.8			}
+}
+
+file "db/globalInt_PT7243_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBPV,							INPB		}
+{Cryo,		-CDL00:,		TBx01,		-PT7243:,   "SCL22-CDL06:VBx25-XV7301:",	1.8			}
+}

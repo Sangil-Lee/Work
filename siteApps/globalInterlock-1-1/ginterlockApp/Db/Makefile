@@ -97,6 +97,16 @@ DB += globalInt_PT7501CV_EBx.sub
 ###VBx-TBx Vacuum
 
 ###TBx
+DB += globalInt_PT7506_TBx.template
+DB += globalInt_PT7546_TBx.template
+
+DB += globalInt_PT7303CV7401_TBx.template
+DB += globalInt_PT7303CV7402_TBx.template
+DB += globalInt_PT7343CV7401_TBx.template
+DB += globalInt_PT7343CV7402_TBx.template
+DB += globalInt_PT7203_TBx.template
+DB += globalInt_PT7243_TBx.template
+DB += globalInt_PT7506PT7546_TBx.sub
 
 ###Alias DB
 #DB += Alias_IntStat.db
