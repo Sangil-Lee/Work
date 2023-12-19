@@ -5,7 +5,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
     field(CALC, "C==1?0:A<=B?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
     field(INPB, "$(INPB) CPP")
-	field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7201PT7381DSG")
+	field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301PT7381DSG")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff")
     field(OOPT, "Every Time")                                       
@@ -31,11 +31,11 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval") {
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff.VAL")    
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
-    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7201PT7381G")  
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301PT7381G")  
 }                            
 
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7201PT7381G") {
-	field(DESC, "IntStatPT7201PT7381G")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301PT7381G") {
+	field(DESC, "IntStatPT7301PT7381G")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
@@ -43,8 +43,8 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7201PT7381G") {
 	field(VAL, "0")
 }
 
-record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7201PT7381DSG") {
-	field(DESC, "SetIntPT7201PT7381DSG")
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301PT7381DSG") {
+	field(DESC, "SetIntPT7301PT7381DSG")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(VAL, "0")

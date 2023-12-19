@@ -43,6 +43,9 @@ DB += globalInt_PT7502CV_HWR.template
 DB += globalInt_PT7502CV_HWR_IntStat.template
 DB += globalInt_PT7502CV_HWR.sub
 
+DB += globalInt_PT7502_HWR.template
+DB += globalInt_PT7502_HWR.sub
+
 DB += globalInt_PT7201CV_HWR.template
 DB += globalInt_PT7201CV_HWR.sub
 
@@ -53,6 +56,43 @@ DB += globalInt_PT7201_HWR.sub
 DB += globalInt_PT7502PT7381_SSR.template 
 DB += globalInt_PT7201PT7381_SSR.template
 DB += globalInt_PT7502PT7201_SSR.sub
+
+DB += globalInt_PT7502CV_SSR.template
+DB += globalInt_PT7502CV_SSR_IntStat.template
+DB += globalInt_PT7502CV_SSR.sub
+
+DB += globalInt_PT7502_SSR.template
+DB += globalInt_PT7502_SSR.sub
+
+DB += globalInt_PT7201CV_SSR.template
+DB += globalInt_PT7201CV_SSR.sub
+
+DB += globalInt_PT7201_SSR.template
+DB += globalInt_PT7201_SSR.sub
+
+###LTS
+DB += globalInt_PT7502PT7381_LTS.template 
+DB += globalInt_PT7301PT7381_LTS.template
+DB += globalInt_PT7502PT7301_LTS.sub
+
+DB += globalInt_PT7502CV_LTS.template
+DB += globalInt_PT7502CV_LTS_IntStat.template
+DB += globalInt_PT7502CV_LTS.sub
+
+DB += globalInt_PT7502_LTS.template
+DB += globalInt_PT7502_LTS.sub
+
+DB += globalInt_PT7301CV_LTS.template
+DB += globalInt_PT7301CV_LTS.sub
+
+DB += globalInt_PT7301_LTS.template
+DB += globalInt_PT7301_LTS.sub
+
+###EDx
+
+###VBx-TBx Vacuum
+
+###TBx
 
 ###Alias DB
 DB += Alias_IntStat.db

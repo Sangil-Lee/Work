@@ -2,17 +2,16 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "J==1?0:A>B&&A>C&&!(D||E||F||G)&&H&&I?1:0")
+    field(CALC, "I==1?0:A>B&&A>C&&!(D||E||F||G)&&H?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
-    field(INPB, "$(INPB)")
+    field(INPB, "1.8")
 	field(INPC, "Cryo-CDL00:TBx01-PT7307:PresR")
     field(INPD, "$(INPD)")
     field(INPE, "$(INPE)")
     field(INPF, "$(INPF)")
     field(INPG, "$(INPG)")
     field(INPH, "$(INPH)")
-    field(INPI, "$(INPI)")
-	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502DSG")
+    field(INPI, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301DSG")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff")
     field(OOPT, "Every Time")                                       
@@ -39,24 +38,23 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval") {
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff.VAL")    
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
-	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7502G")  
+	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G")  
 }                            
 
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7502G") {
-	field(DESC, "IntStatPT7502G")
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G") {
+	field(DESC, "IntStatPT7301G")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntBEval")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval")
 	field(VAL, "0")
 }
 
-record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502DSG") {
-	field(DESC, "SetIntPT7502DSG")
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301DSG") {
+	field(DESC, "SetIntPT7301DSG")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
+	field(VAL, "0")
 	field(ZNAM, "Enable")
 	field(ONAM, "Disable")
-	field(VAL, "0")
 }
-

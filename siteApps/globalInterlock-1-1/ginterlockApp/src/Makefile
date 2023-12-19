@@ -61,9 +61,15 @@ ifneq ($(SNCSEQ),)
     PROD_HOST += sncSSRGInt_PROD
     sncSSRGInt_PROD_SNCFLAGS += +m
     sncSSRGInt_PROD_SRCS += sncSSRGInt_PROD.st
-    #sncSSRGInt_PROD_DBD  += sncSSRGInt.dbd
     sncSSRGInt_PROD_LIBS += seq pv
     sncSSRGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    PROD_HOST += sncLTSGInt_PROD
+    sncLTSGInt_PROD_SNCFLAGS += +m
+    sncLTSGInt_PROD_SRCS += sncLTSGInt_PROD.st
+    sncLTSGInt_PROD_LIBS += seq pv
+    sncLTSGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+
 
 
     #PROD_HOST += sncGLInterlockWF_PROD

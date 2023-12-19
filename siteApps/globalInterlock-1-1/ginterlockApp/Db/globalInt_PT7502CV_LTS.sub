@@ -1,0 +1,24 @@
+file "db/globalInt_PT7502CV_LTS.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		INPA,	GINTPV 	}
+{IF,		-CDL07:,		VBx01,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx02,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx03,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx04,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx05,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx06,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx07,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx08,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx09,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx10,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx11,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx12,		-PT7502:,	PresR,	PT7502CV	}
+{IF,		-CDL07:,		VBx13,		-PT7502:,	PresR,	PT7502CV	}
+}
+
+file "db/globalInt_PT7502CV_LTS_IntStat.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV		}
+{Cryo,		-CDL00:,		TBx01,		-CV7504:	}
+{Cryo,		-CDL00:,		TBx01,		-CV7304:	}
+{Cryo,		-CDL00:,		TBx01,		-CV7545:	}
+{Cryo,		-CDL00:,		TBx01,		-CV7344:	}
+}

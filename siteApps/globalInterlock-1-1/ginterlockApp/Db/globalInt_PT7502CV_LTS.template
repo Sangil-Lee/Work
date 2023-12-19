@@ -1,0 +1,49 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCV") 
+{                                                                           
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(C&&D&&E&&F)==1?0:A>=B?1:0")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
+    field(INPB, "23.5")
+	field(INPC,  "Cryo-CDL00:TBx01-CV7504:SetIntLTSPT7502DSG")
+	field(INPD,  "Cryo-CDL00:TBx01-CV7304:SetIntLTSPT7502DSG")
+	field(INPE,  "Cryo-CDL00:TBx01-CV7545:SetIntLTSPT7502DSG")
+	field(INPF,  "Cryo-CDL00:TBx01-CV7344:SetIntLTSPT7502DSG")
+
+
+    field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)BuffCV")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)BuffCV") {    
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+    field(INP,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCV")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)EvalCV")
+}
+    
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)EvalCV") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+    field(CALC, "AMIN(AA)<1?0:1")
+    field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)BuffCV.VAL")    
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+    field(OUT, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(GINTPV).VAL PP")  
+}                            
+
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(GINTPV)") {
+	field(DESC, "$(SUBDEV)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
+}
+
