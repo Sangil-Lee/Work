@@ -1,7 +1,7 @@
 program sncQWRGInt
 option +r; 
-option +c; 
-option -a; 
+//option +c; 
+//ption -a; 
 
 %%#include <math.h> 
 %%#define arrSize 11
@@ -219,6 +219,7 @@ ss ssQWRInterlock {
 
 	state QWRGInterlock
 	{
+		//when(efTestAndClear(evPT7503IntStat)||pt7305_intstat[0] == 1)
 		when(efTest(evPT7503IntStat))
 		{
 			int i = 0;
@@ -233,135 +234,8 @@ ss ssQWRInterlock {
 					pvPut(xv7502_setmanusel[i], SYNC);
 				}
 			}
+			printf("Write XV7502\n");
 			efClear(evPT7503IntStat);
-			//printf("Step0 XV7502\n");
-		}state Step1
-	}
-
-	state Step1
-	{
-		when(efTest(evXV7502GI))
-		{
-			int i = 0;
-			for( ; i < 11; i++)
-			{
-				if (xv7502GI[i] == 1) {
-					xv7502_setmanusel[i] = xv7502_setmanuclose[i] = 1;
-					pvPut(xv7502_setmanuclose[i], SYNC);
-					pvPut(xv7502_setmanusel[i], SYNC);
-				} else {
-					//only interlock release
-					//xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 0;
-				}
-			}
-			efClear(evXV7502GI);
-			//printf("Step1\n");
-		}state Step2
-	}
-
-	state Step2
-	{
-		when(efTest(evXV7301PT7307))
-		{
-			int i = 0;
-			for( ; i < 11; i++)
-			{
-				if (xv7301pt7307[i] == 1) {
-					xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 1;
-				} else {
-					xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 0;
-				}
-				pvPut(xv7301_setmanuclose[i], SYNC);
-				pvPut(xv7301_setmanusel[i], SYNC);
-			}
-		efClear(evXV7301PT7307);
-		//printf("Step2\n");
-
-		}state Step3
-	}
-	state Step3
-	{
-		when(efTest(evCVPT7503GI))
-		{
-			int i = 0;
-			int intCount = 0;
-			for( ; i < 11; i++)
-			{
-				if (cvpt7503GI[i] == 1) {
-					intCount++;
-				}
-			}
-
-			if(intCount)
-			{
-				int i = 0;
-				for( ; i < 4; i++)
-				{
-					tbx_cvs_intstat[i] = 1;
-					tbx_cvs[i] = 0;
-					pvPut(tbx_cvs[i], SYNC);
-					pvPut(tbx_cvs_intstat[i], SYNC);
-				};
-				//PID ??
-				//Close Cryo-CDL00:TBx01-CV7504:Setpt
-				//Close Cryo-CDL00:TBx01-CV7304:Setpt
-				//Close Cryo-CDL00:TBx01-CV7545:Setpt
-				//Close Cryo-CDL00:TBx01-CV7344:Setpt
-			}
-			//printf("Step3\n");
-			efClear(evCVPT7503GI);
-		}state Step4
-	}
-
-	state Step4
-	{
-		when(efTest(evPT7301CV))
-		{
-			int i = 0;
-			int intCount = 0;
-			for( ; i < 11; i++)
-			{
-				if (pt7301cv[i] == 1) {
-					intCount++;
-				}
-			}
-
-			if(intCount)
-			{
-				int i = 0;
-				for( ; i < 4; i++)
-				{
-					tbx_cvs_intstat[i] = 1;
-					tbx_cvs[i] = 0;
-					pvPut(tbx_cvs[i], SYNC);
-					pvPut(tbx_cvs_intstat[i], SYNC);
-				};
-				i = 0;
-				for( ; i < 106; i++)
-				{
-					xv7502_setmanuclose[i] = 1;
-					pvPut(xv7502_setmanuclose[i], SYNC);
-				};
-			}
-			//printf("Step4\n");
-			efClear(evPT7301CV);
-		}state Step5
-	}
-
-	state Step5
-	{
-		when(efTest(evPT7301))
-		{
-			int i = 0;
-			for( ; i < 11; i++)
-			{
-				if (pt7301[i] == 1) {
-					xv7301_setmanuopen[i] = 1;
-					pvPut(xv7301_setmanuopen[i], SYNC);
-				} 
-			}
-			efClear(evPT7301);
-			//printf("Step5\n");
 		}state GoDelay
 	}
 
@@ -369,11 +243,6 @@ ss ssQWRInterlock {
 	{
 		when(delay(1.0))
 		{
-			efSet(evPT7301);
-			efSet(evPT7301CV);
-			efSet(evCVPT7503GI);
-			efSet(evXV7301PT7307);
-			efSet(evXV7502GI);
 			efSet(evPT7503IntStat);
 		}state QWRGInterlock
 	}

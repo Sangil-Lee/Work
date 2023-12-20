@@ -1,18 +1,18 @@
 ###SYS=GInt, SUBSYS=-All:, DEV=VBx, SUBDEV=-XV7301:, SIGNAL=CloseStat, NELM=24
-record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}${SIGNAL}") {
+record(waveform, "${SYS}${SUBSYS}${DEV}${SUBDEV}${SIGNAL}WF") {
   field(PINI, "YES")
   field(SCAN, "Passive")
   field(NELM, "${NELM}")
   field(FTVL, "USHORT")
-  field(FLNK, "${SYS}${SUBSYS}${DEV}${SUBDEV}Eval")
+  field(FLNK, "${SYS}${SUBSYS}${DEV}${SUBDEV}$(SIGNAL)")
 }
 
-record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}Eval") {
+record(acalcout, "${SYS}${SUBSYS}${DEV}${SUBDEV}$(SIGNAL)") {
   field(SCAN, "Passive")
   field(PINI, "YES")
   field(NELM, "${NELM}")
-  field(CALC, "AMIN(AA)<1?0:1")
-  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${SIGNAL}")
+  field(CALC, "A:=AMAX(AA);A==0?0:1")
+  field(INAA, "${SYS}${SUBSYS}${DEV}${SUBDEV}${SIGNAL}WF")
   field(OOPT, "Every Time")
   field(DOPT, "Use CALC")
 }

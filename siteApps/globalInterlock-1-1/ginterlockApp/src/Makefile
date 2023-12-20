@@ -40,17 +40,17 @@ ginterlock_SRCS_vxWorks += -nil-
 #ginterlock_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
     ginterlock_SNCFLAGS += +r
-    #ginterlock_DBD   += sncQWRGInt.dbd
-    #ginterlock_SRCS  += sncQWRGInt.stt
+   #ginterlock_DBD   += sncQWRGInt.dbd
+   #ginterlock_SRCS  += sncQWRGInt.stt
     ginterlock_DBD   += sncGLInterlockWF.dbd
     ginterlock_SRCS  += sncGLInterlockWF.stt
     ginterlock_LIBS  += seq pv
 
-    PROD_HOST += sncQWRGInt_PROD
-    sncQWRGInt_PROD_SNCFLAGS += +m
-    sncQWRGInt_PROD_SRCS += sncQWRGInt_PROD.st
-    sncQWRGInt_PROD_LIBS += seq pv
-    sncQWRGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
+   PROD_HOST += sncQWRGInt_PROD
+   sncQWRGInt_PROD_SNCFLAGS += +m
+   sncQWRGInt_PROD_SRCS += sncQWRGInt_PROD.st
+   sncQWRGInt_PROD_LIBS += seq pv
+   sncQWRGInt_PROD_LIBS += $(EPICS_BASE_HOST_LIBS)
 
     PROD_HOST += sncHWRGInt_PROD
     sncHWRGInt_PROD_SNCFLAGS += +m

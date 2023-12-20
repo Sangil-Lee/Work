@@ -1,0 +1,55 @@
+record(ai, "Test:Input")
+{
+	field(VAL, "5")
+}
+
+record(calcout, "Test:Calc")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+    field(CALC, "C==1?0:B==1?1:A>10?1:A")
+
+	field(INPA, "Test:Input")
+	field(INPB, "Test:Interlock")
+	field(INPC, "Test:Disable")
+
+    field(FLNK, "Test:InterLogic")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+	field(VAL, "0")
+}
+
+record(calc, "Test:InterLogic")
+{
+	field(SCAN, "Passive")
+	field(CALC, "B==1?0:A==1?1:0")
+	field(INPA, "Test:Calc")
+	field(INPB, "Test:Reset")
+	
+	field(FLNK, "Test:Interlock")
+}
+
+record(bi, "Test:Interlock")
+{
+	field(SCAN, "Passive")
+	field(INP, "Test:InterLogic")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
+	
+}
+
+record(bi, "Test:Disable")
+{
+	field(SCAN, "Passive")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(ZNAM, "0")
+}
+
+record(bo, "Test:Reset")
+{
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "2")
+	
+}

@@ -2,9 +2,11 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "J==1?0:A>B&&A>C&&!(D||E||F||G)&&H&&I?1:0")
+    field(CALC, "J==1?0:A>B&&A>C&&!(D||E||F||G)&&!(H&&I)?1:0")
+#field(CALC, "J==1?0:A>B&&A>C&&!(H&&I)?0:1")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
-    field(INPB, "20.5")
+#field(INPB, "20.5")
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
 	field(INPC, "Cryo-CDL00:TBx01-PT7307:PresR")
     field(INPD, "$(INPD)")
     field(INPE, "$(INPE)")
@@ -35,8 +37,11 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval") {
     field(SCAN, "Passive")
     field(NELM, "5")
     field(NUSE, "5")
-    field(CALC, "AMIN(AA)<1?0:1")
+field(CALC, "AMIN(AA)<1?0:1")
+#field(CALC, "AMIN(AA)>=1?1:A==1?0:1")
+#field(CALC, "A:=AMIN(AA);A>=1?1:B==1?0:A")
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff.VAL")    
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
 	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7503G")  
@@ -47,9 +52,19 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7503G") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntAEval")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval")
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
 	field(VAL, "0")
 }
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(VAL, "0")
+}
+
 
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7503DSG") {
 	field(DESC, "SetIntPT7503DSG")

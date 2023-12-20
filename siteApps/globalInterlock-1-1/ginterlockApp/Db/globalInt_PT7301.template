@@ -27,15 +27,16 @@ record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff") {
     field(INP,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
     field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval")
 }
-
     
 record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval") {
     field(PINI, "YES")        
     field(SCAN, "Passive")
     field(NELM, "5")
     field(NUSE, "5")
-    field(CALC, "AMIN(AA)<1?0:1")
+#field(CALC, "AMIN(AA)<1?0:1")
+	field(CALC, "A:=AMIN(AA);A>=1?1:B==1?0:A")
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff.VAL")    
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
 	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G")  
@@ -45,8 +46,19 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G") {
 	field(DESC, "IntStatPT7301G")
 	field(SCAN, "Passive")
 	field(PINI, "YES")
-	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval")
+	field(CALC, "A==1?1:B==1?1:0")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval")
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
+	field(VAL, "0")
+	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(INP, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G")
+	field(ZNAM, "Released")
+	field(ONAM, "Interlocked")
 	field(VAL, "0")
 }
 
@@ -58,3 +70,4 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301DSG") {
 	field(ZNAM, "Enable")
 	field(ONAM, "Disable")
 }
+
