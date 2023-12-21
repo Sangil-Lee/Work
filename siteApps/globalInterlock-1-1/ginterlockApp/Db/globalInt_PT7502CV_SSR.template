@@ -2,14 +2,9 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntCV")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "(C&&D&&E&&F)==1?0:A>=B?1:0")
+    field(CALC, "A>=B?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
-    field(INPB, "23.5")
-	field(INPC,  "Cryo-CDL00:TBx01-CV7504:SetIntSSRPT7502DSG")
-	field(INPD,  "Cryo-CDL00:TBx01-CV7304:SetIntSSRPT7502DSG")
-	field(INPE,  "Cryo-CDL00:TBx01-CV7545:SetIntSSRPT7502DSG")
-	field(INPF,  "Cryo-CDL00:TBx01-CV7344:SetIntSSRPT7502DSG")
-
+    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)BuffCV")
     field(OOPT, "Every Time")                                       

@@ -1,0 +1,65 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Calc") 
+{                                                                           
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "C==1?0:D==1?1:A>B?1:0")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
+    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
+	field(INPC, "$(SUBPV)$(SETINT)")
+	field(INPD, "$(SUBPV)$(INTSTAT)") {
+    field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Buff")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Buff") {    
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+    field(INP,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt$(INNER}Calc")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Eval")
+}
+
+    
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Eval") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+    field(CALC, "B==1?0:AMIN(AA)<1?0:1")
+    field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt${INNER}Buff.VAL")    
+	field(INPB, "$(SUBPV)SetIntRstG")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+	field(FLNK, "$(SUBPV)$(INTSTAT)")  
+}                            
+
+record(calcout, "$(SUBPV)$(INTSTAT)") {
+	field(DESC, "$(INTSTAT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt$(INNER}Eval")
+	field(VAL, "0")
+}
+
+record(bo, "$(SUBPV)SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "1")
+	field(VAL, "0")
+}
+
+record(bi, "$(SUBPV)$(SETINT)") {
+	field(DESC, "$(SETINT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(VAL, "0")
+}
+

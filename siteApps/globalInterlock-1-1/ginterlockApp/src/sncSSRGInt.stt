@@ -4,57 +4,6 @@ option +c;
 option -a; 
 
 %%#include <math.h> 
-/*
-"P2DT-CDL04:VBx02-PT7502:
-"SCL21-CDL05:VBx01-PT7502:
-"SCL21-CDL05:VBx02-PT7502:
-"SCL21-CDL05:VBx03-PT7502:
-"SCL21-CDL05:VBx04-PT7502:
-"SCL21-CDL05:VBx05-PT7502:
-"SCL21-CDL05:VBx06-PT7502:
-"SCL21-CDL05:VBx07-PT7502:
-"SCL21-CDL05:VBx08-PT7502:
-"SCL21-CDL05:VBx09-PT7502:
-"SCL21-CDL05:VBx10-PT7502:
-"SCL21-CDL05:VBx11-PT7502:
-"SCL21-CDL05:VBx12-PT7502:
-"SCL21-CDL05:VBx13-PT7502:
-"SCL21-CDL05:VBx14-PT7502:
-"SCL21-CDL05:VBx15-PT7502:
-"SCL21-CDL05:VBx16-PT7502:
-"SCL21-CDL05:VBx17-PT7502:
-"SCL21-CDL05:VBx18-PT7502:
-"SCL21-CDL05:VBx19-PT7502:
-"SCL21-CDL05:VBx20-PT7502:
-"SCL21-CDL05:VBx21-PT7502:
-"SCL21-CDL05:VBx22-PT7502:
-"SCL21-CDL05:VBx23-PT7502:
-"SCL22-CDL06:VBx01-PT7502:
-"SCL22-CDL06:VBx02-PT7502:
-"SCL22-CDL06:VBx03-PT7502:
-"SCL22-CDL06:VBx04-PT7502:
-"SCL22-CDL06:VBx05-PT7502:
-"SCL22-CDL06:VBx06-PT7502:
-"SCL22-CDL06:VBx07-PT7502:
-"SCL22-CDL06:VBx08-PT7502:
-"SCL22-CDL06:VBx09-PT7502:
-"SCL22-CDL06:VBx10-PT7502:
-"SCL22-CDL06:VBx11-PT7502:
-"SCL22-CDL06:VBx12-PT7502:
-"SCL22-CDL06:VBx13-PT7502:
-"SCL22-CDL06:VBx14-PT7502:
-"SCL22-CDL06:VBx15-PT7502:
-"SCL22-CDL06:VBx16-PT7502:
-"SCL22-CDL06:VBx17-PT7502:
-"SCL22-CDL06:VBx18-PT7502:
-"SCL22-CDL06:VBx19-PT7502:
-"SCL22-CDL06:VBx20-PT7502:
-"SCL22-CDL06:VBx21-PT7502:
-"SCL22-CDL06:VBx22-PT7502:
-"SCL22-CDL06:VBx23-PT7502:
-"SCL22-CDL06:VBx24-PT7502:
-"SCL22-CDL06:VBx25-PT7502:
- */
 int xv7502_setmanuclose[106];
 assign xv7502_setmanuclose to {
 	"P2DT-CDL04:VBx02-XV7502:SetManuClose",
@@ -424,7 +373,7 @@ ss ssSSRInterlock {
 
 	state SSRGInterlock
 	{
-		when(efTestAndClear(evXV7502GI_SSR))
+		when(efTest(evXV7502GI_SSR))
 		{
 			int i = 0;
 			for( ;i < idxcount; i++)
@@ -437,9 +386,13 @@ ss ssSSRInterlock {
 					pvPut(xv7502_setmanuopen[i], SYNC);
 				}
 			}
-		}state SSRGInterlock
+			efClear(evXV7502GI_SSR);
+		}state Step1
+	}
 
-		when(efTestAndClear(evXV7201GI_SSR))
+	state Step1
+	{
+		when(efTest(evXV7201GI_SSR))
 		{
 			int i = 0;
 			for( ;i < idxcount; i++)
@@ -452,9 +405,13 @@ ss ssSSRInterlock {
 					pvPut(xv7201_setmanuopen[i], SYNC);
 				}
 			}
-		}state SSRGInterlock
+			efClear(evXV7201GI_SSR);
+		}state Step2
+	}
 
-		when(efTestAndClear(evPT7502CV))
+	state Step2
+	{
+		when(efTest(evPT7502CV))
 		{
 			int i = 0;
 			int intCount = 0;
@@ -476,21 +433,31 @@ ss ssSSRInterlock {
 					pvPut(tbx_cvs_intstat[i], SYNC);
 				};
 			}
-		}state SSRGInterlock
-
-		when(efTestAndClear(evPT7502IntStat))
+			efClear(evPT7502CV);
+		}state Step3
+	}
+	
+	state Step3
+	{
+		when(efTest(evPT7502IntStat))
 		{
 			int i = 0;
 			for( ; i < idxcount; i++)
 			{
+				//Priority high filter
+				if(xv7502GI_ssr[i] == 1) continue;
 				if (pt7302_intstat[i] == 1) {
 					xv7502_setmanuopen[i] = 1;
 					pvPut(xv7502_setmanuopen[i], SYNC);
 				}
 			}
-		}state SSRGInterlock
+			efClear(evPT7502IntStat);
+		}state Step4
+	}
 
-		when(efTestAndClear(evPT7201CV))
+	state Step4
+	{
+		when(efTest(evPT7201CV))
 		{
 			int i = 0;
 			int intCount = 0;
@@ -518,20 +485,41 @@ ss ssSSRInterlock {
 					pvPut(xv7502_setmanuclose[i], SYNC);
 				};
 			}
-		}state SSRGInterlock
+			efClear(evPT7201CV);
+		}state Step5
 
-		when(efTestAndClear(evPT7201IntStat))
+	}
+
+	state Step5
+	{
+		when(efTest(evPT7201IntStat))
 		{
 			int i = 0;
 			for( ; i < idxcount; i++)
 			{
+				//Priority high filter
+				if(xv7201GI_ssr[i] == 1) continue;
 				if (pt7201_intstat[i] == 1) {
 					xv7201_setmanuopen[i] = 1;
 					pvPut(xv7201_setmanuopen[i], SYNC);
 				}
 			}
-		}state SSRGInterlock
+			efClear(evPT7201IntStat);
+		}state GoDelay
+	}
 
+	state GoDelay
+	{
+		when(delay(1.0))
+		{
+			efSet(evPT7201IntStat);
+			efSet(evPT7201CV);
+			efSet(evPT7502IntStat);
+			efSet(evPT7502CV);
+			efSet(evXV7201GI_SSR);
+			efSet(evXV7502GI_SSR);
+
+		}state SSRGInterlock
 	}
 }
 

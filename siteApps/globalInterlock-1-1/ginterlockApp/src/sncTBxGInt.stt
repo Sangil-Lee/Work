@@ -6,41 +6,31 @@ option -a;
 %%#include <math.h> 
 
 
-int tbxGI_setpt[6];
+float tbxGI_setpt[6];
 assign tbxGI_setpt to {
-"SCL31-CDL01:EBx01-CV7501:Setpt", "IF-CDL07:EBx01-CV7501:Setpt",
-"SCL31-CDL01:EBx01-CV7401:Setpt", "SCL31-CDL01:EBx01-CV7402:Setpt",
-"IF-CDL07:EBx01-CV7401:Setpt",    "IF-CDL07:EBx01-CV7402:Setpt"
+"SCL31-CDL01:EBx01-CV7501:Setpt",		"IF-CDL07:EBx01-CV7501:Setpt",
+"SCL31-CDL01:EBx01-CV7401:Setpt",		"SCL31-CDL01:EBx01-CV7402:Setpt",
+"IF-CDL07:EBx01-CV7401:Setpt",			"IF-CDL07:EBx01-CV7402:Setpt"
 };
 
-int cv7501GI_tbx[2];
-assign cv7501GI_tbx to {
+int tbxGI_setmanuclose[2];
+assign tbxGI_setmanuclose to {
+"SCL32-CDL02:VBx01-XV7301:SetManuClose","SCL22-CDL06:VBx25-XV7301:SetManuClose"
+};
+
+int tbx_intstat[8];
+assign tbx_intstat to {
 "SCL31-CDL01:EBx01-CV7501:IntStatTBxPT7506G", "IF-CDL07:EBx01-CV7501:IntStatTBxPT7546G",
 "SCL31-CDL01:EBx01-CV7401:IntStatTBxPT7303G", "SCL31-CDL01:EBx01-CV7402:IntStatTBxPT7303G",
 "IF-CDL07:EBx01-CV7401:IntStatTBxPT7343G",	  "IF-CDL07:EBx01-CV7402:IntStatTBxPT7343G"
-};
-
-monitor cv7501GI_tbx;
-evflag  evCV7502GI_TBX;
-sync cv7501GI_tbx  evCV7502GI_TBX;
-
-
-int xv7301_setmanuclose[2];
-assign xv7301_setmanuclose to {
-"SCL32-CDL02:VBx01-XV7301:SetManuClose", "SCL22-CDL06:VBx25-XV7301:SetManuClose"
-};
-
-
-int xv7301_tbx[2];
-assign xv7301_tbx to {
 "SCL32-CDL02:VBx01-XV7301:IntStatTBxPT7203G", "SCL22-CDL06:VBx25-XV7301:IntStatTBxPT7243G"
 };
 
-monitor xv7301_tbx;
-evflag  evXV7301GI_TBX;
-sync xv7301_tbx  evXV7301GI_TBX;
+monitor tbx_intstat;
+evflag  evTBXIntstat;
+sync tbx_intstat  evTBXIntstat;
 
-int idxcount = 6;
+int idxcount = 8;
 ss ssTBxInterlock {
 	state init {
 		when(TRUE)
@@ -51,29 +41,30 @@ ss ssTBxInterlock {
 
 	state TBxGInterlock
 	{
-		when(efTestAndClear(evCV7502GI_TBX))
+		when(efTest(evTBXIntstat))
 		{
 			int i = 0;
 			for( ; i < idxcount;i++)
 			{
-				if (cv7501GI_tbx[i] == 1) {
+				if (i < 6 && tbx_intstat[i] == 1) {
 					tbxGI_setpt[i] = 0;
 					pvPut(tbxGI_setpt[i], SYNC);
-				} 
+				} else {
+					//Shut-off valve close
+					tbxGI_setmanuclose[i] = 1;
+					pvPut(tbxGI_setmanuclose[i], SYNC);
+				};
 			}
-		} state TBxGInterlock
+			efClear(evTBXIntstat);
+		} state GoDelay
+	}
 
-		when(efTestAndClear(evXV7301GI_TBX))
+	state GoDelay
+	{
+		when(delay(1.0))
 		{
-			int i = 0;
-			for( ; i < 2;i++)
-			{
-				if (xv7301_tbx[i] == 1) {
-					xv7301_setmanuclose[i] = 1;
-					pvPut(xv7301_setmanuclose[i], SYNC);
-				} 
-			}
-		} state TBxGInterlock
+			efSet(evTBXIntstat);
+		}state TBxGInterlock
 	}
 }
 

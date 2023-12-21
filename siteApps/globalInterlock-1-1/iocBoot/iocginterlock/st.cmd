@@ -53,6 +53,9 @@ dbLoadTemplate("db/globalInt_PT7301PT7307.sub")
 ###EBx    
 #dbLoadTemplate("db/globalInt_PT7501CV_EBx.sub")    
 
+###OpOnStat
+dbLoadTemplate("db/globalInt_OpOnStat.sub")    
+
 
 #2023.12.06 New GInterlock PVs
 dbLoadRecords("db/Alias_IntStat.db")

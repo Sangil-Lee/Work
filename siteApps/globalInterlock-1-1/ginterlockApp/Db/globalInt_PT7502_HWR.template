@@ -2,9 +2,9 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "J==1?0:A>B&&A>C&&!(D||E||F||G)&&H&&I?1:0")
+    field(CALC, "J==1?0:K==1?1:A>B&&A>C&&!(D||E||F||G)&&!(H&&I)?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
-    field(INPB, "$(INPB)")
+    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
 	field(INPC, "Cryo-CDL00:TBx01-PT7307:PresR")
     field(INPD, "$(INPD)")
     field(INPE, "$(INPE)")
@@ -13,6 +13,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
     field(INPH, "$(INPH)")
     field(INPI, "$(INPI)")
 	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502DSG")
+	field(INPK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7503G")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff")
     field(OOPT, "Every Time")                                       
@@ -35,8 +36,9 @@ record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBEval") {
     field(SCAN, "Passive")
     field(NELM, "5")
     field(NUSE, "5")
-    field(CALC, "AMIN(AA)<1?0:1")
+	field(CALC, "B==1?0:AMIN(AA)<1?0:1")
     field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff.VAL")    
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
     field(OOPT, "Every Time")
     field(DOPT, "Use CALC")  
 	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7502G")  
@@ -51,6 +53,15 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7502G") {
 	field(VAL, "0")
 }
 
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "1")
+	field(VAL, "0")
+}
+
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502DSG") {
 	field(DESC, "SetIntPT7502DSG")
 	field(SCAN, "Passive")
@@ -60,3 +71,11 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7502DSG") {
 	field(VAL, "0")
 }
 
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)OpOnStat") {
+{
+	field(DESC, "OpOnStat")
+	field(SCAN, "1 second")
+	field(PINI, "YES")
+	field(CALC, "A")
+	field(INPA, "SCL-CDL99:VBx99-XV7502:OpOnStat")
+}

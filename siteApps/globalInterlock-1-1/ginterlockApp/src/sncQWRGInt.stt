@@ -221,16 +221,16 @@ ss ssQWRInterlock {
 	{
 		when(efTest(evPT7503IntStat))
 		{
+			//Priority Low xv7502 opne/close
 			int i = 0;
 			for( ; i < 11; i++)
 			{
+				if (xv7502GI[i] == 1)	continue;
 				if (pt7305_intstat[i] == 1) {
-					xv7502_setmanuclose[i] = 0;
-					pvPut(xv7502_setmanuclose[i], SYNC);
-
-					xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 1;
+					//xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 1;
+					//pvPut(xv7502_setmanusel[i], SYNC);
+					xv7502_setmanuopen[i] = 1;
 					pvPut(xv7502_setmanuopen[i], SYNC);
-					pvPut(xv7502_setmanusel[i], SYNC);
 				}
 			}
 			efClear(evPT7503IntStat);
@@ -245,10 +245,10 @@ ss ssQWRInterlock {
 			int i = 0;
 			for( ; i < 11; i++)
 			{
+				//Priority High xv7502 opne/close
 				if (xv7502GI[i] == 1) {
-					xv7502_setmanusel[i] = xv7502_setmanuclose[i] = 1;
+					xv7502_setmanuclose[i] = 1;
 					pvPut(xv7502_setmanuclose[i], SYNC);
-					pvPut(xv7502_setmanusel[i], SYNC);
 				} else {
 					//only interlock release
 					//xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 0;
@@ -355,6 +355,8 @@ ss ssQWRInterlock {
 			int i = 0;
 			for( ; i < 11; i++)
 			{
+				//Priority low
+				if (xv7301pt7307[i] == 1) continue;
 				if (pt7301[i] == 1) {
 					xv7301_setmanuopen[i] = 1;
 					pvPut(xv7301_setmanuopen[i], SYNC);
