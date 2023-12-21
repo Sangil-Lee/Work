@@ -1,0 +1,16 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)OPOnStat") 
+{                                                                           
+    field(PINI, "YES")        
+    field(SCAN, "0.5 second")
+    field(CALC, "!(A||B||C||D)&&!(E&&F)?1:0")
+    field(INPA, "$(INPA)")
+    field(INPB, "$(INPB)")
+    field(INPC, "$(INPC)")
+    field(INPD, "$(INPD)")
+    field(INPE, "$(INPE)")
+    field(INPF, "$(INPF)")
+
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}

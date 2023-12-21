@@ -103,6 +103,10 @@ DB += globalInt_PT7501CV_EBx.sub
 
 ###TBx
 DB += globalInt_TBx.template
+DB += globalInt_CV7504CV7505_TBx.template
+DB += globalInt_CV7304CV7344_TBx.template
+DB += globalInt_OpOnStatCV7504CV7505_TBx.template
+DB += globalInt_OpOnStatCV7304CV7344_TBx.template
 DB += globalInt_TBx.sub
 
 ###Alias DB
