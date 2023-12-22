@@ -94,24 +94,28 @@ DB += globalInt_PT7301CV_LTS.sub
 DB += globalInt_PT7301_LTS.template
 DB += globalInt_PT7301_LTS.sub
 
-###EDx
-DB += globalInt_PT7501CV_EBx.template
-DB += globalInt_PT7501CV_EBx_IntStat.template
-DB += globalInt_PT7501CV_EBx.sub
+###EBx
+#DB += globalInt_PT7501CV_EBx.template
+#DB += globalInt_PT7501CV_EBx_IntStat.template
+#DB += globalInt_PT7501CV_EBx.sub
+###New EBx
+DB += globalInt_EBx.template
+DB += globalInt_EBx.sub
 
 ###VBx-TBx Vacuum
+DB += globalInt_VBxVac.db
 
 ###TBx
 DB += globalInt_TBx.template
-DB += globalInt_CV7504CV7505_TBx.template
+DB += globalInt_CV7504CV7545_TBx.template
 DB += globalInt_CV7304CV7344_TBx.template
 DB += globalInt_OpOnStatCV7504CV7505_TBx.template
 DB += globalInt_OpOnStatCV7304CV7344_TBx.template
 DB += globalInt_TBx.sub
 
 ###Alias DB
-#DB += Alias_IntStat.db
-#DB += Alias_SetInt.db
+DB += Alias_IntStat.db
+DB += Alias_SetInt.db
 
 ####for Simulation#########
 #DB += biSim.template

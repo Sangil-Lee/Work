@@ -6,7 +6,39 @@ option -a;
 %%#include <math.h> 
 
 
-int idxcount = 13;
+int shutoff_valve[6];
+assign shutoff_valve to {
+"Cryo-CDL00:TBx01-XV7501:SetManuClose", "Cryo-CDL00:TBx01-XV7541:SetManuClose",
+"Cryo-CDL00:TBx01-XV7541:SetManuClose", "Cryo-CDL00:TBx01-XV7401:SetManuClose",
+"Cryo-CDL00:TBx01-XV7441:SetManuClose", "Cryo-CDL00:TBx01-XV7441:SetManuClose"
+};
+
+float control_valve[9];
+assign control_valve to {
+"Cryo-CDL00:TBx01-CV7502:Setpt", "Cryo-CDL00:TBx01-CV7582:Setpt",
+"Cryo-CDL00:TBx01-CV7541:Setpt", "Cryo-CDL00:TBx01-CV7582:Setpt",
+"Cryo-CDL00:TBx01-CV7541:Setpt", "Cryo-CDL00:TBx01-CV7581:Setpt",
+"Cryo-CDL00:TBx01-CV7482:Setpt", "Cryo-CDL00:TBx01-CV7482:Setpt",
+"Cryo-CDL00:TBx01-CV7481:Setpt"
+};
+
+int ebx_intstat[15];
+assign ebx_intstat to {
+"Cryo-CDL00:TBx01-XV7501:IntStatSCL3EBxPT7501G", "Cryo-CDL00:TBx01-XV7541:IntStatSCL3EBxPT7501G",
+"Cryo-CDL00:TBx01-XV7541:IntStatSCL2EBxPT7501G", "Cryo-CDL00:TBx01-XV7401:IntStatSCL3EBxPT7401G",
+"Cryo-CDL00:TBx01-XV7441:IntStatSCL3EBxPT7401G", "Cryo-CDL00:TBx01-XV7441:IntStatSCL2EBxPT7401G",
+
+"Cryo-CDL00:TBx01-CV7502:IntStatSCL3EBxPT7501G", "Cryo-CDL00:TBx01-CV7582:IntStatSCL3EBxPT7501G",
+"Cryo-CDL00:TBx01-CV7541:IntStatSCL3EBxPT7501G", "Cryo-CDL00:TBx01-CV7582:IntStatSCL3EBxPT7501G",
+"Cryo-CDL00:TBx01-CV7541:IntStatSCL2EBxPT7501G", "Cryo-CDL00:TBx01-CV7581:IntStatSCL2EBxPT7501G",
+"Cryo-CDL00:TBx01-CV7482:IntStatSCL3EBxPT7401G", "Cryo-CDL00:TBx01-CV7482:IntStatSCL3EBxPT7401G",
+"Cryo-CDL00:TBx01-CV7481:IntStatSCL2EBxPT7401G"
+};
+monitor ebx_intstat;
+evflag	evEBXIntstat;
+sync	ebx_intstat evEBXIntstat;
+
+int idxcount = 15;
 ss ssEBxInterlock {
 	state init {
 		when(TRUE)
@@ -17,8 +49,29 @@ ss ssEBxInterlock {
 
 	state EBxGInterlock
 	{
-		when(TRUE)
+		when(efTest(evEBXIntstat))
 		{
+			int i = 0;
+			for(; i < idxcount; i++)
+			{
+				if(i < 6 && ebx_intstat[i] == 1) {
+					shutoff_valve[i] = 1;
+					pvPut(shutoff_valve[i], SYNC);
+				} else {
+					control_valve[i] = 0;
+					pvPut(control_valve[i], SYNC);
+				};
+			};
+
+			efClear(evEBXIntstat);
+		} state GoDelay
+	}
+
+	state GoDelay
+	{
+		when(delay(1.0))
+		{
+			efClear(evEBXIntstat);
 		} state EBxGInterlock
 	}
 }

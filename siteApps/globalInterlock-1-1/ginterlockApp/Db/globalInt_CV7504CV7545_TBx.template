@@ -1,0 +1,74 @@
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc") 
+{                                                                           
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "J==1?0:K==1?1:A>=B&&A>=C&&!(D||E||F)&&!(G&&H&&I)?1:0")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
+    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
+	field(INPC, "Cryo-CDL00:TBx01-PT7381:PresR")
+	field(INPD, "Cryo-CDL00:TBx01-CV7304:Setpt")
+	field(INPE, "Cryo-CDL00:TBx01-CV7344:Setpt")
+	field(INPF, "Cryo-CDL00:TBx01-CV7545:Setpt")
+	field(INPG, "SCL-CDL99:VBx99-XV7502:CPStat")
+	field(INPH, "SCL-CDL99:VBx99-XV7201:CPStat")
+    field(INPI, "SCL-CDL99:VBx99-XV7301:CPStat")
+
+	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(SETINT)")
+	field(INPK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(INTSTAT)")
+
+    field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff") {    
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+    field(INP,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval")
+}
+
+    
+record(acalcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+	field(CALC, "B==1?0:AMIN(AA)<1?0:1")
+    field(INAA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntABuff.VAL")    
+	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+	field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(INTSTAT)")  
+}                            
+
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(INTSTAT)") {
+	field(DESC, "$(INTSTAT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntAEval")
+	field(VAL, "0")
+}
+
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "1")
+	field(VAL, "0")
+}
+
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(SETINT)") {
+	field(DESC, "$(SETINT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(VAL, "0")
+}

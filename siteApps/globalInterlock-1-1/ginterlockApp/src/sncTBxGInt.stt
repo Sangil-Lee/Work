@@ -6,26 +6,41 @@ option -a;
 %%#include <math.h> 
 
 
-float tbxGI_setpt[6];
-assign tbxGI_setpt to {
-"SCL31-CDL01:EBx01-CV7501:Setpt",		"IF-CDL07:EBx01-CV7501:Setpt",
-"SCL31-CDL01:EBx01-CV7401:Setpt",		"SCL31-CDL01:EBx01-CV7402:Setpt",
-"IF-CDL07:EBx01-CV7401:Setpt",			"IF-CDL07:EBx01-CV7402:Setpt"
+float Etc_setpt[6];
+assign Etc_setpt to {
+	"SCL31-CDL01:EBx01-CV7501:Setpt",		"IF-CDL07:EBx01-CV7501:Setpt",
+	"SCL31-CDL01:EBx01-CV7401:Setpt",		"SCL31-CDL01:EBx01-CV7402:Setpt",
+	"IF-CDL07:EBx01-CV7401:Setpt",			"IF-CDL07:EBx01-CV7402:Setpt"
 };
 
-int tbxGI_setmanuclose[2];
-assign tbxGI_setmanuclose to {
-"SCL32-CDL02:VBx01-XV7301:SetManuClose","SCL22-CDL06:VBx25-XV7301:SetManuClose"
+int Etc_setmanuclose[2];
+assign Etc_setmanuclose to {
+	"SCL32-CDL02:VBx01-XV7301:SetManuClose","SCL22-CDL06:VBx25-XV7301:SetManuClose"
 };
 
-int tbx_intstat[8];
+int etc_intstat[8];
+assign etc_intstat to {
+	"SCL31-CDL01:EBx01-CV7501:IntStatTBxPT7506G", "IF-CDL07:EBx01-CV7501:IntStatTBxPT7546G",
+	"SCL31-CDL01:EBx01-CV7401:IntStatTBxPT7303G", "SCL31-CDL01:EBx01-CV7402:IntStatTBxPT7303G",
+	"IF-CDL07:EBx01-CV7401:IntStatTBxPT7343G",	  "IF-CDL07:EBx01-CV7402:IntStatTBxPT7343G"
+	"SCL32-CDL02:VBx01-XV7301:IntStatTBxPT7203G", "SCL22-CDL06:VBx25-XV7301:IntStatTBxPT7243G"
+};
+
+monitor etc_intstat;
+evflag  evETCIntstat;
+sync etc_intstat  evETCIntstat;
+
+float Tbx_setpt[4];
+assign Tbx_setpt to {
+	"Cryo-CDL000:TBx01-CV7504:Setpt", "Cryo-CDL00:TBx01-CV7545:Setpt",
+	"Cryo-CDL000:TBx01-CV7304:Setpt", "Cryo-CDL00:TBx01-CV7344:Setpt"
+};
+
+int tbx_intstat[4];
 assign tbx_intstat to {
-"SCL31-CDL01:EBx01-CV7501:IntStatTBxPT7506G", "IF-CDL07:EBx01-CV7501:IntStatTBxPT7546G",
-"SCL31-CDL01:EBx01-CV7401:IntStatTBxPT7303G", "SCL31-CDL01:EBx01-CV7402:IntStatTBxPT7303G",
-"IF-CDL07:EBx01-CV7401:IntStatTBxPT7343G",	  "IF-CDL07:EBx01-CV7402:IntStatTBxPT7343G"
-"SCL32-CDL02:VBx01-XV7301:IntStatTBxPT7203G", "SCL22-CDL06:VBx25-XV7301:IntStatTBxPT7243G"
+	"Cryo-CDL000:TBx01-CV7504:IntStatPT7506G", "Cryo-CDL00:TBx01-CV7545:IntStatPT7546G",
+	"Cryo-CDL000:TBx01-CV7304:IntStatPT7303G", "Cryo-CDL00:TBx01-CV7344:IntStatPT7343G"
 };
-
 monitor tbx_intstat;
 evflag  evTBXIntstat;
 sync tbx_intstat  evTBXIntstat;
@@ -41,20 +56,36 @@ ss ssTBxInterlock {
 
 	state TBxGInterlock
 	{
-		when(efTest(evTBXIntstat))
+		when(efTest(evETCIntstat))
 		{
 			int i = 0;
 			for( ; i < idxcount;i++)
 			{
-				if (i < 6 && tbx_intstat[i] == 1) {
-					tbxGI_setpt[i] = 0;
-					pvPut(tbxGI_setpt[i], SYNC);
+				if (i < 6 && etc_intstat[i] == 1) {
+					Etc_setpt[i] = 0;
+					pvPut(Etc_setpt[i], SYNC);
 				} else {
 					//Shut-off valve close
-					tbxGI_setmanuclose[i] = 1;
-					pvPut(tbxGI_setmanuclose[i], SYNC);
+					Etc_setmanuclose[i] = 1;
+					pvPut(Etc_setmanuclose[i], SYNC);
 				};
 			}
+			efClear(evETCIntstat);
+		} state Step1
+	}
+
+	state Step1
+	{
+		when(efTest(evTBXIntstat))
+		{
+			int i = 0;
+			for( ; i < 4;i++)
+			{
+				if (tbx_intstat[i] == 1) {
+					Tbx_setpt[i] = 0;
+					pvPut(Tbx_setpt[i], SYNC);
+				} ;
+			};
 			efClear(evTBXIntstat);
 		} state GoDelay
 	}
@@ -63,6 +94,7 @@ ss ssTBxInterlock {
 	{
 		when(delay(1.0))
 		{
+			efSet(evETCIntstat);
 			efSet(evTBXIntstat);
 		}state TBxGInterlock
 	}
