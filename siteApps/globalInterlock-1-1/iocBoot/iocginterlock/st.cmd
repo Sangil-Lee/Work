@@ -22,49 +22,51 @@ ginterlock_registerRecordDeviceDriver pdbbase
 ###dbLoadTemplate("db/GInt.sub")
 
 ###QWR
-dbLoadTemplate("db/globalIntWF.sub")
-dbLoadTemplate("db/globalInt_PT7503.sub")
-dbLoadTemplate("db/globalInt_PT7301.sub")
-dbLoadTemplate("db/globalInt_PT7503PT7307.sub")
-dbLoadTemplate("db/globalInt_PT7503CV.sub")
-dbLoadTemplate("db/globalInt_PT7301CV.sub")
-dbLoadTemplate("db/globalInt_PT7301PT7307.sub")
-
-####HWR    
-#dbLoadTemplate("db/globalInt_PT7502PT7201_HWR.sub")    
-#dbLoadTemplate("db/globalInt_PT7502_HWR.sub")    
-#dbLoadTemplate("db/globalInt_PT7502CV_HWR.sub")    
-#dbLoadTemplate("db/globalInt_PT7201CV_HWR.sub")    
+#dbLoadTemplate("db/globalIntWF.sub")
+#dbLoadTemplate("db/globalInt_PT7503.sub")
+#dbLoadTemplate("db/globalInt_PT7301.sub")
+#dbLoadTemplate("db/globalInt_PT7503PT7307.sub")
+#dbLoadTemplate("db/globalInt_PT7503CV.sub")
+#dbLoadTemplate("db/globalInt_PT7301CV.sub")
+#dbLoadTemplate("db/globalInt_PT7301PT7307.sub")
+#
+#####HWR    
+##dbLoadTemplate("db/globalInt_PT7502PT7201_HWR.sub")    
+##dbLoadTemplate("db/globalInt_PT7502_HWR.sub")    
+##dbLoadTemplate("db/globalInt_PT7502CV_HWR.sub")    
+##dbLoadTemplate("db/globalInt_PT7201CV_HWR.sub")    
+##    
+#####SSR    
+##dbLoadTemplate("db/globalInt_PT7502PT7201_SSR.sub")    
+##dbLoadTemplate("db/globalInt_PT7502CV_SSR.sub")    
+##dbLoadTemplate("db/globalInt_PT7502_SSR.sub")    
+##dbLoadTemplate("db/globalInt_PT7201CV_SSR.sub")    
+##dbLoadTemplate("db/globalInt_PT7201_SSR.sub")    
+##    
+#####LTS    
+##dbLoadTemplate("db/globalInt_PT7502PT7301_LTS.sub")    
+##dbLoadTemplate("db/globalInt_PT7502CV_LTS.sub")    
+##dbLoadTemplate("db/globalInt_PT7502_LTS.sub")    
+##dbLoadTemplate("db/globalInt_PT7301CV_LTS.sub")    
+##dbLoadTemplate("db/globalInt_PT7301_LTS.sub")    
 #    
-####SSR    
-#dbLoadTemplate("db/globalInt_PT7502PT7201_SSR.sub")    
-#dbLoadTemplate("db/globalInt_PT7502CV_SSR.sub")    
-#dbLoadTemplate("db/globalInt_PT7502_SSR.sub")    
-#dbLoadTemplate("db/globalInt_PT7201CV_SSR.sub")    
-#dbLoadTemplate("db/globalInt_PT7201_SSR.sub")    
-#    
-####LTS    
-#dbLoadTemplate("db/globalInt_PT7502PT7301_LTS.sub")    
-#dbLoadTemplate("db/globalInt_PT7502CV_LTS.sub")    
-#dbLoadTemplate("db/globalInt_PT7502_LTS.sub")    
-#dbLoadTemplate("db/globalInt_PT7301CV_LTS.sub")    
-#dbLoadTemplate("db/globalInt_PT7301_LTS.sub")    
-    
-###EBx    
-#dbLoadTemplate("db/globalInt_PT7501CV_EBx.sub")    
+####EBx    
+##dbLoadTemplate("db/globalInt_PT7501CV_EBx.sub")    
+#
+####OpOnStat
+#dbLoadTemplate("db/globalInt_OpOnStat.sub")    
 
-###OpOnStat
-dbLoadTemplate("db/globalInt_OpOnStat.sub")    
+dbLoadTemplate("db/globalInt_TBxVac.sub")    
 
 
 #2023.12.06 New GInterlock PVs
-dbLoadRecords("db/Alias_IntStat.db")
-dbLoadRecords("db/Alias_SetInt.db")
+#dbLoadRecords("db/Alias_IntStat.db")
+#dbLoadRecords("db/Alias_SetInt.db")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-seq sncGLInterlockWF
+#seq sncGLInterlockWF
 #seq sncQWRGInt
