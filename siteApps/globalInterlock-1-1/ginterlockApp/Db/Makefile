@@ -103,9 +103,9 @@ DB += globalInt_EBx.template
 DB += globalInt_EBx.sub
 
 ###VBx-TBx Vacuum
-DB += globalInt_VBxVac.db
-DB += globalInt_TBxVac.template
-DB += globalInt_TBxVac.sub
+#DB += globalInt_VBxVac.db
+DB += globalInt_VBxVacSCL3SCL2.db
+DB += globalInt_VBxVacSCL2SCL2.db
 
 ###TBx
 DB += globalInt_TBx.template

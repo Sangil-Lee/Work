@@ -1,0 +1,137 @@
+record(calcout, "IF-CDL99:VBx02EBx01-PT7101:VacIntCalc")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>=0.05)&&(B>=0.5)?1:0")
+    field(INPA, "IF-CDL07:VBx02-PT7101:PresR")
+    field(INPB, "IF-CDL07:VBx04-PT7101:PresR")
+	field(FLNK, "IF-CDL99:VBx01-PT7101PT7105:VacIntCalc")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "IF-CDL99:VBx01-PT7101PT7105:VacIntCalc")
+{
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(CALC, "(A>=0.05)&&(B>=0.5)?1:0")
+    field(INPA, "IF-CDL07:VBx01-PT7101:PresR")
+    field(INPB, "IF-CDL07:VBx01-PT7105:PresR")
+	field(FLNK, "SCL22-CDL06:VBx24VBx25-PT7101:VacIntCalc")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "SCL22-CDL06:VBx24VBx25-PT7101:VacIntCalc")
+{
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(CALC, "(A>=0.05)&&(B>=0.5)?1:0")
+    field(INPA, "SCL22-CDL06:VBx24-PT7101:PresR")
+    field(INPB, "SCL22-CDL06:VBx25-PT7101:PresR")
+	field(FLNK, "P2DTSCL21-CDL99:VBx02VBx23-PT7101:VacIntCalc")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "P2DTSCL21-CDL99:VBx02VBx23-PT7101:VacIntCalc")
+{
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(CALC, "(A>=0.05)&&(B>=0.5)?1:0")
+    field(INPA, "P2DT-CDL04:VBx02-PT7101:PresR")
+    field(INPB, "SCL21-CDL05:VBx23-PT7101:PresR")
+	field(FLNK, "SCL22-CDL06:VBx01VBx23-PT7101:VacIntCalc")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "SCL22-CDL06:VBx01VBx23-PT7101:VacIntCalc")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>=0.05)&&(B>=0.5)?1:0")
+    field(INPA, "SCL22-CDL06:VBx01-PT7101:PresR")
+    field(INPB, "SCL22-CDL06:VBx23-PT7101:PresR")
+	field(FLNK, "IF-CDL99:VBx99-PT7101PT7105:VacIntEval")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "IF-CDL99:VBx99-PT7101PT7105:VacIntEval")
+{
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(CALC, "G==1?0:H==1?1:(A||B||C||D||E)?1:0")
+
+	field(INPA, "SCL22-CDL06:VBx01VBx23-PT7101:VacIntCalc")
+	field(INPB, "P2DTSCL21-CDL99:VBx02VBx23-PT7101:VacIntCalc")
+	field(INPC, "SCL22-CDL06:VBx24VBx25-PT7101:VacIntCalc")
+	field(INPD, "IF-CDL99:VBx01-PT7101PT7105:VacIntCalc")
+	field(INPE, "IF-CDL99:VBx02EBx01-PT7101:VacIntCalc")
+
+	field(INPG, "IF-CDL99:VBx99-PT7101PT7105:SetIntPT7101DSG")
+	field(INPH, "IF-CDL99:VBx99-PT7101PT7105:IntStatPT7101G")
+
+    field(FLNK, "IF-CDL99:VBx99-PT7101PT7105:VacIntBuff")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "IF-CDL99:VBx99-PT7101PT7105:VacIntBuff")
+{
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+	field(INP, "IF-CDL99:VBx99-PT7101PT7105:VacIntEval")
+	field(FLNK, "IF-CDL99:VBx99-PT7101PT7105:CalcEval")
+}
+
+record(acalcout, "IF-CDL99:VBx99-PT7101PT7105:CalcEval") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+    field(CALC, "B==1?0:AMIN(AA)<1?0:1")
+    field(INAA, "IF-CDL99:VBx99-PT7101PT7105:VacIntBuff.VAL")
+	field(INPB, "IF-CDL99:VBx99-PT7101PT7105:SetIntRstG")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+	field(FLNK, "IF-CDL99:VBx99-PT7101PT7105:IntStatPT7101G")
+}                            
+
+record(calcout, "IF-CDL99:VBx99-PT7101PT7105:IntStatPT7101G")
+{
+	field(DESC, "IntStatPT7101G")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA, "IF-CDL99:VBx99-PT7101PT7105:CalcEval")
+	field(VAL, "0")
+}
+
+record(bo, "IF-CDL99:VBx99-PT7101PT7105:SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "1")
+	field(VAL, "0")
+}
+
+record(bi, "IF-CDL99:VBx99-PT7101PT7105:SetIntPT7101DSG") {
+	field(DESC, "SetIntPT7101DSG")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(VAL, "0")
+}
+

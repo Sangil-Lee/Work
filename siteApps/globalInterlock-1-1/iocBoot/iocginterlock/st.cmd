@@ -55,8 +55,10 @@ ginterlock_registerRecordDeviceDriver pdbbase
 #
 ####OpOnStat
 #dbLoadTemplate("db/globalInt_OpOnStat.sub")    
-
 dbLoadTemplate("db/globalInt_TBxVac.sub")    
+
+dbLoadRecords("db/globalInt_VBxVacSCL3SCL2.db")
+dbLoadRecords("db/globalInt_VBxVacSCL2SCL2.db")
 
 
 #2023.12.06 New GInterlock PVs

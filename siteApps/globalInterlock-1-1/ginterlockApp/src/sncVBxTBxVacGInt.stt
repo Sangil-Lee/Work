@@ -6,6 +6,7 @@ option -a;
 %%#include <math.h> 
 
 float scl3_control_valve[163];
+int scl3_control_valve_cnt = sizeof(scl3_control_valve)/sizeof(scl3_control_valve[0]);
 assign scl3_control_valve to {
 	"SCL31-CDL01:VBx02-CV7501:Setpt", "SCL31-CDL01:VBx04-CV7501:Setpt", "SCL31-CDL01:VBx06-CV7501:Setpt", "SCL31-CDL01:VBx08-CV7501:Setpt",
 	"SCL31-CDL01:VBx10-CV7501:Setpt", "SCL31-CDL01:VBx12-CV7501:Setpt", "SCL31-CDL01:VBx14-CV7501:Setpt", "SCL31-CDL01:VBx16-CV7501:Setpt",
@@ -51,6 +52,7 @@ assign scl3_control_valve to {
 };
 
 int scl3scl3_shutoff_valve[48];
+int scl3scl3_shutoff_valve_cnt = sizeof(scl3scl3_shutoff_valve)/sizeof(scl3scl3_shutoff_valve[0]);
 assign scl3scl3_shutoff_valve to {
 	"Cryo-CDL00:TBx01-XV7501:SetManuClose", "Cryo-CDL00:TBx01-XV7502:SetManuClose",
 	"Cryo-CDL00:TBx01-XV7401:SetManuClose", "Cryo-CDL00:TBx01-XV7301:SetManuClose",
@@ -79,6 +81,7 @@ assign scl3scl3_shutoff_valve to {
 };
 
 int scl2scl3_shutoff_valve[48];
+int scl2scl3_shutoff_valve_cnt = sizeof(scl2scl3_shutoff_valve)/sizeof(scl2scl3_shutoff_valve[0]);
 assign scl2scl3_shutoff_valve to {
 	"Cryo-CDL00:TBx01-XV7541:SetManuClose", "Cryo-CDL00:TBx01-XV7543:SetManuClose",
 	"Cryo-CDL00:TBx01-XV7441:SetManuClose", "Cryo-CDL00:TBx01-XV7341:SetManuClose",
@@ -107,6 +110,7 @@ assign scl2scl3_shutoff_valve to {
 };
 
 int scl2scl2_shutoff_valve[65];
+int scl2scl2_shutoff_valve_cnt = sizeof(scl2scl2_shutoff_valve)/sizeof(scl2scl2_shutoff_valve[0]);
 assign scl2scl2_shutoff_valve to {
 	"Cryo-CDL00:TBx01-XV7541:SetManuClose", "Cryo-CDL00:TBx01-XV7543:SetManuClose", "Cryo-CDL00:TBx01-XV7441:SetManuClose", "Cryo-CDL00:TBx01-XV7341:SetManuClose",
 	"Cryo-CDL00:TBx01-XV7241:SetManuClose", 
@@ -128,6 +132,7 @@ assign scl2scl2_shutoff_valve to {
 };
 
 float ssr_control_valve[247];
+int ssr_control_valve_cnt = sizeof(ssr_control_valve)/sizeof(ssr_control_valve[0]);
 assign ssr_control_valve to {
 	"SCL21-CDL05:VBx01-CV7501:Setpt", "SCL21-CDL05:VBx02-CV7501:Setpt", "SCL21-CDL05:VBx03-CV7501:Setpt", "SCL21-CDL05:VBx04-CV7501:Setpt",
 	"SCL21-CDL05:VBx05-CV7501:Setpt", "SCL21-CDL05:VBx06-CV7501:Setpt", "SCL21-CDL05:VBx07-CV7501:Setpt", "SCL21-CDL05:VBx08-CV7501:Setpt",
@@ -195,16 +200,26 @@ assign ssr_control_valve to {
 
 int tbxvac_intstat[9];
 assign tbxvac_intstat to {
-	"IntStatPT710174017501G", "IntStatPT714174417541G",
-	"IntStatPT714174417541G", "IntStatPT710274037503G",
-	"IntStatPT710274037503G", "IntStatPT714274437543G",
-	"IntStatPT718174017501G", "IntStatPT718174417541G",
-	"IntStatPT718174417541G"
+	"Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT710174017501G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT714174417541G",
+	"Cryo-CDL00:TBx01-SCL2SCL2:IntStatPT714174417541G", "Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT710274037503G",
+	"Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT710274037503G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT714274437543G",
+	"Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT718174017501G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT718174417541G",
+	"Cryo-CDL00:TBx01-SCL2SCL2:IntStatPT718174417541G"
+
 };
 
 monitor tbxvac_intstat;
 evflag	evTBXVACIntStat;
 sync tbxvac_intstat	evTBXVACIntStat;
+
+
+int vbxvac_intstat[2];
+assign vbxvac_intstat to {
+"IF-CDL99:VBx99-PT7101PT7105:IntStatPT7101G", "SCL-CDL99:VBx99-PT7101:IntStatPT7101G"
+};
+monitor vbxvac_intstat;
+evflag	evVBXVACIntStat;
+sync vbxvac_intstat	evVBXVACIntStat;
 
 
 int idxcount = 9;
@@ -215,29 +230,73 @@ ss ssVBxTBxVacInterlock {
 			
 		}state VBxTBxVacGInterlock 
 	}
+/*
+ssr_control_valve_cnt
+scl2scl2_shutoff_valve_cnt
+scl2scl3_shutoff_valve_cnt
+scl3scl3_shutoff_valve_cnt
+scl3_control_valve_cnt
+*/
 
 	state VBxTBxVacGInterlock
 	{
-		when(efTest(evTBXVACIntStat))
+		when(tbxvac_intstat[0] ==1 ||tbxvac_intstat[3] ==1 || tbxvac_intstat[6] ==1 || vbxvac_intstat[0] == 1)
 		{
 			int i = 0;
-			for(; i<idxcount;i++)
+			for(; i < scl3scl3_shutoff_valve_cnt;i++)
 			{
-				if(tbxvac_intstat[i] == 1)
-				{
-
-				};
+				scl3scl3_shutoff_valve[i] = 1;
+				pvPut(scl3scl3_shutoff_valve[i], SYNC);
 			};
 
-			efClear(evTBXVACIntStat);
-		} state VBxTBxVacGInterlock
+			for( i = 0; i < scl3_control_valve_cnt;i++)
+			{
+				scl3_control_valve[i] = 0;
+				pvPut(scl3_control_valve[i], SYNC);
+			}
+
+		} state GoDelay
+
+		when(tbxvac_intstat[1] ==1 ||tbxvac_intstat[4] ==1 || tbxvac_intstat[7] ==1)
+		{
+			int i = 0;
+			for(; i < scl2scl3_shutoff_valve_cnt;i++)
+			{
+				scl2scl3_shutoff_valve[i] = 1;
+				pvPut(scl2scl3_shutoff_valve[i], SYNC);
+			};
+
+			for( i = 0; i < scl3_control_valve_cnt;i++)
+			{
+				scl3_control_valve[i] = 0;
+				pvPut(scl3_control_valve[i], SYNC);
+			}
+
+		} state GoDelay
+
+		when(tbxvac_intstat[2] ==1 ||tbxvac_intstat[5] ==1 || tbxvac_intstat[8] ==1 || vbxvac_intstat[0] == 1)
+		{
+			int i = 0;
+			for(; i < scl2scl2_shutoff_valve_cnt;i++)
+			{
+				scl2scl2_shutoff_valve[i] = 1;
+				pvPut(scl2scl2_shutoff_valve[i], SYNC);
+			};
+
+			for( i = 0; i < ssr_control_valve_cnt;i++)
+			{
+				ssr_control_valve[i] = 0;
+				pvPut(ssr_control_valve[i], SYNC);
+			}
+
+		} state GoDelay
+
 	}
 
 	state GoDelay
 	{
 		when(delay(1.0))
 		{
-			efSet(evTBXVACIntStat);
 		}state VBxTBxVacGInterlock
 	}
 }
