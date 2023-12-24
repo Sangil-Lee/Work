@@ -1,0 +1,8 @@
+* Diamond Lightsource(https://pypi.org/project/aapy or github.com/dls-controls/aapy)
+*  pip install aapy
+*  Higher Python 3.7
+*  Protocol Buffer(protoc >= 3.19),
+*  debian11(bullseye) default protoc = 3.12.4
+*  export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python, 
+	(For pure ProtocolBuffer’ python module)
+(but this will use pure-Python parsing then will be much slower).
