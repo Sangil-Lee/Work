@@ -98,6 +98,7 @@ DB += globalInt_PT7301_LTS.sub
 #DB += globalInt_PT7501CV_EBx.template
 #DB += globalInt_PT7501CV_EBx_IntStat.template
 #DB += globalInt_PT7501CV_EBx.sub
+
 ###New EBx
 DB += globalInt_EBx.template
 DB += globalInt_EBx.sub

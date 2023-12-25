@@ -12,7 +12,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
     field(INPG, "$(INPG)")
     field(INPH, "$(INPH)")
     field(INPI, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7201DSG")
-	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G") {
+	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff")
     field(OOPT, "Every Time")                                       
@@ -72,7 +72,6 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7201DSG") {
 }
 
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)OpOnStat") {
-{
 	field(DESC, "OpOnStat")
 	field(SCAN, "1 second")
 	field(PINI, "YES")

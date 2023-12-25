@@ -1,5 +1,4 @@
-record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc") 
-{                                                                           
+record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc") {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
     field(CALC, "I==1?0:J==1?1:A>B&&A>C&&!(D||E||F||G)&&!H?1:0")
@@ -12,7 +11,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBCalc")
     field(INPG, "$(INPG)")
     field(INPH, "$(INPH)")
     field(INPI, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301DSG")
-	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G") {
+	field(INPJ, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)IntStatPT7301G")
 
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntBBuff")
     field(OOPT, "Every Time")                                       
@@ -71,7 +70,6 @@ record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7301DSG") {
 }
 
 record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)OpOnStat") {
-{
 	field(DESC, "OpOnStat")
 	field(SCAN, "1 second")
 	field(PINI, "YES")
