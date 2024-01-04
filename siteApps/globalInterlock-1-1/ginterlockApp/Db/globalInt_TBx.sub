@@ -10,12 +10,6 @@ file "db/globalInt_TBx.template" { pattern
 {Cryo,		-CDL00:,		TBx01,		-PT7243:,   A,			IntStatTBxPT7243G,		SetIntTBxPT7243DSG,		"SCL22-CDL06:VBx25-XV7301:"	}
 }
 
-file "db/globalInt_CV7504CV7505_TBx.template" { pattern
-{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1,	SETINT,					INTSTAT				}
-{Cryo,		-CDL00:,		TBx01,		-PT7506:,	-CV7504:,	"SetIntPT7506DSG",		"IntStatPT7506G"	}	
-{Cryo,		-CDL00:,		TBx01,		-PT7546:,	-CV7545:,	"SetIntPT7546DSG",		"IntStatPT7546G"	}	
-}
-
 file "db/globalInt_CV7304CV7344_TBx.template" { pattern
 {SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1,	SETINT,					INTSTAT				}
 {Cryo,		-CDL00:,		TBx01,		-PT7303:,	-CV7304:,	"SetIntPT7303DSG",		"IntStatPT7303G"	}	
@@ -23,15 +17,14 @@ file "db/globalInt_CV7304CV7344_TBx.template" { pattern
 
 }
 
-file "db/globalInt_OpOnStatCV7504CV7505_TBx.template" { pattern
-{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1			}
-{Cryo,		-CDL00:,		TBx01,		-PT7506:,	-CV7504:		}	
-{Cryo,		-CDL00:,		TBx01,		-PT7546:,	-CV7545:		}	
+file "db/globalInt_OpOnStatCV7504CV7545_TBx.template" { pattern
+{SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1,	SUBDEV2,	SUBDEV3,	SUBDEV4		}
+{Cryo,		-CDL00:,		TBx01,		-PT7506:,	-CV7504:,	-CV7304:,	-CV7344:,	-CV7545:	}	
+{Cryo,		-CDL00:,		TBx01,		-PT7546:,	-CV7545:,	-CV8304:,	-CV7344:,	-CV7504:	}	
 }
 
 file "db/globalInt_OpOnStatCV7304CV7344_TBx.template" { pattern
 {SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1			}
-{Cryo,		-CDL00:,		TBx01,		-PT7546:,	-CV7545:		}	
 {Cryo,		-CDL00:,		TBx01,		-PT7303:,	-CV7304:		}	
 {Cryo,		-CDL00:,		TBx01,		-PT7343:,	-CV7344:		}	
 }

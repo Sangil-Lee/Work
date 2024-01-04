@@ -4,7 +4,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt$(INNER)Calc")
     field(SCAN, "1 second")
     field(CALC, "C==1?0:D==1?1:A>B?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
-    field(INPB, "$(INPB)")
+    field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPB)")
 	field(INPC, "$(SUBPV)$(SETINT)")
 	field(INPD, "$(SUBPV)$(INTSTAT)")
     field(FLNK,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GInt$(INNER)Buff")
@@ -62,4 +62,3 @@ record(bi, "$(SUBPV)$(SETINT)") {
 	field(ONAM, "Disable")
 	field(VAL, "0")
 }
-

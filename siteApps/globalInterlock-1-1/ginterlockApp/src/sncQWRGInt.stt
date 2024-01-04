@@ -229,6 +229,8 @@ ss ssQWRInterlock {
 				if (pt7305_intstat[i] == 1) {
 					//xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 1;
 					//pvPut(xv7502_setmanusel[i], SYNC);
+					xv7502_setmanuclose[i] = 0;
+					pvPut(xv7502_setmanuclose[i], SYNC);
 					xv7502_setmanuopen[i] = 1;
 					pvPut(xv7502_setmanuopen[i], SYNC);
 				}
@@ -247,12 +249,11 @@ ss ssQWRInterlock {
 			{
 				//Priority High xv7502 opne/close
 				if (xv7502GI[i] == 1) {
+					xv7502_setmanuopen[i] = 0;
+					pvPut(xv7502_setmanuopen[i], SYNC);
 					xv7502_setmanuclose[i] = 1;
 					pvPut(xv7502_setmanuclose[i], SYNC);
-				} else {
-					//only interlock release
-					//xv7502_setmanusel[i] = xv7502_setmanuopen[i] = 0;
-				}
+				};
 			}
 			efClear(evXV7502GI);
 			//printf("Step1\n");
@@ -267,12 +268,11 @@ ss ssQWRInterlock {
 			for( ; i < 11; i++)
 			{
 				if (xv7301pt7307[i] == 1) {
-					xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 1;
-				} else {
-					xv7301_setmanusel[i] = xv7301_setmanuclose[i] = 0;
+					xv7301_setmanuopen[i] = 0;
+					pvPut(xv7301_setmanuopen[i], SYNC);
+					xv7301_setmanuclose[i] = 1;
+					pvPut(xv7301_setmanuclose[i], SYNC);
 				}
-				pvPut(xv7301_setmanuclose[i], SYNC);
-				pvPut(xv7301_setmanusel[i], SYNC);
 			}
 		efClear(evXV7301PT7307);
 		//printf("Step2\n");
@@ -360,6 +360,8 @@ ss ssQWRInterlock {
 				if (pt7301[i] == 1) {
 					xv7301_setmanuopen[i] = 1;
 					pvPut(xv7301_setmanuopen[i], SYNC);
+					xv7301_setmanuclose[i] = 0;
+					pvPut(xv7301_setmanuclose[i], SYNC);
 				} 
 			}
 			efClear(evPT7301);

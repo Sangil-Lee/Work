@@ -19,6 +19,7 @@ DB += globalInt_OpOnStat.sub
 
 ###QWR
 DB += globalIntWF.template
+DB += globalIntWF_XV7502_DSG.template
 DB += globalIntWF.sub
 
 DB += globalInt_PT7503.template
@@ -82,7 +83,7 @@ DB += globalInt_PT7301PT7381_LTS.template
 DB += globalInt_PT7502PT7301_LTS.sub
 
 DB += globalInt_PT7502CV_LTS.template
-DB += globalInt_PT7502CV_LTS_IntStat.template
+##DB += globalInt_PT7502CV_LTS_IntStat.template
 DB += globalInt_PT7502CV_LTS.sub
 
 DB += globalInt_PT7502_LTS.template
@@ -101,20 +102,33 @@ DB += globalInt_PT7301_LTS.sub
 
 ###New EBx
 DB += globalInt_EBx.template
+DB += globalInt_EBx_SetCP.template
 DB += globalInt_EBx.sub
 
 ###VBx-TBx Vacuum
 #DB += globalInt_VBxVac.db
-DB += globalInt_VBxVacSCL3SCL2.db
-DB += globalInt_VBxVacSCL2SCL2.db
+#DB += globalInt_VBxVacSCL3SCL2.db
+#DB += globalInt_VBxVacSCL2SCL2.db
+##New 12.29
+DB += globalInt_VBxVac_INP6.template
+DB += globalInt_Vacuum.sub
+DB += globalInt_SCL3SCL2Vac.template
+DB += globalInt_SCL2SCL2Vac.template
+DB += globalInt_SCL2SCL2SetIntRstG.template
+DB += globalInt_SCLVac.sub
 
 ###TBx
 DB += globalInt_TBx.template
 DB += globalInt_CV7504CV7545_TBx.template
 DB += globalInt_CV7304CV7344_TBx.template
-DB += globalInt_OpOnStatCV7504CV7505_TBx.template
+DB += globalInt_OpOnStatCV7504CV7545_TBx.template
 DB += globalInt_OpOnStatCV7304CV7344_TBx.template
 DB += globalInt_TBx.sub
+
+###TBx-WF
+DB += globalInt_TBx_WF.template
+DB += globalInt_TBx_WF_DSG.template
+DB += globalInt_TBx_WF.sub
 
 ###Alias DB
 DB += Alias_IntStat.db

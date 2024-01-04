@@ -1,0 +1,138 @@
+record(calcout, "$(INPA)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+#field(INPA, "SCL32-CDL02:VBx04-PT7101:VacuumR")
+	field(INPA, "$(INPA)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "$(INPB)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+    field(INPA, "$(INPB)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "$(INPC)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+    field(INPA, "$(INPC)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "$(INPD)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+    field(INPA, "$(INPD)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "$(INPE)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+    field(INPA, "$(INPE)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "$(INPF)ST")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "(A>= 5*10^-2)?1:0")
+    field(INPA, "$(INPF)")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(calcout, "SCL-CDL99:VBx99-$(SUBDEV):VacIntEval")
+{
+    field(PINI, "YES")        
+    field(SCAN, "1 second")
+    field(CALC, "G==1?0:H==1?1:(A+B+C+D+E+F)>=4?1:0")
+	field(INPA, "$(INPA)ST")
+	field(INPB, "$(INPB)ST")
+	field(INPC, "$(INPC)ST")
+	field(INPD, "$(INPD)ST")
+	field(INPE, "$(INPE)ST")
+	field(INPF, "$(INPF)ST")
+	field(INPG, "SCL-CDL99:VBx99-$(SUBDEV):$(SETINT)")
+	field(INPH, "SCL-CDL99:VBx99-$(SUBDEV):$(INTSTAT)")
+    field(FLNK, "SCL-CDL99:VBx99-$(SUBDEV):VacIntBuff")
+    field(OOPT, "Every Time")                                       
+    field(DOPT, "Use CALC")                                          
+    field(VAL, "0")
+}    
+
+record(compress, "SCL-CDL99:VBx99-$(SUBDEV):VacIntBuff")
+{
+    field(SCAN, "Passive") 
+    field(PINI, "YES")        
+    field(ALG,  "Circular Buffer")
+    field(NSAM, "5")
+    field(INP,  "SCL-CDL99:VBx99-$(SUBDEV):VacIntEval")
+    field(FLNK, "SCL-CDL99:VBx99-$(SUBDEV):CalcEval")
+}
+
+    
+record(acalcout, "SCL-CDL99:VBx99-$(SUBDEV):CalcEval") {
+    field(PINI, "YES")        
+    field(SCAN, "Passive")
+    field(NELM, "5")
+    field(NUSE, "5")
+    field(CALC, "B==1?0:AMIN(AA)<1?0:1")
+    field(INAA, "SCL-CDL99:VBx99-$(SUBDEV):VacIntEval.VAL")
+	field(INPB, "SCL-CDL99:VBx99-$(SUBDEV):SetIntRstG")
+    field(OOPT, "Every Time")
+    field(DOPT, "Use CALC")  
+	field(FLNK, "SCL-CDL99:VBx99-$(SUBDEV):$(INTSTAT)")
+}                            
+
+record(calcout, "SCL-CDL99:VBx99-$(SUBDEV):$(INTSTAT)")
+{
+	field(DESC, "$(INTSTAT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A==1?1:0")
+	field(INPA, "SCL-CDL99:VBx99-$(SUBDEV):CalcEval")
+	field(VAL, "0")
+}
+
+record(bo, "SCL-CDL99:VBx99-$(SUBDEV):SetIntRstG") {
+	field(DESC, "SetIntRstG")
+	field(PINI, "YES")
+	field(ZNAM, "Normal")
+	field(ONAM, "Reset")
+	field(HIGH, "1")
+	field(VAL, "0")
+}
+
+record(bi, "SCL-CDL99:VBx99-$(SUBDEV):$(SETINT)") {
+	field(DESC, "$(SETINT)")
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(ZNAM, "Enable")
+	field(ONAM, "Disable")
+	field(VAL, "0")
+}
+

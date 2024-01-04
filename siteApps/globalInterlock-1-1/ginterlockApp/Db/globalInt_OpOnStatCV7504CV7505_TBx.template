@@ -2,8 +2,9 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "J==1?0:K==1?1:A>=B&&!(C||D||E)&&!(F&&G&&H)?1:0")
+    field(CALC, "A>=B&&!(C||D||E)&&F&&G&&H?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
+
 	field(INPB, "Cryo-CDL00:TBx01-PT7381:PresR")
 	field(INPC, "Cryo-CDL00:TBx01-CV7304:Setpt")
 	field(INPD, "Cryo-CDL00:TBx01-CV7344:Setpt")
@@ -47,7 +48,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)OpOnStat") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntAEval")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval")
 	field(VAL, "0")
 }
 

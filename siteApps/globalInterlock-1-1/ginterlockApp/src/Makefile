@@ -44,6 +44,8 @@ ifneq ($(SNCSEQ),)
    #ginterlock_SRCS  += sncQWRGInt.stt
     ginterlock_DBD   += sncGLInterlockWF.dbd
     ginterlock_SRCS  += sncGLInterlockWF.stt
+    ginterlock_DBD   += sncTBxGInt_WF.dbd
+    ginterlock_SRCS  += sncTBxGInt_WF.stt
     ginterlock_LIBS  += seq pv
 
    PROD_HOST += sncQWRGInt_PROD

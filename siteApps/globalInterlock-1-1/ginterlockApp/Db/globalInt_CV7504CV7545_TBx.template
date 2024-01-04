@@ -50,7 +50,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(INTSTAT)") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntAEval")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval")
 	field(VAL, "0")
 }
 

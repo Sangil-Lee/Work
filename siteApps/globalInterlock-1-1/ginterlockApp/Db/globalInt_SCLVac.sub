@@ -1,4 +1,4 @@
-file "db/globalInt_TBxVac.template" { pattern
+file "db/globalInt_SCL3SCL2Vac.template" { pattern
 {SYS,	    SUBSYS,			DEV,		SUBDEV,		SUBDEV1,	SUBDEV2,		INPD,	INPE,	INPF,		INNER,		INTSTAT,		SETINT,		SUBPV						}
 {Cryo,		-CDL00:,		TBx01,		-PT7101:,	-PT7401:,	-PT7501:,		0.05,	4,		17,			A,			IntStatGB,		SetIntDSGB,	"SCL-CDL99:VBx99-SCL3SCL3Vacuum:" }
 {Cryo,		-CDL00:,		TBx01,		-PT7102:,	-PT7403:,	-PT7503:,		0.05,	4,		17,			B,			IntStatGC,		SetIntDSGC,	"SCL-CDL99:VBx99-SCL3SCL3Vacuum:" }
@@ -14,3 +14,16 @@ file "db/globalInt_TBxVac.template" { pattern
 {Cryo,		-CDL00:,		TBx01,		-PT7181:,	-PT7441:,	-PT7541:,		0.05,	4,		17,			C,			IntStatGH,		SetIntDSGH,	"SCL-CDL99:VBx99-SCL2SCL2Vacuum:" }
 }
 
+file "db/globalInt_SCL2SCL2Vac.template" { pattern
+{ SUBDEV,			INPA,								INPB,								INPC,		INNER,		INTSTAT,		SETINT			}
+{"-SCL2SCL2Vacuum:","IF-CDL07:VBx02-PT7101:VacuumR",	"IF-CDL07:EBx01-PT7101:VacuumR",	0.05,		A,			"IntStatGA",	"SetIntDSGA"	}
+{"-SCL2SCL2Vacuum:","IF-CDL07:VBx01-PT7101:VacuumR",	"IF-CDL07:VBx01-PT7105:VacuumR",	0.05,		B,			"IntStatGB",	"SetIntDSGB"	}
+{"-SCL2SCL2Vacuum:","SCL22-CDL06:VBx24-PT7101:VacuumR",	"SCL22-CDL06:VBx25-PT7101:VacuumR",	0.05,		C,			"IntStatGC",	"SetIntDSGC"	}
+{"-SCL2SCL2Vacuum:","P2DT-CDL04:VBx02-PT7101:VacuumR",	"SCL21-CDL05:VBx23-PT7101:VacuumR",	0.05,		D,			"IntStatGD",	"SetIntDSGD"	}
+{"-SCL2SCL2Vacuum:","SCL22-CDL06:VBx01-PT7101:VacuumR",	"SCL22-CDL06:VBx23-PT7101:VacuumR",	0.05,		E,			"IntStatGE",	"SetIntDSGE"	}
+}
+
+file "db/globalInt_SCL2SCL2SetIntRstG.template" { pattern
+{ SUBDEV}
+{ -SCL2SCL2Vacuum:}
+}

@@ -5,9 +5,9 @@ option -a;
 
 %%#include <math.h> 
 
-float scl3_control_valve[163];
-int scl3_control_valve_cnt = sizeof(scl3_control_valve)/sizeof(scl3_control_valve[0]);
-assign scl3_control_valve to {
+float scl23_control_valve[163];
+int scl23_control_valve_cnt = sizeof(scl23_control_valve)/sizeof(scl23_control_valve[0]);
+assign scl23_control_valve to {
 	"SCL31-CDL01:VBx02-CV7501:Setpt", "SCL31-CDL01:VBx04-CV7501:Setpt", "SCL31-CDL01:VBx06-CV7501:Setpt", "SCL31-CDL01:VBx08-CV7501:Setpt",
 	"SCL31-CDL01:VBx10-CV7501:Setpt", "SCL31-CDL01:VBx12-CV7501:Setpt", "SCL31-CDL01:VBx14-CV7501:Setpt", "SCL31-CDL01:VBx16-CV7501:Setpt",
 	"SCL31-CDL01:VBx18-CV7501:Setpt", "SCL31-CDL01:VBx20-CV7501:Setpt", "SCL31-CDL01:VBx22-CV7501:Setpt", "SCL32-CDL02:VBx01-CV7501:Setpt",
@@ -188,41 +188,68 @@ assign ssr_control_valve to {
 	"IF-CDL07:VBx12-CV7501:Setpt", "IF-CDL07:VBx13-CV7501:Setpt", "IF-CDL07:VBx01-CV7401:Setpt", "IF-CDL07:VBx02-CV7401:Setpt",
 	"IF-CDL07:VBx03-CV7401:Setpt", "IF-CDL07:VBx04-CV7401:Setpt", "IF-CDL07:VBx05-CV7401:Setpt", "IF-CDL07:VBx06-CV7401:Setpt",
 	"IF-CDL07:VBx07-CV7401:Setpt", "IF-CDL07:VBx08-CV7401:Setpt", "IF-CDL07:VBx09-CV7401:Setpt", "IF-CDL07:VBx10-CV7401:Setpt",
-	"IF-CDL07:VBx11-CV7401:Setpt", "IF-CDL07:VBx12-CV7401:Setpt", "IF-CDL07:VBx13-CV7401:Setpt", "IF-CDL07:VBx01-CV7301:Setpt",
-	"IF-CDL07:VBx02-CV7301:Setpt", "IF-CDL07:VBx03-CV7301:Setpt", "IF-CDL07:VBx04-CV7301:Setpt", "IF-CDL07:VBx05-CV7301:Setpt",
-	"IF-CDL07:VBx06-CV7301:Setpt", "IF-CDL07:VBx07-CV7301:Setpt", "IF-CDL07:VBx08-CV7301:Setpt", "IF-CDL07:VBx09-CV7301:Setpt",
-	"IF-CDL07:VBx10-CV7301:Setpt", "IF-CDL07:VBx11-CV7301:Setpt", "IF-CDL07:VBx12-CV7301:Setpt", "IF-CDL07:VBx13-CV7301:Setpt",
-	"IF-CDL07:VBx01-CV7201:Setpt", "IF-CDL07:VBx02-CV7201:Setpt", "IF-CDL07:VBx03-CV7201:Setpt", "IF-CDL07:VBx04-CV7201:Setpt",
-	"IF-CDL07:VBx05-CV7201:Setpt", "IF-CDL07:VBx06-CV7201:Setpt", "IF-CDL07:VBx07-CV7201:Setpt", "IF-CDL07:VBx08-CV7201:Setpt",
-	"IF-CDL07:VBx09-CV7201:Setpt", "IF-CDL07:VBx10-CV7201:Setpt", "IF-CDL07:VBx11-CV7201:Setpt", "IF-CDL07:VBx12-CV7201:Setpt",
-	"IF-CDL07:VBx13-CV7201:Setpt", "IF-CDL07:EBx01-CV7502:Setpt", "IF-CDL07:EBx01-CV7402:Setpt"
+	"IF-CDL07:VBx11-CV7401:Setpt", "IF-CDL07:VBx12-CV7401:Setpt", "IF-CDL07:VBx13-CV7401:Setpt", "IF-CDL07:VBx01-CV7402:Setpt", 
+	"IF-CDL07:VBx02-CV7402:Setpt", "IF-CDL07:VBx03-CV7402:Setpt", "IF-CDL07:VBx04-CV7402:Setpt", "IF-CDL07:VBx05-CV7402:Setpt", 
+	"IF-CDL07:VBx06-CV7402:Setpt", "IF-CDL07:VBx07-CV7402:Setpt", "IF-CDL07:VBx08-CV7402:Setpt", "IF-CDL07:VBx09-CV7402:Setpt", 
+	"IF-CDL07:VBx10-CV7402:Setpt", "IF-CDL07:VBx11-CV7402:Setpt", "IF-CDL07:VBx12-CV7402:Setpt", "IF-CDL07:VBx13-CV7402:Setpt", 
+	"IF-CDL07:VBx01-CV7301:Setpt", "IF-CDL07:VBx02-CV7301:Setpt", "IF-CDL07:VBx03-CV7301:Setpt", "IF-CDL07:VBx04-CV7301:Setpt", 
+	"IF-CDL07:VBx05-CV7301:Setpt", "IF-CDL07:VBx06-CV7301:Setpt", "IF-CDL07:VBx07-CV7301:Setpt", "IF-CDL07:VBx08-CV7301:Setpt", 
+	"IF-CDL07:VBx09-CV7301:Setpt", "IF-CDL07:VBx10-CV7301:Setpt", "IF-CDL07:VBx11-CV7301:Setpt", "IF-CDL07:VBx12-CV7301:Setpt", 
+	"IF-CDL07:VBx13-CV7301:Setpt", "IF-CDL07:EBx01-CV7502:Setpt", "IF-CDL07:EBx01-CV7402:Setpt"
 };
 
-int tbxvac_intstat[9];
-assign tbxvac_intstat to {
-	"Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT710174017501G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT714174417541G",
-	"Cryo-CDL00:TBx01-SCL2SCL2:IntStatPT714174417541G", "Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT710274037503G",
-	"Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT710274037503G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT714274437543G",
-	"Cryo-CDL00:TBx01-SCL3SCL3:IntStatPT718174017501G", "Cryo-CDL00:TBx01-SCL2SCL3:IntStatPT718174417541G",
-	"Cryo-CDL00:TBx01-SCL2SCL2:IntStatPT718174417541G"
-
+int scl3scl3_intstat[4];
+assign scl3scl3_intstat to {
+	"SCL-CDL99:VBx99-SCL3SCL3Vacuum:IntStatGA", "SCL-CDL99:VBx99-SCL3SCL3Vacuum:IntStatGB",
+	"SCL-CDL99:VBx99-SCL3SCL3Vacuum:IntStatGC", "SCL-CDL99:VBx99-SCL3SCL3Vacuum:IntStatGD"
 };
 
-monitor tbxvac_intstat;
-evflag	evTBXVACIntStat;
-sync tbxvac_intstat	evTBXVACIntStat;
+monitor scl3scl3_intstat;
+evflag	evSCL3SCL3IntStat;
+sync scl3scl3_intstat	evSCL3SCL3IntStat;
 
-
-int vbxvac_intstat[2];
-assign vbxvac_intstat to {
-"IF-CDL99:VBx99-PT7101PT7105:IntStatPT7101G", "SCL-CDL99:VBx99-PT7101:IntStatPT7101G"
+int scl2scl3_intstat[4];
+assign scl2scl3_intstat to {
+	"SCL-CDL99:VBx99-SCL2SCL3Vacuum:IntStatGA", "SCL-CDL99:VBx99-SCL2SCL3Vacuum:IntStatGB",
+	"SCL-CDL99:VBx99-SCL2SCL3Vacuum:IntStatGC", "SCL-CDL99:VBx99-SCL2SCL3Vacuum:IntStatGD"
 };
-monitor vbxvac_intstat;
-evflag	evVBXVACIntStat;
-sync vbxvac_intstat	evVBXVACIntStat;
 
+monitor scl2scl3_intstat;
+evflag	evSCL2SCL3IntStat;
+sync scl2scl3_intstat	evSCL2SCL3IntStat;
 
-int idxcount = 9;
+int scl2scl2_intstat[8];
+assign scl2scl2_intstat to {
+"SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGF", "SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGG",
+"SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGH", "SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGA",
+"SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGB", "SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGC",
+"SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGD", "SCL-CDL99:VBx99-SCL2SCL2Vacuum:IntStatGE"
+};
+
+monitor scl2scl2_intstat;
+evflag	evSCL2SCL2IntStat;
+sync scl2scl2_intstat	evSCL2SCL2IntStat;
+
+/*
+unsigned short scl33_reset_int;
+assign scl33_reset_int to "SCL-CDL99:VBx99-SCL3SCL3Vacuum:SetIntRstG";
+monitor scl33_reset_int;
+evflag	evSCL33ResetInt;
+sync scl33_reset_int	evSCL33ResetInt;
+
+unsigned short scl23_reset_int;
+assign scl23_reset_int to "SCL-CDL99:VBx99-SCL2SCL3Vacuum:SetIntRstG";
+monitor scl23_reset_int;
+evflag	evSCL23ResetInt;
+sync scl23_reset_int	evSCL23ResetInt;
+
+unsigned short scl22_reset_int;
+assign scl22_reset_int to "SCL-CDL99:VBx99-SCL2SCL2Vacuum:SetIntRstG";
+monitor scl22_reset_int;
+evflag	evSCL22ResetInt;
+sync scl22_reset_int	evSCL22ResetInt;
+*/
+
 ss ssVBxTBxVacInterlock {
 	state init {
 		when(TRUE)
@@ -230,74 +257,116 @@ ss ssVBxTBxVacInterlock {
 			
 		}state VBxTBxVacGInterlock 
 	}
-/*
-ssr_control_valve_cnt
-scl2scl2_shutoff_valve_cnt
-scl2scl3_shutoff_valve_cnt
-scl3scl3_shutoff_valve_cnt
-scl3_control_valve_cnt
-*/
 
 	state VBxTBxVacGInterlock
 	{
-		when(tbxvac_intstat[0] ==1 ||tbxvac_intstat[3] ==1 || tbxvac_intstat[6] ==1 || vbxvac_intstat[0] == 1)
+		when(efTestAndClear(evSCL3SCL3IntStat))
 		{
-			int i = 0;
-			for(; i < scl3scl3_shutoff_valve_cnt;i++)
+			if( scl3scl3_intstat[0] || scl3scl3_intstat[1] ||
+				scl3scl3_intstat[2] || scl3scl3_intstat[3] )
 			{
-				scl3scl3_shutoff_valve[i] = 1;
-				pvPut(scl3scl3_shutoff_valve[i], SYNC);
+				int i = 0;
+				for(; i < scl3scl3_shutoff_valve_cnt;i++)
+				{
+					scl3scl3_shutoff_valve[i] = 1;
+					pvPut(scl3scl3_shutoff_valve[i], SYNC);
+				};
+
+				for( i = 0; i < scl23_control_valve_cnt;i++)
+				{
+					scl23_control_valve[i] = 0;
+					pvPut(scl23_control_valve[i], SYNC);
+				};
 			};
+		} state VBxTBxVacGInterlock
 
-			for( i = 0; i < scl3_control_valve_cnt;i++)
-			{
-				scl3_control_valve[i] = 0;
-				pvPut(scl3_control_valve[i], SYNC);
-			}
-
-		} state GoDelay
-
-		when(tbxvac_intstat[1] ==1 ||tbxvac_intstat[4] ==1 || tbxvac_intstat[7] ==1)
+		when(efTestAndClear(evSCL2SCL3IntStat))
 		{
-			int i = 0;
-			for(; i < scl2scl3_shutoff_valve_cnt;i++)
+			if( scl2scl3_intstat[0] || scl2scl3_intstat[1] ||
+				scl2scl3_intstat[2] || scl2scl3_intstat[3] )
 			{
-				scl2scl3_shutoff_valve[i] = 1;
-				pvPut(scl2scl3_shutoff_valve[i], SYNC);
+				int i = 0;
+				for(; i < scl2scl3_shutoff_valve_cnt;i++)
+				{
+					scl2scl3_shutoff_valve[i] = 1;
+					pvPut(scl2scl3_shutoff_valve[i], SYNC);
+				};
+
+				for( i = 0; i < scl23_control_valve_cnt;i++)
+				{
+					scl23_control_valve[i] = 0;
+					pvPut(scl23_control_valve[i], SYNC);
+				};
 			};
+		} state VBxTBxVacGInterlock
 
-			for( i = 0; i < scl3_control_valve_cnt;i++)
-			{
-				scl3_control_valve[i] = 0;
-				pvPut(scl3_control_valve[i], SYNC);
-			}
-
-		} state GoDelay
-
-		when(tbxvac_intstat[2] ==1 ||tbxvac_intstat[5] ==1 || tbxvac_intstat[8] ==1 || vbxvac_intstat[0] == 1)
+		when(efTestAndClear(evSCL2SCL2IntStat))
 		{
-			int i = 0;
-			for(; i < scl2scl2_shutoff_valve_cnt;i++)
+			if( scl2scl2_intstat[0] || scl2scl2_intstat[1] || scl2scl2_intstat[2] || scl2scl2_intstat[3] ||
+				scl2scl2_intstat[4] || scl2scl2_intstat[5] || scl2scl2_intstat[6] || scl2scl2_intstat[7] )
 			{
-				scl2scl2_shutoff_valve[i] = 1;
-				pvPut(scl2scl2_shutoff_valve[i], SYNC);
+				int i = 0;
+				for(; i < scl2scl2_shutoff_valve_cnt;i++)
+				{
+					scl2scl2_shutoff_valve[i] = 1;
+					pvPut(scl2scl2_shutoff_valve[i], SYNC);
+				};
+
+				for( i = 0; i < ssr_control_valve_cnt;i++)
+				{
+					ssr_control_valve[i] = 0;
+					pvPut(ssr_control_valve[i], SYNC);
+				};
 			};
-
-			for( i = 0; i < ssr_control_valve_cnt;i++)
-			{
-				ssr_control_valve[i] = 0;
-				pvPut(ssr_control_valve[i], SYNC);
-			}
-
-		} state GoDelay
+		} state VBxTBxVacGInterlock
 
 	}
-
+/*
 	state GoDelay
 	{
 		when(delay(1.0))
 		{
 		}state VBxTBxVacGInterlock
 	}
+*/
 }
 
+
+/*
+ss ssSetIntResetGVac
+{
+	state init()
+	{
+		when(TRUE)
+		{
+		}state VacReset
+
+		state VacReset
+		{
+			when(efTestAndClear(evSCL33ResetInt))
+			{
+				if(scl33_reset_int == 1)
+				{
+
+				}
+			}state VacReset
+
+			when(efTestAndClear(evSCL23ResetInt))
+			{
+				if(scl23_reset_int == 1)
+				{
+
+				}
+			}state VacReset
+
+			when(efTestAndClear(evSCL22ResetInt))
+			{
+				if(scl22_reset_int == 1)
+				{
+
+				}
+			}state VacReset
+		}
+	}
+}
+*/

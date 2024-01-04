@@ -49,18 +49,19 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(INTSTAT)") {
 	field(SCAN, "Passive")
 	field(PINI, "YES")
 	field(CALC, "A==1?1:0")
-	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)GIntAEval")
+	field(INPA,  "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntAEval")
 	field(VAL, "0")
 }
 
-record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
-	field(DESC, "SetIntRstG")
-	field(PINI, "YES")
-	field(ZNAM, "Normal")
-	field(ONAM, "Reset")
-	field(HIGH, "1")
-	field(VAL, "0")
-}
+##Duplicated 12.28
+###record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntRstG") {
+###	field(DESC, "SetIntRstG")
+###	field(PINI, "YES")
+###	field(ZNAM, "Normal")
+###	field(ONAM, "Reset")
+###	field(HIGH, "1")
+###	field(VAL, "0")
+###}
 
 
 record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)$(SETINT)") {

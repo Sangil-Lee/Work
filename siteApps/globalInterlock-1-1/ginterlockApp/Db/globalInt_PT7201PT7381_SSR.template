@@ -2,7 +2,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "C==1?0:A<=B?1:0")
+    field(CALC, "C==1?0:(A<=B*1000)?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(INPA) CPP")
     field(INPB, "$(INPB) CPP")
 	field(INPC, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV1)SetIntPT7201PT7381DSG")

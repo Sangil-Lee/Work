@@ -64,6 +64,7 @@ dbLoadTemplate("db/globalInt_EBx.sub")
 ####TBx    
 ##DB Tested
 dbLoadTemplate("db/globalInt_TBx.sub")    
+dbLoadTemplate("db/globalInt_TBx_WF.sub")
 
 ####OpOnStat
 ##DB Tested
@@ -71,8 +72,11 @@ dbLoadTemplate("db/globalInt_OpOnStat.sub")
 
 ####Vacuum
 ##DB Tested
-dbLoadRecords("db/globalInt_VBxVacSCL3SCL2.db")
-dbLoadRecords("db/globalInt_VBxVacSCL2SCL2.db")
+#dbLoadRecords("db/globalInt_VBxVacSCL3SCL2.db")
+#dbLoadRecords("db/globalInt_VBxVacSCL2SCL2.db")
+##New 12.29
+dbLoadTemplate("db/globalInt_Vacuum.sub")    
+dbLoadTemplate("db/globalInt_SCLVac.sub")    
 
 #2023.12.06 New GInterlock PVs
 ##DB Tested
@@ -84,5 +88,6 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-#seq sncGLInterlockWF
-#seq sncQWRGInt
+seq sncGLInterlockWF
+seq sncTBxGIntWF
+#seq sncQWRGInt -> sncQWRGInt_PROD

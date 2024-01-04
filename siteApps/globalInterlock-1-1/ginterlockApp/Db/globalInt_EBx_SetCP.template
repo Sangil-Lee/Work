@@ -1,0 +1,20 @@
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP") 
+{
+	field(DESC, "SetCP")
+	field(PINI, "YES")
+	field(VAL,  "$(VAL)")
+	field(HOPR, "100")
+	field(LOPR, "0")
+	field(EGU, "$(EGU)")
+	field(PREC, "3")
+}
+
+record(ai, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetDelayTime") 
+{
+	field(DESC, "SetDelayTime")
+	field(PINI, "YES")
+	field(VAL,  "$(SETDELAY)")
+	field(HOPR, "100")
+	field(LOPR, "0")
+	field(EGU, "s")
+}

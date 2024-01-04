@@ -1,4 +1,4 @@
-program sncQWRGInt
+program sncHWRGInt
 option +r; 
 option +c; 
 option -a; 
@@ -340,11 +340,10 @@ ss ssHWRInterlock {
 			for( ;i < 33; i++)
 			{
 				if (xv7502GI_hwr[i] == 1) {
-					xv7502_setmanuclose[i] = 1;
-					pvPut(xv7502_setmanuclose[i], SYNC);
-				} else {
 					xv7502_setmanuopen[i] = 0;
 					pvPut(xv7502_setmanuopen[i], SYNC);
+					xv7502_setmanuclose[i] = 1;
+					pvPut(xv7502_setmanuclose[i], SYNC);
 				}
 			}
 
@@ -360,11 +359,10 @@ ss ssHWRInterlock {
 			for( ; i < 33; i++)
 			{
 				if (xv7201GI_hwr[i] == 1) {
-					xv7201_setmanuclose[i] = 1;
-					pvPut(xv7201_setmanuclose[i], SYNC);
-				} else {
 					xv7201_setmanuopen[i] = 0;
 					pvPut(xv7201_setmanuopen[i], SYNC);
+					xv7201_setmanuclose[i] = 1;
+					pvPut(xv7201_setmanuclose[i], SYNC);
 				}
 			}
 			efClear(evXV7201GI_HWR);
@@ -408,6 +406,8 @@ ss ssHWRInterlock {
 			{
 				if( xv7502GI_hwr[i] == 1) continue;
 				if (xv7502_intstat[i] == 1) {
+					xv7502_setmanuclose[i] = 0;
+					pvPut(xv7502_setmanuclose[i], SYNC);
 					xv7502_setmanuopen[i] = 1;
 					pvPut(xv7502_setmanuopen[i], SYNC);
 				}
@@ -444,6 +444,9 @@ ss ssHWRInterlock {
 				{
 					xv7502_setmanuclose[i] = 1;
 					pvPut(xv7502_setmanuclose[i], SYNC);
+
+					xv7502_setmanuopen[i] = 0;
+					pvPut(xv7502_setmanuopen[i], SYNC);
 				};
 				efClear(evPT7201CV);
 			}
@@ -462,7 +465,10 @@ ss ssHWRInterlock {
 				if (pt7201[i] == 1) {
 					xv7201_setmanuopen[i] = 1;
 					pvPut(xv7201_setmanuopen[i], SYNC);
-				} 
+
+					xv7201_setmanuclose[i] = 0;
+					pvPut(xv7201_setmanuclose[i], SYNC);
+				}
 			}
 			efClear(evPT7201);
 		}state GoDelay

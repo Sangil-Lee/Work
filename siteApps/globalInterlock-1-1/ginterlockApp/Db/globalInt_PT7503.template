@@ -2,7 +2,7 @@ record(calcout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GIntACalc")
 {                                                                           
     field(PINI, "YES")        
     field(SCAN, "1 second")
-    field(CALC, "J==1?0:K==1?1:A>B&&A>C&&!(D||E||F||G)&&!(H&&I)?1:0")
+	field(CALC, "J==1?0:K==1?1:A>B&&A>C&&!(D||E||F||G)&&!(H&&I)?1:0")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PresR") 
 	field(INPB, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetCP")
 	field(INPC, "Cryo-CDL00:TBx01-PT7307:PresR")

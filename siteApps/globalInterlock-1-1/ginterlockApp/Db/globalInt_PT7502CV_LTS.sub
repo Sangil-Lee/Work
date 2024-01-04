@@ -15,10 +15,10 @@ file "db/globalInt_PT7502CV_LTS.template" { pattern
 {IF,		-CDL07:,		VBx13,		-PT7502:,	PresR,	PT7502CV	}
 }
 
-file "db/globalInt_PT7502CV_LTS_IntStat.template" { pattern
-{SYS,	    SUBSYS,			DEV,		SUBDEV		}
-{Cryo,		-CDL00:,		TBx01,		-CV7504:	}
-{Cryo,		-CDL00:,		TBx01,		-CV7304:	}
-{Cryo,		-CDL00:,		TBx01,		-CV7545:	}
-{Cryo,		-CDL00:,		TBx01,		-CV7344:	}
-}
+#file "db/globalInt_PT7502CV_LTS_IntStat.template" { pattern
+#{SYS,	    SUBSYS,			DEV,		SUBDEV		}
+#{Cryo,		-CDL00:,		TBx01,		-CV7504:	}
+#{Cryo,		-CDL00:,		TBx01,		-CV7304:	}
+#{Cryo,		-CDL00:,		TBx01,		-CV7545:	}
+#{Cryo,		-CDL00:,		TBx01,		-CV7344:	}
+#}
