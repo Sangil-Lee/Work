@@ -15,6 +15,7 @@ testioc_registerRecordDeviceDriver pdbbase
 dbLoadTemplate "db/user.substitutions"
 dbLoadRecords "db/testiocVersion.db", "user=ctrluser"
 dbLoadRecords "db/dbSubExample.db", "user=ctrluser"
+dbLoadRecords "db/heartbeat.db", "P=QtProcess:"
 
 dbLoadTemplate "db/simulation.sub"
 

@@ -20,6 +20,8 @@ DB += stringin.template
 DB += sine.template
 DB += simulation.sub
 
+DB += heartbeat.db
+
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>
 

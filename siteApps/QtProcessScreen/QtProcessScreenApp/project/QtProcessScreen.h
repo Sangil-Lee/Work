@@ -20,14 +20,16 @@ public:
 	~QtProcessScreen();
 	
 public slots:
+	void close();
 
 private:
 	Ui::Form *ui;
 	int timerId;
+	int gbeat;
 
 protected:
 	void timerEvent(QTimerEvent *event);
-//	void closeEvent(QCloseEvent *event);
+	void closeEvent(QCloseEvent *event);
 public:
 
 };
