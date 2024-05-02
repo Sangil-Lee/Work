@@ -675,6 +675,7 @@ void nicDAQAsynEpics::UserProcess()
 		string chName = string(deviceName)+string(regmap.slotchannel);
 		//printf("Channel Name:%s\n", chName.c_str());
 		
+		//DAQmxErrChk(DAQmxCreateAIVoltageChan(taskHandle, "Dev2/ai0:Dev2/ai1", "", DAQmx_Val_Cfg_Default, -10.0, 10.0, DAQmx_Val_Volts, NULL));
 		switch(scalemode) 
 		{
 			case MAP1:
@@ -694,6 +695,7 @@ void nicDAQAsynEpics::UserProcess()
 				error = DAQmxCreateAIVoltageChan(taskHandle,chName.c_str(),"",DAQmx_Val_Cfg_Default,regmap.scaleparameter[2],
 						regmap.scaleparameter[3],DAQmx_Val_FromCustomScale,"UserRangeMap4");
 				break;
+
 		};
 
 		if(DAQmxFailed(error)) {

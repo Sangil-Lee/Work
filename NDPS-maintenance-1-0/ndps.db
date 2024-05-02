@@ -1,0 +1,67 @@
+record(ai, "$(SYS)$(SUBSYS)VG007:PressR")
+{
+	field(PINI, "YES")
+	field(VAL, "1E-5")
+}
+
+record(ai, "$(SYS)$(SUBSYS)VG006:PressR")
+{
+	field(PINI, "YES")
+	field(VAL, "1E-5")
+}
+
+record(bi, "$(SYS)$(SUBSYS)TP004:OpOnStat")
+{
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+record(bi, "$(SYS)$(SUBSYS)TP005:OpOnStat")
+{
+	field(PINI, "YES")
+	field(VAL, "0")
+	field(ZNAM, "Off")
+	field(ONAM, "On")
+}
+
+record(calc, "$(SYS)$(SUBSYS)Sec007:Status")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(CALC, "(A<C&&B==1)?1:0")
+	field(INPA, "$(SYS)$(SUBSYS)VG007:PressR")
+	field(INPB, "$(SYS)$(SUBSYS)TP005:OpOnStat")
+	field(INPC, "1E-5")
+}
+
+record(calc, "$(SYS)$(SUBSYS)Sec006:Status")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(CALC, "(A<C&&B==1)?1:0")
+	field(INPA, "$(SYS)$(SUBSYS)VG006:PressR")
+	field(INPB, "$(SYS)$(SUBSYS)TP004:OpOnStat")
+	field(INPC, "1E-5")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)GV007:Enable")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(CALC, "(A&&B==1)?1:0")
+	field(INPA, "$(SYS)$(SUBSYS)Sec007:Status")
+	field(INPB, "$(SYS)$(SUBSYS)Sec006:Status")
+}
+
+record(calcout, "$(SYS)$(SUBSYS)GV007:Control")
+{
+	field(PINI,"YES")
+	field(VAL, "0")
+	field(SCAN, ".5 second")
+	field(CALC, "(B==1)?A:C")
+	field(INPA, "")
+	field(INPB, "$(SYS)$(SUBSYS)GV007:Enable")
+	field(INPC, "$(SYS)$(SUBSYS)GV007:Control")
+}
+
