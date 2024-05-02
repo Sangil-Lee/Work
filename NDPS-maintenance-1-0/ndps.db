@@ -58,7 +58,7 @@ record(calcout, "$(SYS)$(SUBSYS)GV007:Control")
 {
 	field(PINI,"YES")
 	field(VAL, "0")
-	field(SCAN, ".5 second")
+#	field(SCAN, ".5 second")
 	field(CALC, "(B==1)?A:C")
 	field(INPA, "")
 	field(INPB, "$(SYS)$(SUBSYS)GV007:Enable")
