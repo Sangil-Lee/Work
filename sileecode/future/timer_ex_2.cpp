@@ -43,6 +43,7 @@ private:
     std::atomic<bool> is_stop; //protect both done and is_stop because they're able to access by multiple threads
 };
 
+#if 0
 template <typename C = std::chrono::system_clock>
 class CallBack{
 public:
@@ -61,30 +62,56 @@ public:
     }
 };
 
-#if 0
 void print()
 {
 	static int idx = 0;
 
 	std::cout <<"Index Count(" << idx++ <<")\n";
 }
-#else
 void print(int& idx)
 {
 	std::cout <<"Index Count(" << idx++ <<")\n";
 }
+#else
+
+template <typename C = std::chrono::system_clock>
+class CallBack{
+public:
+    using clock_type = C;
+    std::chrono::time_point<clock_type> prev;
+    void operator()(){
+        auto now =  clock_type::now();
+        std::cout << "run #" << minc;
+        if(minc > 1){
+            std::cout << " diff " <<  std::chrono::duration_cast<std::chrono::milliseconds>(now - prev).count() << "ms" ;
+        }
+        std::cout << '\n';
+        prev = now;
+        minc++;
+    }
+    CallBack(int count, std::string str):minc(count),mstr(str)
+    {
+	std::cout<<"Count: " << minc++ << ", ClassName: "<< mstr << std::endl;
+    }
+private:
+    int minc;
+    std::string mstr;
+};
+
+
 #endif
 int main(){
     using namespace std::literals::chrono_literals;
-    using cb_type = std::function<void()>;
+//    using cb_type = std::function<void()>;
     
     //TimerContext tc{CallBack{}, 0.5s};
     //TimerContext tc{CallBack{}, 0.01s};
 #if 0
     TimerContext tc{print, 1s};
 #else
-    int index = 0;
-    TimerContext tc{print, 1s};
+    int index = 1;
+    std::string name="Object Callback";
+    TimerContext tc{CallBack{index, name}, 1s};
 #endif
     std::thread th{[&tc](){ 
         tc.run(); //block for make thread alive
