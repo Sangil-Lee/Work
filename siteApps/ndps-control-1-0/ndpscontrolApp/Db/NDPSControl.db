@@ -1,0 +1,67 @@
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)MoveEnable")
+{
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+
+	field(ZNAM,"Disable")
+	field(ONAM,"Enable")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Auto")
+{
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+
+	field(ZNAM,"Manual")
+	field(ONAM,"Auto")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Stop")
+{
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+
+	field(ZNAM,"Run")
+	field(ONAM,"Stop")
+	field(VAL, "0")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Move")
+{
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+
+	field(ZNAM,"Stop")
+	field(ONAM,"Move")
+	field(VAL, "1")
+}
+
+record(bi, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)MovingLampR")
+{
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+
+	field(ZNAM,"Completed")
+	field(ONAM,"Moving")
+	field(VAL, "0")
+}
+
+record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetPos")
+{
+	field(PINI, "YES")
+	field(VAL, "0")
+}
+
+record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)PosR")
+{
+	field(PINI, "YES")
+	field(VAL, "0")
+}
+
+record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Msg")
+{
+	field(PINI, "YES")
+	field(VAL, "")
+}

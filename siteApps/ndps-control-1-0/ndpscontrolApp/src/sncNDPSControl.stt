@@ -1,0 +1,105 @@
+program sncNDPSControl
+
+option +r;
+
+int auto_= 0;
+assign auto_ to "{SYS}{SUBSYS}{DEV}{SUBDEV}Auto";
+monitor auto_;
+evflag evAuto;
+sync auto_ evAuto;
+
+int move_en= 0;
+assign move_en to "{SYS}{SUBSYS}{DEV}{SUBDEV}MoveEnable";
+monitor move_en;
+
+int stop = 0;
+assign stop to "{SYS}{SUBSYS}{DEV}{SUBDEV}Stop";
+monitor stop;
+
+int move = 0;
+assign move to "{SYS}{SUBSYS}{DEV}{SUBDEV}Move";
+monitor move;
+
+int	moving = 0;
+assign moving to "{SYS}{SUBSYS}{DEV}{SUBDEV}MovingLampR";
+monitor		moving;
+evflag		evMoving;
+sync moving evMoving;
+
+int setpos = 0;
+assign setpos to "{SYS}{SUBSYS}{DEV}{SUBDEV}SetPos";
+monitor setpos;
+
+int posR = 0;
+assign posR to "{SYS}{SUBSYS}{DEV}{SUBDEV}PosR";
+monitor posR;
+
+char msgbuf[64] = "";
+string message;
+assign message to "{SYS}{SUBSYS}{DEV}{SUBDEV}Msg";
+
+ss ndpscontrol
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efSet(evAuto);
+		}state Auto
+	}
+
+	state Auto
+	{
+		when(efTest(evAuto) && auto_ == 1 )
+		{
+			setpos = 351;
+			pvPut(setpos, SYNC);
+			if(stop == 1 && move == 0) {
+				stop = 0;
+				pvPut(stop,SYNC);
+				move = 1;
+				pvPut(move,SYNC);
+			};
+			efClear(evAuto);
+		}state Moving
+
+		when(efTest(evAuto) && auto_ == 0 )
+		{
+			efClear(evAuto);
+		}state Auto
+	}
+
+	state Moving
+	{
+		when(efTest(evMoving) && moving == 1 )
+		{
+			sprintf(msgbuf, "Moving position %d mm", posR);
+			strcpy(message, msgbuf);
+			pvPut(message);
+			efClear(evMoving);
+		}state Moving
+
+		when(efTest(evMoving) && moving == 0 )
+		{
+			sprintf(msgbuf, "Complete position %d mm", posR);
+			strcpy(message, msgbuf);
+			pvPut(message);
+			efClear(evMoving);
+		}state Complet
+
+	}
+
+	state Complete
+	{
+		when(TRUE)
+		{
+			stop = 1;
+			pvPut(stop,SYNC);
+			move = 0;
+			pvPut(move,SYNC);
+			auto_= 0;
+			pvPut(auto_,SYNC);
+		}state Auto
+	}
+}
+
