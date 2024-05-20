@@ -1,0 +1,27 @@
+program sncNDPSEqual
+
+option +r;
+
+int A = 0;
+assign A  to "{SYS}{SUBSYS}{DEV}{SUBDEV}{A}";
+monitor A ;
+evflag evA ;
+sync A  evA ;
+
+int B = 0;
+assign B  to "{SYS}{SUBSYS}{DEV}{SUBDEV}{B}";
+
+
+ss ndpsequal
+{
+	state Equal
+	{
+		when(efTestAndClear(evA))
+		{
+			B = A;
+			pvPut(B, SYNC);
+		}state Equal
+	}
+
+}
+

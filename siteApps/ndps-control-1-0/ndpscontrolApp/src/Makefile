@@ -37,7 +37,9 @@ ndpscontrol_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     ndpscontrol_SNCFLAGS += +r
     ndpscontrol_DBD  += sncNDPSControl.dbd
+    ndpscontrol_DBD += sncNDPSControl_equal.dbd
     ndpscontrol_SRCS += sncNDPSControl.stt
+    ndpscontrol_SRCS += sncNDPSControl_equal.stt
     ndpscontrol_LIBS += seq pv
 endif
 

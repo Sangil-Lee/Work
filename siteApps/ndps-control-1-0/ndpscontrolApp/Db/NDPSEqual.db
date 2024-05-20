@@ -1,0 +1,17 @@
+
+
+
+record(calc, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(A)")
+{
+	field(DESC, "Equal Source Data")
+	field(SCAN, "1 second")
+	field(CALC, "A>=100?0:A+1")
+	field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(A)")
+}
+
+record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)$(B)")
+{
+	field(DESC, "Equal Destination Data")
+	field(SCAN, "Passive")
+	field(VAL,	"0")
+}
