@@ -1,0 +1,95 @@
+record(calc, "$(SYS):$(DEV):Phase") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "$(SYS):$(DEV):PhaseFO")
+  field(CALC, "2*3.141592*(A/200)")
+  field(INPA, "$(SYS):$(DEV):Phase0")
+  field(PREC, "4")
+}
+
+record(fanout, "$(SYS):$(DEV):PhaseFO") {
+  field(SCAN, "Passive")
+  field(LNK0, "$(SYS):$(DEV):SinA")
+  field(LNK1, "$(SYS):$(DEV):SinB")
+  field(LNK2, "$(SYS):$(DEV):SinC")
+}
+
+record(calc, "$(SYS):$(DEV):SinA") {
+  field(SCAN, "Passive")
+  field(FLNK, "$(SYS):$(DEV):SinABC")
+  field(CALC, "C*cos(A*B)")
+  field(INPA, "$(SYS):$(DEV):Phase")
+  field(INPB, "90")
+  field(INPC, "4")
+  field(PREC, "4")
+}
+
+record(calc, "$(SYS):$(DEV):SinB") {
+  field(SCAN, "Passive")
+  field(CALC, "C*sin(A*B)")
+  field(INPA, "$(SYS):$(DEV):Phase")
+  field(INPB, "4")
+  field(INPC, "3")
+  field(PREC, "4")
+}
+
+record(calc, "$(SYS):$(DEV):SinC") {
+  field(SCAN, "Passive")
+  field(CALC, "C*sin(A*B)")
+  field(INPA, "$(SYS):$(DEV):Phase")
+  field(INPB, "6")
+  field(INPC, "4")
+  field(PREC, "4")
+}
+
+record(calcout, "$(SYS):$(DEV):SinABC") {
+  field(SCAN, "Passive")
+  field(CALC, "A+B+C")
+  field(INPA, "$(SYS):$(DEV):SinA")
+  field(INPB, "$(SYS):$(DEV):SinB")
+  field(INPC, "$(SYS):$(DEV):SinC")
+  field(OOPT, "Every Time")
+  field(DOPT, "Use CALC")
+  field(FLNK, "$(SYS):$(DEV):SinComp")
+  field(PREC, "4")
+}
+
+record(compress, "$(SYS):$(DEV):SinComp") {
+  field(SCAN, "Passive")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "1000")
+  field(INP, "$(SYS):$(DEV):SinABC")
+  field(PREC, "4")
+  field(FLNK, "$(SYS):$(DEV):Sin2FFT")
+}
+
+record(aSub, "$(SYS):$(DEV):Sin2FFT") {
+  field(INAM, "InitSin2FFT")
+  field(SNAM, "ProcSin2FFT")
+  field(INPA, "$(SYS):$(DEV):SinComp")
+  field(NOA, "1000")
+  field(OUTA, "$(SYS):$(DEV):SinFFTWave")
+  field(OUTB, "$(SYS):$(DEV):SinFFTFreqWave")
+  field(NOVA, "1000")
+  field(NOVB, "1000")
+}
+
+record(waveform, "$(SYS):$(DEV):SinFFTWave") {
+  field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
+}
+
+record(waveform, "$(SYS):$(DEV):SinFFTFreqWave") {
+  field(NELM, "1000")
+  field(PREC, "4")
+  field(FTVL, "DOUBLE")
+}
+
+record(calc, "$(SYS):$(DEV):Phase0") {
+  field(SCAN, ".1 second")
+  field(FLNK, "$(SYS):$(DEV):Phase")
+  field(CALC, "(A>1000)? 0: A+1")
+  field(INPA, "$(SYS):$(DEV):Phase0")
+}
+

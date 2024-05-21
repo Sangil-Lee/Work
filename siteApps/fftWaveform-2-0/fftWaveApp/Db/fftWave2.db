@@ -1,0 +1,63 @@
+record(waveform, "$(P)$(R)Wave") {
+  field(NELM, "$(NELM)")
+  field(FTVL, "DOUBLE")
+}
+
+record(aSub, "$(P)$(R)ASubFFT") {
+  field(SCAN, "1 second")
+  field(INAM, "InitFFTWave")
+  field(SNAM, "ProcFFTWave")
+  field(INPA, "$(P)$(R)Wave")
+  field(NOA, "$(NELM)")
+  field(FTA, "DOUBLE")
+
+  field(INPB, "30")
+  field(NOB, "1")
+  field(FTB, "FLOAT")
+
+  field(INPC, "60")
+  field(NOC, "1")
+  field(FTC, "FLOAT")
+
+  field(INPD, "90")
+  field(NOD, "1")
+  field(FTD, "FLOAT")
+
+  field(INPE, "20")
+  field(NOE, "1")
+  field(FTE, "FLOAT")
+
+  field(INPF, "50")
+  field(NOF, "1")
+  field(FTF, "FLOAT")
+
+  field(INPG, "75")
+  field(NOG, "1")
+  field(FTG, "FLOAT")
+
+  field(OUTA, "$(P)$(R)Wave PP")
+  field(NOVA, "$(NELM)")
+
+  field(OUTB, "$(P)$(R)FFTWave PP")
+  field(NOVB, "$(NELM)")
+
+  field(OUTC, "$(P)$(R)FFTWaveFreq PP")
+  field(NOVC, "$(NELM)")
+
+}
+
+record(waveform, "$(P)$(R)Wave") {
+  field(NELM, "$(NELM)")
+  field(FTVL, "DOUBLE")
+}
+
+record(waveform, "$(P)$(R)FFTWave") {
+  field(NELM, "$(NELM)")
+  field(FTVL, "DOUBLE")
+}
+
+record(waveform, "$(P)$(R)FFTWaveFreq") {
+  field(NELM, "$(NELM)")
+  field(FTVL, "DOUBLE")
+}
+
