@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdexcept>
+#include <iomanip>
 
 template<typename T>
 class Range {
@@ -54,7 +55,7 @@ int main() {
     Range<int> r(256); 
     r.setoffsetsize(4);
     for (auto i : r) {
-        std::cout << i << " offset: " << std::hex << r.offset() << ", " << std::dec;
+        std::cout << "[" << i << " offset:0x" << std::setw(4) <<std::setfill('0')<< std::hex << r.offset() << "], "  << std::dec;
     }
     std::cout << std::endl;
 
@@ -83,7 +84,7 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Range(0, 1, 0.2) 사용:" << std::endl;
-    Range<double> drange(0, 1, 0.2);
+    Range<double> drange(0, 10, 0.2);
 	drange.setoffsetsize(0.4);
     for (const auto& i :drange) {
         std::cout << i << " offset: " << drange.offset() << " count: " << drange.count() << std::endl;
