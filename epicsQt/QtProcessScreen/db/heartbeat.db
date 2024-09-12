@@ -1,0 +1,8 @@
+record(calc, "$(P)heartbeat")
+{
+	field(SCAN, "1 second")
+	field(CALC, "A?0:1")
+	field(INPA, "$(P)heartbeat")
+	field(VAL, "0")
+	
+}
