@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="Accelerator">
+  <component name="DEMO:GROUP1">
+    <pv name="DEMO:PV1">
+      <description>DEMO:PV1</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+      <filter>DEMO:PV2 &gt; 10</filter>
+    </pv>
+    <pv name="DEMO:PV2">
+      <description>DEMO:PV2</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+    </pv>
+    <pv name="DEMO:PV3">
+      <description>DEMO:PV3</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+    </pv>
+  </component>
+  <component name="DEMO:GROUP2">
+    <component name="DEMO:GROUP3">
+      <pv name="DEMO:PV4">
+        <description>DEMO:PV4</description>
+        <enabled>true</enabled>
+        <latching>false</latching>
+        <annunciating>false</annunciating>
+      </pv>
+      <pv name="DEMO:PV5">
+        <description>DEMO:PV5</description>
+        <enabled>true</enabled>
+        <latching>false</latching>
+        <annunciating>false</annunciating>
+      </pv>
+    </component>
+    <pv name="DEMO:PV6">
+      <description>DEMO:PV6</description>
+      <enabled>true</enabled>
+      <latching>true</latching>
+      <annunciating>true</annunciating>
+    </pv>
+    <pv name="DEMO:PV7">
+      <description>DEMO:PV7</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+      <guidance>
+        <title>Check 1</title>
+        <details>Check Valve(ctrlslab:CV7301) Status</details>
+      </guidance>
+      <guidance>
+        <title>Proc1</title>
+        <details>Control valve(ctrlslab-CV7301) set to 50%</details>
+      </guidance>
+      <guidance>
+        <title>Proc2</title>
+        <details>Wait 2min then monitor Check1</details>
+      </guidance>
+      <guidance>
+        <title>Inform1</title>
+        <details>Next shift operator(Mr.John)</details>
+      </guidance>
+      <command>
+        <title>Action1</title>
+        <details>python C:/phoebus-4.6.10/fishtank/scripts/Action1.py</details>
+      </command>
+    </pv>
+  </component>
+  <component name="FishTank">
+    <component name="SubFishTank">
+      <pv name="ctrlslab:error">
+        <description>ctrlslab:error</description>
+        <enabled>true</enabled>
+        <latching>false</latching>
+        <annunciating>true</annunciating>
+        <guidance>
+          <title>Proc1</title>
+          <details>Alarm Test</details>
+        </guidance>
+        <guidance>
+          <title>Proc2</title>
+          <details>Alarm Test2</details>
+        </guidance>
+        <command>
+          <title>cmd1</title>
+          <details>cmd1</details>
+        </command>
+      </pv>
+      <pv name="ctrlslab:integral">
+        <description>ctrlslab:integral</description>
+        <enabled>true</enabled>
+        <latching>true</latching>
+        <annunciating>true</annunciating>
+      </pv>
+    </component>
+    <pv name="ctrlslab:heat_V">
+      <description>ctrlslab:heat_V</description>
+      <enabled>true</enabled>
+      <latching>true</latching>
+      <annunciating>true</annunciating>
+    </pv>
+    <pv name="ctrlslab:tank">
+      <description>ctrlslab:tank</description>
+      <enabled>true</enabled>
+      <latching>true</latching>
+      <annunciating>true</annunciating>
+      <display>
+        <title>Screen1</title>
+        <details>C:\phoebus-4.6.10\fishtank\heater.bob</details>
+      </display>
+    </pv>
+  </component>
+</config>

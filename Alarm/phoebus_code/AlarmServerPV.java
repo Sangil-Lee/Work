@@ -10,6 +10,7 @@ package org.phoebus.applications.alarm.server;
 import static org.phoebus.applications.alarm.AlarmSystem.logger;
 
 import java.time.Instant;
+import java.time.ZoneId;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -37,6 +38,7 @@ import org.phoebus.pv.PV;
 import org.phoebus.pv.PVPool;
 
 import io.reactivex.rxjava3.core.BackpressureStrategy;
+import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 
@@ -86,6 +88,8 @@ public class AlarmServerPV extends AlarmTreeItem<AlarmState> implements AlarmTre
     private volatile Filter filter = null;
     private volatile EnabledState enabled = new EnabledState(true);
     private volatile EnabledDateTimeFilter enabled_datetime_filter = null;
+
+    private int callCount = 0;
 
     public AlarmServerPV(final ServerModel model, final String parent_path, final String name, final ClientState initial)
     {
@@ -374,8 +378,13 @@ public class AlarmServerPV extends AlarmTreeItem<AlarmState> implements AlarmTre
             final PV previous = pv.getAndSet(new_pv);
             if (previous != null)
                 throw new IllegalStateException("Alarm tree leaf " + getPathName() + " already started for " + previous);
-            pv_flow = new_pv.onValueEvent(BackpressureStrategy.BUFFER)
-                            .subscribe(this::handleValueUpdate);
+            //pv_flow = new_pv.onValueEvent(BackpressureStrategy.BUFFER)
+                            //.subscribe(this::handleValueUpdate);
+	    Flowable<VType> flow = new_pv.onValueEvent(BackpressureStrategy.BUFFER);
+            //pv_flow = flow.subscribe(data -> { logger.info(data.toString());} , error-> logger.info("Buffer Overflow:"+new_pv.getName()));
+            pv_flow = flow.subscribe(this::handleValueUpdate, error-> logger.info("Buffer Overflow:"+new_pv.getName()));
+
+	    logger.info("BufferSize: " + flow.bufferSize());
         }
         catch (Throwable ex)
         {
@@ -491,20 +500,22 @@ public class AlarmServerPV extends AlarmTreeItem<AlarmState> implements AlarmTre
             }
             // Inspect alarm state of received value
             is_connected = true;
+	    
+	    String pvpath = getPathName();
+	    if(pvpath.matches("(.*)Alarm10(.*)"))
+	    {
+	    	Instant timestlong = VTypeHelper.getTimestamp(value);
+
+		final String strsec = TimestampFormats.MILLI_FORMAT.format(timestlong); 
+		String slog = "Time:"+timestlong+"====>handleValueUpdate >>>>>>> callCount:" + callCount++;
+            	logger.info(slog);
+	    }
+
             final SeverityLevel new_severity = SeverityLevelHelper.decodeSeverity(value);
             final String new_message = SeverityLevelHelper.getStatusMessage(value);
             final AlarmState received = new AlarmState(new_severity, new_message,
                                                        VTypeHelper.toString(value),
                                                        VTypeHelper.getTimestamp(value));
-	    //silee++
-	    String pvpath = getPathName();
-	    if(pvpath.matches("(.*)Alarm10(.*)"))
-	    {
-	    	Instant timestlong = VTypeHelper.getTimestamp(value);
-		final String strsec = TimestampFormats.MILLI_FORMAT.format(timestlong); 
-		String slog = "Time:"+timestlong+"====>handleValueUpdate >>>>>>> count:" + model.count++;
-            	logger.info(slog);
-	    }
             // Update alarm logic
             logic.computeNewState(received);
             logger.log(Level.FINER, () -> getPathName() + " received " + value + " -> " + logic);
