@@ -1,0 +1,50 @@
+####################################################################################################
+#### START of alarmTest.iocsh ##############################################################
+#- P      : PREFIX
+#- PORT   :
+#- IPADDR :
+#- DATABASE_TOP :
+#- SCAN   : [Default] 1 second
+#- PREC   : [Default] 3
+#- #################################################################################################
+##
+## Here is the example, one should modify according to your IOC application
+## Note that we mixed the variable names in somewhere (SCAN, PREC, PORT, P)
+##           we separated the variable names in DATABASE_TOP from .... 
+## Please make sure you use the proper variable name to match st.cmd, and your DB file.
+##
+## Configure port driver
+# MultiFunctionConfig((portName,        # The name to give to this asyn port driver
+#                      uniqueID,        # For USB the serial number.  For Ethernet the MAC address or IP address.
+#                      maxInputPoints,  # Maximum number of input points for waveform digitizer
+#                      maxOutputPoints) # Maximum number of output points for waveform generator
+#MultiFunctionConfig("$(PORT)", "$(IPADDR=128.3.130.203)", 1, 1)
+#measCompShowDevices()
+#- asynSetTraceMask($(PORT), -1, ERROR|FLOW|DRIVER)
+#dbLoadRecords("$(DATABASE_TOP)/TC32.db", "P=$(P),PORT=$(PORT),SCAN=$(SCAN=1 second),PREC=$(PREC=3)")
+#dbLoadTemplate("$(DATABASE_TOP)/alarm.substitutions",	"P=$(P):")
+####dbLoadTemplate("$(DATABASE_TOP)/alarm2.substitutions",	"P=$(P):")
+#dbLoadTemplate("$(DATABASE_TOP)/alarm3.substitutions",	"P=$(P):")
+####dbLoadRecords("$(DATABASE_TOP)/iocAdminSoft.db",	"IOC=$(P)")
+####dbLoadRecords("$(DATABASE_TOP)/subCheckDisk.db",	"P=$(P):")
+####dbLoadRecords("$(DATABASE_TOP)/Proc.db",		"P=$(P):")
+
+
+
+###Setup Passive
+#dbLoadRecords("$(DATABASE_TOP)/ProcPassive.db",			"P=$(P):")
+#dbLoadTemplate("$(DATABASE_TOP)/alarmPassive.substitutions",	"P=$(P):")
+#
+##dbLoadRecords("$(DATABASE_TOP)/ProcPassive2.db",		"P=$(P):")
+##dbLoadTemplate("$(DATABASE_TOP)/alarmPassive2.substitutions",	"P=$(P):")
+#
+dbLoadRecords("$(DATABASE_TOP)/ProcPassive3.db",		"P=$(P):, F=$(F):")
+dbLoadTemplate("$(DATABASE_TOP)/FLayer.substitutions",		"P=$(P):, F=$(F):")
+dbLoadTemplate("$(DATABASE_TOP)/alarmPassive3.substitutions",	"P=$(P):, F=$(F):")
+
+
+#dbLoadRecords("$(DATABASE_TOP)/iocAdminSoft.db",		"IOC=$(P)")
+#dbLoadRecords("$(DATABASE_TOP)/subCheckDisk.db",	"P=$(P):")
+
+#### END of alarmTest.iocsh ################################################################
+####################################################################################################

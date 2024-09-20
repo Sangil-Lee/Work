@@ -1,0 +1,186 @@
+record (fanout,"$(P)$(F)") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)$(S0)")
+	field(LNK1, "$(P)$(S1)")
+	field(LNK2, "$(P)$(S2)")
+	field(LNK3, "$(P)$(S3)")
+	field(LNK4, "$(P)$(S4)")
+	field(LNK5, "$(P)$(S5)")
+	field(LNK6, "$(P)$(S6)")
+	field(LNK7, "$(P)$(S7)")
+	field(LNK8, "$(P)$(S8)")
+	field(LNK9, "$(P)$(S9)")
+}
+
+record(calc, "$(P)$(S0)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+
+record(calc, "$(P)$(S1)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S2)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S3)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S4)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S5)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S6)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S7)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S8)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}
+
+record(calc, "$(P)$(S9)") {
+	field(SCAN, "Passive")
+	field(PINI, "YES")
+	field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+	field(INPB,  "$(P)Proc")
+	field(TSEL,  "$(P)Proc.TIME")
+
+	field(HIHI,  "80")
+	field(HIGH,  "60")
+	field(LOW,   "40")
+	field(LOLO,  "20")
+	field(HHSV,  "MAJOR")
+	field(HSV,   "MINOR")
+	field(LSV,   "MINOR")
+	field(LLSV,  "MAJOR")
+}

@@ -1,0 +1,192 @@
+record(calcout, "$(P)Proc") {
+  field(SCAN, "Passive")
+  field(PINI, "YES")
+  field(FLNK, "$(P)F0")
+  field(CALC, "B:=B+1;B>=600?-1:A>=4?0:A+1")
+  field(INPA,  "$(P)Proc")
+  field(INPB,  "0")
+  field(VAL,  "0")
+}
+
+record (fanout,"$(P)F0") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F00")
+	field(LNK1, "$(P)F10")
+	field(LNK2, "$(P)F20")
+	field(LNK3, "$(P)F30")
+	field(LNK4, "$(P)F40")
+	field(LNK5, "$(P)F50")
+	field(LNK6, "$(P)F60")
+	field(LNK7, "$(P)F70")
+	field(LNK8, "$(P)F80")
+	field(LNK9, "$(P)F90")
+}
+
+record (fanout,"$(P)F00") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F000")
+	field(LNK1, "$(P)F001")
+	field(LNK2, "$(P)F002")
+	field(LNK3, "$(P)F003")
+	field(LNK4, "$(P)F004")
+	field(LNK5, "$(P)F005")
+	field(LNK6, "$(P)F006")
+	field(LNK7, "$(P)F007")
+	field(LNK8, "$(P)F008")
+	field(LNK9, "$(P)F009")
+}
+
+record (fanout,"$(P)F10") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F100")
+	field(LNK1, "$(P)F101")
+	field(LNK2, "$(P)F102")
+	field(LNK3, "$(P)F103")
+	field(LNK4, "$(P)F104")
+	field(LNK5, "$(P)F105")
+	field(LNK6, "$(P)F106")
+	field(LNK7, "$(P)F107")
+	field(LNK8, "$(P)F108")
+	field(LNK9, "$(P)F109")
+}
+
+
+record (fanout,"$(P)F20") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F200")
+	field(LNK1, "$(P)F201")
+	field(LNK2, "$(P)F202")
+	field(LNK3, "$(P)F203")
+	field(LNK4, "$(P)F204")
+	field(LNK5, "$(P)F205")
+	field(LNK6, "$(P)F206")
+	field(LNK7, "$(P)F207")
+	field(LNK8, "$(P)F208")
+	field(LNK9, "$(P)F209")
+}
+
+record (fanout,"$(P)F30") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F300")
+	field(LNK1, "$(P)F301")
+	field(LNK2, "$(P)F302")
+	field(LNK3, "$(P)F303")
+	field(LNK4, "$(P)F304")
+	field(LNK5, "$(P)F305")
+	field(LNK6, "$(P)F306")
+	field(LNK7, "$(P)F307")
+	field(LNK8, "$(P)F308")
+	field(LNK9, "$(P)F309")
+}
+
+
+record (fanout,"$(P)F40") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F400")
+	field(LNK1, "$(P)F401")
+	field(LNK2, "$(P)F402")
+	field(LNK3, "$(P)F403")
+	field(LNK4, "$(P)F404")
+	field(LNK5, "$(P)F405")
+	field(LNK6, "$(P)F406")
+	field(LNK7, "$(P)F407")
+	field(LNK8, "$(P)F408")
+	field(LNK9, "$(P)F409")
+}
+
+record (fanout,"$(P)F50") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F500")
+	field(LNK1, "$(P)F501")
+	field(LNK2, "$(P)F502")
+	field(LNK3, "$(P)F503")
+	field(LNK4, "$(P)F504")
+	field(LNK5, "$(P)F505")
+	field(LNK6, "$(P)F506")
+	field(LNK7, "$(P)F507")
+	field(LNK8, "$(P)F508")
+	field(LNK9, "$(P)F509")
+}
+
+
+record (fanout,"$(P)F60") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F600")
+	field(LNK1, "$(P)F601")
+	field(LNK2, "$(P)F602")
+	field(LNK3, "$(P)F603")
+	field(LNK4, "$(P)F604")
+	field(LNK5, "$(P)F605")
+	field(LNK6, "$(P)F606")
+	field(LNK7, "$(P)F607")
+	field(LNK8, "$(P)F608")
+	field(LNK9, "$(P)F609")
+}
+
+
+record (fanout,"$(P)F70") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F700")
+	field(LNK1, "$(P)F701")
+	field(LNK2, "$(P)F702")
+	field(LNK3, "$(P)F703")
+	field(LNK4, "$(P)F704")
+	field(LNK5, "$(P)F705")
+	field(LNK6, "$(P)F706")
+	field(LNK7, "$(P)F707")
+	field(LNK8, "$(P)F708")
+	field(LNK9, "$(P)F709")
+}
+
+
+record (fanout,"$(P)F80") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F800")
+	field(LNK1, "$(P)F801")
+	field(LNK2, "$(P)F802")
+	field(LNK3, "$(P)F803")
+	field(LNK4, "$(P)F804")
+	field(LNK5, "$(P)F805")
+	field(LNK6, "$(P)F806")
+	field(LNK7, "$(P)F807")
+	field(LNK8, "$(P)F808")
+	field(LNK9, "$(P)F809")
+}
+
+
+record (fanout,"$(P)F90") 
+{
+	field(SCAN, "Passive")
+	field(SELM, "All")
+	field(LNK0, "$(P)F900")
+	field(LNK1, "$(P)F901")
+	field(LNK2, "$(P)F902")
+	field(LNK3, "$(P)F903")
+	field(LNK4, "$(P)F904")
+	field(LNK5, "$(P)F905")
+	field(LNK6, "$(P)F906")
+	field(LNK7, "$(P)F907")
+	field(LNK8, "$(P)F908")
+	field(LNK9, "$(P)F909")
+}
+

@@ -1,0 +1,19 @@
+record(calc, "$(P)$(S)") {
+  field(SCAN, "1 second")
+  #field(SCAN, "Passive")
+  field(PINI, "YES")
+  #field(CALC, "RNDM*A")
+  #field(INPA,  "$(VAL)")
+  field(CALC, "A:=RNDM;B==0?17+A:B==1?32+A:B==2?6+A:B==3?62+A:B==4?93+A:50")
+  field(INPB,  "$(P)Proc")
+  field(HIHI,  "80")
+  field(HIGH,  "60")
+  field(LOW,   "40")
+  field(LOLO,  "20")
+  field(TSEL,  "$(P)Proc.TIME")
+
+  field(HHSV,  "MAJOR")
+  field(HSV,   "MINOR")
+  field(LSV,   "MINOR")
+  field(LLSV,  "MAJOR")
+}

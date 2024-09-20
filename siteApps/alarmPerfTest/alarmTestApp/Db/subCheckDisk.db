@@ -1,0 +1,25 @@
+record(aSub, "$(P)checkDisk")
+{
+	field(SCAN, "1 second")	
+	field(PINI, "YES")	
+	field(INAM, "subInitCheckDisk")	
+	field(SNAM, "subProcCheckDisk")	
+	field(OUTA, "$(P)Used PP")	
+	field(FTVA, "ULONG")	
+	field(NOVA, "1")	
+	field(OUTB, "$(P)Avail PP")	
+	field(FTVB, "ULONG")	
+	field(NOVB, "1")	
+}
+
+record(longout, "$(P)Used")
+{
+	field(PINI, "YES")	
+	field(VAL, "0")	
+}
+
+record(longout, "$(P)Avail")
+{
+	field(PINI, "YES")	
+	field(VAL, "0")	
+}

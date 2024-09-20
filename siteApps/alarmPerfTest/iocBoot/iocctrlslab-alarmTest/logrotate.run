@@ -1,0 +1,15 @@
+#!/bin/sh
+# Rocky 8
+LOGROTATE1=/usr/sbin/logrotate
+# Debian 11
+LOGROTATE2=/sbin/logrotate
+
+if [ -e "$LOGROTATE1" ]; then
+    "$LOGROTATE1" --state ctrlslab-alarmTest.logrotate.states ./logrotate.conf "$1"
+elif [ -e "$LOGROTATE2" ]; then
+    "$LOGROTATE2" --state ctrlslab-alarmTest.logrotate.states ./logrotate.conf "$1"
+else
+    echo "We cannot find logrotate in this system"
+fi
+
+exit
