@@ -213,9 +213,11 @@ public class AlarmLogTableController {
         deltaTimeCol = new TableColumn<>("Time Delta");
         deltaTimeCol.setCellValueFactory(
                 alarmMessage -> {
-                    java.time.Duration delta = java.time.Duration.between(alarmMessage.getValue().getMessage_time(), Instant.now());
-                    return new SimpleStringProperty(delta.toHours() + ":" + delta.toMinutesPart() + ":" + delta.toSecondsPart()
-                            + "." + delta.toMillisPart());
+                    //java.time.Duration delta = java.time.Duration.between(alarmMessage.getValue().getMessage_time(), Instant.now());
+                    //return new SimpleStringProperty(delta.toHours() + ":" + delta.toMinutesPart() + ":" + delta.toSecondsPart()
+                     //    + "." + delta.toMillisPart());
+                    String value = alarmMessage.getValue().getValue(); 
+                    return new SimpleStringProperty(value);
                 });
         deltaTimeCol.setVisible(false);
         tableView.getColumns().add(deltaTimeCol);
@@ -418,7 +420,7 @@ public class AlarmLogTableController {
 			if(item.getTime() != null)
 				time = TimestampFormats.MILLI_FORMAT.format(item.getTime());
 
-			System.out.println("Count:("+count+"), Item PV: " + item.getPv() + ", Severity: " + item.getSeverity() + ", Time:" + time);
+			System.out.println("Count:("+count+"), Item PV: " + item.getPv() +", Value: " + item.getValue() + ", Severity: " + item.getSeverity() + ", Time:" + time);
 			count++;
 		};
 		print.close();
