@@ -1,0 +1,10 @@
+
+terminator = CR LF;
+
+replytimeout = 3000;
+readtimeout = 1000;
+
+
+read_kelvin {out "KRDG? \$1"; in "%f";}
+reset {out "*RST";}
+

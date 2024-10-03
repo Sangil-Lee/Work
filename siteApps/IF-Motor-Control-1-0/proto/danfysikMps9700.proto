@@ -1,0 +1,36 @@
+# Stream Device Protocol for the Danfysik System 9100 power supply
+# RS232 (standard version)
+#
+# Pete Owens 13/5/16
+#
+
+OutTerminator = CR;
+InTerminator  = LF CR;
+ReplyTimeout  = 1000;
+ReadTimeout   = 1000;
+LockTimeout   = 5000;
+
+adc    { out "AD \$1";      in "%f";			}
+rdcurr    { out "MEAS:CURR?";      in "%f";			}
+
+wrdac  { out "DA \$1 %03d";						}
+rddac  { out "DA \$1";      in "\$1 %d";		}
+
+setcmd { out "%{LOC|REM}";						}
+getcmd { out "CMD";         in "%{LOC|REM} ";	}
+
+power  { out "%{F|N}";							}
+rdpower{ out "OUTP:REL?";	in "%d";			}
+
+first  { out "S1FIRSTH";    in "%x";			}
+
+reset  { out "RS";								}
+
+setpol { out "PO %{+|-}";						}
+getpol { out "PO";          in "%{+|-}";		}
+
+rdcur  { out "MEAS:CURR?"   in "%f";			}
+rdvolt { out "MEAS:VOLT?"   in "%f";			}
+
+# just for debugging - actually 2 lines
+print  { out "PRINT";       in "%39c" ;			}
