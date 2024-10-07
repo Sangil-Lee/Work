@@ -98,6 +98,8 @@ public class AlarmLogTableController {
     @FXML
     TableColumn<AlarmLogTableItem, String> deltaTimeCol;
     @FXML
+    TableColumn<AlarmLogTableItem, String> alarmValue;
+    @FXML
     TableColumn<AlarmLogTableItem, String> currentSeverityCol;
     @FXML
     TableColumn<AlarmLogTableItem, String> currentMessageCol;
@@ -213,14 +215,22 @@ public class AlarmLogTableController {
         deltaTimeCol = new TableColumn<>("Time Delta");
         deltaTimeCol.setCellValueFactory(
                 alarmMessage -> {
-                    //java.time.Duration delta = java.time.Duration.between(alarmMessage.getValue().getMessage_time(), Instant.now());
-                    //return new SimpleStringProperty(delta.toHours() + ":" + delta.toMinutesPart() + ":" + delta.toSecondsPart()
-                     //    + "." + delta.toMillisPart());
-                    String value = alarmMessage.getValue().getValue(); 
-                    return new SimpleStringProperty(value);
+                    java.time.Duration delta = java.time.Duration.between(alarmMessage.getValue().getMessage_time(), Instant.now());
+                    return new SimpleStringProperty(delta.toHours() + ":" + delta.toMinutesPart() + ":" + delta.toSecondsPart()
+                         + "." + delta.toMillisPart());
                 });
         deltaTimeCol.setVisible(false);
         tableView.getColumns().add(deltaTimeCol);
+
+	//silee++
+        alarmValue = new TableColumn<>("Alarm Value");
+        alarmValue.setCellValueFactory(
+                alarmMessage -> {
+                    String value = alarmMessage.getValue().getValue(); 
+                    return new SimpleStringProperty(value);
+                });
+        alarmValue.setVisible(false);
+        tableView.getColumns().add(alarmValue);
 
         currentSeverityCol = new TableColumn<>("Current Severity");
         currentSeverityCol.setCellValueFactory(
