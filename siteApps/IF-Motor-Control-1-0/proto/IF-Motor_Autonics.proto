@@ -1,0 +1,78 @@
+# Autonics Motor PMC-2HS RS-232 Communication Protocol
+# Data format
+#       baud rate: 9,600 ~ 115,200bps
+#       parity: None
+#       flow contronl: None
+#       data bit: 8
+#       stop bit: 1
+
+# Termination character: CR
+# Communication Procedure
+# Transmit: COMMAND + [PARAMETER] + <CR>
+# Receive: Measurement values
+# COMMAND LIST
+
+InTerminator = CR;
+OutTerminator = CR;
+
+set_progX{
+	out "PRG X%d";
+}
+
+set_progY{
+	out "PRG Y%d";
+}
+
+####Absolue position(1(X)-axis)
+set_pabX{
+	out "PAB %d";
+}
+
+####Absolue position(2(Y)-axis)
+set_pabY{
+	out "PAB ,%d";
+}
+
+####Absolue position(1,2(X,Y)-axis)
+set_pabXY{
+	out "PAB %d,%d";
+}
+
+####Relative position(1(X)-axis)
+set_picX{
+	out "PIC %d";
+}
+
+####Relative position(2(Y)-axis)
+set_picY{
+	out "PIC ,%d";
+}
+
+####Relative position(1,2(X,Y)-axis)
+set_picXY{
+	out "PIC %d,%d";
+}
+
+####HOMING
+set_homingX{
+	out "HOM X";
+}
+
+set_homingY{
+	out "HOM Y";
+}
+
+get_type1{
+	out "\$1";
+	in "%*c%d";
+}
+
+get_type2{
+	out "\$1";
+	in "%{XRUN|XSTOP|XHLIM|XRLIM|XFLIM}";
+}
+
+get_type3{
+        out "\$1";
+        in ",%*c%d";
+}
