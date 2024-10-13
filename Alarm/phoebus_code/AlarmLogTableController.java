@@ -98,6 +98,8 @@ public class AlarmLogTableController {
     @FXML
     TableColumn<AlarmLogTableItem, String> deltaTimeCol;
     @FXML
+    TableColumn<AlarmLogTableItem, String> alarmValue;
+    @FXML
     TableColumn<AlarmLogTableItem, String> currentSeverityCol;
     @FXML
     TableColumn<AlarmLogTableItem, String> currentMessageCol;
@@ -215,10 +217,20 @@ public class AlarmLogTableController {
                 alarmMessage -> {
                     java.time.Duration delta = java.time.Duration.between(alarmMessage.getValue().getMessage_time(), Instant.now());
                     return new SimpleStringProperty(delta.toHours() + ":" + delta.toMinutesPart() + ":" + delta.toSecondsPart()
-                            + "." + delta.toMillisPart());
+                         + "." + delta.toMillisPart());
                 });
         deltaTimeCol.setVisible(false);
         tableView.getColumns().add(deltaTimeCol);
+
+	//silee++
+        alarmValue = new TableColumn<>("Alarm Value");
+        alarmValue.setCellValueFactory(
+                alarmMessage -> {
+                    String value = alarmMessage.getValue().getValue(); 
+                    return new SimpleStringProperty(value);
+                });
+        alarmValue.setVisible(false);
+        tableView.getColumns().add(alarmValue);
 
         currentSeverityCol = new TableColumn<>("Current Severity");
         currentSeverityCol.setCellValueFactory(
@@ -418,7 +430,7 @@ public class AlarmLogTableController {
 			if(item.getTime() != null)
 				time = TimestampFormats.MILLI_FORMAT.format(item.getTime());
 
-			System.out.println("Count:("+count+"), Item PV: " + item.getPv() + ", Severity: " + item.getSeverity() + ", Time:" + time);
+			System.out.println("Count:("+count+"), Item PV: " + item.getPv() +", Value: " + item.getValue() + ", Severity: " + item.getSeverity() + ", Time:" + time);
 			count++;
 		};
 		print.close();

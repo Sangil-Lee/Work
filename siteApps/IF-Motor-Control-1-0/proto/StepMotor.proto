@@ -1,0 +1,74 @@
+# Motion CWM-SES-231 RS-232 Communication Protocol
+# Data format
+#       baud rate: 38400
+#       parity: None
+#       data: 8
+#       stop: 1
+# Communication Procedure
+# Transmit: MYADDRESS + COMMAND + [PARAMETER] + <CR>
+# Receive: Measurement values
+# MYADDRESS = X, Y, or Z
+# COMMAND LIST
+#	MA: Move A position
+#	MB: Move B position
+#	MB: Move C position
+#	MB: Move D position
+#	MF: Move Forward
+#	MH: Move Home
+#	MP: Move absolute postion
+#	MR: Move relative postion
+#	MS: Move Stop
+#	MW: Move Reverse
+#	SA: Set A position
+#	SB: Set B position
+#	SC: Set C position
+#	SD: Set D position
+#	SE: Set low speed
+#	SF: Set offset
+#	SM: Set display mode
+#	SP: Set position
+#	SR: Set Resolution
+#	SS: Set max speed
+#	SW: Set screw lead
+#	GA: Get A position
+#	GB: Get B position
+#	GC: Get C position
+#	GD: Get D position
+#	GE: Get low speed
+#	GF: Get offset
+#	GL: Get axis all setting value
+#	GM: Get display mode
+#	GP: Get current position
+#	GR: Get Resoultion
+#	GS: Get max speed
+#	GW: Get screw lead
+#	GU: Get axis status
+#	PC: Set Pulse control type
+#	PG: Get Pulse control type
+#	RS: Reset
+
+InTerminator = CR LF;
+OutTerminator = CR;
+
+set_type1{
+	out "\$1";
+}
+
+set_type2{
+	out "\$1%d";
+}
+
+get_type1{
+	out "\$1";
+	in "%*c%d";
+}
+
+get_type2{
+	out "\$1";
+	in "%{XRUN|XSTOP|XHLIM|XRLIM|XFLIM}";
+}
+
+get_type3{
+        out "\$1";
+        in ",%*c%d";
+}
