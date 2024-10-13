@@ -172,7 +172,7 @@ file "db/aiFloat64.template" { pattern
  {IF,    -BDump:,    R,      -LINR:,     1Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -LINR:,     1Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -LINR:,     1Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
- {IF,    -BDump:,    R,      -LINR:,     1Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -LINR:,     1Ax_ParameterSet,    	 IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -LINR:,     1Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -LINR:,     1Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -LINR:,     1Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
@@ -189,7 +189,7 @@ file "db/aiFloat64.template" { pattern
  {IF,    -BDump:,    R,      -Slit:,     2Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -Slit:,     2Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -Slit:,     2Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
- {IF,    -BDump:,    R,      -Slit:,     2Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    R,      -Slit:,     2Ax_ParameterSet,    	 IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -Slit:,     2Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -Slit:,     2Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
  {IF,    -BDump:,    R,      -Slit:,     2Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
@@ -206,7 +206,7 @@ file "db/aiFloat64.template" { pattern
  {IF,    -BDump:,    L,      -LINR:,     3Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     3Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     3Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     3Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -LINR:,     3Ax_ParameterSet,  	 IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     3Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     3Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     3Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
@@ -220,33 +220,21 @@ file "db/aiFloat64.template" { pattern
  {IF,    -BDump:,    L,      -LINR:,     DI_46,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
  {IF,    -BDump:,    L,      -LINR:,     DI_47,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
 
- {IF,    -BDump:,    L,      -LINR:,     4Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_ParameterSetSet,    IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     4Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     DI_60,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     DI_61,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     DI_62,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
- {IF,    -BDump:,    L,      -LINR:,     DI_63,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_HoldOffSet,         IFBDumpDO,   0,      0x0001,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_ErrRstSet,          IFBDumpDO,   0,      0x0002,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_HomeSearchSet,      IFBDumpDO,   0,      0x0004,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_ParameterSet,    	 IFBDumpDO,   0,      0x0008,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_JogSetP,            IFBDumpDO,   0,      0x0010,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_JogSetM,            IFBDumpDO,   0,      0x0020,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_StepSetP,           IFBDumpDO,   0,      0x0040,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_StepSetM,           IFBDumpDO,   0,      0x0080,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_HomePosSet,         IFBDumpDO,   0,      0x0100,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_FwdPosSet,          IFBDumpDO,   0,      0x0200,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_BwdPosSet,          IFBDumpDO,   0,      0x0400,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     4Ax_PowerOffSet,        IFBDumpDO,   0,      0x0800,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_60,                  IFBDumpDO,   0,      0x1000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_61,                  IFBDumpDO,   0,      0x2000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_62,                  IFBDumpDO,   0,      0x4000,  Open,   Close, ""}
+ {IF,    -BDump:,    L,      -Slit:,     DI_63,                  IFBDumpDO,   0,      0x8000,  Open,   Close, ""}
 
  }
-
- 29 #LS Step Motor Controller
- 30 drvAsynIPPortConfigure("IFPLC", "192.168.0.2:502", 0, 0, 1)
- 31 modbusInterposeConfig("IFPLC",   0,5000,0)
- 32
- 33 drvModbusAsynConfigure("IFBDumpAI", "IFPLC", 0, 6,  0,   32,  7, 100, "Modicon")
- 33 drvModbusAsynConfigure("IFBDumpAO", "IFPLC", 0, 6,  128, 122, 7, 100, "Modicon")
- 34 drvModbusAsynConfigure("IFBDumpDI", "IFPLC", 0, 3,  256, 4,   7, 100, "Modicon")
- 35 drvModbusAsynConfigure("IFBDumpDO", "IFPLC", 0, 6,  260, 4,   7, 100, "Modicon")
- 36 dbLoadTemplate("db/IFTarget.sub")
-
-
