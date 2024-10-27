@@ -12,28 +12,30 @@
 # Receive: Measurement values
 # COMMAND LIST
 
-InTerminator = LF CR;
 OutTerminator = CR;
+InTerminator = LF CR;
 
 ######PMC-1HS/2HS inner programg execution with register
 ######REG Number 2 digits
-set_progX{
-	out "PRG X%d";
+set_prog{
+	out "PRG \$1%d";
 }
-
-set_progY{
-	out "PRG Y%d";
-}
-
 
 ####Set JOG:
-
-set_jogX{
-	out "JOG %{+|-}X";
+set_jogXP{
+	out "JOG %{0|+}X";
 }
 
-set_jogY{
-	out "JOG %{+|-}Y";
+set_jogXM{
+	out "JOG %{0|-}X";
+}
+
+set_jogYP{
+	out "JOG %{0|+}Y";
+}
+
+set_jogYM{
+	out "JOG %{0|-}Y";
 }
 
 ####Absolue position(1(X)-axis)
@@ -93,15 +95,15 @@ set_clrXY{
 }
 
 ####HOMING
-set_homingX{
+set_homX{
 	out "HOM X";
 }
 
-set_homingY{
+set_homY{
 	out "HOM Y";
 }
 
-set_homingXY{
+set_homXY{
 	out "HOM XY";
 }
 
@@ -129,7 +131,13 @@ set_spdY{
 }
 
 get_spdX{
-	out "SPD %d";
+	out "SPD";
+	in "SPD %d";
+}
+
+get_spdY{
+	out "SPD";
+	in "SPD ,%d";
 }
 
 get_spdXY{
@@ -203,11 +211,11 @@ set_pstXY{
 
 ####set IHS: 2bytes EEPROM data set
 set_ihsX{
-	out "IHS X\$1,%h";
+	out "IHS X\$1,%d";
 }
 
 set_ihsY{
-	out "IHS Y\$1,%h";
+	out "IHS Y\$1,%d";
 }
 
 ####get IHR: read 2bytes EEPROM data
@@ -223,13 +231,13 @@ get_ihrY{
 
 ####set IXS: 4bytes EEPROM data set
 set_ixsX{
-	out "IXS X\$1,%h";
-	in  "IXS X\$1,%h";
+	out "IXS X\$1,%d";
+	in  "IXS X\$1,%d";
 }
 
 set_ixsY{
-	out "IXS Y\$1,%h";
-	in  "IXS Y\$1,%h";
+	out "IXS Y\$1,%d";
+	in  "IXS Y\$1,%d";
 }
 
 ####get IXR: read 4bytes EEPROM data
@@ -244,23 +252,31 @@ get_ixrY{
 }
 
 ####get ERD: get error status
-set_erdX{
+get_erdX{
 	out "ERD X "; in "ERD X %d";
 }
 
-set_erdY{
+get_erdY{
 	out "ERD Y "; in "ERD Y %d";
 }
 
 ####get position
 get_posX{
-	out "POS %d";
+	out "POS";
+	in  "POS %d";
 }
 
 get_posY{
-	out "POS ,%d";
+	out "POS";
+	in  "POS ,%d";
 }
 
 get_posXY{
-	out "POS %d,%d";
+	out "POS";
+	in  "POS %d,%d";
+}
+
+###output signal control
+set_out{
+	out "OUT %d";
 }

@@ -24,6 +24,7 @@ ifmotor_DBD += modbusSupport.dbd
 ifmotor_DBD += asyn.dbd
 ifmotor_DBD += calc.dbd
 ifmotor_DBD += calcSupport.dbd
+ifmotor_DBD += stream.dbd
 
 # Add all the support libraries needed by this IOC
 #ifmotor_LIBS += xxx
@@ -46,7 +47,7 @@ ifneq ($(SNCSEQ),)
 endif
 
 # Finally link to the EPICS Base libraries
-ifmotor_LIBS += asyn modbus calc std sscan
+ifmotor_LIBS += asyn modbus calc std sscan stream
 # Finally link to the EPICS Base libraries
 ifmotor_LIBS += $(EPICS_BASE_IOC_LIBS)
 
