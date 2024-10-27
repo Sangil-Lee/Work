@@ -1,0 +1,15 @@
+record(ai, "$(pv_name):Input")
+{
+	field(PINI, "YES")
+	field(VAL, "$(input_val)")
+}
+
+record(calc, "$(pv_name)")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+
+	field(CALC, "RNDM*A")
+	field(INPA, "$(pv_name):Input")
+}
+

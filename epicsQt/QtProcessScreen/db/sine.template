@@ -1,0 +1,31 @@
+record(calc, "$(pv_name):phase")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")    
+	field(FLNK, "$(pv_name)")    
+	field(CALC, "(A>3.141592*2)?0:A+0.01")    
+	field(INPA, "$(pv_name):phase")
+	field(PREC, "4")    
+}
+
+record(calc, "$(pv_name)")
+{    
+  field(SCAN, "Passive")    
+  field(CALC, "B*sin(A*C)")    
+  field(INPA, "$(pv_name):phase")    
+  field(INPB, "$(pv_name):mag") 
+  field(INPC, "$(pv_name):freq") 
+  field(PREC, "2")    
+}    
+
+record(ai, "$(pv_name):mag")
+{
+  field(PINI, "YES")    
+  field(VAL, "$(magnitude)")    
+}
+
+record(ai, "$(pv_name):freq")
+{
+  field(PINI, "YES")    
+  field(VAL, "$(frequency)")    
+}

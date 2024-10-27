@@ -115,7 +115,7 @@ int main() {
 	mat1[1][2] = 9.3;
 	mat1(1,2) = 10; 
 	try {
-		mat1(0,0) = mat2(0,0); 
+		mat1(0,0) = mat2(5,0); 
 	} catch (std::out_of_range& e) {
 		std::cout << e.what() << std::endl;	
 	}

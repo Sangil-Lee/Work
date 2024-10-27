@@ -1,0 +1,282 @@
+# Autonics Motor PMC-2HS RS-232 Communication Protocol
+# Data format
+#       baud rate: 9,600 ~ 115,200bps
+#       parity: None
+#       flow contronl: None
+#       data bit: 8
+#       stop bit: 1
+
+# Termination character: CR
+# Communication Procedure
+# Transmit: COMMAND + [PARAMETER] + <CR>
+# Receive: Measurement values
+# COMMAND LIST
+
+OutTerminator = CR;
+InTerminator = LF CR;
+
+######PMC-1HS/2HS inner programg execution with register
+######REG Number 2 digits
+set_prog{
+	out "PRG \$1%d";
+}
+
+####Set JOG:
+set_jogXP{
+	out "JOG %{0|+}X";
+}
+
+set_jogXM{
+	out "JOG %{0|-}X";
+}
+
+set_jogYP{
+	out "JOG %{0|+}Y";
+}
+
+set_jogYM{
+	out "JOG %{0|-}Y";
+}
+
+####Absolue position(1(X)-axis)
+set_pabX{
+	out "PAB %d";
+}
+
+####Absolue position(2(Y)-axis)
+set_pabY{
+	out "PAB ,%d";
+}
+
+####Absolue position(1,2(X,Y)-axis)
+set_pabXY{
+	out "PAB %d,%d";
+}
+
+####Relative position(1(X)-axis)
+set_picX{
+	out "PIC %d";
+}
+
+####Relative position(2(Y)-axis)
+set_picY{
+	out "PIC ,%d";
+}
+
+####Relative position(1,2(X,Y)-axis)
+set_picXY{
+	out "PIC %d,%d";
+}
+
+####logical position counter reset
+set_cllX{
+	out "CLL X";
+}
+
+set_cllY{
+	out "CLL Y";
+}
+
+set_cllXY{
+	out "CLL XY";
+}
+
+####real position counter reset
+set_clrX{
+	out "CLL X";
+}
+
+set_clrY{
+	out "CLL Y";
+}
+
+set_clrXY{
+	out "CLL XY";
+}
+
+####HOMING
+set_homX{
+	out "HOM X";
+}
+
+set_homY{
+	out "HOM Y";
+}
+
+set_homXY{
+	out "HOM XY";
+}
+
+####Stop
+set_stpX{
+	out "STP X";
+}
+
+set_stpY{
+	out "STP Y";
+}
+
+set_stpXY{
+	out "STP XY";
+}
+
+
+####set/get speed
+set_spdX{
+	out "SPD %d";
+}
+
+set_spdY{
+	out "SPD ,%d";
+}
+
+get_spdX{
+	out "SPD";
+	in "SPD %d";
+}
+
+get_spdY{
+	out "SPD";
+	in "SPD ,%d";
+}
+
+get_spdXY{
+	out "SPD %d,%d";
+}
+
+####set OGE: stop homing
+set_ogeX{
+	out "OGE X";
+}
+
+set_ogeY{
+	out "OGE Y";
+}
+
+set_ogeXY{
+	out "OGE XY";
+}
+
+####set PSP: stop drive stop
+set_pspX{
+	out "PSP X";
+}
+
+set_pspY{
+	out "PSP Y";
+}
+
+set_pspXY{
+	out "PSP XY";
+}
+
+####set EDP: stop program force
+set_edpX{
+	out "EDP X";
+}
+
+set_edpY{
+	out "EDP Y";
+}
+
+set_edpXY{
+	out "EDP XY";
+}
+
+####set PRS: restart program
+set_prsX{
+	out "PRS X";
+}
+
+set_prsY{
+	out "PRS Y";
+}
+
+set_prsXY{
+	out "PRS XY";
+}
+
+####set PST: start program step
+set_pstX{
+	out "PST X %d";
+}
+
+set_pstY{
+	out "PST Y %d";
+}
+
+set_pstXY{
+	out "PST XY %d";
+}
+
+####set IHS: 2bytes EEPROM data set
+set_ihsX{
+	out "IHS X\$1,%d";
+}
+
+set_ihsY{
+	out "IHS Y\$1,%d";
+}
+
+####get IHR: read 2bytes EEPROM data
+get_ihrX{
+	out "IHR X\$1";
+	in  "IHR X\$1,%d";
+}
+
+get_ihrY{
+	out "IHR Y\$1";
+	in  "IHR Y\$1,%d";
+}
+
+####set IXS: 4bytes EEPROM data set
+set_ixsX{
+	out "IXS X\$1,%d";
+	in  "IXS X\$1,%d";
+}
+
+set_ixsY{
+	out "IXS Y\$1,%d";
+	in  "IXS Y\$1,%d";
+}
+
+####get IXR: read 4bytes EEPROM data
+get_ixrX{
+	out "IXR X\$1";
+	in  "IXR X\$1,%d";
+}
+
+get_ixrY{
+	out "IXR Y\$1";
+	in  "IXR Y\$1,%d";
+}
+
+####get ERD: get error status
+get_erdX{
+	out "ERD X "; in "ERD X %d";
+}
+
+get_erdY{
+	out "ERD Y "; in "ERD Y %d";
+}
+
+####get position
+get_posX{
+	out "POS";
+	in  "POS %d";
+}
+
+get_posY{
+	out "POS";
+	in  "POS ,%d";
+}
+
+get_posXY{
+	out "POS";
+	in  "POS %d,%d";
+}
+
+###output signal control
+set_out{
+	out "OUT %d";
+}

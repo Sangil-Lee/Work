@@ -1,0 +1,8 @@
+record(calcout, "$(P)Proc") {
+  field(SCAN, "1 second")
+  field(PINI, "YES")
+  field(CALC, "B:=B+1;B>=600?-1:A>=4?0:A+1")
+  field(INPA,  "$(P)Proc")
+  field(INPB,  "0")
+  field(VAL,  "0")
+}

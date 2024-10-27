@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config name="Demo">
+  <component name="TEST:GROUP1">
+    <pv name="TEST:PV1">
+      <description>TEST:PV1</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+      <filter>TEST:PV2 &gt; 10</filter>
+    </pv>
+    <pv name="TEST:PV2">
+      <description>TEST:PV2</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+    </pv>
+    <pv name="TEST:PV3">
+      <description>TEST:PV3</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+    </pv>
+  </component>
+  <component name="TEST:GROUP2">
+    <component name="TEST:GROUP3">
+      <pv name="TEST:PV4">
+        <description>TEST:PV4</description>
+        <enabled>true</enabled>
+        <latching>false</latching>
+        <annunciating>false</annunciating>
+      </pv>
+      <pv name="TEST:PV5">
+        <description>TEST:PV5</description>
+        <enabled>true</enabled>
+        <latching>false</latching>
+        <annunciating>false</annunciating>
+      </pv>
+    </component>
+    <pv name="TEST:PV6">
+      <description>TEST:PV6</description>
+      <enabled>true</enabled>
+      <latching>false</latching>
+      <annunciating>false</annunciating>
+    </pv>
+    <pv name="TEST:PV7">
+      <description>TEST:PV7</description>
+      <enabled>true</enabled>
+      <latching>true</latching>
+      <annunciating>true</annunciating>
+      <guidance>
+        <title>Proc1</title>
+        <details>Test:PV7 Action</details>
+      </guidance>
+    </pv>
+  </component>
+</config>

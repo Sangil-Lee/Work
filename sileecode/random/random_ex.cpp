@@ -20,7 +20,7 @@ private:
 
 int main() {
     // RandomNumberGenerator 테스트 코드
-    RandomNumberGenerator<double> rng(0.0, 10.0);
+    RandomNumberGenerator<double> rng(9.0, 10.0);
     std::cout << "Random numbers generated:" << std::endl;
     for (int i = 0; i < 10; ++i) {
         std::cout << rng.generate() << " ";

@@ -1,0 +1,26 @@
+Commands:
+
+Note: '.' and '..' will be interpreted as the current directory and the parent directory respectively.
+Spaces within a path do not need to be quoted.
+
+	ls               - List all alarm tree items in the current directory.
+	ls -disconnected - List all the disconnected PVs in the entire alarm tree.
+	ls -disabled     - List all the disabled PVs in the entire alarm tree.
+	ls -all          - List all alarm tree PVs in the entire alarm tree.
+	ls -active       - .. which are in active alarm.
+	ls -alarm        - .. alarm, active or acknowledged.
+	ls dir           - List all alarm tree items in the specified directory contained in the current directory.
+	ls /path/to/dir  - List all alarm tree items in the specified directory at the specified path.
+	cd               - Change to the root directory.
+	cd dir           - Change to the specified directory contained in the current directory.
+	cd /path/to/dir  - Change to the specified directory at the specified path.
+	pv pv            - Print the specified PV in the current directory.
+	pv /path/to/pv   - Print the specified PV at the specified path.
+	mode             - Show mode.
+	mode normal      - Select normal mode.
+	mode maintenance - Select maintenance mode.
+	resend           - Re-send all PV states to clients (for tests after network issues).
+	restart          - Re-load alarm configuration and restart.
+	shutdown         - Shut alarm server down and exit.
+
+/Accelerator > 
