@@ -13,7 +13,7 @@ epicsEnvSet "STREAM_PROTOCOL_PATH" "../../proto"
 dbLoadDatabase "dbd/ifmotor.dbd"
 ifmotor_registerRecordDeviceDriver pdbbase
 
-drvAsynIPPortConfigure ("IF-Motor-1", "192.168.:4001", 0, 0, 0)
+drvAsynIPPortConfigure ("IF-Motor-1", "192.168.0.254:4001", 0, 0, 0)
 
 ## According to KoBRA Maganet Type
 ## Load record instances
