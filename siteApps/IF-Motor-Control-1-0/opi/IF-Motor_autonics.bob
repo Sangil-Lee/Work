@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-10-31 01:09:09 by ctrluser-->
+<display version="2.0.0">
+  <name>Display</name>
+  <macros>
+    <SYS>IF</SYS>
+    <SUBSYS>-Target:</SUBSYS>
+    <DEV>Sec1</DEV>
+    <SUBDEV>-Motor:</SUBDEV>
+  </macros>
+  <width>1280</width>
+  <height>1024</height>
+  <background_color>
+    <color red="128" green="128" blue="128">
+    </color>
+  </background_color>
+  <grid_color>
+    <color red="0" green="0" blue="128">
+    </color>
+  </grid_color>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <class>TITLE</class>
+    <text>IF Motor Control</text>
+    <x use_class="true">0</x>
+    <y use_class="true">0</y>
+    <width>1280</width>
+    <height>35</height>
+    <font use_class="true">
+      <font name="Header 1" family="Liberation Sans" style="BOLD" size="22.0">
+      </font>
+    </font>
+    <foreground_color use_class="true">
+      <color name="Text" red="0" green="0" blue="0">
+      </color>
+    </foreground_color>
+    <transparent use_class="true">true</transparent>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetHomeX</pv_name>
+    <x>40</x>
+    <y>130</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>HomeX</off_label>
+    <on_label>HomeX</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_1</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetHomeY</pv_name>
+    <x>40</x>
+    <y>610</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>HomeY</off_label>
+    <on_label>HomeY</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_2</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StopHomingX</pv_name>
+    <x>220</x>
+    <y>130</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>StopHomeX</off_label>
+    <on_label>StopHomeX</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_3</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StopHomingY</pv_name>
+    <x>220</x>
+    <y>610</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>StopHomeY</off_label>
+    <on_label>StopHomeY</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_4</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXP</pv_name>
+    <x>510</x>
+    <y>130</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>+JogX</off_label>
+    <on_label>+JogX</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_5</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXM</pv_name>
+    <x>700</x>
+    <y>130</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>-JogX</off_label>
+    <on_label>-JogX</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedX</pv_name>
+    <x>700</x>
+    <y>200</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>Set Speed</text>
+    <x>560</x>
+    <y>210</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_6</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogYP</pv_name>
+    <x>510</x>
+    <y>610</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>+JogY</off_label>
+    <on_label>+JogY</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_7</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogPM</pv_name>
+    <x>700</x>
+    <y>610</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>-JogY</off_label>
+    <on_label>-JogY</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_1</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedY</pv_name>
+    <x>700</x>
+    <y>680</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>Set Speed</text>
+    <x>560</x>
+    <y>690</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_2</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)AbsoluteX</pv_name>
+    <x>220</x>
+    <y>280</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>Absolute</text>
+    <x>90</x>
+    <y>290</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_4</name>
+    <text>Absolute</text>
+    <x>90</x>
+    <y>770</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_3</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)AbsoluteY</pv_name>
+    <x>220</x>
+    <y>760</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_4</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeX</pv_name>
+    <x>700</x>
+    <y>280</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_5</name>
+    <text>Relative</text>
+    <x>560</x>
+    <y>290</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_5</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeY</pv_name>
+    <x>700</x>
+    <y>760</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <format>1</format>
+    <show_units>false</show_units>
+    <horizontal_alignment>1</horizontal_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_6</name>
+    <text>Relative</text>
+    <x>560</x>
+    <y>770</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+</display>
