@@ -25,13 +25,14 @@ ifmotor_DBD += asyn.dbd
 ifmotor_DBD += calc.dbd
 ifmotor_DBD += calcSupport.dbd
 ifmotor_DBD += stream.dbd
+ifmotor_DBD += aSubHexStrtoDec.dbd
 
 # Add all the support libraries needed by this IOC
 #ifmotor_LIBS += xxx
 
 # ifmotor_registerRecordDeviceDriver.cpp derives from ifmotor.dbd
 ifmotor_SRCS += ifmotor_registerRecordDeviceDriver.cpp
-
+ifmotor_SRCS += aSubHexStrtoDec.cpp
 # Build the main IOC entry point on workstation OSs.
 ifmotor_SRCS_DEFAULT += ifmotorMain.cpp
 ifmotor_SRCS_vxWorks += -nil-
