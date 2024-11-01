@@ -224,17 +224,19 @@ record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetSpeedY")
 # out: POS_
 # in: POS_%d or POS_,%d
 ################################################################################
-record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
+record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
 {
     field(DESC, "X-axis get position")
+    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@autonics.proto get_posX $(port)")
     field(VAL, "0")
 }
 
-record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
+record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
 {
     field(DESC, "Y-axis get position")
+    field(SCAN, "1 second")
     field(DTYP, "stream")
     field(INP, "@autonics.proto get_posY $(port)")
     field(VAL, "0")
