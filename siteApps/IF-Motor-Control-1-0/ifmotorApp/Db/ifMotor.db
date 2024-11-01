@@ -229,7 +229,19 @@ record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
     field(DESC, "X-axis get position")
     field(SCAN, "1 second")
     field(DTYP, "stream")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
     field(INP, "@autonics.proto get_posX $(port)")
+    field(VAL, "0")
+}
+
+record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
+{
+    field(DESC, "X-axis pulse")
+    field(SCAN, "Passive")
+    field(INAM, "InitHexaStr2Dec")
+    field(SNAM, "ProcHexaStr2Dec")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
+    field(FTA, "STRING")
     field(VAL, "0")
 }
 
@@ -238,10 +250,21 @@ record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
     field(DESC, "Y-axis get position")
     field(SCAN, "1 second")
     field(DTYP, "stream")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY")
     field(INP, "@autonics.proto get_posY $(port)")
     field(VAL, "0")
 }
 
+record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY")
+{
+    field(DESC, "Y-axis pulse")
+    field(SCAN, "Passive")
+    field(INAM, "InitHexaStr2Dec")
+    field(SNAM, "ProcHexaStr2Dec")
+    field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
+    field(FTA, "STRING")
+    field(VAL, "0")
+}
 
 ################################################################################
 # set homming
