@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-10-31 01:09:09 by ctrluser-->
+<!--Saved on 2024-11-01 21:39:58 by ctrluser-->
 <display version="2.0.0">
   <name>Display</name>
   <macros>
@@ -21,7 +21,7 @@
   <widget type="label" version="2.0.0">
     <name>Label</name>
     <class>TITLE</class>
-    <text>IF Motor Control</text>
+    <text>IF Motor Control Section1</text>
     <x use_class="true">0</x>
     <y use_class="true">0</y>
     <width>1280</width>
@@ -42,7 +42,7 @@
     <name>Boolean Button</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetHomeX</pv_name>
     <x>40</x>
-    <y>130</y>
+    <y>270</y>
     <width>160</width>
     <height>50</height>
     <off_label>HomeX</off_label>
@@ -57,7 +57,7 @@
     <name>Boolean Button_1</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetHomeY</pv_name>
     <x>40</x>
-    <y>610</y>
+    <y>680</y>
     <width>160</width>
     <height>50</height>
     <off_label>HomeY</off_label>
@@ -72,7 +72,7 @@
     <name>Boolean Button_2</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StopHomingX</pv_name>
     <x>220</x>
-    <y>130</y>
+    <y>270</y>
     <width>160</width>
     <height>50</height>
     <off_label>StopHomeX</off_label>
@@ -87,7 +87,7 @@
     <name>Boolean Button_3</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StopHomingY</pv_name>
     <x>220</x>
-    <y>610</y>
+    <y>680</y>
     <width>160</width>
     <height>50</height>
     <off_label>StopHomeY</off_label>
@@ -102,7 +102,7 @@
     <name>Boolean Button_4</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXP</pv_name>
     <x>510</x>
-    <y>130</y>
+    <y>270</y>
     <width>160</width>
     <height>50</height>
     <off_label>+JogX</off_label>
@@ -117,7 +117,7 @@
     <name>Boolean Button_5</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXM</pv_name>
     <x>700</x>
-    <y>130</y>
+    <y>270</y>
     <width>160</width>
     <height>50</height>
     <off_label>-JogX</off_label>
@@ -132,7 +132,7 @@
     <name>Text Entry</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedX</pv_name>
     <x>700</x>
-    <y>200</y>
+    <y>340</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -147,7 +147,7 @@
     <name>Label_1</name>
     <text>Set Speed</text>
     <x>560</x>
-    <y>210</y>
+    <y>350</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -165,7 +165,7 @@
     <name>Boolean Button_6</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogYP</pv_name>
     <x>510</x>
-    <y>610</y>
+    <y>680</y>
     <width>160</width>
     <height>50</height>
     <off_label>+JogY</off_label>
@@ -180,7 +180,7 @@
     <name>Boolean Button_7</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogPM</pv_name>
     <x>700</x>
-    <y>610</y>
+    <y>680</y>
     <width>160</width>
     <height>50</height>
     <off_label>-JogY</off_label>
@@ -195,7 +195,7 @@
     <name>Text Entry_1</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedY</pv_name>
     <x>700</x>
-    <y>680</y>
+    <y>750</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -210,7 +210,7 @@
     <name>Label_2</name>
     <text>Set Speed</text>
     <x>560</x>
-    <y>690</y>
+    <y>760</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -228,7 +228,7 @@
     <name>Text Entry_2</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)AbsoluteX</pv_name>
     <x>220</x>
-    <y>280</y>
+    <y>420</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -243,7 +243,7 @@
     <name>Label_3</name>
     <text>Absolute</text>
     <x>90</x>
-    <y>290</y>
+    <y>430</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -261,7 +261,7 @@
     <name>Label_4</name>
     <text>Absolute</text>
     <x>90</x>
-    <y>770</y>
+    <y>840</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -279,7 +279,7 @@
     <name>Text Entry_3</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)AbsoluteY</pv_name>
     <x>220</x>
-    <y>760</y>
+    <y>830</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -294,7 +294,7 @@
     <name>Text Entry_4</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeX</pv_name>
     <x>700</x>
-    <y>280</y>
+    <y>420</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -309,7 +309,7 @@
     <name>Label_5</name>
     <text>Relative</text>
     <x>560</x>
-    <y>290</y>
+    <y>430</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -327,7 +327,7 @@
     <name>Text Entry_5</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeY</pv_name>
     <x>700</x>
-    <y>760</y>
+    <y>830</y>
     <width>160</width>
     <height>50</height>
     <font>
@@ -342,7 +342,7 @@
     <name>Label_6</name>
     <text>Relative</text>
     <x>560</x>
-    <y>770</y>
+    <y>840</y>
     <width>110</width>
     <height>30</height>
     <font>
@@ -355,5 +355,174 @@
     </foreground_color>
     <horizontal_alignment>1</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX</pv_name>
+    <x>700</x>
+    <y>510</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_7</name>
+    <text>Position</text>
+    <x>560</x>
+    <y>520</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_1</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY</pv_name>
+    <x>700</x>
+    <y>920</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_8</name>
+    <text>Position</text>
+    <x>560</x>
+    <y>930</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_9</name>
+    <text>Error</text>
+    <x>90</x>
+    <y>530</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrX</pv_name>
+    <x>220</x>
+    <y>520</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_10</name>
+    <text>Error</text>
+    <x>90</x>
+    <y>930</y>
+    <width>110</width>
+    <height>30</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <foreground_color>
+      <color red="255" green="255" blue="255">
+      </color>
+    </foreground_color>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_3</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrY</pv_name>
+    <x>220</x>
+    <y>920</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="bool_button" version="2.0.0">
+    <name>Boolean Button_8</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Reset</pv_name>
+    <x>380</x>
+    <y>110</y>
+    <width>160</width>
+    <height>50</height>
+    <off_label>Reset</off_label>
+    <on_label>Reset</on_label>
+    <show_led>false</show_led>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_4</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX</pv_name>
+    <x>880</x>
+    <y>510</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_5</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY</pv_name>
+    <x>880</x>
+    <y>920</y>
+    <width>160</width>
+    <height>60</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+  </widget>
+  <widget type="byte_monitor" version="2.0.0">
+    <name>Byte Monitor</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrX</pv_name>
+    <x>70</x>
+    <y>600</y>
+    <width>490</width>
+    <height>30</height>
+    <numBits>16</numBits>
+    <square>true</square>
   </widget>
 </display>

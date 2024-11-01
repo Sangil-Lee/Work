@@ -337,7 +337,7 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StopHomingX")
 {
     field(DESC, "Stop homming")
     field(DTYP, "stream")
-    field(OUT, "@autonics.proto set_ogex $(port)")
+    field(OUT, "@autonics.proto set_ogeX $(port)")
     field(HIGH, "0.5")
     field(ZNAM, "Stoped")
     field(ONAM, "Stopping")
@@ -465,18 +465,22 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)StepY")
 # out: ERD_{X|Y}
 # in: ERD_X%h or ERD_Y%h
 ################################################################################
-record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrX")
+#record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrX")
+record(mbbiDirect, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrX")
 {
     field(DESC, "X-axis get error status")
     field(DTYP, "stream")
+    field(SCAN, "1 second")
     field(INP, "@autonics.proto get_erdX $(port)")
     field(VAL, "0")
 }
 
-record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrY")
+#record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrY")
+record(mbbiDirect, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetErrY")
 {
     field(DESC, "Y-axis get error status")
     field(DTYP, "stream")
+    field(SCAN, "1 second")
     field(INP, "@autonics.proto get_erdY $(port)")
     field(VAL, "0")
 }
@@ -562,3 +566,17 @@ record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetIXRY")
     field(VAL, "0")
 }
 
+################################################################################
+# Reset
+# RST
+################################################################################
+record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Reset")
+{
+    field(DESC, "Reset")
+    field(DTYP, "stream")
+    field(OUT, "@autonics.proto set_rst $(port)")
+    field(HIGH, "0.5")
+    field(ZNAM, "Reset")
+    field(ONAM, "Reseting")
+    field(VAL, "0")
+}

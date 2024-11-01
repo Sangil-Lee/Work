@@ -131,13 +131,11 @@ set_spdY{
 }
 
 get_spdX{
-	out "SPD";
-	in "SPD %d";
+	out "SPD"; in "SPD %d";
 }
 
 get_spdY{
-	out "SPD";
-	in "SPD ,%d";
+	out "SPD"; in "SPD ,%d";
 }
 
 get_spdXY{
@@ -253,11 +251,11 @@ get_ixrY{
 
 ####get ERD: get error status
 get_erdX{
-	out "ERD X "; in "ERD X %d";
+	out "ERD X"; in "ERD X%d";
 }
 
 get_erdY{
-	out "ERD Y "; in "ERD Y %d";
+	out "ERD Y"; in "ERD Y%d";
 }
 
 ####get position
@@ -266,15 +264,20 @@ get_posX{
 }
 
 get_posY{
-	out "POS"; in  "POS ,%d";
+	out "POS"; in  "POS ,%-8s";
 }
 
 get_posXY{
 	out "POS";
-	in  "POS %d,%d";
+	in  "POS %s";
 }
 
 ###output signal control
 set_out{
 	out "OUT %d";
+}
+
+####Reset: 
+set_rst{
+	out "RST";
 }
