@@ -28,6 +28,7 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXP")
     field(DESC, "+ Jogging")
     field(DTYP, "stream")
     field(OUT, "@autonics.proto set_jogXP $(port)")
+    field(HIGH, "0.5")
     field(ZNAM, "0")
     field(ONAM, "+")
 }
@@ -36,6 +37,7 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogXM")
 {
     field(DESC, "- Jogging")
     field(DTYP, "stream")
+    field(HIGH, "0.5")
     field(OUT, "@autonics.proto set_jogXM $(port)")
     field(ZNAM, "0")
     field(ONAM, "-")
@@ -190,17 +192,19 @@ record(bo, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)XYRCntClr")
 record(longout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedX")
 {
     field(DESC, "X-axis set-up speed rate")
+    field(PINI, "YES")
     field(DTYP, "stream")
     field(OUT, "@autonics.proto set_spdX $(port)")
-    field(VAL, "0")
+    field(VAL, "100")
 }
 
 record(longout, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)SetSpeedY")
 {
     field(DESC, "Y-axis set-up speed rate")
+    field(PINI, "YES")
     field(DTYP, "stream")
     field(OUT, "@autonics.proto set_spdY $(port)")
-    field(VAL, "0")
+    field(VAL, "100")
 }
 
 record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetSpeedX")
@@ -229,12 +233,12 @@ record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
     field(DESC, "X-axis get position")
     field(SCAN, "1 second")
     field(DTYP, "stream")
-    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
+    field(FLNK, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Hex2DecPosX")
     field(INP, "@autonics.proto get_posX $(port)")
     field(VAL, "0")
 }
 
-record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
+record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Hex2DecPosX")
 {
     field(DESC, "X-axis pulse")
     field(SCAN, "Passive")
@@ -242,7 +246,14 @@ record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
     field(SNAM, "ProcHexaStr2Dec")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX")
     field(FTA, "STRING")
+    field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX PP")
+    field(FTVA, "LONG")
     field(VAL, "0")
+}
+record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX")
+{
+  field(SCAN, "Passive")
+  field(VAL, "0")
 }
 
 record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
@@ -255,15 +266,22 @@ record(stringin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
     field(VAL, "0")
 }
 
-record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY")
+record(aSub, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)Hex2DecPosY")
 {
-    field(DESC, "Y-axis pulse")
+    field(DESC, "X-axis pulse")
     field(SCAN, "Passive")
     field(INAM, "InitHexaStr2Dec")
     field(SNAM, "ProcHexaStr2Dec")
     field(INPA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY")
     field(FTA, "STRING")
+    field(OUTA, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY PP")
+    field(FTVA, "LONG")
     field(VAL, "0")
+}
+record(longin, "$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY")
+{
+  field(SCAN, "Passive")
+  field(VAL, "0")
 }
 
 ################################################################################

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-11-01 21:39:58 by ctrluser-->
+<!--Saved on 2024-11-02 12:06:44 by ctrluser-->
 <display version="2.0.0">
   <name>Display</name>
   <macros>
@@ -75,8 +75,8 @@
     <y>270</y>
     <width>160</width>
     <height>50</height>
-    <off_label>StopHomeX</off_label>
-    <on_label>StopHomeX</on_label>
+    <off_label>StopX</off_label>
+    <on_label>StopX</on_label>
     <show_led>false</show_led>
     <font>
       <font family="Liberation Sans" style="BOLD" size="20.0">
@@ -90,8 +90,8 @@
     <y>680</y>
     <width>160</width>
     <height>50</height>
-    <off_label>StopHomeY</off_label>
-    <on_label>StopHomeY</on_label>
+    <off_label>StopY</off_label>
+    <on_label>StopY</on_label>
     <show_led>false</show_led>
     <font>
       <font family="Liberation Sans" style="BOLD" size="20.0">
@@ -178,7 +178,7 @@
   </widget>
   <widget type="bool_button" version="2.0.0">
     <name>Boolean Button_7</name>
-    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogPM</pv_name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)JogYM</pv_name>
     <x>700</x>
     <y>680</y>
     <width>160</width>
@@ -290,21 +290,6 @@
     <show_units>false</show_units>
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
-  <widget type="textentry" version="3.0.0">
-    <name>Text Entry_4</name>
-    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeX</pv_name>
-    <x>700</x>
-    <y>420</y>
-    <width>160</width>
-    <height>50</height>
-    <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0">
-      </font>
-    </font>
-    <format>1</format>
-    <show_units>false</show_units>
-    <horizontal_alignment>1</horizontal_alignment>
-  </widget>
   <widget type="label" version="2.0.0">
     <name>Label_5</name>
     <text>Relative</text>
@@ -322,21 +307,6 @@
     </foreground_color>
     <horizontal_alignment>1</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
-  </widget>
-  <widget type="textentry" version="3.0.0">
-    <name>Text Entry_5</name>
-    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeY</pv_name>
-    <x>700</x>
-    <y>830</y>
-    <width>160</width>
-    <height>50</height>
-    <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0">
-      </font>
-    </font>
-    <format>1</format>
-    <show_units>false</show_units>
-    <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_6</name>
@@ -356,18 +326,6 @@
     <horizontal_alignment>1</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
   </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>Text Update</name>
-    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosX</pv_name>
-    <x>700</x>
-    <y>510</y>
-    <width>160</width>
-    <height>60</height>
-    <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0">
-      </font>
-    </font>
-  </widget>
   <widget type="label" version="2.0.0">
     <name>Label_7</name>
     <text>Position</text>
@@ -385,18 +343,6 @@
     </foreground_color>
     <horizontal_alignment>1</horizontal_alignment>
     <vertical_alignment>1</vertical_alignment>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>Text Update_1</name>
-    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)GetPosY</pv_name>
-    <x>700</x>
-    <y>920</y>
-    <width>160</width>
-    <height>60</height>
-    <font>
-      <font family="Liberation Sans" style="BOLD" size="20.0">
-      </font>
-    </font>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_8</name>
@@ -445,6 +391,8 @@
       <font family="Liberation Sans" style="BOLD" size="20.0">
       </font>
     </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_10</name>
@@ -475,6 +423,8 @@
       <font family="Liberation Sans" style="BOLD" size="20.0">
       </font>
     </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="bool_button" version="2.0.0">
     <name>Boolean Button_8</name>
@@ -494,7 +444,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_4</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosX</pv_name>
-    <x>880</x>
+    <x>700</x>
     <y>510</y>
     <width>160</width>
     <height>60</height>
@@ -502,11 +452,13 @@
       <font family="Liberation Sans" style="BOLD" size="20.0">
       </font>
     </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_5</name>
     <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)DecPosY</pv_name>
-    <x>880</x>
+    <x>698</x>
     <y>920</y>
     <width>160</width>
     <height>60</height>
@@ -514,6 +466,8 @@
       <font family="Liberation Sans" style="BOLD" size="20.0">
       </font>
     </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
   </widget>
   <widget type="byte_monitor" version="2.0.0">
     <name>Byte Monitor</name>
@@ -524,5 +478,39 @@
     <height>30</height>
     <numBits>16</numBits>
     <square>true</square>
+  </widget>
+  <widget type="spinner" version="2.0.0">
+    <name>Spinner</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeX</pv_name>
+    <x>700</x>
+    <y>430</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <minimum>-10000.0</minimum>
+    <maximum>10000.0</maximum>
+    <increment>10.0</increment>
+  </widget>
+  <widget type="spinner" version="2.0.0">
+    <name>Spinner_1</name>
+    <pv_name>$(SYS)$(SUBSYS)$(DEV)$(SUBDEV)RelativeY</pv_name>
+    <x>700</x>
+    <y>830</y>
+    <width>160</width>
+    <height>50</height>
+    <font>
+      <font family="Liberation Sans" style="BOLD" size="20.0">
+      </font>
+    </font>
+    <horizontal_alignment>1</horizontal_alignment>
+    <vertical_alignment>1</vertical_alignment>
+    <minimum>-10000.0</minimum>
+    <maximum>10000.0</maximum>
+    <increment>10.0</increment>
   </widget>
 </display>
