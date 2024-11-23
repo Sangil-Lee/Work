@@ -37,8 +37,6 @@
 #endif
 
 static RTPSyncManager mrtpSyncManager;
-static bool bInit = false;
-static epicsTimeStamp globalEPICSTime;
 
 //devRTP devSyncRTPReadAI  ={5, NULL, NULL, initAi, NULL, processAi};
 //devRTP devSyncRTPReadAI  ={6, NULL, NULL, initAi, NULL, processAi, convertAi};
@@ -142,6 +140,7 @@ static long processAo (void *precord)
 	return (0);
 }
 
+#if 0
 static long	convertAi(void *precord, int pass)
 {
 	aiRecord *airec = (aiRecord*)precord;
@@ -150,6 +149,7 @@ static long	convertAi(void *precord, int pass)
 	airec->val = airec->rval*2;
     return 0;
 }
+#endif
 
 devRTP devSyncRTPReadBI  ={6, 0, 0, initBi, 0, processBi, 0};
 epicsExportAddress(dset,devSyncRTPReadBI);
@@ -315,6 +315,45 @@ static long processLo (void *precord)
 	return (2);
 }
 
+devRTP devSyncRTPReadWF  ={6, 0, 0, initWf, 0, processWf, 0};
+epicsExportAddress(dset,devSyncRTPReadWF);
+
+static long initWf (void *prec)
+{
+	waveformRecord *pr = (waveformRecord*)prec;
+	devPvt *rtpDevice = (devPvt*)malloc(sizeof(devPvt));
+	// bi.inp must be an INST_IO
+	int status = -1;
+	switch (pr->inp.type) {
+		case INST_IO:
+			{
+				status = mrtpSyncManager.ParseLink(pr->inp.value.instio.string, rtpDevice);
+			};
+			break;
+		default :
+			recGblRecordError(S_db_badField,(void *)pr,
+					"devSyncRTPReadLO (init_record) Illegal OUT field");
+			return(S_db_badField);
+	};
+
+	if(status < 0)
+		recGblRecordError(S_db_badField,(void *)pr,
+				"devSyncRTPReadLO (init_record) Syntax error: OUT field");
+
+	pr->dpvt = rtpDevice;
+	pr->udf = false;
+	return (status);
+}
+
+static long processWf (void *precord)
+{
+	waveformRecord *pr = (waveformRecord*)precord;
+
+	mrtpSyncManager.ReadWfData(pr);
+
+	return (2);
+}
+
 epicsShareFunc int drvSyncRTPConfigure(const char *portName, const char *hostInfo, unsigned int priority, int noAutoConnect)
 {
     int nbytes;
@@ -395,6 +434,8 @@ RTPSyncManager::RTPSyncManager()
 	sRCommand = new char(SINGLE_READ_COMMANDMSG_SIZE);
 	sWCommand = new char(SINGLE_WRITE_COMMANDMSG_SIZE);
 	mutex    = epicsMutexCreate();
+	tv_select.tv_sec = 0;
+	tv_select.tv_usec = 10000;
 }
 
 int RTPSyncManager::ConnectDevice()
@@ -589,6 +630,20 @@ unsigned short RTPSyncManager::getCRC(unsigned char *writecmd, int loopcnt)
 	return fcsval;
 }
 
+uchar RTPSyncManager::getCrc(uchar *CRCBuffer, ushort LoopCount)
+{
+	//crc calculation is done for the data excluding sync and crc.	
+	//LoopCount = No of bytesofbuffer + 1;
+	ushort i, crc = 0;
+	for(i = 1; i < LoopCount; i++)
+		if(crc &0x80) 
+			crc = ((crc << 1) | 1) ^ CRCBuffer[i];
+		else 
+			crc = (crc << 1) ^ CRCBuffer[i];
+	return ((uchar) crc);
+}
+
+
 //int RTPSyncManager::readSMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread)
 int RTPSyncManager::readSMsgCommand(const int type, const int mul_single, const int cpu_node, const int index_value)
 {
@@ -740,6 +795,36 @@ int RTPSyncManager::WriteSBoolData(const boRecord *pr)
 	//printf("Response-code: %d\n", resp);
 	return (0);
 }
+
+int RTPSyncManager::ReadWfData(const waveformRecord *pr)
+{
+	//uchar msgToSendRecv[4096];
+	devPvt *pRtp = (devPvt*)pr->dpvt;
+	if(pRtp==NULL) return (-1);
+
+	epicsEnum16 e_ftvl = pr->ftvl;
+	uchar cmdType = 0;
+
+	if(e_ftvl == menuFtypeLONG)
+		cmdType = INTEGER_READ;
+	else
+		cmdType = ANALOG_READ;
+
+	int startIndex = pRtp->index_value; 
+	short recByte = getAnalogMessage(cmdType, startIndex, pr->nelm, msgToSend);
+
+	recByte = receiveAnalogMessage(msgToRecv);
+
+	if(recByte < 0) {
+		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
+		return -1;
+	};
+  
+	memcpy(pr->val, msgToRecv, READ_DATA_SIZE*pr->nelm); 
+
+	return (0);
+}
+
 int RTPSyncManager::WriteSIntData(const longoutRecord *pr)
 {
 	devPvt *pRtp = (devPvt*)pr->dpvt;
@@ -860,3 +945,343 @@ int RTPSyncManager::checkValue(const char *sval)
 
 	return 1; // value
 }
+
+short RTPSyncManager::getAIDIIntReadCmdMsg(uchar cmdType,int refIndex, int pointCount, uchar* pBuff)
+{
+	//cmdType can be ANALOG_READ or DIGITAL_READ or INTEGER_READ
+	ushort sendByte 	= 0; 
+	ushort ref_High, ref_Low;
+	uchar *sendBuffer	= pBuff;
+
+	sendBuffer[sendByte++] = SYNC_BYTE;			
+	sendBuffer[sendByte++] = (uchar) getLength(cmdType, 0); 
+	//sendBuffer[sendByte++] = (uchar) node;		// Node number is short, typecast with char
+	sendBuffer[sendByte++] = 0x00;					// Node number is 0, for RTP simulator
+	sendBuffer[sendByte++] = cmdType; 			
+	getRefValue(refIndex, &ref_High, &ref_Low);
+	sendBuffer[sendByte++] = (uchar) ref_High;
+	sendBuffer[sendByte++] = (uchar) ref_Low;
+	sendBuffer[sendByte++] = (uchar) pointCount;
+	sendBuffer[sendByte++] = getCrc(sendBuffer, sendByte);
+	return sendByte;
+#if 0
+	sRCommand[0]= SYNC_BYTE;
+	sRCommand[1]= mul_single; //Multi = 5, Single = 3
+	sRCommand[2]= 0x00; 
+	sRCommand[3]= cpu_node;  //Node = 0
+	sRCommand[4]= type; // FLOAT_READ = 0x9D, INT_READ = 0x8D, BOOL_READ = 0x82
+	sRCommand[5] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	sRCommand[6] = (unsigned char)(index_value / 256);
+	unsigned short check = getCRC((unsigned char*)sRCommand, SINGLE_CRC_RINDEX);
+
+	sRCommand[0]= SYNC_BYTE;
+	sRCommand[1]= mul_single; //Multi = 5, Single = 3
+	sRCommand[2]= 0x00; 
+	sRCommand[3]= node;  //Node = 0
+	sRCommand[4]= type; // FLOAT_READ = 0x9D, INT_READ = 0x8D, BOOL_READ = 0x82
+	sRCommand[5] = (unsigned char)(index % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	sRCommand[6] = (unsigned char)(index / 256);
+	sRCommand[7] = (unsigned char)(numtoread % 256);
+	sRCommand[8] = (unsigned char)(numtoread / 256);
+	unsigned short check = getCRC((unsigned char*)sRCommand, 7);
+
+	//getCRC((unsigned char*)sRCommand, sizeof(&sRCommand));
+	//printf("Cmd Size:%d\n", sizeof(sRCommand));
+	//return send(mptty->fd, (const char*)sRCommand, sizeof(sRCommand), 0);
+	return send(mptty->fd, (const char*)sRCommand, 11, 0);
+#endif
+
+}
+
+//short RTPSyncManager::getTcpBeginEndCmdMsg(uchar cmdType, ushort node,uchar* pBuff )
+short RTPSyncManager::getTcpBeginEndCmdMsg(uchar cmdType, uchar* pBuff )
+{
+	//cmdType can be TCP_BEGIN_FRAME or TCP_END_FRAME
+	ushort sendByte = 0;
+	uchar *sendBuffer = pBuff ;
+
+	sendBuffer[sendByte++] = SYNC_BYTE;				
+	sendBuffer[sendByte++] = (uchar) getLength(cmdType, 0); 
+	sendBuffer[sendByte++] = 0x00; //node = 0, simulator
+	sendBuffer[sendByte++] = cmdType; 			
+	sendBuffer[sendByte++] = getCrc(sendBuffer, sendByte);
+	return sendByte;
+}
+
+void RTPSyncManager::getRefValue(int Index, ushort *Ref_High, ushort *Ref_Low)
+{
+	*Ref_High = Index / 256;  	// To get the higher order bit from the hex value
+	*Ref_Low = Index % 256;		// To get the lower order bit from the hex value
+}
+
+ushort RTPSyncManager::getLength(uchar Command, ushort NoOfBytes)
+{
+	ushort	retLength = 0;
+	switch(Command)
+	{
+		case DIGITAL_READ:	
+		case INTEGER_READ:
+		case ANALOG_READ:
+			retLength = 4;
+			break;
+		case DIGITAL_WRITE:	
+			retLength = (4 + (NoOfBytes));		
+			break;
+		case ANALOG_WRITE:
+			retLength = (4 + (NoOfBytes * 4));		
+			break;
+		case INTEGER_WRITE:	
+			retLength = (4 + (NoOfBytes * 2));		
+			break;
+		case TCP_BEGIN_FRAME:
+		case TCP_END_FRAME:	
+			retLength	=	1;
+			break;
+		default:
+			retLength	=	0;
+			break;
+	}
+	return retLength ;
+}
+
+short RTPSyncManager::getAnalogMessage(uchar cmdType, short startPos, short msgCount, uchar* pBuff)
+{
+	ushort	msgSize = 0;
+	short	refIndex = startPos;
+	uchar *msgBuff = pBuff;
+
+	//Start the TCP Frame
+	msgSize = getTcpBeginEndCmdMsg(TCP_BEGIN_FRAME, msgBuff );
+	msgBuff += msgSize;
+
+	//Add analog related commands for getting the data from the DAS
+	short thisMsgLength  = getAIDIIntReadCmdMsg(cmdType, refIndex, msgCount, msgBuff);
+	msgSize += thisMsgLength;
+	msgBuff += thisMsgLength;
+
+	//End the TCP frame here
+	msgSize += getTcpBeginEndCmdMsg(TCP_END_FRAME, msgBuff );
+
+	//Send the message to DAS Node
+	bool	sendFail = true;
+	ssize_t	bytesSend = 0;
+	struct timespec      interval;               //for nanosleep
+	struct timespec      remainder;              //for nanosleep
+	interval.tv_sec = 0;
+	interval.tv_nsec = 20000000;		//default : 100000000
+
+	ushort	retry = 0 ;
+
+	while(sendFail)
+	{
+		bytesSend = write(mptty->fd, msgBuff, msgSize);
+		if(bytesSend != msgSize)
+		{
+			nanosleep(&interval,&remainder);
+			retry++ ;
+			if(retry > MAX_RETRY_TIMEOUT ) close(mptty->fd);
+		}
+
+		if(bytesSend == msgSize) sendFail = false;
+	}
+
+	return bytesSend ;
+}
+
+short RTPSyncManager::receiveAnalogMessage(uchar *receiveBuffer)
+{
+	//Wait to receive the message from DAS Node
+	struct timespec      interval;               //for nanosleep
+	struct timespec      remainder;              //for nanosleep
+	interval.tv_sec = 0;
+	interval.tv_nsec = 30000000;		//default : 100000000
+
+	bool run = true;
+	short	returnStatus ;
+	short	timeoutCount = 0;
+	int fd = mptty->fd;
+	while(run)
+	{
+		FD_ZERO(&socketfd);
+		FD_SET(fd, &socketfd);
+		short	bytesRcvd = 0; 
+		int n = select(fd+1, &socketfd,0,0,&tv_select);
+		switch(n)
+		{
+			case -1 :
+				//To close the connection and retry to connect
+				close(fd);
+				returnStatus =  -1;
+				run = false ;
+				break ;
+			case 0 :
+				timeoutCount ++ ;
+				nanosleep(&interval,&remainder);
+				if(timeoutCount < MAX_RETRY_TIMEOUT) {
+					run = true;
+				} else {
+					run = false ;
+					close(fd);
+					returnStatus = -2;
+				};
+				break;
+			default :
+				bytesRcvd = receiveMessage(receiveBuffer);
+				returnStatus =  bytesRcvd;
+				run = false ;
+				break;
+		};
+	}
+	return returnStatus;
+}
+
+int RTPSyncManager::receiveMessage(void* pBuff)
+{
+	ssize_t		numRead;
+	ssize_t		totRead = 0;
+	ssize_t		numLeft;
+	char*		currPos	=	(char*)pBuff;
+	short		readRet ;
+ 	
+	while ((numRead = read(mptty->fd, currPos, HEADER_SIZE)) == -1 && errno == EINTR );
+
+	if (numRead < 0 && errno == ECONNRESET )
+	{
+		//connection is lost so retry connection
+		close(mptty->fd);
+		return -2 ;
+	}
+
+	if (numRead >0 ) currPos += numRead ;
+
+	if(numRead < HEADER_SIZE)
+	{
+		short	balRead ;
+		if(numRead > 0 )
+		{
+			balRead = HEADER_SIZE - numRead;
+			readRet = read(mptty->fd, currPos, balRead);
+			if (readRet < 0 && errno == ECONNRESET ) {
+				close(mptty->fd);
+				return -2 ;
+			} else {
+				numRead += readRet ;
+			};
+		} else {
+			balRead = HEADER_SIZE ;
+			numRead = read(mptty->fd, currPos, balRead);
+			if (numRead < 0 && errno == ECONNRESET ) {
+				//connection is lost so retry connection
+				close(mptty->fd);
+				return -2 ;
+			}
+		};
+
+		if (numRead >0 ) {
+			currPos += numRead ;
+			totRead	+=	numRead;
+		}
+	} else {
+		totRead	+=	numRead;
+	};
+	
+
+	short bodySize = (uchar) *((char*)pBuff +1);
+	numLeft = 	bodySize;
+	numRead	=	0;
+	
+	while(numLeft > 0) {
+
+		while ((numRead = read(mptty->fd, currPos, numLeft)) == -1 && errno == EINTR );
+
+		if (numRead < 0 && errno == ECONNRESET ) {
+			//connection is lost so retry connection
+			close(mptty->fd);
+			return -2 ;
+		}
+
+		if(numRead > 0) {
+			numLeft	-=	numRead;
+			totRead	+=	numRead;
+			currPos	+=	numRead;
+		};
+
+		if(numRead < 0 ) {
+			if (errno == EAGAIN ) {
+				struct timespec      interval;               //for nanosleep
+				struct timespec      remainder;              //for nanosleep
+				interval.tv_sec = 0;
+				interval.tv_nsec = 100000;       
+				nanosleep(&interval,&remainder);
+			}
+			else {
+				close(mptty->fd);
+				return -2;
+			}
+		};
+
+		if(numRead == 0 && errno == ECONNRESET ) {
+			close(mptty->fd);
+			return -2;
+		};
+	};
+
+	return totRead;
+
+}
+
+char * RTPSyncManager::FloatToIEEE(float *FloatArray, int NoOfCnt)
+{
+	char TempBuf[4];
+	char RetBuf[256];
+	ushort i, j, k = 0;
+	float TempFloat;
+	char TempChar;
+
+	memset(RetBuf, 0, sizeof(RetBuf));
+
+	for (i = 0; i < NoOfCnt; i++)
+	{
+		TempFloat = *FloatArray++;
+		memcpy(TempBuf, &TempFloat, 4);
+
+		// Swap the bytes to convert it to proper IEEE format
+		TempChar = TempBuf[3];
+		TempBuf[3] = TempBuf[0];
+		TempBuf[0] = TempChar;
+
+		TempChar = TempBuf[2];
+		TempBuf[2] = TempBuf[1];
+		TempBuf[1] = TempChar;
+
+		for( j = 0; j < 4; j ++)
+			RetBuf[k++] = TempBuf[j];
+	}
+	return RetBuf;
+}
+
+/* This function is used to convert a string of IEEE format floting points into the Float Array	*
+*  The string is passed with the pointer to the return float array and Number Of Count.		*
+*/
+void RTPSyncManager::IEEEToFloat(uchar *IEEEBuffer, float *FloatArray, int noOfBytes)
+{
+	int i;
+	uchar TempChar;
+	uchar *lIEEEBuffer = IEEEBuffer;
+	
+	for(i = 0; i < noOfBytes ; i+=4)	
+	{
+		TempChar = lIEEEBuffer[i+3];
+		lIEEEBuffer[i+3] = lIEEEBuffer[i];
+		lIEEEBuffer[i] = TempChar;
+
+		TempChar = lIEEEBuffer[i+2];
+		lIEEEBuffer[i+2] = lIEEEBuffer[i+1];
+		lIEEEBuffer[i+1] = TempChar;
+		
+		FloatArray[(i/4)] = *(float*) &lIEEEBuffer[i];
+	}
+}
+
+
+

@@ -8,6 +8,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 # DB += xxx.db
 DB += RTPTest.vdb
+DB += RTPMulti.vdb
 
 
 #----------------------------------------------------

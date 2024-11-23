@@ -2,51 +2,31 @@
 #define __RTP_DEV_MANAGER_H
 
 #include <vector>
-#include <cmath>
-#include <cstdlib>
 #include <cstring>
-#include <ctype.h>
 #include <fcntl.h>
-#include "osiUnistd.h"
 #include "osiSock.h"
-#include "errlog.h"
-#include "epicsAssert.h"
-#include "epicsExit.h"
 #include "epicsString.h"
-#include "epicsTime.h"
-#include "alarm.h"
-#include "cvtTable.h"
-#include "dbDefs.h"
 #include "dbAccess.h"
 #include "recGbl.h"
-#include "recSup.h"
 #include "devSup.h"
-#include "link.h"
-#include "menuScan.h"
 #include "epicsExport.h"
-#include "shareLib.h"
-#include "dbCommon.h"
-#include "dbScan.h"
-#include "callback.h"
-#include "cantProceed.h"
-#include "epicsStdio.h"
 #include "epicsMutex.h"
-#include "epicsEvent.h"
 #include "epicsThread.h"
+#include "menuFtype.h"
 #include "iocsh.h"
-#include "shareLib.h"
 #include "asynDriver.h"
-#include "asynDrvUser.h"
-#include "asynFloat64SyncIO.h"
-#include "asynEpicsUtils.h"
-#include "asynFloat64.h"
 #include "aiRecord.h"
 #include "aoRecord.h"
 #include "biRecord.h"
 #include "boRecord.h"
 #include "longinRecord.h"
 #include "longoutRecord.h"
+#include "waveformRecord.h"
 
+#define uchar	unsigned char
+#define ushort	unsigned short
+#define uint	unsigned int
+#define ulong	unsigned long
 
 // RTP 프로토콜 관련
 #define SYNC_BYTE         0xC3                // sync byte                            
@@ -62,6 +42,8 @@
 #define INT_START_INDEX   23                  // 연속된 Int 변수들의 시작 Index       
 #define NUMBER_TO_READ    5                   // 읽어올 변수의 개수                   
 
+#define MAX_FRAME_LENGTH  4096
+#define MAX_RETRY_TIMEOUT 5
 //#define READ_COMMANDMSG_SIZE    11
 #define SINGLE_READ_COMMANDMSG_SIZE		9
 #define SINGLE_WRITE_COMMANDMSG_SIZE	13
@@ -82,6 +64,23 @@
 #define MULTIPLE	5
 #define SINGLE	3
 
+// DAS Command Codes
+#define DIGITAL_READ 		(uchar)0x82	//Digital Read (Single value or Multiple Values)
+#define DIGITAL_WRITE 		(uchar)0x83	//Digital Write (Single value or Multiple Values)
+#define INTEGER_READ		(uchar)0x8D	//Integer Read (Single value or Multiple Values)
+#define INTEGER_WRITE		(uchar)0x8E	//Integer Write (Single value or Multiple Values)
+#define ANALOG_READ 		(uchar)0x9D	//Analog read (Single value or Multiple Values)
+#define ANALOG_WRITE		(uchar)0x9E	//Analog write (Single value or Multiple Values)
+#define FLOAT_POINT_READ 	(uchar)0x9D	//Float read (Single value or Multiple Values)
+#define FLOAT_POINT_WRITE	(uchar)0x9E	//Float write (Single value or Multiple Values)
+#define ENGINE_CLOCK_READ	(uchar)0xA4	//Read Engine Clock
+#define TCP_BEGIN_FRAME		(uchar)0xEE	//Begin Frame (No Response)
+#define TCP_END_FRAME		(uchar)0xEF	//End Frame (No Response) 
+
+#define HEADER_SIZE			4
+#define READ_DATA_SIZE		4
+#define BASIC_RES_SIZE      5
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -99,7 +98,7 @@ typedef struct devRTP{
 	//long  (*special_linconv) (void *, int pass);
 }devRTP;
 
-static long	convertAi(void *precord, int pass);
+//static long	convertAi(void *precord, int pass);
 static long	initAi (void *prec);
 static long	processAi (void *precord);
 static long	initAo (void *prec);
@@ -112,6 +111,8 @@ static long	initLi (void *prec);
 static long	processLi (void *precord);
 static long	initLo (void *prec);
 static long	processLo (void *precord);
+static long	initWf (void *prec);
+static long	processWf (void *precord);
 
 epicsShareFunc int drvSyncRTPConfigure(const char *portName, const char *hostInfo, unsigned int priority, int noAutoConnect);
 
@@ -226,6 +227,7 @@ public:
 	int WriteSFloatData(const aoRecord *pr);
 	int WriteSBoolData(const boRecord *pr);
 	int WriteSIntData(const longoutRecord *pr);
+	int ReadWfData(const waveformRecord *pr);
 	int ConnectThread(const char *portName, const char *hostInfo, unsigned int prio, int noAuto);
 	int ConnectDevice();
 	//int ParseLink(const char *linkString);
@@ -234,6 +236,10 @@ public:
 private:
 	ttyController_t *mptty;
     epicsMutexId mutex;
+	fd_set		socketfd;
+	struct timeval	tv_select;
+	uchar msgToSend[MAX_FRAME_LENGTH];
+	uchar msgToRecv[MAX_FRAME_LENGTH];
 
 	char		*sRCommand;
 	char		*sWCommand;
@@ -245,6 +251,18 @@ private:
 	int readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread);
 	//int writeSMsgCommand(const int type, const int length, epicsFloat32 fvalue);
 	int writeSMsgCommand(const int type, const int length, const int cpu_node, const int index_value, epicsFloat32 fvalue);
+
+	short getAIDIIntReadCmdMsg(uchar cmdType,int refIndex, int pointCount, uchar* pBuff);
+	short getTcpBeginEndCmdMsg(uchar cmdType, uchar* pBuff);
+	short getAnalogMessage(uchar cmdType, short startPos, short msgCount, uchar* pBuff);
+	short receiveAnalogMessage(uchar *receiveBuffer);
+	int receiveMessage(void* pBuff);
+	void  getRefValue(int Index, ushort *Ref_High, ushort *Ref_Low);
+	uchar getCrc(uchar *CRCBuffer, ushort LoopCount);
+	ushort getLength(uchar Command, ushort NoOfBytes);
+
+	char* FloatToIEEE(float *FloatArray, int NoOfCnt);
+	void IEEEToFloat(uchar *IEEEBuffer, float *FloatArray, int noOfBytes);
 
 	unsigned char maskBit[8] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80};
 	void ttyCleanup(ttyController_t *tty);

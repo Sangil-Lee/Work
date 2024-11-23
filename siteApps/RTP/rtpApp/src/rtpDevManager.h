@@ -48,7 +48,6 @@
 #include "asynInterposeCom.h"
 #include "asynInterposeEos.h"
 
-
 // RTP 프로토콜 관련
 #define SYNC_BYTE         0xC3                // sync byte                            
 #define FLOAT_READ        0x9D                // float 읽기 명령                      
