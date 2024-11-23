@@ -1,0 +1,66 @@
+program sncWaveToScalar
+
+option +r;
+
+float scalarPVs[500];
+assign scalarPVs to {
+"SCL31-CDL01:EBx01-TT7503:TempR", "SCL31-BL01:CM01-TT8502:TempR", "SCL31-BL01:CM02-TT8502:TempR", 
+"SCL31-BL01:CM03-TT8502:TempR", "SCL31-BL01:CM04-TT8502:TempR", "SCL31-BL01:CM05-TT8502:TempR", 
+"SCL31-BL01:CM06-TT8502:TempR", "SCL31-BL01:CM07-TT8502:TempR", "SCL31-BL01:CM08-TT8502:TempR",
+"SCL31-BL01:CM09-TT8502:TempR", "SCL31-BL01:CM10-TT8502:TempR", "SCL31-BL01:CM11-TT8502:TempR", 
+"SCL31-BL01:CM12-TT8502:TempR", "SCL31-BL01:CM13-TT8502:TempR", "SCL31-BL01:CM14-TT8502:TempR",
+"SCL31-BL01:CM15-TT8502:TempR", "SCL31-BL01:CM16-TT8502:TempR", "SCL31-BL01:CM17-TT8502:TempR", 
+"SCL31-BL01:CM18-TT8502:TempR", "SCL31-BL01:CM19-TT8502:TempR", "SCL31-BL01:CM20-TT8502:TempR",
+"SCL31-BL01:CM21-TT8502:TempR", "SCL31-BL01:CM22-TT8502:TempR", "SCL32-BL02:CM01-TT8502:TempR", 
+"SCL32-BL02:CM02-TT8502:TempR", "SCL32-BL02:CM03-TT8502:TempR", "SCL32-BL02:CM04-TT8502:TempR",
+"SCL32-BL02:CM05-TT8502:TempR", "SCL32-BL02:CM06-TT8502:TempR", "SCL32-BL02:CM07-TT8502:TempR", 
+"SCL32-BL02:CM08-TT8502:TempR", "SCL32-BL02:CM09-TT8502:TempR", "SCL32-BL02:CM10-TT8502:TempR",
+"SCL32-BL02:CM11-TT8502:TempR", "SCL32-BL02:CM12-TT8502:TempR", "SCL32-BL02:CM13-TT8502:TempR",
+"SCL32-BL03:CM01-TT8502:TempR", "SCL32-BL03:CM02-TT8502:TempR", "SCL32-BL03:CM03-TT8502:TempR",
+"SCL32-BL03:CM04-TT8502:TempR", "SCL32-BL03:CM05-TT8502:TempR", "SCL32-BL03:CM06-TT8502:TempR",
+"SCL32-BL03:CM07-TT8502:TempR", "SCL32-BL03:CM08-TT8502:TempR", "SCL32-BL03:CM09-TT8502:TempR",
+"SCL32-BL03:CM10-TT8502:TempR", "SCL32-BL03:CM11-TT8502:TempR", "SCL32-BL03:CM12-TT8502:TempR",
+"SCL32-BL03:CM13-TT8502:TempR", "SCL32-BL03:CM14-TT8502:TempR", "SCL32-BL03:CM15-TT8502:TempR",
+"SCL32-BL03:CM16-TT8502:TempR", "SCL32-BL03:CM17-TT8502:TempR", "SCL32-BL03:CM18-TT8502:TempR",
+"SCL32-BL03:CM19-TT8502:TempR", "P2DT-BL04:CM01-TT8502:TempR", "Cryo-CDL00:TBx01-TT7583:TempR"
+};
+
+monitor scalarPVs;
+evflag  evScalars;
+sync	scalarPVs	evScalars;
+
+float	waveFloatPV[500];
+assign	waveFloatPV to "SCL3-CD:Logic-TSR:TempWaveR";
+monitor waveFloatPV;
+
+float	waveLongPV1[500];
+assign	waveLongPV1 to "SCL3-CD:Logic-TSS:TempWaveR";
+monitor waveLongPV1;
+
+ss makewave
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evScalars);
+		}state MakeWaveform
+	}
+
+	state MakeWaveform
+	{
+		when(delay(2.0)) 
+		{
+			int index = 0;
+			for(index = 0; index < 500;index++)
+			{
+				waveFloatPV[index] = scalarPVs[index];
+				waveLongPV1[index] = scalarPVs[index];
+			}
+
+			pvPut(waveFloatPV, SYNC);
+			pvPut(waveLongPV1, SYNC);
+		}state MakeWaveform
+	}
+}
+

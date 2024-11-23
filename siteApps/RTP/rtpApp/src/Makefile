@@ -38,6 +38,13 @@ rtp_SRCS += rtp_registerRecordDeviceDriver.cpp
 rtp_SRCS_DEFAULT += rtpMain.cpp
 rtp_SRCS_vxWorks += -nil-
 
+ifneq ($(SNCSEQ),)
+    rtp_SNCFLAGS += +r
+    rtp_DBD  += sncWaveToScalar.dbd
+    rtp_SRCS += sncWaveToScalar.stt
+    rtp_LIBS += seq pv
+endif
+
 # Add support from base/src/vxWorks if needed
 #rtp_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
