@@ -11,12 +11,15 @@ cd "${TOP}"
 dbLoadDatabase "dbd/rtp.dbd"
 rtp_registerRecordDeviceDriver pdbbase
 
-drvSyncRTPConfigure("RTPDevice", "192.168.10.50:50199 TCP", 0, 0)
+drvSyncRTPConfigure("RTPDevice", "192.168.10.101:50199 TCP", 0, 0)
 
 
 ## Load record instances
 #dbLoadRecords("db/rtp.db","user=ctrluser")
-dbLoadRecords("db/RTPTest.vdb","user=ctrluser")
+#dbLoadRecords("db/RTPTest.vdb","user=ctrluser")
+#dbLoadRecords("db/RTPFloat.vdb")
+#dbLoadRecords("db/RTPMulti.vdb")
+dbLoadRecords("db/RTPWav.db")
 
 
 cd "${TOP}/iocBoot/${IOC}"

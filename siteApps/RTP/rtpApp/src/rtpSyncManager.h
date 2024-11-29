@@ -86,6 +86,9 @@
 extern "C" {
 #endif
 
+fd_set		socketfd;
+struct timeval	tv_select;
+
 typedef struct devRTP{
 	long		number;
 	DEVSUPFUN	report;
@@ -227,7 +230,7 @@ public:
 	int WriteSFloatData(const aoRecord *pr);
 	int WriteSBoolData(const boRecord *pr);
 	int WriteSIntData(const longoutRecord *pr);
-	int ReadWfData(const waveformRecord *pr);
+	int ReadWfData(waveformRecord *pr);
 	int ConnectThread(const char *portName, const char *hostInfo, unsigned int prio, int noAuto);
 	int ConnectDevice();
 	//int ParseLink(const char *linkString);
@@ -236,8 +239,6 @@ public:
 private:
 	ttyController_t *mptty;
     epicsMutexId mutex;
-	fd_set		socketfd;
-	struct timeval	tv_select;
 	uchar msgToSend[MAX_FRAME_LENGTH];
 	uchar msgToRecv[MAX_FRAME_LENGTH];
 
@@ -248,7 +249,7 @@ private:
 	//int	readSMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread);
 	//int readSMsgCommand(const int type, const int mul_single);
 	int readSMsgCommand(const int type, const int mul_single, const int cpu_node, const int index_value);
-	int readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread);
+	ssize_t readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread);
 	//int writeSMsgCommand(const int type, const int length, epicsFloat32 fvalue);
 	int writeSMsgCommand(const int type, const int length, const int cpu_node, const int index_value, epicsFloat32 fvalue);
 
