@@ -62,7 +62,8 @@
 #define SINGLE_CRC_WFLOAT_INDEX 11
 
 #define MULTIPLE	5
-#define SINGLE	3
+#define SINGLE		3
+#define BEGIN_DATA	5
 
 // DAS Command Codes
 #define DIGITAL_READ 		(uchar)0x82	//Digital Read (Single value or Multiple Values)

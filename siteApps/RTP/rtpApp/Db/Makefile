@@ -10,7 +10,7 @@ include $(TOP)/configure/CONFIG
 DB += RTPTest.vdb
 DB += RTPFloat.vdb
 DB += RTPMulti.vdb
-DB += RTPWav.db
+DB += RTPWaveform.db
 
 
 #----------------------------------------------------

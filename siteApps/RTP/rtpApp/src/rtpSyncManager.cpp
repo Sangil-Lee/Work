@@ -723,9 +723,6 @@ ssize_t RTPSyncManager::readMMsgCommand(const int node, const int type, const in
 	msgToSend[sendByte++] = (unsigned char)(numtoread / 256);
 	unsigned short check = getCRC((unsigned char*)msgToSend, sendByte);
 
-	//getCRC((unsigned char*)sRCommand, sizeof(&sRCommand));
-	//printf("Cmd Size:%d\n", sizeof(sRCommand));
-	//return send(mptty->fd, (const char*)sRCommand, sizeof(sRCommand), 0);
 	return send(mptty->fd, (const char*)msgToSend, sendByte+2, 0);
 }
 
@@ -800,14 +797,15 @@ int RTPSyncManager::WriteSBoolData(const boRecord *pr)
 
 int RTPSyncManager::ReadWfData(waveformRecord *pr)
 {
-	//uchar msgToSendRecv[4096];
 	devPvt *pRtp = (devPvt*)pr->dpvt;
-	if(pRtp==NULL) return (-1);
+	if(pRtp == NULL || pr == NULL) return (-1);
+
+	pr->nord = pr->nelm;
 
 	epicsEnum16 e_ftvl = pr->ftvl;
 	uchar cmdType = 0;
 
-	if(e_ftvl == menuFtypeLONG)
+	if(e_ftvl == menuFtypeSHORT)
 		cmdType = INTEGER_READ;
 	else
 		cmdType = ANALOG_READ;
@@ -815,48 +813,30 @@ int RTPSyncManager::ReadWfData(waveformRecord *pr)
 	int startIndex = pRtp->index_value; 
 #if 0
 	short recByte = getAnalogMessage(cmdType, startIndex, pr->nelm, msgToSend);
-
 	recByte = receiveAnalogMessage(msgToRecv);
-
 	if(recByte < 0) {
 		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
 		return -1;
 	};
-  
 	memcpy(pr->val, msgToRecv, READ_DATA_SIZE*pr->nelm); 
 #else
-	ssize_t sendByte = readMMsgCommand(pRtp->cpu_node, FLOAT_READ, MULTIPLE, pRtp->index_value, pr->nelm);
+	ssize_t sendByte = readMMsgCommand(pRtp->cpu_node, cmdType, MULTIPLE, pRtp->index_value, pr->nelm);
 
-	printf("PVName(%s), sendByte:%d\n", pr->name, sendByte);
+	//printf("PVName(%s), sendByte:%d\n", pr->name, sendByte);
 
-	char ReadData[512];                 // float ÀÐ±â ¸í·É
+	char ReadData[1500];
 	ssize_t recvbyte = recv(mptty->fd, (char*)&ReadData, sizeof(ReadData), 0);
 
-	printf("PVName(%s), RecvByte:%d\n", pr->name, recvbyte);
-	//
-#if 1
-	float fvalue[512];
-	memcpy(fvalue, (float*)&ReadData[5], sizeof(float)*pr->nelm);
-	
-	for(int i = 0; i < pr->nelm; i++)
-	{
-		cout << "F-value: " << fvalue[i] << endl;
-	}
-#endif
-
-	if(recvbyte < 0)
-	{
+	if(recvbyte < 0) {
 		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
 		return -1;
 	};
 
-	//pr->val = (float*)fvalue;
-	pr->nord = pr->nelm;
-	memcpy(pr->bptr, fvalue, sizeof(float)*pr->nelm);
-	//memcpy(&fvalue, (epicsFloat32*)&ReadData[5], sizeof(epicsFloat32));
-	//epicsMutexUnlock(mutex);
+	if(e_ftvl == menuFtypeSHORT)
+		memcpy(pr->bptr, (short*)&ReadData[BEGIN_DATA], sizeof(short)*pr->nelm);
+	else
+		memcpy(pr->bptr, (float*)&ReadData[BEGIN_DATA], sizeof(float)*pr->nelm);
 #endif
-
 	return (0);
 }
 
