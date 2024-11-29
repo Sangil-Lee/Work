@@ -19,11 +19,13 @@ drvSyncRTPConfigure("RTPDevice", "192.168.10.101:50199 TCP", 0, 0)
 #dbLoadRecords("db/RTPTest.vdb","user=ctrluser")
 #dbLoadRecords("db/RTPFloat.vdb")
 #dbLoadRecords("db/RTPMulti.vdb")
-dbLoadRecords("db/RTPWav.db")
 
+dbLoadRecords("db/RTPWaveform.db")
+dbLoadTemplate("db/RTPSignal.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+seq sncWaveToScalar
