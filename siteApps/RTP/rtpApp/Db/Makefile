@@ -14,6 +14,7 @@ DB += RTPWaveform.db
 DB += RTPAI.template
 DB += RTPLI.template
 DB += RTPSignal.sub
+DB += RTPSignal2.sub
 
 
 #----------------------------------------------------
