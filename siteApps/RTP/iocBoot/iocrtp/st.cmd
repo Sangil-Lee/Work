@@ -31,3 +31,5 @@ iocInit
 #seq sncxxx,"user=ctrluser"
 #seq sncWaveToScalar
 seq sncWaveToScalar2
+seq sncWaveToScalar3
+seq sncWaveToScalar4

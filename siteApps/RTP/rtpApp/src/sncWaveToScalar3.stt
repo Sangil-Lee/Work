@@ -1,0 +1,78 @@
+program sncWaveToScalar3
+
+option +r;
+
+float scalarPVShort[121];
+assign scalarPVShort to {
+"9-431-J-LT-0110AI", 	 "9-431-J-LT-0110BI",     "9-431-J-PA16B-01-202I", "9-431-J-PT-01-90AI",
+"9-431-J-PT-01-90BI",	 "9-431-J-TE-0132AI",     "9-431-J-TE-0132BI",     "9-431-J-TE-0133AI",
+"9-431-J-TE-0133BI", 	 "9-431-J-TE-0142AI",     "9-431-J-TE-0142BI",     "9-431-J-TE-0143AI",
+"9-431-J-TE-0143BI", 	 "9-431-PT0102AI",        "9-431-PT0102BI",        "9-431-PT01-02AI",
+"9-431-PT01-02BI",   	 "9-447-J-LT-390BI",      "9-447-J-LT-391AI",      "9-447-J-TE-390AI",
+"9-447-J-TE-391BI",  	 "9-521-PT1013AI",        "9-521-PT1013BI",        "9-521-PT1023AI",
+"9-521-PT1023BI",    	 "9-541-LT1113AI",        "9-541-LT1113BI",        "9-541-LT1123AI",
+"9-541-LT1123BI",    	 "9-543-J-LT-003AI",      "9-543-J-LT-006BI",      "9-731-J-PA-0048AI",
+"9-731-J-PA-0048BI", 	 "9-732-J-TE-0001-TH1AI", "9-732-J-TE-0001-TH2AI", "9-732-J-TE-0001-TH3AI",
+"9-732-J-TE-0001-TH4AI", "9-732-J-TE-0001-TH5AI", "9-732-J-TE-0001-TH6AI", "9-732-J-TE-0001-TH7AI",
+"9-732-J-TE-0001-TH8AI", "9-732-J-TE-0001-TU1AI", "9-732-J-TE-0001-TU2AI", "9-732-J-TE-0001-TU3AI",
+"9-732-J-TE-0001-TU4AI", "9-732-J-TE-0001-TU5AI", "9-732-J-TE-0001-TU6AI", "9-732-J-TE-0001-TU7AI",
+"9-732-J-TE-0001-TU8AI", "9-732-J-TE-0002-TH1BI", "9-732-J-TE-0002-TH2BI", "9-732-J-TE-0002-TH3BI",
+"9-732-J-TE-0002-TH4BI", "9-732-J-TE-0002-TH5BI", "9-732-J-TE-0002-TH6BI", "9-732-J-TE-0002-TH7BI",
+"9-732-J-TE-0002-TH8BI", "9-732-J-TE-0002-TU1BI", "9-732-J-TE-0002-TU2BI", "9-732-J-TE-0002-TU3BI",
+"9-732-J-TE-0002-TU4BI", "9-732-J-TE-0002-TU5BI", "9-732-J-TE-0002-TU6BI", "9-732-J-TE-0002-TU7BI",
+"9-732-J-TE-0002-TU8BI", "9-732-J-TE-012I",       "9-752-J-PA16-01-202AI", "9-752-J-PA16-01-202BI",
+"9-752-J-PA16-01-209AI", "9-752-J-PA16-01-209BI", "9-752-J-PA16-01-257AI", "9-752-J-PA16-01-257BI",
+"9-752-J-PA16-01-258AI", "9-752-J-PA16-258BI",    "9-752-J-PA16A-01-201I", "9-752-J-PA16A-01-202I",
+"9-752-J-PA16A-01-203I", "9-752-J-PA16A-01-204I", "9-752-J-PA16A-01-205I", "9-752-J-PA16A-01-206I",
+"9-752-J-PA16A-01-207I", "9-752-J-PA16A-01-208I", "9-752-J-PA16A-01-211I", "9-752-J-PA16A-01-212I",
+"9-752-J-PA16A-01-213I", "9-752-J-PA16A-01-214I", "9-752-J-PA16A-01-215I", "9-752-J-PA16A-01-216I",
+"9-752-J-PA16A-01-217I", "9-752-J-PA16A-01-21BI", "9-752-J-PA16A-01-257I", "9-752-J-PA16A-01-258I",
+"9-752-J-PA16B-01-201I", "9-752-J-PA16B-01-203I", "9-752-J-PA16B-01-204I", "9-752-J-PA16B-01-205I",
+"9-752-J-PA16B-01-206I", "9-752-J-PA16B-01-207I", "9-752-J-PA16B-01-208I", "9-752-J-PA16B-01-211I",
+"9-752-J-PA16B-01-212I", "9-752-J-PA16B-01-213I", "9-752-J-PA16B-01-214I", "9-752-J-PA16B-01-215I",
+"9-752-J-PA16B-01-216I", "9-752-J-PA16B-01-217I", "9-752-J-PA16B-01-218I", "9-752-J-PA16B-01-257I",
+"9-752-J-PA16B-01-258I", "9-761-J-RT-233AI",      "9-761-J-RT-234BI",      "9-763-J-AT-005AI",
+"9-763-J-AT-006AI",      "9-763-J-AT-007BI",      "9-763-J-AT-008BI",      "9-763-J-LT-027AI",
+"9-763-J-LT-028BI",      "9-763-J-PT-0353AI",     "9-763-J-PT-0353BI",     "9-763-PT0352AI",
+"9-763-PT0352BI"
+};
+
+float	waveShortPV1[121];
+assign	waveShortPV1 to "RTPWaveformSHORT";
+monitor waveShortPV1;
+evflag  evWave;
+sync 	waveShortPV1 evWave;
+
+int index = 0;
+int pvcnt = 0;
+
+ss makewaveInt1
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evWave);
+		}state MakeWaveInt1ToScalar
+	}
+
+	state MakeWaveInt1ToScalar
+	{
+		when(efTestAndClear(evWave))
+		{
+			index = 0;
+			pvcnt = sizeof(scalarPVShort)/sizeof(scalarPVShort[0]);
+			for(index = 0; index < pvcnt;index++) {
+				scalarPVShort[index] = waveShortPV1[index];
+				pvPut(scalarPVShort[index], ASYNC);
+			}
+		}state SyncValueInt1
+	}
+	state SyncValueInt1
+	{
+		when(pvArrayPutComplete(scalarPVShort, TRUE) )
+		{
+		}state MakeWaveInt1ToScalar
+	}
+}
+
