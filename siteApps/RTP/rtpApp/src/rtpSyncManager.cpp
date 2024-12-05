@@ -708,23 +708,22 @@ int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int
 	return send(mptty->fd, (const char*)sWCommand, msgSize, 0);
 }
 
-int RTPSyncManager::readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread)
+ssize_t RTPSyncManager::readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread)
 {
-	sRCommand[0]= SYNC_BYTE;
-	sRCommand[1]= mul_single; //Multi = 5, Single = 3
-	sRCommand[2]= 0x00; 
-	sRCommand[3]= node;  //Node = 0
-	sRCommand[4]= type; // FLOAT_READ = 0x9D, INT_READ = 0x8D, BOOL_READ = 0x82
-	sRCommand[5] = (unsigned char)(index % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
-	sRCommand[6] = (unsigned char)(index / 256);
-	sRCommand[7] = (unsigned char)(numtoread % 256);
-	sRCommand[8] = (unsigned char)(numtoread / 256);
-	unsigned short check = getCRC((unsigned char*)sRCommand, 7);
+	uchar msgToSend[512];
+	ushort sendByte 	= 0; 
+	msgToSend[sendByte++]= SYNC_BYTE;
+	msgToSend[sendByte++]= mul_single; //Multi = 5, Single = 3
+	msgToSend[sendByte++]= 0x00; 
+	msgToSend[sendByte++]= node;  //Node = 0
+	msgToSend[sendByte++]= type; // FLOAT_READ = 0x9D, INT_READ = 0x8D, BOOL_READ = 0x82
+	msgToSend[sendByte++] = (unsigned char)(index % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	msgToSend[sendByte++] = (unsigned char)(index / 256);
+	msgToSend[sendByte++] = (unsigned char)(numtoread % 256);
+	msgToSend[sendByte++] = (unsigned char)(numtoread / 256);
+	unsigned short check = getCRC((unsigned char*)msgToSend, sendByte);
 
-	//getCRC((unsigned char*)sRCommand, sizeof(&sRCommand));
-	//printf("Cmd Size:%d\n", sizeof(sRCommand));
-	//return send(mptty->fd, (const char*)sRCommand, sizeof(sRCommand), 0);
-	return send(mptty->fd, (const char*)sRCommand, 11, 0);
+	return send(mptty->fd, (const char*)msgToSend, sendByte+2, 0);
 }
 
 int RTPSyncManager::ReadSFloatData(const aiRecord *pr, epicsFloat32 &fvalue)
@@ -733,7 +732,7 @@ int RTPSyncManager::ReadSFloatData(const aiRecord *pr, epicsFloat32 &fvalue)
 	//int recByte = readSMsgCommand(0,FLOAT_READ, 3, 95, 1);
 	devPvt *pRtp = (devPvt*)pr->dpvt;
 
-	epicsMutexLock(mutex);
+	//epicsMutexLock(mutex);
 	int recByte = readSMsgCommand(FLOAT_READ, SINGLE, pRtp->cpu_node, pRtp->index_value);
 
 	//printf("Socket(%p),ReadByte: %d\n", mptty->fd, recByte);
@@ -749,7 +748,7 @@ int RTPSyncManager::ReadSFloatData(const aiRecord *pr, epicsFloat32 &fvalue)
 	};
 
 	memcpy(&fvalue, (epicsFloat32*)&ReadData[5], sizeof(epicsFloat32));
-	epicsMutexUnlock(mutex);
+	//epicsMutexUnlock(mutex);
 
 	//printf("RTP-Value:%f\n",fvalue);
 	return (0);
@@ -796,39 +795,55 @@ int RTPSyncManager::WriteSBoolData(const boRecord *pr)
 	return (0);
 }
 
-int RTPSyncManager::ReadWfData(const waveformRecord *pr)
+int RTPSyncManager::ReadWfData(waveformRecord *pr)
 {
-	//uchar msgToSendRecv[4096];
 	devPvt *pRtp = (devPvt*)pr->dpvt;
-	if(pRtp==NULL) return (-1);
+	if(pRtp == NULL || pr == NULL) return (-1);
+
+	pr->nord = pr->nelm;
 
 	epicsEnum16 e_ftvl = pr->ftvl;
 	uchar cmdType = 0;
 
-	if(e_ftvl == menuFtypeLONG)
+	if(e_ftvl == menuFtypeSHORT)
 		cmdType = INTEGER_READ;
 	else
 		cmdType = ANALOG_READ;
 
 	int startIndex = pRtp->index_value; 
+#if 0
 	short recByte = getAnalogMessage(cmdType, startIndex, pr->nelm, msgToSend);
-
 	recByte = receiveAnalogMessage(msgToRecv);
-
 	if(recByte < 0) {
 		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
 		return -1;
 	};
-  
 	memcpy(pr->val, msgToRecv, READ_DATA_SIZE*pr->nelm); 
+#else
+	ssize_t sendByte = readMMsgCommand(pRtp->cpu_node, cmdType, MULTIPLE, pRtp->index_value, pr->nelm);
 
+	//printf("PVName(%s), sendByte:%d\n", pr->name, sendByte);
+
+	char ReadData[1500];
+	ssize_t recvbyte = recv(mptty->fd, (char*)&ReadData, sizeof(ReadData), 0);
+
+	if(recvbyte < 0) {
+		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
+		return -1;
+	};
+
+	if(e_ftvl == menuFtypeSHORT)
+		memcpy(pr->bptr, (short*)&ReadData[BEGIN_DATA], sizeof(short)*pr->nelm);
+	else
+		memcpy(pr->bptr, (float*)&ReadData[BEGIN_DATA], sizeof(float)*pr->nelm);
+#endif
 	return (0);
 }
 
 int RTPSyncManager::WriteSIntData(const longoutRecord *pr)
 {
 	devPvt *pRtp = (devPvt*)pr->dpvt;
-	epicsMutexLock(mutex);
+	//epicsMutexLock(mutex);
 	int recByte = writeSMsgCommand(INT_WRITE, 5, pRtp->cpu_node, pRtp->index_value, pr->val);
 
 	char ReadData[7];
@@ -839,7 +854,7 @@ int RTPSyncManager::WriteSIntData(const longoutRecord *pr)
 		return -1;
 	};
 
-	epicsMutexUnlock(mutex);
+	//epicsMutexUnlock(mutex);
 	char resp = ReadData[4];
 	//printf("Response-code: %d\n", resp);
 
@@ -849,7 +864,7 @@ int RTPSyncManager::WriteSIntData(const longoutRecord *pr)
 int RTPSyncManager::ReadSBoolData(const biRecord *pr, bool &bvalue)
 {
 	devPvt *pRtp = (devPvt*)pr->dpvt;
-	epicsMutexLock(mutex);
+	//epicsMutexLock(mutex);
 	int recByte = readSMsgCommand(BOOL_READ, SINGLE, pRtp->cpu_node, pRtp->index_value);
 
 	char ReadData[SINGLE_BOOL_VALUE_SIZE];                 // float ÀÐ±â ¸í·É
@@ -861,7 +876,7 @@ int RTPSyncManager::ReadSBoolData(const biRecord *pr, bool &bvalue)
 	};
 
 	memcpy(&bvalue, (bool*)&ReadData[5], sizeof(bool));
-	epicsMutexUnlock(mutex);
+	//epicsMutexUnlock(mutex);
 
 	return (0);
 }
@@ -869,7 +884,7 @@ int RTPSyncManager::ReadSBoolData(const biRecord *pr, bool &bvalue)
 int RTPSyncManager::ReadSIntData(const longinRecord *pr, epicsInt32 &ivalue)
 {
 	devPvt *pRtp = (devPvt*)pr->dpvt;
-	epicsMutexLock(mutex);
+	//epicsMutexLock(mutex);
 	int recByte = readSMsgCommand(INT_READ, SINGLE, pRtp->cpu_node, pRtp->index_value);
 
 	char ReadData[SINGLE_INT_VALUE_SIZE]; 
@@ -881,7 +896,7 @@ int RTPSyncManager::ReadSIntData(const longinRecord *pr, epicsInt32 &ivalue)
 	};
 
 	memcpy(&ivalue, (epicsInt32*)&ReadData[5], sizeof(epicsInt32));
-	epicsMutexUnlock(mutex);
+	//epicsMutexUnlock(mutex);
 
 	return (0);
 }
@@ -1072,6 +1087,8 @@ short RTPSyncManager::getAnalogMessage(uchar cmdType, short startPos, short msgC
 
 	ushort	retry = 0 ;
 
+	bytesSend = write(mptty->fd, msgBuff, msgSize);
+#if 0
 	while(sendFail)
 	{
 		bytesSend = write(mptty->fd, msgBuff, msgSize);
@@ -1084,6 +1101,7 @@ short RTPSyncManager::getAnalogMessage(uchar cmdType, short startPos, short msgC
 
 		if(bytesSend == msgSize) sendFail = false;
 	}
+#endif
 
 	return bytesSend ;
 }

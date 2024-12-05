@@ -1,0 +1,85 @@
+program sncWaveToScalar2
+
+option +r;
+
+float scalarPVFloat[146];
+assign scalarPVFloat to {
+"9-431-J-LT-0110A",     "9-431-J-LT-0110B",     "9-431-J-PA16B-01-202", "9-431-J-PT-0102A",
+"9-431-J-PT-0102B",     "9-431-J-PT-0190A",     "9-431-J-PT-0190B",     "9-431-J-TE-0132A",
+"9-431-J-TE-0132B",     "9-431-J-TE-0133A",     "9-431-J-TE-0133B",     "9-431-J-TE-0142A",
+"9-431-J-TE-0142B",     "9-431-J-TE-0143A",     "9-431-J-TE-0143B",     "9-447-J-LT-390B",
+"9-447-J-LT-391A",      "9-447-J-TE-390A",      "9-447-J-TE-391B",      "9-521-PT1013A",
+"9-521-PT1013B",        "9-521-PT1023A",        "9-521-PT1023B",        "9-541-LT1113A",
+"9-541-LT1113B",        "9-541-LT1123A",        "9-541-LT1123B",        "9-543-J-LT-003A",
+"9-543-J-LT-004B",      "9-543-J-LT-005A",      "9-543-J-LT-006B",      "9-731-J-PA-0048A",
+"9-731-J-PA-0048B",     "9-732-J-TE-0001-TH1A", "9-732-J-TE-0001-TH2A", "9-732-J-TE-0001-TH3A",
+"9-732-J-TE-0001-TH4A", "9-732-J-TE-0001-TH5A", "9-732-J-TE-0001-TH6A", "9-732-J-TE-0001-TH7A",
+"9-732-J-TE-0001-TH8A", "9-732-J-TE-0001-TU1A", "9-732-J-TE-0001-TU2A", "9-732-J-TE-0001-TU3A",
+"9-732-J-TE-0001-TU4A", "9-732-J-TE-0001-TU5A", "9-732-J-TE-0001-TU6A", "9-732-J-TE-0001-TU7A",
+"9-732-J-TE-0001-TU8A", "9-732-J-TE-0002-TH1B", "9-732-J-TE-0002-TH2B", "9-732-J-TE-0002-TH3B",
+"9-732-J-TE-0002-TH4B", "9-732-J-TE-0002-TH5B", "9-732-J-TE-0002-TH6B", "9-732-J-TE-0002-TH7B",
+"9-732-J-TE-0002-TH8B", "9-732-J-TE-0002-TU1B", "9-732-J-TE-0002-TU2B", "9-732-J-TE-0002-TU3B",
+"9-732-J-TE-0002-TU4B", "9-732-J-TE-0002-TU5B", "9-732-J-TE-0002-TU6B", "9-732-J-TE-0002-TU7B",
+"9-732-J-TE-0002-TU8B", "9-752-J-PA16-01-202A", "9-752-J-PA16-01-202B", "9-752-J-PA16-01-209A",
+"9-752-J-PA16-01-209B", "9-752-J-PA16-01-257A", "9-752-J-PA16-01-257B", "9-752-J-PA16-01-258A",
+"9-752-J-PA16-258B",    "9-752-J-PA16A-01-201", "9-752-J-PA16A-01-202", "9-752-J-PA16A-01-203",
+"9-752-J-PA16A-01-204", "9-752-J-PA16A-01-205", "9-752-J-PA16A-01-206", "9-752-J-PA16A-01-207",
+"9-752-J-PA16A-01-208", "9-752-J-PA16A-01-209", "9-752-J-PA16A-01-211", "9-752-J-PA16A-01-212",
+"9-752-J-PA16A-01-213", "9-752-J-PA16A-01-214", "9-752-J-PA16A-01-215", "9-752-J-PA16A-01-216",
+"9-752-J-PA16A-01-217", "9-752-J-PA16A-01-218", "9-752-J-PA16A-01-257", "9-752-J-PA16A-01-258",
+"9-752-J-PA16B-01-201", "9-752-J-PA16B-01-202", "9-752-J-PA16B-01-203", "9-752-J-PA16B-01-204",
+"9-752-J-PA16B-01-205", "9-752-J-PA16B-01-206", "9-752-J-PA16B-01-207", "9-752-J-PA16B-01-208",
+"9-752-J-PA16B-01-209", "9-752-J-PA16B-01-211", "9-752-J-PA16B-01-212", "9-752-J-PA16B-01-213",
+"9-752-J-PA16B-01-214", "9-752-J-PA16B-01-215", "9-752-J-PA16B-01-216", "9-752-J-PA16B-01-217",
+"9-752-J-PA16B-01-218", "9-752-J-PA16B-01-257", "9-752-J-PA16B-01-258", "9-761-J-RT-233A",
+"9-761-J-RT-234B",      "9-763-J-AT-005A",      "9-763-J-AT-006A",      "9-763-J-AT-007B",
+"9-763-J-AT-008B",      "9-763-J-LT-027A",      "9-763-J-LT-028B",      "9-763-J-PT-0352A",
+"9-763-J-PT-0352B",     "9-763-J-PT-0353A",     "9-763-J-PT-0353B",     "9-763-PT0352A",
+"9-763-PT0352B", 	"QIAS-P-001", 		"QIAS-P-002", 		"QIAS-P-003",
+"QIAS-P-004", 		"QIAS-P-005", 		"QIAS-P-006", 		"QIAS-P-007",
+"QIAS-P-008", 		"QIAS-P-009", 		"QIAS-P-011", 		"QIAS-P-013",
+"QIAS-P-014", 		"QIAS-P-015", 		"QIAS-P-016", 		"QIAS-P-017",
+"QIAS-P-018", 		"QIAS-P-019", 		"QIAS-P-020", 		"QIAS-P-021",
+"QIAS-P-023", 		"QIAS-P-Trouble"
+};
+
+float	waveFloatPV[146];
+assign	waveFloatPV to "RTPWaveformFLOAT";
+monitor waveFloatPV;
+evflag  evWave;
+sync 	waveFloatPV evWave;
+
+int index = 0;
+int pvcnt = 0;
+
+ss makewaveFloat
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evWave);
+		}state MakeWaveFLToScalar
+	}
+
+	state MakeWaveFLToScalar
+	{
+		when(efTestAndClear(evWave))
+		{
+			index = 0;
+			pvcnt = sizeof(scalarPVFloat)/sizeof(scalarPVFloat[0]);
+			for(index = 0; index < pvcnt;index++) {
+				scalarPVFloat[index] = waveFloatPV[index];
+				pvPut(scalarPVFloat[index], ASYNC);
+			}
+		}state SyncValueFL
+	}
+
+	state SyncValueFL
+	{
+		when(pvArrayPutComplete(scalarPVFloat,TRUE) )
+		{
+		}state MakeWaveFLToScalar
+	}
+}
+

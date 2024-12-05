@@ -41,7 +41,14 @@ rtp_SRCS_vxWorks += -nil-
 ifneq ($(SNCSEQ),)
     rtp_SNCFLAGS += +r
     rtp_DBD  += sncWaveToScalar.dbd
+    rtp_DBD  += sncWaveToScalar2.dbd
+    rtp_DBD  += sncWaveToScalar3.dbd
+    rtp_DBD  += sncWaveToScalar4.dbd
+
     rtp_SRCS += sncWaveToScalar.stt
+    rtp_SRCS += sncWaveToScalar2.stt
+    rtp_SRCS += sncWaveToScalar3.stt
+    rtp_SRCS += sncWaveToScalar4.stt
     rtp_LIBS += seq pv
 endif
 

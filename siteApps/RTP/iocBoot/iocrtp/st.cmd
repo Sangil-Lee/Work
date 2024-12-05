@@ -11,16 +11,25 @@ cd "${TOP}"
 dbLoadDatabase "dbd/rtp.dbd"
 rtp_registerRecordDeviceDriver pdbbase
 
-drvSyncRTPConfigure("RTPDevice", "192.168.10.50:50199 TCP", 0, 0)
+drvSyncRTPConfigure("RTPDevice", "192.168.10.101:50199 TCP", 0, 0)
 
 
 ## Load record instances
 #dbLoadRecords("db/rtp.db","user=ctrluser")
-dbLoadRecords("db/RTPTest.vdb","user=ctrluser")
+#dbLoadRecords("db/RTPTest.vdb","user=ctrluser")
+#dbLoadRecords("db/RTPFloat.vdb")
+#dbLoadRecords("db/RTPMulti.vdb")
 
+dbLoadRecords("db/RTPWaveform.db")
+#dbLoadTemplate("db/RTPSignal.sub")
+dbLoadTemplate("db/RTPSignal2.sub")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
+#seq sncWaveToScalar
+seq sncWaveToScalar2
+seq sncWaveToScalar3
+seq sncWaveToScalar4
