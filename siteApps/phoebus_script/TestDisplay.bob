@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-12-15 22:52:44 by ctrluser-->
+<display version="2.0.0">
+  <name>Display</name>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="execute">
+        <description>Get2PVs</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+print 'Hello'
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+
+pvs1 = PVUtil.getLong(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate")))
+pvs2 = PVUtil.getDouble(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate1")))
+
+print pvs1
+print pvs2
+
+ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TextEntry")).write(pvs2)
+
+]]></text>
+        </script>
+      </action>
+    </actions>
+    <x>130</x>
+    <y>140</y>
+    <width>160</width>
+    <height>60</height>
+    <tooltip>$(actions)</tooltip>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>TUpdate</name>
+    <pv_name>ctrluser:ai1</pv_name>
+    <x>400</x>
+    <y>140</y>
+    <width>180</width>
+    <height>60</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>TUpdate1</name>
+    <pv_name>ctrluser:ai2</pv_name>
+    <x>400</x>
+    <y>230</y>
+    <width>180</width>
+    <height>60</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>TextEntry</name>
+    <pv_name>ctrluser:controlvalue</pv_name>
+    <x>410</x>
+    <y>300</y>
+    <width>130</width>
+    <height>50</height>
+    <visible>false</visible>
+  </widget>
+</display>
