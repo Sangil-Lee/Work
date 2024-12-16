@@ -1,33 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-12-15 22:52:44 by ctrluser-->
+<!--Saved on 2024-12-16 18:47:35 by ctrluser-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="action_button" version="3.0.0">
     <name>Action Button</name>
     <actions>
       <action type="execute">
-        <description>Get2PVs</description>
+        <description>InitTable</description>
         <script file="EmbeddedPy">
           <text><![CDATA[# Embedded python script
 from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
-print 'Hello'
-# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
 
-
-pvs1 = PVUtil.getLong(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate")))
-pvs2 = PVUtil.getDouble(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate1")))
-
-print pvs1
-print pvs2
-
-ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TextEntry")).write(pvs2)
+table = ScriptUtil.findWidgetByName(widget, "Table")
+data = []
+table.setValue(data)
 
 ]]></text>
         </script>
       </action>
     </actions>
-    <x>130</x>
-    <y>140</y>
+    <x>190</x>
+    <y>30</y>
     <width>160</width>
     <height>60</height>
     <tooltip>$(actions)</tooltip>
@@ -35,28 +28,114 @@ ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TextEntry")).write(
   <widget type="textupdate" version="2.0.0">
     <name>TUpdate</name>
     <pv_name>ctrluser:ai1</pv_name>
-    <x>400</x>
-    <y>140</y>
-    <width>180</width>
-    <height>60</height>
+    <x>430</x>
+    <y>50</y>
+    <width>70</width>
+    <height>30</height>
     <visible>false</visible>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>TUpdate1</name>
     <pv_name>ctrluser:ai2</pv_name>
-    <x>400</x>
-    <y>230</y>
-    <width>180</width>
-    <height>60</height>
+    <x>510</x>
+    <y>50</y>
+    <width>70</width>
+    <height>30</height>
     <visible>false</visible>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>TextEntry</name>
     <pv_name>ctrluser:controlvalue</pv_name>
-    <x>410</x>
-    <y>300</y>
-    <width>130</width>
-    <height>50</height>
+    <x>600</x>
+    <y>50</y>
+    <width>70</width>
+    <height>30</height>
     <visible>false</visible>
+  </widget>
+  <widget type="table" version="2.0.0">
+    <name>Table</name>
+    <x>60</x>
+    <y>270</y>
+    <show_toolbar>true</show_toolbar>
+    <columns>
+      <column>
+        <name>Column 1</name>
+        <width>100</width>
+        <editable>false</editable>
+      </column>
+      <column>
+        <name>Column 2</name>
+        <width>100</width>
+        <editable>false</editable>
+      </column>
+      <column>
+        <name>Column 3</name>
+        <width>100</width>
+        <editable>false</editable>
+      </column>
+      <column>
+        <name>Column 4</name>
+        <width>100</width>
+        <editable>false</editable>
+      </column>
+    </columns>
+    <scripts>
+      <script file="EmbeddedPy" check_connections="false">
+        <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+#data = ["1", "Hello", "0.0", "0.0" ]
+#widget.setValue(data)
+
+print "Hello"
+data = []
+widget.setValue(data)
+]]></text>
+        <pv_name>loc://sel_cols(1)</pv_name>
+      </script>
+    </scripts>
+    <editable>false</editable>
+    <row_selection_mode>true</row_selection_mode>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="execute">
+        <description>Get2PVs</description>
+        <script file="EmbeddedPy">
+          <text><![CDATA[# Embedded python script
+from org.csstudio.display.builder.runtime.script import PVUtil, ScriptUtil
+
+# widget.setPropertyValue('text', PVUtil.getString(pvs[0]))
+
+table = ScriptUtil.findWidgetByName(widget, "Table")
+pvs1 = PVUtil.getDouble(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate")))
+pvs2 = PVUtil.getDouble(ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TUpdate1")))
+
+pv = [ pvs1, pvs2]
+print pv
+
+# Get data
+data = table.getValue()
+print data
+
+row = [ "%d"%(len(data)+1), "Hello", str(pvs1), str(pvs2) ]
+
+print row
+data.append(row)
+
+#print row
+
+# Update table with new data
+table.setValue(data)
+
+ScriptUtil.getPrimaryPV(ScriptUtil.findWidgetByName(widget, "TextEntry")).write(pv[0])]]></text>
+        </script>
+      </action>
+    </actions>
+    <x>20</x>
+    <y>30</y>
+    <width>160</width>
+    <height>60</height>
+    <tooltip>$(actions)</tooltip>
   </widget>
 </display>
