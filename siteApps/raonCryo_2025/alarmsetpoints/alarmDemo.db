@@ -1,0 +1,278 @@
+#####[Analog Alarm]#####
+record(calc, "$(P)Temp")
+{
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(CALC, "A+B" )
+	field(INPA, "$(P)Temp")
+	field(INPB, "$(P)Inverter")
+	field(FLNK, "$(P)Inverter")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL, "10")
+}
+
+record(calc, "$(P)Inverter")
+{
+	field(SCAN, "Passive")
+	field(CALC, "B>=D?-C:B<=E?C:A" )
+
+	field(INPA, "$(P)Inverter")
+	#field(INPB, "$(P)Temp MSS")  #Maximized Status and Severity
+	#field(INPB, "$(P)Temp MS")   #Maximized Severity
+	field(INPB, "$(P)Temp")
+#### Alarm Action #####
+	### Increment/Decrement Rate ###
+	field(INPC, "5") 
+
+	### Level HIHI Control ###
+	field(INPD, "100")
+
+	### Level LOLO Control ###
+	field(INPE, "0")
+####
+
+	field(FLNK, "$(P)Logic")
+	field(VAL,  "5")
+}
+
+record(calcout, "$(P)Logic")
+{
+	field(DESC, "Analog Temperature")
+	field(PINI, "YES")
+	field(SCAN, "Passive")
+	#field(CALC, "(A>=80||A<=20)?1:0" )
+	field(CALC, "(A>=B||A<=C)?1:0" )
+
+	field(INPA, "$(P)Temp" )
+
+	field(INPB, "$(P)Temp.HIHI" )
+	field(INPC, "$(P)Temp.LOLO" )
+
+	field(OUT, "$(P)Control PP" )
+
+}
+
+#####[Digital Alarm]#####
+record(bi, "$(P)Control")
+{
+	field(DESC, "Digital Control")
+	field(PINI, "YES")
+
+	field(ZNAM,  "Normal")
+	field(ONAM,  "Alarm")
+	field(OSV,  "MAJOR")
+	field(VAL,  "0")
+}
+
+####[Static Logic]####
+record(ai, "$(P)A_Alarm")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_1")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_2")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_3")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_4")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_5")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_6")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_7")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_8")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_9")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+record(ai, "$(P)A_Alarm_10")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(HIHI, "80")
+	field(HIGH, "60")
+	field(LOW,  "40")
+	field(LOLO, "20")
+
+	field(HHSV, "MAJOR")
+	field(HSV,  "MINOR")
+	field(LSV,  "MINOR")
+	field(LLSV, "MAJOR")
+	field(VAL,  "50")
+}
+
+### Filter logic for the alarms which are propagated ####
+### Can assign a code for the alarm.
+record(calc, "$(P)A_Alarm_Filter")
+{
+	field(DESC, "Analog Alarm Test")
+	field(PINI, "YES")
+	field(SCAN, "1 second")
+	field(CALC, "A>=2?255:A==1?175:0")
+	field(INPA, "$(P)A_Alarm_Filter.SEVR")
+	field(INPB, "$(P)A_Alarm MSS")
+	field(INPC, "$(P)A_Alarm_1 MSS")
+	field(INPD, "$(P)A_Alarm_2 MSS")
+	field(INPE, "$(P)A_Alarm_3 MSS")
+	field(INPF, "$(P)A_Alarm_4 MSS")
+
+	field(VAL,  "0")
+}
+
+record(bi, "$(P)D_Alarm")
+{
+	field(DESC, "Digital Alarm Test")
+	field(PINI, "YES")
+	field(ZNAM, "ZeroState")
+	field(ONAM, "OneState")
+	field(OSV,  "MAJOR")
+	field(VAL,  "0")
+}
