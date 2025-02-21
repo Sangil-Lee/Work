@@ -197,7 +197,7 @@ parser.add_argument('-low',   type= float, help='LOW alarm setpoint to change')
 parser.add_argument('-high',  type= float, help='HIGH alarm setpoint to change')
 parser.add_argument('-hihi',  type= float, help='HIHI alarm setpoint to change')
 parser.add_argument('-hyst',  type= float, help='Alarm deadband set value')
-parser.add_argument('-aftc',  type= int, help='Alarm delay constant')
+parser.add_argument('-aftc',  type= float, help='Alarm delay constant')
 
 args = parser.parse_args()
 bcheck = str2bool('{}'.format('check' in args))
@@ -217,7 +217,7 @@ if __name__ == "__main__":
 
     if args.pvs != None:
         setAlarmPVs(args.pvs, bcheck)
-    elif bcheck == True:
+    elif bcheck == True and args.file != None:
         checkAlarms()
-    else:
+    elif args.file != None:
         setAlarms()
