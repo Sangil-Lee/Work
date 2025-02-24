@@ -1,0 +1,10 @@
+How to make binary code python compiled...
+
+1.$>sudo pip3 install --break-system-packages cython
+2.$>cython alarmsetpoints.py --embed
+3. check alarmsetpoints.c file
+4.$>gcc -Os $(python3-config --includes) alarmsetpoints.c -o alarmsetpoints $(python3-config --ldflags --embed)
+5.Verification code test
+
+6.$>./alarmsetpoints -file=alarm_list.csv -check=1
+
