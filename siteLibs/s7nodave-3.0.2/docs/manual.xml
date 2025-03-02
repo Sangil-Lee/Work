@@ -1,0 +1,1348 @@
+<?xml version="1.0"?>
+<book version="5.0" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://docbook.org/ns/docbook http://www.docbook.org/xml/5.0CR7/xsd/docbook.xsd"
+>
+  <info>
+    <title>S7nodave for EPICS Manual</title>
+    <copyright>
+      <year>2011</year>
+      <year>2012</year>
+      <year>2015</year>
+      <year>2021</year>
+      <holder>aquenos GmbH</holder>
+    </copyright>
+    <author>
+      <personname>
+        <firstname>Sebastian</firstname>
+        <surname>Marsching</surname>
+      </personname>
+      <affiliation>
+        <orgname>aquenos GmbH</orgname>
+      </affiliation>
+    </author>
+  </info>
+  <chapter xml:id="introduction">
+    <title>Introduction</title>
+    <para>
+      This manual is divided in six chapters (not counting this introduction).
+      The <link linkend="concept">first chapter</link> introduces the concepts 
+      and features of the s7nodave device support for EPICS.
+      The <link linkend="gettingstarted">second chapter</link> describes the
+      few steps needed to start an IOC project making use of s7nodave.
+      The <link linkend="iocshreference">third chapter</link> describes the
+      IOC shell commands supported by s7nodave.
+      Subsequently, the <link linkend="recordreference">fourth chapter</link>
+      explains the various record types supported by s7nodave.
+      Finally, the <link linkend="pollgroups">fifth chapter</link> explains
+      how to use poll groups.
+    </para>
+    <para>
+      If you have used this software before and are upgrading to a newer
+      version, you might find the <link linkend="news">appendix</link> useful
+      that describes the changes that have been made in recent version and how
+      you might need to update your project to match these changes.
+      been made compared 
+    </para>
+    <warning>
+      <para>
+        When using this software to connect to a PLC, disconnect
+        <emphasis>all</emphasis> external equipment from the PLC before trying
+        to establish a connection.
+      </para>
+      <para>
+        This software can overwrite variables in the PLC memory or even parts of
+        the program running in the PLC. Therefore outputs of the PLC might show 
+        unpredictable behavior.
+      </para>
+      <para>
+        There are a lot of different PLC types and depending on the type of the
+        PLC, its configuration, the type of the host machine used for the EPICS 
+        IOC, the host machine's configuration and the EPICS IOC's configuration,
+        this software might have very different, potentially unwanted results.
+      </para>
+      <para>
+        It is always the responsibility of the user using this software to
+        ensure, that its use is safe and complies with local regulation
+        <emphasis>before</emphasis> connecting any equipment to the PLC.
+        Violations of this rules might result in equipment being damaged or even
+        <emphasis>persons being injured</emphasis> by misbehaving equipment.
+      </para>
+    </warning>
+  </chapter>
+  
+  <chapter xml:id="concept">
+    <title>Concept</title>
+    <para>
+      This chapter introduces the concept of the s7nodave device support and
+      the features offered by it.
+    </para>
+    <section>
+      <title>Snap7</title>
+      <para>
+        The s7nodave device support is based on 
+        <link xlink:href="http://snap7.sourceforge.net/">Snap7</link>. This
+        library implements the communication protocol supported by many PLCs
+        from the S7 family and thus allows software on a PC to communicate with
+        a PLC without having to explicitly implement communication routines on
+        the PLC side.
+      </para>
+      <para>
+        In the past, the s7nodave device support had been based on
+        <link xlink:href="http://libnodave.sourceforge.net/">libnodave</link>.
+        This changed with the release of s7nodave version 3.0 because of a bug
+        in libnodave that could not be easily fixed.
+      </para>
+    </section>
+    <section>
+      <title>Supported Devices</title>
+      <para>
+        Basically, s7nodave supports all PLCs supported by
+        <link xlink:href="http://snap7.sourceforge.net/">Snap7</link>.
+      </para>
+      <para>
+        S7nodave has been developed using a S7-1200 PLC. However, we have also
+        seen it work with S7-300 and S7-1500 PLCs.
+      </para>
+      <para>
+        For new version of PLCs or TIA Portal, (in particular S7-1200 and
+        S7-1500 series PLCs and TIA Portal version 12 and newer) the settings
+        in the S7 project might have to be changed in order to allow full access
+        to the PLCs memory. You might only be able to access global DBs and
+        optimized block access for those DBs must be disabled. In addition to
+        that, the access level must be set to <guilabel>full</guilabel> and the
+        <guilabel>connection mechanism</guilabel> must allow GET/PUT
+        communication. Please refer to the
+        <link xlink:href="http://snap7.sourceforge.net/snap7_client.html#1200_1500">information available from the Snap7 project</link>
+        for a more detailed guide, including screenshots of the relevant
+        configuration dialogs.
+      </para>
+      <important>
+        <para>
+          It is the responsibility of each user to verify, that the PLC being
+          used is compatible with this software. The author of this software
+          does not assume any liability regarding the compatibility of this
+          software with a certain PLC or the eligibility for a certain
+          application.
+        </para>
+      </important>
+    </section>
+    <section>
+      <title>Communication between the PLC and EPICS</title>
+      <para>
+        The
+        <link xlink:href="http://epics.web.psi.ch/software/s7plc/">S7plc</link>
+        driver from PSI is based on a whole data-block being exchanged between
+        the PLC and the EPICS IOC. This means, that it is not possible to write
+        single records to the PLC. Instead, all values must be sent at once.
+        The same applies to read requests. Besides, the structure of the
+        data-block is coded into a PLC program. If a value is added or removed
+        from the block, the addresses in the PLC logic as well as in the EPICS
+        record configuration have to be updated.
+      </para>
+      <para>
+        The s7nodave device support on the other hand, directly reads from and
+        writes to memory addresses in the PLC. The addresses configured in the
+        EPICS records use the same notation that is used for programming the PLC
+        logic. When an output record is process, on the value of this record
+        is sent to the PLC. For input records, different records can be
+        processed at different rates and only the values in the same
+        <link linkend="pollgroups">poll group</link> are transferred together.
+      </para>
+    </section>
+    <section>
+      <title>Integration into EPICS</title>
+      <para>
+        S7nodave is implemented as an asynchronous device support based on
+        <link xlink:href="http://www.aps.anl.gov/epics/modules/soft/asyn/">asynDriver</link>.
+        While the asynDriver is used for configuration management, logging and
+        asynchronous processing, neither the device support nor the low-level
+        I/O routines supported by the asynDriver are used.
+      </para>
+    </section>
+  </chapter>
+  
+  <chapter xml:id="gettingstarted">
+    <title>Getting Started</title>
+    <para>
+      This chapter describes the steps needed to setup a simple project using
+      s7nodave. First, the prerequisites for using s7nodave are described.
+      Subsequently, the installation and compilation of the s7nodave device
+      support is explained. Finally, the steps needed to include the s7nodave
+      device support in a project are shown.
+    </para>
+    <section>
+      <title>Prerequisites</title>
+      <para>
+        S7nodave has three prerequisites: First, 
+        <link xlink:href="http://www.aps.anl.gov/epics/">EPICS base</link>
+        R3.14.12 or higher is  needed. Older versions of EPICS base might work
+         but in this case support for the <literal>aai</literal> and
+         <literal>aao</literal> record types must be disabled, because these
+         record types were broken in earlier versions of EPICS base.
+      </para>
+      <para>
+        In addition to that, the
+        <link xlink:href="http://www.aps.anl.gov/epics/modules/soft/asyn/">asynDriver</link>
+        is needed. S7nodave has been developed against version 4.13 of asyn,
+        however most likely it also works with newer versions.
+      </para>
+      <para>
+        A minimal version of Snap7 that contains all the parts needed by
+        s7nodave is bundled with s7nodave and automatically compiled when
+        s7nodave is compiled. Thus, you do not need to download or compile Snap7
+        yourself.
+      </para>
+      <para>
+        S7nodave has been developed under Linux, but should work on most
+        POSIX-compliant operating systems. On Microsoft Windows, you will
+        have to use a compatibility layer like Cygwin or change the network
+        code in s7nodave to use the respective functions from the Windows API.
+      </para>
+    </section>
+    <section>
+      <title>Compiling the Prerequisites</title>
+      <para>
+        For compiling EPICS Base and the asynDriver, refer to the respective
+        manuals.
+      </para>
+    </section>
+    <section>
+      <title>Compiling s7nodave</title>
+      <para>
+        After downloading s7nodave from the
+        <link xlink:href="http://oss.aquenos.com/epics/s7nodave/">project website</link>,
+        extract it to the directory you want it to install in. A good place
+        might be the <filename>/opt/epics/modules</filename> directory.
+      </para>
+      <para>
+        Subsequently, you have edit add the file
+        <filename>configure/RELEASE.local</filename> in order to configure the
+        locations where EPICS base and the asynDriver are installed. Add the
+        variables <literal>ASYN</literal> and <literal>EPICS_BASE</literal> to
+        this file and make them point to the right directories. You can find an
+        example in <filename>configure/EXAMPLE_RELEASE.local</filename>.
+      </para>
+      <para>
+        S7nodave must be compiled with a C++ compiler that supports C++ 11. For
+        some compilers, C++ 11 support is not enabled by default. In this case,
+        you have to add the file
+        <filename>configure/CONFIG_SITE.local</filename> and append the
+        appropriate compiler options to the <literal>USR_CXXFLAGS</literal>
+        variable. An example for such a configuration file can be found in
+        <filename>configure/EXAMPLE_CONFIG_SITE.local</filename>.
+      </para>
+      <para>
+        After editing this paths, you can run <command>make</command> to build
+        s7nodave.
+      </para>
+    </section>
+    <section>
+      <title>Using s7nodave in a project</title>
+      <para>
+        In the <filename>configure/RELEASE</filename> file of your project, you
+        have to add a line like
+        <literal>S/NODAVE=/opt/epics/modules/s7nodave</literal>. In the
+        <filename>Makefile</filename> of the <filename>src</filename> directory
+        of you application (e.g. <filename>myApp/src/Makefile</filename>) you
+        have to add something like
+<programlisting><![CDATA[
+my_DBD += s7nodave.dbd
+my_LIBS += s7nodave
+]]></programlisting>
+        in order to use the s7nodave device support in your record definition
+        files.
+      </para>
+      <para>
+        Finally, you have to configure at least one PLC connection in the
+        startup file of your IOC. See
+        <xref linkend="iocsh.s7nodaveConfigureIsoTcpPort" /> for the syntax of
+        the corresponding command. Optionally, you also might want to configure
+        <link linkend="iocsh.s7nodaveConfigurePollGroup">poll groups</link>. For
+        defining records that read from or write to the PLC, please refer to the
+        <link linkend="recordreference">record reference</link>.
+      </para>
+    </section>
+  </chapter>
+  
+  <chapter xml:id="iocshreference">
+    <title>IOC Shell Reference</title>
+    <para>
+      S7nodave supports IOC shell commands for configuring a PLC connection and
+      for adding <link linkend="pollgroups">poll groups</link>. In addition to
+      that, the
+      <link xlink:href="http://www.aps.anl.gov/epics/modules/soft/asyn/R4-16/asynDriver.html#DiagnosticAids">asyn commands</link>
+      for configuring the trace mask and trace I/O mask are supported. However,
+      you have to add <filename>asyn.dbd</filename> to the list of DBDs used
+      by your project in order to enable these commands in the IOC shell.
+    </para>
+    <section xml:id="iocsh.s7nodaveConfigureIsoTcpPort">
+      <title>s7nodaveConfigureIsoTcpPort</title>
+      <para>
+        The <literal>s7nodaveConfigureIsoTcpPort</literal> command is used to
+        setup a connection to a PLC and command has the
+        following syntax:
+      </para>
+      <para>
+        <synopsis>s7nodaveConfigureIsoTcpPort(PLC name, PLC hostname or IP address, PLC rack number, PLC slot number, thread priority)</synopsis>
+        The <literal>PLC name</literal> is an arbitrary string, that is used to
+        refer to this PLC in the device address field of 
+        <link linkend="recordreference">records</link> and when
+        <link linkend="iocsh.s7nodaveConfigurePollGroup">configuring poll groups</link>
+        for the PLC. However, the PLC name may not contain whitespace or
+        parentheses.
+      </para>
+      <para>
+        The <literal>PLC hostname or IP address</literal> is the DNS hostname or
+        IP address of the PLC, optionally followed by the TCP port number
+        (separated from the hostname or IP address by a colon). If no port
+        number is specified, the default port (102) is used.
+      </para>
+      <para>
+        The <literal>PLC rack number</literal> and
+        <literal>PLC slot number</literal> depend on the actual PLC
+        configuration. For most setups, both numbers are zero, but rack 0,
+        slot 2 might have to be used with some S7-300 series PLCs. If you cannot
+        get access to the PLC, try to change those numbers. In case of doubt,
+        you should be able to find the correct numbers in the configuration of
+        your S7 project. You can find more information about rack and slot
+        numbers in the reference manual of the
+        <link xlink:href="http://snap7.sourceforge.net/">Snap7 library</link>.
+      </para>
+      <para>
+        The <literal>thread priority</literal> is the priority used for the
+        communication thread (port thread in asyn nomenclature). If a priority
+        of <literal>0</literal> is specified, the priority
+        <literal>epicsThreadPriorityMedium</literal> is used.
+      </para>
+      <para>
+        An example line configuring a connection to a PLC might look like this:
+      </para>
+      <para>
+        <literal>s7nodaveConfigureIsoTcpPort("myPLC", "myplc.example.com", 0, 0, 0)</literal>
+      </para>
+      <para>
+        You can have multiple instances of
+        <literal>s7nodaveConfigureIsoTcpPort</literal> in your IOC startup
+        configuration, however the PLC name used must be unique for each
+        instance.
+      </para>
+    </section>
+    <section xml:id="iocsh.s7nodaveConfigurePollGroup">
+      <title>s7nodaveConfigurePollGroup</title>
+      <para>
+        The <literal>s7nodaveConfigurePollGroup</literal> command is used for
+        configuring <link linkend="pollgroups">poll groups</link> and has the
+        following syntax:
+      </para>
+      <para>
+        <synopsis>s7nodaveConfigurePollGroup(PLC name, poll-group name, poll interval, thread priority)</synopsis>
+        The <literal>PLC name</literal> must be the name of a PLC previously
+        used in an instance of
+        <link linkend="iocsh.s7nodaveConfigureIsoTcpPort"><literal>s7nodaveConfigureIsoTcpPort</literal></link>.
+      </para>
+      <para>
+        The <literal>poll-group name</literal> is an arbitrary string that
+        identifies the poll-group and must be unique for the PLC. However, the
+        same poll-group name may be used for two different PLCs. The poll-group
+        name must no contain whitespace, parentheses, the equal sign or commas.
+      </para>
+      <para>
+        The <literal>poll interval</literal> is a floating point number that
+        specifies the interval in which the memory addresses belonging to the
+        poll group are read. The units of the poll interval are seconds.
+      </para>
+      <para>
+        The <literal>thread priority</literal> specifies the priority of the
+        thread, that periodically processes the poll group. If a priority of
+        <literal>0</literal> is specified, the priority
+        <literal>epicsThreadPriorityMedium</literal> is used.
+      </para>
+      <para>
+        An example line configuring a poll group that is processed once a second
+        might look like this:
+      </para>
+      <para>
+        <literal>s7nodaveConfigurePollGroup("myPLC", "1s", 1.0, 0)</literal>
+      </para>
+      <para>
+        You can have multiple instances of
+        <literal>s7nodaveConfigurePollGroup</literal> per PLC, however the
+        poll-group name used must be unique for each instance referring to the
+        same PLC.
+      </para>
+    </section>
+  </chapter>
+  
+  <chapter xml:id="recordreference">
+    <title>Record Reference</title>
+    <para>
+      In this chapter, first the format of the device addresses used for the
+      s7nodave device support is explained. Subsequently the various PLC
+      data-types supported by s7nodave are described. Finally, details about
+      the records, supported by s7nodave, are given.
+    </para>
+    <section xml:id="recordreference.deviceaddress">
+      <title>Device Address Format</title>
+      <para>
+        In order to use the s7nodave device address support for a record, the
+        record's device type field (<literal>DTYP</literal>) has to specify
+        <literal>s7nodave</literal>. This device type is used for all records
+        supported by s7nodave except the
+        <link linkend="record.waveform">waveform</link> record.
+      </para>
+      <para>
+        The record's device address field (usually <literal>INP</literal> for
+        input and <literal>OUT</literal> for output records) must specify a
+        device address recognized by the s7nodave.
+      </para>
+      <para>
+        In general, a device address for s7nodave has the following format:
+      </para>
+      <para>
+        <synopsis>@PLC-name[(param1=value1,param2=value2,...)] PLC-address [PLC-data-type]</synopsis>
+        The exact supported options may vary depending on the record type.
+      </para>
+      <para>
+        Every device address start with the <literal>@</literal>-sign, followed
+        by the PLC name. The PLC name must be the name of a PLC configured using
+        the
+        <link linkend="iocsh.s7nodaveConfigureIsoTcpPort">s7nodaveConfigureIsoTcpPort</link>
+        statement in the IOC startup file.
+      </para>
+      <para>
+        The PLC name is followed by list of optional parameters wrapped in
+        parentheses. If no parameters are given, the parentheses can be
+        ommitted. The supported parameters depend on the record type.
+        Please see <xref linkend="recordreference.parameters" /> and
+        <xref linkend="recordreference.records" /> for details. If multiple
+        parameters are specified, they are separated by commas.
+      </para>
+      <para>
+        The PLC memory address is separated from the PLC name (or the optional
+        parameter list) by whitespace. 
+        Please refer to <xref linkend="recordreference.plcaddress" />
+        for the the format of the PLC memory address.
+      </para>
+      <para>
+        Finally, an optional PLC data-type, which is separated from the PLC
+        memory address by whitespace, can be specified. If no PLC data-type is
+        specified, the data-type is guessed based on the record-type and PLC
+        memory address. Please refer to
+        <xref linkend="recordreference.plctypes" /> and
+        <xref linkend="recordreference.parameters" /> for details about the
+        supported PLC data-types.
+      </para>
+      <para>
+        Examples for valid device addresses:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>@myPLC(DLV=0,DHV=27648) IW64</para>
+        </listitem>
+        <listitem>
+          <para>@myPLC(DLV=0,DHV=27648) IW66 int16</para>
+        </listitem>
+        <listitem>
+          <para>@myPLC IB0</para>
+        </listitem>
+        <listitem>
+          <para>@myPLC QB0</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="recordreference.plcaddress">
+      <title>PLC Memory Addresses</title>
+      <para>
+        S7nodave uses the same format for PLC memory addresses, that is also
+        usually used for programming the PLCs (e.g. using Step7 or WinPLC).
+        The English and the German notation are both supported and equivalent
+        to each other.
+      </para>
+      <para>
+        This format combines the specification of the start-byte of a variable
+        in the PLC memory with specification of the variable's width.
+      </para>
+      <para>
+        The PLC address starts with the memory area. The following memory areas
+        are supported:
+      </para>
+      <table>
+        <title>PLC Memory Areas</title>
+        <tgroup cols="3" align="left">
+          <thead>
+            <row>
+              <entry>English</entry>
+              <entry>German</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>DBn.DB</entry>
+              <entry>DBn.DB</entry>
+              <entry>Data Blocks (n must be an integer number)</entry>
+            </row>
+            <row>
+              <entry>F</entry>
+              <entry>M</entry>
+              <entry>Flags</entry>
+            </row>
+            <row>
+              <entry>I</entry>
+              <entry>E</entry>
+              <entry>Input Memory Image</entry>
+            </row>
+            <row>
+              <entry>Q</entry>
+              <entry>A</entry>
+              <entry>Output Memory Image</entry>
+            </row>
+            <row>
+              <entry>T</entry>
+              <entry>T</entry>
+              <entry>Timers</entry>
+            </row>
+            <row>
+              <entry>C</entry>
+              <entry>Z</entry>
+              <entry>Counters</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para>
+        For data block addresses the data-block number has to be included in the
+        area specification. For addresses using the data-block, flags,
+        input-memory and output memory areas, you next have to specify the width
+        of the memory that should be read from or written to. The notation used
+        for specifying the width is:
+      </para>
+      <table>
+        <title>PLC Memory Width</title>
+        <tgroup cols="2" align="left">
+          <thead>
+            <row>
+              <entry>Notation</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>X</entry>
+              <entry>Bit (only for DB areas, other areas use the empty string instead)</entry>
+            </row>
+            <row>
+              <entry>B</entry>
+              <entry>Byte (8 bits)</entry>
+            </row>
+            <row>
+              <entry>W</entry>
+              <entry>Word (16 bits)</entry>
+            </row>
+            <row>
+              <entry>D</entry>
+              <entry>Double Word (32 bits)</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para>
+        For addresses referring to a single bit (with the exception of bit 
+        addresses in DB areas) and for addresses referring to
+        the counter or timer areas, no width specification is given: Bit
+        addresses are identified by specifying the bit within the byte and the
+        counter and timer areas always use word (16-bit) values.
+      </para>
+      <para>
+        After specifying the memory width, the start address must be specified.
+        The start address is always given in the number of bytes counted from
+        the beginning of the respective area (starting with zero). For example,
+        if at the beginning of <literal>DB1</literal> two 32-bit numbers were
+        stored, the two addresses for these numbers would be
+        <literal>DB1.DBD0</literal> and <literal>DB1.DBD4</literal>.
+      </para>
+      <para>
+        For addresses referring to a single bit, the start bit within the byte
+        has to be specified, separated from the start byte by a dot. For
+        example, in order to refer to the first bit of the first byte in the
+        input-memory area, you would use the address <literal>I0.0</literal>.
+        You must not specify a start bit for byte, word or double-word
+        addresses.
+      </para>
+      <para>
+        PLC memory-address specifications are not case-sensitive. However, for
+        enhanced readability the use of upper case characters is recommended.
+      </para>
+      <para>
+        Examples for valid memory addresses:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>DB3.DBD4</para>
+        </listitem>
+        <listitem>
+          <para>FW4</para>
+        </listitem>
+        <listitem>
+          <para>IB2</para>
+        </listitem>
+        <listitem>
+          <para>Q8.3</para>
+        </listitem>
+        <listitem>
+          <para>DB50.DBX17.3</para>
+        </listitem>
+        <listitem>
+          <para>T2</para>
+        </listitem>
+        <listitem>
+          <para>C2</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+    <section xml:id="recordreference.plctypes">
+      <title>PLC Data-Types</title>
+      <para>
+        s7nodave supports eight different PLC data-types. Each of these
+        data-types may only be used together with a memory address having the
+        right width:
+      </para>
+      <table>
+        <title>PLC Data Types and their Corresponding Memory Width</title>
+        <tgroup cols="3" align="left">
+          <thead>
+            <row>
+              <entry>Data Type</entry>
+              <entry>Memory Width</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            <row>
+              <entry>bool</entry>
+              <entry>1 bit</entry>
+              <entry>Boolean</entry>
+            </row>
+            <row>
+              <entry>int8</entry>
+              <entry>Byte (8 bits)</entry>
+              <entry>Signed Integer</entry>
+            </row>
+            <row>
+              <entry>uint8</entry>
+              <entry>Byte (8 bits)</entry>
+              <entry>Unsigned Integer</entry>
+            </row>
+            <row>
+              <entry>int16</entry>
+              <entry>Word (16 bits)</entry>
+              <entry>Signed Integer</entry>
+            </row>
+            <row>
+              <entry>uint16</entry>
+              <entry>Word (16 bits)</entry>
+              <entry>Unsigned Integer</entry>
+            </row>
+            <row>
+              <entry>int32</entry>
+              <entry>Double Word (32 bits)</entry>
+              <entry>Signed Integer</entry>
+            </row>
+            <row>
+              <entry>uint32</entry>
+              <entry>Double Word (32 bits)</entry>
+              <entry>Unsigned Integer</entry>
+            </row>
+            <row>
+              <entry>float</entry>
+              <entry>Double Word (32 bits)</entry>
+              <entry>Single Precision Floating Point Number</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+      <para>
+        The available data-types are also limited by the used record-type.
+        Please refer to <xref linkend="recordreference.records"/> for details.
+      </para>
+    </section>
+    <section xml:id="recordreference.parameters">
+      <title>Supported Parameters</title>
+      <para>
+        There is a number of optional parameters that can be used to specify
+        device-support specific options for a record. Most of these options
+        are only valid for a specific record-type, so please refer to the
+        description of the respective options for finding out which option can
+        be used with which record type.
+      </para>
+      <section xml:id="recordreference.parameters.pg">
+        <title>PG - Specifying a Poll Group</title>
+        <para>
+          The <literal>PG</literal> parameter can be used with all input
+          records to specify a <link linkend="pollgroups">poll group</link> 
+          for the record. It is only valid, if the <literal>SCAN</literal> field
+          of the record is set to <literal>I/O Intr</literal>.
+          Example: <literal>@myPLC(PG=1s) IW64</literal>
+        </para>
+      </section>
+      <section xml:id="recordreference.parameters.dlvdhv">
+        <title>DLV, DHV - Specifying Device Value Limits</title>
+        <para>
+          The <literal>DLV</literal> and <literal>DHV</literal> parameters
+          specify the lower and upper bounds of the raw values read from or
+          written to the PLC. These values together with the record fields
+          <literal>EGUL</literal> and <literal>EGUF</literal> are used for
+          converting raw values to values in engineering units and vice-versa,
+          when the record's <literal>LINR</literal> field is set to
+          <literal>LINEAR</literal>.
+        </para>
+        <para>
+          If linear conversion is enabled, the conversion parameters are set
+          in such a way, that a raw value of <literal>DLV</literal> corresponds
+          to an engineering units value of <literal>EGUL</literal> and a raw
+          value of <literal>DHV</literal> corresponds to an engineering units
+          value of <literal>EGUF</literal>.
+          Please refer to the description of the
+          <literal>ai</literal> and <literal>ao</literal> records in the
+          <link xlink:href="http://www.aps.anl.gov/epics/wiki/index.php/RRM_3-14">EPICS Record Reference Manual</link>
+          for details about linear conversion.
+        </para>
+      </section>
+    </section>
+    <section xml:id="recordreference.records">
+      <title>Supported Records</title>
+      <para>
+        S7nodave supports most records from EPICS base, that have an interface
+        for device support routines. In order to use s7nodave with a record,
+        the record's <literal>DTYP</literal> and <literal>INP</literal> or
+        <literal>OUT</literal> fields have to be set correctly. Please refer to
+        <xref linkend="recordreference.deviceaddress" /> for details. This
+        chapter describe the specific options for each supported record type.
+      </para>
+      <para>
+        This manual only describe those features of each record, which are
+        specific to the s7nodave device support. Please refer to the
+        <link xlink:href="http://www.aps.anl.gov/epics/wiki/index.php/RRM_3-14">EPICS Record Reference Manual</link>
+        for a general description of each record type and its fields.
+      </para>
+      <section xml:id="record.aai">
+        <title>aai - Array Input</title>
+        <para>
+          The <literal>aai</literal> record is used for reading multiple
+          elements from the PLC's memory into an array. The supported
+          PLC data-types depend on the EPICS data-type specified in the
+          record's <literal>FTVL</literal> field, as described in this
+          table:
+        </para>
+        <table rowheader="firstcol">
+          <title>Mapping of PLC Types to EPICS Types</title>
+          <tgroup cols="9" align="center">
+            <colspec colname="start" colnum="1" align="left"/>
+            <colspec colname="end" colnum="9"/>
+            <thead>
+              <row>
+                <entry></entry>
+                <entry>bool</entry>
+                <entry>int8</entry>
+                <entry>uint8</entry>
+                <entry>int16</entry>
+                <entry>uint16</entry>
+                <entry>int32</entry>
+                <entry>uint32</entry>
+                <entry>float</entry>
+              </row>
+            </thead>
+            <tfoot>
+              <row>
+                <entry namest="start" nameend="end">
+                  X = default for memory addresses of the corresponding width,
+                  o = supported, if specified explicitly
+                </entry>
+              </row>
+            </tfoot>
+            <tbody>
+              <row>
+                <entry>STRING</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>CHAR</entry>
+                <entry>X</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>UCHAR</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>SHORT</entry>
+                <entry>X</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>USHORT</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>LONG</entry>
+                <entry>X</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>ULONG</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>FLOAT</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+              </row>
+              <row>
+                <entry>DOUBLE</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+              </row>
+              <row>
+                <entry>ENUM</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+        <para>
+          For all EPICS data-types except <literal>STRING</literal>, the width
+          of the PLC data-type has to match the width of the PLC address. In
+          this case, the total number of bytes read is the width of the PLC
+          data-type multiplied by the number of elements in the array. The PLC
+          memory address specified is the start of the first element in the
+          array.
+        </para>
+        <para>
+          If <literal>FTVL</literal> is set to <literal>STRING</literal>, the
+          PLC memory-address must be a byte. This byte is regarded to be the
+          first byte of the first string in the array. In total, fourty bytes
+          are read for each element in the array. For example, if the array has
+          ten elements, 400 bytes are read from the PLC memory.
+        </para>
+        <para>
+          If the PLC address specified refers to a bit, the number of bits read
+          from the PLC equals the number of elements in the array. The read does
+          not have to be aligned to byte boundaries.
+        </para>
+      </section>
+      <section xml:id="record.aao">
+        <title>aao - Array Output</title>
+        <para>
+          The <literal>aao</literal> record is used for writing multiple
+          elements from an array into the PLC's memory. The supported
+          PLC data-types depend on the EPICS data-type specified in the
+          record's <literal>FTVL</literal> field, as described in this
+          table:
+        </para>
+        <table rowheader="firstcol">
+          <title>Mapping of EPICS Types to PLC Types</title>
+          <tgroup cols="9" align="center">
+            <colspec colname="start" colnum="1" align="left"/>
+            <colspec colname="end" colnum="9"/>
+            <thead>
+              <row>
+                <entry></entry>
+                <entry>bool</entry>
+                <entry>int8</entry>
+                <entry>uint8</entry>
+                <entry>int16</entry>
+                <entry>uint16</entry>
+                <entry>int32</entry>
+                <entry>uint32</entry>
+                <entry>float</entry>
+              </row>
+            </thead>
+            <tfoot>
+              <row>
+                <entry namest="start" nameend="end">
+                  X = default for memory addresses of the corresponding width,
+                  o = supported, if specified explicitly
+                </entry>
+              </row>
+            </tfoot>
+            <tbody>
+              <row>
+                <entry>STRING</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+              </row>
+              <row>
+                <entry>CHAR</entry>
+                <entry>X</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>UCHAR</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>SHORT</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>USHORT</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>LONG</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>ULONG</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+              </row>
+              <row>
+                <entry>FLOAT</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+              </row>
+              <row>
+                <entry>DOUBLE</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+              </row>
+              <row>
+                <entry>ENUM</entry>
+                <entry>X</entry>
+                <entry></entry>
+                <entry></entry>
+                <entry></entry>
+                <entry>X</entry>
+                <entry>o</entry>
+                <entry>X</entry>
+                <entry>o</entry>
+              </row>
+            </tbody>
+          </tgroup>
+        </table>
+        <para>
+          For all EPICS data-types except <literal>STRING</literal>, the width
+          of the PLC data-type has to match the width of the PLC address. In
+          this case, the total number of bytes written is the width of the PLC
+          data-type multiplied by the number of elements in the array. The PLC
+          memory address specified is the start of the first element in the
+          array.
+        </para>
+        <para>
+          If <literal>FTVL</literal> is set to <literal>STRING</literal>, the
+          PLC memory-address must be a byte. This byte is regarded to be the
+          first byte of the first string in the array. In total, fourty bytes
+          are written for each element in the array. For example, if the array
+          has ten elements, 400 bytes are written to the PLC memory.
+        </para>
+        <para>
+          If the PLC address specified refers to a bit, the number of bits
+          written to the PLC equals the number of elements in the array.
+          The write does not have to be aligned to byte boundaries. Every
+          non-zero number is converted to one before being written to the
+          corresponding bit.
+        </para>
+        <para>
+          Writing a <literal>DOUBLE</literal> value may be connected with loss
+          of precision, as the PLC driver only supports single precision
+          floating point numbers.
+        </para>
+      </section>
+      <section>
+        <title>ai - Analog Input</title>
+        <para>
+          The <literal>ai</literal> record is used for reading analog values
+          from the PLC. For conversion from PLC raw values to engineering units,
+          the <literal>DLV</literal> and <literal>DVH</literal> options can be
+          used (see <xref linkend="recordreference.parameters.dlvdhv" />).
+        </para>
+        <para>
+          The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal>, <literal>int32</literal> and
+          <literal>float</literal>. When using the <literal>float</literal>
+          type, conversion from raw to engineering units is not supported.
+          The value from the PLC memory is directly written to the record's
+          <literal>VAL</literal> field instead.
+        </para>
+      </section>
+      <section>
+        <title>ao - Analog Output</title>
+        <para>
+          The <literal>ao</literal> record is used for writing analog values to
+          the PLC. For conversion from engineering units to PLC raw units, the
+          <literal>DLV</literal> and <literal>DHV</literal> options can be used
+          (see <xref linkend="recordreference.parameters.dlvdhv" />).
+        </para>
+        <para>
+          The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal>, <literal>int32</literal> and
+          <literal>float</literal>. When using the <literal>float</literal>
+          type, conversion from engineering to raw units is not supported.
+          The value of the record's <literal>VAL</literal> field is written to
+          the PLC's memory instead. Please note that the conversion from
+          engineering to raw units might be lossy, if the calculated raw value
+          does not fit within the specificed PLC data-type.
+        </para>
+      </section>
+      <section>
+        <title>bi - Binary Input</title>
+        <para>
+          The <literal>bi</literal> record is used for reading a binary state
+          from the PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal>, <literal>int32</literal>,
+          <literal>uint32</literal> and <literal>float</literal>.
+        </para>
+        <para>
+          For all types except <literal>float</literal>, a value that does not
+          equal zero is considered to be one. For <literal>float</literal>s,
+          a value of <literal>NaN</literal> or <literal>+inf</literal> and
+          <literal>-inf</literal> is also considered to be zero.
+        </para>
+      </section>
+      <section xml:id="record.bo">
+        <title>bo - Binary Output</title>
+        <para>
+          The <literal>bo</literal> record is used to set a binary state in the
+          PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal>, <literal>int32</literal>,
+          <literal>uint32</literal> and <literal>float</literal>.
+        </para>
+      </section>
+      <section>
+        <title>longin - Long Input</title>
+        <para>
+          The <literal>longin</literal> record is used for reading an integer
+          number from the PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal> and <literal>int32</literal>.
+        </para>
+      </section>
+      <section>
+        <title>longout - Long Output</title>
+        <para>
+          The <literal>longout</literal> record is used for writing an integer
+          number to the PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal>,
+          <literal>uint8</literal>, <literal>int16</literal>,
+          <literal>uint16</literal> and <literal>int32</literal>.
+        </para>
+        <para>
+          Please note that the write operation might be lossy, if the value
+          written does not fit within the specificed PLC data-type.
+        </para>
+      </section>
+      <section>
+        <title>mbbi, mbbiDirect - Multi-Bit Binary Input</title>
+        <para>
+          The <literal>mbbi</literal> and <literal>mbbiDirect</literal> record
+          types are used for reading a state consisting of multiple bits from
+          the PLC. The PLC data-types supported by this record are
+          <literal>int8</literal>, <literal>uint8</literal>,
+          <literal>int16</literal>, <literal>uint16</literal>,
+          <literal>int32</literal> and <literal>uint32</literal>.
+        </para>
+        <para>
+          The <literal>SHFT</literal> and <literal>NOBT</literal> fields of the
+          record are supported by the s7nodave device support, so that bits
+          which are not aligned to the byte boundaries can be read.
+        </para>
+        <para>
+          As far as the s7nodave device support is concerned, there is no
+          difference between the <literal>mbbi</literal> and
+          <literal>mbbiDirect</literal> record-types. Please refer to the
+          <link xlink:href="http://www.aps.anl.gov/epics/wiki/index.php/RRM_3-14">EPICS Record Reference Manual</link>
+          for the differences between the two record types.
+        </para>
+      </section>
+      <section>
+        <title>mbbo, mbboDirect - Multi-Bit Binary Output</title>
+        <para>
+          The <literal>mbbo</literal> and <literal>mbboDirect</literal>
+          record types are used for writing a state consisting of multiple bits
+          to the PLC. The PLC data-types supported by this record are
+          <literal>int8</literal>, <literal>uint8</literal>,
+          <literal>int16</literal>, <literal>uint16</literal>,
+          <literal>int32</literal> and <literal>uint32</literal>.
+        </para>
+        <para>
+          The <literal>SHFT</literal> and <literal>NOBT</literal> fields of the
+          record are supported by the s7nodave device support, so that bits
+          which are not aligned to the byte boundaries can be written. However,
+          the write operation is always applied to the complete byte, setting
+          the other bits to zero. If you want to set specific bits without
+          touching the other bits in the same byte, you should use the
+          <link linkend="record.bo">bo</link> or the
+          <link linkend="record.aao">aao</link> record.
+        </para>
+        <para>
+          As far as the s7nodave device support is concerned, there is no
+          difference between the <literal>mbbo</literal> and
+          <literal>mbboDirect</literal> record-types. Please refert to the
+          <link xlink:href="http://www.aps.anl.gov/epics/wiki/index.php/RRM_3-14">EPICS Record Reference Manual</link>
+          for the differences between the two record types.
+        </para>
+      </section>
+      <section>
+        <title>stringin - String Input</title>
+        <para>
+          The <literal>stringin</literal> record is used for reading a string
+          from the PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal> and
+          <literal>uint8</literal>.
+        </para>
+        <para>
+          If either the <literal>int8</literal> (the default) or
+          <literal>uint8</literal> data-type is specified, fourty bytes are
+          read from the PLC and interpreted as a string.
+        </para>
+        <para>
+          If the <literal>bool</literal> data-type is specified, a single bit
+          is read from the PLC and the string is set to “TRUE” if the bit is one
+          and to “FALSE” if the bit is zero.
+        </para>
+      </section>
+      <section>
+        <title>stringout - String Output</title>
+        <para>
+          The <literal>stringout</literal> record is used for writing a string
+          to the PLC. The PLC data-types supported by this record are
+          <literal>bool</literal>, <literal>int8</literal> and
+          <literal>uint8</literal>.
+        </para>
+        <para>
+          If either the <literal>int8</literal> (the default) or
+          <literal>uint8</literal> data-type is specified, the fourty bytes of
+          the string stored in the record's <literal>VAL</literal> field are
+          written to the PLC.
+        </para>
+        <para>
+          If the <literal>bool</literal> data-type is specified, a single bit
+          is written to the PLC. If the string is “TRUE” or “1”, one is written,
+          otherwise zero is written.
+        </para>
+      </section>
+      <section xml:id="record.waveform">
+        <title>waveform - Array Input or Output</title>
+        <para>
+          The <literal>waveform</literal> record is an alternative to the
+          <link linkend="record.aai">aai</link> and
+          <link linkend="record.aao">aao</link> records.
+          Unlike the other records, it can act as either an input or an output
+          record. The device address is always stored in the record's
+          <literal>INP</literal> field. If you want to use the record as an
+          input record, you have to set the record's <literal>DTYP</literal>
+          field to <literal>s7nodaveWfIn</literal>, if you want to use the
+          record as an output record, the field has to be set to
+          <literal>s7nodaveWfOut</literal>. Apart from that, as far as the
+          s7nodave device support is concerned, this record acts exactly like
+          the <literal>aai</literal> or <literal>aao</literal> records.
+        </para>
+      </section>
+    </section>
+  </chapter>
+  
+  <chapter xml:id="pollgroups">
+    <title>Poll Groups</title>
+    <para>
+      If you periodically scan multiple input records, that read data from the
+      PLC, this is very inefficient, because each read operation sends a read
+      request over the network and has to wait for a response from the PLC.
+    </para>
+    <para>
+      Thus, if multiple input records shall be processed at the same rate, you
+      should put the in the same poll-group. The read request for all records
+      being in the same poll group are placed in the same read request (unless
+      the packet size is exceeded) and sent to the PLC together. Accordingly,
+      the response from the PLC to all the read requests is also sent in a
+      single packet, thus reducing the number of round-trips needed
+      significantly.
+    </para>
+    <para>
+      Poll groups are only supported for input records, because output records
+      typically are only processed on change anyway. 
+    </para>
+    <section>
+      <title>Creating a Poll Group</title>
+      <para>
+        A poll group is created using the
+        <link linkend="iocsh.s7nodaveConfigurePollGroup">s7nodaveConfigurePollGroup</link>
+        command in the IOC's statup configuration. If you use the poll-group
+        name “default”, this has a special meaning. This poll-group is used for
+        all records, that are configured to use a poll group but do not
+        explicitly specify the name of the poll group to use. For each PLC that
+        is configured, the default poll-group must be configured separately.
+      </para>
+    </section>
+    <section>
+      <title>Including a Record in a Poll Group</title>
+      <para>
+        In order to make a record be processed in a poll group, the
+        <literal>SCAN</literal> field of the record has to be set to
+        <literal>I/O Intr</literal>. If you want to use a different poll group
+        than the default poll-group, you can use the <literal>PG</literal>
+        parameter to specify the poll group to use (see 
+        <xref linkend="recordreference.parameters.pg" />).
+      </para>
+    </section>
+  </chapter>
+  
+  <appendix xml:id="news">
+    <title>News</title>
+    <section xml:id="news.v3.0">
+      <title>What's new in s7nodave 3.0</title>
+      <para>
+        Version 3.0.0 switched the backend library for communication with the
+        PLC from
+        <link xlink:href="http://libnodave.sourceforge.net/">libnodave</link> to
+        <link xlink:href="http://snap7.sourceforge.net/">Snap7</link>.
+        For most applications that use the EPICS device support, this change
+        should be completely transparent. Only when you wrote C/C++ code directly
+        using functions from libnodave, you will have to port this code to
+        Snap7.
+      </para>
+      <para>
+        The second major change in version 3.0.0 is that s7nodave now uses
+        features from C++ 11, so you will need a compiler that supports at least
+        that version of C++. Depending on your compiler, you might have to
+        explicitly enable support for C++ 11 (some compilers still expect C++ 03
+        by default). Switching to C++ 11 allowed us to get rid of the dependency
+        on the Boost library, which makes compiling this device support easier.
+      </para>
+    </section>
+  </appendix>
+  
+</book>

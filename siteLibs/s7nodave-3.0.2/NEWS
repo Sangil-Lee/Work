@@ -1,0 +1,139 @@
+* Version 3.0.2 (April 12th, 2021)
+- Another bug in the routine that parses record addresses has been fixed. This
+  bug was introduced in version 3.0.0 and had the consequence that optional
+  parameters (the part of the address, that is specified in parentheses) were
+  not parsed correctly. This would lead to these parameters being ignored or the
+  parsing process being aborted with an error message, even though the specified
+  string was actually well-formed.
+- Unit tests have been added to test various internal components. In particular,
+  these tests have been designed to detect and thus avoid regressions like the
+  one that appeared in the 3.0.0 release. Thanks to these tests, another small
+  bug was discovered in the address parsing routines. This bug had been present
+  from the first release and only had a minimal impact because it was only
+  triggered when specifying empty device parameters explicitly ("()" in the
+  record address).
+
+* Version 3.0.1 (April 1st, 2021)
+- We now allow non-blocking connect on macOS. This should keep the IOC from
+  locking up if the PLC is unavailable. On Linux, non-blocking connects already
+  were the default before.
+- A crash (due to a segmentation fault) has been fixed that could previously
+  happen when a record that was set to "I/O Intr" mode could not be initialized.
+  The impact of this bug was minor because the crash would only happen if
+  something about the record configuration (e.g. the INP address) was wrong.
+- A critical bug has been fixed in the template class that replaced
+  boost::optional. Due to this bug, assigning an empty optional to another
+  optional lead to that optional having an unitialized value but reporting that
+  it was engaged. Most notably, this lead to correct address specifications in a
+  record's INP our OUT field being reported as being incorrect. In combination
+  with the bug mentioned earlier, this lead to crashes even if the record's
+  configuration was actually correct.
+
+* Version 3.0.0 (March 30th, 2021)
+- In the backend, libnodave has been replaced by Snap7
+  (http://snap7.sourceforge.net/). This was mainly done to avoid a bug in
+  libnodave that would sometimes cause communication problems in combination
+  with some newer CPUs (the bug was first seen with a S7-1500 series CPU). Due
+  to the rather bad code quality of libnodave, this bug could not be easily
+  fixed there and thanks to the much better quality of Snap7, it is likely that
+  this migration also helped to fix a few more bugs that simply had not been
+  discovered yet.
+- The dependency on the Boost library has been removed and the respective
+  components have been replaced with components from the C++ 11 standard
+  library. This means that starting with this release, you will need a C++
+  compiler supporting C++ 11 in order to compile s7nodave.
+
+* Version 2.1.4 (October 31st, 2019)
+- Call recGlbResetAlarms when successfully initializing an output record. This
+  means that the record's INVALID alarm is cleared without having to process it.
+- Correctly parse port number in PLC hostname string. This fixes a bug where
+  connection attempts would fail if the connection string specified when calling
+  s7nodaveConfigureIsoTcpPort(...) would contain a port number specification.
+- Set alarm severity to INVALID when using I/O Intr mode and the overall read
+  operation of the associated poll group is successful, but the specific item
+  could not be read.
+
+* Version 2.1.3 (December 11th, 2017)
+- Fixed a bug in S7nodavePortDriver::sendRequestToPlc which caused a request to
+  read items to grow too large. This would happen when an item's data would
+  still fit into a request, but its four byte header would not. Now, the code
+  checks whether both an item's data and header fit into a request before adding
+  it.
+
+* Version 2.1.2 (November 15th, 2017)
+- Fix a bug in S7nodavePortDriver::sendRequestToPlc which caused a request to
+  read items to grow too large when items with odd sizes were read. The PLC adds
+  a padding byte to the data of such items and this padding byte was not
+  considered when calculating the size of the resulting PDU, so that the
+  maximum PDU size was sometimes exceeded.
+
+* Version 2.1.1 (November 24th, 2016)
+- Fixed a bug in the S7nodavePortDriver class that caused an exception to be
+  thrown when a bit was written and a log message (in case of error or when
+  the debug mode was enabled) was generated.
+- Fixed a bug in the S7nodavePortDriver class that could cause an infinite loop
+  when reading multiple items.
+- Fixed a bug in the S7nodavePortDriver that could cause too many items to be
+  requested at once, leading to a read error. This could happen because the code
+  only verified that the expected response would not exceed the maximum PDU
+  size, but the corresponding check for the request size was incorrect.
+
+* Version 2.1.0 (June 23rd, 2016)
+- Changed the handling of the NOBT field for mbbi, mbbo, mbbiDirect, and
+  mbboDirect records. Since EPICS 3.15.4, the NOBT field is of type epicsUInt16
+  for mbbi and mbbo records. The s7nodave device support can now deal with both
+  signed and unsigned typesfor the NOBT field. The device support does not
+  overwrite the MASK field any longer if NOBT is equal to the number of bits of
+  the PLC data type. However, MAKS is still set to zero if NOBT is greater than
+  the number of bits of the PLC data type.
+
+* Version 2.0.1 (August 7th, 2015)
+- Fixed a bug in the S7nodavePortDriverReadOptimizer class that could cause a
+  segmentation fault due to the dereference of an iterator that pointed to the
+  end of a list.
+- Fixed a bug in the definition of the s7nodaveConfigureIsoTcpPort iocsh
+  command that would allow the command to be called with too few arguments. This
+  bug was introduced with the 2.0.0 release.
+- Allow the user to locally override paths and setting without modifying RELEASE
+  or CONFIG_SITE by including a RELEASE.local and CONFIG_SITE.local if present.
+
+* Version 2.0.0 (February 8th, 2015):
+- Changed the initialization code so that a rack and slot number for the PLC can
+  be specified.
+- Changed the address parsing code so that bit addresses in data blocks are
+  correctly written as DB###.DBX##.#. Before, they had to be written as
+  DB###.DB##.# (no X).
+
+* Version 1.0.3 (April 24th, 2014)
+- Fixed a bug in the device support routine for the stringout record, where a
+  cast to a wrong structure type resulted in the record address not being read
+  correctly. Thanks go to Marko Volk (Cosylab) for reporting this bug and
+  submitting a patch.
+- Fixed a bug in the parsing routine for PLC addresses, that caused timer and
+  counter addresses with a single digit number to be rejected. Thanks go to
+  Marko Volk (Cosylab) for reporting this bug.
+- Added support for specifying a poll-group for analog input records (this was
+  accidentally deactivated for this record type).
+- Fixed a bug that caused the PLC connection to stay locked, if the
+  initialization of an output record failed.
+- Fixed a bug in libnodave that caused problems when trying to write to counter
+  or timer addresses.
+- Fixed a bug in the trace functions of the driver, which would check the
+  trace-IO mask where the trace mask would have been appropriate.
+- Fixed a bug in the stringin and stringout record, that cause only the first
+  five bytes to be transmitted.
+
+* Version 1.0.2 (January 21st, 2013)
+- Fixed a bug that caused a non-zero value to be returned for a boolean that was
+  read from the first bit of an address, when this bit was zero but other bits
+  at the address were non-zero.
+
+* Version 1.0.1 (December 17th, 2012)
+- Fixed a bug that caused an IOC crash on initialization, when an ao record was
+  used with a float-type in the PLC. This also fixed a bug that did not
+  correctly deactivate conversion when using an ai record with a float-type in
+  the PLC.
+- Removed unused variables that caused compiler warnings.
+
+* Version 1.0.0 (January 28th, 2012)
+- First release of s7nodave.
