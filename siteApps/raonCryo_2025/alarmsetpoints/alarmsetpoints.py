@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from epics import PV, caget, caput
 import argparse
 import csv
