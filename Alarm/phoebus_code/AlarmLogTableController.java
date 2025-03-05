@@ -68,7 +68,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-//silee
+//silee++
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
 
@@ -97,6 +97,7 @@ public class AlarmLogTableController {
     TableColumn<AlarmLogTableItem, String> msgTimeCol;
     @FXML
     TableColumn<AlarmLogTableItem, String> deltaTimeCol;
+	//silee++
     @FXML
     TableColumn<AlarmLogTableItem, String> alarmValue;
     @FXML
@@ -231,6 +232,7 @@ public class AlarmLogTableController {
                 });
         alarmValue.setVisible(false);
         tableView.getColumns().add(alarmValue);
+   //
 
         currentSeverityCol = new TableColumn<>("Current Severity");
         currentSeverityCol.setCellValueFactory(
