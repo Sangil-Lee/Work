@@ -16,7 +16,7 @@ s7nodaveConfigurePollGroup("s7PLC","1s", 1.0, 0)
 
 ## Load record instances
 #dbLoadRecords("db/s7test.db","user=ctrluser")
-dbLoadRecords("db/s7nodave_ex.db","P=TEST")
+dbLoadRecords("db/s7nodave_ex.db")
 
 cd "${TOP}/iocBoot/${IOC}"
 iocInit
