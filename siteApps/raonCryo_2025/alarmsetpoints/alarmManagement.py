@@ -239,17 +239,19 @@ class AlarmManagement:
     def alarmGetting(self, pv_name):
         alarmdict = self.__getDicDataByKey(pv_name)
         alarmfields = self.alarm_fields
-        valuelist = list(alarmdict.values())
+        #valuelist = list(alarmdict.values())
 
-        print(f"{pv_name}:===>Getting")
         try:
+            alarmval = {}
             for index, field in enumerate(alarmfields):
                 alarm_name = pv_name+'.'+field
                 fieldpv = PV(alarm_name)
                 if fieldpv.get() == None:
                     raise Exception(f"Not connected: {alarm_name}")
                 fieldval = fieldpv.get()
-                print(f"{field}:", fieldval)
+                alarmval[field]=fieldval
+                #print(f"{field}:", fieldval)
+            print(f"{pv_name}:{alarmval}")
         except Exception as e:
             print(f"EPICS Channel Access Connection: {str(e)}")
             sys.exit(1)
@@ -259,18 +261,43 @@ class AlarmManagement:
         alarmfields = self.alarm_fields
         valuelist = list(alarmdict.values())
 
-        print(f"{pv_name}:===>Set")
+        print(f"{pv_name}:")
+        print(f"SetValue: {alarmdict}")
+        #print(f"SetValue:", self.__print_dict_fixed(alarmdict, 12, 2))
         try:
+            beforedict = {}
+            for index, field in enumerate(alarmfields):
+                alarm_name = pv_name+'.'+field
+                fieldpv = PV(alarm_name)
+                if fieldpv.get() == None:
+                    raise Exception(f"Not connected: {alarm_name}")
+                fieldval = fieldpv.get()
+                beforedict[field]=fieldval
+
+            print(f"Before  : {beforedict}")
+            afterdict = {}
             for index, field in enumerate(alarmfields):
                 alarm_name = pv_name+'.'+field
                 fieldpv = PV(alarm_name)
                 if fieldpv.put(valuelist[index],wait=True) == None:
                     raise Exception(f"Not connected: {alarm_name}")
-                fieldval = fieldpv.get()
-                print(f"{field}:", fieldval)
+                appliedval = fieldpv.get()
+                afterdict[field]=appliedval
+            print(f"Applied : {afterdict}")
+
+            if set(beforedict.values()) != set(afterdict.values()):
+                result = "Complete changed!!"
+            else:
+                result = "Same with previous value"
+
+            print(f"Result  : {result}\n")
         except Exception as e:
             print(f"EPICS Channel Access Connection: {str(e)}")
             sys.exit(1)
+
+    def __print_dict_fixed(self, dict_, width, prec):
+        for key, value in dict_.items():
+            print(f"{key}= {value:{width}.{prec}f}")
 
     def InteractiveAlarmConfig(self, interactive):
         bindings = KeyBindings()
