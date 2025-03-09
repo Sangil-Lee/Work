@@ -9,7 +9,11 @@ import xml.dom.minidom                      # Built-in default package
 from lxml import etree                     # Need a lxml package(recommend)
 from epics import PV
 from collections import Counter
-
+from prompt_toolkit import prompt
+from prompt_toolkit.key_binding import KeyBindings
+from prompt_toolkit.keys import Keys
+from prompt_toolkit.completion import WordCompleter
+from prompt_toolkit.validation import Validator, ValidationError
 
 class AlarmManagement:
     def __init__(self, file_path):
@@ -49,8 +53,8 @@ class AlarmManagement:
 
             pv = etree.SubElement(component, "pv")
             pv.attrib["name"] = key
-            desc = etree.SubElement(pv, "descirption")
-            desc.text = key
+            descr = etree.SubElement(pv, "descirption")
+            descr.text = key
             enabled = etree.SubElement(pv, "enabled")
             enabled.text = "true"
             latching = etree.SubElement(pv, "latching")
@@ -173,23 +177,32 @@ class AlarmManagement:
             dic_vals[vals[0]] = float(vals[1])
         return dic_vals
 
-    def __veryfyAlarmRange(self, key):
+    def __compare_list(self, list1, list2):
+        main_iter = iter(list1)
+        return all(item in main_iter for item in list2)
+
+    def __verifyAlarmRange(self, key):
         org_dict = self.__getDicDataByKey(key)
         excludeKey = ['HYST', 'AFTC']
         filt_key = [key for key in org_dict.keys() if key not in excludeKey]
         org_dict = {key: org_dict[key] for key in filt_key} 
-        filt_dict = {key: value for key, value in sorted(org_dict.items(), key=lambda item: item[1])}
-        filt_dict_key_list = list(filt_dict.keys())
+        filt_dict = {key: value for key, value in sorted(org_dict.items(), key=lambda item: item[1] if item[1] != 0 else float('inf'))}
+        filt_dict_key_list = [key for key, value in filt_dict.items() if value != 0]
+        #print(filt_dict_key_list)
 
-        values = [value for value in filt_dict.values() if value != 0.0]
-        valcount = Counter(values)
+        #values = [value for value in filt_dict.values() if value != 0.0]
+        #valcount = Counter(values)
         #print("Values:", values, "ValCount:", valcount)
 
-        for value, count in valcount.items():
-            if count > 1 :
+        #for value, count in valcount.items():
+            #if count > 1 :
+                #return False
+
+        filt_values = [value for value in filt_dict.values() if value != 0 ]
+        if len(filt_values) != len(set(filt_values)): 
                 return False
 
-        return (self.alarm_field_order == filt_dict_key_list)
+        return self.__compare_list(self.alarm_field_order, filt_dict_key_list)
 
     def VerifyAlarmRange(self):
         if self.alarm_dic is None:
@@ -197,7 +210,7 @@ class AlarmManagement:
         dic_data = self.__getData()
         checkRange = True
         for row, (key, value) in enumerate(dic_data.items()):
-            checkRange = self.__veryfyAlarmRange(key)
+            checkRange = self.__verifyAlarmRange(key)
             if checkRange == False:
                 print(f"\nLine[{row}] in {self.file_path}: \nAlarm Range Invalid: Confirm PV[{key}] \n ==>> {value}\n")
                 break
@@ -259,12 +272,149 @@ class AlarmManagement:
             print(f"EPICS Channel Access Connection: {str(e)}")
             sys.exit(1)
 
+    def InteractiveAlarmConfig(self, interactive):
+        bindings = KeyBindings()
+
+        @bindings.add(Keys.ControlQ)
+        def _(event):
+            event.app.exit()
+
+        config_name = prompt("[config name]: ", default='Accelerator')
+        #print(f"name = {name}")
+
+        config = etree.Element("config")
+        config.attrib["name"] = config_name
+
+        for component_name in iter(lambda: prompt("[component name]: ", ), ''):
+            component = etree.SubElement(config, "component")
+            component.attrib["name"] = component_name
+            for pv_name in iter(lambda: prompt("[pv name]: ",), ''):
+                pv = etree.SubElement(component, "pv")
+                pv.attrib["name"] = pv_name
+
+                descr_name = prompt("description: ")
+                if len(descr_name) == 0:
+                    descr_name = pv_name
+                descr = etree.SubElement(pv, "descirption")
+                descr.text = descr_name
+
+                try:
+                    enabled_name = prompt("enabled[true or false]: ", validator=TrueFalseValidator(), default='true')
+                    enabled = etree.SubElement(pv, "enabled")
+                    enabled.text = enabled_name
+                    latching_name = prompt("latching[true or false]: ", validator=TrueFalseValidator(), default='false')
+                    latching = etree.SubElement(pv, "latching")
+                    latching.text = latching_name
+                    annunciate_name = prompt("annunciating[true or false]: ", validator=TrueFalseValidator(), default='false')
+                    annunciate = etree.SubElement(pv, "annunciating")
+                    annunciate.text = annunciate_name
+
+                    delay_name = prompt("delay[number]: ", validator=NumberValidator())
+
+                    if len(delay_name) != 0:
+                        delay = etree.SubElement(pv, "delay")
+                        delay.text = delay_name
+
+                    count_name = prompt("count[number]: ", validator=NumberValidator())
+                    if len(count_name) != 0:
+                        count = etree.SubElement(pv, "count")
+                        count.text = count_name
+
+                    for guidance_title_name in iter(lambda: prompt("guidance title: ",), ''):
+                        if len(guidance_title_name) != 0:
+                            guidance = etree.SubElement(pv, "guidance")
+                            guidance_title = etree.SubElement(guidance, "title")
+                            guidance_title.text = guidance_title_name
+
+                        guidance_details_name = prompt("guidance details: ")
+                        if len(guidance_details_name) != 0:
+                            guidance_details = etree.SubElement(guidance, "details")
+                            guidance_details.text = guidance_details_name
+
+                    for display_title_name in iter(lambda: prompt("display title: ",), ''):
+                        if len(display_title_name) != 0:
+                            display = etree.SubElement(pv, "display")
+                            display_title = etree.SubElement(display, "title")
+                            display_title.text = display_title_name
+
+                        display_details_name = prompt("display details: ")
+                        if len(display_details_name) != 0:
+                            display_details = etree.SubElement(display, "details")
+                            display_details.text = display_details_name
+
+                    for command_title_name in iter(lambda: prompt("command title: ",), ''):
+                        if len(command_title_name) != 0:
+                            command = etree.SubElement(pv, "command")
+                            command_title = etree.SubElement(command, "title")
+                            command_title.text = command_title_name
+
+                        command_details_name = prompt("command details: ")
+                        if len(command_details_name) != 0:
+                            command_details = etree.SubElement(command, "details")
+                            command_details.text = command_details_name
+
+
+                    prefixes = ['mailto:', 'cmd:', 'sevrpv:']
+                    for automated_action_title_name in iter(lambda: prompt("automated_action title: ",), ''):
+                        if len(automated_action_title_name) != 0:
+                            automated_action = etree.SubElement(pv, "automated_action")
+                            automated_action_title = etree.SubElement(automated_action, "title")
+                            automated_action_title.text = automated_action_title_name
+
+                        #automated_action_details_name = prompt("automated_action details: ", validator=NotificationValidator(), default='cmd:')
+                        #automated_action_details_name = prompt("automated_action details[mailto:, cmd:, sevrpv:]: ", default='cmd:')
+                        automated_action_details_name = prompt("automated_action details: ", validator=NotificationValidator(prefixes), default='cmd:')
+                        if len(automated_action_details_name) != 0:
+                            automated_action_details = etree.SubElement(automated_action, "details")
+                            automated_action_details.text = automated_action_details_name
+
+                        delay_name = prompt("delay[number]: ", validator=NumberValidator())
+                        if len(delay_name) != 0:
+                            delay = etree.SubElement(automated_action, "delay")
+                            delay.text = delay_name
+
+                    continue
+                except ValidationError as e:
+                    print(e)
+
+
+        xtree = etree.ElementTree(config)
+        xml_file_name = prompt("xml filename: ", default='default_alarm_config.xml')
+        xtree.write(xml_file_name, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+
+        #prompt("Exit Ctrl+Q: ", key_bindings=bindings)
+
+class TrueFalseValidator(Validator):
+    def validate(self, document):
+        text = document.text.lower()
+        if text not in ['true', 'false']:
+            raise ValidationError(message="true or false.", cursor_position=len(text))
+
+class NumberValidator(Validator):
+    def validate(self, document):
+        text = document.text
+        if not text.isdigit() and len(text) != 0:
+            raise ValidationError(message="only number.", cursor_position=len(text))
+
+class NotificationValidator(Validator):
+    def __init__(self, prefixes):
+        self.prefixes = prefixes
+
+    def validate(self, document):
+        text = document.text.lower()
+        if not any(text.startswith(prefix) for prefix in self.prefixes):
+            raise ValidationError(message="start [mailto: or cmd: or sevrpv:]", cursor_position=0)
+
+        #if text not in ['mailto:', 'cmd:', 'sevrpv:']:
+        #    raise ValidationError(message="mailto: or cmd: or sevrpv:", cursor_position=len(text))
+
+
 def str2bool(s):
     return s.lower() in ('yes', 'true', 't', '1')
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Alarm Setpoint Configure')
+    parser = argparse.ArgumentParser(description='Management Alarm Setpoint Configure')
     parser.add_argument('-file',        help='Alarm list for changing alarm setpoints')
     parser.add_argument('-print',       type=bool, help='Alarm display')
     parser.add_argument('-verify',      type=bool, help='Alarm Range Verification')
@@ -273,6 +423,7 @@ if __name__ == "__main__":
     parser.add_argument('-getkeys',     type=bool, help='Get PVname keys from pv list')
     parser.add_argument('-genxmlconfig',type=bool, help='Generation initial alarm xml config from pv list')
     parser.add_argument('-copy',        type=bool, help='Copy initial alarm xml config to pas-demo/site-config/alarm_config.xml')
+    parser.add_argument('-interactive', type=bool, help='Interactive generation alarm config xml')
 
     args = parser.parse_args()
     #bprint = str2bool('{}'.format('print' in args))
@@ -285,6 +436,7 @@ if __name__ == "__main__":
     print('-getkeys',   args.getkeys)
     print('-genxmlconfig',   args.genxmlconfig)
     print('-copy',      args.copy)
+    print('-interactive',      args.interactive)
 
     try :
         if args.file is not None:
@@ -315,10 +467,14 @@ if __name__ == "__main__":
         if args.getkeys is not None:
             print(alarmfile.getKeys())
 
-        if args.genxmlconfig is not None:
+        if args.genxmlconfig is not None and args.interactive is None:
             if alarmfile.VerifyAlarmRange() == True:
                 print("All Alarm Range Valid!!")
                 alarmfile.GenXMLAlarmConfig(args.copy)
+        elif args.genxmlconfig is not None and args.interactive is not None:
+            if alarmfile.VerifyAlarmRange() == True:
+                print("All Alarm Range Valid!!")
+                alarmfile.InteractiveAlarmConfig(args.interactive)
 
     except Exception as e:
         print(f"Main Exception: {str(e)}")
