@@ -1,4 +1,5 @@
 ####[PV(Unique_Key), AlarmFields:[HIHI, HIGH, LOW, LOLO, HYST, AFTC] = Setpoint Value]########
+####[Group=Analog:A]
 ctrlslab:A_Alarm_1,  HIHI=61, HIGH=51, LOW=41, LOLO=21, HYST=0, AFTC=0
 ctrlslab:A_Alarm_2,  HIHI=62, HIGH=52, LOW=42, LOLO=22, HYST=1, AFTC=1
 ctrlslab:A_Alarm_3,  HIHI=63, HIGH=53, LOW=43, LOLO=23, HYST=2, AFTC=2
@@ -9,7 +10,9 @@ ctrlslab:A_Alarm_7,  HIHI=67, HIGH=57, LOW=47, LOLO=27, HYST=6, AFTC=6
 ctrlslab:A_Alarm_8,  HIHI=68, HIGH=58, LOW=48, LOLO=28, HYST=7, AFTC=7
 ctrlslab:A_Alarm_9,  HIHI=69, HIGH=59, LOW=49, LOLO=29, HYST=8, AFTC=8
 ctrlslab:A_Alarm_10, HIHI=70, HIGH=60, LOW=50, LOLO=30, HYST=9, AFTC=9
+### commented line ###
 
+####[Group=Analog:B]
 ctrlslab:A_Alarm_11,  HIHI=61, HIGH=51, LOW=41, LOLO=21, HYST=0, AFTC=0
 ctrlslab:A_Alarm_12,  HIHI=62, HIGH=52, LOW=42, LOLO=22, HYST=1, AFTC=1
 ctrlslab:A_Alarm_13,  HIHI=63, HIGH=53, LOW=43, LOLO=23, HYST=2, AFTC=2
@@ -20,7 +23,8 @@ ctrlslab:A_Alarm_17,  HIHI=67, HIGH=57, LOW=47, LOLO=27, HYST=6, AFTC=6
 ctrlslab:A_Alarm_18,  HIHI=68, HIGH=58, LOW=48, LOLO=28, HYST=7, AFTC=7
 ctrlslab:A_Alarm_19,  HIHI=69, HIGH=59, LOW=49, LOLO=29, HYST=8, AFTC=8
 ctrlslab:A_Alarm_20,  HIHI=70, HIGH=60, LOW=50, LOLO=30, HYST=9, AFTC=9
-
+### dfdaf ###
+####[Group=Analog:C]
 ctrlslab:A_Alarm_21,  HIHI=61, HIGH=51, LOW=41, LOLO=21, HYST=0, AFTC=0
 ctrlslab:A_Alarm_22,  HIHI=62, HIGH=52, LOW=42, LOLO=22, HYST=1, AFTC=1
 ctrlslab:A_Alarm_23,  HIHI=63, HIGH=53, LOW=43, LOLO=23, HYST=2, AFTC=2
@@ -31,3 +35,12 @@ ctrlslab:A_Alarm_27,  HIGH=55, LOW=50,  HYST=6, AFTC=6
 ctrlslab:A_Alarm_28,  HIHI=68, HIGH=58, LOW=48, LOLO=28, HYST=7, AFTC=7
 ctrlslab:A_Alarm_29,  HIHI=69, HIGH=59, LOW=49, LOLO=29, HYST=8, AFTC=8
 ctrlslab:A_Alarm_30,  HIHI=70, HIGH=60, LOW=50, LOLO=30, HYST=9, AFTC=9
+
+####[Group=Alarm:Analog]
+ctrlslab:A_Alarm
+ctrlslab:Temp
+####[Group=Alarm:Digital]
+ctrlslab:Control
+ctrlslab:D_Alarm
+####[Group=Alarm:Filter]
+ctrlslab:A_Alarm_Filter

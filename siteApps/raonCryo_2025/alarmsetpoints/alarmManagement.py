@@ -98,6 +98,8 @@ class AlarmManagement:
                     if len(rlines) > 1:
                         key = rlines[0]
                         values = rlines[1:]
+                        if not values:
+                            continue
                         default_alarm_fields = {'LOLO':'0.0', 'LOW':'0.0', 'HIGH':'0.0', 'HIHI':'0.0', 'HYST':'0.0', 'AFTC':'0.0'}
                         alarmvalues = list(default_alarm_fields.items())
                         #print(values)
@@ -134,13 +136,12 @@ class AlarmManagement:
     def Print(self):
         print("Finished read file")
         if self.alarm_dic is None:
-            print(self.alarm_dic)
             return
 
         try:
             for key_pvname, alarm_setpoints in self.alarm_dic.items():
-                print(f"\n{key_pvname}==>")
-
+                print(f"{key_pvname}:{alarm_setpoints}")
+                continue
                 for setpoint in alarm_setpoints:
                     setpoint = re.split(r'[=:]+', setpoint)
                     print(setpoint)
@@ -299,7 +300,8 @@ class AlarmManagement:
         for key, value in dict_.items():
             print(f"{key}= {value:{width}.{prec}f}")
 
-    def InteractiveAlarmConfig(self, interactive):
+    @staticmethod
+    def InteractiveAlarmConfig():
         bindings = KeyBindings()
 
         @bindings.add(Keys.ControlQ)
@@ -411,6 +413,77 @@ class AlarmManagement:
 
         #prompt("Exit Ctrl+Q: ", key_bindings=bindings)
 
+    def GenXMLAlarmConfigByGroup(self, copy):
+        data_dict = {}
+        current_key = None
+        current_value = []
+        try:
+            with open(self.file_path, 'r', encoding='utf-8') as file:
+                csv_reader = csv.reader(file)
+                header = next(csv_reader)
+                pv_list = []
+                for row in csv_reader:
+                    # Remove white space for front, backend of special character(=:)
+                    if not row:
+                        continue
+                    rlines = " ".join(row)
+                    if rlines[0] == "#" :
+                        rlines = rlines.replace("#","")
+                        rlines = re.sub(r"\s*([=])\s*","=", rlines)
+                        rlines = re.split(r'[\s=\[\]]+', rlines)
+                        rlines = [s for s in rlines if s]
+                        if rlines[0].lower() != "group" :
+                            continue
+                        key=rlines[1]
+                        #print(rlines)
+                        if current_key is not None:
+                            data_dict[current_key] = ';'.join(current_value)
+                        current_key = key
+                        current_value = []
+                    elif current_key is not None:
+                        rlines = re.split(r'[\s,]+', rlines)
+                        current_value.append(rlines[0])
+
+                if current_key is not None:
+                    data_dict[current_key] = ';'.join(current_value)
+
+            file.close()
+
+            #print(data_dict)
+
+            config = etree.Element("config")
+            config.attrib["name"] = "Accelerator"
+            for key, values in data_dict.items():
+                #print(key,"===>>")
+                component = etree.SubElement(config, "component")
+                component.attrib["name"] = key
+                values = re.split(r'[\s;]+', values)
+                for value in values:
+                    #print(value)
+                    pv = etree.SubElement(component, "pv")
+                    pv.attrib["name"] = value
+                    descr = etree.SubElement(pv, "descirption")
+                    descr.text = value
+                    enabled = etree.SubElement(pv, "enabled")
+                    enabled.text = "true"
+                    latching = etree.SubElement(pv, "latching")
+                    latching.text = "false"
+
+            xtree = etree.ElementTree(config)
+            config_file = 'generated_alarm_config.xml'
+            if copy is True:
+                config_file = "../site-config/alarm_config.xml"
+
+            xtree.write(config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+            print(f"Successful generation alarm config: {config_file}")
+        except FileNotFoundError:
+            print(f"File Not Found: {self.file_path}")
+            return None
+        except Exception as e:
+            print(f"Read error while reading file: {str(e)}")
+            return None
+
+
 class TrueFalseValidator(Validator):
     def validate(self, document):
         text = document.text.lower()
@@ -450,6 +523,7 @@ if __name__ == "__main__":
     parser.add_argument('-getkeys',     type=bool, help='Get PVname keys from pv list')
     parser.add_argument('-genxmlconfig',type=bool, help='Generation initial alarm xml config from pv list')
     parser.add_argument('-copy',        type=bool, help='Copy initial alarm xml config to pas-demo/site-config/alarm_config.xml')
+    parser.add_argument('-group',       type=bool, help='Component name in alarm config xml')
     parser.add_argument('-interactive', type=bool, help='Interactive generation alarm config xml')
 
     args = parser.parse_args()
@@ -463,11 +537,17 @@ if __name__ == "__main__":
     print('-getkeys',   args.getkeys)
     print('-genxmlconfig',   args.genxmlconfig)
     print('-copy',      args.copy)
+    print('-group',     args.group)
     print('-interactive',      args.interactive)
 
     try :
-        if args.file is not None:
+        if args.file is not None and args.interactive is None:
             alarmfile = AlarmManagement(args.file)
+
+        elif args.file is None and args.interactive is not None:
+                AlarmManagement.InteractiveAlarmConfig()
+                sys.exit(0)
+
     except Exception as e:
             print(f"Read error while reading file: {str(e)}")
             sys.exit(1)
@@ -497,11 +577,10 @@ if __name__ == "__main__":
         if args.genxmlconfig is not None and args.interactive is None:
             if alarmfile.VerifyAlarmRange() == True:
                 print("All Alarm Range Valid!!")
-                alarmfile.GenXMLAlarmConfig(args.copy)
-        elif args.genxmlconfig is not None and args.interactive is not None:
-            if alarmfile.VerifyAlarmRange() == True:
-                print("All Alarm Range Valid!!")
-                alarmfile.InteractiveAlarmConfig(args.interactive)
+                if args.group is None:
+                    alarmfile.GenXMLAlarmConfig(args.copy)
+                else:
+                    alarmfile.GenXMLAlarmConfigByGroup(args.copy)
 
     except Exception as e:
         print(f"Main Exception: {str(e)}")
