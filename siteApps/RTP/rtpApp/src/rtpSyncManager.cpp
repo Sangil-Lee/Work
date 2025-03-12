@@ -666,46 +666,59 @@ int RTPSyncManager::readSMsgCommand(const int type, const int mul_single, const 
 
 int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int cpu_node, const int index_value, epicsFloat32 fvalue)
 {
-	sWCommand[0]= SYNC_BYTE;
-	sWCommand[1]= length; //Float Write Length = 7, Single = 3
-	sWCommand[2]= 0x00; 
-	sWCommand[3]= cpu_node;  //Node = 0
-	sWCommand[4]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
-	sWCommand[5] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
-	sWCommand[6] = (unsigned char)(index_value / 256);
+	//sWCommand[0]= SYNC_BYTE;
+	//sWCommand[1]= length; //Float Write Length = 7, Single = 3
+	//sWCommand[2]= 0x00; 
+	//sWCommand[3]= cpu_node;  //Node = 0
+	//sWCommand[4]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
+	//sWCommand[5] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	//sWCommand[6] = (unsigned char)(index_value / 256);
 
-	size_t msgSize = 0;
+	ushort sendByte 	 = 0; 
+	sWCommand[sendByte++]= SYNC_BYTE;
+	sWCommand[sendByte++]= length; //Float Write Length = 7, Single = 3
+	sWCommand[sendByte++]= 0x00; 
+	sWCommand[sendByte++]= cpu_node;  //Node = 0
+	sWCommand[sendByte++]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
+	sWCommand[sendByte++] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	sWCommand[sendByte++] = (unsigned char)(index_value / 256);
 
+	//size_t msgSize = 0;
+
+	unsigned short check = 0;
 	switch(type)
 	{
 		case BOOL_WRITE:
 			{
 				bool bval = (bool)fvalue;
 				memcpy(&sWCommand[7], &bval, sizeof(bool));
-				unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WBOOL_INDEX);
-				msgSize = SINGLE_CRC_WBOOL_INDEX + 2;
+				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WBOOL_INDEX);
+				//msgSize = SINGLE_CRC_WBOOL_INDEX + 2;
+				check = getCRC((unsigned char*)sWCommand, sendByte);
 			}
 			break;
 		case INT_WRITE:	
 			{
 				int ival = (int)fvalue;
 				memcpy(&sWCommand[7], &ival, sizeof(ival));
-				unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WINT_INDEX);
-				msgSize = SINGLE_CRC_WINT_INDEX + 2;
+				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WINT_INDEX);
+				//msgSize = SINGLE_CRC_WINT_INDEX + 2;
+				check = getCRC((unsigned char*)sWCommand, sendByte);
 			}
 			break;
 		case FLOAT_WRITE:
 		default:
 			{
 				memcpy(&sWCommand[7], &fvalue, sizeof(epicsFloat32));
-				unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WFLOAT_INDEX);
-				msgSize = SINGLE_CRC_WFLOAT_INDEX + 2;
+				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WFLOAT_INDEX);
+				//msgSize = SINGLE_CRC_WFLOAT_INDEX + 2;
+				check = getCRC((unsigned char*)sWCommand, sendByte);
 			}
 			break;
 	}
 
 	//return send(mptty->fd, (const char*)sWCommand, SINGLE_WRITE_COMMANDMSG_SIZE, 0);
-	return send(mptty->fd, (const char*)sWCommand, msgSize, 0);
+	return send(mptty->fd, (const char*)sWCommand, sendByte+2, 0);
 }
 
 ssize_t RTPSyncManager::readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread)
