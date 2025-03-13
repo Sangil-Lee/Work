@@ -100,8 +100,8 @@ static long processAi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPWriteAO  ={6, 0, 0, initAo, 0, processAo, 0};
-epicsExportAddress(dset,devSyncRTPWriteAO);
+devRTP devSyncRTPReadAO  ={6, 0, 0, initAo, 0, processAo, 0};
+epicsExportAddress(dset,devSyncRTPReadAO);
 
 static long initAo (void *prec)
 {
@@ -117,13 +117,13 @@ static long initAo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPWriteAO (init_record) Illegal OUT field");
+					"devSyncRTPReadAO (init_record) Illegal OUT field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPWriteAO (init_record) Syntax error: OUT field");
+				"devSyncRTPReadAO (init_record) Syntax error: OUT field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;
@@ -193,8 +193,8 @@ static long processBi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPWriteBO  ={6, 0, 0, initBo, 0, processBo, 0};
-epicsExportAddress(dset,devSyncRTPWriteBO);
+devRTP devSyncRTPReadBO  ={6, 0, 0, initBo, 0, processBo, 0};
+epicsExportAddress(dset,devSyncRTPReadBO);
 
 static long initBo (void *prec)
 {
@@ -210,13 +210,13 @@ static long initBo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPWriteBO (init_record) Illegal INP field");
+					"devSyncRTPReadBI (init_record) Illegal INP field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPWriteBO (init_record) Syntax error: INP field");
+				"devSyncRTPReadBI (init_record) Syntax error: INP field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;
@@ -695,6 +695,8 @@ int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int
 				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WBOOL_INDEX);
 				//msgSize = SINGLE_CRC_WBOOL_INDEX + 2;
 				check = getCRC((unsigned char*)sWCommand, sendByte);
+				sWCommand[sendByte++] = (check >> 8) & 0xFF;
+				sWCommand[sendByte++] = (check & 0xFF);
 			}
 			break;
 		case INT_WRITE:	
@@ -704,6 +706,8 @@ int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int
 				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WINT_INDEX);
 				//msgSize = SINGLE_CRC_WINT_INDEX + 2;
 				check = getCRC((unsigned char*)sWCommand, sendByte);
+				sWCommand[sendByte++] = (check >> 8) & 0xFF;
+				sWCommand[sendByte++] = (check & 0xFF);
 			}
 			break;
 		case FLOAT_WRITE:
@@ -713,6 +717,8 @@ int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int
 				//unsigned short check = getCRC((unsigned char*)sWCommand, SINGLE_CRC_WFLOAT_INDEX);
 				//msgSize = SINGLE_CRC_WFLOAT_INDEX + 2;
 				check = getCRC((unsigned char*)sWCommand, sendByte);
+				sWCommand[sendByte++] = (check >> 8) & 0xFF;
+				sWCommand[sendByte++] = (check & 0xFF);
 			}
 			break;
 	}
