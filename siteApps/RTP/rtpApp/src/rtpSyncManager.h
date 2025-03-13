@@ -246,6 +246,7 @@ private:
 	char		*sRCommand;
 	char		*sWCommand;
 	unsigned short getCRC(unsigned char *writecmd, int loopcnt);
+	unsigned short writeCRC(unsigned char *writecmd, int loopcnt);
 
 	//int	readSMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread);
 	//int readSMsgCommand(const int type, const int mul_single);
