@@ -1,0 +1,184 @@
+S7nodave for EPICS
+   Device support and driver for EPICS communication with S7 PLCs 
+================================================================================
+
+ABOUT
+-----
+
+S7nodave is a device support and driver for using S7 PLCs with an EPICS IOC,
+which is based on Snap7 (http://snap7.sourceforge.net/).
+
+Using s7nodave, you can read variables from or write data to the PLC using the 
+ISO on TCP protocol. You only have to specify the memory address and data-type
+for each item you want to read or write.
+
+
+A WORD OF CAUTION
+-----------------
+
+When using this software to connect to a PLC, disconnect ALL external equipment
+from the PLC before trying to establish a connection.
+
+This software can overwrite variables in the PLC memory or even parts of the
+program running in the PLC. Therefore outputs of the PLC might show 
+unpredictable behavior.
+
+There are a lot of different PLC types and depending on the type of the PLC, its
+configuration, the type of the host machine used for the EPICS IOC, the host 
+machine's configuration and the EPICS IOC's configuration, this software might 
+have very different, potentially unwanted results.
+
+It is always the responsibility of the user using this software to ensure, that
+its use is safe and complies with local regulation BEFORE connecting any 
+equipment to the PLC. Violations of this rules might result in equipment being
+damaged or even PERSONS BEING INJURED by misbehaving equipment.
+
+
+COMPILING
+---------
+
+You need to add the configure/RELEASE.local file and set the EPICS_BASE and ASYN
+variables to the locations of your EPICS Base and Asyn installation directories.
+
+You might also have to add configure/CONFIG_SITE.local and append the
+appropriate compiler options (e.g. "-std=c++11") for enabling C++ 11 support to
+the USR_CXXFLAGS variable.
+
+As Snap7 is bundled with s7nodave for EPICS, there is no need to compile Snap7
+separately. It will be compiled and placed in the lib directory automatically
+when running make.
+
+
+USING THE DEVICE SUPPORT / DRIVER
+---------------------------------
+
+In order to use the device support and driver in an IOC, you have to add the
+line
+
+S7NODAVE=/path/to/s7nodave
+
+to the configure/RELEASE file of your IOC application. Assuming your IOC 
+application name is "xxx", you also have to add the two lines
+
+xxx_DBD += s7nodave.dbd
+xxx_LIBS += s7nodave
+
+to the file xxxApp/src/Makefile.
+
+You can the use DTYP "s7nodave" for most record types. The device addresses
+have the form "@myPLC IB0" where "myPLC" is the name of a port created using
+
+s7nodaveConfigureIsoTcpPort("myPLC", "s7plc.local.marsching.com", 0, 0, 0)
+
+in iocBoot/iocxxx/st.cmd and "IB0" is a memory address in the usual S7 notation.
+
+Please see the extended documentation in the docs directory for more detailed
+information about how to use s7nodave for EPICS.
+
+
+CONTACTING THE AUTHOR
+---------------------
+
+Please refer to the contact information given on our web page 
+(http://www.aquenos.com). Bug reports, comments on this software and reports of
+applications of this software are always welcome.
+
+================================================================================
+
+Copyright notice for s7nodave for EPICS:
+ 
+Copyright 2011-2021 aquenos GmbH
+
+S7nodave for EPICS is free software: you can redistribute it and/or modify it 
+under the terms of the GNU General Public License as published by the Free 
+Software Foundation, either version 3 of the License, or (at your option) any 
+later version.
+
+S7nodave for EPICS is distributed in the hope that it will be useful, but 
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more 
+details.
+
+You should have received a copy of the GNU General Public License along with 
+s7nodave for EPICS.  If not, see <http://www.gnu.org/licenses/>.
+ 
+================================================================================
+
+This software uses EPICS base. Copyright notice for EPICS base:
+
+Copyright (c) 1991-2007 UChicago Argonne LLC and The Regents of the University 
+of California. All rights reserved.
+
+For the license of EPICS base please refer to the LICENSE file in the EPICS base
+directory.
+
+================================================================================
+
+This software uses Asyn for EPICS. Copyright notice for Asyn:
+
+Copyright (c) 2002 University of Chicago, The Regents of the
+University of California, and Berliner Elektronenspeicherring
+Gesellschaft fuer Synchrotronstrahlung m.b.H. (BESSY) All rights
+reserved.
+
+Copyright (c) 2004 by Danfysik and Cosylab (Danfysik has funded the work
+performed by Cosylab).
+
+For the license of Asyn please refer to the LICENSE file in the Asyn directory.
+
+================================================================================
+
+This software uses and distributes (a minimal version of) Snap7. Copyright
+notice for Snap7:
+
+Copyright 2013, 2015 Davide Nardella
+
+Snap7 is free software: you can redistribute it and/or modify it under the terms
+of the Lesser GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+It means that you can distribute your commercial software linked with Snap7
+without the requirement to distribute the source code of your application and
+without the requirement that your application be itself distributed under LGPL.
+
+Snap7 is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the Lesser GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License and a copy of
+Lesser GNU General Public License along with Snap7. If not, see
+http://www.gnu.org/licenses/.
+
+================================================================================
+
+This tests for this software use Google Test. Copyright notice for Google Test:
+
+Copyright 2008, Google Inc.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+    * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+    * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

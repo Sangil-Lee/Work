@@ -1,0 +1,20 @@
+# Configure compiler flags. For some compilers C++11 (or C++0x) support has to
+# be enabled manually. For most compilers, the optimization level has to be
+# configured.
+
+# Language standard - should be c++11, c++0x, gnu++11 or gnu++0x.
+USR_CXXFLAGS += -std=c++11
+
+# Optimization level - should be O2 (for faster compilation) or O3
+# (for production use)
+USR_CXXFLAGS += -O3
+
+# Enable more compiler warnings
+USR_CXXFLAGS += -Wall -Wextra -pedantic -Wno-c++11-long-long
+
+# Language standard for C code - should be c99 or gnu99
+USR_CFLAGS += -std=c99
+
+# If you want to build the tests, make sure that BUILD_TESTS is defined.
+# Please note that Google Tests must be available in order to build the tests.
+# BUILD_TESTS = 1

@@ -1,0 +1,118 @@
+#record(bi,"root:bil1_5poll")
+#{
+#       field(SCAN,"I/O Intr")
+#       field(DTYP,"s7nodave")
+#       field(INP,"@s7PLC(PG=1s) I1.5")
+#       field(INP,"@s7PLC I1.5")
+#       field(DESC,"S7 PLC I1.5 Binary Input POLLING")
+#}
+#
+#
+#record(bo,"root:boQ0_4poll")
+#{
+#       field(SCAN,"I/O Intr")
+#       field(DTYP,"s7nodave")
+#       field(OUT,"@s7PLC Q0.4 bool")
+#       # field(DESC,"S7 PLC Q0.4 Binary Output")
+#}
+#
+# Example
+# {
+# 	field(DTYP, "s7nodave")
+# 	field(INP,  "@s7PLC(~~~)")
+# 		@s7PLC(DLV=0,DHV=27648) IW64, @s7PLC(DLV=0,DHV=27648) IW66 int16, @s7PLC IB0, @s7PLC QB0
+# }
+#
+#PLC Memory Address
+# Data Block Address Accessing #
+#DBn.DB{}, X:Bit, B:Byte, W:Word, D:Double Word
+# Input Memory Address Accessing #
+#I, X:Bit, B:Byte, W:Word, D:Double Word
+#
+# Output Memory Address Accessing #
+#Q, X:Bit, B:Byte, W:Word, D:Double Word
+#
+# F --> Flage, C --> Counter, T --> Timer
+
+record(longin,"S7Nodave:AI0")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) DB2.DBW16")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+#       field(INP,"@s7PLC(PG=1s) I1.5")
+record(longin,"S7Nodave:AI1")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) DB2.DBW18")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+record(ai,"S7Nodave:AI3")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) DB1.DBD0 float")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+#       field(INP,"@s7PLC(PG=1s) I1.5")
+record(ai,"S7Nodave:AI4")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) DB1.DBD20 float")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+record(ai,"S7Nodave:AI5")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) DB1.DBD2220 float")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+record(longin,"S7Nodave:LI6")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) MW1310")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+record(longin,"S7Nodave:LI7")
+{
+       field(SCAN,"I/O Intr")
+       field(DTYP,"s7nodave")
+       field(INP, "@s7PLC(PG=1s) MW1314")
+       field(DESC,"S7 PLC DWord(32bit) Test")
+}
+
+#record(longin,"(P}:LI0")
+#{
+#       field(SCAN,"I/O Intr")
+#       field(DTYP,"s7nodave")
+#       field(INP, "@s7PLC DB3.DBW0")
+#       field(DESC,"S7 PLC DWord(16bit) Test")
+#}
+#
+#record(mbbi,"(P}:MBBI0")
+#{
+#       field(SCAN,"I/O Intr")
+#       field(DTYP,"s7nodave")
+#       field(INP, "@s7PLC DB3.DBB0")
+#       field(DESC,"S7 PLC Byte(8bit) Test")
+#}
+#
+#record(bi,"(P}:BI0")
+#{
+#       field(SCAN,"I/O Intr")
+#       field(DTYP,"s7nodave")
+#       field(INP, "@s7PLC DB3.DBX0.1")
+#       field(DESC,"S7 PLC Bit Test")
+#}
+#
