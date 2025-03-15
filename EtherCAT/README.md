@@ -1,6 +1,10 @@
 # IgH EtherCAT Master Installation Guide
 This repository contains installation of IgH EtherCAT Master stack. If you need better real-time performance you can install [RT_PREEMPT Patch](https://github.com/veysiadn/RT_PREEMPT_INSTALL), or [Xenomai Patch](https://github.com/veysiadn/xenomai-install). Hope this repository will save time for you.
 
+RT patch before ethercat installation.
+[Debian RT_PREEPT_Pathc](https://github.com/icshwi/realtime-config)
+
+
 ## IgH EtherCAT Master Stack Installation
 
      git clone https://gitlab.com/etherlab.org/ethercat.git ethercat-hg
@@ -18,12 +22,13 @@ Move into the source directory
 
 It is important to check the Etherlab documentation for configuration, for this part refer to [IgH EtherCAT Library Documentation](https://etherlab.org/download/ethercat/ethercat-1.5.2.pdf) Chapter 9.2, Table 9.1 : You can check the document for detailed instruction on configuration. If you want to use generic driver, configuration below will work fine for you.
 
-    sudo ./configure --enable-8139too=no --prefix=/opt/etherlab
+    ###sudo ./configure --enable-8139too=no --prefix=/opt/etherlab
+    sudo ./configure --enable-8139too=no --enable-r8169=yes --prefix=/opt/etherlab
     sudo -s
     make 
     make modules 
     make install
-    make modules_install
+    make modules_install		##copied ec_generic and ec_rt8169 kernel object(ko), Debian(12, rt-patch), /lib/modules/6.1.0-30-rt-amd64/ethercat
     
 -> After succesfull (error free) installation, we'll need to check HWAddr (Hardware Address, also known as the MAC Address) of the NIC we'd like to use 
 (example: eth0) and record it. We'll need to type it in later. You can check your NIC's MAC address by : 
@@ -54,7 +59,7 @@ Example:
 ```
     MASTER0_DEVICE="XX:XX:XX:XX:XX:XX"
 
-    DEVICE_MODULES="generic"
+    DEVICE_MODULES="generic" or "r8169"
 ```
 #### Last Steps : 
 ```
@@ -72,6 +77,8 @@ Example:
   ## Enter the following contents:
   ```
     KERNEL=="EtherCAT[0-9]*", MODE="0664", GROUP="users"
+
+  ## GROUP="ctrluser" or "realtime" //after debian 12 patch, upper
  ```
  save and exit, then:
  
@@ -84,6 +91,8 @@ Example:
 
      sudo /etc/init.d/ethercat start
  after running this command you must see something like Starting EtherCAT master done.
+ --> should be released "Secure Boot" in BIOS/CMOS setup.
+ --> lsmod | grep ec_generic or ec_r8169  
  
  -> If you want to start ethercat from terminal directly without changing directory  you can create symbolic link: 
  
@@ -141,12 +150,7 @@ You can see if it got installed by running:
      sudo apt install stress
      stress -v -c 8 -i 10 -d 8
  
-
-### BONUS : Qt Installation 
-```sh
-sudo apt-get install  qtcreator qt5-default qt5-doc qt5-doc-html qtbase5-doc-html qtbase5-examples –y 
-sudo /sbin/ldconfig -v
-```
+Then, you can install ecmc for EPICS.
 
 If you face any problem you can check these sources : 
 
