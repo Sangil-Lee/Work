@@ -1,0 +1,8 @@
+record(longin, $(PREFIX)$(SIGNAL))
+{
+	field(DESC, "$(DESC)")
+	field(DTYP, "asynInt32")
+	field(INP,  "@asyn($(PORT) $(OFFSET)) $(DATA_TYPE)")
+    field(SCAN,"$(SCAN)")
+}
+

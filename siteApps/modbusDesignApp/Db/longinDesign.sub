@@ -1,0 +1,6 @@
+file "db/longin.template" { pattern
+{PREFIX,				SIGNAL,		PORT,			OFFSET, DATA_TYPE,	SCAN,		DESC}
+{NDPS-PS:Flow-CH01:,	Data,		"LONGIN",		0,		INT32_LE,	".5 second",	"NDPS Flowmeter CH1 Data"}
+{NDPS-PS:Flow-CH02:,	Data,		"LONGIN",	    2,		INT32_LE,	".5 second",	"NDPS Flowmeter CH2 Data"}
+{NDPS-PS:Flow-CH03:,	Data,		"LONGIN",	    4,		INT32_LE,	".5 second",	"NDPS Flowmeter CH2 Data"}
+}                                                                   
