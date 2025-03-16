@@ -100,8 +100,8 @@ static long processAi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPReadAO  ={6, 0, 0, initAo, 0, processAo, 0};
-epicsExportAddress(dset,devSyncRTPReadAO);
+devRTP devSyncRTPWriteAO  ={6, 0, 0, initAo, 0, processAo, 0};
+epicsExportAddress(dset,devSyncRTPWriteAO);
 
 static long initAo (void *prec)
 {
@@ -117,13 +117,13 @@ static long initAo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPReadAO (init_record) Illegal OUT field");
+					"devSyncRTPWriteAO (init_record) Illegal OUT field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPReadAO (init_record) Syntax error: OUT field");
+				"devSyncRTPWriteAO (init_record) Syntax error: OUT field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;
@@ -193,8 +193,8 @@ static long processBi (void *precord)
 	return (2);
 }
 
-devRTP devSyncRTPReadBO  ={6, 0, 0, initBo, 0, processBo, 0};
-epicsExportAddress(dset,devSyncRTPReadBO);
+devRTP devSyncRTPWriteBO  ={6, 0, 0, initBo, 0, processBo, 0};
+epicsExportAddress(dset,devSyncRTPWriteBO);
 
 static long initBo (void *prec)
 {
@@ -210,13 +210,13 @@ static long initBo (void *prec)
 			break;
 		default :
 			recGblRecordError(S_db_badField,(void *)pr,
-					"devSyncRTPReadBI (init_record) Illegal INP field");
+					"devSyncRTPWriteBO (init_record) Illegal INP field");
 			return(S_db_badField);
 	};
 
 	if(status < 0)
 		recGblRecordError(S_db_badField,(void *)pr,
-				"devSyncRTPReadBI (init_record) Syntax error: INP field");
+				"devSyncRTPWriteBO (init_record) Syntax error: INP field");
 
 	pr->dpvt = rtpDevice;
 	pr->udf = false;
@@ -617,28 +617,36 @@ RTPSyncManager::~RTPSyncManager()
 }
 unsigned short RTPSyncManager::getCRC(unsigned char *writecmd, int loopcnt) 
 {
-	unsigned short fcsval = FCSINIT;
-	
-	for(int i = 1; i < loopcnt; i++)
-	{
-		fcsval = ((fcsval >> 8) & 0xff) ^ fcstab[(fcsval ^ writecmd[i]) & 0xff]; 
-	};
-	
-	writecmd[loopcnt] = fcsval & 0xff;
-	writecmd[loopcnt + 1] = (fcsval >> 8) & 0xff;
-	
-	return fcsval;
-}
+#if 1
+	unsigned short fcsval = 0xFFFF;
 
-unsigned short RTPSyncManager::writeCRC(unsigned char *writecmd, int loopcnt) 
-{
-	unsigned short fcsval = FCSINIT;
-	for(int i = 1; i < loopcnt; i++)
-	{
+	for(int i = 1; i < loopcnt; i++) {
 		fcsval = ((fcsval >> 8) & 0xff) ^ fcstab[(fcsval ^ writecmd[i]) & 0xff]; 
 	};
 	
+	writecmd[loopcnt]   = fcsval & 0xff;
+	writecmd[loopcnt+1] = (fcsval >> 8) & 0xff;
+	
 	return fcsval;
+#else
+	uint16_t crc = 0xFFFF;
+	uint16_t polynomial = 0x1021;
+	size_t i, j;
+
+	for (i = 0; i < loopcnt; i++)
+	{
+		crc ^= (uint16_t)(writecmd[i] << 8);
+		for(j=0; j < 8; j++)
+		{
+			if(crc & 0x8000) {
+				crc = (crc << 1) ^ polynomial;
+			} else{
+				crc <<=1;
+			};
+		}
+	}
+	return crc;
+#endif
 }
 
 uchar RTPSyncManager::getCrc(uchar *CRCBuffer, ushort LoopCount)
@@ -677,13 +685,30 @@ int RTPSyncManager::readSMsgCommand(const int type, const int mul_single, const 
 
 int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int cpu_node, const int index_value, epicsFloat32 fvalue)
 {
-	//sWCommand[0]= SYNC_BYTE;
-	//sWCommand[1]= length; //Float Write Length = 7, Single = 3
-	//sWCommand[2]= 0x00; 
-	//sWCommand[3]= cpu_node;  //Node = 0
-	//sWCommand[4]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
+	ushort sendByte = 0;
+	char writeMsg[13] ={0};
+	writeMsg[sendByte++]= SYNC_BYTE;
+	writeMsg[sendByte++]= length; //Float Write Length = 7, Single = 3
+	writeMsg[sendByte++]= 0x00; 
+	writeMsg[sendByte++]= cpu_node;  //Node = 0
+	writeMsg[sendByte++]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
+	writeMsg[sendByte++]= (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	writeMsg[sendByte++]= (unsigned char)(index_value / 256);
 	//sWCommand[5] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
 	//sWCommand[6] = (unsigned char)(index_value / 256);
+/*
+	ushort sendByte 	= 0; 
+	msgToSend[sendByte++]= SYNC_BYTE;
+	msgToSend[sendByte++]= mul_single; //Multi = 5, Single = 3
+	msgToSend[sendByte++]= 0x00; 
+	msgToSend[sendByte++]= node;  //Node = 0
+	msgToSend[sendByte++]= type; // FLOAT_READ = 0x9D, INT_READ = 0x8D, BOOL_READ = 0x82
+	msgToSend[sendByte++] = (unsigned char)(index % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
+	msgToSend[sendByte++] = (unsigned char)(index / 256);
+	msgToSend[sendByte++] = (unsigned char)(numtoread % 256);
+	msgToSend[sendByte++] = (unsigned char)(numtoread / 256);
+	unsigned short check = getCRC((unsigned char*)msgToSend, sendByte);
+	return send(mptty->fd, (const char*)msgToSend, sendByte+2, 0);
 
 	ushort sendByte 	 = 0; 
 	sWCommand[sendByte++]= SYNC_BYTE;
@@ -691,57 +716,45 @@ int RTPSyncManager::writeSMsgCommand(const int type, const int length, const int
 	sWCommand[sendByte++]= 0x00; 
 	sWCommand[sendByte++]= cpu_node;  //Node = 0
 	sWCommand[sendByte++]= type;		// FLOAT_WRITE = 0x9E, INT_WRITE = 0x8E, BOOL_WRITE = 0x83
-	sWCommand[sendByte++] = (unsigned char)(index_value % 256);
+	sWCommand[sendByte++] = (unsigned char)(index_value % 256); // BOOL_START_INDEX = 485, FLOAT_START_INDEX = 9, INT_START_INDEX = 23
 	sWCommand[sendByte++] = (unsigned char)(index_value / 256);
+*/
 
-	size_t msgSize = 0;
+	//size_t msgSize = 0;
 
+	unsigned short check = 0;
+	int msgSize = 0;
 	switch(type)
 	{
 		case BOOL_WRITE:
 			{
 				bool bval = (bool)fvalue;
-				memcpy(&sWCommand[7], &bval, sizeof(bool));
-				unsigned short check = writeCRC((unsigned char*)sWCommand, SINGLE_CRC_WBOOL_INDEX);
-				msgSize = SINGLE_CRC_WBOOL_INDEX + 2;
-				//check = getCRC((unsigned char*)sWCommand, sendByte);
-				//sWCommand[sendByte++] = (check >> 8) & 0xFF;
-				//sWCommand[sendByte++] = (check & 0xFF);
-				sWCommand[SINGLE_CRC_WBOOL_INDEX] = check & 0xff;
-				sWCommand[SINGLE_CRC_WBOOL_INDEX+1] = (check >> 8) & 0xff;
+				memcpy(&writeMsg[7], &bval, sizeof(bool));
+				check = getCRC((unsigned char*)writeMsg, sendByte+1);
+				msgSize = 10;
+				
 			}
 			break;
 		case INT_WRITE:	
 			{
 				int ival = (int)fvalue;
-				memcpy(&sWCommand[7], &ival, sizeof(ival));
-				unsigned short check = writeCRC((unsigned char*)sWCommand, SINGLE_CRC_WINT_INDEX);
-				msgSize = SINGLE_CRC_WINT_INDEX + 2;
-				//check = getCRC((unsigned char*)sWCommand, sendByte);
-				//sWCommand[sendByte++] = (check >> 8) & 0xFF;
-				//sWCommand[sendByte++] = (check & 0xFF);
-				sWCommand[SINGLE_CRC_WINT_INDEX] = check & 0xff;
-				sWCommand[SINGLE_CRC_WINT_INDEX+1] = (check >> 8) & 0xff;
+				memcpy(&writeMsg[7], &ival, sizeof(ival));
+				check = getCRC((unsigned char*)writeMsg, sendByte+2);
+				msgSize = 11;
 			}
 			break;
 		case FLOAT_WRITE:
 		default:
 			{
-				memcpy(&sWCommand[7], &fvalue, sizeof(epicsFloat32));
-				unsigned short check = writeCRC((unsigned char*)sWCommand, SINGLE_CRC_WFLOAT_INDEX);
-				msgSize = SINGLE_CRC_WFLOAT_INDEX + 2;
-				//check = getCRC((unsigned char*)sWCommand, sendByte);
-				//sWCommand[sendByte++] = (check >> 8) & 0xFF;
-				//sWCommand[sendByte++] = (check & 0xFF);
-				sWCommand[SINGLE_CRC_WFLOAT_INDEX] = check & 0xff;
-				sWCommand[SINGLE_CRC_WFLOAT_INDEX+1] = (check >> 8) & 0xff;
+				printf("FVAlue=====>: %f\n", fvalue);
+				memcpy(&writeMsg[7], &fvalue, sizeof(epicsFloat32));
+				check = getCRC((unsigned char*)writeMsg, sendByte+4);
+				msgSize = 13;
 			}
 			break;
 	}
 
-	//return send(mptty->fd, (const char*)sWCommand, SINGLE_WRITE_COMMANDMSG_SIZE, 0);
-	//return send(mptty->fd, (const char*)sWCommand, sendByte+2, 0);
-	return send(mptty->fd, (const char*)sWCommand, msgSize, 0);
+	return send(mptty->fd, (const char*)writeMsg, msgSize, 0);
 }
 
 ssize_t RTPSyncManager::readMMsgCommand(const int node, const int type, const int mul_single, const int index, const int numtoread)
@@ -796,17 +809,20 @@ int RTPSyncManager::WriteSFloatData(const aoRecord *pr)
 	epicsMutexLock(mutex);
 	int recByte = writeSMsgCommand(FLOAT_WRITE, 7, pRtp->cpu_node, pRtp->index_value, pr->val);
 
+	printf("ReciveByte: %d\n", recByte);
+
+#if 1
 	char ReadData[7];
 	ssize_t recvbyte = recv(mptty->fd, (char*)&ReadData, sizeof(ReadData), 0);
 
-	if(recvbyte < 0) {
+	if(recByte < 0) {
 		printf("Recv-Error: %s\n", strerror(SOCKERRNO));
-		epicsMutexUnlock(mutex);
 		return -1;
 	};
+#endif
 	epicsMutexUnlock(mutex);
 
-	char resp = ReadData[4];
+	//char resp = ReadData[4];
 	//printf("Response-code: %d\n", resp);
 
 	return (0);
@@ -1285,6 +1301,7 @@ int RTPSyncManager::receiveMessage(void* pBuff)
 
 }
 
+#if 0
 char * RTPSyncManager::FloatToIEEE(float *FloatArray, int NoOfCnt)
 {
 	char TempBuf[4];
@@ -1314,6 +1331,7 @@ char * RTPSyncManager::FloatToIEEE(float *FloatArray, int NoOfCnt)
 	}
 	return RetBuf;
 }
+#endif
 
 /* This function is used to convert a string of IEEE format floting points into the Float Array	*
 *  The string is passed with the pointer to the return float array and Number Of Count.		*
