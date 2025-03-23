@@ -39,6 +39,8 @@ class AlarmSetting:
                         continue
                     rlines = re.sub(r"\s*([=])\s*","=", rlines)
                     rlines = re.split(r'[\s,]+', rlines)
+                    if rlines[0].lower() == "component" :
+                        continue
 
                     if len(rlines) > 1:
                         key = rlines[0]

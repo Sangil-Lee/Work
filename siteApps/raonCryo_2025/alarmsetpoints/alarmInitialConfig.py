@@ -14,11 +14,11 @@ from prompt_toolkit.validation import Validator, ValidationError
 class AlarmInitialConfig:
     def __init__(self):
         try:
-            self.InteractiveAlarmConfig()
+            self.__interactiveAlarmConfig()
         except Exception as e:
             print(f"File Reading Excption: {str(e)}")
 
-    def InteractiveAlarmConfig(self):
+    def __interactiveAlarmConfig(self):
         bindings = KeyBindings()
         @bindings.add(Keys.ControlQ)
         def _(event):
@@ -196,26 +196,25 @@ class AlarmInitialConfig:
                 header = next(csv_reader)
                 pv_list = []
                 for row in csv_reader:
-                    # Remove white space for front, backend of special character(=:)
                     if not row:
                         continue
                     rlines = " ".join(row)
                     if rlines[0] == "#" :
-                        rlines = rlines.replace("#","")
-                        rlines = re.sub(r"\s*([=])\s*","=", rlines)
-                        rlines = re.split(r'[\s=\[\]]+', rlines)
-                        rlines = [s for s in rlines if s]
-                        if rlines[0].lower() != "component" :
-                            continue
+                        continue
+                    rlines = re.sub(r"\s*([=])\s*","=", rlines)
+                    rlines = re.split(r'[\s=\[\]]+', rlines)
+                    if rlines[0].lower() == "component" :
                         key=rlines[1]
-                        #print(rlines)
+                        #print(key)
                         if current_key is not None:
                             data_dict[current_key] = ';'.join(current_value)
                         current_key = key
                         current_value = []
                     elif current_key is not None:
-                        rlines = re.split(r'[\s,]+', rlines)
+                        #print(rlines)
                         current_value.append(rlines[0])
+                    else:
+                        raise Exception("Need a definition for component name!!")
 
                 if current_key is not None:
                     data_dict[current_key] = ';'.join(current_value)
@@ -234,86 +233,28 @@ class AlarmInitialConfig:
                     #print(value)
                     pv = etree.SubElement(component, "pv")
                     pv.attrib["name"] = value
-                    descr = etree.SubElement(pv, "descirption")
+                    descr = etree.SubElement(pv, "description")
                     descr.text = value
-                    enabled = etree.SubElement(pv, "enabled")
-                    enabled.text = "true"
-                    latching = etree.SubElement(pv, "latching")
-                    latching.text = "false"
-
-            xtree = etree.ElementTree(config)
-            config_file = 'generated_alarm_config.xml'
-            if copy is True:
-                config_file = "../site-config/alarm_config.xml"
-
-            xtree.write(config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
-            print(f"Successful generation alarm config: {config_file}")
-        except FileNotFoundError:
-            print(f"File Not Found: {file_path}")
-            return None
-        except Exception as e:
-            print(f"Read error while reading file: {str(e)}")
-            return None
-
-    @staticmethod
-    def GenXMLAlarmConfig(file_path, copy):
-        try:
-            file_name = file_path
-            if re.search(r"\.csv$",file_name, re.IGNORECASE) is None:
-                raise Exception("File extension is not csv!!")
-
-            with open(file_path, 'r', encoding='utf-8') as file:
-                csv_reader = csv.reader(file)
-                header = next(csv_reader)
-                config = etree.Element("config")
-                config.attrib["name"] = "Accelerator"
-                component = etree.SubElement(config, "component")
-                component.attrib["name"] = "Group"
-                prev_val = 0
-                for line_num, row in enumerate(csv_reader):
-                    if not row:
-                        continue
-                    rlines = " ".join(row)
-                    if rlines[0] == "#" :
-                        continue
-                    pv_name = re.split(r'[\s,]+', rlines)
-                    #print(pv_name)
-
-                    if len(pv_name) > 1 :
-                        raise Exception (f"Only need a pv_name information:{file_name}")
-
-                    val, reminder = divmod(line_num, 10)
-                    if prev_val is not val:
-                        component = etree.SubElement(config, "component")
-                        component.attrib["name"] = "Group_"+str(val)
-
-                    pv = etree.SubElement(component, "pv")
-                    pv.attrib["name"] = pv_name[0]
-                    descr = etree.SubElement(pv, "descirption")
-                    descr.text = pv_name[0]
                     enabled = etree.SubElement(pv, "enabled")
                     enabled.text = "true"
                     latching = etree.SubElement(pv, "latching")
                     latching.text = "false"
                     annunciating = etree.SubElement(pv, "annunciating")
                     annunciating.text = "false"
-                    prev_val = val
 
             xtree = etree.ElementTree(config)
             config_file = 'generated_alarm_config.xml'
             if copy is True:
                 config_file = "../site-config/alarm_config.xml"
+
             xtree.write(config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
             print(f"Successful generation alarm config: {config_file}")
-            file.close()
-
         except FileNotFoundError:
             print(f"File Not Found: {file_path}")
             return None
         except Exception as e:
             print(f"Read error while reading file: {str(e)}")
             return None
-
 
 class TrueFalseValidator(Validator):
     def validate(self, document):
@@ -355,21 +296,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Initialize Alarm Config XML File')
     parser.add_argument('-file',        help='Alarm list for changing alarm setpoints(csv file, i.e., alarm_config.csv)')
     parser.add_argument('-copy',        type=bool, help='Copy initial alarm xml config to pas-demo/site-config/alarm_config.xml')
-    parser.add_argument('-component',       type=bool, help='Component name in alarm config xml')
     args = parser.parse_args()
 
     print('Parsed arguments: {}'.format(args))
     print('-file',          args.file)
     print('-copy',          args.copy)
-    print('-component',         args.component)
 
 
     try :
         if check_all_none(args) :
             config = AlarmInitialConfig()
-        elif args.file is not None and args.component is None:
-            AlarmInitialConfig.GenXMLAlarmConfig(args.file, args.copy)
-        elif args.file is not None and args.component is not None:
+        elif args.file is not None:
             AlarmInitialConfig.GenXMLAlarmConfigByGroup(args.file, args.copy)
 
     except KeyboardInterrupt:
