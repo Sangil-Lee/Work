@@ -1,225 +1,101 @@
-#!/usr/bin/python
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = [x for x in numbers if x % 2 == 0]
+print(even_numbers)  #even
 
-from epics import PV, caget, caput
-import argparse
-import csv
-import re
+numbers = [1, 2, 3, 4, 5]
+squared_numbers = [x**2 for x in numbers]
+print(squared_numbers)  #square
 
-def str2bool(s):
-    return s.lower() in ('yes', 'true', 't', '1')
+words = ["apple", "banana", "cherry", "date"]
+word_lengths = [len(word) for word in words]
+print(word_lengths)  # word length
 
-def setAlarms():
-    readfile = args.file
-    try:
-        with open(readfile, 'r', encoding='utf-8') as file:
-            csv_reader = csv.reader(file)
-            for i, row in enumerate(csv_reader):
-                print(i, '===>>>')
-                pvname = ' '.join(row)
+numbers = [1, 2, 3, 4, 5]
+result = ["even" if x % 2 == 0 else "odd" for x in numbers]
+print(result)  #
 
-                print('[Before]')
-                pv_hihi = PV(pvname+'.HIHI')
-                pv_high = PV(pvname+'.HIGH')
-                pv_low  = PV(pvname+'.LOW')
-                pv_lolo = PV(pvname+'.LOLO')
-                pv_hyst = PV(pvname+'.HYST')
-                pv_aftc = PV(pvname+'.AFTC')
 
-                if pv_hihi.get() == None:
-                    print('can not connect with C.A: -->', pvname)
-                    break
-                print(pvname+'.HIHI=', pv_hihi.get(), ' --> Set.HIHI = [', args.hihi, ']')
-                print(pvname+'.HIGH=', pv_high.get(), ' --> Set.HIGH = [', args.high, ']')
-                print(pvname+'.LOW=',  pv_low.get(),  ' --> Set.LOW  = [', args.low,  ']')
-                print(pvname+'.LOLO=', pv_lolo.get(), ' --> Set.LOLO = [', args.lolo, ']')
-                print(pvname+'.HYST=', pv_hyst.get(), ' --> Set.LOW  = [', args.hyst,  ']')
-                print(pvname+'.AFTC=', pv_aftc.get(), ' --> Set.LOLO = [', args.aftc, ']')
+nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flattened_list = [x for sublist in nested_list for x in sublist]
+print(flattened_list)  #
 
-                pv_hihi.put(float(args.hihi), wait=True)
-                pv_high.put(float(args.high), wait=True)
-                pv_low.put(float(args.low), wait=True)
-                pv_lolo.put(float(args.lolo), wait=True)
-                pv_hyst.put(float(args.hyst), wait=True)
-                pv_aftc.put(float(args.aftc), wait=True)
+numbers = [1, 2, 2, 3, 4, 4, 5]
+unique_numbers = list(set(numbers))
+print(unique_numbers)  # unique value
 
-                print('[After]')
-                print(pvname+'.HIHI=', pv_hihi.get())
-                print(pvname+'.HIGH=', pv_high.get())
-                print(pvname+'.LOW=',  pv_low.get())
-                print(pvname+'.LOLO=', pv_lolo.get())
-                print(pvname+'.HYST=', pv_hyst.get())
-                print(pvname+'.AFTC=', pv_aftc.get())
+words = ['apple', 'banana', 'cherry', 'date', 'elderberry']
+filtered_words = [word for word in words if 'a' in word]
+print(filtered_words) # 'a' in word
 
-                print('<<<===')
-            file.close()
-    except IOError:
-        print('Exception:could not read file:', readfile)
+for i in range(5):  # 
+    print(i)
 
-def checkAlarms():
-    readfile = args.file
-    try:
-        with open(args.file, 'r', encoding='utf-8') as file:
-            csv_reader = csv.reader(file)
-            for i, row in enumerate(csv_reader):
-                print(i, '===>>>')
-                pvname = ' '.join(row)
+total = 0
+for i in range(1, 11):  # 1부터 10까지
+    total += i
+print(total)  # 
 
-                pv_hihi = PV(pvname+'.HIHI')
-                pv_high = PV(pvname+'.HIGH')
-                pv_low  = PV(pvname+'.LOW')
-                pv_lolo = PV(pvname+'.LOLO')
-                pv_hyst = PV(pvname+'.HYST')
-                pv_aftc = PV(pvname+'.AFTC')
 
-                hihi_val = pv_hihi.get()
-                high_val = pv_high.get()
-                low_val  = pv_low.get()
-                lolo_val = pv_lolo.get()
-                hyst_val = pv_hyst.get()
-                aftc_val = pv_aftc.get()
+for i in range(10, 1000, 10):
+    print(i)  
 
-                bok = True
-                if hihi_val != args.hihi:
-                    bok = False
-                    print(pvname + ".HIHI[{0}] --> Args.HIHI[{1}]".format(hihi_val, args.hihi) )
-                if high_val != args.high:
-                    bok = False
-                    print(pvname + ".HIGH[{0}] --> Args.HIGH[{1}]".format(high_val, args.high) )
-                if low_val  != args.low:
-                    bok = False
-                    print(pvname + ".LOW[{0}]  --> Args.LOW[{1}]".format(low_val, args.low) )
-                if lolo_val != args.lolo :
-                    bok = False
-                    print(pvname + ".LOLO[{0}] --> Args.LOLO[{1}]".format(lolo_val, args.lolo) )
-                if hyst_val != args.hyst :
-                    bok = False
-                    print(pvname + ".HYST[{0}] --> Args.HYST[{1}]".format(hyst_val, args.hyst) )
-                if aftc_val != args.aftc :
-                    bok = False
-                    print(pvname + ".AFTC[{0}] --> Args.AFTC[{1}]".format(aftc_val, args.aftc) )
 
-                if bok == True:
-                    print("OK")
+my_list = ["apple", "banana", "cherry"]
+for i in range(len(my_list)):
+    print(i, my_list[i])
 
-                print('<<<===')
-            file.close()
-    except IOError:
-        print('Exception:could not read file:', readfile)
 
-def setAlarmPVs(s, bcheck):
-    print(s,',bcheck:',bcheck)
-    pvnames = s
-    pvnames = re.split(r'[\s,]+', pvnames)
-    for i, pvname in enumerate(pvnames):
-        print(i, '===>>>')
-        print(pvname)
-        if bcheck == True:
-            pv_hihi = PV(pvname+'.HIHI')
-            pv_high = PV(pvname+'.HIGH')
-            pv_low  = PV(pvname+'.LOW')
-            pv_lolo = PV(pvname+'.LOLO')
-            pv_hyst = PV(pvname+'.HYST')
-            pv_aftc = PV(pvname+'.AFTC')
-            if pv_hihi.get() == None:
-                print('can not connect with C.A: -->', pvname)
-                break
+for i in range(100, 0, -10):
+    print(i)
 
-            hihi_val = pv_hihi.get()
-            high_val = pv_high.get()
-            low_val  = pv_low.get()
-            lolo_val = pv_lolo.get()
-            hyst_val = pv_hyst.get()
-            aftc_val = pv_aftc.get()
+for i in range(1, 5, 0.1):
+    print(i)
 
-            bok = True
-            if hihi_val != args.hihi:
-                bok = False
-                print(pvname + ".HIHI[{0}] --> Args.HIHI[{1}]".format(hihi_val, args.hihi) )
-            if high_val != args.high:
-                bok = False
-                print(pvname + ".HIGH[{0}] --> Args.HIGH[{1}]".format(high_val, args.high) )
-            if low_val  != args.low:
-                bok = False
-                print(pvname + ".LOW[{0}]  --> Args.LOW[{1}]".format(low_val, args.low) )
-            if lolo_val != args.lolo :
-                bok = False
-                print(pvname + ".LOLO[{0}] --> Args.LOLO[{1}]".format(lolo_val, args.lolo) )
-            if hyst_val != args.hyst :
-                bok = False
-                print(pvname + ".HYST[{0}] --> Args.HYST[{1}]".format(hyst_val, args.hyst) )
-            if aftc_val != args.aftc :
-                bok = False
-                print(pvname + ".AFTC[{0}] --> Args.AFTC[{1}]".format(aftc_val, args.aftc) )
 
-            if bok == True:
-                print("OK")
-        else:
-            print('[Before]')
-            pv_hihi = PV(pvname+'.HIHI')
-            pv_high = PV(pvname+'.HIGH')
-            pv_low  = PV(pvname+'.LOW')
-            pv_lolo = PV(pvname+'.LOLO')
-            pv_hyst = PV(pvname+'.HYST')
-            pv_aftc = PV(pvname+'.AFTC')
+my_list = [10, 20, 30, 40, 50]
+for i in range(1, 4):  
+    print(my_list[i])  # 20, 30, 40
 
-            if pv_hihi.get() == None:
-                print('can not connect with C.A: -->', pvname)
-                break
-            print(pvname+'.HIHI=', pv_hihi.get(), ' --> Set.HIHI = [', args.hihi, ']')
-            print(pvname+'.HIGH=', pv_high.get(), ' --> Set.HIGH = [', args.high, ']')
-            print(pvname+'.LOW=',  pv_low.get(),  ' --> Set.LOW  = [', args.low,  ']')
-            print(pvname+'.LOLO=', pv_lolo.get(), ' --> Set.LOLO = [', args.lolo, ']')
-            print(pvname+'.HYST=', pv_hyst.get(), ' --> Set.LOLO = [', args.hyst, ']')
-            print(pvname+'.AFTC=', pv_aftc.get(), ' --> Set.LOLO = [', args.aftc, ']')
 
-            pv_hihi.put(float(args.hihi), wait=True)
-            pv_high.put(float(args.high), wait=True)
-            pv_low.put(float(args.low), wait=True)
-            pv_lolo.put(float(args.lolo), wait=True)
-            pv_hyst.put(float(args.hyst), wait=True)
-            pv_aftc.put(float(args.aftc), wait=True)
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+for i in range(len(matrix)):
+    for j in range(len(matrix[i])):
+        print(matrix[i][j])
 
-            print('[After]')
-            print(pvname+'.HIHI=', pv_hihi.get())
-            print(pvname+'.HIGH=', pv_high.get())
-            print(pvname+'.LOW=',  pv_low.get())
-            print(pvname+'.LOLO=', pv_lolo.get())
-            print(pvname+'.HYST=', pv_hyst.get())
-            print(pvname+'.AFTC=', pv_aftc.get())
 
-        print('<<<===')
+numbers = [1, 2, 3, 4, 5]
+squared_dict = {x: x**2 for x in numbers}
+print(squared_dict)  #{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
-parser = argparse.ArgumentParser(description='Alarm Setpoint Configure')
 
-parser.add_argument('-check', type=bool, default=argparse.SUPPRESS)
-parser.add_argument('-file',  help='Alarm list for changing alarm setpoints')
-parser.add_argument('-pvs',   help='PV names:e.g., pvname-1 pvname-2')
-parser.add_argument('-lolo',  type= float, help='LOLO alarm setpoint to change')
-parser.add_argument('-low',   type= float, help='LOW alarm setpoint to change')
-parser.add_argument('-high',  type= float, help='HIGH alarm setpoint to change')
-parser.add_argument('-hihi',  type= float, help='HIHI alarm setpoint to change')
-parser.add_argument('-hyst',  type= float, help='Alarm deadband set value')
-parser.add_argument('-aftc',  type= float, help='Alarm delay constant')
+words = ["apple", "banana", "cherry", "date"]
+word_length_dict = {word: len(word) for word in words}
+print(word_length_dict)  # {'apple': 5, 'banana': 6, 'cherry': 6, 'date': 4}
 
-args = parser.parse_args()
-bcheck = str2bool('{}'.format('check' in args))
-print("BPVs: ", args.pvs)
 
-print('Parsed arguments: {}'.format(args))
-print('-file', args.file)
-print('-pvs',  args.pvs)
-print('-lolo', args.lolo)
-print('-low',  args.low)
-print('-high', args.high)
-print('-hihi', args.hihi)
-print('-hyst', args.hyst)
-print('-aftc', args.aftc)
+numbers = [1, 2, 3, 4, 5]
+result_dict = {x: "even" if x % 2 == 0 else "odd" for x in numbers}
+print(result_dict)  #{1: 'odd', 2: 'even', 3: 'odd', 4: 'even', 5: 'odd'}
 
-if __name__ == "__main__":
+my_dict = {"a": 1, "b": 2, "c": 3}
+reversed_dict = {value: key for key, value in my_dict.items()}
+print(reversed_dict)  # reverse key, value
 
-    if args.pvs != None:
-        setAlarmPVs(args.pvs, bcheck)
-    elif bcheck == True and args.file != None:
-        checkAlarms()
-    elif args.file != None:
-        setAlarms()
+text = "hello world hello python"
+word_counts = {word: text.split().count(word) for word in set(text.split())}
+print(word_counts)  # {'hello': 2, 'world': 1, 'python': 1}
+
+my_dict = {"a": 1, "b": 2, "c": 3, "d": 4}
+filtered_dict = {key: value for key, value in my_dict.items() if value > 2}
+print(filtered_dict)  # {'c': 3, 'd': 4}
+
+my_list = ['apple', 'banana', 'cherry']
+indexed_dict = {value: index for index, value in enumerate(my_list)}
+print(indexed_dict) # {'apple': 0, 'banana': 1, 'cherry': 2}
+
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+combined_dict = {keys[i]: values[i] for i in range(len(keys))}
+print(combined_dict) # {'a': 1, 'b': 2, 'c': 3}
+
+

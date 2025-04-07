@@ -68,7 +68,7 @@ class AlarmInitialConfig:
                 descr_name = prompt("1.{}.{}-{}.{}".format(com_index, pv_index, field_index, prompt_desc_name),)
                 if len(descr_name) == 0:
                     descr_name = pv_name
-                descr = etree.SubElement(pv, "descirption")
+                descr = etree.SubElement(pv, "description")
                 descr.text = descr_name
 
                 field_index += 1
@@ -224,23 +224,34 @@ class AlarmInitialConfig:
 
             config = etree.Element("config")
             config.attrib["name"] = "Accelerator"
-            for key, values in data_dict.items():
-                #print(key,"===>>")
-                component = etree.SubElement(config, "component")
-                component.attrib["name"] = key
+            keyname = ""
+            setkey = set()
+            for dicindex, (keys, values) in enumerate(data_dict.items()):
+                #print(keys,"===>>")
+                keys = re.split(r'[\s:;]+', keys)
                 values = re.split(r'[\s;]+', values)
-                for value in values:
-                    #print(value)
-                    pv = etree.SubElement(component, "pv")
-                    pv.attrib["name"] = value
-                    descr = etree.SubElement(pv, "description")
-                    descr.text = value
-                    enabled = etree.SubElement(pv, "enabled")
-                    enabled.text = "true"
-                    latching = etree.SubElement(pv, "latching")
-                    latching.text = "false"
-                    annunciating = etree.SubElement(pv, "annunciating")
-                    annunciating.text = "false"
+                for index, key in enumerate(keys):
+                    if index == 0 :
+                        if not key in setkey:
+                            component = etree.SubElement(config, "component")
+                            component.attrib["name"] = key
+                        setkey.add(key)
+                    else :
+                        print(f"Dicindex({dicindex}), Key[{index}]: {key}")
+                        subcomp = etree.SubElement(component, "component")
+                        subcomp.attrib["name"] = key
+                        for value in values:
+                            #print(value)
+                            pv = etree.SubElement(subcomp, "pv")
+                            pv.attrib["name"] = value
+                            descr = etree.SubElement(pv, "description")
+                            descr.text = value
+                            enabled = etree.SubElement(pv, "enabled")
+                            enabled.text = "true"
+                            latching = etree.SubElement(pv, "latching")
+                            latching.text = "false"
+                            annunciating = etree.SubElement(pv, "annunciating")
+                            annunciating.text = "false"
 
             xtree = etree.ElementTree(config)
             config_file = 'generated_alarm_config.xml'
@@ -290,11 +301,27 @@ def check_all_none(args):
             return False
     return True
 
+def read_csv_with_next_line(file_path):
+    try:
+        with open(file_path, 'r', newline='', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            lines = list(reader)  # 모든 줄을 메모리에 저장
+
+            for i, current_line in enumerate(lines):
+                next_line = lines[i + 1] if i + 1 < len(lines) else None
+                yield current_line, next_line
+
+    except FileNotFoundError:
+        print(f"오류: 파일을 찾을 수 없습니다: {file_path}")
+    except Exception as e:
+        print(f"오류: 파일 처리 중 오류 발생: {e}")
+
+
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Initialize Alarm Config XML File')
-    parser.add_argument('-file',        help='Alarm list for changing alarm setpoints(csv file, i.e., alarm_config.csv)')
+    parser.add_argument('-file',        help='Generation alarm config xml file from alarm setpoints setting file(csv file, i.e., alarm_config.csv)')
     parser.add_argument('-copy',        type=bool, help='Copy initial alarm xml config to pas-demo/site-config/alarm_config.xml')
     args = parser.parse_args()
 
