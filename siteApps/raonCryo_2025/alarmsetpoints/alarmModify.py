@@ -23,6 +23,12 @@ class AlarmInitialConfig:
         except Exception as e:
             print(f"File Reading Excption: {str(e)}")
 
+    def __getSafe(self, slist, index, default=""):
+        if 0 <= index < len(slist):
+            return slist[index]
+        else:
+            return default
+
     def __interactiveAlarmConfigModify(self, file_path):
 
         try:
@@ -88,110 +94,195 @@ class AlarmInitialConfig:
                 continue
 
             for pv_node in root.xpath(f"//component[@name='{comp_name}']") and root.xpath(f"//pv[@name='{pv_name}']"):
-                for pv_field in pv_node.getchildren():
-                    pv_node.remove(pv_field)
+
+                #for pv_field in pv_node.getchildren():
+                    #print("Tag Name:", pv_field.tag, "Tag Text:", pv_field.text)
+                    #if pv_field.tag == "guidance" or pv_field.tag == "display" or pv_field.tag == "command" :
+                        #for sub_field in pv_field.getchildren():
+                            #print("Sub_Tag Name:", sub_field.tag, "Sub_Tag Text:", sub_field.text)
+                #guide_list = self.__getAttrtext(pv_node, "guidance")
+                #print(guide_list)
+                #return
+
+                #for pv_field in pv_node.getchildren():
+                    #pv_node.remove(pv_field)
 
                 field_index = 1
-                descr_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_desc_name),)
+                descr, strDefault = self.__getAttrtext(pv_node,"description")
+                descr_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_desc_name), default=strDefault)
+                if len(strDefault) == 0:
+                    descr = et.SubElement(pv_node, "description")
+
                 if len(descr_name) == 0:
                     descr_name = pv_name
-                descr = et.SubElement(pv_node, "description")
                 descr.text = descr_name
+                print(descr.text)
+
 
                 field_index += 1
-                enabled_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_enabled_name), validator=TrueFalseValidator(), default='true')
-                enabled = et.SubElement(pv_node, "enabled")
+                enabled, strDefault = self.__getAttrtext(pv_node,"enabled")
+                enabled_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_enabled_name), validator=TrueFalseValidator(), default=strDefault)
+
+                if len(strDefault) == 0:
+                    enabled = et.SubElement(pv_node, "enabled")
+
                 enabled.text = enabled_name
+                print(enabled.text)
 
                 field_index += 1
-                latching_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_latch_name), validator=TrueFalseValidator(), default='false')
-                latching = et.SubElement(pv_node, "latching")
+                latching, strDefault = self.__getAttrtext(pv_node,"latching")
+                latching_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_latch_name), validator=TrueFalseValidator(), default=strDefault)
+
+                if len(strDefault) == 0:
+                    latching = et.SubElement(pv_node, "latching")
+
                 latching.text = latching_name
+                print(latching.text)
 
                 field_index += 1
-                annunciate_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_annunciate_name), validator=TrueFalseValidator(), default='false')
-                annunciate = et.SubElement(pv_node, "annunciating")
-                annunciate.text = annunciate_name
+                annunciating, strDefault = self.__getAttrtext(pv_node,"annunciating")
+                annunciating_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_annunciate_name), validator=TrueFalseValidator(), default=strDefault)
+
+                if len(strDefault) == 0:
+                    annunciating = et.SubElement(pv_node, "annunciating")
+
+                annunciating.text = annunciating_name
+                print(annunciating.text)
 
                 field_index += 1
-                delay_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_delay_name), validator=NumberValidator())
+                delay, strDefault = self.__getAttrtext(pv_node,"delay")
+                delay_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_delay_name), validator=NumberValidator(), default=strDefault)
 
-                if len(delay_name) != 0:
+                if len(strDefault) == 0:
                     delay = et.SubElement(pv_node, "delay")
-                    delay.text = delay_name
+
+                delay.text = delay_name
+                print(delay.text)
 
                 field_index += 1
-                count_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_count_name), validator=NumberValidator())
+                count, strDefault = self.__getAttrtext(pv_node,"count")
+                count_name = prompt("1.{}.{}.{}".format(index, field_index, prompt_count_name), validator=NumberValidator(), default=strDefault)
                 
-                if len(count_name) != 0:
+                if len(strDefault) == 0:
                     count = et.SubElement(pv_node, "count")
-                    count.text = count_name
 
+                count.text = count_name
+                print(count.text)
 
                 field_index += 1
                 guide_index = 1
-                for guidance_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, guide_index, prompt_guidance_name),), ''):
-                    guide_detail_index = 0
-                    if len(guidance_title_name) != 0:
-                        guidance = et.SubElement(pv_node, "guidance")
-                        guidance_title = et.SubElement(guidance, "title")
-                        guidance_title.text = guidance_title_name
+                guide_list = self.__getAttrtext(pv_node, "guidance")
+                print(guide_list)
+                guide_keys = list(guide_list.keys())
+                guide_values = list(guide_list.values())
 
-                    guide_detail_index += 1
-                    guidance_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, guide_index, guide_detail_index, prompt_guidance_detail_name),)
-                    if len(guidance_details_name) != 0:
-                        guidance_details = et.SubElement(guidance, "details")
-                        guidance_details.text = guidance_details_name
-                    guide_index += 1
+                try:
+                    for guidance_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, guide_index, prompt_guidance_name), default=self.__getSafe(guide_keys, guide_index-1)), ''):
+                        guide_detail_index = 0
+
+                        if len(guidance_title_name) != 0 and len(guide_keys) < guide_index :
+                            guidance = et.SubElement(pv_node, "guidance")
+                            guidance_title = et.SubElement(guidance, "title")
+                            guidance_title.text = guidance_title_name
+
+                        else:
+                            subelement = self.__getSubelement(pv_node, "guidance", self.__getSafe(guide_keys, guide_index-1))
+                            subelement.text = guidance_title_name
+
+                        guide_detail_index += 1
+                        guidance_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, guide_index, guide_detail_index, prompt_guidance_detail_name), default=self.__getSafe(guide_values, guide_index-1) )
+                        if len(guidance_details_name) != 0 and len(guide_values) < guide_index :
+                            guidance_details = et.SubElement(guidance, "details")
+                            guidance_details.text = guidance_details_name
+                        else:
+                            subelement = self.__getSubelement(pv_node, "guidance", self.__getSafe(guide_values, guide_index-1))
+                            subelement.text = guidance_details_name
+
+                        guide_index += 1
+                except IndexError:
+                    print("out of list index")
+
 
                 field_index += 1
                 display_index = 1
-                for display_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, display_index, prompt_display_name),), ''):
+                display_list = self.__getAttrtext(pv_node, "display")
+                display_keys = list(display_list.keys())
+                display_values = list(display_list.values())
+
+                for display_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, display_index, prompt_display_name), default=self.__getSafe(display_keys, display_index-1)), ''):
                     display_detail_index = 0
-                    if len(display_title_name) != 0:
+                    if len(display_title_name) != 0 and len(display_keys) < display_index :
                         display = et.SubElement(pv_node, "display")
                         display_title = et.SubElement(display, "title")
                         display_title.text = display_title_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "display", self.__getSafe(display_keys, display_index-1))
+                        subelement.text = display_title_name
+
 
                     display_detail_index += 1
-                    display_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, display_index, display_detail_index, prompt_display_detail_name),)
-                    if len(display_details_name) != 0:
+                    display_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, display_index, display_detail_index, prompt_display_detail_name), default=self.__getSafe(display_values, display_index-1) )
+                    if len(display_details_name) != 0 and len(display_values) < display_index:
                         display_details = et.SubElement(display, "details")
                         display_details.text = display_details_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "display", self.__getSafe(display_values, display_index-1))
+                        subelement.text = display_details_name
+
                     display_index += 1
 
                 field_index += 1
                 command_index = 1
-                for command_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, command_index, prompt_command_name),), ''):
+                command_list = self.__getAttrtext(pv_node, "command")
+                command_keys = list(command_list.keys())
+                command_values = list(command_list.values())
+                for command_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, command_index, prompt_command_name), default=self.__getSafe(command_keys, command_index-1)), ''):
                     command_detail_index = 0
-                    if len(command_title_name) != 0:
+                    if len(command_title_name) != 0 and len(command_keys) < command_index:
                         command = et.SubElement(pv_node, "command")
                         command_title = et.SubElement(command, "title")
                         command_title.text = command_title_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "command", self.__getSafe(command_keys, command_index-1))
+                        subelement.text = command_title_name
 
                     command_detail_index +=1
-                    command_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, command_index, command_detail_index, prompt_command_detail_name),)
-                    if len(command_details_name) != 0:
+                    command_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, command_index, command_detail_index, prompt_command_detail_name), default=self.__getSafe(command_values, command_index-1) )
+                    if len(command_details_name) != 0 and len(command_values) < command_index:
                         command_details = et.SubElement(command, "details")
                         command_details.text = command_details_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "command", self.__getSafe(command_values, command_index-1))
+                        subelement.text = command_details_name
                     command_index += 1
 
                 prefixes = ['mailto:', 'cmd:', 'sevrpv:']
                 field_index += 1
                 auto_command_index = 1
-                for automated_action_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, auto_command_index, prompt_auto_command_name),), ''):
+                auto_command_list = self.__getAttrtext(pv_node, "automated_action")
+                auto_command_keys = list(auto_command_list.keys())
+                auto_command_values = list(auto_command_list.values())
+                for automated_action_title_name in iter(lambda: prompt("1.{}.{}.{}.{}".format(index, field_index, auto_command_index, prompt_auto_command_name), default=self.__getSafe(auto_command_keys, auto_command_index-1)), ''):
                     auto_command_detail_index = 0
-                    if len(automated_action_title_name) != 0:
+                    if len(automated_action_title_name) != 0 and len(auto_command_keys) < auto_command_index :
                         automated_action = et.SubElement(pv_node, "automated_action")
                         automated_action_title = et.SubElement(automated_action, "title")
                         automated_action_title.text = automated_action_title_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "automated_action", self.__getSafe(auto_command_keys, auto_command_index-1))
+                        subelement.text = command_title_name
+                        
 
                     auto_command_detail_index += 1
-                    automated_action_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, auto_command_index, auto_command_detail_index, prompt_auto_command_detail_name), validator=NotificationValidator(prefixes), default='cmd:')
+                    #automated_action_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, auto_command_index, auto_command_detail_index, prompt_auto_command_detail_name), validator=NotificationValidator(prefixes), default='cmd:')
+                    automated_action_details_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, auto_command_index, auto_command_detail_index, prompt_auto_command_detail_name), default=self.__getSafe(auto_command_values, auto_command_index-1), validator=NotificationValidator(prefixes))
 
-                    if len(automated_action_details_name) != 0:
+                    if len(automated_action_details_name) != 0 and len(auto_command_values) < auto_command_index :
                         automated_action_details = et.SubElement(automated_action, "details")
                         automated_action_details.text = automated_action_details_name
+                    else:
+                        subelement = self.__getSubelement(pv_node, "automated_action", self.__getSafe(auto_command_values, auto_command_index-1))
+                        subelement.text = command_details_name
 
                     auto_command_detail_index += 1
                     delay_name = prompt("1.{}.{}.{}.{}.{}".format(index, field_index, auto_command_index, auto_command_detail_index, prompt_auto_command_delay_name), validator=NumberValidator())
@@ -206,6 +297,31 @@ class AlarmInitialConfig:
         if xml_file_name == "":
             return
         tree.write(xml_file_name, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+
+    def __getAttrtext(self, node, tagname):
+        subfields = {} 
+        for field in node.getchildren():
+            if field.tag.lower() in ["guidance", "display", "command", "automated_action"] :
+                if field.tag == tagname :
+                    for index, sub_field in enumerate(field.getchildren()):
+                        if index % 2 == 0:
+                            key = sub_field.text
+                        else:
+                            value = sub_field.text
+                    subfields[key]=value
+            elif field.tag == tagname:
+                return field, field.text
+
+        return subfields
+
+    def __getSubelement(self, node, tagname, subtag_text):
+        for field in node.getchildren():
+            if field.tag.lower() in ["guidance", "display", "command", "automated_action"] :
+                if field.tag == tagname :
+                    for index, sub_field in enumerate(field.getchildren()):
+                        if sub_field.text == subtag_text :
+                            return sub_field
+        return None
 
     def __interactiveAlarmConfig(self):
         bindings = KeyBindings()
