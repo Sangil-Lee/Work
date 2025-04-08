@@ -1,0 +1,21 @@
+program generated_pv_list
+
+#include <stdio.h>
+#include <string.h>
+
+string pv_list_string[1];
+assign pv_list_string to {
+{{ pv_names_formatted }}
+};
+
+ss init_pv_list {
+    state init {
+        entry {
+            printf(PV List: {{ pv_names_formatted }}\n);
+            strcpy(pVar->pv_list_string[0], {{ pv_names_formatted }});
+        }
+        when (TRUE) {
+            // 필요에 따른 PV 리스트 활용 로직
+        }
+    }
+}
