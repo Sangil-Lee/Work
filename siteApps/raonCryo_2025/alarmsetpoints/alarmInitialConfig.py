@@ -187,6 +187,7 @@ class AlarmInitialConfig:
         data_dict = {}
         current_key = None
         current_value = []
+        config_name = ""
         try:
             file_name = file_path
             if re.search(r"\.csv$",file_name, re.IGNORECASE) is None:
@@ -203,7 +204,9 @@ class AlarmInitialConfig:
                         continue
                     rlines = re.sub(r"\s*([=])\s*","=", rlines)
                     rlines = re.split(r'[\s=\[\]]+', rlines)
-                    if rlines[0].lower() == "component" :
+                    if rlines[0].lower() == "config" :
+                        config_name = rlines[1]
+                    elif rlines[0].lower() == "component" :
                         key=rlines[1]
                         #print(key)
                         if current_key is not None:
@@ -223,8 +226,7 @@ class AlarmInitialConfig:
             #print(data_dict)
 
             config = etree.Element("config")
-            config.attrib["name"] = "Accelerator"
-            keyname = ""
+            config.attrib["name"] = config_name
             setkey = set()
             for dicindex, (keys, values) in enumerate(data_dict.items()):
                 #print(keys,"===>>")
@@ -236,6 +238,20 @@ class AlarmInitialConfig:
                             component = etree.SubElement(config, "component")
                             component.attrib["name"] = key
                         setkey.add(key)
+                        if len(keys) == 1:
+                            for value in values:
+                                #print(value)
+                                pv = etree.SubElement(component, "pv")
+                                pv.attrib["name"] = value
+                                descr = etree.SubElement(pv, "description")
+                                descr.text = value
+                                enabled = etree.SubElement(pv, "enabled")
+                                enabled.text = "true"
+                                latching = etree.SubElement(pv, "latching")
+                                latching.text = "false"
+                                annunciating = etree.SubElement(pv, "annunciating")
+                                annunciating.text = "false"
+                            continue
                     else :
                         print(f"Dicindex({dicindex}), Key[{index}]: {key}")
                         subcomp = etree.SubElement(component, "component")
@@ -259,6 +275,16 @@ class AlarmInitialConfig:
                 config_file = "../site-config/alarm_config.xml"
 
             xtree.write(config_file, encoding="UTF-8", xml_declaration=True, pretty_print=True)
+
+            config_names = 'config_names'
+            file_path = '../site-config/phoebus_settings.ini'
+
+            if AddingConfigName(file_path, config_names, config_name):
+                print(f"'{file_path}': Adding '{config_name}' in {config_names}.")
+
+            else:
+                print(f"'{file_path}': Already exists '{config_name}' in {config_names}.")
+
             print(f"Successful generation alarm config: {config_file}")
         except FileNotFoundError:
             print(f"File Not Found: {file_path}")
@@ -290,6 +316,31 @@ class NotificationValidator(Validator):
 
         #if text not in ['mailto:', 'cmd:', 'sevrpv:']:
         #    raise ValidationError(message="mailto: or cmd: or sevrpv:", cursor_position=len(text))
+
+def AddingConfigName(filepath, search_string, configname):
+    try:
+        with open(filepath, 'r+', encoding='utf-8') as file:
+            lines = file.readlines()
+            file.seek(0)
+            file.truncate()
+
+            added = False
+
+            for line in lines:
+                if search_string in line:
+                    if configname not in line:
+                        file.write(line.rstrip()+","+ configname + '\n')
+                        added = True
+                    else:
+                        file.write(line)
+                        added = False
+                else:
+                    file.write(line)
+            return added
+
+    except FileNotFoundError:
+        print(f"Error: File not found: {filepath}")
+        return False
 
 
 def str2bool(s):
