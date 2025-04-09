@@ -1,0 +1,5 @@
+$>nmcli show dev enx588694fba9a9
+$>nmcli dev show enx588694fba9a9
+$>sudo nmcli con add con-name static ifname enx588694fba9a9 autoconnect no type ethernet ip4 192.168.75.110/24 gw4 192.168.75.1 ipv4.method manual
+$>sudo nmcli con up static
+
