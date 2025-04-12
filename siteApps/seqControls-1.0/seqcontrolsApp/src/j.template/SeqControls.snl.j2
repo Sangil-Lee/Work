@@ -1,0 +1,49 @@
+program {{j_file_name}}
+
+option +r;
+
+float groupPVs[{{j_pv_count}}];
+assign groupPVs to {
+{{j_pv_list}}
+};
+
+float	controlPV;
+assign	controlPV to "{C_PV}";
+monitor controlPV;
+evflag  evControl;
+sync 	controlPV evControl;
+
+int index = 0;
+int pvcnt = 0;
+
+ss seq_controls_{{j_file_name}}
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evControl);
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+		when(efTestAndClear(evControl))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs)/sizeof(groupPVs[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs[index] = controlPV;
+				pvPut(groupPVs[index], ASYNC);
+			}
+		}state GrpControls
+	}
+
+	state GrpControls
+	{
+		when(pvArrayPutComplete(groupPVs,TRUE) )
+		{
+		}state WaitEvent
+	}
+}
+
