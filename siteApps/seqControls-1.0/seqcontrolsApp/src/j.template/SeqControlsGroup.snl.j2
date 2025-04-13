@@ -1,0 +1,51 @@
+program {{j_file_name}}
+option +r;
+{% for key, groupPV in groupPVs.items() %}
+float {{key}}Array[{{groupPV|length}}];
+assign {{key}}Array to {
+{% for  PV in groupPV %} {{PV}}{% if not loop.last %},{% endif %}
+{% endfor %}
+};
+float	{{key}};
+assign	{{key}} to "{Grp{{key}}}";
+monitor {{key}};
+evflag  ev{{key}};
+sync 	{{key}} ev{{key}};
+{% endfor %}
+
+ss seq_controls_{{j_file_name}}
+{
+	state init
+	{
+		when(TRUE)
+		{
+{% for key, groupPV in groupPVs.items() %} efClear(ev{{key}});
+{% endfor %}
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+{% for key, groupPV in groupPVs.items() %}
+		when(efTestAndClear(ev{{key}}))
+		{
+			int index = 0;
+			int pvcnt = sizeof({{key}}Array)/sizeof({{key}}Array[0]);
+			for(index = 0; index < pvcnt;index++) {
+				{{key}}Array[index] = {{key}};
+				pvPut({{key}}Array[index], ASYNC);
+			}
+		}state GrpControls
+{% endfor %}
+	}
+
+	state GrpControls
+	{
+{% for key, groupPV in groupPVs.items() %}
+		when(pvArrayPutComplete({{key}}Array,TRUE) )
+		{
+		}state WaitEvent
+{% endfor %}
+	}
+}
+

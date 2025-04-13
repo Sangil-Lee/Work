@@ -1,13 +1,13 @@
-program SeqControlsSCL3
+program SeqControlQWRSetManuRamp
 
 option +r;
 
-float groupPVs[10];
+float groupPVs[11];
 assign groupPVs to {
-"ctrlslab:A_Alarm_20", "ctrlslab:A_Alarm_21", "ctrlslab:A_Alarm_22",
-"ctrlslab:A_Alarm_23", "ctrlslab:A_Alarm_24", "ctrlslab:A_Alarm_25",
-"ctrlslab:A_Alarm_26", "ctrlslab:A_Alarm_27", "ctrlslab:A_Alarm_28",
-"ctrlslab:A_Alarm_29"
+"SCL31-CDL01:VBx02-CV7401:SetManuRamp", "SCL31-CDL01:VBx04-CV7401:SetManuRamp", "SCL31-CDL01:VBx06-CV7401:SetManuRamp",
+"SCL31-CDL01:VBx08-CV7401:SetManuRamp", "SCL31-CDL01:VBx10-CV7401:SetManuRamp", "SCL31-CDL01:VBx12-CV7401:SetManuRamp",
+"SCL31-CDL01:VBx14-CV7401:SetManuRamp", "SCL31-CDL01:VBx16-CV7401:SetManuRamp", "SCL31-CDL01:VBx18-CV7401:SetManuRamp",
+"SCL31-CDL01:VBx20-CV7401:SetManuRamp", "SCL31-CDL01:VBx22-CV7401:SetManuRamp"
 };
 
 float	controlPV;
@@ -19,7 +19,7 @@ sync 	controlPV evControl;
 int index = 0;
 int pvcnt = 0;
 
-ss seq_controls_SeqControlsSCL3
+ss seq_controls_SeqControlQWRSetManuRamp
 {
 	state init
 	{

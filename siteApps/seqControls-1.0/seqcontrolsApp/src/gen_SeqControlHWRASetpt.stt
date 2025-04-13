@@ -1,0 +1,56 @@
+program 
+
+option +r;
+
+float groupPVs[26];
+assign groupPVs to {
+"SCL32-CDL02:VBx01-CV7401:SetManuRamp", "SCL32-CDL02:VBx02-CV7401:SetManuRamp", "SCL32-CDL02:VBx03-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx04-CV7401:SetManuRamp", "SCL32-CDL02:VBx05-CV7401:SetManuRamp", "SCL32-CDL02:VBx06-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx07-CV7401:SetManuRamp", "SCL32-CDL02:VBx08-CV7401:SetManuRamp", "SCL32-CDL02:VBx09-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx10-CV7401:SetManuRamp", "SCL32-CDL02:VBx11-CV7401:SetManuRamp", "SCL32-CDL02:VBx12-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx13-CV7401:SetManuRamp", "SCL32-CDL02:VBx01-CV7401:SetManuRamp", "SCL32-CDL02:VBx02-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx03-CV7401:SetManuRamp", "SCL32-CDL02:VBx04-CV7401:SetManuRamp", "SCL32-CDL02:VBx05-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx06-CV7401:SetManuRamp", "SCL32-CDL02:VBx07-CV7401:SetManuRamp", "SCL32-CDL02:VBx08-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx09-CV7401:SetManuRamp", "SCL32-CDL02:VBx10-CV7401:SetManuRamp", "SCL32-CDL02:VBx11-CV7401:SetManuRamp",
+"SCL32-CDL02:VBx12-CV7401:SetManuRamp", "SCL32-CDL02:VBx13-CV7401:SetManuRamp"
+};
+
+float	controlPV;
+assign	controlPV to "{C_PV}";
+monitor controlPV;
+evflag  evControl;
+sync 	controlPV evControl;
+
+int index = 0;
+int pvcnt = 0;
+
+ss seq_controls_
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evControl);
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+		when(efTestAndClear(evControl))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs)/sizeof(groupPVs[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs[index] = controlPV;
+				pvPut(groupPVs[index], ASYNC);
+			}
+		}state GrpControls
+	}
+
+	state GrpControls
+	{
+		when(pvArrayPutComplete(groupPVs,TRUE) )
+		{
+		}state WaitEvent
+	}
+}

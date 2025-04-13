@@ -31,8 +31,8 @@ seqcontrols_SRCS_vxWorks += -nil-
 #seqcontrols_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
 seqcontrols_SNCFLAGS += +r
-seqcontrols_DBD  += gen_SeqControlSCL3QWR.dbd gen_SeqControlSCL3.dbd gen_SeqControls.dbd
-seqcontrols_SRCS += gen_SeqControlSCL3QWR.stt gen_SeqControlSCL3.stt gen_SeqControls.stt
+seqcontrols_DBD  +=  gen_SeqControls-2.dbd
+seqcontrols_SRCS += gen_SeqControls-2.stt
 seqcontrols_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries

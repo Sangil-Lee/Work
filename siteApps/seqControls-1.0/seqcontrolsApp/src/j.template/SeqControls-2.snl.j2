@@ -1,0 +1,74 @@
+program {{j_file_name}}
+
+option +r;
+
+float groupPVs[{{j_pv_count}}];
+assign groupPVs to {
+{{j_pv_list}}
+};
+
+float groupPVs_2[{{j_pv_count_2}}];
+assign groupPVs_2 to {
+{{j_pv_list_2}}
+};
+
+float	controlPV;
+assign	controlPV to "{C_PV}";
+monitor controlPV;
+evflag  evControl;
+sync 	controlPV evControl;
+
+float	controlPV_2;
+assign	controlPV_2 to "{C_PV_2}";
+monitor controlPV_2;
+evflag  evControl_2;
+sync 	controlPV_2 evControl_2;
+
+int index = 0;
+int pvcnt = 0;
+
+ss seq_controls_{{j_file_name}}
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evControl);
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+		when(efTestAndClear(evControl))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs)/sizeof(groupPVs[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs[index] = controlPV;
+				pvPut(groupPVs[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evControl_2))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs_2)/sizeof(groupPVs_2[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs_2[index] = controlPV_2;
+				pvPut(groupPVs_2[index], ASYNC);
+			}
+		}state GrpControls
+	}
+
+	state GrpControls
+	{
+		when(pvArrayPutComplete(groupPVs,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(groupPVs_2,TRUE) )
+		{
+		}state WaitEvent
+	}
+}
+

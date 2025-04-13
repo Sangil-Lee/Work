@@ -1,0 +1,1 @@
+camonitor ctrlslab:A_Alarm_21 ctrlslab:A_Alarm_22 ctrlslab:A_Alarm_23 ctrlslab:A_Alarm_24 ctrlslab:A_Alarm_25 ctrlslab:A_Alarm_26 ctrlslab:A_Alarm_27 ctrlslab:A_Alarm_28 ctrlslab:A_Alarm_29 ctrlslab:A_Alarm_30

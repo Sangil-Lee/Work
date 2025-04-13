@@ -23,6 +23,7 @@ iocInit
 
 ## Start any sequence programs
 #seq sncxxx,"user=ctrluser"
-seq SeqControls,"C_PV=ctrlslab:A_Alarm_100"
-seq SeqControlsSCL3,"C_PV=ctrlslab:A_Alarm_100"
-seq SeqControlsSCL3QWR,"C_PV=ctrlslab:A_Alarm_200"
+#seq SeqControls,"Group1PVs=ctrlslab:A_Alarm_100,Group2PVs=ctrlslab:A_Alarm_200"
+seq SeqControls,"GrpFirstPVs=ctrlslab:A_Alarm_100, GrpSecondPVs=ctrlslab:A_Alarm_200, GrpThirdPVs=ctrlslab:A_Alarm_300"
+#seq SeqControlsSCL3,"C_PV=ctrlslab:A_Alarm_100"
+#seq SeqControlsSCL3QWR,"C_PV=ctrlslab:A_Alarm_200"
