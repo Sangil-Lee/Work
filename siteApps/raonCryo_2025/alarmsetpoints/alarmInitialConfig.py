@@ -270,7 +270,8 @@ class AlarmInitialConfig:
                             annunciating.text = "false"
 
             xtree = etree.ElementTree(config)
-            config_file = 'generated_alarm_config.xml'
+            #config_file = 'generated_alarm_config.xml'
+            config_file = 'generated_'+file_name+".xml"
             if copy is True:
                 config_file = "../site-config/alarm_config.xml"
 
@@ -279,11 +280,11 @@ class AlarmInitialConfig:
             config_names = 'config_names'
             file_path = '../site-config/phoebus_settings.ini'
 
-            if AddingConfigName(file_path, config_names, config_name):
-                print(f"'{file_path}': Adding '{config_name}' in {config_names}.")
+            #if AddingConfigName(file_path, config_names, config_name):
+                #print(f"'{file_path}': Adding '{config_name}' in {config_names}.")
 
-            else:
-                print(f"'{file_path}': Already exists '{config_name}' in {config_names}.")
+            #else:
+                #print(f"'{file_path}': Already exists '{config_name}' in {config_names}.")
 
             print(f"Successful generation alarm config: {config_file}")
         except FileNotFoundError:
