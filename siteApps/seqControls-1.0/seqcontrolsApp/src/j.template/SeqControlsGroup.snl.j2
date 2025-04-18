@@ -19,7 +19,7 @@ ss seq_controls_{{j_file_name}}
 	{
 		when(TRUE)
 		{
-{% for key, groupPV in groupPVs.items() %} efClear(ev{{key}});
+{% for key, groupPV in groupPVs.items() %}                 efClear(ev{{key}});
 {% endfor %}
 		}state WaitEvent
 	}
