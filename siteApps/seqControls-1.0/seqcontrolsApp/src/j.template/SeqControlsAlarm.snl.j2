@@ -1,0 +1,52 @@
+program {{j_file_name}}
+option +r;
+{% for alarm in ['HIHI', 'HIGH', 'LOW', 'LOLO'] %}
+{% for key, groupPV in groupPVs.items() %}
+float {{key}}{{alarm}}Array[{{groupPV|length}}];
+assign {{key}}{{alarm}}Array to {
+{% for  PV in groupPV %} "{{PV}}.{{alarm}}"{% if not loop.last %},{% endif %}
+{% endfor %}
+};
+float	{{key}}{{alarm}};
+assign	{{key}}{{alarm}} to "{Grp{{key}}}.{{alarm}}";
+monitor {{key}}{{alarm}};
+evflag  ev{{key}}{{alarm}};
+sync 	{{key}}{{alarm}} ev{{key}}{{alarm}};
+{% endfor %}
+{% endfor %}
+ss seq_controls_{{j_file_name}}
+{
+	state init
+	{
+		when(TRUE)
+		{
+{% for alarm in ['HIHI', 'HIGH', 'LOW', 'LOLO'] %}{% for key, groupPV in groupPVs.items() %}        efClear(ev{{key}}{{alarm}});
+{% endfor %}{% endfor %}
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+{% for alarm in ['HIHI', 'HIGH', 'LOW', 'LOLO'] %} {% for key, groupPV in groupPVs.items() %}
+		when(efTestAndClear(ev{{key}}{{alarm}}))
+		{
+			int index = 0;
+			int pvcnt = sizeof({{key}}{{alarm}}Array)/sizeof({{key}}{{alarm}}Array[0]);
+			for(index = 0; index < pvcnt;index++) {
+				{{key}}{{alarm}}Array[index] = {{key}}{{alarm}};
+				pvPut({{key}}{{alarm}}Array[index], ASYNC);
+			}
+		}state GrpControls
+{% endfor %} {% endfor %}
+	}
+
+	state GrpControls
+	{
+{% for alarm in ['HIHI', 'HIGH', 'LOW', 'LOLO'] %}{% for key, groupPV in groupPVs.items() %}
+		when(pvArrayPutComplete({{key}}{{alarm}}Array,TRUE) )
+		{
+		}state WaitEvent
+{% endfor %}{% endfor %}
+	}
+}
+

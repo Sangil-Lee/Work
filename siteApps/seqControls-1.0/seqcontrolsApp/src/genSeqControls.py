@@ -42,7 +42,8 @@ def generate_snl2(input_file, template_file, seq_file, dbd_file):
                 pv_dict[group_name] = []
                 continue
             if len(line[0]) != 0:
-                pv_name = f"\"{line[0]}\""
+                #pv_name = f"\"{line[0]}\""
+                pv_name = f"{line[0]}"
                 #print(pv_name)
                 if pv_name:
                     pv_dict[group_name].append(pv_name)
@@ -51,7 +52,8 @@ def generate_snl2(input_file, template_file, seq_file, dbd_file):
         pv_list_formatted = ""
         pv_count = 0
         for i, pv_name in enumerate(pv_names):
-            pv_list_formatted += f"\"{pv_name}\""
+            #pv_list_formatted += f"\"{pv_name}\""
+            pv_list_formatted += f"{pv_name}"
             if (i + 1) % 3 == 0 and (i + 1) < len(pv_names):
                 pv_list_formatted += ",\n"
             elif (i + 1) < len(pv_names):

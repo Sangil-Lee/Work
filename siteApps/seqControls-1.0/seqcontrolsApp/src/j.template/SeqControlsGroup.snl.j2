@@ -3,7 +3,7 @@ option +r;
 {% for key, groupPV in groupPVs.items() %}
 float {{key}}Array[{{groupPV|length}}];
 assign {{key}}Array to {
-{% for  PV in groupPV %} {{PV}}{% if not loop.last %},{% endif %}
+{% for  PV in groupPV %} "{{PV}}"{% if not loop.last %},{% endif %}
 {% endfor %}
 };
 float	{{key}};
