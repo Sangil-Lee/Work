@@ -40,11 +40,18 @@ class EncryptEPICSInfluxDB:
         encryptData = self.Cipher.encrypt(encodeData)
         return encryptData
 
+    def encryptDatas(self, datas: list) -> list:
+        encryptlist = []
+        for data in datas:
+            encryptlist.append(self.__encryptData(data))
+
+        return encryptlist
+
     def __decryptData(self, encData: bytes) -> float:
         decryptData = float(self.Cipher.decrypt(encData))
         return decryptData
 
-    def __decryptDatas(self, encDatas: list) -> list:
+    def decryptDatas(self, encDatas: list) -> list:
         decrlist = []
         for encData in encDatas:
             decrlist.append(self.__decryptData(encData))
@@ -85,102 +92,43 @@ class EncryptEPICSInfluxDB:
 
         print(Values)
         print(encDatas)
-        print(self.__decryptDatas(encDatas))
+        print(self.decryptDatas(encDatas))
 
-class WaveformEventReader:
-    def __init__(self, pv_name):
-        """
-        EPICS waveform 데이터를 event 방식으로 읽는 클래스.
+    def __onConnectionChange(self, pvname=None, conn=None, **kws):
+        print(f'PV connection status changed: {pvname} {conn}')
 
-        Args:
-            pv_name (str): 읽을 waveform PV 이름.
-        """
-        self.pv_name = pv_name
-        self.waveform_data = None
-        self._event = threading.Event()
-        self._subscription = None
-        self._running = False
+    def __onEventData(self, pvname=None, value=None, host=None, **kws):
+        print(f'PV value changed: {pvname} ({host})  {value[:20]}')
 
-    def _callback(self, epics_args, user_args=None):
-        """
-        PV 값 변경 시 호출되는 콜백 함수.
+    def __onEncryptEvent(self, pvname=None, value=None, host=None, **kws):
+        encryptPVDatas = self.encryptDatas(value)
+        print(encryptPVDatas)
+        #print(self.decryptDatas(encryptPVDatas))
 
-        Args:
-            epics_args (dict): EPICS 콜백 인자.
-            user_args (any): 사용자 정의 인자 (여기서는 사용하지 않음).
-        """
-        if epics_args and 'waveform' in epics_args:
-            self.waveform_data = epics_args['waveform']
-            self._event.set()  # 이벤트 발생
+    def SetPVMonitor(self, pvname=None):
+        pv = epics.get_pv(pvname, connection_callback=self.__onConnectionChange, callback=self.__onEventData)
+        pv.get()
+        while True:
+            time.sleep(0.1)
 
-    def start(self):
-        """
-        waveform PV에 대한 구독을 시작합니다.
-        """
-        if self._running:
-            print(f"이미 {self.pv_name}에 대한 구독이 실행 중입니다.")
-            return
-
-        try:
-            self._subscription = epics.camonitor(self.pv_name, callback=self._callback)
-            self._running = True
-            print(f"{self.pv_name}에 대한 waveform 데이터 구독 시작.")
-        except Exception as e:
-            print(f"{self.pv_name} 구독 시작 실패: {e}")
-
-    def stop(self):
-        """
-        waveform PV에 대한 구독을 중지합니다.
-        """
-        if self._running:
-            if self._subscription:
-                epics.camonitor_clear(self._subscription)
-                self._subscription = None
-            self._running = False
-            print(f"{self.pv_name}에 대한 waveform 데이터 구독 중지.")
-        else:
-            print(f"{self.pv_name}에 대한 구독이 실행 중이지 않습니다.")
-
-    def get_event(self, timeout=None):
-        """
-        새로운 waveform 데이터가 도착할 때까지 기다리는 이벤트 객체를 반환합니다.
-
-        Args:
-            timeout (float, optional): 이벤트 대기 시간 (초). None이면 무한히 기다립니다.
-
-        Returns:
-            threading.Event: 이벤트 객체. 새로운 데이터가 도착하면 set() 됩니다.
-        """
-        return self._event
-
-    def read_waveform(self, timeout=None):
-        """
-        새로운 waveform 데이터를 기다렸다가 반환합니다.
-
-        Args:
-            timeout (float, optional): 데이터 대기 시간 (초). None이면 무한히 기다립니다.
-
-        Returns:
-            numpy.ndarray or None: 수신된 waveform 데이터 (numpy 배열).
-                                   타임아웃 발생 시 None을 반환합니다.
-        """
-        self._event.clear()  # 이벤트 플래그 초기화
-        if self._event.wait(timeout):
-            return self.waveform_data
-        else:
-            return None
-
+    def SetEncryptPVMonitor(self, pvname=None):
+        pv = epics.get_pv(pvname, connection_callback=self.__onConnectionChange, callback=self.__onEncryptEvent)
+        pv.get()
+        while True:
+            time.sleep(0.1)
 
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Save and Restroe Encrypted EPICS Data to InfluxDB')
     parser.add_argument('-save', type=bool, help='Testing save data to influx db')
     parser.add_argument('-encrypt', type=bool, help='Testing encrypt test')
+    parser.add_argument('-epics', type=bool, help='Testing encrypt test')
 
     args = parser.parse_args()
     print('Parsed argments: {}'.format(args))
     print('-save', args.save)
     print('-encrypt', args.encrypt)
+    print('-epics', args.epics)
 
     encryptEPICSInfluxDB = EncryptEPICSInfluxDB()
 
@@ -190,28 +138,61 @@ if __name__ == "__main__":
         encryptEPICSInfluxDB.TestEncryptDecrypt()
 
 
+    if args.epics is not None:
+        pv_name = "TEST_sinA_WF"  # 실제 waveform PV 이름으로 변경하세요.
+        try:
+            #encryptEPICSInfluxDB.SetPVMonitor(pv_name)
+            pvdata = encryptEPICSInfluxDB.SetEncryptPVMonitor(pv_name)
+            print(pvdata)
+        except KeyboardInterrupt:
+            print("\nExit...")
 
-if __name__ == "__main__":
-    pv_name_to_monitor = "your_waveform_pv_name"  # 실제 waveform PV 이름으로 변경하세요.
 
-    reader = WaveformEventReader(pv_name_to_monitor)
-    reader.start()
+"""
+from influxdb_client import InfluxDBClient, Point, WriteOptions
+import datetime
+import time
 
-    try:
-        while True:
-            print("새로운 waveform 데이터를 기다립니다...")
-            waveform = reader.read_waveform(timeout=5)  # 5초 동안 대기
+# InfluxDB 2.x 연결 설정
+url = "YOUR_INFLUXDB_URL"  # 예: "http://localhost:8086"
+token = "YOUR_API_TOKEN"
+org = "YOUR_ORG_ID"
+bucket = "YOUR_BUCKET_NAME"
 
-            if waveform is not None:
-                print("새로운 waveform 데이터 도착:")
-                print(f"  길이: {len(waveform)}")
-                print(f"  처음 10개 값: {waveform[:10]}")
-            else:
-                print("5초 동안 새로운 waveform 데이터가 도착하지 않았습니다.")
+client = InfluxDBClient(url=url, token=token, org=org)
+write_api = client.write_api(write_options=WriteOptions(batch_size=1000, flush_interval=10_000))
 
-            time.sleep(1)  # 잠시 대기
-    except KeyboardInterrupt:
-        print("\n프로그램 종료.")
-    finally:
-        reader.stop()
+measurement_name = "continuous_values"
+tag_key = "series_id"
+tag_value = "series_1"
 
+try:
+    start_time = datetime.datetime.utcnow()
+    points = []
+    for i in range(10000):
+        timestamp = start_time + datetime.timedelta(milliseconds=i * 10)  # 각 포인트 간 10ms 간격
+        point = Point(measurement_name) \
+            .tag(tag_key, tag_value) \
+            .field("value", float(i)) \
+            .time(timestamp)
+        points.append(point)
+
+        # 배치 쓰기 (선택 사항 - 성능 향상)
+        if (i + 1) % 1000 == 0:
+            write_api.write(bucket=bucket, record=points)
+            points = []
+            print(f"{i+1}개의 데이터 포인트 저장 완료.")
+
+    # 남은 데이터 쓰기
+    if points:
+        write_api.write(bucket=bucket, record=points)
+        print(f"남은 {len(points)}개의 데이터 포인트 저장 완료.")
+
+    print("총 10000개의 연속적인 value 저장 완료.")
+
+except Exception as e:
+    print(f"데이터 저장 중 오류 발생: {e}")
+
+finally:
+    client.close()
+"""
