@@ -1,0 +1,143 @@
+program IntStatIntlock
+option +r;
+
+float QWRIntStatArray[12];
+assign QWRIntStatArray to {
+ "SCL31-CDL01:EBx01:IntStat",
+ "SCL31-CDL01:VBx02:IntStat",
+ "SCL31-CDL01:VBx04:IntStat",
+ "SCL31-CDL01:VBx06:IntStat",
+ "SCL31-CDL01:VBx08:IntStat",
+ "SCL31-CDL01:VBx10:IntStat",
+ "SCL31-CDL01:VBx12:IntStat",
+ "SCL31-CDL01:VBx14:IntStat",
+ "SCL31-CDL01:VBx16:IntStat",
+ "SCL31-CDL01:VBx18:IntStat",
+ "SCL31-CDL01:VBx20:IntStat",
+ "SCL31-CDL01:VBx22:IntStat"
+
+};
+float	QWRIntStat;
+assign	QWRIntStat to "{GrpQWRIntStat}";
+monitor QWRIntStat;
+evflag  evQWRIntStat;
+sync 	QWRIntStat evQWRIntStat;
+
+float HWRAIntStatArray[13];
+assign HWRAIntStatArray to {
+ "SCL32-CDL02:VBx01:IntStat",
+ "SCL32-CDL02:VBx02:IntStat",
+ "SCL32-CDL02:VBx03:IntStat",
+ "SCL32-CDL02:VBx04:IntStat",
+ "SCL32-CDL02:VBx05:IntStat",
+ "SCL32-CDL02:VBx06:IntStat",
+ "SCL32-CDL02:VBx07:IntStat",
+ "SCL32-CDL02:VBx08:IntStat",
+ "SCL32-CDL02:VBx09:IntStat",
+ "SCL32-CDL02:VBx10:IntStat",
+ "SCL32-CDL02:VBx11:IntStat",
+ "SCL32-CDL02:VBx12:IntStat",
+ "SCL32-CDL02:VBx13:IntStat"
+
+};
+float	HWRAIntStat;
+assign	HWRAIntStat to "{GrpHWRAIntStat}";
+monitor HWRAIntStat;
+evflag  evHWRAIntStat;
+sync 	HWRAIntStat evHWRAIntStat;
+
+float HWRBIntStatArray[19];
+assign HWRBIntStatArray to {
+ "SCL32-CDL03:VBx01:IntStat",
+ "SCL32-CDL03:VBx02:IntStat",
+ "SCL32-CDL03:VBx03:IntStat",
+ "SCL32-CDL03:VBx04:IntStat",
+ "SCL32-CDL03:VBx05:IntStat",
+ "SCL32-CDL03:VBx06:IntStat",
+ "SCL32-CDL03:VBx07:IntStat",
+ "SCL32-CDL03:VBx08:IntStat",
+ "SCL32-CDL03:VBx09:IntStat",
+ "SCL32-CDL03:VBx10:IntStat",
+ "SCL32-CDL03:VBx11:IntStat",
+ "SCL32-CDL03:VBx12:IntStat",
+ "SCL32-CDL03:VBx13:IntStat",
+ "SCL32-CDL03:VBx14:IntStat",
+ "SCL32-CDL03:VBx15:IntStat",
+ "SCL32-CDL03:VBx16:IntStat",
+ "SCL32-CDL03:VBx17:IntStat",
+ "SCL32-CDL03:VBx18:IntStat",
+ "SCL32-CDL03:VBx19:IntStat"
+
+};
+float	HWRBIntStat;
+assign	HWRBIntStat to "{GrpHWRBIntStat}";
+monitor HWRBIntStat;
+evflag  evHWRBIntStat;
+sync 	HWRBIntStat evHWRBIntStat;
+
+
+ss seq_controls_IntStatIntlock
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evQWRIntStat);
+                 efClear(evHWRAIntStat);
+                 efClear(evHWRBIntStat);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evQWRIntStat))
+		{
+			int index = 0;
+			int pvcnt = sizeof(QWRIntStatArray)/sizeof(QWRIntStatArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				QWRIntStatArray[index] = QWRIntStat;
+				pvPut(QWRIntStatArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evHWRAIntStat))
+		{
+			int index = 0;
+			int pvcnt = sizeof(HWRAIntStatArray)/sizeof(HWRAIntStatArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				HWRAIntStatArray[index] = HWRAIntStat;
+				pvPut(HWRAIntStatArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evHWRBIntStat))
+		{
+			int index = 0;
+			int pvcnt = sizeof(HWRBIntStatArray)/sizeof(HWRBIntStatArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				HWRBIntStatArray[index] = HWRBIntStat;
+				pvPut(HWRBIntStatArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(QWRIntStatArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(HWRAIntStatArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(HWRBIntStatArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}
