@@ -8,6 +8,8 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 DB += alarmDemo.db analogDemo.db analogDemo2.db analogDemo3.db
+DB += aiFloat64.template
+DB += sim.sub
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
