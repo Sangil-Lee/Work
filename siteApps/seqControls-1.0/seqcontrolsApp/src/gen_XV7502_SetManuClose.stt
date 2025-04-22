@@ -1,4 +1,4 @@
-program XV7502
+program XV7502SetValve
 option +r;
 
 float XV7502_AArray[11];
@@ -75,7 +75,7 @@ evflag  evXV7502_C;
 sync 	XV7502_C evXV7502_C;
 
 
-ss seq_controls_XV7502
+ss seq_controls_XV7502SetValve
 {
 	state init
 	{

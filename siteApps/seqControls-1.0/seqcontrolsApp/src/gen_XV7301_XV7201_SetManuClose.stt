@@ -1,4 +1,4 @@
-program XV737201
+program XV737201SetValve
 option +r;
 
 float XV737201_AArray[11];
@@ -75,7 +75,7 @@ evflag  evXV737201_C;
 sync 	XV737201_C evXV737201_C;
 
 
-ss seq_controls_XV737201
+ss seq_controls_XV737201SetValve
 {
 	state init
 	{

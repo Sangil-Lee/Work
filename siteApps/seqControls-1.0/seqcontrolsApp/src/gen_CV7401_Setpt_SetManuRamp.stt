@@ -1,4 +1,4 @@
-program CV7401
+program CV7401SetValve
 option +r;
 
 float CV7401_AArray[11];
@@ -148,7 +148,7 @@ evflag  evCV7401_F;
 sync 	CV7401_F evCV7401_F;
 
 
-ss seq_controls_CV7401
+ss seq_controls_CV7401SetValve
 {
 	state init
 	{

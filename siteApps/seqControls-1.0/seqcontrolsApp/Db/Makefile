@@ -9,6 +9,7 @@ include $(TOP)/configure/CONFIG
 #DB += xxx.db
 DB += alarmDemo.db analogDemo.db analogDemo2.db analogDemo3.db
 DB += aiFloat64.template
+DB += aiFloat64Grp.template
 DB += sim.sub
 
 #----------------------------------------------------
