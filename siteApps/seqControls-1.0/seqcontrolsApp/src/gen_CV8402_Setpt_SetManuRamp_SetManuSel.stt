@@ -157,6 +157,58 @@ monitor CV8402_F;
 evflag  evCV8402_F;
 sync 	CV8402_F evCV8402_F;
 
+float CV8402_GArray[13];
+assign CV8402_GArray to {
+ "SCL32-BL02:CM01-CV8402:SetManu",
+ "SCL32-BL02:CM02-CV8402:SetManu",
+ "SCL32-BL02:CM03-CV8402:SetManu",
+ "SCL32-BL02:CM04-CV8402:SetManu",
+ "SCL32-BL02:CM05-CV8402:SetManu",
+ "SCL32-BL02:CM06-CV8402:SetManu",
+ "SCL32-BL02:CM07-CV8402:SetManu",
+ "SCL32-BL02:CM08-CV8402:SetManu",
+ "SCL32-BL02:CM09-CV8402:SetManu",
+ "SCL32-BL02:CM10-CV8402:SetManu",
+ "SCL32-BL02:CM11-CV8402:SetManu",
+ "SCL32-BL02:CM12-CV8402:SetManu",
+ "SCL32-BL02:CM13-CV8402:SetManu"
+
+};
+float	CV8402_G;
+assign	CV8402_G to "{GrpCV8402_G}";
+monitor CV8402_G;
+evflag  evCV8402_G;
+sync 	CV8402_G evCV8402_G;
+
+float CV8402_HArray[19];
+assign CV8402_HArray to {
+ "SCL32-BL03:CM01-CV8402:SetManu",
+ "SCL32-BL03:CM02-CV8402:SetManu",
+ "SCL32-BL03:CM03-CV8402:SetManu",
+ "SCL32-BL03:CM04-CV8402:SetManu",
+ "SCL32-BL03:CM05-CV8402:SetManu",
+ "SCL32-BL03:CM06-CV8402:SetManu",
+ "SCL32-BL03:CM07-CV8402:SetManu",
+ "SCL32-BL03:CM08-CV8402:SetManu",
+ "SCL32-BL03:CM09-CV8402:SetManu",
+ "SCL32-BL03:CM10-CV8402:SetManu",
+ "SCL32-BL03:CM11-CV8402:SetManu",
+ "SCL32-BL03:CM12-CV8402:SetManu",
+ "SCL32-BL03:CM13-CV8402:SetManu",
+ "SCL32-BL03:CM14-CV8402:SetManu",
+ "SCL32-BL03:CM15-CV8402:SetManu",
+ "SCL32-BL03:CM16-CV8402:SetManu",
+ "SCL32-BL03:CM17-CV8402:SetManu",
+ "SCL32-BL03:CM18-CV8402:SetManu",
+ "SCL32-BL03:CM19-CV8402:SetManu"
+
+};
+float	CV8402_H;
+assign	CV8402_H to "{GrpCV8402_H}";
+monitor CV8402_H;
+evflag  evCV8402_H;
+sync 	CV8402_H evCV8402_H;
+
 
 ss seq_controls_CV8402SetValve
 {
@@ -170,6 +222,8 @@ ss seq_controls_CV8402SetValve
                  efClear(evCV8402_D);
                  efClear(evCV8402_E);
                  efClear(evCV8402_F);
+                 efClear(evCV8402_G);
+                 efClear(evCV8402_H);
 
 		}state WaitEvent
 	}
@@ -237,6 +291,26 @@ ss seq_controls_CV8402SetValve
 			}
 		}state GrpControls
 
+		when(efTestAndClear(evCV8402_G))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_GArray)/sizeof(CV8402_GArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_GArray[index] = CV8402_G;
+				pvPut(CV8402_GArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_H))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_HArray)/sizeof(CV8402_HArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_HArray[index] = CV8402_H;
+				pvPut(CV8402_HArray[index], ASYNC);
+			}
+		}state GrpControls
+
 	}
 
 	state GrpControls
@@ -263,6 +337,14 @@ ss seq_controls_CV8402SetValve
 		}state WaitEvent
 
 		when(pvArrayPutComplete(CV8402_FArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_GArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_HArray,TRUE) )
 		{
 		}state WaitEvent
 
