@@ -31,8 +31,8 @@ seqcontrols_SRCS_vxWorks += -nil-
 #seqcontrols_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
 seqcontrols_SNCFLAGS += +r
-seqcontrols_DBD  +=  gen_SeqVBxSetCP.dbd gen_CV7401_Setpt_SetManuRamp.dbd gen_CV7501_Setpt_SetManuRamp.dbd gen_XV7301_XV7201_SetManuClose.dbd gen_XV7502_SetManuClose.dbd gen_CV7401.dbd  gen_IntStat.dbd  gen_SeqCMSetCP.dbd gen_CV8402_Setpt_SetManuRamp_SetManuSel.dbd gen_PT7501_Alarm.dbd
-seqcontrols_SRCS += gen_SeqVBxSetCP.stt gen_CV7401_Setpt_SetManuRamp.stt gen_CV7501_Setpt_SetManuRamp.stt gen_XV7301_XV7201_SetManuClose.stt gen_XV7502_SetManuClose.stt gen_CV7401.stt gen_IntStat.stt gen_SeqCMSetCP.stt gen_CV8402_Setpt_SetManuRamp_SetManuSel.stt gen_PT7501_Alarm.stt
+seqcontrols_DBD  +=  gen_SeqVBxSetCP.dbd gen_CV7401_Setpt_SetManuRamp.dbd gen_CV7501_Setpt_SetManuRamp.dbd gen_XV7301_XV7201_SetManuClose.dbd gen_XV7502_SetManuClose.dbd gen_CV7401.dbd  gen_IntStat.dbd  gen_SeqCMSetCP.dbd gen_CV8402_Setpt_SetManuRamp_SetManuSel.dbd gen_PT7501_Alarm.dbd gen_CV7502_Setpt_SetManuRamp.dbd
+seqcontrols_SRCS += gen_SeqVBxSetCP.stt gen_CV7401_Setpt_SetManuRamp.stt gen_CV7501_Setpt_SetManuRamp.stt gen_XV7301_XV7201_SetManuClose.stt gen_XV7502_SetManuClose.stt gen_CV7401.stt gen_IntStat.stt gen_SeqCMSetCP.stt gen_CV8402_Setpt_SetManuRamp_SetManuSel.stt gen_PT7501_Alarm.stt gen_CV7502_Setpt_SetManuRamp.stt
 seqcontrols_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries
