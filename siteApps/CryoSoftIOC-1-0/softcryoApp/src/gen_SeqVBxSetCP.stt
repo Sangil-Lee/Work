@@ -1,0 +1,624 @@
+program SeqVBxSetCP
+option +r;
+
+float VBxAArray[11];
+assign VBxAArray to {
+ "SCL31-CDL01:VBx02-TT7502:SetCP",
+ "SCL31-CDL01:VBx04-TT7502:SetCP",
+ "SCL31-CDL01:VBx06-TT7502:SetCP",
+ "SCL31-CDL01:VBx08-TT7502:SetCP",
+ "SCL31-CDL01:VBx10-TT7502:SetCP",
+ "SCL31-CDL01:VBx12-TT7502:SetCP",
+ "SCL31-CDL01:VBx14-TT7502:SetCP",
+ "SCL31-CDL01:VBx16-TT7502:SetCP",
+ "SCL31-CDL01:VBx18-TT7502:SetCP",
+ "SCL31-CDL01:VBx20-TT7502:SetCP",
+ "SCL31-CDL01:VBx22-TT7502:SetCP"
+
+};
+float	VBxA;
+assign	VBxA to "{GrpVBxA}";
+monitor VBxA;
+evflag  evVBxA;
+sync 	VBxA evVBxA;
+
+float VBxBArray[11];
+assign VBxBArray to {
+ "SCL31-CDL01:VBx02-PT7503:SetCP",
+ "SCL31-CDL01:VBx04-PT7503:SetCP",
+ "SCL31-CDL01:VBx06-PT7503:SetCP",
+ "SCL31-CDL01:VBx08-PT7503:SetCP",
+ "SCL31-CDL01:VBx10-PT7503:SetCP",
+ "SCL31-CDL01:VBx12-PT7503:SetCP",
+ "SCL31-CDL01:VBx14-PT7503:SetCP",
+ "SCL31-CDL01:VBx16-PT7503:SetCP",
+ "SCL31-CDL01:VBx18-PT7503:SetCP",
+ "SCL31-CDL01:VBx20-PT7503:SetCP",
+ "SCL31-CDL01:VBx22-PT7503:SetCP"
+
+};
+float	VBxB;
+assign	VBxB to "{GrpVBxB}";
+monitor VBxB;
+evflag  evVBxB;
+sync 	VBxB evVBxB;
+
+float VBxCArray[11];
+assign VBxCArray to {
+ "SCL31-CDL01:VBx02-PT7501:SetCP",
+ "SCL31-CDL01:VBx04-PT7501:SetCP",
+ "SCL31-CDL01:VBx06-PT7501:SetCP",
+ "SCL31-CDL01:VBx08-PT7501:SetCP",
+ "SCL31-CDL01:VBx10-PT7501:SetCP",
+ "SCL31-CDL01:VBx12-PT7501:SetCP",
+ "SCL31-CDL01:VBx14-PT7501:SetCP",
+ "SCL31-CDL01:VBx16-PT7501:SetCP",
+ "SCL31-CDL01:VBx18-PT7501:SetCP",
+ "SCL31-CDL01:VBx20-PT7501:SetCP",
+ "SCL31-CDL01:VBx22-PT7501:SetCP"
+
+};
+float	VBxC;
+assign	VBxC to "{GrpVBxC}";
+monitor VBxC;
+evflag  evVBxC;
+sync 	VBxC evVBxC;
+
+float VBxDArray[33];
+assign VBxDArray to {
+ "SCL32-CDL02:VBx01-PT7501:SetCP",
+ "SCL32-CDL02:VBx02-PT7501:SetCP",
+ "SCL32-CDL02:VBx03-PT7501:SetCP",
+ "SCL32-CDL02:VBx04-PT7501:SetCP",
+ "SCL32-CDL02:VBx05-PT7501:SetCP",
+ "SCL32-CDL02:VBx06-PT7501:SetCP",
+ "SCL32-CDL02:VBx07-PT7501:SetCP",
+ "SCL32-CDL02:VBx08-PT7501:SetCP",
+ "SCL32-CDL02:VBx09-PT7501:SetCP",
+ "SCL32-CDL02:VBx10-PT7501:SetCP",
+ "SCL32-CDL02:VBx11-PT7501:SetCP",
+ "SCL32-CDL02:VBx12-PT7501:SetCP",
+ "SCL32-CDL02:VBx13-PT7501:SetCP",
+ "SCL32-CDL03:VBx01-PT7501:SetCP",
+ "SCL32-CDL03:VBx02-PT7501:SetCP",
+ "SCL32-CDL03:VBx03-PT7501:SetCP",
+ "SCL32-CDL03:VBx04-PT7501:SetCP",
+ "SCL32-CDL03:VBx05-PT7501:SetCP",
+ "SCL32-CDL03:VBx06-PT7501:SetCP",
+ "SCL32-CDL03:VBx07-PT7501:SetCP",
+ "SCL32-CDL03:VBx08-PT7501:SetCP",
+ "SCL32-CDL03:VBx09-PT7501:SetCP",
+ "SCL32-CDL03:VBx10-PT7501:SetCP",
+ "SCL32-CDL03:VBx11-PT7501:SetCP",
+ "SCL32-CDL03:VBx12-PT7501:SetCP",
+ "SCL32-CDL03:VBx13-PT7501:SetCP",
+ "SCL32-CDL03:VBx14-PT7501:SetCP",
+ "SCL32-CDL03:VBx15-PT7501:SetCP",
+ "SCL32-CDL03:VBx16-PT7501:SetCP",
+ "SCL32-CDL03:VBx17-PT7501:SetCP",
+ "SCL32-CDL03:VBx18-PT7501:SetCP",
+ "SCL32-CDL03:VBx19-PT7501:SetCP",
+ "P2DT-CDL04:VBx01-PT7501:SetCP"
+
+};
+float	VBxD;
+assign	VBxD to "{GrpVBxD}";
+monitor VBxD;
+evflag  evVBxD;
+sync 	VBxD evVBxD;
+
+float VBxEArray[11];
+assign VBxEArray to {
+ "SCL31-CDL01:VBx02-PT7502:SetCP",
+ "SCL31-CDL01:VBx04-PT7502:SetCP",
+ "SCL31-CDL01:VBx06-PT7502:SetCP",
+ "SCL31-CDL01:VBx08-PT7502:SetCP",
+ "SCL31-CDL01:VBx10-PT7502:SetCP",
+ "SCL31-CDL01:VBx12-PT7502:SetCP",
+ "SCL31-CDL01:VBx14-PT7502:SetCP",
+ "SCL31-CDL01:VBx16-PT7502:SetCP",
+ "SCL31-CDL01:VBx18-PT7502:SetCP",
+ "SCL31-CDL01:VBx20-PT7502:SetCP",
+ "SCL31-CDL01:VBx22-PT7502:SetCP"
+
+};
+float	VBxE;
+assign	VBxE to "{GrpVBxE}";
+monitor VBxE;
+evflag  evVBxE;
+sync 	VBxE evVBxE;
+
+float VBxFArray[33];
+assign VBxFArray to {
+ "SCL32-CDL02:VBx01-PT7502:SetCP",
+ "SCL32-CDL02:VBx02-PT7502:SetCP",
+ "SCL32-CDL02:VBx03-PT7502:SetCP",
+ "SCL32-CDL02:VBx04-PT7502:SetCP",
+ "SCL32-CDL02:VBx05-PT7502:SetCP",
+ "SCL32-CDL02:VBx06-PT7502:SetCP",
+ "SCL32-CDL02:VBx07-PT7502:SetCP",
+ "SCL32-CDL02:VBx08-PT7502:SetCP",
+ "SCL32-CDL02:VBx09-PT7502:SetCP",
+ "SCL32-CDL02:VBx10-PT7502:SetCP",
+ "SCL32-CDL02:VBx11-PT7502:SetCP",
+ "SCL32-CDL02:VBx12-PT7502:SetCP",
+ "SCL32-CDL02:VBx13-PT7502:SetCP",
+ "SCL32-CDL03:VBx01-PT7502:SetCP",
+ "SCL32-CDL03:VBx02-PT7502:SetCP",
+ "SCL32-CDL03:VBx03-PT7502:SetCP",
+ "SCL32-CDL03:VBx04-PT7502:SetCP",
+ "SCL32-CDL03:VBx05-PT7502:SetCP",
+ "SCL32-CDL03:VBx06-PT7502:SetCP",
+ "SCL32-CDL03:VBx07-PT7502:SetCP",
+ "SCL32-CDL03:VBx08-PT7502:SetCP",
+ "SCL32-CDL03:VBx09-PT7502:SetCP",
+ "SCL32-CDL03:VBx10-PT7502:SetCP",
+ "SCL32-CDL03:VBx11-PT7502:SetCP",
+ "SCL32-CDL03:VBx12-PT7502:SetCP",
+ "SCL32-CDL03:VBx13-PT7502:SetCP",
+ "SCL32-CDL03:VBx14-PT7502:SetCP",
+ "SCL32-CDL03:VBx15-PT7502:SetCP",
+ "SCL32-CDL03:VBx16-PT7502:SetCP",
+ "SCL32-CDL03:VBx17-PT7502:SetCP",
+ "SCL32-CDL03:VBx18-PT7502:SetCP",
+ "SCL32-CDL03:VBx19-PT7502:SetCP",
+ "P2DT-CDL04:VBx01-PT7502:SetCP"
+
+};
+float	VBxF;
+assign	VBxF to "{GrpVBxF}";
+monitor VBxF;
+evflag  evVBxF;
+sync 	VBxF evVBxF;
+
+float VBxGArray[11];
+assign VBxGArray to {
+ "SCL31-CDL01:VBx02-PT7401:SetCP",
+ "SCL31-CDL01:VBx04-PT7401:SetCP",
+ "SCL31-CDL01:VBx06-PT7401:SetCP",
+ "SCL31-CDL01:VBx08-PT7401:SetCP",
+ "SCL31-CDL01:VBx10-PT7401:SetCP",
+ "SCL31-CDL01:VBx12-PT7401:SetCP",
+ "SCL31-CDL01:VBx14-PT7401:SetCP",
+ "SCL31-CDL01:VBx16-PT7401:SetCP",
+ "SCL31-CDL01:VBx18-PT7401:SetCP",
+ "SCL31-CDL01:VBx20-PT7401:SetCP",
+ "SCL31-CDL01:VBx22-PT7401:SetCP"
+
+};
+float	VBxG;
+assign	VBxG to "{GrpVBxG}";
+monitor VBxG;
+evflag  evVBxG;
+sync 	VBxG evVBxG;
+
+float VBxHArray[33];
+assign VBxHArray to {
+ "SCL32-CDL02:VBx01-PT7401:SetCP",
+ "SCL32-CDL02:VBx02-PT7401:SetCP",
+ "SCL32-CDL02:VBx03-PT7401:SetCP",
+ "SCL32-CDL02:VBx04-PT7401:SetCP",
+ "SCL32-CDL02:VBx05-PT7401:SetCP",
+ "SCL32-CDL02:VBx06-PT7401:SetCP",
+ "SCL32-CDL02:VBx07-PT7401:SetCP",
+ "SCL32-CDL02:VBx08-PT7401:SetCP",
+ "SCL32-CDL02:VBx09-PT7401:SetCP",
+ "SCL32-CDL02:VBx10-PT7401:SetCP",
+ "SCL32-CDL02:VBx11-PT7401:SetCP",
+ "SCL32-CDL02:VBx12-PT7401:SetCP",
+ "SCL32-CDL02:VBx13-PT7401:SetCP",
+ "SCL32-CDL03:VBx01-PT7401:SetCP",
+ "SCL32-CDL03:VBx02-PT7401:SetCP",
+ "SCL32-CDL03:VBx03-PT7401:SetCP",
+ "SCL32-CDL03:VBx04-PT7401:SetCP",
+ "SCL32-CDL03:VBx05-PT7401:SetCP",
+ "SCL32-CDL03:VBx06-PT7401:SetCP",
+ "SCL32-CDL03:VBx07-PT7401:SetCP",
+ "SCL32-CDL03:VBx08-PT7401:SetCP",
+ "SCL32-CDL03:VBx09-PT7401:SetCP",
+ "SCL32-CDL03:VBx10-PT7401:SetCP",
+ "SCL32-CDL03:VBx11-PT7401:SetCP",
+ "SCL32-CDL03:VBx12-PT7401:SetCP",
+ "SCL32-CDL03:VBx13-PT7401:SetCP",
+ "SCL32-CDL03:VBx14-PT7401:SetCP",
+ "SCL32-CDL03:VBx15-PT7401:SetCP",
+ "SCL32-CDL03:VBx16-PT7401:SetCP",
+ "SCL32-CDL03:VBx17-PT7401:SetCP",
+ "SCL32-CDL03:VBx18-PT7401:SetCP",
+ "SCL32-CDL03:VBx19-PT7401:SetCP",
+ "P2DT-CDL04:VBx01-PT7401:SetCP"
+
+};
+float	VBxH;
+assign	VBxH to "{GrpVBxH}";
+monitor VBxH;
+evflag  evVBxH;
+sync 	VBxH evVBxH;
+
+float VBxIArray[11];
+assign VBxIArray to {
+ "SCL31-CDL01:VBx02-PT7301:SetCP",
+ "SCL31-CDL01:VBx04-PT7301:SetCP",
+ "SCL31-CDL01:VBx06-PT7301:SetCP",
+ "SCL31-CDL01:VBx08-PT7301:SetCP",
+ "SCL31-CDL01:VBx10-PT7301:SetCP",
+ "SCL31-CDL01:VBx12-PT7301:SetCP",
+ "SCL31-CDL01:VBx14-PT7301:SetCP",
+ "SCL31-CDL01:VBx16-PT7301:SetCP",
+ "SCL31-CDL01:VBx18-PT7301:SetCP",
+ "SCL31-CDL01:VBx20-PT7301:SetCP",
+ "SCL31-CDL01:VBx22-PT7301:SetCP"
+
+};
+float	VBxI;
+assign	VBxI to "{GrpVBxI}";
+monitor VBxI;
+evflag  evVBxI;
+sync 	VBxI evVBxI;
+
+float VBxJArray[33];
+assign VBxJArray to {
+ "SCL32-CDL02:VBx01-PT7301:SetCP",
+ "SCL32-CDL02:VBx02-PT7301:SetCP",
+ "SCL32-CDL02:VBx03-PT7301:SetCP",
+ "SCL32-CDL02:VBx04-PT7301:SetCP",
+ "SCL32-CDL02:VBx05-PT7301:SetCP",
+ "SCL32-CDL02:VBx06-PT7301:SetCP",
+ "SCL32-CDL02:VBx07-PT7301:SetCP",
+ "SCL32-CDL02:VBx08-PT7301:SetCP",
+ "SCL32-CDL02:VBx09-PT7301:SetCP",
+ "SCL32-CDL02:VBx10-PT7301:SetCP",
+ "SCL32-CDL02:VBx11-PT7301:SetCP",
+ "SCL32-CDL02:VBx12-PT7301:SetCP",
+ "SCL32-CDL02:VBx13-PT7301:SetCP",
+ "SCL32-CDL03:VBx01-PT7301:SetCP",
+ "SCL32-CDL03:VBx02-PT7301:SetCP",
+ "SCL32-CDL03:VBx03-PT7301:SetCP",
+ "SCL32-CDL03:VBx04-PT7301:SetCP",
+ "SCL32-CDL03:VBx05-PT7301:SetCP",
+ "SCL32-CDL03:VBx06-PT7301:SetCP",
+ "SCL32-CDL03:VBx07-PT7301:SetCP",
+ "SCL32-CDL03:VBx08-PT7301:SetCP",
+ "SCL32-CDL03:VBx09-PT7301:SetCP",
+ "SCL32-CDL03:VBx10-PT7301:SetCP",
+ "SCL32-CDL03:VBx11-PT7301:SetCP",
+ "SCL32-CDL03:VBx12-PT7301:SetCP",
+ "SCL32-CDL03:VBx13-PT7301:SetCP",
+ "SCL32-CDL03:VBx14-PT7301:SetCP",
+ "SCL32-CDL03:VBx15-PT7301:SetCP",
+ "SCL32-CDL03:VBx16-PT7301:SetCP",
+ "SCL32-CDL03:VBx17-PT7301:SetCP",
+ "SCL32-CDL03:VBx18-PT7301:SetCP",
+ "SCL32-CDL03:VBx19-PT7301:SetCP",
+ "P2DT-CDL04:VBx01-PT7301:SetCP"
+
+};
+float	VBxJ;
+assign	VBxJ to "{GrpVBxJ}";
+monitor VBxJ;
+evflag  evVBxJ;
+sync 	VBxJ evVBxJ;
+
+float VBxKArray[11];
+assign VBxKArray to {
+ "SCL31-CDL01:VBx02-TT7501:SetCP",
+ "SCL31-CDL01:VBx04-TT7501:SetCP",
+ "SCL31-CDL01:VBx06-TT7501:SetCP",
+ "SCL31-CDL01:VBx08-TT7501:SetCP",
+ "SCL31-CDL01:VBx10-TT7501:SetCP",
+ "SCL31-CDL01:VBx12-TT7501:SetCP",
+ "SCL31-CDL01:VBx14-TT7501:SetCP",
+ "SCL31-CDL01:VBx16-TT7501:SetCP",
+ "SCL31-CDL01:VBx18-TT7501:SetCP",
+ "SCL31-CDL01:VBx20-TT7501:SetCP",
+ "SCL31-CDL01:VBx22-TT7501:SetCP"
+
+};
+float	VBxK;
+assign	VBxK to "{GrpVBxK}";
+monitor VBxK;
+evflag  evVBxK;
+sync 	VBxK evVBxK;
+
+float VBxLArray[33];
+assign VBxLArray to {
+ "SCL32-CDL02:VBx01-TT7501:SetCP",
+ "SCL32-CDL02:VBx02-TT7501:SetCP",
+ "SCL32-CDL02:VBx03-TT7501:SetCP",
+ "SCL32-CDL02:VBx04-TT7501:SetCP",
+ "SCL32-CDL02:VBx05-TT7501:SetCP",
+ "SCL32-CDL02:VBx06-TT7501:SetCP",
+ "SCL32-CDL02:VBx07-TT7501:SetCP",
+ "SCL32-CDL02:VBx08-TT7501:SetCP",
+ "SCL32-CDL02:VBx09-TT7501:SetCP",
+ "SCL32-CDL02:VBx10-TT7501:SetCP",
+ "SCL32-CDL02:VBx11-TT7501:SetCP",
+ "SCL32-CDL02:VBx12-TT7501:SetCP",
+ "SCL32-CDL02:VBx13-TT7501:SetCP",
+ "SCL32-CDL03:VBx01-TT7501:SetCP",
+ "SCL32-CDL03:VBx02-TT7501:SetCP",
+ "SCL32-CDL03:VBx03-TT7501:SetCP",
+ "SCL32-CDL03:VBx04-TT7501:SetCP",
+ "SCL32-CDL03:VBx05-TT7501:SetCP",
+ "SCL32-CDL03:VBx06-TT7501:SetCP",
+ "SCL32-CDL03:VBx07-TT7501:SetCP",
+ "SCL32-CDL03:VBx08-TT7501:SetCP",
+ "SCL32-CDL03:VBx09-TT7501:SetCP",
+ "SCL32-CDL03:VBx10-TT7501:SetCP",
+ "SCL32-CDL03:VBx11-TT7501:SetCP",
+ "SCL32-CDL03:VBx12-TT7501:SetCP",
+ "SCL32-CDL03:VBx13-TT7501:SetCP",
+ "SCL32-CDL03:VBx14-TT7501:SetCP",
+ "SCL32-CDL03:VBx15-TT7501:SetCP",
+ "SCL32-CDL03:VBx16-TT7501:SetCP",
+ "SCL32-CDL03:VBx17-TT7501:SetCP",
+ "SCL32-CDL03:VBx18-TT7501:SetCP",
+ "SCL32-CDL03:VBx19-TT7501:SetCP",
+ "P2DT-CDL04:VBx01-TT7501:SetCP"
+
+};
+float	VBxL;
+assign	VBxL to "{GrpVBxL}";
+monitor VBxL;
+evflag  evVBxL;
+sync 	VBxL evVBxL;
+
+float VBxMArray[33];
+assign VBxMArray to {
+ "SCL32-CDL02:VBx01-PT7201:SetCP",
+ "SCL32-CDL02:VBx02-PT7201:SetCP",
+ "SCL32-CDL02:VBx03-PT7201:SetCP",
+ "SCL32-CDL02:VBx04-PT7201:SetCP",
+ "SCL32-CDL02:VBx05-PT7201:SetCP",
+ "SCL32-CDL02:VBx06-PT7201:SetCP",
+ "SCL32-CDL02:VBx07-PT7201:SetCP",
+ "SCL32-CDL02:VBx08-PT7201:SetCP",
+ "SCL32-CDL02:VBx09-PT7201:SetCP",
+ "SCL32-CDL02:VBx10-PT7201:SetCP",
+ "SCL32-CDL02:VBx11-PT7201:SetCP",
+ "SCL32-CDL02:VBx12-PT7201:SetCP",
+ "SCL32-CDL02:VBx13-PT7201:SetCP",
+ "SCL32-CDL03:VBx01-PT7201:SetCP",
+ "SCL32-CDL03:VBx02-PT7201:SetCP",
+ "SCL32-CDL03:VBx03-PT7201:SetCP",
+ "SCL32-CDL03:VBx04-PT7201:SetCP",
+ "SCL32-CDL03:VBx05-PT7201:SetCP",
+ "SCL32-CDL03:VBx06-PT7201:SetCP",
+ "SCL32-CDL03:VBx07-PT7201:SetCP",
+ "SCL32-CDL03:VBx08-PT7201:SetCP",
+ "SCL32-CDL03:VBx09-PT7201:SetCP",
+ "SCL32-CDL03:VBx10-PT7201:SetCP",
+ "SCL32-CDL03:VBx11-PT7201:SetCP",
+ "SCL32-CDL03:VBx12-PT7201:SetCP",
+ "SCL32-CDL03:VBx13-PT7201:SetCP",
+ "SCL32-CDL03:VBx14-PT7201:SetCP",
+ "SCL32-CDL03:VBx15-PT7201:SetCP",
+ "SCL32-CDL03:VBx16-PT7201:SetCP",
+ "SCL32-CDL03:VBx17-PT7201:SetCP",
+ "SCL32-CDL03:VBx18-PT7201:SetCP",
+ "SCL32-CDL03:VBx19-PT7201:SetCP",
+ "P2DT-CDL04:VBx01-PT7201:SetCP"
+
+};
+float	VBxM;
+assign	VBxM to "{GrpVBxM}";
+monitor VBxM;
+evflag  evVBxM;
+sync 	VBxM evVBxM;
+
+
+ss seq_controls_SeqVBxSetCP
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evVBxA);
+                 efClear(evVBxB);
+                 efClear(evVBxC);
+                 efClear(evVBxD);
+                 efClear(evVBxE);
+                 efClear(evVBxF);
+                 efClear(evVBxG);
+                 efClear(evVBxH);
+                 efClear(evVBxI);
+                 efClear(evVBxJ);
+                 efClear(evVBxK);
+                 efClear(evVBxL);
+                 efClear(evVBxM);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evVBxA))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxAArray)/sizeof(VBxAArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxAArray[index] = VBxA;
+				pvPut(VBxAArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxB))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxBArray)/sizeof(VBxBArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxBArray[index] = VBxB;
+				pvPut(VBxBArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxC))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxCArray)/sizeof(VBxCArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxCArray[index] = VBxC;
+				pvPut(VBxCArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxD))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxDArray)/sizeof(VBxDArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxDArray[index] = VBxD;
+				pvPut(VBxDArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxE))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxEArray)/sizeof(VBxEArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxEArray[index] = VBxE;
+				pvPut(VBxEArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxF))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxFArray)/sizeof(VBxFArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxFArray[index] = VBxF;
+				pvPut(VBxFArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxG))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxGArray)/sizeof(VBxGArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxGArray[index] = VBxG;
+				pvPut(VBxGArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxH))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxHArray)/sizeof(VBxHArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxHArray[index] = VBxH;
+				pvPut(VBxHArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxI))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxIArray)/sizeof(VBxIArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxIArray[index] = VBxI;
+				pvPut(VBxIArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxJ))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxJArray)/sizeof(VBxJArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxJArray[index] = VBxJ;
+				pvPut(VBxJArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxK))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxKArray)/sizeof(VBxKArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxKArray[index] = VBxK;
+				pvPut(VBxKArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxL))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxLArray)/sizeof(VBxLArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxLArray[index] = VBxL;
+				pvPut(VBxLArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evVBxM))
+		{
+			int index = 0;
+			int pvcnt = sizeof(VBxMArray)/sizeof(VBxMArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				VBxMArray[index] = VBxM;
+				pvPut(VBxMArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(VBxAArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxBArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxCArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxDArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxEArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxFArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxGArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxHArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxIArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxJArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxKArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxLArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(VBxMArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

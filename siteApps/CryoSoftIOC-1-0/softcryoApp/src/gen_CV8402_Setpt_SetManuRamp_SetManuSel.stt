@@ -1,0 +1,352 @@
+program CV8402SetValve
+option +r;
+
+float CV8402_AArray[13];
+assign CV8402_AArray to {
+ "SCL32-BL02:CM01-CV8402:Setpt",
+ "SCL32-BL02:CM02-CV8402:Setpt",
+ "SCL32-BL02:CM03-CV8402:Setpt",
+ "SCL32-BL02:CM04-CV8402:Setpt",
+ "SCL32-BL02:CM05-CV8402:Setpt",
+ "SCL32-BL02:CM06-CV8402:Setpt",
+ "SCL32-BL02:CM07-CV8402:Setpt",
+ "SCL32-BL02:CM08-CV8402:Setpt",
+ "SCL32-BL02:CM09-CV8402:Setpt",
+ "SCL32-BL02:CM10-CV8402:Setpt",
+ "SCL32-BL02:CM11-CV8402:Setpt",
+ "SCL32-BL02:CM12-CV8402:Setpt",
+ "SCL32-BL02:CM13-CV8402:Setpt"
+
+};
+float	CV8402_A;
+assign	CV8402_A to "{GrpCV8402_A}";
+monitor CV8402_A;
+evflag  evCV8402_A;
+sync 	CV8402_A evCV8402_A;
+
+float CV8402_BArray[13];
+assign CV8402_BArray to {
+ "SCL32-BL02:CM01-CV8402:SetManuRamp",
+ "SCL32-BL02:CM02-CV8402:SetManuRamp",
+ "SCL32-BL02:CM03-CV8402:SetManuRamp",
+ "SCL32-BL02:CM04-CV8402:SetManuRamp",
+ "SCL32-BL02:CM05-CV8402:SetManuRamp",
+ "SCL32-BL02:CM06-CV8402:SetManuRamp",
+ "SCL32-BL02:CM07-CV8402:SetManuRamp",
+ "SCL32-BL02:CM08-CV8402:SetManuRamp",
+ "SCL32-BL02:CM09-CV8402:SetManuRamp",
+ "SCL32-BL02:CM10-CV8402:SetManuRamp",
+ "SCL32-BL02:CM11-CV8402:SetManuRamp",
+ "SCL32-BL02:CM12-CV8402:SetManuRamp",
+ "SCL32-BL02:CM13-CV8402:SetManuRamp"
+
+};
+float	CV8402_B;
+assign	CV8402_B to "{GrpCV8402_B}";
+monitor CV8402_B;
+evflag  evCV8402_B;
+sync 	CV8402_B evCV8402_B;
+
+float CV8402_CArray[13];
+assign CV8402_CArray to {
+ "SCL32-BL02:CM01-CV8402:SetManuSel",
+ "SCL32-BL02:CM02-CV8402:SetManuSel",
+ "SCL32-BL02:CM03-CV8402:SetManuSel",
+ "SCL32-BL02:CM04-CV8402:SetManuSel",
+ "SCL32-BL02:CM05-CV8402:SetManuSel",
+ "SCL32-BL02:CM06-CV8402:SetManuSel",
+ "SCL32-BL02:CM07-CV8402:SetManuSel",
+ "SCL32-BL02:CM08-CV8402:SetManuSel",
+ "SCL32-BL02:CM09-CV8402:SetManuSel",
+ "SCL32-BL02:CM10-CV8402:SetManuSel",
+ "SCL32-BL02:CM11-CV8402:SetManuSel",
+ "SCL32-BL02:CM12-CV8402:SetManuSel",
+ "SCL32-BL02:CM13-CV8402:SetManuSel"
+
+};
+float	CV8402_C;
+assign	CV8402_C to "{GrpCV8402_C}";
+monitor CV8402_C;
+evflag  evCV8402_C;
+sync 	CV8402_C evCV8402_C;
+
+float CV8402_DArray[19];
+assign CV8402_DArray to {
+ "SCL32-BL03:CM01-CV8402:Setpt",
+ "SCL32-BL03:CM02-CV8402:Setpt",
+ "SCL32-BL03:CM03-CV8402:Setpt",
+ "SCL32-BL03:CM04-CV8402:Setpt",
+ "SCL32-BL03:CM05-CV8402:Setpt",
+ "SCL32-BL03:CM06-CV8402:Setpt",
+ "SCL32-BL03:CM07-CV8402:Setpt",
+ "SCL32-BL03:CM08-CV8402:Setpt",
+ "SCL32-BL03:CM09-CV8402:Setpt",
+ "SCL32-BL03:CM10-CV8402:Setpt",
+ "SCL32-BL03:CM11-CV8402:Setpt",
+ "SCL32-BL03:CM12-CV8402:Setpt",
+ "SCL32-BL03:CM13-CV8402:Setpt",
+ "SCL32-BL03:CM14-CV8402:Setpt",
+ "SCL32-BL03:CM15-CV8402:Setpt",
+ "SCL32-BL03:CM16-CV8402:Setpt",
+ "SCL32-BL03:CM17-CV8402:Setpt",
+ "SCL32-BL03:CM18-CV8402:Setpt",
+ "SCL32-BL03:CM19-CV8402:Setpt"
+
+};
+float	CV8402_D;
+assign	CV8402_D to "{GrpCV8402_D}";
+monitor CV8402_D;
+evflag  evCV8402_D;
+sync 	CV8402_D evCV8402_D;
+
+float CV8402_EArray[19];
+assign CV8402_EArray to {
+ "SCL32-BL03:CM01-CV8402:SetManuRamp",
+ "SCL32-BL03:CM02-CV8402:SetManuRamp",
+ "SCL32-BL03:CM03-CV8402:SetManuRamp",
+ "SCL32-BL03:CM04-CV8402:SetManuRamp",
+ "SCL32-BL03:CM05-CV8402:SetManuRamp",
+ "SCL32-BL03:CM06-CV8402:SetManuRamp",
+ "SCL32-BL03:CM07-CV8402:SetManuRamp",
+ "SCL32-BL03:CM08-CV8402:SetManuRamp",
+ "SCL32-BL03:CM09-CV8402:SetManuRamp",
+ "SCL32-BL03:CM10-CV8402:SetManuRamp",
+ "SCL32-BL03:CM11-CV8402:SetManuRamp",
+ "SCL32-BL03:CM12-CV8402:SetManuRamp",
+ "SCL32-BL03:CM13-CV8402:SetManuRamp",
+ "SCL32-BL03:CM14-CV8402:SetManuRamp",
+ "SCL32-BL03:CM15-CV8402:SetManuRamp",
+ "SCL32-BL03:CM16-CV8402:SetManuRamp",
+ "SCL32-BL03:CM17-CV8402:SetManuRamp",
+ "SCL32-BL03:CM18-CV8402:SetManuRamp",
+ "SCL32-BL03:CM19-CV8402:SetManuRamp"
+
+};
+float	CV8402_E;
+assign	CV8402_E to "{GrpCV8402_E}";
+monitor CV8402_E;
+evflag  evCV8402_E;
+sync 	CV8402_E evCV8402_E;
+
+float CV8402_FArray[19];
+assign CV8402_FArray to {
+ "SCL32-BL03:CM01-CV8402:SetManuSel",
+ "SCL32-BL03:CM02-CV8402:SetManuSel",
+ "SCL32-BL03:CM03-CV8402:SetManuSel",
+ "SCL32-BL03:CM04-CV8402:SetManuSel",
+ "SCL32-BL03:CM05-CV8402:SetManuSel",
+ "SCL32-BL03:CM06-CV8402:SetManuSel",
+ "SCL32-BL03:CM07-CV8402:SetManuSel",
+ "SCL32-BL03:CM08-CV8402:SetManuSel",
+ "SCL32-BL03:CM09-CV8402:SetManuSel",
+ "SCL32-BL03:CM10-CV8402:SetManuSel",
+ "SCL32-BL03:CM11-CV8402:SetManuSel",
+ "SCL32-BL03:CM12-CV8402:SetManuSel",
+ "SCL32-BL03:CM13-CV8402:SetManuSel",
+ "SCL32-BL03:CM14-CV8402:SetManuSel",
+ "SCL32-BL03:CM15-CV8402:SetManuSel",
+ "SCL32-BL03:CM16-CV8402:SetManuSel",
+ "SCL32-BL03:CM17-CV8402:SetManuSel",
+ "SCL32-BL03:CM18-CV8402:SetManuSel",
+ "SCL32-BL03:CM19-CV8402:SetManuSel"
+
+};
+float	CV8402_F;
+assign	CV8402_F to "{GrpCV8402_F}";
+monitor CV8402_F;
+evflag  evCV8402_F;
+sync 	CV8402_F evCV8402_F;
+
+float CV8402_GArray[13];
+assign CV8402_GArray to {
+ "SCL32-BL02:CM01-CV8402:SetManu",
+ "SCL32-BL02:CM02-CV8402:SetManu",
+ "SCL32-BL02:CM03-CV8402:SetManu",
+ "SCL32-BL02:CM04-CV8402:SetManu",
+ "SCL32-BL02:CM05-CV8402:SetManu",
+ "SCL32-BL02:CM06-CV8402:SetManu",
+ "SCL32-BL02:CM07-CV8402:SetManu",
+ "SCL32-BL02:CM08-CV8402:SetManu",
+ "SCL32-BL02:CM09-CV8402:SetManu",
+ "SCL32-BL02:CM10-CV8402:SetManu",
+ "SCL32-BL02:CM11-CV8402:SetManu",
+ "SCL32-BL02:CM12-CV8402:SetManu",
+ "SCL32-BL02:CM13-CV8402:SetManu"
+
+};
+float	CV8402_G;
+assign	CV8402_G to "{GrpCV8402_G}";
+monitor CV8402_G;
+evflag  evCV8402_G;
+sync 	CV8402_G evCV8402_G;
+
+float CV8402_HArray[19];
+assign CV8402_HArray to {
+ "SCL32-BL03:CM01-CV8402:SetManu",
+ "SCL32-BL03:CM02-CV8402:SetManu",
+ "SCL32-BL03:CM03-CV8402:SetManu",
+ "SCL32-BL03:CM04-CV8402:SetManu",
+ "SCL32-BL03:CM05-CV8402:SetManu",
+ "SCL32-BL03:CM06-CV8402:SetManu",
+ "SCL32-BL03:CM07-CV8402:SetManu",
+ "SCL32-BL03:CM08-CV8402:SetManu",
+ "SCL32-BL03:CM09-CV8402:SetManu",
+ "SCL32-BL03:CM10-CV8402:SetManu",
+ "SCL32-BL03:CM11-CV8402:SetManu",
+ "SCL32-BL03:CM12-CV8402:SetManu",
+ "SCL32-BL03:CM13-CV8402:SetManu",
+ "SCL32-BL03:CM14-CV8402:SetManu",
+ "SCL32-BL03:CM15-CV8402:SetManu",
+ "SCL32-BL03:CM16-CV8402:SetManu",
+ "SCL32-BL03:CM17-CV8402:SetManu",
+ "SCL32-BL03:CM18-CV8402:SetManu",
+ "SCL32-BL03:CM19-CV8402:SetManu"
+
+};
+float	CV8402_H;
+assign	CV8402_H to "{GrpCV8402_H}";
+monitor CV8402_H;
+evflag  evCV8402_H;
+sync 	CV8402_H evCV8402_H;
+
+
+ss seq_controls_CV8402SetValve
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evCV8402_A);
+                 efClear(evCV8402_B);
+                 efClear(evCV8402_C);
+                 efClear(evCV8402_D);
+                 efClear(evCV8402_E);
+                 efClear(evCV8402_F);
+                 efClear(evCV8402_G);
+                 efClear(evCV8402_H);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evCV8402_A))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_AArray)/sizeof(CV8402_AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_AArray[index] = CV8402_A;
+				pvPut(CV8402_AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_B))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_BArray)/sizeof(CV8402_BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_BArray[index] = CV8402_B;
+				pvPut(CV8402_BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_C))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_CArray)/sizeof(CV8402_CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_CArray[index] = CV8402_C;
+				pvPut(CV8402_CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_D))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_DArray)/sizeof(CV8402_DArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_DArray[index] = CV8402_D;
+				pvPut(CV8402_DArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_E))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_EArray)/sizeof(CV8402_EArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_EArray[index] = CV8402_E;
+				pvPut(CV8402_EArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_F))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_FArray)/sizeof(CV8402_FArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_FArray[index] = CV8402_F;
+				pvPut(CV8402_FArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_G))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_GArray)/sizeof(CV8402_GArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_GArray[index] = CV8402_G;
+				pvPut(CV8402_GArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV8402_H))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV8402_HArray)/sizeof(CV8402_HArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV8402_HArray[index] = CV8402_H;
+				pvPut(CV8402_HArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(CV8402_AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_CArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_DArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_EArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_FArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_GArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV8402_HArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

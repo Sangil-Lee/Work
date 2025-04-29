@@ -1,0 +1,142 @@
+program XV7502SetValve
+option +r;
+
+float XV7502_AArray[11];
+assign XV7502_AArray to {
+ "SCL31-CDL01:VBx02-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx04-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx06-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx08-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx10-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx12-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx14-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx16-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx18-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx20-XV7502:SetManuClose",
+ "SCL31-CDL01:VBx22-XV7502:SetManuClose"
+
+};
+float	XV7502_A;
+assign	XV7502_A to "{GrpXV7502_A}";
+monitor XV7502_A;
+evflag  evXV7502_A;
+sync 	XV7502_A evXV7502_A;
+
+float XV7502_BArray[13];
+assign XV7502_BArray to {
+ "SCL32-CDL02:VBx01-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx02-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx03-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx04-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx05-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx06-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx07-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx08-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx09-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx10-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx11-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx12-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx13-XV7502:SetManuClose"
+
+};
+float	XV7502_B;
+assign	XV7502_B to "{GrpXV7502_B}";
+monitor XV7502_B;
+evflag  evXV7502_B;
+sync 	XV7502_B evXV7502_B;
+
+float XV7502_CArray[19];
+assign XV7502_CArray to {
+ "SCL32-CDL03:VBx01-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx02-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx03-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx04-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx05-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx06-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx07-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx08-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx09-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx10-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx11-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx12-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx13-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx14-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx15-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx16-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx17-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx18-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx19-XV7502:SetManuClose"
+
+};
+float	XV7502_C;
+assign	XV7502_C to "{GrpXV7502_C}";
+monitor XV7502_C;
+evflag  evXV7502_C;
+sync 	XV7502_C evXV7502_C;
+
+
+ss seq_controls_XV7502SetValve
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evXV7502_A);
+                 efClear(evXV7502_B);
+                 efClear(evXV7502_C);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evXV7502_A))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV7502_AArray)/sizeof(XV7502_AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV7502_AArray[index] = XV7502_A;
+				pvPut(XV7502_AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evXV7502_B))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV7502_BArray)/sizeof(XV7502_BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV7502_BArray[index] = XV7502_B;
+				pvPut(XV7502_BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evXV7502_C))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV7502_CArray)/sizeof(XV7502_CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV7502_CArray[index] = XV7502_C;
+				pvPut(XV7502_CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(XV7502_AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(XV7502_BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(XV7502_CArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

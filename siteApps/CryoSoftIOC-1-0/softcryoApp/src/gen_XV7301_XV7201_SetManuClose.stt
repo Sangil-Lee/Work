@@ -1,0 +1,142 @@
+program XV737201SetValve
+option +r;
+
+float XV737201_AArray[11];
+assign XV737201_AArray to {
+ "SCL31-CDL01:VBx02-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx04-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx06-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx08-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx10-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx12-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx14-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx16-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx18-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx20-XV7301:SetManuClose",
+ "SCL31-CDL01:VBx22-XV7301:SetManuClose"
+
+};
+float	XV737201_A;
+assign	XV737201_A to "{GrpXV737201_A}";
+monitor XV737201_A;
+evflag  evXV737201_A;
+sync 	XV737201_A evXV737201_A;
+
+float XV737201_BArray[13];
+assign XV737201_BArray to {
+ "SCL32-CDL02:VBx01-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx02-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx03-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx04-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx05-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx06-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx07-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx08-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx09-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx10-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx11-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx12-XV7201:SetManuClose",
+ "SCL32-CDL02:VBx13-XV7201:SetManuClose"
+
+};
+float	XV737201_B;
+assign	XV737201_B to "{GrpXV737201_B}";
+monitor XV737201_B;
+evflag  evXV737201_B;
+sync 	XV737201_B evXV737201_B;
+
+float XV737201_CArray[19];
+assign XV737201_CArray to {
+ "SCL32-CDL03:VBx01-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx02-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx03-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx04-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx05-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx06-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx07-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx08-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx09-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx10-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx11-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx12-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx13-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx14-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx15-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx16-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx17-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx18-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx19-XV7201:SetManuClose"
+
+};
+float	XV737201_C;
+assign	XV737201_C to "{GrpXV737201_C}";
+monitor XV737201_C;
+evflag  evXV737201_C;
+sync 	XV737201_C evXV737201_C;
+
+
+ss seq_controls_XV737201SetValve
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evXV737201_A);
+                 efClear(evXV737201_B);
+                 efClear(evXV737201_C);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evXV737201_A))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV737201_AArray)/sizeof(XV737201_AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV737201_AArray[index] = XV737201_A;
+				pvPut(XV737201_AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evXV737201_B))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV737201_BArray)/sizeof(XV737201_BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV737201_BArray[index] = XV737201_B;
+				pvPut(XV737201_BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evXV737201_C))
+		{
+			int index = 0;
+			int pvcnt = sizeof(XV737201_CArray)/sizeof(XV737201_CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				XV737201_CArray[index] = XV737201_C;
+				pvPut(XV737201_CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(XV737201_AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(XV737201_BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(XV737201_CArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

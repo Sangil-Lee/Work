@@ -1,0 +1,103 @@
+file "softcryo_seqControl.template"
+{
+pattern
+{SYS, 	SUBSYS,		DEV,	SUBDEV, 	SIGNAL }
+{SCL31, -CDL01:,	VBx99,	-TT7502:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-PT7503:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-PT7501:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-PT7501:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-PT7502:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-PT7502:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-PT7401:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-PT7401:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-PT7301:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-PT7301:,	SetCP }
+{SCL31,	-CDL01:,	VBx99,	-TT7501:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-TT7501:,	SetCP }
+{SCL32,	-CDL99:,	VBx99,	-PT7201:,	SetCP }
+
+#seq SeqCMSetCP
+{SCL31,	-BL01:,		CM99,	-PT8501:,	SetCP }
+{SCL31,	-BL01:,		CM99,	-PT8301:,	SetCP }
+{SCL31,	-BL01:,		CM99,	-PT8112:,	SetCP }
+{SCL31,	-BL01:,		CM99,	-LT8401:,	SetCPA }
+{SCL31,	-BL01:,		CM99,	-LT8401:,	SetCPB }
+{SCL31,	-BL01:,		CM99,	-PT8113:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8501:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8301:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8201:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8201:,	SetCPA }
+{SCL32,	-BL99:,		CM99,	-PT8112:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8203:,	SetCP }
+{SCL32,	-BL99:,		CM99,	-PT8203:,	SetCPA }
+{SCL32,	-BL99:,		CM99,	-PT8113:,	SetCP }
+{SCL31,	-BL01:,		CM99,	-LT8401:,	SetCPA }
+{SCL31,	-BL01:,		CM99,	-LT8401:,	SetCPB }
+{SCL31,	-BL01:,		CM99,	-LT8201:,	SetCPA }
+{SCL31,	-BL01:,		CM99,	-LT8201:,	SetCPB }
+
+#seq 	CV8402SetValve
+{SCL32,	-BL02:,		CM99,	-CV8402:,	Setpt }
+{SCL32,	-BL02:,		CM99,	-CV8402:,	SetManuRamp }
+{SCL32,	-BL02:,		CM99,	-CV8402:,	SetManuSel}
+{SCL32,	-BL02:,		CM99,	-CV8402:,	SetManu}
+{SCL32,	-BL03:,		CM99,	-CV8402:,	Setpt }
+{SCL32,	-BL03:,		CM99,	-CV8402:,	SetManuRamp }
+{SCL32,	-BL03:,		CM99,	-CV8402:,	SetManuSel }
+{SCL32,	-BL03:,		CM99,	-CV8402:,	SetManu }
+
+#seq ,	CV7401SetValve
+{SCL31,	-CDL01:,	VBx99,	-CV7401:,	Setpt }
+{SCL32,	-CDL02:,	VBx99,	-CV7401:,	Setpt }
+{SCL32,	-CDL03:,	VBx99,	-CV7401:,	Setpt }
+{SCL31,	-CDL01:,	VBx99,	-CV7401:,	SetManuRamp }
+{SCL32,	-CDL02:,	VBx99,	-CV7401:,	SetManuRamp }
+{SCL32,	-CDL03:,	VBx99,	-CV7401:,	SetManuRamp }
+
+#seq ,	CV7501SetValve
+{SCL31,	-CDL01:,	VBx99,	-CV7501:,	Setpt }
+{SCL32,	-CDL02:,	VBx99,	-CV7501:,	Setpt }
+{SCL32,	-CDL03:,	VBx99,	-CV7501:,	Setpt }
+{SCL31,	-CDL01:,	VBx99,	-CV7501:,	SetManuRamp }
+{SCL32,	-CDL02:,	VBx99,	-CV7501:,	SetManuRamp }
+{SCL32,	-CDL03:,	VBx99,	-CV7501:,	SetManuRamp }
+
+#seq ,	XV7502SetValve
+{SCL31,	-CDL01:,	VBx99,	-XV7502:,	SetManuClose }
+{SCL32,	-CDL02:,	VBx99,	-XV7502:,	SetManuClose }
+{SCL32,	-CDL03:,	VBx99,	-XV7502:,	SetManuClose }
+
+#seq ,	XV737201SetValve
+{SCL31,	-CDL01:,	VBx99	-XV7301:,	SetManuClose }
+{SCL32,	-CDL02:,	VBx99	-XV7201:,	SetManuClose }
+{SCL32,	-CDL03:,	VBx99	-XV7201:,	SetManuClose }
+
+#seq ,	PT7501Alarm
+{SCL31,	-CDL01:,	VBx99,	-PT7501:,	PresR }
+{SCL32,	-CDL99:,	VBx99,	-PT7501:,	PresR }
+{SCL31,	-BL01:,		VBx99,	-PT8501:,	PresR }
+{SCL32,	-BL99:,		CM99,	-PT8501:,	PresR }
+
+#seq ,	CV7502SetValve
+{SCL31,	-CDL01:,	VBx99,	-CV7502:,	Setpt }
+{SCL32,	-CDL02:,	VBx99,	-CV7502:,	Setpt }
+{SCL32,	-CDL03:,	VBx99,	-CV7502:,	Setpt }
+{SCL31,	-CDL01:,	VBx99,	-CV7502:,	SetManuRamp }
+{SCL32,	-CDL02:,	VBx99,	-CV7502:,	SetManuRamp }
+{SCL32,	-CDL03:,	VBx99,	-CV7502:,	SetManuRamp }
+
+#seq ,	FinalGroupPVs
+{SCL3,	-CDL99:,	VBx99,	-CV7401:,	Setpt }
+{SCL3,	-CDL99:,	VBx99,	-CV7401:,	SetManuRamp }
+{SCL3,	-CDL99:,	VBx99,	-CV7501CV7502:,	Setpt }
+{SCL3,	-CDL99:,	VBx99,	-CV7501CV7502:,	SetManuRamp }
+
+{SCL3,	-BL99:,		CM99,	-CV8402:,	Setpt }
+{SCL3,	-BL99:,		CM99,	-CV8402:,	SetManuRamp }
+{SCL3,	-BL99:,		CM99,	-CV8402:,	SetManuSel }
+{SCL3,	-BL99:,		CM99,	-CV8402:,	SetManu }
+
+{SCL3,	-CDL99:,	VBx99	-XV7301XV7201:,	SetManuClose }
+{SCL3,	-CDL99:,	VBx99	-XV7502:,	SetManuClose }
+
+}

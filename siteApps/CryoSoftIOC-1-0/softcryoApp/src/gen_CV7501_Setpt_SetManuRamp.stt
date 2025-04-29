@@ -1,0 +1,260 @@
+program CV7501SetValve
+option +r;
+
+float CV7501_AArray[11];
+assign CV7501_AArray to {
+ "SCL31-CDL01:VBx02-CV7501:Setpt",
+ "SCL31-CDL01:VBx04-CV7501:Setpt",
+ "SCL31-CDL01:VBx06-CV7501:Setpt",
+ "SCL31-CDL01:VBx08-CV7501:Setpt",
+ "SCL31-CDL01:VBx10-CV7501:Setpt",
+ "SCL31-CDL01:VBx12-CV7501:Setpt",
+ "SCL31-CDL01:VBx14-CV7501:Setpt",
+ "SCL31-CDL01:VBx16-CV7501:Setpt",
+ "SCL31-CDL01:VBx18-CV7501:Setpt",
+ "SCL31-CDL01:VBx20-CV7501:Setpt",
+ "SCL31-CDL01:VBx22-CV7501:Setpt"
+
+};
+float	CV7501_A;
+assign	CV7501_A to "{GrpCV7501_A}";
+monitor CV7501_A;
+evflag  evCV7501_A;
+sync 	CV7501_A evCV7501_A;
+
+float CV7501_BArray[13];
+assign CV7501_BArray to {
+ "SCL32-CDL02:VBx01-CV7501:Setpt",
+ "SCL32-CDL02:VBx02-CV7501:Setpt",
+ "SCL32-CDL02:VBx03-CV7501:Setpt",
+ "SCL32-CDL02:VBx04-CV7501:Setpt",
+ "SCL32-CDL02:VBx05-CV7501:Setpt",
+ "SCL32-CDL02:VBx06-CV7501:Setpt",
+ "SCL32-CDL02:VBx07-CV7501:Setpt",
+ "SCL32-CDL02:VBx08-CV7501:Setpt",
+ "SCL32-CDL02:VBx09-CV7501:Setpt",
+ "SCL32-CDL02:VBx10-CV7501:Setpt",
+ "SCL32-CDL02:VBx11-CV7501:Setpt",
+ "SCL32-CDL02:VBx12-CV7501:Setpt",
+ "SCL32-CDL02:VBx13-CV7501:Setpt"
+
+};
+float	CV7501_B;
+assign	CV7501_B to "{GrpCV7501_B}";
+monitor CV7501_B;
+evflag  evCV7501_B;
+sync 	CV7501_B evCV7501_B;
+
+float CV7501_CArray[19];
+assign CV7501_CArray to {
+ "SCL32-CDL03:VBx01-CV7501:Setpt",
+ "SCL32-CDL03:VBx02-CV7501:Setpt",
+ "SCL32-CDL03:VBx03-CV7501:Setpt",
+ "SCL32-CDL03:VBx04-CV7501:Setpt",
+ "SCL32-CDL03:VBx05-CV7501:Setpt",
+ "SCL32-CDL03:VBx06-CV7501:Setpt",
+ "SCL32-CDL03:VBx07-CV7501:Setpt",
+ "SCL32-CDL03:VBx08-CV7501:Setpt",
+ "SCL32-CDL03:VBx09-CV7501:Setpt",
+ "SCL32-CDL03:VBx10-CV7501:Setpt",
+ "SCL32-CDL03:VBx11-CV7501:Setpt",
+ "SCL32-CDL03:VBx12-CV7501:Setpt",
+ "SCL32-CDL03:VBx13-CV7501:Setpt",
+ "SCL32-CDL03:VBx14-CV7501:Setpt",
+ "SCL32-CDL03:VBx15-CV7501:Setpt",
+ "SCL32-CDL03:VBx16-CV7501:Setpt",
+ "SCL32-CDL03:VBx17-CV7501:Setpt",
+ "SCL32-CDL03:VBx18-CV7501:Setpt",
+ "SCL32-CDL03:VBx19-CV7501:Setpt"
+
+};
+float	CV7501_C;
+assign	CV7501_C to "{GrpCV7501_C}";
+monitor CV7501_C;
+evflag  evCV7501_C;
+sync 	CV7501_C evCV7501_C;
+
+float CV7501_DArray[11];
+assign CV7501_DArray to {
+ "SCL31-CDL01:VBx02-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx04-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx06-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx08-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx10-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx12-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx14-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx16-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx18-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx20-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx22-CV7501:SetManuRamp"
+
+};
+float	CV7501_D;
+assign	CV7501_D to "{GrpCV7501_D}";
+monitor CV7501_D;
+evflag  evCV7501_D;
+sync 	CV7501_D evCV7501_D;
+
+float CV7501_EArray[13];
+assign CV7501_EArray to {
+ "SCL32-CDL02:VBx01-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx02-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx03-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx04-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx05-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx06-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx07-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx08-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx09-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx10-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx11-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx12-CV7501:SetManuRamp",
+ "SCL32-CDL02:VBx13-CV7501:SetManuRamp"
+
+};
+float	CV7501_E;
+assign	CV7501_E to "{GrpCV7501_E}";
+monitor CV7501_E;
+evflag  evCV7501_E;
+sync 	CV7501_E evCV7501_E;
+
+float CV7501_FArray[19];
+assign CV7501_FArray to {
+ "SCL32-CDL03:VBx01-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx02-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx03-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx04-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx05-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx06-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx07-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx08-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx09-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx10-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx11-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx12-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx13-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx14-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx15-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx16-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx17-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx18-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx19-CV7501:SetManuRamp"
+
+};
+float	CV7501_F;
+assign	CV7501_F to "{GrpCV7501_F}";
+monitor CV7501_F;
+evflag  evCV7501_F;
+sync 	CV7501_F evCV7501_F;
+
+
+ss seq_controls_CV7501SetValve
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evCV7501_A);
+                 efClear(evCV7501_B);
+                 efClear(evCV7501_C);
+                 efClear(evCV7501_D);
+                 efClear(evCV7501_E);
+                 efClear(evCV7501_F);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evCV7501_A))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_AArray)/sizeof(CV7501_AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_AArray[index] = CV7501_A;
+				pvPut(CV7501_AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV7501_B))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_BArray)/sizeof(CV7501_BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_BArray[index] = CV7501_B;
+				pvPut(CV7501_BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV7501_C))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_CArray)/sizeof(CV7501_CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_CArray[index] = CV7501_C;
+				pvPut(CV7501_CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV7501_D))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_DArray)/sizeof(CV7501_DArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_DArray[index] = CV7501_D;
+				pvPut(CV7501_DArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV7501_E))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_EArray)/sizeof(CV7501_EArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_EArray[index] = CV7501_E;
+				pvPut(CV7501_EArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evCV7501_F))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CV7501_FArray)/sizeof(CV7501_FArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CV7501_FArray[index] = CV7501_F;
+				pvPut(CV7501_FArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(CV7501_AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV7501_BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV7501_CArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV7501_DArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV7501_EArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CV7501_FArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}
