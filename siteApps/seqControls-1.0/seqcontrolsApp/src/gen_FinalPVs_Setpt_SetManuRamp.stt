@@ -1,0 +1,312 @@
+program FinalSetValve
+option +r;
+
+float Final_AArray[4];
+assign Final_AArray to {
+ "SCL31-CDL01:VBx99-CV7401:Setpt",
+ "SCL32-CDL02:VBx99-CV7401:Setpt",
+ "SCL32-CDL03:VBx99-CV7401:Setpt",
+ "P2DT-CDL04:VBx01-CV7401:Setpt"
+
+};
+float	Final_A;
+assign	Final_A to "{GrpFinal_A}";
+monitor Final_A;
+evflag  evFinal_A;
+sync 	Final_A evFinal_A;
+
+float Final_BArray[4];
+assign Final_BArray to {
+ "SCL31-CDL01:VBx99-CV7401:SetManuRamp",
+ "SCL32-CDL02:VBx99-CV7401:SetManuRamp",
+ "SCL32-CDL03:VBx99-CV7401:SetManuRamp",
+ "P2DT-CDL04:VBx01-CV7401:SetManuRamp"
+
+};
+float	Final_B;
+assign	Final_B to "{GrpFinal_B}";
+monitor Final_B;
+evflag  evFinal_B;
+sync 	Final_B evFinal_B;
+
+float Final_CArray[5];
+assign Final_CArray to {
+ "SCL31-CDL01:VBx99-CV7501:Setpt",
+ "SCL31-CDL01:VBx99-CV7502:Setpt",
+ "SCL32-CDL02:VBx99-CV7501:Setpt",
+ "SCL32-CDL03:VBx99-CV7501:Setpt",
+ "P2DT-CDL04:VBx01-CV7501:Setpt"
+
+};
+float	Final_C;
+assign	Final_C to "{GrpFinal_C}";
+monitor Final_C;
+evflag  evFinal_C;
+sync 	Final_C evFinal_C;
+
+float Final_DArray[5];
+assign Final_DArray to {
+ "SCL31-CDL01:VBx99-CV7501:SetManuRamp",
+ "SCL31-CDL01:VBx99-CV7502:SetManuRamp",
+ "SCL32-CDL02:VBx99-CV7501:SetManuRamp",
+ "SCL32-CDL03:VBx99-CV7501:SetManuRamp",
+ "P2DT-CDL04:VBx01-CV7501:SetManuRamp"
+
+};
+float	Final_D;
+assign	Final_D to "{GrpFinal_D}";
+monitor Final_D;
+evflag  evFinal_D;
+sync 	Final_D evFinal_D;
+
+float Final_EArray[3];
+assign Final_EArray to {
+ "SCL32-BL02:CM99-CV8402:Setpt",
+ "SCL32-BL03:CM99-CV8402:Setpt",
+ "P2DT-BL04:CM01-CV8402:Setpt"
+
+};
+float	Final_E;
+assign	Final_E to "{GrpFinal_E}";
+monitor Final_E;
+evflag  evFinal_E;
+sync 	Final_E evFinal_E;
+
+float Final_FArray[3];
+assign Final_FArray to {
+ "SCL32-BL02:CM99-CV8402:SetManuRamp",
+ "SCL32-BL03:CM99-CV8402:SetManuRamp",
+ "P2DT-BL04:CM01-CV8402:SetManuRamp"
+
+};
+float	Final_F;
+assign	Final_F to "{GrpFinal_F}";
+monitor Final_F;
+evflag  evFinal_F;
+sync 	Final_F evFinal_F;
+
+float Final_GArray[3];
+assign Final_GArray to {
+ "SCL32-BL02:CM99-CV8402:SetManuSel",
+ "SCL32-BL03:CM99-CV8402:SetManuSel",
+ "P2DT-BL04:CM01-CV8402:SetManuSel"
+
+};
+float	Final_G;
+assign	Final_G to "{GrpFinal_G}";
+monitor Final_G;
+evflag  evFinal_G;
+sync 	Final_G evFinal_G;
+
+float Final_HArray[3];
+assign Final_HArray to {
+ "SCL32-BL02:CM99-CV8402:SetManu",
+ "SCL32-BL03:CM99-CV8402:SetManu",
+ "P2DT-BL04:CM01-CV8402:SetManu"
+
+};
+float	Final_H;
+assign	Final_H to "{GrpFinal_H}";
+monitor Final_H;
+evflag  evFinal_H;
+sync 	Final_H evFinal_H;
+
+float Final_IArray[4];
+assign Final_IArray to {
+ "SCL31-CDL01:VBx99-XV7301:SetManuClose",
+ "SCL32-CDL02:VBx99-XV7201:SetManuClose",
+ "SCL32-CDL03:VBx99-XV7201:SetManuClose",
+ "P2DT-CDL04:VBx01-XV7201:SetManuClose"
+
+};
+float	Final_I;
+assign	Final_I to "{GrpFinal_I}";
+monitor Final_I;
+evflag  evFinal_I;
+sync 	Final_I evFinal_I;
+
+float Final_JArray[4];
+assign Final_JArray to {
+ "SCL31-CDL01:VBx99-XV7502:SetManuClose",
+ "SCL32-CDL02:VBx99-XV7502:SetManuClose",
+ "SCL32-CDL03:VBx99-XV7502:SetManuClose",
+ "P2DT-CDL04:VBx01-XV7502:SetManuClose"
+
+};
+float	Final_J;
+assign	Final_J to "{GrpFinal_J}";
+monitor Final_J;
+evflag  evFinal_J;
+sync 	Final_J evFinal_J;
+
+
+ss seq_controls_FinalSetValve
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evFinal_A);
+                 efClear(evFinal_B);
+                 efClear(evFinal_C);
+                 efClear(evFinal_D);
+                 efClear(evFinal_E);
+                 efClear(evFinal_F);
+                 efClear(evFinal_G);
+                 efClear(evFinal_H);
+                 efClear(evFinal_I);
+                 efClear(evFinal_J);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evFinal_A))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_AArray)/sizeof(Final_AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_AArray[index] = Final_A;
+				pvPut(Final_AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_B))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_BArray)/sizeof(Final_BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_BArray[index] = Final_B;
+				pvPut(Final_BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_C))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_CArray)/sizeof(Final_CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_CArray[index] = Final_C;
+				pvPut(Final_CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_D))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_DArray)/sizeof(Final_DArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_DArray[index] = Final_D;
+				pvPut(Final_DArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_E))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_EArray)/sizeof(Final_EArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_EArray[index] = Final_E;
+				pvPut(Final_EArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_F))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_FArray)/sizeof(Final_FArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_FArray[index] = Final_F;
+				pvPut(Final_FArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_G))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_GArray)/sizeof(Final_GArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_GArray[index] = Final_G;
+				pvPut(Final_GArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_H))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_HArray)/sizeof(Final_HArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_HArray[index] = Final_H;
+				pvPut(Final_HArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_I))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_IArray)/sizeof(Final_IArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_IArray[index] = Final_I;
+				pvPut(Final_IArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evFinal_J))
+		{
+			int index = 0;
+			int pvcnt = sizeof(Final_JArray)/sizeof(Final_JArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				Final_JArray[index] = Final_J;
+				pvPut(Final_JArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(Final_AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_CArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_DArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_EArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_FArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_GArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_HArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_IArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(Final_JArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}
