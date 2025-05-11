@@ -1,0 +1,51 @@
+program SeqControlQWRSetpt
+
+option +r;
+
+float groupPVs[11];
+assign groupPVs to {
+"SCL31-CDL01:VBx02-CV7401:Setpt", "SCL31-CDL01:VBx04-CV7401:Setpt", "SCL31-CDL01:VBx06-CV7401:Setpt",
+"SCL31-CDL01:VBx08-CV7401:Setpt", "SCL31-CDL01:VBx10-CV7401:Setpt", "SCL31-CDL01:VBx12-CV7401:Setpt",
+"SCL31-CDL01:VBx14-CV7401:Setpt", "SCL31-CDL01:VBx16-CV7401:Setpt", "SCL31-CDL01:VBx18-CV7401:Setpt",
+"SCL31-CDL01:VBx20-CV7401:Setpt", "SCL31-CDL01:VBx22-CV7401:Setpt"
+};
+
+float	controlPV;
+assign	controlPV to "{C_PV}";
+monitor controlPV;
+evflag  evControl;
+sync 	controlPV evControl;
+
+int index = 0;
+int pvcnt = 0;
+
+ss seq_controls_SeqControlQWRSetpt
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evControl);
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+		when(efTestAndClear(evControl))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs)/sizeof(groupPVs[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs[index] = controlPV;
+				pvPut(groupPVs[index], ASYNC);
+			}
+		}state GrpControls
+	}
+
+	state GrpControls
+	{
+		when(pvArrayPutComplete(groupPVs,TRUE) )
+		{
+		}state WaitEvent
+	}
+}

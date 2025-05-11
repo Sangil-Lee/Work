@@ -1,0 +1,51 @@
+program SeqControlsSCL3
+
+option +r;
+
+float groupPVs[10];
+assign groupPVs to {
+"ctrlslab:A_Alarm_20", "ctrlslab:A_Alarm_21", "ctrlslab:A_Alarm_22",
+"ctrlslab:A_Alarm_23", "ctrlslab:A_Alarm_24", "ctrlslab:A_Alarm_25",
+"ctrlslab:A_Alarm_26", "ctrlslab:A_Alarm_27", "ctrlslab:A_Alarm_28",
+"ctrlslab:A_Alarm_29"
+};
+
+float	controlPV;
+assign	controlPV to "{C_PV}";
+monitor controlPV;
+evflag  evControl;
+sync 	controlPV evControl;
+
+int index = 0;
+int pvcnt = 0;
+
+ss seq_controls_SeqControlsSCL3
+{
+	state init
+	{
+		when(TRUE)
+		{
+			efClear(evControl);
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+		when(efTestAndClear(evControl))
+		{
+			index = 0;
+			pvcnt = sizeof(groupPVs)/sizeof(groupPVs[0]);
+			for(index = 0; index < pvcnt;index++) {
+				groupPVs[index] = controlPV;
+				pvPut(groupPVs[index], ASYNC);
+			}
+		}state GrpControls
+	}
+
+	state GrpControls
+	{
+		when(pvArrayPutComplete(groupPVs,TRUE) )
+		{
+		}state WaitEvent
+	}
+}

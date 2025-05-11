@@ -1,0 +1,900 @@
+program SeqCMSetCP
+option +r;
+
+float AArray[11];
+assign AArray to {
+ "SCL31-CDL01:VBx02-PT8501:SetCP",
+ "SCL31-CDL01:VBx04-PT8501:SetCP",
+ "SCL31-CDL01:VBx06-PT8501:SetCP",
+ "SCL31-CDL01:VBx08-PT8501:SetCP",
+ "SCL31-CDL01:VBx10-PT8501:SetCP",
+ "SCL31-CDL01:VBx12-PT8501:SetCP",
+ "SCL31-CDL01:VBx14-PT8501:SetCP",
+ "SCL31-CDL01:VBx16-PT8501:SetCP",
+ "SCL31-CDL01:VBx18-PT8501:SetCP",
+ "SCL31-CDL01:VBx20-PT8501:SetCP",
+ "SCL31-CDL01:VBx22-PT8501:SetCP"
+
+};
+float	A;
+assign	A to "{GrpA}";
+monitor A;
+evflag  evA;
+sync 	A evA;
+
+float BArray[33];
+assign BArray to {
+ "SCL32-CDL02:VBx01-PT8501:SetCP",
+ "SCL32-CDL02:VBx02-PT8501:SetCP",
+ "SCL32-CDL02:VBx03-PT8501:SetCP",
+ "SCL32-CDL02:VBx04-PT8501:SetCP",
+ "SCL32-CDL02:VBx05-PT8501:SetCP",
+ "SCL32-CDL02:VBx06-PT8501:SetCP",
+ "SCL32-CDL02:VBx07-PT8501:SetCP",
+ "SCL32-CDL02:VBx08-PT8501:SetCP",
+ "SCL32-CDL02:VBx09-PT8501:SetCP",
+ "SCL32-CDL02:VBx10-PT8501:SetCP",
+ "SCL32-CDL02:VBx11-PT8501:SetCP",
+ "SCL32-CDL02:VBx12-PT8501:SetCP",
+ "SCL32-CDL02:VBx13-PT8501:SetCP",
+ "SCL32-CDL03:VBx01-PT8501:SetCP",
+ "SCL32-CDL03:VBx02-PT8501:SetCP",
+ "SCL32-CDL03:VBx03-PT8501:SetCP",
+ "SCL32-CDL03:VBx04-PT8501:SetCP",
+ "SCL32-CDL03:VBx05-PT8501:SetCP",
+ "SCL32-CDL03:VBx06-PT8501:SetCP",
+ "SCL32-CDL03:VBx07-PT8501:SetCP",
+ "SCL32-CDL03:VBx08-PT8501:SetCP",
+ "SCL32-CDL03:VBx09-PT8501:SetCP",
+ "SCL32-CDL03:VBx10-PT8501:SetCP",
+ "SCL32-CDL03:VBx11-PT8501:SetCP",
+ "SCL32-CDL03:VBx12-PT8501:SetCP",
+ "SCL32-CDL03:VBx13-PT8501:SetCP",
+ "SCL32-CDL03:VBx14-PT8501:SetCP",
+ "SCL32-CDL03:VBx15-PT8501:SetCP",
+ "SCL32-CDL03:VBx16-PT8501:SetCP",
+ "SCL32-CDL03:VBx17-PT8501:SetCP",
+ "SCL32-CDL03:VBx18-PT8501:SetCP",
+ "SCL32-CDL03:VBx19-PT8501:SetCP",
+ "P2DT-CDL04:VBx01-PT8501:SetCP"
+
+};
+float	B;
+assign	B to "{GrpB}";
+monitor B;
+evflag  evB;
+sync 	B evB;
+
+float CArray[11];
+assign CArray to {
+ "SCL31-CDL01:VBx02-PT8301:SetCP",
+ "SCL31-CDL01:VBx04-PT8301:SetCP",
+ "SCL31-CDL01:VBx06-PT8301:SetCP",
+ "SCL31-CDL01:VBx08-PT8301:SetCP",
+ "SCL31-CDL01:VBx10-PT8301:SetCP",
+ "SCL31-CDL01:VBx12-PT8301:SetCP",
+ "SCL31-CDL01:VBx14-PT8301:SetCP",
+ "SCL31-CDL01:VBx16-PT8301:SetCP",
+ "SCL31-CDL01:VBx18-PT8301:SetCP",
+ "SCL31-CDL01:VBx20-PT8301:SetCP",
+ "SCL31-CDL01:VBx22-PT8301:SetCP"
+
+};
+float	C;
+assign	C to "{GrpC}";
+monitor C;
+evflag  evC;
+sync 	C evC;
+
+float DArray[33];
+assign DArray to {
+ "SCL32-CDL02:VBx01-PT8301:SetCP",
+ "SCL32-CDL02:VBx02-PT8301:SetCP",
+ "SCL32-CDL02:VBx03-PT8301:SetCP",
+ "SCL32-CDL02:VBx04-PT8301:SetCP",
+ "SCL32-CDL02:VBx05-PT8301:SetCP",
+ "SCL32-CDL02:VBx06-PT8301:SetCP",
+ "SCL32-CDL02:VBx07-PT8301:SetCP",
+ "SCL32-CDL02:VBx08-PT8301:SetCP",
+ "SCL32-CDL02:VBx09-PT8301:SetCP",
+ "SCL32-CDL02:VBx10-PT8301:SetCP",
+ "SCL32-CDL02:VBx11-PT8301:SetCP",
+ "SCL32-CDL02:VBx12-PT8301:SetCP",
+ "SCL32-CDL02:VBx13-PT8301:SetCP",
+ "SCL32-CDL03:VBx01-PT8301:SetCP",
+ "SCL32-CDL03:VBx02-PT8301:SetCP",
+ "SCL32-CDL03:VBx03-PT8301:SetCP",
+ "SCL32-CDL03:VBx04-PT8301:SetCP",
+ "SCL32-CDL03:VBx05-PT8301:SetCP",
+ "SCL32-CDL03:VBx06-PT8301:SetCP",
+ "SCL32-CDL03:VBx07-PT8301:SetCP",
+ "SCL32-CDL03:VBx08-PT8301:SetCP",
+ "SCL32-CDL03:VBx09-PT8301:SetCP",
+ "SCL32-CDL03:VBx10-PT8301:SetCP",
+ "SCL32-CDL03:VBx11-PT8301:SetCP",
+ "SCL32-CDL03:VBx12-PT8301:SetCP",
+ "SCL32-CDL03:VBx13-PT8301:SetCP",
+ "SCL32-CDL03:VBx14-PT8301:SetCP",
+ "SCL32-CDL03:VBx15-PT8301:SetCP",
+ "SCL32-CDL03:VBx16-PT8301:SetCP",
+ "SCL32-CDL03:VBx17-PT8301:SetCP",
+ "SCL32-CDL03:VBx18-PT8301:SetCP",
+ "SCL32-CDL03:VBx19-PT8301:SetCP",
+ "P2DT-CDL04:VBx01-PT8301:SetCP"
+
+};
+float	D;
+assign	D to "{GrpD}";
+monitor D;
+evflag  evD;
+sync 	D evD;
+
+float EArray[11];
+assign EArray to {
+ "SCL31-CDL01:VBx02-PT8112:SetCP",
+ "SCL31-CDL01:VBx04-PT8112:SetCP",
+ "SCL31-CDL01:VBx06-PT8112:SetCP",
+ "SCL31-CDL01:VBx08-PT8112:SetCP",
+ "SCL31-CDL01:VBx10-PT8112:SetCP",
+ "SCL31-CDL01:VBx12-PT8112:SetCP",
+ "SCL31-CDL01:VBx14-PT8112:SetCP",
+ "SCL31-CDL01:VBx16-PT8112:SetCP",
+ "SCL31-CDL01:VBx18-PT8112:SetCP",
+ "SCL31-CDL01:VBx20-PT8112:SetCP",
+ "SCL31-CDL01:VBx22-PT8112:SetCP"
+
+};
+float	E;
+assign	E to "{GrpE}";
+monitor E;
+evflag  evE;
+sync 	E evE;
+
+float FArray[33];
+assign FArray to {
+ "SCL32-CDL02:VBx01-PT8112:SetCP",
+ "SCL32-CDL02:VBx02-PT8112:SetCP",
+ "SCL32-CDL02:VBx03-PT8112:SetCP",
+ "SCL32-CDL02:VBx04-PT8112:SetCP",
+ "SCL32-CDL02:VBx05-PT8112:SetCP",
+ "SCL32-CDL02:VBx06-PT8112:SetCP",
+ "SCL32-CDL02:VBx07-PT8112:SetCP",
+ "SCL32-CDL02:VBx08-PT8112:SetCP",
+ "SCL32-CDL02:VBx09-PT8112:SetCP",
+ "SCL32-CDL02:VBx10-PT8112:SetCP",
+ "SCL32-CDL02:VBx11-PT8112:SetCP",
+ "SCL32-CDL02:VBx12-PT8112:SetCP",
+ "SCL32-CDL02:VBx13-PT8112:SetCP",
+ "SCL32-CDL03:VBx01-PT8112:SetCP",
+ "SCL32-CDL03:VBx02-PT8112:SetCP",
+ "SCL32-CDL03:VBx03-PT8112:SetCP",
+ "SCL32-CDL03:VBx04-PT8112:SetCP",
+ "SCL32-CDL03:VBx05-PT8112:SetCP",
+ "SCL32-CDL03:VBx06-PT8112:SetCP",
+ "SCL32-CDL03:VBx07-PT8112:SetCP",
+ "SCL32-CDL03:VBx08-PT8112:SetCP",
+ "SCL32-CDL03:VBx09-PT8112:SetCP",
+ "SCL32-CDL03:VBx10-PT8112:SetCP",
+ "SCL32-CDL03:VBx11-PT8112:SetCP",
+ "SCL32-CDL03:VBx12-PT8112:SetCP",
+ "SCL32-CDL03:VBx13-PT8112:SetCP",
+ "SCL32-CDL03:VBx14-PT8112:SetCP",
+ "SCL32-CDL03:VBx15-PT8112:SetCP",
+ "SCL32-CDL03:VBx16-PT8112:SetCP",
+ "SCL32-CDL03:VBx17-PT8112:SetCP",
+ "SCL32-CDL03:VBx18-PT8112:SetCP",
+ "SCL32-CDL03:VBx19-PT8112:SetCP",
+ "P2DT-CDL04:VBx01-PT8112:SetCP"
+
+};
+float	F;
+assign	F to "{GrpF}";
+monitor F;
+evflag  evF;
+sync 	F evF;
+
+float GArray[11];
+assign GArray to {
+ "SCL31-CDL01:VBx02-LT8401:SetCPA",
+ "SCL31-CDL01:VBx04-LT8401:SetCPA",
+ "SCL31-CDL01:VBx06-LT8401:SetCPA",
+ "SCL31-CDL01:VBx08-LT8401:SetCPA",
+ "SCL31-CDL01:VBx10-LT8401:SetCPA",
+ "SCL31-CDL01:VBx12-LT8401:SetCPA",
+ "SCL31-CDL01:VBx14-LT8401:SetCPA",
+ "SCL31-CDL01:VBx16-LT8401:SetCPA",
+ "SCL31-CDL01:VBx18-LT8401:SetCPA",
+ "SCL31-CDL01:VBx20-LT8401:SetCPA",
+ "SCL31-CDL01:VBx22-LT8401:SetCPA"
+
+};
+float	G;
+assign	G to "{GrpG}";
+monitor G;
+evflag  evG;
+sync 	G evG;
+
+float HArray[33];
+assign HArray to {
+ "SCL32-CDL02:VBx01-LT8401:SetCPA",
+ "SCL32-CDL02:VBx02-LT8401:SetCPA",
+ "SCL32-CDL02:VBx03-LT8401:SetCPA",
+ "SCL32-CDL02:VBx04-LT8401:SetCPA",
+ "SCL32-CDL02:VBx05-LT8401:SetCPA",
+ "SCL32-CDL02:VBx06-LT8401:SetCPA",
+ "SCL32-CDL02:VBx07-LT8401:SetCPA",
+ "SCL32-CDL02:VBx08-LT8401:SetCPA",
+ "SCL32-CDL02:VBx09-LT8401:SetCPA",
+ "SCL32-CDL02:VBx10-LT8401:SetCPA",
+ "SCL32-CDL02:VBx11-LT8401:SetCPA",
+ "SCL32-CDL02:VBx12-LT8401:SetCPA",
+ "SCL32-CDL02:VBx13-LT8401:SetCPA",
+ "SCL32-CDL03:VBx01-LT8401:SetCPA",
+ "SCL32-CDL03:VBx02-LT8401:SetCPA",
+ "SCL32-CDL03:VBx03-LT8401:SetCPA",
+ "SCL32-CDL03:VBx04-LT8401:SetCPA",
+ "SCL32-CDL03:VBx05-LT8401:SetCPA",
+ "SCL32-CDL03:VBx06-LT8401:SetCPA",
+ "SCL32-CDL03:VBx07-LT8401:SetCPA",
+ "SCL32-CDL03:VBx08-LT8401:SetCPA",
+ "SCL32-CDL03:VBx09-LT8401:SetCPA",
+ "SCL32-CDL03:VBx10-LT8401:SetCPA",
+ "SCL32-CDL03:VBx11-LT8401:SetCPA",
+ "SCL32-CDL03:VBx12-LT8401:SetCPA",
+ "SCL32-CDL03:VBx13-LT8401:SetCPA",
+ "SCL32-CDL03:VBx14-LT8401:SetCPA",
+ "SCL32-CDL03:VBx15-LT8401:SetCPA",
+ "SCL32-CDL03:VBx16-LT8401:SetCPA",
+ "SCL32-CDL03:VBx17-LT8401:SetCPA",
+ "SCL32-CDL03:VBx18-LT8401:SetCPA",
+ "SCL32-CDL03:VBx19-LT8401:SetCPA",
+ "P2DT-CDL04:VBx01-LT8401:SetCPA"
+
+};
+float	H;
+assign	H to "{GrpH}";
+monitor H;
+evflag  evH;
+sync 	H evH;
+
+float IArray[11];
+assign IArray to {
+ "SCL31-CDL01:VBx02-LT8401:SetCPB",
+ "SCL31-CDL01:VBx04-LT8401:SetCPB",
+ "SCL31-CDL01:VBx06-LT8401:SetCPB",
+ "SCL31-CDL01:VBx08-LT8401:SetCPB",
+ "SCL31-CDL01:VBx10-LT8401:SetCPB",
+ "SCL31-CDL01:VBx12-LT8401:SetCPB",
+ "SCL31-CDL01:VBx14-LT8401:SetCPB",
+ "SCL31-CDL01:VBx16-LT8401:SetCPB",
+ "SCL31-CDL01:VBx18-LT8401:SetCPB",
+ "SCL31-CDL01:VBx20-LT8401:SetCPB",
+ "SCL31-CDL01:VBx22-LT8401:SetCPB"
+
+};
+float	I;
+assign	I to "{GrpI}";
+monitor I;
+evflag  evI;
+sync 	I evI;
+
+float JArray[33];
+assign JArray to {
+ "SCL32-CDL02:VBx01-LT8401:SetCPB",
+ "SCL32-CDL02:VBx02-LT8401:SetCPB",
+ "SCL32-CDL02:VBx03-LT8401:SetCPB",
+ "SCL32-CDL02:VBx04-LT8401:SetCPB",
+ "SCL32-CDL02:VBx05-LT8401:SetCPB",
+ "SCL32-CDL02:VBx06-LT8401:SetCPB",
+ "SCL32-CDL02:VBx07-LT8401:SetCPB",
+ "SCL32-CDL02:VBx08-LT8401:SetCPB",
+ "SCL32-CDL02:VBx09-LT8401:SetCPB",
+ "SCL32-CDL02:VBx10-LT8401:SetCPB",
+ "SCL32-CDL02:VBx11-LT8401:SetCPB",
+ "SCL32-CDL02:VBx12-LT8401:SetCPB",
+ "SCL32-CDL02:VBx13-LT8401:SetCPB",
+ "SCL32-CDL03:VBx01-LT8401:SetCPB",
+ "SCL32-CDL03:VBx02-LT8401:SetCPB",
+ "SCL32-CDL03:VBx03-LT8401:SetCPB",
+ "SCL32-CDL03:VBx04-LT8401:SetCPB",
+ "SCL32-CDL03:VBx05-LT8401:SetCPB",
+ "SCL32-CDL03:VBx06-LT8401:SetCPB",
+ "SCL32-CDL03:VBx07-LT8401:SetCPB",
+ "SCL32-CDL03:VBx08-LT8401:SetCPB",
+ "SCL32-CDL03:VBx09-LT8401:SetCPB",
+ "SCL32-CDL03:VBx10-LT8401:SetCPB",
+ "SCL32-CDL03:VBx11-LT8401:SetCPB",
+ "SCL32-CDL03:VBx12-LT8401:SetCPB",
+ "SCL32-CDL03:VBx13-LT8401:SetCPB",
+ "SCL32-CDL03:VBx14-LT8401:SetCPB",
+ "SCL32-CDL03:VBx15-LT8401:SetCPB",
+ "SCL32-CDL03:VBx16-LT8401:SetCPB",
+ "SCL32-CDL03:VBx17-LT8401:SetCPB",
+ "SCL32-CDL03:VBx18-LT8401:SetCPB",
+ "SCL32-CDL03:VBx19-LT8401:SetCPB",
+ "P2DT-CDL04:VBx01-LT8401:SetCPB"
+
+};
+float	J;
+assign	J to "{GrpJ}";
+monitor J;
+evflag  evJ;
+sync 	J evJ;
+
+float KArray[33];
+assign KArray to {
+ "SCL32-CDL02:VBx01-PT8201:SetCP",
+ "SCL32-CDL02:VBx02-PT8201:SetCP",
+ "SCL32-CDL02:VBx03-PT8201:SetCP",
+ "SCL32-CDL02:VBx04-PT8201:SetCP",
+ "SCL32-CDL02:VBx05-PT8201:SetCP",
+ "SCL32-CDL02:VBx06-PT8201:SetCP",
+ "SCL32-CDL02:VBx07-PT8201:SetCP",
+ "SCL32-CDL02:VBx08-PT8201:SetCP",
+ "SCL32-CDL02:VBx09-PT8201:SetCP",
+ "SCL32-CDL02:VBx10-PT8201:SetCP",
+ "SCL32-CDL02:VBx11-PT8201:SetCP",
+ "SCL32-CDL02:VBx12-PT8201:SetCP",
+ "SCL32-CDL02:VBx13-PT8201:SetCP",
+ "SCL32-CDL03:VBx01-PT8201:SetCP",
+ "SCL32-CDL03:VBx02-PT8201:SetCP",
+ "SCL32-CDL03:VBx03-PT8201:SetCP",
+ "SCL32-CDL03:VBx04-PT8201:SetCP",
+ "SCL32-CDL03:VBx05-PT8201:SetCP",
+ "SCL32-CDL03:VBx06-PT8201:SetCP",
+ "SCL32-CDL03:VBx07-PT8201:SetCP",
+ "SCL32-CDL03:VBx08-PT8201:SetCP",
+ "SCL32-CDL03:VBx09-PT8201:SetCP",
+ "SCL32-CDL03:VBx10-PT8201:SetCP",
+ "SCL32-CDL03:VBx11-PT8201:SetCP",
+ "SCL32-CDL03:VBx12-PT8201:SetCP",
+ "SCL32-CDL03:VBx13-PT8201:SetCP",
+ "SCL32-CDL03:VBx14-PT8201:SetCP",
+ "SCL32-CDL03:VBx15-PT8201:SetCP",
+ "SCL32-CDL03:VBx16-PT8201:SetCP",
+ "SCL32-CDL03:VBx17-PT8201:SetCP",
+ "SCL32-CDL03:VBx18-PT8201:SetCP",
+ "SCL32-CDL03:VBx19-PT8201:SetCP",
+ "P2DT-CDL04:VBx01-PT8201:SetCP"
+
+};
+float	K;
+assign	K to "{GrpK}";
+monitor K;
+evflag  evK;
+sync 	K evK;
+
+float LArray[33];
+assign LArray to {
+ "SCL32-CDL02:VBx01-PT8201:SetCPA",
+ "SCL32-CDL02:VBx02-PT8201:SetCPA",
+ "SCL32-CDL02:VBx03-PT8201:SetCPA",
+ "SCL32-CDL02:VBx04-PT8201:SetCPA",
+ "SCL32-CDL02:VBx05-PT8201:SetCPA",
+ "SCL32-CDL02:VBx06-PT8201:SetCPA",
+ "SCL32-CDL02:VBx07-PT8201:SetCPA",
+ "SCL32-CDL02:VBx08-PT8201:SetCPA",
+ "SCL32-CDL02:VBx09-PT8201:SetCPA",
+ "SCL32-CDL02:VBx10-PT8201:SetCPA",
+ "SCL32-CDL02:VBx11-PT8201:SetCPA",
+ "SCL32-CDL02:VBx12-PT8201:SetCPA",
+ "SCL32-CDL02:VBx13-PT8201:SetCPA",
+ "SCL32-CDL03:VBx01-PT8201:SetCPA",
+ "SCL32-CDL03:VBx02-PT8201:SetCPA",
+ "SCL32-CDL03:VBx03-PT8201:SetCPA",
+ "SCL32-CDL03:VBx04-PT8201:SetCPA",
+ "SCL32-CDL03:VBx05-PT8201:SetCPA",
+ "SCL32-CDL03:VBx06-PT8201:SetCPA",
+ "SCL32-CDL03:VBx07-PT8201:SetCPA",
+ "SCL32-CDL03:VBx08-PT8201:SetCPA",
+ "SCL32-CDL03:VBx09-PT8201:SetCPA",
+ "SCL32-CDL03:VBx10-PT8201:SetCPA",
+ "SCL32-CDL03:VBx11-PT8201:SetCPA",
+ "SCL32-CDL03:VBx12-PT8201:SetCPA",
+ "SCL32-CDL03:VBx13-PT8201:SetCPA",
+ "SCL32-CDL03:VBx14-PT8201:SetCPA",
+ "SCL32-CDL03:VBx15-PT8201:SetCPA",
+ "SCL32-CDL03:VBx16-PT8201:SetCPA",
+ "SCL32-CDL03:VBx17-PT8201:SetCPA",
+ "SCL32-CDL03:VBx18-PT8201:SetCPA",
+ "SCL32-CDL03:VBx19-PT8201:SetCPA",
+ "P2DT-CDL04:VBx01-PT8201:SetCPA"
+
+};
+float	L;
+assign	L to "{GrpL}";
+monitor L;
+evflag  evL;
+sync 	L evL;
+
+float MArray[33];
+assign MArray to {
+ "SCL32-CDL02:VBx01-PT8203:SetCP",
+ "SCL32-CDL02:VBx02-PT8203:SetCP",
+ "SCL32-CDL02:VBx03-PT8203:SetCP",
+ "SCL32-CDL02:VBx04-PT8203:SetCP",
+ "SCL32-CDL02:VBx05-PT8203:SetCP",
+ "SCL32-CDL02:VBx06-PT8203:SetCP",
+ "SCL32-CDL02:VBx07-PT8203:SetCP",
+ "SCL32-CDL02:VBx08-PT8203:SetCP",
+ "SCL32-CDL02:VBx09-PT8203:SetCP",
+ "SCL32-CDL02:VBx10-PT8203:SetCP",
+ "SCL32-CDL02:VBx11-PT8203:SetCP",
+ "SCL32-CDL02:VBx12-PT8203:SetCP",
+ "SCL32-CDL02:VBx13-PT8203:SetCP",
+ "SCL32-CDL03:VBx01-PT8203:SetCP",
+ "SCL32-CDL03:VBx02-PT8203:SetCP",
+ "SCL32-CDL03:VBx03-PT8203:SetCP",
+ "SCL32-CDL03:VBx04-PT8203:SetCP",
+ "SCL32-CDL03:VBx05-PT8203:SetCP",
+ "SCL32-CDL03:VBx06-PT8203:SetCP",
+ "SCL32-CDL03:VBx07-PT8203:SetCP",
+ "SCL32-CDL03:VBx08-PT8203:SetCP",
+ "SCL32-CDL03:VBx09-PT8203:SetCP",
+ "SCL32-CDL03:VBx10-PT8203:SetCP",
+ "SCL32-CDL03:VBx11-PT8203:SetCP",
+ "SCL32-CDL03:VBx12-PT8203:SetCP",
+ "SCL32-CDL03:VBx13-PT8203:SetCP",
+ "SCL32-CDL03:VBx14-PT8203:SetCP",
+ "SCL32-CDL03:VBx15-PT8203:SetCP",
+ "SCL32-CDL03:VBx16-PT8203:SetCP",
+ "SCL32-CDL03:VBx17-PT8203:SetCP",
+ "SCL32-CDL03:VBx18-PT8203:SetCP",
+ "SCL32-CDL03:VBx19-PT8203:SetCP",
+ "P2DT-CDL04:VBx01-PT8203:SetCP"
+
+};
+float	M;
+assign	M to "{GrpM}";
+monitor M;
+evflag  evM;
+sync 	M evM;
+
+float NArray[33];
+assign NArray to {
+ "SCL32-CDL02:VBx01-PT8203:SetCPA",
+ "SCL32-CDL02:VBx02-PT8203:SetCPA",
+ "SCL32-CDL02:VBx03-PT8203:SetCPA",
+ "SCL32-CDL02:VBx04-PT8203:SetCPA",
+ "SCL32-CDL02:VBx05-PT8203:SetCPA",
+ "SCL32-CDL02:VBx06-PT8203:SetCPA",
+ "SCL32-CDL02:VBx07-PT8203:SetCPA",
+ "SCL32-CDL02:VBx08-PT8203:SetCPA",
+ "SCL32-CDL02:VBx09-PT8203:SetCPA",
+ "SCL32-CDL02:VBx10-PT8203:SetCPA",
+ "SCL32-CDL02:VBx11-PT8203:SetCPA",
+ "SCL32-CDL02:VBx12-PT8203:SetCPA",
+ "SCL32-CDL02:VBx13-PT8203:SetCPA",
+ "SCL32-CDL03:VBx01-PT8203:SetCPA",
+ "SCL32-CDL03:VBx02-PT8203:SetCPA",
+ "SCL32-CDL03:VBx03-PT8203:SetCPA",
+ "SCL32-CDL03:VBx04-PT8203:SetCPA",
+ "SCL32-CDL03:VBx05-PT8203:SetCPA",
+ "SCL32-CDL03:VBx06-PT8203:SetCPA",
+ "SCL32-CDL03:VBx07-PT8203:SetCPA",
+ "SCL32-CDL03:VBx08-PT8203:SetCPA",
+ "SCL32-CDL03:VBx09-PT8203:SetCPA",
+ "SCL32-CDL03:VBx10-PT8203:SetCPA",
+ "SCL32-CDL03:VBx11-PT8203:SetCPA",
+ "SCL32-CDL03:VBx12-PT8203:SetCPA",
+ "SCL32-CDL03:VBx13-PT8203:SetCPA",
+ "SCL32-CDL03:VBx14-PT8203:SetCPA",
+ "SCL32-CDL03:VBx15-PT8203:SetCPA",
+ "SCL32-CDL03:VBx16-PT8203:SetCPA",
+ "SCL32-CDL03:VBx17-PT8203:SetCPA",
+ "SCL32-CDL03:VBx18-PT8203:SetCPA",
+ "SCL32-CDL03:VBx19-PT8203:SetCPA",
+ "P2DT-CDL04:VBx01-PT8203:SetCPA"
+
+};
+float	N;
+assign	N to "{GrpN}";
+monitor N;
+evflag  evN;
+sync 	N evN;
+
+float OArray[33];
+assign OArray to {
+ "SCL32-CDL02:VBx01-PT8113:SetCP",
+ "SCL32-CDL02:VBx02-PT8113:SetCP",
+ "SCL32-CDL02:VBx03-PT8113:SetCP",
+ "SCL32-CDL02:VBx04-PT8113:SetCP",
+ "SCL32-CDL02:VBx05-PT8113:SetCP",
+ "SCL32-CDL02:VBx06-PT8113:SetCP",
+ "SCL32-CDL02:VBx07-PT8113:SetCP",
+ "SCL32-CDL02:VBx08-PT8113:SetCP",
+ "SCL32-CDL02:VBx09-PT8113:SetCP",
+ "SCL32-CDL02:VBx10-PT8113:SetCP",
+ "SCL32-CDL02:VBx11-PT8113:SetCP",
+ "SCL32-CDL02:VBx12-PT8113:SetCP",
+ "SCL32-CDL02:VBx13-PT8113:SetCP",
+ "SCL32-CDL03:VBx01-PT8113:SetCP",
+ "SCL32-CDL03:VBx02-PT8113:SetCP",
+ "SCL32-CDL03:VBx03-PT8113:SetCP",
+ "SCL32-CDL03:VBx04-PT8113:SetCP",
+ "SCL32-CDL03:VBx05-PT8113:SetCP",
+ "SCL32-CDL03:VBx06-PT8113:SetCP",
+ "SCL32-CDL03:VBx07-PT8113:SetCP",
+ "SCL32-CDL03:VBx08-PT8113:SetCP",
+ "SCL32-CDL03:VBx09-PT8113:SetCP",
+ "SCL32-CDL03:VBx10-PT8113:SetCP",
+ "SCL32-CDL03:VBx11-PT8113:SetCP",
+ "SCL32-CDL03:VBx12-PT8113:SetCP",
+ "SCL32-CDL03:VBx13-PT8113:SetCP",
+ "SCL32-CDL03:VBx14-PT8113:SetCP",
+ "SCL32-CDL03:VBx15-PT8113:SetCP",
+ "SCL32-CDL03:VBx16-PT8113:SetCP",
+ "SCL32-CDL03:VBx17-PT8113:SetCP",
+ "SCL32-CDL03:VBx18-PT8113:SetCP",
+ "SCL32-CDL03:VBx19-PT8113:SetCP",
+ "P2DT-CDL04:VBx01-PT8113:SetCP"
+
+};
+float	O;
+assign	O to "{GrpO}";
+monitor O;
+evflag  evO;
+sync 	O evO;
+
+float PArray[33];
+assign PArray to {
+ "SCL32-CDL02:VBx01-LT8201:SetCPA",
+ "SCL32-CDL02:VBx02-LT8201:SetCPA",
+ "SCL32-CDL02:VBx03-LT8201:SetCPA",
+ "SCL32-CDL02:VBx04-LT8201:SetCPA",
+ "SCL32-CDL02:VBx05-LT8201:SetCPA",
+ "SCL32-CDL02:VBx06-LT8201:SetCPA",
+ "SCL32-CDL02:VBx07-LT8201:SetCPA",
+ "SCL32-CDL02:VBx08-LT8201:SetCPA",
+ "SCL32-CDL02:VBx09-LT8201:SetCPA",
+ "SCL32-CDL02:VBx10-LT8201:SetCPA",
+ "SCL32-CDL02:VBx11-LT8201:SetCPA",
+ "SCL32-CDL02:VBx12-LT8201:SetCPA",
+ "SCL32-CDL02:VBx13-LT8201:SetCPA",
+ "SCL32-CDL03:VBx01-LT8201:SetCPA",
+ "SCL32-CDL03:VBx02-LT8201:SetCPA",
+ "SCL32-CDL03:VBx03-LT8201:SetCPA",
+ "SCL32-CDL03:VBx04-LT8201:SetCPA",
+ "SCL32-CDL03:VBx05-LT8201:SetCPA",
+ "SCL32-CDL03:VBx06-LT8201:SetCPA",
+ "SCL32-CDL03:VBx07-LT8201:SetCPA",
+ "SCL32-CDL03:VBx08-LT8201:SetCPA",
+ "SCL32-CDL03:VBx09-LT8201:SetCPA",
+ "SCL32-CDL03:VBx10-LT8201:SetCPA",
+ "SCL32-CDL03:VBx11-LT8201:SetCPA",
+ "SCL32-CDL03:VBx12-LT8201:SetCPA",
+ "SCL32-CDL03:VBx13-LT8201:SetCPA",
+ "SCL32-CDL03:VBx14-LT8201:SetCPA",
+ "SCL32-CDL03:VBx15-LT8201:SetCPA",
+ "SCL32-CDL03:VBx16-LT8201:SetCPA",
+ "SCL32-CDL03:VBx17-LT8201:SetCPA",
+ "SCL32-CDL03:VBx18-LT8201:SetCPA",
+ "SCL32-CDL03:VBx19-LT8201:SetCPA",
+ "P2DT-CDL04:VBx01-LT8201:SetCPA"
+
+};
+float	P;
+assign	P to "{GrpP}";
+monitor P;
+evflag  evP;
+sync 	P evP;
+
+float QArray[33];
+assign QArray to {
+ "SCL32-CDL02:VBx01-LT8201:SetCPB",
+ "SCL32-CDL02:VBx02-LT8201:SetCPB",
+ "SCL32-CDL02:VBx03-LT8201:SetCPB",
+ "SCL32-CDL02:VBx04-LT8201:SetCPB",
+ "SCL32-CDL02:VBx05-LT8201:SetCPB",
+ "SCL32-CDL02:VBx06-LT8201:SetCPB",
+ "SCL32-CDL02:VBx07-LT8201:SetCPB",
+ "SCL32-CDL02:VBx08-LT8201:SetCPB",
+ "SCL32-CDL02:VBx09-LT8201:SetCPB",
+ "SCL32-CDL02:VBx10-LT8201:SetCPB",
+ "SCL32-CDL02:VBx11-LT8201:SetCPB",
+ "SCL32-CDL02:VBx12-LT8201:SetCPB",
+ "SCL32-CDL02:VBx13-LT8201:SetCPB",
+ "SCL32-CDL03:VBx01-LT8201:SetCPB",
+ "SCL32-CDL03:VBx02-LT8201:SetCPB",
+ "SCL32-CDL03:VBx03-LT8201:SetCPB",
+ "SCL32-CDL03:VBx04-LT8201:SetCPB",
+ "SCL32-CDL03:VBx05-LT8201:SetCPB",
+ "SCL32-CDL03:VBx06-LT8201:SetCPB",
+ "SCL32-CDL03:VBx07-LT8201:SetCPB",
+ "SCL32-CDL03:VBx08-LT8201:SetCPB",
+ "SCL32-CDL03:VBx09-LT8201:SetCPB",
+ "SCL32-CDL03:VBx10-LT8201:SetCPB",
+ "SCL32-CDL03:VBx11-LT8201:SetCPB",
+ "SCL32-CDL03:VBx12-LT8201:SetCPB",
+ "SCL32-CDL03:VBx13-LT8201:SetCPB",
+ "SCL32-CDL03:VBx14-LT8201:SetCPB",
+ "SCL32-CDL03:VBx15-LT8201:SetCPB",
+ "SCL32-CDL03:VBx16-LT8201:SetCPB",
+ "SCL32-CDL03:VBx17-LT8201:SetCPB",
+ "SCL32-CDL03:VBx18-LT8201:SetCPB",
+ "SCL32-CDL03:VBx19-LT8201:SetCPB",
+ "P2DT-CDL04:VBx01-LT8201:SetCPB"
+
+};
+float	Q;
+assign	Q to "{GrpQ}";
+monitor Q;
+evflag  evQ;
+sync 	Q evQ;
+
+
+ss seq_controls_SeqCMSetCP
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evA);
+                 efClear(evB);
+                 efClear(evC);
+                 efClear(evD);
+                 efClear(evE);
+                 efClear(evF);
+                 efClear(evG);
+                 efClear(evH);
+                 efClear(evI);
+                 efClear(evJ);
+                 efClear(evK);
+                 efClear(evL);
+                 efClear(evM);
+                 efClear(evN);
+                 efClear(evO);
+                 efClear(evP);
+                 efClear(evQ);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evA))
+		{
+			int index = 0;
+			int pvcnt = sizeof(AArray)/sizeof(AArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				AArray[index] = A;
+				pvPut(AArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evB))
+		{
+			int index = 0;
+			int pvcnt = sizeof(BArray)/sizeof(BArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				BArray[index] = B;
+				pvPut(BArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evC))
+		{
+			int index = 0;
+			int pvcnt = sizeof(CArray)/sizeof(CArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				CArray[index] = C;
+				pvPut(CArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evD))
+		{
+			int index = 0;
+			int pvcnt = sizeof(DArray)/sizeof(DArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				DArray[index] = D;
+				pvPut(DArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evE))
+		{
+			int index = 0;
+			int pvcnt = sizeof(EArray)/sizeof(EArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				EArray[index] = E;
+				pvPut(EArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evF))
+		{
+			int index = 0;
+			int pvcnt = sizeof(FArray)/sizeof(FArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				FArray[index] = F;
+				pvPut(FArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evG))
+		{
+			int index = 0;
+			int pvcnt = sizeof(GArray)/sizeof(GArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				GArray[index] = G;
+				pvPut(GArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evH))
+		{
+			int index = 0;
+			int pvcnt = sizeof(HArray)/sizeof(HArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				HArray[index] = H;
+				pvPut(HArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evI))
+		{
+			int index = 0;
+			int pvcnt = sizeof(IArray)/sizeof(IArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				IArray[index] = I;
+				pvPut(IArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evJ))
+		{
+			int index = 0;
+			int pvcnt = sizeof(JArray)/sizeof(JArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				JArray[index] = J;
+				pvPut(JArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evK))
+		{
+			int index = 0;
+			int pvcnt = sizeof(KArray)/sizeof(KArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				KArray[index] = K;
+				pvPut(KArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evL))
+		{
+			int index = 0;
+			int pvcnt = sizeof(LArray)/sizeof(LArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				LArray[index] = L;
+				pvPut(LArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evM))
+		{
+			int index = 0;
+			int pvcnt = sizeof(MArray)/sizeof(MArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				MArray[index] = M;
+				pvPut(MArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evN))
+		{
+			int index = 0;
+			int pvcnt = sizeof(NArray)/sizeof(NArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				NArray[index] = N;
+				pvPut(NArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evO))
+		{
+			int index = 0;
+			int pvcnt = sizeof(OArray)/sizeof(OArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				OArray[index] = O;
+				pvPut(OArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evP))
+		{
+			int index = 0;
+			int pvcnt = sizeof(PArray)/sizeof(PArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				PArray[index] = P;
+				pvPut(PArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evQ))
+		{
+			int index = 0;
+			int pvcnt = sizeof(QArray)/sizeof(QArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				QArray[index] = Q;
+				pvPut(QArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(AArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(BArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(CArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(DArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(EArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(FArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(GArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(HArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(IArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(JArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(KArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(LArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(MArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(NArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(OArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(PArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(QArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

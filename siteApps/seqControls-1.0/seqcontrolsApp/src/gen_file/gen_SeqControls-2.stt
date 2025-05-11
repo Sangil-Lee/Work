@@ -1,0 +1,129 @@
+program SeqControls
+option +r;
+
+float FirstPVsArray[10];
+assign FirstPVsArray to {
+ "ctrlslab:A_Alarm_1",
+ "ctrlslab:A_Alarm_2",
+ "ctrlslab:A_Alarm_3",
+ "ctrlslab:A_Alarm_4",
+ "ctrlslab:A_Alarm_5",
+ "ctrlslab:A_Alarm_6",
+ "ctrlslab:A_Alarm_7",
+ "ctrlslab:A_Alarm_8",
+ "ctrlslab:A_Alarm_9",
+ "ctrlslab:A_Alarm_10"
+
+};
+float	FirstPVs;
+assign	FirstPVs to "{GrpFirstPVs}";
+monitor FirstPVs;
+evflag  evFirstPVs;
+sync 	FirstPVs evFirstPVs;
+
+float SecondPVsArray[10];
+assign SecondPVsArray to {
+ "ctrlslab:A_Alarm_11",
+ "ctrlslab:A_Alarm_12",
+ "ctrlslab:A_Alarm_13",
+ "ctrlslab:A_Alarm_14",
+ "ctrlslab:A_Alarm_15",
+ "ctrlslab:A_Alarm_16",
+ "ctrlslab:A_Alarm_17",
+ "ctrlslab:A_Alarm_18",
+ "ctrlslab:A_Alarm_19",
+ "ctrlslab:A_Alarm_20"
+
+};
+float	SecondPVs;
+assign	SecondPVs to "{GrpSecondPVs}";
+monitor SecondPVs;
+evflag  evSecondPVs;
+sync 	SecondPVs evSecondPVs;
+
+float ThirdPVsArray[10];
+assign ThirdPVsArray to {
+ "ctrlslab:A_Alarm_21",
+ "ctrlslab:A_Alarm_22",
+ "ctrlslab:A_Alarm_23",
+ "ctrlslab:A_Alarm_24",
+ "ctrlslab:A_Alarm_25",
+ "ctrlslab:A_Alarm_26",
+ "ctrlslab:A_Alarm_27",
+ "ctrlslab:A_Alarm_28",
+ "ctrlslab:A_Alarm_29",
+ "ctrlslab:A_Alarm_30"
+
+};
+float	ThirdPVs;
+assign	ThirdPVs to "{GrpThirdPVs}";
+monitor ThirdPVs;
+evflag  evThirdPVs;
+sync 	ThirdPVs evThirdPVs;
+
+
+ss seq_controls_SeqControls
+{
+	state init
+	{
+		when(TRUE)
+		{
+                 efClear(evFirstPVs);
+                 efClear(evSecondPVs);
+                 efClear(evThirdPVs);
+
+		}state WaitEvent
+	}
+
+	state WaitEvent
+	{
+
+		when(efTestAndClear(evFirstPVs))
+		{
+			int index = 0;
+			int pvcnt = sizeof(FirstPVsArray)/sizeof(FirstPVsArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				FirstPVsArray[index] = FirstPVs;
+				pvPut(FirstPVsArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evSecondPVs))
+		{
+			int index = 0;
+			int pvcnt = sizeof(SecondPVsArray)/sizeof(SecondPVsArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				SecondPVsArray[index] = SecondPVs;
+				pvPut(SecondPVsArray[index], ASYNC);
+			}
+		}state GrpControls
+
+		when(efTestAndClear(evThirdPVs))
+		{
+			int index = 0;
+			int pvcnt = sizeof(ThirdPVsArray)/sizeof(ThirdPVsArray[0]);
+			for(index = 0; index < pvcnt;index++) {
+				ThirdPVsArray[index] = ThirdPVs;
+				pvPut(ThirdPVsArray[index], ASYNC);
+			}
+		}state GrpControls
+
+	}
+
+	state GrpControls
+	{
+
+		when(pvArrayPutComplete(FirstPVsArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(SecondPVsArray,TRUE) )
+		{
+		}state WaitEvent
+
+		when(pvArrayPutComplete(ThirdPVsArray,TRUE) )
+		{
+		}state WaitEvent
+
+	}
+}

@@ -21,7 +21,7 @@ def get_file_list(directory_path):
         print(f"Error {e}")
     return file_list
 
-def generate_snl2(input_file, template_file, seq_file, dbd_file):
+def generate_snl(input_file, template_file, seq_file, dbd_file):
     env = Environment(loader=FileSystemLoader('./'))
     template = env.get_template(template_file)
 
@@ -77,51 +77,6 @@ def generate_snl2(input_file, template_file, seq_file, dbd_file):
 
     generate_dbd(dbd_file, seqprog)
         #print(f"Generated: {seq_file} with quoted PV list: {pv_list_formatted}")
-
-def generate_snl(input_file, template_file, seq_file, dbd_file):
-    env = Environment(loader=FileSystemLoader('./'))
-    template = env.get_template(template_file)
-    pv_names = []
-
-    print(input_file)
-
-    seqprog = ""
-    with open(input_file, 'r') as f:
-        for line in f:
-            if len(line.strip()) == 0 or line[0]== '#' :
-                continue
-            line = re.split(r'[\s=]+', line)
-            if line[0].lower() == "seqprog":
-                seqprog=line[1]
-                continue
-            pv_name = line[0]
-            #print(pv_name)
-            if pv_name:
-                pv_names.append(pv_name)
-
-    pv_list_formatted = ""
-    pv_count = 0
-    for i, pv_name in enumerate(pv_names):
-        pv_list_formatted += f"\"{pv_name}\""
-        if (i + 1) % 3 == 0 and (i + 1) < len(pv_names):
-            pv_list_formatted += ",\n"
-        elif (i + 1) < len(pv_names):
-            pv_list_formatted += ", "
-    pv_count = i
-
-    #rendered_template = template.render(j_pv_list=pv_list_formatted, j_pv_count=pv_count+1, j_file_name=program)
-    rendered_template = template.render(j_pv_list=pv_list_formatted, j_pv_count=pv_count+1, j_file_name=seqprog)
-
-    try:
-        with open(seq_file, 'w') as outfile:
-            outfile.write(rendered_template)
-    except FileNotFoundError:
-        print(f"Error: Makefile '{seq_file}' Not found.")
-    except Exception as e:
-        print(f"Error: {e}")
-
-    generate_dbd(dbd_file, seqprog)
-    #print(f"Generated: {seq_file} with quoted PV list: {pv_list_formatted}")
 
 def generate_dbd(dbd_file, program):
     with open(dbd_file, 'w') as outfile:
@@ -189,7 +144,7 @@ if __name__ == "__main__":
                 filename = "gen_"+file_name
                 seq_file = filename+".stt"
                 dbd_file = filename+".dbd"
-                generate_snl2(pvlist_file, args.t, seq_file, dbd_file)
+                generate_snl(pvlist_file, args.t, seq_file, dbd_file)
                 #Insert sequence files in Makefile
                 target   = "seqcontrols_DBD"
                 append_to_makefile(makefile, target, dbd_file)
@@ -215,7 +170,7 @@ if __name__ == "__main__":
     seq_file = filename+".stt"
     dbd_file = filename+".dbd"
 
-    generate_snl2(input_file, template_file, seq_file, dbd_file)
+    generate_snl(input_file, template_file, seq_file, dbd_file)
 
     #Insert sequence files in Makefile
     makefile = "Makefile"
