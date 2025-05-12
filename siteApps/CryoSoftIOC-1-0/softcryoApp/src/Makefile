@@ -32,8 +32,8 @@ softcryo_SRCS_vxWorks += -nil-
 #softcryo_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 ifneq ($(SNCSEQ),)
 softcryo_SNCFLAGS += +r
-softcryo_DBD  += gen_SeqCMSetCP.dbd gen_SeqVBxSetCP.dbd gen_CV7401_Setpt_SetManuRamp.dbd gen_PT7501_Alarm.dbd gen_XV7301_XV7201_SetManuClose.dbd gen_CV7501_Setpt_SetManuRamp.dbd gen_XV7502_SetManuClose.dbd gen_CV8402_Setpt_SetManuRamp_SetManuSel.dbd  gen_CV7502_Setpt_SetManuRamp.dbd gen_FinalPVs_Setpt_SetManuRamp.dbd
-softcryo_SRCS += gen_SeqCMSetCP.stt gen_SeqVBxSetCP.stt gen_CV7501_Setpt_SetManuRamp.stt gen_XV7502_SetManuClose.stt gen_CV8402_Setpt_SetManuRamp_SetManuSel.stt gen_CV7401_Setpt_SetManuRamp.stt gen_PT7501_Alarm.stt gen_XV7301_XV7201_SetManuClose.stt gen_CV7502_Setpt_SetManuRamp.stt gen_FinalPVs_Setpt_SetManuRamp.stt
+softcryo_DBD  += gen_SeqCMSetCP.dbd gen_SeqVBxSetCP.dbd gen_CV7401_Setpt_SetManuRamp.dbd gen_PT7501_Alarm.dbd gen_XV7301_XV7201_SetManuClose.dbd gen_CV7501_Setpt_SetManuRamp.dbd gen_XV7502_SetManuClose.dbd gen_CV8402_Setpt_SetManuRamp_SetManuSel.dbd  gen_CV7502_Setpt_SetManuRamp.dbd gen_FinalPVs_Setpt_SetManuRamp.dbd gen_QWR_alarmlist.dbd gen_HWR_alarmlist.dbd
+softcryo_SRCS += gen_SeqCMSetCP.stt gen_SeqVBxSetCP.stt gen_CV7501_Setpt_SetManuRamp.stt gen_XV7502_SetManuClose.stt gen_CV8402_Setpt_SetManuRamp_SetManuSel.stt gen_CV7401_Setpt_SetManuRamp.stt gen_PT7501_Alarm.stt gen_XV7301_XV7201_SetManuClose.stt gen_CV7502_Setpt_SetManuRamp.stt gen_FinalPVs_Setpt_SetManuRamp.stt gen_QWR_alarmlist.stt gen_HWR_alarmlist.stt
 softcryo_LIBS += seq pv
 endif
 # Finally link to the EPICS Base libraries
