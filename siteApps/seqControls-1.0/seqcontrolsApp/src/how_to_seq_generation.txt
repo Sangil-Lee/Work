@@ -1,5 +1,5 @@
-python genSeqControls.py -i pv.list/SetCP/SeqVBxSetCP -t j.template/SeqControlsGroup.snl.j2
-python genSeqControls.py -i pv.list/SetCP/SeqCMSetCP -t j.template/SeqControlsGroup.snl.j2
+python genSeqControls.py -i pv.list/SetCP/SeqVBxSetCP.txt -t j.template/SeqControlsGroup.snl.j2
+python genSeqControls.py -i pv.list/SetCP/SeqCMSetCP.txt -t j.template/SeqControlsGroup.snl.j2
 python genSeqControls.py -i pv.list/SetValve/CV7401_Setpt_SetManuRamp.txt -t j.template/SeqControlsGroup.snl.j2
 python genSeqControls.py -i pv.list/SetValve/CV7501_Setpt_SetManuRamp.txt -t j.template/SeqControlsGroup.snl.j2
 python genSeqControls.py -i pv.list/SetValve/XV7301_XV7201_SetManuClose.txt -t j.template/SeqControlsGroup.snl.j2
