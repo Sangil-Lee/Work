@@ -14,6 +14,20 @@ export PATH=$JAVA_HOME/bin:$PATH
 export INFLUXDB_TOKEN=l_HnOIjEGflnDEJDRMjWV_cmMCtm2Yrgf9oh1osPoE04egQorYqlvzCTCSnyqXfzMEjadPaClVcU2MjlIV-tVA==
 export ENCRYPT_KEY=IgerDVYFzWQNUovK5njAInfph6VfDIyrTgeSsZeVPcc=
 
+function pwdgo()
+{
+    local golist_file="${HOME}/.golist"
+    local next_line_number=1
+
+    # golist 파일이 존재하고 비어있지 않다면 마지막 라인 번호를 가져옵니다.
+    if [[ -f "$golist_file" && -s "$golist_file" ]]; then
+        next_line_number=$(( $(wc -l < "$golist_file") + 1 ))
+    fi
+
+    local current_directory=$(pwd)
+    echo "[${next_line_number}.] ${current_directory}" >> "$golist_file"
+}
+
 function go()
 {
     local TMP
