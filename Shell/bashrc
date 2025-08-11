@@ -70,9 +70,11 @@ function findyou() {
   echo "Scan Subnet: $subnet/24"
   echo "---------------------------"
 
-  # nmap을 사용하여 서브넷 내 활성 호스트 스캔
-  # -sn 옵션은 포트 스캔 없이 호스트가 살아있는지(핑)만 확인
-  # -n 옵션은 DNS 역방향 조회 비활성화 (속도 향상)
-  #nmap -sn -n "$subnet"/24
+  # Using nmap, check living hosts
+  # -sn Check live host without checking live port
+  # -n DNS reverse checking inactive (for checking speed-up)
+  if [[ "$1" = "start" ]]; then
+  	nmap -sn -n "$subnet"/24
+  fi
 }
 
