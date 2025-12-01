@@ -1,0 +1,36 @@
+## Base Address(110 word addr)
+file "db/bi_word.template" { pattern
+{SYS,   SUBSYS,	DEV,	SUBDEV,	SIGNAL,			PORT,		OFFSET,     MASK,     ZNAM,  	ONAM,	    	ZSV,		OSV,	SCAN}
+{PSIS,	:,		Main,	:,		IntStatus00,	PSISBI,     0,	    	0x0001,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus01,	PSISBI,     0,	    	0x0002,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus02,	PSISBI,     0,	    	0x0004,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus03,	PSISBI,     0,	    	0x0008,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus04,	PSISBI,     0,	    	0x0010,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus05,	PSISBI,     0,	    	0x0020,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus06,	PSISBI,     0,	    	0x0040,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus07,	PSISBI,     0,	    	0x0080,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus08,	PSISBI,     0,	    	0x0100,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus09,	PSISBI,     0,	    	0x0200,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus10,	PSISBI,     0,	    	0x0400,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus11,	PSISBI,     0,	    	0x0800,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus12,	PSISBI,     0,	    	0x1000,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus13,	PSISBI,     0,	    	0x2000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus14,	PSISBI,     0,	    	0x4000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus15,	PSISBI,     0,	    	0x8000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus16,	PSISBI,     1,	    	0x0001,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus17,	PSISBI,     1,	    	0x0002,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus18,	PSISBI,     1,	    	0x0004,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus19,	PSISBI,     1,	    	0x0008,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus20,	PSISBI,     1,	    	0x0010,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus21,	PSISBI,     1,	    	0x0020,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus22,	PSISBI,     1,	    	0x0040,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus23,	PSISBI,     1,	    	0x0080,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus24,	PSISBI,     1,	    	0x0100,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus25,	PSISBI,     1,	    	0x0200,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus26,	PSISBI,     1,	    	0x0400,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus27,	PSISBI,     1,	    	0x0800,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus28,	PSISBI,     1,	    	0x1000,   Normal,   Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}	
+{PSIS,	:,		Main,	:,		IntStatus29,	PSISBI,     1,	    	0x2000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus30,	PSISBI,     1,	    	0x4000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+{PSIS,	:,		Main,	:,		IntStatus31,	PSISBI,     1,	    	0x8000,   Normal,	Interlock,		NO_ALARM,	MAJOR,	"I/O Intr"}			
+}
