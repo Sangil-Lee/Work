@@ -1,14 +1,21 @@
-vim.opt.number = true         -- set number
-vim.opt.relativenumber = true -- set relativenumber
-vim.opt.shiftwidth = 2        -- set shiftwidth=4
-vim.opt.expandtab = true      -- set expandtab
-vim.opt.termguicolors = true  -- set termguicolor
+-- ==========================================================================
+-- 1. 기본 옵션 설정 (Basic Options)
+-- ==========================================================================
+vim.g.mapleader = " " -- Leader 키를 스페이스바로 설정
+vim.opt.number = true -- 줄 번호 표시
+vim.opt.relativenumber = true -- 상대 줄 번호 표시 (이동 편의)
+vim.opt.mouse = "a" -- 마우스 사용 허용
+vim.opt.clipboard = "unnamedplus" -- 시스템 클립보드 공유
+vim.opt.tabstop = 4 -- 탭 크기
+vim.opt.shiftwidth = 4 -- 들여쓰기 크기
+vim.opt.expandtab = true -- 탭을 공백으로 변환
+--vim.opt.ignorecase = true -- 검색 시 대소문자 무시
+vim.opt.ignorecase = false -- 검색 시 대소문자 무시
+vim.opt.smartcase = true -- 대문자 포함 시 대소문자 구별
+vim.opt.termguicolors = true -- True Color 지원
 -- 2. 기본 옵션 설정
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
+vim.opt.softtabstop = 4
 vim.opt.smartindent = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -16,11 +23,6 @@ vim.opt.backup = false
 vim.api.nvim_create_user_command('Table', "'<,'>!column -t", { range = true })
 vim.api.nvim_create_user_command('CSV', "'<,'>!column -t -s,", { range = true })
 vim.api.nvim_create_user_command('CSVO', "'<,'>!column -t -s ';' -o ';'", { range = true })
---vim.api.nvim_create_user_command('AddColon', function()
---  -- Lua 문자열에서 '\'를 표현하려면 '\\'로 써야 합니다.
---  -- 즉, \%V -> \\%V, \> -> \\> 로 변환됩니다.
---  vim.cmd("'<,'>s/\\%V\\>/:/g")
---end, { range = true }) -- Visual 모드 범위 지원
 
 vim.api.nvim_create_user_command('AddBack', function(opts)
   -- 1. 사용자 입력값(Argument) 가져오기
@@ -120,6 +122,23 @@ end, {
   range = true, -- Visual 모드 범위 지원
   nargs = '?'   -- 인자는 있어도 되고 없어도 됨
 })
+
+-- <Leader> + n 을 누르면 상대 줄 번호를 켰다 껐다 함
+vim.keymap.set("n", "<leader>n", function()
+  -- 현재 relativenumber가 켜져 있다면 끄고, 꺼져 있다면 킴
+  if vim.opt.relativenumber:get() then
+    vim.opt.relativenumber = false
+    print("Relative Number: OFF")
+  else
+    vim.opt.relativenumber = true
+    vim.opt.number = true -- 절대 번호는 항상 유지하는 것이 좋음
+    print("Relative Number: ON")
+  end
+end, { desc = "Toggle Relative Number" })
+
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select All" })
+-- (선택 사항) 입력 모드(Insert Mode)에서도 작동하게 하려면 추가
+vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select All in Insert Mode" })
 
 -- lazy.nvim 설치 (Bootstrap)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
