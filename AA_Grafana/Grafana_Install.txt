@@ -1,0 +1,19 @@
+# 1. 패키지 업데이트
+sudo apt update && sudo apt upgrade -y
+
+# 2. Grafana GPG 키 및 저장소 추가
+sudo apt install -y software-properties-common
+sudo mkdir -p /etc/apt/keyrings/
+wget -q -O - https://apt.grafana.com/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/grafana.gpg
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+
+# 3. Grafana 설치
+sudo apt update
+sudo apt install grafana -y
+
+# 4. 서비스 시작 및 부팅시 자동 시작
+sudo systemctl enable grafana-server
+sudo systemctl start grafana-server
+
+# 5. 상태 확인
+sudo systemctl status grafana-server

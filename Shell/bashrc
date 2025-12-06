@@ -47,3 +47,34 @@ function go()
     LAW_LINE=$(sed -n "${LINE}p" "$LIST") && cd "$TMP"
     TMP=$(echo "$LAW_LINE" | sed -E 's/^[[:space:]]*([^[:space:]]+[[:space:]]+)*//') && cd "$TMP"
 }
+
+function findyou() {
+  local my_ip
+  if command -v ifconfig &> /dev/null; then
+    my_ip=$(ifconfig | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '127.0.0.1' | head -n 1)
+  elif command -v ip &> /dev/null; then
+    my_ip=$(ip -4 addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '127.0.0.1' | head -n 1)
+  else
+    echo "Error: ip or ifconfig can't find." >&2
+    return 1
+  fi
+
+  if [[ -z "$my_ip" ]]; then
+    echo "Error: My IP address can't confirm." >&2
+    return 1
+  fi
+  
+  local subnet=$(echo "$my_ip" | cut -d'.' -f1-3).0
+  
+  echo "My IP Address: $my_ip"
+  echo "Scan Subnet: $subnet/24"
+  echo "---------------------------"
+
+  # Using nmap, check living hosts
+  # -sn Check live host without checking live port
+  # -n DNS reverse checking inactive (for checking speed-up)
+  if [[ "$1" = "start" ]]; then
+  	nmap -sn -n "$subnet"/24
+  fi
+}
+
