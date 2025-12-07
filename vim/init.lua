@@ -20,6 +20,18 @@ vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
 
+-- 1. 일반 줄 번호 (LineNr): 노란색으로 변경
+--vim.api.nvim_set_hl(0, "LineNr", { fg = "Yellow" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#F9E79F" })
+-- 2. 현재 커서가 있는 줄 번호 (CursorLineNr): 노란색 + 굵게(Bold)
+--    (보통 현재 줄은 더 강조하고 싶어하므로 Bold를 추가했습니다)
+--vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Green", bold = true })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F9E79F", bold = true })
+
+-- 참고: 만약 상대 줄 번호(relativenumber)를 사용 중이라면 
+-- LineNr은 주변 번호, CursorLineNr은 현재 위치의 절대 번호 색상이 됩니다.
+
+
 vim.api.nvim_create_user_command('Table', "'<,'>!column -t", { range = true })
 vim.api.nvim_create_user_command('CSV', "'<,'>!column -t -s,", { range = true })
 vim.api.nvim_create_user_command('CSVO', "'<,'>!column -t -s ';' -o ';'", { range = true })
@@ -137,46 +149,77 @@ vim.keymap.set("n", "<leader>n", function()
 end, { desc = "Toggle Relative Number" })
 
 -- ==========================================================================
--- 사용자 명령: 범위 내의 라인을 첫 단어 기준으로 정렬하여 복사
--- 사용법: 
---   1. 전체 파일: :Aligns
---   2. 비주얼 모드: 드래그 후 :Aligns
---   3. 줄 번호 지정: :10,20Aligns
+-- 사용자 명령: Aligns (업그레이드 버전)
+-- 기능: 
+--   1. Visual Block(Ctrl+v) 선택 시: 해당 블록 내의 텍스트 기준으로 정렬
+--   2. 그 외(일반/Visual Line): 라인의 첫 번째 단어(공백 제외) 기준으로 정렬
+--   3. 결과는 클립보드에 복사됨 (원본 파일 수정 X)
 -- ==========================================================================
 vim.api.nvim_create_user_command('Aligns', function(opts)
-  -- 1. 범위(Range) 계산 (1-based -> 0-based 변환)
+  -- 1. 범위 설정
   local start_line = opts.line1 - 1
   local end_line = opts.line2
-
-  -- 2. 지정된 범위의 줄 가져오기
   local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
 
-  -- 내용이 없으면 종료
   if #lines == 0 then return end
 
-  -- 3. 정렬 로직 (첫 번째 단어 기준, 대소문자 무시)
-  table.sort(lines, function(a, b)
-    -- 공백을 제거한 실제 첫 단어 추출 (없으면 빈 문자열)
-    -- "^%s*" : 시작 부분의 공백
-    -- "(.*)" : 그 뒤의 내용
-    local a_word = a:match("^%s*(.*)") or ""
-    local b_word = b:match("^%s*(.*)") or ""
+  -- 2. 직전 비주얼 모드 확인
+  -- Ctrl-v는 Lua 문자열로 "\22"로 표현됩니다.
+  local mode = vim.fn.visualmode()
+  local is_block_mode = (mode == "\22")
+
+  -- 3. 블록 모드일 경우 열(Column) 범위 계산
+  local start_col, end_col
+  if is_block_mode then
+    -- '< 와 '> 마크는 비주얼 모드를 빠져나온 뒤 설정된 마지막 선택 영역의 위치입니다.
+    local pos1 = vim.fn.getpos("'<")
+    local pos2 = vim.fn.getpos("'>")
     
-    -- 소문자로 변환하여 비교 (Case-insensitive sorting)
-    return a_word:lower() < b_word:lower()
+    start_col = pos1[3] -- 열 번호 (Byte Index)
+    end_col = pos2[3]
+
+    -- 역방향으로 드래그했을 경우를 대비해 순서 정렬
+    if start_col > end_col then
+      start_col, end_col = end_col, start_col
+    end
+  end
+
+  -- 4. 정렬 로직 수행
+  table.sort(lines, function(a, b)
+    local a_key, b_key
+
+    if is_block_mode then
+      -- [블록 모드] 지정된 열 범위의 문자열을 잘라내어 키로 사용
+      -- string.sub는 Byte 단위이므로 한글 중간이 잘리지 않게 주의 필요
+      a_key = string.sub(a, start_col, end_col) or ""
+      b_key = string.sub(b, start_col, end_col) or ""
+      
+      -- 잘라낸 블록 내에서도 앞뒤 공백은 무시하고 정렬하고 싶다면 아래 주석 해제
+      -- a_key = a_key:match("^%s*(.*)") or ""
+      -- b_key = b_key:match("^%s*(.*)") or ""
+    else
+      -- [기본 모드] 라인의 첫 단어(공백 제외) 추출
+      a_key = a:match("^%s*(.*)") or ""
+      b_key = b:match("^%s*(.*)") or ""
+    end
+
+    -- 대소문자 구분 없이 비교
+    return a_key:lower() < b_key:lower()
   end)
 
-  -- 4. 결과 처리 (클립보드 복사)
+  -- 5. 결과 처리 (클립보드 복사)
   local result = table.concat(lines, "\n")
   vim.fn.setreg('+', result) -- 시스템 클립보드
   vim.fn.setreg('"', result) -- 기본 레지스터
 
-  print("✨ " .. #lines .. "개의 줄이 정렬되어 클립보드에 복사되었습니다!")
-  
+  local mode_msg = is_block_mode and "Vertical Block 기준" or "첫 단어 기준"
+  print("✨ " .. #lines .. "개의 줄을 [" .. mode_msg .. "]으로 정렬하여 복사했습니다!")
+
 end, { 
-  range = "%", -- 범위를 받도록 설정 (기본값: 전체 파일)
-  desc = "범위 내 라인을 첫 단어 기준으로 정렬하여 복사" 
+  range = "%", 
+  desc = "선택 영역(Block/Line)에 따라 정렬하여 복사" 
 })
+
 -- ==========================================================================
 -- 사용자 명령: DeleteLines
 -- 기능: 선택 범위 내에서 특정 단어가 포함된 줄을 일괄 삭제
