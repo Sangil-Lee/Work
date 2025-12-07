@@ -136,6 +136,256 @@ vim.keymap.set("n", "<leader>n", function()
   end
 end, { desc = "Toggle Relative Number" })
 
+-- ==========================================================================
+-- 사용자 명령: 범위 내의 라인을 첫 단어 기준으로 정렬하여 복사
+-- 사용법: 
+--   1. 전체 파일: :Aligns
+--   2. 비주얼 모드: 드래그 후 :Aligns
+--   3. 줄 번호 지정: :10,20Aligns
+-- ==========================================================================
+vim.api.nvim_create_user_command('Aligns', function(opts)
+  -- 1. 범위(Range) 계산 (1-based -> 0-based 변환)
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+
+  -- 2. 지정된 범위의 줄 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+  -- 내용이 없으면 종료
+  if #lines == 0 then return end
+
+  -- 3. 정렬 로직 (첫 번째 단어 기준, 대소문자 무시)
+  table.sort(lines, function(a, b)
+    -- 공백을 제거한 실제 첫 단어 추출 (없으면 빈 문자열)
+    -- "^%s*" : 시작 부분의 공백
+    -- "(.*)" : 그 뒤의 내용
+    local a_word = a:match("^%s*(.*)") or ""
+    local b_word = b:match("^%s*(.*)") or ""
+    
+    -- 소문자로 변환하여 비교 (Case-insensitive sorting)
+    return a_word:lower() < b_word:lower()
+  end)
+
+  -- 4. 결과 처리 (클립보드 복사)
+  local result = table.concat(lines, "\n")
+  vim.fn.setreg('+', result) -- 시스템 클립보드
+  vim.fn.setreg('"', result) -- 기본 레지스터
+
+  print("✨ " .. #lines .. "개의 줄이 정렬되어 클립보드에 복사되었습니다!")
+  
+end, { 
+  range = "%", -- 범위를 받도록 설정 (기본값: 전체 파일)
+  desc = "범위 내 라인을 첫 단어 기준으로 정렬하여 복사" 
+})
+-- ==========================================================================
+-- 사용자 명령: DeleteLines
+-- 기능: 선택 범위 내에서 특정 단어가 포함된 줄을 일괄 삭제
+-- 사용법: :DeleteLines <검색어>
+-- ==========================================================================
+vim.api.nvim_create_user_command('DeleteLines', function(opts)
+  local pattern = opts.args
+  if pattern == "" then
+    print("삭제할 검색어를 입력해주세요. (예: :DeleteLines error)")
+    return
+  end
+
+  -- 1. 범위 설정 (1-based -> 0-based)
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+
+  -- 2. 범위 내의 모든 줄 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+  local kept_lines = {}
+  local delete_count = 0
+
+  -- 3. 필터링 로직
+  for _, line in ipairs(lines) do
+    -- plain=true: 정규식이 아닌 단순 문자열 매칭
+    if string.find(line, pattern, 1, true) then
+      -- 검색어가 포함된 줄이면 삭제 카운트 증가 (저장하지 않음)
+      delete_count = delete_count + 1
+    else
+      -- 검색어가 없는 줄만 보존
+      table.insert(kept_lines, line)
+    end
+  end
+
+  -- 4. 결과 적용
+  if delete_count > 0 then
+    -- [핵심] 해당 범위의 내용을 남은 줄들(kept_lines)로 교체합니다.
+    -- 이렇게 하면 삭제된 효과가 나며, Undo(u) 한 번으로 복구가 가능합니다.
+    vim.api.nvim_buf_set_lines(0, start_line, end_line, false, kept_lines)
+    print("🗑️ '" .. pattern .. "'이(가) 포함된 " .. delete_count .. "줄을 삭제했습니다.")
+  else
+    print("⚠️ 선택 범위 내에 '" .. pattern .. "'이(가) 포함된 줄이 없습니다.")
+  end
+end, { 
+  nargs = 1, -- 인자 필수
+  range = "%", -- 범위 지정 가능 (기본값: 전체 파일)
+  desc = "범위 내에서 특정 단어가 포함된 줄 삭제" 
+})
+
+
+-- ==========================================================================
+-- 사용자 명령: 범위(Range) 내에서 특정 단어가 포함된 라인 일괄 복사
+-- 사용법: 
+--   1. 전체 파일: :CopyLines <검색어>
+--   2. 비주얼 모드: 드래그 후 :CopyLines <검색어>
+--   3. 줄 번호 지정: :10,20CopyLines <검색어>
+-- ==========================================================================
+vim.api.nvim_create_user_command('CopyLines', function(opts)
+  local pattern = opts.args
+  if pattern == "" then
+    print("검색어를 입력해주세요. (예: :CopyLines error)")
+    return
+  end
+
+  -- [변경점 1] 범위(Range) 계산
+  -- opts.line1은 1-based 시작 줄, opts.line2는 1-based 끝 줄입니다.
+  -- nvim_buf_get_lines API는 0-based 인덱스를 사용하므로 변환이 필요합니다.
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+
+  -- [변경점 2] 지정된 범위의 줄만 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+  local matches = {}
+
+  -- 루프를 돌며 패턴 찾기 (이전과 동일)
+  for _, line in ipairs(lines) do
+    if string.find(line, pattern, 1, true) then
+      table.insert(matches, line)
+    end
+  end
+
+  -- 결과 처리
+  if #matches > 0 then
+    local result = table.concat(matches, "\n")
+    vim.fn.setreg('+', result) -- 시스템 클립보드
+    vim.fn.setreg('"', result) -- 기본 레지스터
+    
+    print("✨ 선택 범위에서 '" .. pattern .. "' 포함 " .. #matches .. "줄 복사 완료!")
+  else
+    print("⚠️ 선택 범위 내에 '" .. pattern .. "'이(가) 없습니다.")
+  end
+end, { 
+  nargs = 1, 
+  range = "%", -- [핵심] 범위를 받도록 설정 (기본값: 파일 전체 %)
+  desc = "지정된 범위에서 특정 단어가 포함된 줄을 복사" 
+})
+
+-- ==========================================================================
+-- 사용자 명령: UniqueLines
+-- 기능: 범위 내에서 중복된 줄을 제거하고 하나만 남김 (공백 무시 비교)
+-- 사용법: :UniqueLines
+-- ==========================================================================
+vim.api.nvim_create_user_command('UniqueLines', function(opts)
+  -- 1. 범위 설정
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+
+  -- 2. 라인 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+  
+  local seen = {}      -- 이미 발견된 내용을 기록할 테이블
+  local result = {}    -- 중복이 제거된 줄들을 담을 테이블
+  local removed_count = 0
+
+  for _, line in ipairs(lines) do
+    -- [핵심] 비교를 위해 공백 제거 (CheckLines와 동일 로직)
+    local normalized = line:gsub("%s+", "")
+
+    -- 빈 줄인 경우 처리 (선택 사항: 여기서는 빈 줄도 중복되면 하나만 남김)
+    -- 만약 빈 줄은 무조건 유지하고 싶다면 조건을 추가해야 함.
+
+    if not seen[normalized] then
+      -- 처음 본 내용이라면: 기록하고 결과에 추가
+      seen[normalized] = true
+      table.insert(result, line)
+    else
+      -- 이미 본 내용이라면: 삭제 카운트 증가 (결과에 추가 안 함)
+      removed_count = removed_count + 1
+    end
+  end
+
+  -- 3. 결과 적용 (중복이 있었을 때만 버퍼 수정)
+  if removed_count > 0 then
+    vim.api.nvim_buf_set_lines(0, start_line, end_line, false, result)
+    print("✂️ 총 " .. removed_count .. "개의 중복 라인을 제거했습니다.")
+  else
+    print("✅ 중복된 라인이 없습니다.")
+  end
+end, { 
+  range = "%", 
+  desc = "범위 내 중복 라인 제거 (First one wins)" 
+})
+
+-- ==========================================================================
+-- 사용자 명령: CheckLines & ClearChecks
+-- 기능: 선택 범위 내에서 공백을 제외한 내용이 동일한 줄을 찾아 하이라이트
+-- ==========================================================================
+
+-- 1. 하이라이트 관리를 위한 네임스페이스 생성 (한 번만 실행됨)
+local ns_id = vim.api.nvim_create_namespace('CheckLines')
+
+vim.api.nvim_create_user_command('CheckLines', function(opts)
+  -- 2. 기존에 표시된 CheckLines 하이라이트 제거 (초기화)
+  vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+  
+  -- 범위 내의 줄 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+  
+  -- 3. 중복 검사를 위한 테이블 (Key: 정규화된 문자열, Value: 줄 번호 리스트)
+  local map = {}
+
+  for i, line in ipairs(lines) do
+    -- [핵심] 모든 공백(스페이스, 탭) 제거하여 비교 기준 만들기
+    local normalized = line:gsub("%s+", "")
+
+    -- 빈 줄은 무시 (필요하다면 이 조건을 제거해도 됨)
+    if normalized ~= "" then
+      if not map[normalized] then
+        map[normalized] = {}
+      end
+      -- 현재 줄의 절대 번호 저장 (0-based)
+      table.insert(map[normalized], start_line + i - 1)
+    end
+  end
+
+  -- 4. 중복된 줄 하이라이트 적용
+  local dup_count = 0
+  for _, line_nums in pairs(map) do
+    -- 같은 내용이 2개 이상인 경우만 처리
+    if #line_nums > 1 then
+      dup_count = dup_count + 1
+      for _, lnum in ipairs(line_nums) do
+        -- 하이라이트 적용 (색상 그룹: 'Search' 사용 - 보통 노란색 배경)
+        -- 다른 색을 원하면 'Error', 'WarningMsg', 'Visual' 등으로 변경 가능
+        vim.api.nvim_buf_add_highlight(0, ns_id, 'Search', lnum, 0, -1)
+      end
+    end
+  end
+
+  if dup_count > 0 then
+    print("🔍 " .. dup_count .. "개의 중복 그룹을 발견하여 표시했습니다.")
+  else
+    print("✅ 중복된 라인이 없습니다 (공백 제외).")
+  end
+end, { 
+  range = "%", 
+  desc = "공백 제외 동일한 라인 하이라이트" 
+})
+
+-- ==========================================================================
+-- 보너스 명령: 하이라이트 끄기
+-- ==========================================================================
+vim.api.nvim_create_user_command('ClearChecks', function()
+  vim.api.nvim_buf_clear_namespace(0, ns_id, 0, -1)
+  print("🧹 하이라이트를 제거했습니다.")
+end, { desc = "CheckLines 하이라이트 제거" })
+
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select All" })
 -- (선택 사항) 입력 모드(Insert Mode)에서도 작동하게 하려면 추가
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select All in Insert Mode" })
@@ -153,7 +403,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
 require("lazy").setup({
   
   {
