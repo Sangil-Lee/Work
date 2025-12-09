@@ -22,11 +22,11 @@ vim.opt.backup = false
 
 -- 1. 일반 줄 번호 (LineNr): 노란색으로 변경
 --vim.api.nvim_set_hl(0, "LineNr", { fg = "Yellow" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#F9E79F" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#FFD700" })
 -- 2. 현재 커서가 있는 줄 번호 (CursorLineNr): 노란색 + 굵게(Bold)
 --    (보통 현재 줄은 더 강조하고 싶어하므로 Bold를 추가했습니다)
 --vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "Green", bold = true })
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F9E79F", bold = true })
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#FFD700", bold = true })
 
 -- 참고: 만약 상대 줄 번호(relativenumber)를 사용 중이라면 
 -- LineNr은 주변 번호, CursorLineNr은 현재 위치의 절대 번호 색상이 됩니다.
@@ -58,6 +58,47 @@ end, {
   nargs = '?'   -- 인자를 0개 또는 1개 받음 ('?' 설정이 핵심)
 })
 
+-- ==========================================================================
+-- 사용자 명령: Increment
+-- 기능: 선택 범위 내 라인 끝에 증분(Offset) 숫자 추가
+-- 사용법: :Increment <숫자>
+-- 예시: :Increment 4  -> 각 줄 끝에 4, 8, 12, 16 ... 추가
+-- ==========================================================================
+vim.api.nvim_create_user_command('Increment', function(opts)
+  -- 1. 입력값(증가량) 파싱
+  local step = tonumber(opts.args)
+  if not step then
+    print("⚠️ 증가시킬 숫자를 입력해주세요. (예: :Increment 4)")
+    return
+  end
+
+  -- 2. 범위 설정 (1-based -> 0-based)
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+
+  -- 3. 라인 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+  -- 4. 각 줄에 숫자 붙이기
+  for i, line in ipairs(lines) do
+    -- 계산 로직: (현재 순서 * 증가량)
+    -- 만약 0부터 시작하고 싶다면 (i - 1) * step 으로 변경하세요.
+    local number_to_append = (i-1) * step
+    
+    -- 원본 줄 내용 + 공백 + 계산된 숫자
+    lines[i] = line .. " " .. tostring(number_to_append)
+  end
+
+  -- 5. 결과 적용
+  vim.api.nvim_buf_set_lines(0, start_line, end_line, false, lines)
+  
+  print("🔢 " .. #lines .. "개의 줄에 " .. step .. "씩 증가하는 숫자를 붙였습니다.")
+end, { 
+  nargs = 1,    -- 인자(숫자) 1개 필수
+  range = "%",  -- 범위 지정 가능 (기본값: 전체 파일)
+  desc = "라인 끝에 지정한 숫자만큼 증가하는 수 추가" 
+})
+
 vim.api.nvim_create_user_command('AddFront', function(opts)
   -- 1. 사용자 입력값(Argument) 가져오기
   local suffix = opts.args
@@ -78,6 +119,85 @@ vim.api.nvim_create_user_command('AddFront', function(opts)
 end, {
   range = true, -- Visual 모드 범위 지원
   nargs = '?'   -- 인자를 0개 또는 1개 받음 ('?' 설정이 핵심)
+})
+
+-- ==========================================================================
+-- 사용자 명령: IncrementRange
+-- 기능: 시작, 증가, 끝 값을 받아 순환하는 숫자를 입력
+-- 사용법: :IncrementRange <Start> <Offset> <End>
+-- 예시: :IncrementRange 1 1 3  -> 1, 2, 3, 1, 2, 3... 순서로 반복
+-- ==========================================================================
+vim.api.nvim_create_user_command('IncrementRange', function(opts)
+  -- 1. 인자 파싱 (공백으로 분리)
+  local args = vim.split(vim.trim(opts.args), "%s+")
+  local start_val = tonumber(args[1])
+  local offset_val = tonumber(args[2])
+  local end_val = tonumber(args[3])
+
+  if not start_val or not offset_val or not end_val then
+    print("⚠️ 3개의 숫자가 필요합니다. (사용법: :IncrementRange <시작> <증가> <끝>)")
+    return
+  end
+
+  -- 2. 범위 및 라인 가져오기
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+  -- 3. 모드 확인 (Visual Block 감지)
+  local mode = vim.fn.visualmode()
+  local is_block_mode = (mode == "\22") -- Ctrl-v
+
+  -- 4. 블록 모드일 경우 컬럼 위치 계산
+  local start_col, end_col
+  if is_block_mode then
+    local pos1 = vim.fn.getpos("'<")
+    local pos2 = vim.fn.getpos("'>")
+    start_col = pos1[3]
+    end_col = pos2[3]
+
+    if start_col > end_col then
+      start_col, end_col = end_col, start_col
+    end
+  end
+
+  -- 5. 순환 로직 적용
+  local current_val = start_val
+
+  for i, line in ipairs(lines) do
+    local num_str = tostring(current_val)
+
+    if is_block_mode then
+      -- [Case A: Vertical Block] 선택 영역 교체
+      if #line < start_col - 1 then
+        line = line .. string.rep(" ", start_col - 1 - #line)
+      end
+
+      local prefix = string.sub(line, 1, start_col - 1)
+      local suffix = (#line >= end_col) and string.sub(line, end_col + 1) or ""
+      
+      lines[i] = prefix .. num_str .. suffix
+    else
+      -- [Case B: Normal Mode] 라인 끝에 추가
+      lines[i] = line .. " " .. num_str
+    end
+
+    -- 다음 값 계산 (범위를 벗어나면 시작값으로 리셋)
+    current_val = current_val + offset_val
+    if current_val > end_val then
+      current_val = start_val
+    end
+  end
+
+  -- 6. 결과 적용
+  vim.api.nvim_buf_set_lines(0, start_line, end_line, false, lines)
+  
+  print("🔄 " .. start_val .. "부터 " .. end_val .. "까지 (" .. offset_val .. "씩 증가) 패턴을 적용했습니다.")
+
+end, { 
+  nargs = "+", -- 인자 여러 개 허용
+  range = "%", 
+  desc = "범위 내에서 순환하는 숫자열(Start Offset End) 추가" 
 })
 
 vim.api.nvim_create_user_command('Replace', function(opts)
