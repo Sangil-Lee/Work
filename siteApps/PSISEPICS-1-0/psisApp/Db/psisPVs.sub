@@ -1,36 +1,36 @@
 ## Base Address(110 word addr)
 file "db/bi_word.template" { pattern
 {SYS,   SUBSYS,		DEV,	SUBDEV,	SIGNAL,				PORT,		OFFSET,     MASK,     ZNAM,  	ONAM,	    	ZSV,		OSV,	SCAN,			DESC}
-{PSIS,	-CTRL:,		ECR32,	:,		RestrictedAccess,	PSISBI,     0,	    	0x0001,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Restricted"	}	
-{PSIS,	-CTRL:,		ECR32,	:,		ControlledAccess,	PSISBI,     0,	    	0x0002,   Off,   	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Controlled"	}	
-{PSIS,	-CTRL:,		ECR32,	:,		NoAccess,			PSISBI,     0,	    	0x0004,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-NoAccess"		}	
-{PSIS,	-CTRL:,		ECR32,	:,		Trip,				PSISBI,     0,	    	0x0008,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Trip"			}	
-{PSIS,	-CTRL:,		ECR31,	:,		RestrictedAccess,	PSISBI,     0,	    	0x0010,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Restricted"		}	
-{PSIS,	-CTRL:,		ECR31,	:,		ControlledAccess,	PSISBI,     0,	    	0x0020,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Controlled"		}			
-{PSIS,	-CTRL:,		ECR31,	:,		NoAccess,			PSISBI,     0,	    	0x0040,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-NoAccess"		}			
-{PSIS,	-CTRL:,		ECR31,	:,		Trip,				PSISBI,     0,	    	0x0080,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Trip"			}			
-{PSIS,	-CTRL:,		ECR33,	:,		RestrictedAccess,	PSISBI,     0,	    	0x0100,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Restricted"	}	
-{PSIS,	-CTRL:,		ECR33,	:,		ControlledAccess,	PSISBI,     0,	    	0x0200,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Controlled"	}	
-{PSIS,	-CTRL:,		ECR33,	:,		NoAccess,			PSISBI,     0,	    	0x0400,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-NoAccess"		}	
-{PSIS,	-CTRL:,		ECR33,	:,		Trip,				PSISBI,     0,	    	0x0800,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Trip"			}	
-{PSIS,	-CTRL:,		ISOL,	:,		RestrictedAccess,	PSISBI,     0,	    	0x1000,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Restricted"		}	
-{PSIS,	-CTRL:,		ISOL,	:,		ControlledAccess,	PSISBI,     0,	    	0x2000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Controlled"		}			
-{PSIS,	-CTRL:,		ISOL,	:,		NoAccess,			PSISBI,     0,	    	0x4000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-NoAccess"			}			
-{PSIS,	-CTRL:,		ISOL,	:,		Trip,				PSISBI,     0,	    	0x8000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Trip"				}			
-{PSIS,	-CTRL:,		ECR32,	:,		StandaloneMode,		PSISBI,     1,	    	0x0001,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5 Standalone"	}	
-{PSIS,	-CTRL:,		ECR31,	:,		StandaloneMode,		PSISBI,     1,	    	0x0002,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28 Standalone"		}	
-{PSIS,	-CTRL:,		ECR33,	:,		StandaloneMode,		PSISBI,     1,	    	0x0004,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare Standalone"	}	
-{PSIS,	-CTRL:,		SCL3,	:,		RestrictedAccess,	PSISBI,     1,	    	0x0008,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Restricted"		}	
-{PSIS,	-CTRL:,		SCL3,	:,		ControlledAccess,	PSISBI,     1,	    	0x0010,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Controlled"		}	
-{PSIS,	-CTRL:,		SCL3,	:,		NoAccess,			PSISBI,     1,	    	0x0020,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-NoAccess"			}			
-{PSIS,	-CTRL:,		SCL3,	:,		Trip,				PSISBI,     1,	    	0x0040,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Trip"				}			
-{PSIS,	-CTRL:,		KoBRA,	:,		RestrictedAccess,	PSISBI,     1,	    	0x0080,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Restricted"		}			
-{PSIS,	-CTRL:,		KoBRA,	:,		ControlledAccess,	PSISBI,     1,	    	0x0100,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Controlled"		}	
-{PSIS,	-CTRL:,		KoBRA,	:,		NoAccess,			PSISBI,     1,	    	0x0200,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-NoAccess"		}	
-{PSIS,	-CTRL:,		KoBRA,	:,		Trip,				PSISBI,     1,	    	0x0400,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Trip"			}	
-{PSIS,	-CTRL:,		NDPS,	:,		RestrictedAccess,	PSISBI,     1,	    	0x0800,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Restricted"		}	
-{PSIS,	-CTRL:,		NDPS,	:,		ControlledAccess,	PSISBI,     1,	    	0x1000,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Controlled"		}	
-{PSIS,	-CTRL:,		NDPS,	:,		NoAccess,			PSISBI,     1,	    	0x2000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-NoAccess"			}			
-{PSIS,	-CTRL:,		NDPS,	:,		Trip,				PSISBI,     1,	    	0x4000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Trip"				}			
-{PSIS,	-CTRL:,		SPARE,	:,		SPARE,				PSISBI,     1,	    	0x8000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"Spare"					}			
+{PSIS,	-CTRL:,		ECR32,	:,		RestrictedAccess,   PSISBI,     0,	    	0x0001,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Restricted"	}	
+{PSIS,	-CTRL:,		ECR32,	:,		ControlledAccess,   PSISBI,     0,	    	0x0002,   Off,   	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Controlled"	}	
+{PSIS,	-CTRL:,		ECR32,	:,		NoAccess,           PSISBI,     0,	    	0x0004,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-NoAccess"		}	
+{PSIS,	-CTRL:,		ECR32,	:,		Trip,               PSISBI,     0,	    	0x0008,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Trip"			}	
+{PSIS,	-CTRL:,		ECR31,	:,		RestrictedAccess,   PSISBI,     0,	    	0x0010,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Restricted"		}	
+{PSIS,	-CTRL:,		ECR31,	:,		ControlledAccess,   PSISBI,     0,	    	0x0020,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Controlled"		}			
+{PSIS,	-CTRL:,		ECR31,	:,		NoAccess,           PSISBI,     0,	    	0x0040,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-NoAccess"		}			
+{PSIS,	-CTRL:,		ECR31,	:,		Trip,               PSISBI,     0,	    	0x0080,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Trip"			}			
+{PSIS,	-CTRL:,		ECR33,	:,		RestrictedAccess,   PSISBI,     0,	    	0x0100,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Restricted"	}	
+{PSIS,	-CTRL:,		ECR33,	:,		ControlledAccess,   PSISBI,     0,	    	0x0200,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Controlled"	}	
+{PSIS,	-CTRL:,		ECR33,	:,		NoAccess,           PSISBI,     0,	    	0x0400,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-NoAccess"		}	
+{PSIS,	-CTRL:,		ECR33,	:,		Trip,               PSISBI,     0,	    	0x0800,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECRSpare-Trip"			}	
+{PSIS,	-CTRL:,		ISOL,   :,		RestrictedAccess,   PSISBI,     0,	    	0x1000,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Restricted"		}	
+{PSIS,	-CTRL:,		ISOL,   :,		ControlledAccess,   PSISBI,     0,	    	0x2000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Controlled"		}			
+{PSIS,	-CTRL:,		ISOL,   :,		NoAccess,           PSISBI,     0,	    	0x4000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-NoAccess"			}			
+{PSIS,	-CTRL:,		ISOL,   :,		Trip,               PSISBI,     0,	    	0x8000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ISOL-Trip"				}			
+{PSIS,	-CTRL:,		SCL3, 	:,		RestrictedAccess,   PSISBI,     1,	    	0x0001,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Restricted"	    }	
+{PSIS,	-CTRL:,		SCL3, 	:,		ControlledAccess,   PSISBI,     1,	    	0x0002,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Controlled"		}	
+{PSIS,	-CTRL:,		SCL3, 	:,		NoAccess,           PSISBI,     1,	    	0x0004,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-NoAccess"	        }	
+{PSIS,	-CTRL:,		SCL3,   :,		Trip,               PSISBI,     1,	    	0x0008,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"SCL3-Trip"	        	}	
+{PSIS,	-CTRL:,		KoBRA,  :,		RestrictedAccess,   PSISBI,     1,	    	0x0010,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Restricted"		}	
+{PSIS,	-CTRL:,		KoBRA,  :,		ControlledAccess,   PSISBI,     1,	    	0x0020,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Controlled"		}			
+{PSIS,	-CTRL:,		KoBRA,  :,		NoAccess,           PSISBI,     1,	    	0x0040,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-NoAccess"		}			
+{PSIS,	-CTRL:,		KoBRA,	:,		Trip,               PSISBI,     1,	    	0x0080,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"KoBRA-Trip"	      	}			
+{PSIS,	-CTRL:,		NDPS, 	:,		RestrictedAccess,   PSISBI,     1,	    	0x0100,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Restricted"		}	
+{PSIS,	-CTRL:,		NDPS, 	:,		ControlledAccess,   PSISBI,     1,	    	0x0200,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Controlled"		}	
+{PSIS,	-CTRL:,		NDPS, 	:,		NoAccess,           PSISBI,     1,	    	0x0400,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-NoAccess"			}	
+{PSIS,	-CTRL:,		NDPS,   :,		Trip,               PSISBI,     1,	    	0x0800,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"NDPS-Trip"	        	}	
+{PSIS,	-CTRL:,		ECR32,  :,		StandaloneMode,     PSISBI,     1,	    	0x1000,   Off,  	Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Standalone"	}	
+{PSIS,	-CTRL:,		ECR31,  :,		StandaloneMode,     PSISBI,     1,	    	0x2000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR28-Standalone"		}			
+{PSIS,	-CTRL:,		ECR33,  :,		StandaloneMode,     PSISBI,     1,	    	0x4000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-S.Standalone"	}			
+{PSIS,	-CTRL:,		ECR32,	:,		INJMode,            PSISBI,     1,	    	0x8000,   Off,		Activated,		NO_ALARM,	MAJOR,	"I/O Intr",		"ECR14.5-Inj. Mode"		}			
 }
