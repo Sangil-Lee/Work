@@ -36,6 +36,169 @@ vim.api.nvim_create_user_command('Table', "'<,'>!column -t", { range = true })
 vim.api.nvim_create_user_command('CSV', "'<,'>!column -t -s,", { range = true })
 vim.api.nvim_create_user_command('CSVO', "'<,'>!column -t -s ';' -o ';'", { range = true })
 
+-- ==========================================================================
+-- 사용자 명령: AlignLeft, AlignRight
+-- 기능: 지정된 구분자 [, ( ) { } '] 를 기준으로 줄을 정렬
+-- 작성일: 2025
+-- ==========================================================================
+
+-- 정렬 대상이 되는 구분자 패턴 (Lua Pattern)
+-- %는 이스케이프 문자입니다. (, ), ' 는 특수문자라 처리 필요
+local align_pattern = "[,%(%){}'=]"
+
+-- [헬퍼 함수] 문자열에서 특정 패턴의 위치 찾기
+-- mode: "first" (AlignLeft용) 또는 "last" (AlignRight용)
+local function find_match_index(line, pattern, mode)
+  if mode == "first" then
+    -- 첫 번째 매칭되는 위치 반환
+    local s, _ = string.find(line, pattern)
+    return s
+  else
+    -- 마지막 매칭되는 위치 찾기 (반복 탐색)
+    local last_s = nil
+    local init = 1
+    while true do
+      local s, e = string.find(line, pattern, init)
+      if not s then break end
+      last_s = s
+      init = e + 1
+    end
+    return last_s
+  end
+end
+
+-- [메인 함수] 정렬 로직 생성기
+local function create_align_command(cmd_name, mode)
+  vim.api.nvim_create_user_command(cmd_name, function(opts)
+    local start_line = opts.line1 - 1
+    local end_line = opts.line2
+    local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+    -- 1단계: 각 줄에서 구분자 앞부분의 '화면상 너비' 계산 및 최대값 찾기
+    local max_width = 0
+    local match_infos = {} -- { line_index, match_pos, prefix_width }
+
+    for i, line in ipairs(lines) do
+      local match_pos = find_match_index(line, align_pattern, mode)
+      
+      if match_pos then
+        -- 구분자 바로 앞까지의 문자열 추출
+        local prefix = string.sub(line, 1, match_pos - 1)
+        -- 한글 등 멀티바이트 문자를 고려한 실제 출력 너비 계산
+        local width = vim.fn.strdisplaywidth(prefix)
+        
+        if width > max_width then
+          max_width = width
+        end
+        
+        -- 정보 저장 (나중에 공백 채울 때 사용)
+        match_infos[i] = { pos = match_pos, width = width }
+      else
+        match_infos[i] = nil -- 매칭 안 된 줄은 무시
+      end
+    end
+
+    -- 2단계: 최대 너비에 맞춰 공백 삽입하여 정렬
+    for i, line in ipairs(lines) do
+      local info = match_infos[i]
+      if info then
+        -- 필요한 공백 개수 = (가장 긴 줄의 너비) - (현재 줄의 너비)
+        local spaces_needed = max_width - info.width
+        
+        if spaces_needed > 0 then
+          local spaces = string.rep(" ", spaces_needed)
+          -- 문자열 재조립: [앞부분] + [공백] + [구분자 포함 뒷부분]
+          local prefix = string.sub(line, 1, info.pos - 1)
+          local suffix = string.sub(line, info.pos)
+          lines[i] = prefix .. spaces .. suffix
+        end
+      end
+    end
+
+    -- 3단계: 버퍼에 적용
+    vim.api.nvim_buf_set_lines(0, start_line, end_line, false, lines)
+    print("✨ " .. cmd_name .. ": 구분자 기준으로 줄을 맞췄습니다.")
+
+  end, { 
+    range = "%", 
+    desc = "특수문자(,(){}') 기준으로 " .. mode .. " 정렬" 
+  })
+end
+
+-- 명령어 등록
+create_align_command("AlignLeft", "first")
+create_align_command("AlignRight", "last")
+
+-- ==========================================================================
+-- 사용자 명령: SpaceOne (Vertical Block 전용)
+-- 기능: 선택된 사각형(Vertical Block) 영역 안의 연속된 공백을 1칸으로 축소
+-- 주의: Visual Block(Ctrl+v) 상태에서만 동작함
+-- ==========================================================================
+vim.api.nvim_create_user_command('SpaceOne', function(opts)
+  -- 1. 모드 확인: Vertical Block(Ctrl+v, Lua에서는 "\22")인지 체크
+  if vim.fn.visualmode() ~= "\22" then
+    print("⚠️ SpaceOne은 Vertical Block(Ctrl+v) 모드에서만 동작합니다.")
+    return
+  end
+
+  -- 2. 범위 및 컬럼 위치 계산
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+  
+  -- '< 와 '> 마크를 사용하여 선택된 블록의 좌우 컬럼 위치를 구함
+  local pos_start = vim.fn.getpos("'<")
+  local pos_end = vim.fn.getpos("'>")
+  
+  local start_col = pos_start[3]
+  local end_col = pos_end[3]
+
+  -- 역방향(오른쪽에서 왼쪽)으로 드래그했을 경우 좌표 보정
+  if start_col > end_col then
+    start_col, end_col = end_col, start_col
+  end
+
+  -- 3. 라인 가져오기
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+  for i, line in ipairs(lines) do
+    -- 라인 길이가 블록의 시작점보다 짧으면 처리할 필요 없음
+    if #line >= start_col then
+      
+      -- 4. 문자열 3등분 (Prefix | Target | Suffix)
+      -- (1) 블록 앞부분
+      local prefix = string.sub(line, 1, start_col - 1)
+      
+      -- (2) 블록 내부 (Target) - 라인 길이를 넘지 않도록 조정
+      local actual_end_col = math.min(#line, end_col)
+      local target = string.sub(line, start_col, actual_end_col)
+      
+      -- (3) 블록 뒷부분
+      local suffix = ""
+      if #line > end_col then
+        suffix = string.sub(line, end_col + 1)
+      end
+
+      -- 5. 핵심 로직: 블록 내부(Target)의 연속된 공백을 1개로 축소
+      local processed_target = target:gsub("%s+", " ")
+
+      -- 만약 블록 전체가 공백이었다면 " " 한 칸으로 줄어듦.
+      -- 원한다면 아래 주석을 해제하여 완전히 빈 블록은 아예 삭제할 수도 있음.
+      -- if processed_target == " " and target:match("^%s+$") then processed_target = "" end
+
+      -- 6. 재조립
+      lines[i] = prefix .. processed_target .. suffix
+    end
+  end
+
+  -- 7. 결과 적용
+  vim.api.nvim_buf_set_lines(0, start_line, end_line, false, lines)
+  print("🟩 선택된 블록 내의 공백을 정리했습니다.")
+
+end, { 
+  range = "%", 
+  desc = "Vertical Block 내의 연속된 공백을 1칸으로 축소" 
+})
+
 vim.api.nvim_create_user_command('AddBack', function(opts)
   -- 1. 사용자 입력값(Argument) 가져오기
   local suffix = opts.args
@@ -255,6 +418,31 @@ end, {
   nargs = '?'   -- 인자는 있어도 되고 없어도 됨
 })
 
+-- ==========================================================================
+-- 자동 설정: 파일 열 때 마지막 커서 위치로 복구
+-- ==========================================================================
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*",
+  callback = function()
+    -- 1. 제외할 파일타입 정의 (예: git commit 메시지는 항상 맨 위에서 시작)
+    local exclude_ft = { "gitcommit", "gitrebase" }
+    local ft = vim.bo.filetype
+    if vim.tbl_contains(exclude_ft, ft) then
+      return
+    end
+
+    -- 2. 마지막 커서 위치 마크(") 가져오기
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local line_count = vim.api.nvim_buf_line_count(0)
+
+    -- 3. 마크가 유효하고, 파일 줄 수 범위 내에 있다면 이동
+    if mark[1] > 0 and mark[1] <= line_count then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+  desc = "마지막 편집 위치로 커서 복원",
+})
+
 -- <Leader> + n 을 누르면 상대 줄 번호를 켰다 껐다 함
 vim.keymap.set("n", "<leader>n", function()
   -- 현재 relativenumber가 켜져 있다면 끄고, 꺼져 있다면 킴
@@ -275,7 +463,7 @@ end, { desc = "Toggle Relative Number" })
 --   2. 그 외(일반/Visual Line): 라인의 첫 번째 단어(공백 제외) 기준으로 정렬
 --   3. 결과는 클립보드에 복사됨 (원본 파일 수정 X)
 -- ==========================================================================
-vim.api.nvim_create_user_command('Aligns', function(opts)
+vim.api.nvim_create_user_command('OrderBy', function(opts)
   -- 1. 범위 설정
   local start_line = opts.line1 - 1
   local end_line = opts.line2
