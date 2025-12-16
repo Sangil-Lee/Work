@@ -730,6 +730,174 @@ end, {
 })
 
 -- ==========================================================================
+-- 사용자 명령: TableDelimiter
+-- 기능: 입력받은 구분자(Delimiter)를 기준으로 텍스트를 표(Table) 형태로 정렬
+-- 특징: 각 열(Column)의 너비를 계산하여 공백을 자동 추가함
+-- 사용법: :TableDelimiter <구분자> (예: :TableDelimiter :)
+-- ==========================================================================
+vim.api.nvim_create_user_command('TableDelimiter', function(opts)
+  local delim = opts.args
+
+  -- 1. 구분자가 입력되지 않았을 경우 예외 처리
+  if delim == "" or delim == nil then
+    print("⚠️ 구분자를 입력해주세요. (예: :TableDelimiter :)")
+    return
+  end
+
+  local start_line = opts.line1 - 1
+  local end_line = opts.line2
+  local lines = vim.api.nvim_buf_get_lines(0, start_line, end_line, false)
+
+  if #lines == 0 then return end
+
+  -- 2. 데이터 파싱 및 각 열(Column)의 최대 너비 계산
+  local matrix = {}      -- 분리된 텍스트들을 담을 2차원 배열
+  local col_widths = {}  -- 각 열의 최대 너비를 저장할 테이블
+
+  for _, line in ipairs(lines) do
+    -- vim.split(문자열, 구분자, {plain=true}) : 정규식이 아닌 일반 문자로 분리
+    local parts = vim.split(line, delim, { plain = true })
+    
+    -- 각 셀의 앞뒤 공백 제거 (Trim) 후 저장
+    local clean_parts = {}
+    for i, part in ipairs(parts) do
+      local text = vim.trim(part)
+      table.insert(clean_parts, text)
+
+      -- 현재 열(i)의 최대 너비 갱신 (한글 너비 고려)
+      local width = vim.fn.strdisplaywidth(text)
+      if not col_widths[i] or width > col_widths[i] then
+        col_widths[i] = width
+      end
+    end
+    table.insert(matrix, clean_parts)
+  end
+
+  -- 3. 정렬된 문자열로 재조립
+  local new_lines = {}
+  
+  for _, row in ipairs(matrix) do
+    local new_parts = {}
+    -- 마지막 열은 굳이 패딩을 넣을 필요가 없으므로 루프 범위 조정 가능하지만,
+    -- 구분자가 끝에 있을 수도 있으므로 전체 순회
+    for i, text in ipairs(row) do
+      local max_w = col_widths[i] or 0
+      local current_w = vim.fn.strdisplaywidth(text)
+      local padding = string.rep(" ", max_w - current_w)
+      
+      -- [옵션] "텍스트 + 공백" 형태로 저장 (왼쪽 정렬)
+      table.insert(new_parts, text .. padding)
+    end
+    
+    -- 4. 구분자를 사이에 넣어서 합치기
+    -- 보기 좋게 구분자 양옆에 공백 하나씩 추가 (" : ")
+    -- 원본처럼 붙이고 싶다면 (" : ") 대신 (delim)만 넣으세요.
+    local separator = " " .. delim .. " " 
+    table.insert(new_lines, table.concat(new_parts, separator))
+  end
+
+  -- 5. 버퍼에 적용
+  vim.api.nvim_buf_set_lines(0, start_line, end_line, false, new_lines)
+  print("📊 '" .. delim .. "' 기준으로 표 정렬을 완료했습니다.")
+
+end, { 
+  nargs = 1,    -- 인자 1개 필수 (구분자)
+  range = "%",  -- 범위 지정 가능
+  desc = "구분자를 기준으로 텍스트를 표(Table) 형태로 정렬" 
+})
+
+-- ==========================================================================
+-- 사용자 명령: Find
+-- 기능: 구분자(Delimiter) + 단어(Word) 조합을 검색 (Regex 자동 생성)
+-- 사용법: :Find <구분자>
+--   예1) :Find :  -->  :\w+ 패턴 검색 (예: :key, :value, :123)
+--   예2) :Find -  -->  -\w+ 패턴 검색 (예: -opt, -flag)
+-- ==========================================================================
+vim.api.nvim_create_user_command('Find', function(opts)
+  local delim = opts.args
+
+  if delim == "" then
+    print("검색할 구분자를 입력해주세요. (예: :Find :)")
+    return
+  end
+
+  -- 1. 정규식 특수문자 이스케이프 처리
+  -- 사용자가 '.', '*', '/' 같은 특수문자를 구분자로 넣었을 때 오작동 방지
+  -- vim.fn.escape(문자열, 이스케이프할_문자들)
+  local escaped_delim = vim.fn.escape(delim, "\\/.*$^[]~")
+
+  -- 2. 검색 패턴 생성 (Vim Regex)
+  -- escaped_delim : 사용자가 입력한 구분자
+  -- \w\+          : 단어 문자(알파벳, 숫자, _)가 1개 이상 이어짐
+  -- 만약 순수 알파벳만 찾고 싶다면 "\\w\\+" 대신 "[a-zA-Z]\\+" 로 변경하세요.
+  local pattern = escaped_delim .. "\\w\\+"
+
+  -- 3. 검색 레지스터(/) 업데이트 및 하이라이트 켜기
+  vim.fn.setreg('/', pattern)
+  vim.opt.hlsearch = true
+
+  -- 4. 검색 실행 (첫 번째 매칭으로 이동)
+  -- pcall을 사용하여 찾는 내용이 없어도 에러 메시지로 중단되지 않게 함
+  local success, _ = pcall(vim.cmd, "normal! n")
+
+  if success then
+    print("🔍 검색 패턴: " .. pattern .. " (n: 다음, N: 이전)")
+  else
+    print("⚠️ '" .. pattern .. "' 패턴을 찾을 수 없습니다.")
+  end
+
+end, { 
+  nargs = 1, -- 인자 1개 필수
+  desc = "구분자로 시작하는 단어 검색" 
+})
+
+-- ==========================================================================
+-- 사용자 명령: FindSpace
+-- 기능: 구분자와 단어 사이에 공백 추가 (이미 공백이 있으면 무시)
+-- 사용법: :FindSpace <구분자>
+-- 예시: :FindSpace :  -->  ":key"를 ": key"로 변경
+--       :FindSpace -  -->  "-opt"를 "- opt"로 변경
+-- ==========================================================================
+vim.api.nvim_create_user_command('FindSpace', function(opts)
+  local delim = opts.args
+
+  if delim == "" then
+    print("구분자를 입력해주세요. (예: :FindSpace :)")
+    return
+  end
+
+  -- 1. 특수문자 이스케이프 (정규식 오류 방지)
+  local escaped_delim = vim.fn.escape(delim, "\\/.*$^[]~")
+
+  -- 2. 치환 패턴 생성
+  -- 검색 패턴: \(구분자\)\(\w\+\)
+  --   -> 그룹1: 구분자
+  --   -> 그룹2: 뒤따라오는 단어 (공백 없이 붙어있는 경우만 매칭)
+  local pattern = "\\(" .. escaped_delim .. "\\)\\(\\w\\+\\)"
+  
+  -- 변경 패턴: \1 \2
+  --   -> 그룹1 + 공백 + 그룹2
+  local replace = "\\1 \\2"
+
+  -- 3. 범위 지정 및 명령어 조합 (s///g)
+  -- opts.line1, opts.line2는 범위(Range)입니다.
+  -- /ge 플래그: g(전체), e(매칭되는 게 없어도 에러 메시지 띄우지 않음)
+  local cmd = string.format("%d,%ds/%s/%s/ge", opts.line1, opts.line2, pattern, replace)
+
+  -- 4. 실행
+  vim.cmd(cmd)
+
+  -- 5. 결과 메시지 (변경 후 하이라이트 꺼줌)
+  print("✨ '" .. delim .. "'와 단어 사이에 공백을 추가했습니다.")
+  vim.cmd("nohlsearch") 
+
+end, { 
+  nargs = 1,    -- 인자 1개 필수
+  range = "%",  -- 범위 지정 가능 (기본값: 전체 파일)
+  desc = "구분자와 단어 사이에 공백 추가" 
+})
+
+-- ==========================================================================
 -- 보너스 명령: 하이라이트 끄기
 -- ==========================================================================
 vim.api.nvim_create_user_command('ClearChecks', function()
