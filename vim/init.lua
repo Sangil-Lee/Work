@@ -19,6 +19,9 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.swapfile = false
 vim.opt.backup = false
+local opt = vim.opt
+opt.splitright = true
+opt.splitbelow = true
 
 -- 1. 일반 줄 번호 (LineNr): 노란색으로 변경
 --vim.api.nvim_set_hl(0, "LineNr", { fg = "Yellow" })
@@ -909,6 +912,48 @@ vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select All" })
 -- (선택 사항) 입력 모드(Insert Mode)에서도 작동하게 하려면 추가
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select All in Insert Mode" })
 
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+-- === 1. 창 분할 생성 ===
+-- <Leader> + sv : 세로 분할 (Vertical Split)
+keymap("n", "<leader>v", "<C-w>v", opts)
+-- <Leader> + sh : 가로 분할 (Horizontal Split)
+keymap("n", "<leader>h", "<C-w>s", opts)
+-- <Leader> + se : 현재 창 크기를 같게 정렬 (Equal)
+keymap("n", "<leader>e", "<C-w>=", opts)
+-- <Leader> + sx : 현재 창 닫기
+keymap("n", "<leader>x", ":close<CR>", opts)
+
+-- === 2. 창 간 이동 (Ctrl + hjkl) ===
+-- 터미널이나 다른 에디터처럼 Ctrl 키와 방향키(hjkl)로 이동
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- === 3. 창 크기 조절 (Ctrl + 화살표) ===
+-- 화살표 키로 창 크기를 미세 조정
+keymap("n", "<C-Up>", ":resize -2<CR>", opts)
+keymap("n", "<C-Down>", ":resize +2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- <Leader> + sm : 현재 창 최대화/복구 토글
+keymap("n", "<leader>sm", ":MaximizerToggle<CR>", opts)
+
+-- === 구분선 스타일 변경 ===
+-- 투박한 파이프(|) 대신 깔끔한 선으로 변경
+vim.opt.fillchars = {
+  vert = "│",
+  horiz = "─",
+  eob = " ", -- 파일 끝의 물결표(~) 제거
+}
+
+-- === Global Statusline (추천) ===
+-- 각 창마다 상태 표시줄을 띄우지 않고, 화면 맨 아래에 하나만 표시하여 공간 확보
+vim.opt.laststatus = 3
+
 -- lazy.nvim 설치 (Bootstrap)
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -935,10 +980,16 @@ require("lazy").setup({
 	    -- 자동 설치 활성화 (권장)
 	    auto_install = true,
 
-	    highlight = { enable = true },
+	    highlight = { 
+            enable = true,
+            additional_vim_regex_highlighting = { "java", "cpp", "c" },
+        },
+                
 	    indent = { enable = true },
 	  })
 	end,
+
+    { import  = "plugins" },
   },
 
     
@@ -1037,6 +1088,6 @@ require("lazy").setup({
     end
   end,
   },
-  
+
 })
 
