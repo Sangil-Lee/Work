@@ -1,0 +1,83 @@
+# ---------------------------------------------------------
+# 1. System & Security (기본 및 보안)
+# ---------------------------------------------------------
+.git/
+.gitignore
+.claudeignore
+.env*
+*.pem
+*.key
+id_rsa*
+secrets.yaml
+
+# OS Junk files
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------
+# 2. Python & AI (가상환경, 무거운 모델, 데이터)
+# ---------------------------------------------------------
+# Virtual Environments (AI가 읽을 필요 없음)
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Large Data & Models (토큰 폭탄 방지)
+*.csv
+*.parquet
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.pkl
+data/
+dataset/
+qdrant_storage/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# ---------------------------------------------------------
+# 3. EPICS & C/C++ Build Artifacts (가장 중요 ⭐)
+# ---------------------------------------------------------
+# EPICS는 빌드 시 O.linux-x86_64 같은 폴더를 수십 개 만듭니다.
+# 이를 무시하지 않으면 토큰 낭비가 심각합니다.
+
+# EPICS Build Directories
+O.*/
+O.Common/
+O.linux-x86_64/
+O.windows-x64/
+
+# Standard Build Output
+bin/
+lib/
+obj/
+build/
+dist/
+
+# Object files & Libraries
+*.o
+*.obj
+*.a
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Generated C/C++ dependencies
+*.d
+
+# ---------------------------------------------------------
+# 4. Logs & Temporary Files
+# ---------------------------------------------------------
+*.log
+*.err
+*.out
+temp/
+tmp/
+iocBoot/**/log/
