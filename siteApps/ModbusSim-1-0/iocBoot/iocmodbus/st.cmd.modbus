@@ -1,0 +1,132 @@
+#!../../bin/linux-x86_64/modbusApp
+
+#=====================================================================
+# EPICS IOC Startup Script for Modbus TCP Simulator
+#
+# Modbus TCP Server: localhost:5020
+# Driver: asyn + modbus
+#=====================================================================
+
+< envPaths
+
+#---------------------------------------------------------------------
+# Environment Variables
+#---------------------------------------------------------------------
+epicsEnvSet("IOC", "iocModbusSim")
+epicsEnvSet("P", "SIM:")
+epicsEnvSet("PORT", "MBSIM")
+
+# Modbus TCP Server Address
+epicsEnvSet("MODBUS_IP", "127.0.0.1")
+epicsEnvSet("MODBUS_PORT", "5020")
+
+#---------------------------------------------------------------------
+# Register Support Components
+#---------------------------------------------------------------------
+cd "${TOP}"
+dbLoadDatabase "dbd/modbusApp.dbd"
+modbusApp_registerRecordDeviceDriver pdbbase
+
+#---------------------------------------------------------------------
+# Configure asyn IP Port
+#---------------------------------------------------------------------
+# drvAsynIPPortConfigure(portName, hostInfo, priority, noAutoConnect, noProcessEos)
+drvAsynIPPortConfigure("$(PORT)_TCP", "$(MODBUS_IP):$(MODBUS_PORT)", 0, 0, 1)
+
+# Enable asyn trace for debugging (comment out for production)
+#asynSetTraceIOMask("$(PORT)_TCP", 0, 0x6)
+#asynSetTraceMask("$(PORT)_TCP", 0, 0x9)
+
+#---------------------------------------------------------------------
+# Configure Modbus Interpose
+#---------------------------------------------------------------------
+# modbusInterposeConfig(portName, linkType, timeoutMsec, writeDelayMsec)
+# linkType: 0=TCP/IP, 1=RTU, 2=ASCII
+modbusInterposeConfig("$(PORT)_TCP", 0, 2000, 0)
+
+#---------------------------------------------------------------------
+# Configure Modbus Data Tables
+#---------------------------------------------------------------------
+# drvModbusAsynConfigure(portName, tcpPortName, slaveAddress,
+#                        modbusFunction, modbusStartAddress, modbusLength,
+#                        dataType, pollMsec, plcType)
+#
+# modbusFunction:
+#   1  = Read Coils (FC01)
+#   2  = Read Discrete Inputs (FC02)
+#   3  = Read Holding Registers (FC03)
+#   4  = Read Input Registers (FC04)
+#   5  = Write Single Coil (FC05)
+#   6  = Write Single Register (FC06)
+#   15 = Write Multiple Coils (FC15)
+#   16 = Write Multiple Registers (FC16)
+#
+# dataType:
+#   0  = UINT16 (default)
+#   1  = INT16SM (signed magnitude)
+#   2  = BCD unsigned
+#   3  = BCD signed
+#   4  = INT16 (2's complement)
+#   5  = INT32_LE (little endian)
+#   6  = INT32_BE (big endian)
+#   7  = FLOAT32_LE (little endian)
+#   8  = FLOAT32_BE (big endian)
+#   9  = FLOAT64_LE (little endian)
+#   10 = FLOAT64_BE (big endian)
+#   11 = STRING_HIGH
+#   12 = STRING_LOW
+#   13 = STRING_HIGH_LOW
+#   14 = STRING_LOW_HIGH
+
+#---------------------------------------------------------------------
+# COIL Read (FC01) - Address 0-104
+#---------------------------------------------------------------------
+# Read Coils 0-19 (Passive DI/DO)
+drvModbusAsynConfigure("$(PORT)_COIL_R", "$(PORT)_TCP", 1, 1, 0, 20, 0, 100, "Simulator")
+
+# Read Coils 100-104 (Simulated DI)
+drvModbusAsynConfigure("$(PORT)_COIL_R_SIM", "$(PORT)_TCP", 1, 1, 100, 5, 0, 100, "Simulator")
+
+#---------------------------------------------------------------------
+# COIL Write (FC05) - Address 0-19
+#---------------------------------------------------------------------
+drvModbusAsynConfigure("$(PORT)_COIL_W", "$(PORT)_TCP", 1, 5, 0, 20, 0, 0, "Simulator")
+
+#---------------------------------------------------------------------
+# Holding Register Read (FC03) - Float32 Big Endian
+#---------------------------------------------------------------------
+# Analog Inputs (Address 0-19, Float32 = 2 regs each, 10 values)
+drvModbusAsynConfigure("$(PORT)_HOLD_R", "$(PORT)_TCP", 1, 3, 0, 20, 8, 100, "Simulator")
+
+# Setpoints (Address 100-119, Mixed Float32/Int32)
+drvModbusAsynConfigure("$(PORT)_HOLD_R_SP", "$(PORT)_TCP", 1, 3, 100, 20, 8, 100, "Simulator")
+
+# Actuator Feedback (Address 200-209, Mixed Float32/Int32)
+drvModbusAsynConfigure("$(PORT)_HOLD_R_FB", "$(PORT)_TCP", 1, 3, 200, 10, 8, 100, "Simulator")
+
+#---------------------------------------------------------------------
+# Holding Register Write (FC16) - Float32 Big Endian
+#---------------------------------------------------------------------
+# Setpoints Write (Address 100-119)
+drvModbusAsynConfigure("$(PORT)_HOLD_W", "$(PORT)_TCP", 1, 16, 100, 20, 8, 0, "Simulator")
+
+#---------------------------------------------------------------------
+# Load Database
+#---------------------------------------------------------------------
+cd "${TOP}/db"
+dbLoadRecords("modbussim.db", "P=$(P),PORT=$(PORT)")
+
+#---------------------------------------------------------------------
+# IOC Initialization
+#---------------------------------------------------------------------
+cd "${TOP}/iocBoot/${IOC}"
+iocInit
+
+#---------------------------------------------------------------------
+# Post-Initialization Commands
+#---------------------------------------------------------------------
+# Print loaded records
+#dbl
+
+# Start monitoring (optional)
+#dbpf "$(P)DI_SystemStart_Cmd" 0

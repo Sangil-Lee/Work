@@ -1,0 +1,709 @@
+#=====================================================================
+# EPICS Database for Modbus TCP Simulator
+# Generated from io_config.json
+#
+# Modbus Driver: asyn modbusTcp
+# Server: localhost:5020
+#
+# Port Mapping (st.cmd):
+#   COIL_R     : FC01, addr 0-19   (offset 0-19)
+#   COIL_R_SIM : FC01, addr 100-104 (offset 0-4)
+#   COIL_W     : FC05, addr 0-19   (offset 0-19)
+#   HOLD_R     : FC03, addr 0-19   (offset 0-19, Float32 BE)
+#   HOLD_R_SP  : FC03, addr 100-119 (offset 0-19, Float32 BE)
+#   HOLD_R_FB  : FC03, addr 200-209 (offset 0-9, Float32 BE)
+#   HOLD_W     : FC16, addr 100-119 (offset 0-19, Float32 BE)
+#=====================================================================
+
+#=====================================================================
+# [GROUP 1] Digital Inputs (COIL 0-9) - Passive
+# Driver: COIL_R (offset 0-9), COIL_W (offset 0-9)
+#=====================================================================
+
+record(bi, "$(P)DI_SystemStart_Cmd_RB") {
+    field(DESC, "System Start Push Button")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 0, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_SystemStart_Cmd") {
+    field(DESC, "System Start Push Button")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 0, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DI_SystemStop_Cmd_RB") {
+    field(DESC, "System Stop Push Button")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 1, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_SystemStop_Cmd") {
+    field(DESC, "System Stop Push Button")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 1, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DI_EmergencyStop_RB") {
+    field(DESC, "Emergency Stop Button (NC)")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 2, 0x1)")
+    field(ZNAM, "PRESSED")
+    field(ONAM, "NORMAL")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_EmergencyStop") {
+    field(DESC, "Emergency Stop Button (NC)")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 2, 0x1)")
+    field(ZNAM, "PRESSED")
+    field(ONAM, "NORMAL")
+}
+
+record(bi, "$(P)DI_Reset_Cmd_RB") {
+    field(DESC, "Error Reset Button")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 3, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_Reset_Cmd") {
+    field(DESC, "Error Reset Button")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 3, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DI_Mode_Auto_RB") {
+    field(DESC, "Auto Mode Selector")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 4, 0x1)")
+    field(ZNAM, "MANUAL")
+    field(ONAM, "AUTO")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_Mode_Auto") {
+    field(DESC, "Auto Mode Selector")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 4, 0x1)")
+    field(ZNAM, "MANUAL")
+    field(ONAM, "AUTO")
+}
+
+record(bi, "$(P)DI_Mode_Manual_RB") {
+    field(DESC, "Manual Mode Selector")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 5, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DI_Mode_Manual") {
+    field(DESC, "Manual Mode Selector")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 5, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DI_Door_Front_Open_RB") {
+    field(DESC, "Front Door Open Switch")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 6, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Door_Back_Open_RB") {
+    field(DESC, "Back Door Open Switch")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 7, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sensor_MaterialDetect_RB") {
+    field(DESC, "Material Presence Sensor")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 8, 0x1)")
+    field(ZNAM, "EMPTY")
+    field(ONAM, "DETECT")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sensor_Overload_RB") {
+    field(DESC, "Motor Overload Trip")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 9, 0x1)")
+    field(ZNAM, "NORMAL")
+    field(ONAM, "TRIP")
+    field(SCAN, "I/O Intr")
+}
+
+#=====================================================================
+# [GROUP 2] Digital Outputs (COIL 10-19) - Passive
+# Driver: COIL_R (offset 10-19), COIL_W (offset 10-19)
+#=====================================================================
+
+record(bi, "$(P)DO_Lamp_Run_Green_RB") {
+    field(DESC, "Run Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 10, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Lamp_Run_Green") {
+    field(DESC, "Run Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 10, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DO_Lamp_Stop_Red_RB") {
+    field(DESC, "Stop Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 11, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Lamp_Stop_Red") {
+    field(DESC, "Stop Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 11, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DO_Lamp_Alarm_Yellow_RB") {
+    field(DESC, "Alarm Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 12, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Lamp_Alarm_Yellow") {
+    field(DESC, "Alarm Status Lamp")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 12, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DO_Relay_MainPower_RB") {
+    field(DESC, "Main Power Contactor")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 13, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Relay_MainPower") {
+    field(DESC, "Main Power Contactor")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 13, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DO_Valve_Inlet_Open_RB") {
+    field(DESC, "Inlet Valve Open")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 14, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Valve_Inlet_Open") {
+    field(DESC, "Inlet Valve Open")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 14, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+}
+
+record(bi, "$(P)DO_Valve_Outlet_Open_RB") {
+    field(DESC, "Outlet Valve Open")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 15, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Valve_Outlet_Open") {
+    field(DESC, "Outlet Valve Open")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 15, 0x1)")
+    field(ZNAM, "CLOSED")
+    field(ONAM, "OPEN")
+}
+
+record(bi, "$(P)DO_Motor_Conveyor_Run_RB") {
+    field(DESC, "Conveyor Motor Run")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 16, 0x1)")
+    field(ZNAM, "STOP")
+    field(ONAM, "RUN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Motor_Conveyor_Run") {
+    field(DESC, "Conveyor Motor Run")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 16, 0x1)")
+    field(ZNAM, "STOP")
+    field(ONAM, "RUN")
+}
+
+record(bi, "$(P)DO_Motor_Pump_Run_RB") {
+    field(DESC, "Pump Motor Run")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 17, 0x1)")
+    field(ZNAM, "STOP")
+    field(ONAM, "RUN")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Motor_Pump_Run") {
+    field(DESC, "Pump Motor Run")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 17, 0x1)")
+    field(ZNAM, "STOP")
+    field(ONAM, "RUN")
+}
+
+record(bi, "$(P)DO_Siren_High_RB") {
+    field(DESC, "Emergency Siren")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 18, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Siren_High") {
+    field(DESC, "Emergency Siren")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 18, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+record(bi, "$(P)DO_Fan_Cooling_On_RB") {
+    field(DESC, "Cooling Fan Run")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R, 19, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bo, "$(P)DO_Fan_Cooling_On") {
+    field(DESC, "Cooling Fan Run")
+    field(DTYP, "asynUInt32Digital")
+    field(OUT,  "@asynMask($(PORT)_COIL_W, 19, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+}
+
+#=====================================================================
+# [GROUP 3] Simulated Digital (COIL 100-104) - Read Only
+# Driver: COIL_R_SIM (Modbus addr 100-104 -> offset 0-4)
+#=====================================================================
+
+record(bi, "$(P)DI_Sim_Heartbeat_1Hz") {
+    field(DESC, "System Heartbeat 1Hz")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R_SIM, 0, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sim_Heartbeat_Fast") {
+    field(DESC, "Fast Heartbeat 0.2s")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R_SIM, 1, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sim_Random_Alarm") {
+    field(DESC, "Random Glitch Alarm")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R_SIM, 2, 0x1)")
+    field(ZNAM, "OK")
+    field(ONAM, "ALARM")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sim_Conveyor_Pulse") {
+    field(DESC, "Conveyor Pulse Sensor")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R_SIM, 3, 0x1)")
+    field(ZNAM, "OFF")
+    field(ONAM, "ON")
+    field(SCAN, "I/O Intr")
+}
+
+record(bi, "$(P)DI_Sim_Material_Flow") {
+    field(DESC, "Material Flow Switch")
+    field(DTYP, "asynUInt32Digital")
+    field(INP,  "@asynMask($(PORT)_COIL_R_SIM, 4, 0x1)")
+    field(ZNAM, "NO_FLOW")
+    field(ONAM, "FLOW")
+    field(SCAN, "I/O Intr")
+}
+
+#=====================================================================
+# [GROUP 4] Analog Inputs (HOLDING 0-18) - Float32, Read Only
+# Driver: HOLD_R (Modbus addr 0-19 -> offset 0-9 for Float32)
+# Note: Float32 uses 2 registers, so offset is element index
+#=====================================================================
+
+record(ai, "$(P)AI_Temp_Tank1") {
+    field(DESC, "Tank 1 Temperature")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 0)")
+    field(PREC, "2")
+    field(EGU,  "C")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Temp_Tank2") {
+    field(DESC, "Tank 2 Temperature")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 2)")
+    field(PREC, "2")
+    field(EGU,  "C")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Vibration_Motor1") {
+    field(DESC, "Motor 1 Vibration X-Axis")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 4)")
+    field(PREC, "3")
+    field(EGU,  "mm/s")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Vibration_Motor2") {
+    field(DESC, "Motor 2 Vibration Y-Axis")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 6)")
+    field(PREC, "3")
+    field(EGU,  "mm/s")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Pressure_MainPump") {
+    field(DESC, "Main Pump Discharge Pressure")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 8)")
+    field(PREC, "2")
+    field(EGU,  "bar")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Flow_Outlet") {
+    field(DESC, "Outlet Flow Rate")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 10)")
+    field(PREC, "1")
+    field(EGU,  "L/min")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Level_Tank1") {
+    field(DESC, "Tank 1 Level")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 12)")
+    field(PREC, "1")
+    field(EGU,  "%")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Noise_Factory") {
+    field(DESC, "Ambient Noise Level")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 14)")
+    field(PREC, "1")
+    field(EGU,  "dB")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Power_Usage") {
+    field(DESC, "Total Power Usage")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 16)")
+    field(PREC, "2")
+    field(EGU,  "kW")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AI_Humidity_Room") {
+    field(DESC, "Room Humidity")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R, 18)")
+    field(PREC, "1")
+    field(EGU,  "%")
+    field(SCAN, "I/O Intr")
+}
+
+#=====================================================================
+# [GROUP 5] Setpoints (HOLDING 100-118) - Float32/Int32, Read/Write
+# Driver: HOLD_R_SP (Modbus addr 100-119 -> offset 0-9 for 10 values)
+# Driver: HOLD_W (Modbus addr 100-119 -> offset 0-9 for 10 values)
+#=====================================================================
+
+record(ai, "$(P)SP_Tank1_Temp_Target_RB") {
+    field(DESC, "Tank 1 Temp Setpoint RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 0)")
+    field(PREC, "1")
+    field(EGU,  "C")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_Tank1_Temp_Target") {
+    field(DESC, "Tank 1 Temp Setpoint")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 0)")
+    field(PREC, "1")
+    field(EGU,  "C")
+    field(DRVL, "0")
+    field(DRVH, "150")
+}
+
+record(ai, "$(P)SP_Tank2_Temp_Target_RB") {
+    field(DESC, "Tank 2 Temp Setpoint RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 2)")
+    field(PREC, "1")
+    field(EGU,  "C")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_Tank2_Temp_Target") {
+    field(DESC, "Tank 2 Temp Setpoint")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 2)")
+    field(PREC, "1")
+    field(EGU,  "C")
+    field(DRVL, "-20")
+    field(DRVH, "100")
+}
+
+record(ai, "$(P)SP_Conveyor_Speed_Ref_RB") {
+    field(DESC, "Conveyor Speed Ref RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 4)")
+    field(PREC, "0")
+    field(EGU,  "RPM")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_Conveyor_Speed_Ref") {
+    field(DESC, "Conveyor Speed Ref")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 4)")
+    field(PREC, "0")
+    field(EGU,  "RPM")
+    field(DRVL, "0")
+    field(DRVH, "3000")
+}
+
+record(ai, "$(P)SP_Pump_Pressure_Limit_RB") {
+    field(DESC, "Pump Pressure Limit RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 6)")
+    field(PREC, "1")
+    field(EGU,  "bar")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_Pump_Pressure_Limit") {
+    field(DESC, "Pump Pressure Limit")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 6)")
+    field(PREC, "1")
+    field(EGU,  "bar")
+    field(DRVL, "0")
+    field(DRVH, "15")
+}
+
+record(longin, "$(P)SP_Mixer_Timer_Sec_RB") {
+    field(DESC, "Mixer Timer Setpoint RB")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 8)")
+    field(EGU,  "sec")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)SP_Mixer_Timer_Sec") {
+    field(DESC, "Mixer Timer Setpoint")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 8)")
+    field(EGU,  "sec")
+    field(DRVL, "0")
+    field(DRVH, "3600")
+}
+
+record(longin, "$(P)SP_Batch_Count_Target_RB") {
+    field(DESC, "Batch Count Target RB")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 10)")
+    field(EGU,  "pcs")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)SP_Batch_Count_Target") {
+    field(DESC, "Batch Count Target")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 10)")
+    field(EGU,  "pcs")
+    field(DRVL, "0")
+    field(DRVH, "100000")
+}
+
+record(ai, "$(P)SP_PID_Kp_RB") {
+    field(DESC, "PID Kp Gain RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 12)")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_PID_Kp") {
+    field(DESC, "PID Kp Gain")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 12)")
+    field(PREC, "3")
+    field(DRVL, "0")
+    field(DRVH, "100")
+}
+
+record(ai, "$(P)SP_PID_Ki_RB") {
+    field(DESC, "PID Ki Gain RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 14)")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_PID_Ki") {
+    field(DESC, "PID Ki Gain")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 14)")
+    field(PREC, "3")
+    field(DRVL, "0")
+    field(DRVH, "100")
+}
+
+record(ai, "$(P)SP_PID_Kd_RB") {
+    field(DESC, "PID Kd Gain RB")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 16)")
+    field(PREC, "3")
+    field(SCAN, "I/O Intr")
+}
+
+record(ao, "$(P)SP_PID_Kd") {
+    field(DESC, "PID Kd Gain")
+    field(DTYP, "asynFloat64")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 16)")
+    field(PREC, "3")
+    field(DRVL, "0")
+    field(DRVH, "100")
+}
+
+record(longin, "$(P)SP_Machine_ID_RB") {
+    field(DESC, "Machine ID RB")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_SP, 18)")
+    field(SCAN, "I/O Intr")
+}
+
+record(longout, "$(P)SP_Machine_ID") {
+    field(DESC, "Machine ID")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT)_HOLD_W, 18)")
+    field(DRVL, "0")
+    field(DRVH, "9999")
+}
+
+#=====================================================================
+# [GROUP 6] Actuator Feedback (HOLDING 200-208) - Read Only
+# Driver: HOLD_R_FB (Modbus addr 200-209 -> offset 0-4)
+#=====================================================================
+
+record(longin, "$(P)AO_Feedback_MotorSpeed") {
+    field(DESC, "Motor Speed Feedback")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_FB, 0)")
+    field(EGU,  "RPM")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)AO_Feedback_ValvePos") {
+    field(DESC, "Valve Position Feedback")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_FB, 1)")
+    field(EGU,  "%")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AO_Feedback_Servo_Pos") {
+    field(DESC, "Servo Position Feedback")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_FB, 2)")
+    field(PREC, "2")
+    field(EGU,  "deg")
+    field(SCAN, "I/O Intr")
+}
+
+record(longin, "$(P)AO_Total_Counter") {
+    field(DESC, "Product Counter")
+    field(DTYP, "asynInt32")
+    field(INP,  "@asyn($(PORT)_HOLD_R_FB, 3)")
+    field(EGU,  "pcs")
+    field(SCAN, "I/O Intr")
+}
+
+record(ai, "$(P)AO_Process_Efficiency") {
+    field(DESC, "Process Efficiency")
+    field(DTYP, "asynFloat64")
+    field(INP,  "@asyn($(PORT)_HOLD_R_FB, 4)")
+    field(PREC, "1")
+    field(EGU,  "%")
+    field(SCAN, "I/O Intr")
+}
