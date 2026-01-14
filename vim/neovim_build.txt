@@ -1,0 +1,23 @@
+git clone https://github.com/neovim/neovim
+cd neovim
+git fetch --tags
+git checkout v0.11.4 ( or other version )
+
+mkdir -p .deps (Lua, 관련 dependency code)
+cmake -S cmake.deps -B .deps -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+# 의존성 설정을 위한 CMake 구성
+cmake -S cmake.deps -B .deps -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+# 의존성 실제 빌드 (시간이 좀 걸립니다)
+cmake --build .deps
+
+mkdir -p build
+# CMAKE_PREFIX_PATH를 통해 방금 빌드한 .deps/usr 경로를 지정하는 것이 핵심입니다.
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$(pwd)/.deps/usr
+
+# 컴파일 수행
+cmake --build build
+
+# /usr/local/bin/nvim 
+sudo cmake --install build
